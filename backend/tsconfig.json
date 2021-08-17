@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "baseUrl": "./src",
+    "module": "commonjs",
+    "types": ["node"],
+    "noEmit": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@controllers/*": ["./app/controllers/*"],
+      "@entities/*": ["./app/entities/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "__tests__"]
+}
