@@ -1,5 +1,5 @@
 import React from "react";
-import { TitleContainer, TitleStyle, SubtitleStyle } from "./Title.style";
+import { TitleContainer, TitleStyled, SubtitleStyled } from "./Title.style";
 
 interface TitleProps {
   title: string;
@@ -9,8 +9,8 @@ interface TitleProps {
 const Title: React.FC<TitleProps> = (props) => {
   return (
     <TitleContainer>
-      <TitleStyle>{props.title}</TitleStyle>
-      <SubtitleStyle>{props.subtitle}</SubtitleStyle>
+      <TitleStyled>{props.title}</TitleStyled>
+      <SubtitleStyled>{props.subtitle}</SubtitleStyled>
     </TitleContainer>
   );
 };

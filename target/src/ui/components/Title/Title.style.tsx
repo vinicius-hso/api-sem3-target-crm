@@ -5,7 +5,7 @@ export const TitleContainer = styled("div")`
   margin: ${({ theme }) => theme.spacing(5)} 0;
 `;
 
-export const TitleStyle = styled("h2")`
+export const TitleStyled = styled("h2")`
   margin: 0;
   color: ${({ theme }) => theme.palette.primary.main};
   font-size: ${({ theme }) => theme.typography.h6.fontSize};
@@ -16,7 +16,7 @@ export const TitleStyle = styled("h2")`
   }
 `;
 
-export const SubtitleStyle = styled("h3")`
+export const SubtitleStyled = styled("h3")`
   margin: ${({ theme }) => theme.spacing(1.5)} 0;
   color: ${({ theme }) => theme.palette.text.primary};
   font-size: ${({ theme }) => theme.typography.body1.fontSize};
