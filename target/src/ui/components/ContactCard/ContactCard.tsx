@@ -1,5 +1,5 @@
 import { Container, Toolbar } from "@material-ui/core";
-import { getNameInitials } from "data/services/getNameInitials";
+import { getNameInitials } from "data/utils/getNameInitials";
 import React from "react";
 import {
   ContactAvatarStyled,

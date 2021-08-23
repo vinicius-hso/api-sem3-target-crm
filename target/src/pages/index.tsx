@@ -17,10 +17,18 @@ export default function Home() {
         icon="fa fa-facebook"
       />
       <TextFieldMask
-        label={"teste"}
         fullWidth
+        label={"password"}
         variant={"outlined"}
-        icon="fa fa-eye"
+        icon="fa fa-key"
+        type="password"
+      />
+      <TextFieldMask
+        fullWidth
+        label={"cpf"}
+        variant={"outlined"}
+        icon="fa fa-id-card"
+        mask="999.999.999-99"
       />
       <ContactCard
         name="Contact"
@@ -32,6 +40,7 @@ export default function Home() {
       />
       <br />
       <ContactCard name="Willian Rodrigues" description="teste" rating={3} />
+      <ContactCard name="Mirian" description="teste" rating={3} />
     </div>
   );
 }
