@@ -5,7 +5,51 @@ export class CreateUsers1629211336265 implements MigrationInterface {
     await queryRunner.createTable(
       new Table({
         name: 'users',
-        columns: [],
+        columns: [
+          {
+            name: 'id',
+            type: 'uuid',
+            isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'uuid',
+          },
+          {
+            name: 'name',
+            type: 'varchar',
+          },
+          {
+            name: 'email',
+            type: 'varchar',
+          },
+          {
+            name: 'role',
+            type: 'varchar',
+          },
+          {
+            name: 'passwordHash',
+            type: 'varchar',
+          },
+          {
+            name: 'passwordResetToken',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'passwordResetExpires',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'createdAt',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updatedAt',
+            type: 'timestamp',
+            default: 'now()',
+          },
+        ],
       })
     );
   }

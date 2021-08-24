@@ -1,3 +1,3 @@
 import app from './app';
 
-app.listen(3000, () => console.log('Server on'));
+app.listen(process.env.PORT || 3333, () => console.log('Server on'));

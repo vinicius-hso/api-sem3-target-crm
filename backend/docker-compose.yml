@@ -1,0 +1,14 @@
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=docker
+      - POSTGRES_DB=test
+    volumes:
+      # copy the sql script to create db
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - '5432:5432'

@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "baseUrl": "./src",
+    "target": "es6",
+    "baseUrl": ".",
+    "outDir": "./build",
     "module": "commonjs",
-    "types": ["node"],
+    "typeRoots": ["./node_modules/@types", "./@types"],
+    "types": ["node", "jest"],
     "noEmit": true,
     "skipLibCheck": true,
     "removeComments": true,
@@ -13,10 +15,15 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@controllers/*": ["./app/controllers/*"],
-      "@entities/*": ["./app/entities/*"]
+      "@controllers/*": ["./src/app/controllers/*"],
+      "@middlewares/*": ["./src/app/middlewares/*"],
+      "@entities/*": ["./src/app/entities/*"],
+      "@config/*": ["./src/config/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@src/*": ["./src/*"]
     }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "__tests__"]
+  "include": ["src", "__tests__"],
+  "exclude": ["node_modules"]
 }
+ 
