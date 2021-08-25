@@ -28,7 +28,7 @@ export const ContactDescriptionStyled = styled("div")`
   grid-area: description;
 `;
 
-export const ContactAvatarStyled = styled(Avatar)`
+export const ContactPictureStyled = styled(Avatar)`
   grid-area: picture;
   width: 100%;
   height: initial;

@@ -1,7 +1,7 @@
 import React from "react";
 import InputMask from "react-input-mask";
 import TextField from "../TextField/TextField";
-import { OutlinedTextFieldProps } from "@material-ui/core";
+import { InputAdornment, OutlinedTextFieldProps } from "@material-ui/core";
 import { InputContainer, InputIconStyled } from "./TextFieldMask.style";
 
 export interface TextFieldMaskProps extends OutlinedTextFieldProps {
@@ -19,14 +19,19 @@ const TextFieldMask: React.FC<TextFieldMaskProps> = ({
   return (
     <InputContainer>
       <InputIconStyled className={icon}/>
-      <InputMask  mask={mask}>
+      <InputMask style={{height: '30px'}} mask={mask}>
         {() => {
           return (
-            <div>
               <TextField
                 {...props}
-              ></TextField>
-            </div>
+/*                 InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="start">
+                      <InputIconStyled className={icon}/>
+                    </InputAdornment>
+                  )
+                }}
+ */              />
           );
         }}
       </InputMask>

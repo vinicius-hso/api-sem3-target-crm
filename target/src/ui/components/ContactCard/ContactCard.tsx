@@ -1,8 +1,8 @@
 import { Container, Toolbar } from "@material-ui/core";
-import { getNameInitials } from "data/utils/getNameInitials";
+import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
 import React from "react";
 import {
-  ContactAvatarStyled,
+  ContactPictureStyled,
   ContactCardContainer,
   ContactDescriptionStyled,
   ContactNameStyled,
@@ -19,10 +19,10 @@ interface ContactCardProps {
 const ContactCard: React.FC<ContactCardProps> = (props) => {
   return (
     <ContactCardContainer>
-      <ContactAvatarStyled src={props.picture}>
+      <ContactPictureStyled src={props.picture}>
         {getNameInitials(props.name)}
-      </ContactAvatarStyled>
-      <ContactNameStyled>{props.name}</ContactNameStyled>
+      </ContactPictureStyled>
+      <ContactNameStyled>{getNameUpperCase(props.name)}</ContactNameStyled>
       <ContactRatingStyled readOnly value={props.rating} />
       <ContactDescriptionStyled>{props.description}</ContactDescriptionStyled>
     </ContactCardContainer>

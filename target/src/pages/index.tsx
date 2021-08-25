@@ -1,46 +1,64 @@
+import { Button, Typography } from '@material-ui/core';
 import Title from "ui/components/Title/Title";
-import ContactCard from "ui/components/ContactCard/ContactCard";
+import DealCard from "ui/components/DealCard/DealCard";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
+import { FormContainer } from '@styles/pagesStyle/index.styles';
+import { useEffect } from 'react';
+import { api } from 'data/services/serviceApi';
+import moment from 'moment';
 
 export default function Home() {
+
+/*   
+  useEffect(() => {
+    async function backAccess(){
+      const request = await api.get('/contacts')
+      console.log(request);
+    }
+    backAccess();
+  },[])
+ */
   return (
     <div>
       <Title
         title={"Seja bem vindo!"}
-        subtitle={<p>Faça seu login para acessar sua area restrita.</p>}
+        subtitle={<p>Faça login para acessar sua area restrita.</p>}
       ></Title>
-      <TextFieldMask
-        label={"Placeholder"}
-        fullWidth
-        variant={"outlined"}
-        mask={"(99) 9 9999-9999"}
-        icon="fa fa-facebook"
-      />
-      <TextFieldMask
-        fullWidth
-        label={"password"}
-        variant={"outlined"}
-        icon="fa fa-key"
-        type="password"
-      />
-      <TextFieldMask
-        fullWidth
-        label={"cpf"}
-        variant={"outlined"}
-        icon="fa fa-id-card"
-        mask="999.999.999-99"
-      />
-      <ContactCard
-        name="Contact"
+      <FormContainer>
+        <TextFieldMask
+          label={"email"}
+          fullWidth
+          variant={"outlined"}
+          icon="fa fa-user"
+          size="small"
+        />
+        <TextFieldMask
+          fullWidth
+          label={"senha"}
+          variant={"outlined"}
+          icon="fa fa-key"
+          type="password"
+          size="small"
+        />
+        <Typography color='error'> <i className='fa fa-info-circle'/> Usuario ou senha incorreto, tente novamente ou clique em "Redefinir senha" <br/> para redefini-la</Typography>
+        <Button
+          variant="contained"
+          sx={{width: '200px'}}
+          color="secondary"
+          
+        >
+          Entrar
+        </Button>
+      </FormContainer>
+      <DealCard 
+        title="Usuario ou senha incorreto"
         picture={
-          "https://avatars.githubusercontent.com/u/57255222?s=400&u=6fac4383a94553b8987954882444ba7e826e4092&v=4"
+          ["https://avatars.githubusercontent.com/u/57255222?s=400&u=6fac4383a94553b8987954882444ba7e826e4092&v=4", 'Company']
         }
-        description="teste"
-        rating={3}
+        type="teste"
+        budget={3}
+        startDate={moment().format('DD/MM/YYYY HH:MM')}  
       />
-      <br />
-      <ContactCard name="Willian Rodrigues" description="teste" rating={3} />
-      <ContactCard name="Mirian" description="teste" rating={3} />
     </div>
   );
 }

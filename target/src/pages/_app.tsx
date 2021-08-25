@@ -5,8 +5,11 @@ import Head from "next/head";
 import Header from "ui/components/Header/Header";
 import Footer from "ui/components/Footer/Footer";
 import { AppContainer } from "ui/styles/pagesStyle/_app.syile";
+import moment from 'moment';
+
 
 function MyApp({ Component, pageProps }) {
+ moment.locale('pt-br');
   return (
     <>
       <Head>
