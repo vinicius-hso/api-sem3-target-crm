@@ -15,12 +15,12 @@ export const getNameUpperCase = (fullName: string) => {
   let editName = '';
   fullName
     .split(' ')
-    .map((word) => {
-      if(word !== 'de' && word !== 'da' && word !== 'do' &&  word !== 'das' && word !== 'dos'){
-        word = word[0].toUpperCase() + word.slice(1).toLowerCase();
-        editName += word + ' '
+    .map((name) => {
+      if(name !== 'de' && name !== 'da' && name !== 'do' &&  name !== 'das' && name !== 'dos'){
+        name = name[0].toUpperCase() + name.slice(1).toLowerCase();
+        editName += name + ' '
       }else{
-        editName += word + ' '
+        editName += name + ' '
       }
     })    
   return editName

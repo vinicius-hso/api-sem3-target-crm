@@ -1,64 +1,95 @@
-import { Button, Typography } from '@material-ui/core';
+import React from "react";
+import { Button, Typography, CircularProgress } from "@material-ui/core";
 import Title from "ui/components/Title/Title";
-import DealCard from "ui/components/DealCard/DealCard";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { FormContainer } from '@styles/pagesStyle/index.styles';
-import { useEffect } from 'react';
-import { api } from 'data/services/serviceApi';
-import moment from 'moment';
+import { FormContainer } from "@styles/pagesStyle/index.styles";
+import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
 
 export default function Home() {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    isLoading,
+    data,
+    hasError,
+    emailIsValid,
+    passwordIsValid,
+    login,
+    passwordVerification,
+    emailVerification,
+  } = useIndexPage();
 
-/*   
-  useEffect(() => {
-    async function backAccess(){
-      const request = await api.get('/contacts')
-      console.log(request);
-    }
-    backAccess();
-  },[])
- */
   return (
-    <div>
+    <div style={{ margin: "auto 0" }}>
       <Title
         title={"Seja bem vindo!"}
         subtitle={<p>Faça login para acessar sua area restrita.</p>}
       ></Title>
+
       <FormContainer>
+        {hasError ? (
+          <Typography
+            sx={{ maxWidth: "280px" }}
+            variant="caption"
+            color="error"
+          >
+            <i className="fa fa-info-circle" /> {hasError}
+          </Typography>
+        ) : (
+          ""
+        )}
+
         <TextFieldMask
-          label={"email"}
+          label={"Email"}
           fullWidth
           variant={"outlined"}
-          icon="fa fa-user"
+          icon="fa fa-envelope"
           size="small"
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          onBlur={emailVerification}
+          error={!emailIsValid}
+          helperText={!emailIsValid ? "Email com formato invalido" : ""}
         />
+
         <TextFieldMask
           fullWidth
-          label={"senha"}
+          label={"Senha"}
           variant={"outlined"}
-          icon="fa fa-key"
+          icon="fa fa-unlock-alt"
           type="password"
           size="small"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          onBlur={passwordVerification}
+          error={!passwordIsValid}
+          helperText={
+            !passwordIsValid ? "Senha deve ter no minimo 6 caracteres" : ""
+          }
         />
-        <Typography color='error'> <i className='fa fa-info-circle'/> Usuario ou senha incorreto, tente novamente ou clique em "Redefinir senha" <br/> para redefini-la</Typography>
+
         <Button
           variant="contained"
-          sx={{width: '200px'}}
+          sx={{ width: "200px", mt: 1 }}
           color="secondary"
-          
+          onClick={() => login(email, password)}
         >
-          Entrar
+          {isLoading ? (
+            <CircularProgress size={20} color="inherit" />
+          ) : (
+            "Entrar"
+          )}
         </Button>
+
+        <a href="#" style={{ textDecoration: "none" }}>
+          <Typography variant="body2" sx={{ mt: 1 }} color="GrayText">
+            Redefinir senha
+          </Typography>
+        </a>
       </FormContainer>
-      <DealCard 
-        title="Usuario ou senha incorreto"
-        picture={
-          ["https://avatars.githubusercontent.com/u/57255222?s=400&u=6fac4383a94553b8987954882444ba7e826e4092&v=4", 'Company']
-        }
-        type="teste"
-        budget={3}
-        startDate={moment().format('DD/MM/YYYY HH:MM')}  
-      />
     </div>
   );
 }

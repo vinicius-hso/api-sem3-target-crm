@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   return (
     <HeaderAppBar position="sticky">
       <Toolbar component={Container}>
-        <HeaderLogoStyled src={"logo.svg"} alt={"Target"} />
+        <HeaderLogoStyled src={"logo.png"} alt={"Target"} />
       </Toolbar>
     </HeaderAppBar>
   );
