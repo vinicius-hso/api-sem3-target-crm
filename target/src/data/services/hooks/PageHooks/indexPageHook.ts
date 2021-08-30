@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { emailValidator } from "../../../utils/emailValidator";
 import { serviceApi } from "data/services/serviceApi";
 
@@ -17,6 +17,15 @@ export const useIndexPage = () => {
   function passwordVerification() {
     setPasswordIsValid(password.length >= 6);
   }
+
+  useEffect(() => {
+    if (!emailIsValid) {
+      emailVerification();
+    }
+    if (!passwordIsValid) {
+      passwordVerification();
+    }
+  }, [email, password]);
 
   async function login(email, password) {
     if (

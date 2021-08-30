@@ -20,10 +20,15 @@ function MyApp({ Component, pageProps }) {
           href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet"
         />
-        <link
+        <script
+          src="https://kit.fontawesome.com/189c1a3970.js"
+          crossOrigin="BA770C04-EB7C-46D7-8585-8F6D199DC256"
+        ></script>
+        {/*         <link
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           rel="stylesheet"
         ></link>
+ */}{" "}
       </Head>
       <ThemeProvider theme={theme}>
         <AppContainer>

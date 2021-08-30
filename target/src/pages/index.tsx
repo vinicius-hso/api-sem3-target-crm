@@ -5,7 +5,7 @@ import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer } from "@styles/pagesStyle/index.styles";
 import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
 
-export default function Home() {
+export default function HomePage() {
   const {
     email,
     setEmail,
@@ -76,6 +76,7 @@ export default function Home() {
           sx={{ width: "200px", mt: 1 }}
           color="secondary"
           onClick={() => login(email, password)}
+          type="submit"
         >
           {isLoading ? (
             <CircularProgress size={20} color="inherit" />

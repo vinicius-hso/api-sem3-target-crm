@@ -3,6 +3,7 @@ import InputMask from "react-input-mask";
 import TextMask from "react-text-mask";
 import TextField from "../TextField/TextField";
 import {
+  Icon,
   InputAdornment,
   OutlinedTextFieldProps,
   useTheme,
@@ -31,6 +32,7 @@ const TextFieldMask: React.FC<TextFieldMaskProps> = ({
     }
   }, [props.error]);
 
+  console.log(props.focused);
   return (
     <InputContainer>
       <TextField
@@ -40,7 +42,11 @@ const TextFieldMask: React.FC<TextFieldMaskProps> = ({
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <InputIconStyled className={icon} style={{ color: iconColor }} />
+              <Icon
+                className={icon}
+                color={props.error ? "error" : "disabled"}
+                fontSize="small"
+              />
             </InputAdornment>
           ),
         }}
