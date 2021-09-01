@@ -1,20 +1,10 @@
-// jest.useFakeTimers()
-// import { createConnection } from 'typeorm';
-// import request from 'supertest';
 import supertest from 'supertest';
-import * as dotenv from 'dotenv';
 import app from '@src/app';
 const request = supertest.agent(app)
-
-dotenv.config({
-  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
-});
 
 describe('User Controllers', () => {
   let user;
   beforeAll(async () => {
-    // await createConnection();
-
     user = {
       name: 'foo',
       email: 'foo@bar.com',

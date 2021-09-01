@@ -10,7 +10,7 @@ dotenv.config({
 // Config
 const app = express();
 
-import './database';
+import './database'
 
 app.use(express.json());
 app.use(cors());

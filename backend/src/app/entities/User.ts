@@ -11,11 +11,14 @@ class Users extends BaseEntity {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ type: 'enum', enum: ['ADMIN', 'SELLER'], default: 'SELLER' })
   role: string;
 
   @Column()
   passwordHash: string;
+
+  @Column({ nullable: true })
+  picture: string;
 
   @Column({ nullable: true })
   passwordResetToken: string;

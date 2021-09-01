@@ -9,6 +9,7 @@ interface UserInterface {
   name?: string;
   role?: string;
   token?: string;
+  picture?: string;
   email: string;
   password: string;
 }
@@ -18,25 +19,26 @@ function generateToken(params = {}) {
 }
 
 class UserController {
-  public async registerUser(req: Request, res: Response): Promise<Response> {
+  public async createUser(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, email, password, role }: UserInterface = req.body;
+      const { name, email, password, role, picture }: UserInterface = req.body;
 
-      if (!name || !email || !password || !role)
+      if (!name || !email || !password)
         return res.status(400).json({ message: 'Invalid values for new User!' });
 
       if (await User.findOne({ email })) return res.status(400).json({ message: 'User already exists' });
 
       const passwordHash = await bcrypt.hash(password, 10);
 
-      const user = await User.create({ name, email, passwordHash, role }).save();
+      const user = await User.create({ name, email, passwordHash, role, picture }).save();
 
       if (!user) return res.status(400).json({ message: 'Cannot create user' });
 
       user.passwordHash = undefined;
 
-      res.send({ user, token: generateToken({ id: user.id }) });
+      res.json({ user, token: generateToken({ id: user.id }) });
     } catch (error) {
+      console.log(error);
       res.status(400).json({ error: 'Registration failed, try again' });
     }
   }
@@ -49,14 +51,14 @@ class UserController {
 
       const user = await User.findOne({ email });
 
-      if (!user) return res.status(400).json({ message: 'User does not exist' });
+      if (!user) return res.status(404).json({ message: 'User does not exist' });
 
       if (!(await bcrypt.compare(password, user.passwordHash)))
         return res.status(400).json({ message: 'Invalid email or password' });
 
-      return res.send({ token: generateToken({ id: user.id }) });
+      return res.json({ token: generateToken({ id: user.id }) });
     } catch (error) {
-      return res.status(400).send({ error: 'Authenticate failed, try again' });
+      return res.status(400).json({ error: 'Authenticate failed, try again' });
     }
   }
 
@@ -68,7 +70,7 @@ class UserController {
 
       const user = await User.findOne({ email });
 
-      if (!user) return res.status(400).send({ error: 'User not found' });
+      if (!user) return res.status(404).json({ message: 'User not found' });
 
       const token = crypto.randomBytes(20).toString('hex'); // token que será enviado via email.
 
@@ -89,13 +91,13 @@ class UserController {
         context: { token },
       },
       (err) => {
-        if (err) return res.status(400).send({ error: 'Cannot send forgot password email' });
+        if (err) return res.status(400).json({ message: 'Cannot send forgot password email' });
 
         transport.close();
-        return res.send();
+        return res.json();
       });
     } catch (error) {
-      return res.status(400).send({ error: 'Forgot password failed, try again' });
+      return res.status(400).json({ error: 'Forgot password failed, try again' });
     }
   }
 
@@ -108,20 +110,20 @@ class UserController {
 
       const user = await User.findOne({ email });
 
-      if (!user) return res.status(400).send({ error: 'User not found' });
+      if (!user) return res.status(404).json({ message: 'User not found' });
 
-      if (token !== user.passwordResetToken) return res.status(400).send({ error: 'Token is invalid' });
+      if (token !== user.passwordResetToken) return res.status(400).json({ message: 'Token is invalid' });
 
       const now = new Date();
-      if (now > user.passwordResetExpires) return res.status(400).send({ error: 'Token expired' });
+      if (now > user.passwordResetExpires) return res.status(400).json({ message: 'Token expired' });
 
       const passwordHash = await bcrypt.hash(password, 10);
 
       await User.update(user.id, { passwordHash });
 
-      return res.send({ message: 'Ok' });
+      return res.json({ message: 'Ok' });
     } catch (error) {
-      return res.status(400).send({ error: 'Cannot reset password, try again' });
+      return res.status(400).json({ error: 'Cannot reset password, try again' });
     }
   }
 }
