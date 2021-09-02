@@ -18,15 +18,9 @@ export interface DealCardProps {
   companyPicture?: string;
   title: string;
   budget: number;
-  type?: string;
   startDate?: any;
   contactName: string;
   tag?: string;
-  dragging?: boolean;
-  ref?: any;
-  style?: any;
-  key?: string;
-  index?: number;
 }
 
 const DealCard: React.FC<DealCardProps> = (props) => {
@@ -40,7 +34,7 @@ const DealCard: React.FC<DealCardProps> = (props) => {
     }
   }, [props.tag]);
   return (
-    <DealCardContainer ref={props.ref} style={props.style}>
+    <DealCardContainer>
       <div
         style={{
           backgroundColor: theme.palette.grey[50],

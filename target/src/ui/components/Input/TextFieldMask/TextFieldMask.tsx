@@ -1,6 +1,4 @@
-import React, { useMemo, useRef } from "react";
-import InputMask from "react-input-mask";
-import TextMask from "react-text-mask";
+import React from "react";
 import TextField from "../TextField/TextField";
 import {
   Icon,
@@ -8,7 +6,7 @@ import {
   OutlinedTextFieldProps,
   useTheme,
 } from "@material-ui/core";
-import { InputContainer, InputIconStyled } from "./TextFieldMask.style";
+import { InputContainer } from "./TextFieldMask.style";
 
 export interface TextFieldMaskProps extends OutlinedTextFieldProps {
   mask?: string;
@@ -23,16 +21,6 @@ const TextFieldMask: React.FC<TextFieldMaskProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-
-  let iconColor = useMemo(() => {
-    if (props.error) {
-      return theme.palette.error.main;
-    } else {
-      return theme.palette.grey[400];
-    }
-  }, [props.error]);
-
-  console.log(props.focused);
   return (
     <InputContainer>
       <TextField

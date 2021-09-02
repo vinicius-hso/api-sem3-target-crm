@@ -7,7 +7,7 @@ import { FormContainer } from "@styles/pagesStyle/index.styles";
 
 import moment from "moment";
 
-export default function Home() {
+function Home() {
   return (
     <div>
       <ContactCard
@@ -30,3 +30,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home;

@@ -5,7 +5,7 @@ import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer } from "@styles/pagesStyle/index.styles";
 import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
 
-export default function HomePage() {
+function HomePage() {
   const {
     email,
     setEmail,
@@ -94,3 +94,4 @@ export default function HomePage() {
     </div>
   );
 }
+export default HomePage;
