@@ -1,5 +1,6 @@
 import React from "react";
 
+//RETORNA A INICIAL DO PRIMEIRO E DO ULTIMO NOME
 export const getNameInitials = (fullName: string) => {
   const name = fullName.split(" ");
   const firstName = name[0];
@@ -11,6 +12,7 @@ export const getNameInitials = (fullName: string) => {
   }
 };
 
+//FUNÇÃO ALTERA O NOME PARA LOWERCASE E A PRIMEIRA LETRA DE CADA NOME PARA UPPERCASE SE N FOR  DE DA DO DAS DOS
 export const getNameUpperCase = (fullName: string) => {
   let editName = "";
   fullName.split(" ").map((name) => {

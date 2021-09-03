@@ -1,5 +1,6 @@
 import { createTheme } from "@material-ui/core";
 
+//definição do tema, alterar aqui mudara em todo o sistema
 const theme = createTheme({
   palette: {
     primary: {

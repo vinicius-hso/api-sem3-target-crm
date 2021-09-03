@@ -13,6 +13,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        {/* DEFINE LINK DA FONTE POPPINS E FONTE DE ICONES  */}
         <title>TARGET</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -24,15 +25,12 @@ function MyApp({ Component, pageProps }) {
           src="https://kit.fontawesome.com/189c1a3970.js"
           crossOrigin="BA770C04-EB7C-46D7-8585-8F6D199DC256"
         ></script>
-        {/*         <link
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          rel="stylesheet"
-        ></link>
- */}{" "}
       </Head>
+      {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
         <AppContainer>
           <Header />
+          {/* COMPONENTE SÃO TODAS NOSSAS PAGINAS */}
           <Component {...pageProps} />
           <Footer />
         </AppContainer>

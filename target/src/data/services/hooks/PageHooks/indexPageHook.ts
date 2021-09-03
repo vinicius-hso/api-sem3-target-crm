@@ -3,6 +3,7 @@ import { emailValidator } from "../../../utils/emailValidator";
 import { serviceApi } from "data/services/serviceApi";
 
 export const useIndexPage = () => {
+  //DECLARAÇÃO DAS VARIAVEIS
   const [email, setEmail] = useState(""),
     [password, setPassword] = useState(""),
     [hasError, setError] = useState(""),
@@ -11,13 +12,17 @@ export const useIndexPage = () => {
     [passwordIsValid, setPasswordIsValid] = useState(true),
     [data, setData] = useState([]);
 
+  //VERIFICA SE O EMAIL É VALIDO
   function emailVerification() {
     setEmailIsValid(emailValidator(email));
   }
+
+  //VERIFICA SE A SENHA É VALIDA
   function passwordVerification() {
     setPasswordIsValid(password.length >= 6);
   }
 
+  //EXECUTA SEMPRE QUE O VALOR DE EMAIL OU PASSWORD MUDAD
   useEffect(() => {
     if (!emailIsValid) {
       emailVerification();
@@ -27,6 +32,7 @@ export const useIndexPage = () => {
     }
   }, [email, password]);
 
+  //FUNÇÃO FAZ LOGIN SE A SENHA E EMAIL ESTIVEREM VALIDOS
   async function login(email, password) {
     if (
       emailIsValid &&
@@ -44,7 +50,7 @@ export const useIndexPage = () => {
         setData(data);
         setLoading(false);
       } catch (err) {
-        setError(err);
+        setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
         setLoading(false);
       }
     }

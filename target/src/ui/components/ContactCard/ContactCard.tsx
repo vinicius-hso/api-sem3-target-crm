@@ -9,6 +9,7 @@ import {
   ContactRatingStyled,
 } from "./ContactCard.style";
 
+//@deprecated
 interface ContactCardProps {
   picture?: string;
   name: string;

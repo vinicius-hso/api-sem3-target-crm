@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 
+//DADOS FIXOS PARA RENDERIZAÇÃO DO FRONT ENQUANDO N TEM BACKEND
 export const mockDeals = [
   {
     title: "Privatização",

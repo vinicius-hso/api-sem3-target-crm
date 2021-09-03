@@ -13,10 +13,8 @@ const DroppableStyles = styled("div")`
   border-radius: 6px;
   background: #d4d4d4;
 `;
-const DealCardList = (props) => {
-  const [totalColumnValue, setTotal] = useState(100);
-  console.log(props.elements);
 
+const DealCardList = (props) => {
   return (
     <div>
       <DroppableStyles>

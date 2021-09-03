@@ -1,6 +1,7 @@
 import { Avatar, Rating } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
+//@deprecated
 export const ContactCardContainer = styled("div")`
   display: grid;
   grid-template-columns: 60px 1fr;
