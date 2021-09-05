@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useContext, useCallback } from "react";
 import { emailValidator } from "../../../utils/emailValidator";
 import { serviceApi } from "data/services/serviceApi";
+import AuthContext from "contexts/AuthContext";
 
 export const useIndexPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
@@ -11,6 +12,8 @@ export const useIndexPage = () => {
     [emailIsValid, setEmailIsValid] = useState(true),
     [passwordIsValid, setPasswordIsValid] = useState(true),
     [data, setData] = useState([]);
+
+    const {signIn} = useContext(AuthContext)
 
   //VERIFICA SE O EMAIL É VALIDO
   function emailVerification() {
@@ -47,6 +50,9 @@ export const useIndexPage = () => {
           email,
           password,
         });
+
+        signIn(data.token)
+
         setData(data);
         setLoading(false);
       } catch (err) {
