@@ -7,6 +7,7 @@ import Head from "next/head";
 import Header from "ui/components/Header/Header";
 import Footer from "ui/components/Footer/Footer";
 import { AppContainer } from "ui/styles/pagesStyle/_app.syile";
+import { AuthProvider } from "contexts/AuthContext";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
@@ -28,12 +29,14 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
+        <AuthProvider>
         <AppContainer>
           <Header />
           {/* COMPONENTE SÃO TODAS NOSSAS PAGINAS */}
           <Component {...pageProps} />
           <Footer />
         </AppContainer>
+        </AuthProvider>
       </ThemeProvider>
     </>
   );
