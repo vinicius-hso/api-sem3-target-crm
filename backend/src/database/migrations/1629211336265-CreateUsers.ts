@@ -24,7 +24,7 @@ export class CreateUsers1629211336265 implements MigrationInterface {
           {
             name: 'role',
             type: 'enum',
-            enum: ['ADMIN', 'SELLER']
+            enum: ['ADMIN', 'SELLER'],
           },
           {
             name: 'passwordHash',
@@ -53,6 +53,11 @@ export class CreateUsers1629211336265 implements MigrationInterface {
             name: 'updatedAt',
             type: 'timestamp',
             default: 'now()',
+          },
+          {
+            name: 'deletedAt',
+            type: 'timestamp',
+            isNullable: true,
           },
         ],
       })

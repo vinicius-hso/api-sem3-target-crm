@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "outDir": "./build",
     "module": "commonjs",
-    "typeRoots": ["./node_modules/@types", "./@types"],
+    "typeRoots": ["./node_modules/@types", "./src/@types", "./@types"],
     "types": ["node", "jest"],
     "noEmit": true,
     "skipLibCheck": true,
@@ -24,6 +24,6 @@
     }
   },
   "include": ["src", "__tests__"],
-  "exclude": ["node_modules"]
+  // "exclude": ["node_modules"]
 }
  

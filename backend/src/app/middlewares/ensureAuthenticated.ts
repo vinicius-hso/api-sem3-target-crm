@@ -17,7 +17,7 @@ export function ensureAuthenticated(req: Request, res: Response, next: NextFunct
   jwt.verify(token, process.env.SECRET, (err, decoded) => {
     if (err) return res.status(401).send({ message: 'Token invalid' });
 
-    // req.userId = decoded.id;
+    req.userId = decoded.id;
 
     if (next) return next();
   });

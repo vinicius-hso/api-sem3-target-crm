@@ -17,7 +17,7 @@ class PipelineController {
 
       const pipeline = await Pipeline.create({ name }).save();
 
-      return res.status(200).json(pipeline.id);
+      return res.status(201).json(pipeline.id);
     } catch (error) {
       return res.status(400).json({ error: 'Create failed, try again' });
     }

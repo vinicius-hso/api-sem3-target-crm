@@ -1,4 +1,5 @@
 import Router from 'express';
+import { AuthRoutes } from './auth.routes';
 import { UserRoutes } from './user.routes';
 import { PipelineRoutes } from './pipeline.routes';
 import { ensureAuthenticated } from '@middlewares/ensureAuthenticated';
@@ -10,6 +11,7 @@ route.get('/', (req, res) => {
 });
 
 // prefix
+route.use('/auth', AuthRoutes);
 route.use('/user', UserRoutes);
 route.use('/pipeline', PipelineRoutes);
 
