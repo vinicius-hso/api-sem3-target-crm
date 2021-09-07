@@ -1,6 +1,4 @@
 import AuthController from '@controllers/AuthController';
-import { ensureAuthenticated } from '@middlewares/ensureAuthenticated';
-import { ensureAdmin } from '@middlewares/ensureAdmin';
 import Router from 'express';
 
 const routes = Router();

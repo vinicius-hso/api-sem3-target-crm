@@ -8,5 +8,5 @@ export async function ensureAdmin(req: Request, res: Response, next: NextFunctio
 
   if (user.role !== 'ADMIN') return res.status(403).json({ message: 'You are not authorized'});
 
-  if (next) return next;
+  if (next) await next();
 }

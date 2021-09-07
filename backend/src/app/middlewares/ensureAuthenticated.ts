@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
-export function ensureAuthenticated(req: Request, res: Response, next: NextFunction): NextFunction | Response {
+export async function ensureAuthenticated(req: Request, res: Response, next: NextFunction): Promise<Response | NextFunction> {
   const AuthHeader = req.headers.authorization;
 
   if (!AuthHeader) return res.status(401).send({ message: 'No Token provided' });
@@ -18,7 +18,7 @@ export function ensureAuthenticated(req: Request, res: Response, next: NextFunct
     if (err) return res.status(401).send({ message: 'Token invalid' });
 
     req.userId = decoded.id;
-
-    if (next) return next();
   });
+
+  if (next) await next();
 }
