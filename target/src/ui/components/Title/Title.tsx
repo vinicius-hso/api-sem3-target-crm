@@ -3,7 +3,7 @@ import { TitleContainer, TitleStyled, SubtitleStyled } from "./Title.style";
 
 interface TitleProps {
   title: string;
-  subtitle: string | JSX.Element;
+  subtitle?: string | JSX.Element;
 }
 
 const Title: React.FC<TitleProps> = (props) => {

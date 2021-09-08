@@ -5,15 +5,14 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 
 const DragDropContextContainer = styled("div")`
-  padding: 20px;
-  border: 4px solid indianred;
-  border-radius: 6px;
+  max-width: 100vw;
 `;
 
 const ListGrid = styled("div")`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 8px;
+  display: flex;
+  max-width: calc(100vw - 120px);
+  gap: ${({ theme }) => theme.spacing(4)};
+  overflow: auto;
 `;
 
 const DealPipeline = () => {

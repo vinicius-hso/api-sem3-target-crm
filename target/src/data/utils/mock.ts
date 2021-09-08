@@ -107,22 +107,22 @@ export const mockDeals = [
 
 export const mockPipes = [
   {
-    title: "won",
+    title: "Won",
     _id: "wonID",
     totalColumnValue: 0,
   },
   {
-    title: "lost",
+    title: "Lost",
     _id: "lostid",
     totalColumnValue: 0,
   },
   {
-    title: "teste",
+    title: "Teste",
     _id: "testeid",
     totalColumnValue: 0,
   },
   {
-    title: "product",
+    title: "Product",
     _id: "productid",
     totalColumnValue: 0,
   },
@@ -132,7 +132,7 @@ export const mockPipes = [
     totalColumnValue: 0,
   },
   {
-    title: "greater",
+    title: "Greater",
     _id: "greaterid",
     totalColumnValue: 0,
   },

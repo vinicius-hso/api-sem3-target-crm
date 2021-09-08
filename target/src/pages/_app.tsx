@@ -5,8 +5,9 @@ import { ThemeProvider } from "@material-ui/core/";
 import theme from "ui/theme/theme";
 import Head from "next/head";
 import Header from "ui/components/Header/Header";
-import Footer from "ui/components/Footer/Footer";
-import { AppContainer } from "ui/styles/pagesStyle/_app.syile";
+import NavBar from "ui/components/NavBar/NavBar";
+import { AppContainer, NavContainer } from "ui/styles/pagesStyle/_app.syile";
+import ContactCard from "ui/components/ContactCard/ContactCard";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
@@ -31,8 +32,10 @@ function MyApp({ Component, pageProps }) {
         <AppContainer>
           <Header />
           {/* COMPONENTE SÃO TODAS NOSSAS PAGINAS */}
-          <Component {...pageProps} />
-          <Footer />
+          <NavContainer>
+            <NavBar />
+            <Component {...pageProps}></Component>
+          </NavContainer>
         </AppContainer>
       </ThemeProvider>
     </>

@@ -30,7 +30,7 @@ const DealCard: React.FC<DealCardProps> = (props) => {
     } else if (props.tag === "cold") {
       return { icon: "snowflake", color: "#3eccf0" };
     } else {
-      return { icon: "bolt", color: "#f4ff55" };
+      return { icon: "bolt", color: "#effa5c" };
     }
   }, [props.tag]);
   return (
@@ -64,7 +64,7 @@ const DealCard: React.FC<DealCardProps> = (props) => {
         className={`fa fa-${iconTag.icon}`}
         fontSize="inherit"
         style={{ color: iconTag.color }}
-        sx={{ mr: 0.5, mt: 0.5 }}
+        sx={{ mr: 0.5, position: "relative", bottom: 0 }}
       />
     </DealCardContainer>
   );

@@ -4,10 +4,9 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 export const DealCardContainer = styled(Card)`
   display: grid;
   grid-template-columns: 28px 1fr 15px;
-  width: 100%;
-  max-width: 250px;
+  width: 94%;
   padding: ${({ theme }) => theme.spacing(1)};
-  gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(1.5)};
+  gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(0.5)};
   margin: ${({ theme }) => theme.spacing(1)} 0;
 `;
 
@@ -49,4 +48,31 @@ export const DealStartDateStyled = styled("div")`
   text-align: center;
   color: ${({ theme }) => theme.palette.text.secondary};
   font-size: 12px;
+`;
+
+export const ColumnContainer = styled("div")`
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 100px 1fr;
+  background-color: ${({ theme }) => theme.palette.background.paper};
+  border-radius: 6px;
+  box-shadow: 0px 5px 4px 8px rgba(175, 170, 170, 0.08);
+  padding: ${({ theme }) => theme.spacing(1)};
+`;
+
+export const ColumnHeader = styled("div")`
+  text-transform: uppercase;
+  margin-bottom: 20px;
+`;
+
+export const DroppableStyles = styled("div")`
+  padding: 10px;
+  border-radius: 6px;
+  background: ${({ theme }) => theme.palette.grey[100]};
+`;
+
+export const TitleColumnContainer = styled("div")`
+  padding: 10px;
+  border-radius: 6px;
+  background: #d4d4d4;
 `;

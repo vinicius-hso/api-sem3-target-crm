@@ -2,7 +2,7 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 export const TitleContainer = styled("div")`
   text-align: center;
-  margin: ${({ theme }) => theme.spacing(5)} 0;
+  margin: ${({ theme }) => theme.spacing(1)} 0;
 `;
 
 export const TitleStyled = styled("h2")`
