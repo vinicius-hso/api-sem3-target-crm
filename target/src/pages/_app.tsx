@@ -7,7 +7,7 @@ import Head from "next/head";
 import Header from "ui/components/Header/Header";
 import NavBar from "ui/components/NavBar/NavBar";
 import { AppContainer, NavContainer } from "ui/styles/pagesStyle/_app.syile";
-import ContactCard from "ui/components/ContactCard/ContactCard";
+import { AuthProvider } from "contexts/AuthContext";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
@@ -29,14 +29,16 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
-        <AppContainer>
-          <Header />
-          {/* COMPONENTE SÃO TODAS NOSSAS PAGINAS */}
-          <NavContainer>
-            <NavBar />
-            <Component {...pageProps}></Component>
-          </NavContainer>
-        </AppContainer>
+        <AuthProvider>
+          <AppContainer>
+            <Header />
+            {/* COMPONENTE SÃO TODAS NOSSAS PAGINAS */}
+            <NavContainer>
+              <NavBar />
+              <Component {...pageProps}></Component>
+            </NavContainer>
+          </AppContainer>
+        </AuthProvider>
       </ThemeProvider>
     </>
   );
