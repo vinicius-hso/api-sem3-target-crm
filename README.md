@@ -10,7 +10,7 @@ Desenvolver uma plataforma Web para organização dos processos comerciais, ofer
 ### 📝 Solução
 
 
-### 🏁 Projeto: TARGET - Business Solutions
+### 🏁 Projeto
 __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe Cluster 8 em forma de aplicação web. A aplicação finalizada deve:
 
 * Organizar os contatos;
