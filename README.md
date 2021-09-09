@@ -60,9 +60,9 @@ Acesse os links para visualizar:
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### 👉 **Front-end**  
+#### **Front-end**  
 
--   ([React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/))
+-   **[React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/)**
 -   **Axios**
 -   **HTML5** 
 -   **CSS3**
