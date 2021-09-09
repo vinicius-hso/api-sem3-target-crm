@@ -58,7 +58,7 @@ Acesse os links para visualizar:
 
 ### 🛠 Tecnologias
 
-As seguintes ferramentas foram usadas na construção do projeto:
+As seguintes ferramentas estão sendo usadas na construção do projeto:
 
 #### **Front-end**  
 
