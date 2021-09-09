@@ -5,16 +5,16 @@
 Projeto sendo desenvolvido pela equipe Cluster 8 - Turmas A e B do 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
 
 
-### 📌 Desafio
+## 📌 Desafio
 Desenvolver uma plataforma Web para organização dos processos comerciais, oferecendo também suporte adequado às áreas de vendas e negócios. 
 
 
 
-### 📝 Solução
+## 📝 Solução
 
 
 
-### 🏁 Projeto
+## 🏁 Projeto
 __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe Cluster 8 em forma de aplicação web. A aplicação finalizada deve:
 
 * Organizar os contatos;
