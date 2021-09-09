@@ -58,19 +58,13 @@ Acesse os links para visualizar:
 
 ### 🛠 Tecnologias
 
-* __Front-End__
+__Front-End__ ![[]](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![[]](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![[]](https://img.shields.io/badge/React-00ccff?style=for-the-badge&logo=react&logoColor=white)
 
-![[]](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![[]](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![[]](https://img.shields.io/badge/React-00ccff?style=for-the-badge&logo=react&logoColor=white)
+__Back-End__ ![[]](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 
-* __Back-End__
+__Data-Base__ ![[]](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
-![[]](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-
-* __Data-Base__
-
-![[]](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-
-* __Wireframe__
+__Wireframe__
 
 ![](https://github.com/vinicius-hso/api-sem3/blob/Sprint-1/Images/figma_logo.png)
 
