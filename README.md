@@ -73,9 +73,6 @@ Acesse os links para visualizar:
 
 ![](https://github.com/vinicius-hso/api-sem3/blob/Sprint-1/Images/figma_logo.png)
 
-* __Project Management__
-
-![]( )
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
