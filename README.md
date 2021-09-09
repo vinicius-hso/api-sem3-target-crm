@@ -58,21 +58,18 @@ Acesse os links para visualizar:
 
 ### 🛠 Tecnologias
 
-__Front-End__ 
+As seguintes ferramentas foram usadas na construção do projeto:
 
-![[]](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![[]](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) ![[]](https://img.shields.io/badge/React-00ccff?style=for-the-badge&logo=react&logoColor=white)
+#### **Front-end**  ([React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/))
 
-__Back-End__ 
+-   **Axios**
+-   **HTML5** 
+-   **CSS3**
 
-![[]](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+#### **Back-end**  ([NodeJS](https://nodejs.org/en/)  +  [TypeScript](https://www.typescriptlang.org/))
 
-__Data-Base__ 
 
-![[]](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-
-__Wireframe__
-
-![](https://github.com/vinicius-hso/api-sem3/blob/Sprint-1/Images/figma_logo.png)
+#### **Data-base**  ([PostgreSQL](https://www.postgresql.org/)  +  [TypeORM](https://typeorm.io/#/))
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
