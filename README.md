@@ -1,15 +1,15 @@
-# 🎓 Aprendizado por Projeto Integrador
+# Aprendizado por Projeto Integrador
 
 Projeto desenvolvido pela Equipe Cluster 8 - 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
 
 
-## 🎯 DESAFIO
+## DESAFIO
 Desenvolver uma plataforma Web para organização dos processos comerciais, oferecendo também suporte adequado às áreas de vendas e negócios. 
 
-## 💡 SOLUÇÃO
+## SOLUÇÃO
 
 
-## 📝 PROJETO: TARGET - Business Solutions
+## PROJETO: TARGET - Business Solutions
 __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe __Cluster 8__ em forma de aplicação web. A aplicação finalizada deve:
 
 * Organizar os contatos;
@@ -24,7 +24,7 @@ __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### ⏳ Planejamento
+### Planejamento
 
 Acesse a *branch* referente a entrega da sprint clicando no link:
 
@@ -38,7 +38,7 @@ Acesse a *branch* referente a entrega da sprint clicando no link:
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 📋 Product Backlog
+### Product Backlog
 
 *A imagem abaixo mostra como os itens do [__Product Backlog__]( ) foram distribuídos de acordo com as Sprints do projeto:*
 
@@ -46,7 +46,7 @@ Acesse a *branch* referente a entrega da sprint clicando no link:
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 🖥️ Wireframe 
+### Wireframe 
 
 Acesse os links para visualizar:
 
@@ -55,7 +55,7 @@ Acesse os links para visualizar:
  
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 🛠️ Ferramentas/Tecnologias
+### Ferramentas/Tecnologias
 
 * __Front-End__
 
@@ -79,7 +79,7 @@ Acesse os links para visualizar:
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 👨‍💻 👩‍💻 Equipe
+### Equipe
 
 
 | Aluno            | Função           | GitHub                                                         | LinkedIn                                              |
