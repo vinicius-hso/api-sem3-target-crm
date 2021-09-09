@@ -79,7 +79,6 @@ __Wireframe__
 
 ### 👨‍💻 Equipe
 
-<h3 align="center"> 
 | Aluno            | Função           | GitHub                                                         | LinkedIn                                              |
 | ---------------- | ---------------- | -------------------------------------------------------------- | ----------------------------------------------------- |
 |__Debora Faria__  | *Developer Team*  | [![](https://bit.ly/3f9Xo0P)](https://github.com/deborafaria01)| [![](https://bit.ly/2P1ZogM)](https://bit.ly/2QwcT8R) |
@@ -91,5 +90,5 @@ __Wireframe__
 |__Sarah Ribeiro__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)]( ) | [![](https://bit.ly/2P1ZogM)]( ) |
 |__Vinícius Oliveira__| *Product Owner*| [![](https://bit.ly/3f9Xo0P)](https://github.com/vinicius-hso) | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3fdl0BE) |
 |__Willian Rodrigues__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/WrsDeveloper) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/willianrsilva/)|
-</h3>
+
 
