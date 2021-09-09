@@ -60,22 +60,22 @@ Acesse os links para visualizar:
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### **Front-end**  
+### **Front-end**  
 
 -   **[React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/)**
 -   **Axios**
 -   **HTML5** 
 -   **CSS3**
 
-#### **Back-end**  
+### **Back-end**  
 
 -   **[NodeJS](https://nodejs.org/en/)  +  [TypeScript](https://www.typescriptlang.org/)**
 
-#### **Data-base**  
+### **Data-base**  
 
 -   **[PostgreSQL](https://www.postgresql.org/)  +  [TypeORM](https://typeorm.io/#/)**
 
-#### **Wireframe** 
+### **Wireframe** 
 
 -   **[Figma](https://www.figma.com/)**
 
