@@ -1,4 +1,7 @@
-# Aprendizado por Projeto Integrador
+<h1 align="center"> 
+  Aprendizado por Projeto Integrador
+</h1>
+
 
 Projeto desenvolvido pela Equipe Cluster 8 - Turmas A e B do 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
 
