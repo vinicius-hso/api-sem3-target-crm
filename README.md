@@ -71,6 +71,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 #### **Data-base**  ([PostgreSQL](https://www.postgresql.org/)  +  [TypeORM](https://typeorm.io/#/))
 
+#### **Wireframe** ([Figma](https://www.figma.com/)
+
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
