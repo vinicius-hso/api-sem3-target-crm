@@ -1,6 +1,6 @@
 # Aprendizado por Projeto Integrador
 
-Projeto desenvolvido pela Equipe Cluster 8 - 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
+Projeto desenvolvido pela Equipe Cluster 8 - Turmas A e B do 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
 
 
 ## DESAFIO
