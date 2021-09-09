@@ -60,8 +60,9 @@ Acesse os links para visualizar:
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### 👉 **Front-end**  ([React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/))
+#### 👉 **Front-end**  
 
+-   ([React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/))
 -   **Axios**
 -   **HTML5** 
 -   **CSS3**
@@ -77,6 +78,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### 👨‍💻 Equipe
+
 
 | Aluno            | Função           | GitHub                                                         | LinkedIn                                              |
 | ---------------- | ---------------- | -------------------------------------------------------------- | ----------------------------------------------------- |
