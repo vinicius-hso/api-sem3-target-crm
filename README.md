@@ -63,9 +63,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ### **Front-end**  
 
 -   **[React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/)**
--   **Axios**
--   **HTML5** 
--   **CSS3**
+-   Axios
+-   HTML5 
+-   CSS3
 
 ### **Back-end**  
 
