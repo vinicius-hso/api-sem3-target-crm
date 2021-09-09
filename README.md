@@ -92,5 +92,5 @@ Acesse os links para visualizar:
 |__Rita de Cássia__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)]( ) | [![](https://bit.ly/2P1ZogM)]( ) |
 |__Sarah Ribeiro__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)]( ) | [![](https://bit.ly/2P1ZogM)]( ) |
 |__Vinícius Oliveira__| *Product Owner*| [![](https://bit.ly/3f9Xo0P)](https://github.com/vinicius-hso) | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3fdl0BE) |
-|__Willian Rodrigues__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/WrsDeveloper) | [![](https://bit.ly/2P1ZogM(https://www.linkedin.com/in/willianrsilva/)|
+|__Willian Rodrigues__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/WrsDeveloper) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/willianrsilva/)|
 
