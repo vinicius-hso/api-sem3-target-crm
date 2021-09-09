@@ -1,16 +1,16 @@
-<h1 align="center"> 
+<h2 align="center"> 
   Aprendizado por Projeto Integrador
-</h1>
+</h2>
 
 Projeto sendo desenvolvido pela Equipe Cluster 8 - Turmas A e B do 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
 
-## 📌 Desafio
+### 📌 Desafio
 Desenvolver uma plataforma Web para organização dos processos comerciais, oferecendo também suporte adequado às áreas de vendas e negócios. 
 
-## 📝 Solução
+### 📝 Solução
 
 
-## 🏁 Projeto: TARGET - Business Solutions
+### 🏁 Projeto: TARGET - Business Solutions
 __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe Cluster 8 em forma de aplicação web. A aplicação finalizada deve:
 
 * Organizar os contatos;
@@ -60,22 +60,22 @@ Acesse os links para visualizar:
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-### **Front-end**  
+#### **Front-end**  
 
 -   **[React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/)**
 -   Axios
 -   HTML5 
 -   CSS3
 
-### **Back-end**  
+#### **Back-end**  
 
 -   **[NodeJS](https://nodejs.org/en/)  +  [TypeScript](https://www.typescriptlang.org/)**
 
-### **Data-base**  
+#### **Data-base**  
 
 -   **[PostgreSQL](https://www.postgresql.org/)  +  [TypeORM](https://typeorm.io/#/)**
 
-### **Wireframe** 
+#### **Wireframe** 
 
 -   **[Figma](https://www.figma.com/)**
 
