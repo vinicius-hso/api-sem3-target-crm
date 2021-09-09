@@ -28,7 +28,7 @@ const DealCard: React.FC<DealCardProps> = (props) => {
     if (props.tag === "hot") {
       return { icon: "fire", color: "#e63706" };
     } else if (props.tag === "cold") {
-      return { icon: "snowflake", color: "#3eccf0" };
+      return { icon: "snowflake-o", color: "#3eccf0" };
     } else {
       return { icon: "bolt", color: "#effa5c" };
     }

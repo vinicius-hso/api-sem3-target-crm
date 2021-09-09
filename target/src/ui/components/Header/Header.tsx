@@ -5,7 +5,7 @@ import { HeaderAppBar, HeaderLogoStyled } from "./Header.style";
 const Header: React.FC = () => {
   return (
     <HeaderAppBar position="sticky">
-      <div>
+      <div style={{ display: "none" }}>
         <div
           style={{
             display: "flex",
@@ -18,6 +18,7 @@ const Header: React.FC = () => {
         >
           <i
             className="fa fa-bullseye"
+            aria-hidden="true"
             style={{ color: "white", fontSize: "60px" }}
           ></i>
         </div>
@@ -33,7 +34,7 @@ const Header: React.FC = () => {
         />
       </div>
       <Toolbar component={Container}>
-        <HeaderLogoStyled src={"logo.png"} alt={"Target"} />
+        <HeaderLogoStyled src={"logo.svg"} alt={"Target"} />
       </Toolbar>
     </HeaderAppBar>
   );

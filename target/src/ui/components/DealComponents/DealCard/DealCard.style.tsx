@@ -56,7 +56,7 @@ export const ColumnContainer = styled("div")`
   grid-template-rows: 100px 1fr;
   background-color: ${({ theme }) => theme.palette.background.paper};
   border-radius: 6px;
-  box-shadow: 0px 5px 4px 8px rgba(175, 170, 170, 0.08);
+  box-shadow: 6px 8px rgba(175, 170, 170, 0.08);
   padding: ${({ theme }) => theme.spacing(1)};
 `;
 
@@ -68,7 +68,7 @@ export const ColumnHeader = styled("div")`
 export const DroppableStyles = styled("div")`
   padding: 10px;
   border-radius: 6px;
-  background: ${({ theme }) => theme.palette.grey[100]};
+  background: ${({ theme }) => theme.palette.grey[50]};
 `;
 
 export const TitleColumnContainer = styled("div")`

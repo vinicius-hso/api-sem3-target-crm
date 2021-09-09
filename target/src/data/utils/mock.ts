@@ -66,7 +66,7 @@ export const mockDeals = [
     contactName: "risole de presunto e queijo",
     budget: 457,
     startDate: moment().format("DD/MM/YYYY HH:MM"),
-    tag: "cold",
+    tag: "bolt",
     id: "teste9",
     pipe: "testeid",
   },
@@ -77,7 +77,7 @@ export const mockDeals = [
     contactName: "risole de presunto e queijo",
     budget: 24597,
     startDate: moment().format("DD/MM/YYYY HH:MM"),
-    tag: "cold",
+    tag: "bolt",
     id: "teste10",
     pipe: "lostid",
   },
@@ -137,3 +137,15 @@ export const mockPipes = [
     totalColumnValue: 0,
   },
 ];
+
+export const mockAddCard = {
+  title: "teste venda",
+  companyName: "kibe frito",
+  companyPicture: "",
+  contactName: "risole de presunto e queijo",
+  budget: 2457,
+  startDate: moment().format("DD/MM/YYYY HH:MM"),
+  tag: "cold",
+  id: "testeAdd123",
+  pipe: "",
+};

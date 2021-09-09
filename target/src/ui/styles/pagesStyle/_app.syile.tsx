@@ -6,6 +6,17 @@ export const AppContainer = styled("div")`
   flex-direction: column;
   min-height: 100vh;
   padding: 0 auto;
+  ::-webkit-scrollbar {
+    width: 30px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.palette.primary.main};
+    border-radius: 30px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.palette.background.paper};
+    border-radius: 30px;
+  }
 `;
 export const NavContainer = styled("div")`
   display: grid;

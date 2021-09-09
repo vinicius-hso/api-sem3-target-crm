@@ -13,6 +13,17 @@ const ListGrid = styled("div")`
   max-width: calc(100vw - 120px);
   gap: ${({ theme }) => theme.spacing(4)};
   overflow: auto;
+  ::-webkit-scrollbar {
+    width: 40px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.palette.primary.light};
+    border-radius: 30px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.palette.primary.main};
+    border-radius: 30px;
+  }
 `;
 
 const DealPipeline = () => {

@@ -5,7 +5,7 @@ export const HeaderAppBar = styled(AppBar)`
   background-color: ${({ theme }) => theme.palette.background.paper};
   box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.05);
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 1fr;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     .MuiToolbar-root {
@@ -21,9 +21,9 @@ export const HeaderAppBar = styled(AppBar)`
 `;
 
 export const HeaderLogoStyled = styled("img")`
-  height: 45px;
+  height: 70px;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
-    height: 60px;
+    height: 90px;
   }
 `;
