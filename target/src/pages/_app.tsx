@@ -8,6 +8,7 @@ import Header from "ui/components/Header/Header";
 import NavBar from "ui/components/NavBar/NavBar";
 import { AppContainer, NavContainer } from "ui/styles/pagesStyle/_app.syile";
 import { AuthProvider } from "contexts/AuthContext";
+import { ModalProvider } from "contexts/ModalContext";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
@@ -31,14 +32,16 @@ function MyApp({ Component, pageProps }) {
       {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
         <AuthProvider>
-          <AppContainer>
-            <Header />
-            {/* COMPONENTE SÃO TODAS NOSSAS PAGINAS */}
-            <NavContainer>
-              <NavBar />
-              <Component {...pageProps}></Component>
-            </NavContainer>
-          </AppContainer>
+          <ModalProvider>
+            <AppContainer>
+              <Header />
+              {/* COMPONENTE SÃO TODAS NOSSAS PAGINAS */}
+              <NavContainer>
+                <NavBar />
+                <Component {...pageProps}></Component>
+              </NavContainer>
+            </AppContainer>
+          </ModalProvider>
         </AuthProvider>
       </ThemeProvider>
     </>
