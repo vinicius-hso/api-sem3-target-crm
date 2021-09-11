@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity, DeleteDateColumn } from 'typeorm';
 
 @Entity()
-class Pipeline extends BaseEntity {
+class Pipelines extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,4 +18,4 @@ class Pipeline extends BaseEntity {
   deletedAt: Date;
 }
 
-export default Pipeline;
+export default Pipelines;

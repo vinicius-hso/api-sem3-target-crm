@@ -4,7 +4,7 @@ export class CreatePipeline1630021912955 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'pipeline',
+        name: 'pipelines',
         columns: [
           {
             name: 'id',
@@ -37,6 +37,6 @@ export class CreatePipeline1630021912955 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('pipeline');
+    await queryRunner.dropTable('pipelines');
   }
 }

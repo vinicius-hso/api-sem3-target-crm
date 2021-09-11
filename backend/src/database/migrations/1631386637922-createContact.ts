@@ -1,10 +1,10 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
 
-export class createCompany1631039612320 implements MigrationInterface {
+export class createContact1631386637922 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'companies',
+        name: 'contacts',
         columns: [
           {
             name: 'id',
@@ -14,16 +14,20 @@ export class createCompany1631039612320 implements MigrationInterface {
             generationStrategy: 'uuid',
           },
           {
+            //ref
+            name: 'company',
+            type: 'uuid',
+          },
+          {
             name: 'name',
             type: 'varchar',
           },
           {
-            name: 'country',
+            name: 'email',
             type: 'varchar',
-            isNullable: true,
           },
           {
-            name: 'state',
+            name: 'phone',
             type: 'varchar',
             isNullable: true,
           },
@@ -33,7 +37,12 @@ export class createCompany1631039612320 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'site',
+            name: 'state',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'tag',
             type: 'varchar',
             isNullable: true,
           },
@@ -54,9 +63,18 @@ export class createCompany1631039612320 implements MigrationInterface {
         ],
       })
     );
+
+    await queryRunner.createForeignKey(
+      'contacts',
+      new TableForeignKey({
+        columnNames: ['company'],
+        referencedTableName: 'companies',
+        referencedColumnNames: ['id']
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('companies');
+    await queryRunner.dropTable('contacts');
   }
 }
