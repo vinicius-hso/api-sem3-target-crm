@@ -10,85 +10,16 @@ import {
 } from "@styles/pagesStyle/deals.style";
 import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
+import DeleteModal from "ui/components/Modal/DeleteModal"
 
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
-  const [open, setOpen] = React.useState(true);
+  
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const styles = {
-    box: {
-      backgroundColor: "#fff",
-      height: "180px",
-      width: "450px",
-      borderRadius: "10px",
-      padding: "15px",
-    },
-    title: { color: "#E2711D" },
-    body: {
-      flexDirection: "column",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    textBold: {
-      fontWeight: "bold",
-      margin: 0,
-      fontSize: "17px",
-    },
-    textBody: {
-      fontSize: "15px",
-      fontWeight: "normal",
-      margin: 0,
-    },
-    button: {
-      margin: "20px",
-    },
-    modal: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  };
-
-  const body = (
-    <div style={styles.box}>
-      <h2 style={styles.title} id="simple-modal-title">
-        Deletar Pipeline
-      </h2>
-
-      <div style={styles.body}>
-        <p style={styles.textBold}>
-          Tem certeza que deseja deletar esse pipeline?
-        </p>
-
-        <h4 style={styles.textBody}>
-          Todos as negociações do pipeline serão arquivadas
-        </h4>
-        <Button style={styles.button} variant="contained" color="error">
-          Delete
-        </Button>
-      </div>
-    </div>
-  );
 
   return (
     <DealsPageContainer>
-      <Modal
-        style={styles.modal}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
-      </Modal>
+      <DeleteModal /> 
 
       <DealsHeaderContainer>
         <div>
