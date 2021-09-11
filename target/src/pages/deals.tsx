@@ -13,7 +13,8 @@ import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
 import GetAppIcon from "@material-ui/icons/GetApp";
-import DeleteModal from "ui/components/Modal/DeleteModal"
+import DeleteModal from "ui/components/Modal/DeleteModal";
+import UpDateModal from "ui/components/Modal/UpDateModal";
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
   
@@ -22,6 +23,7 @@ function DealPipeline() {
   return (
     <DealsPageContainer>
       <DeleteModal /> 
+      <UpDateModal />
 
       <DealsHeaderContainer>
         <div>
