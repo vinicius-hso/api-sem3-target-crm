@@ -12,6 +12,7 @@ import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import DeleteModal from "ui/components/Modal/DeleteModal";
 import UpDateModal from "ui/components/Modal/UpDateModal";
+import CreateModal from "ui/components/Modal/CreateModal";
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
   
@@ -21,6 +22,7 @@ function DealPipeline() {
     <DealsPageContainer>
       <DeleteModal /> 
       <UpDateModal />
+      <CreateModal/>
 
       <DealsHeaderContainer>
         <div>
