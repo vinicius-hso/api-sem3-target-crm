@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ScrumBoard from "data/services/servicesComponents/ScrumBoard";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
-import { Button, CircularProgress, Typography, Modal } from "@material-ui/core";
+import { Button, CircularProgress, Typography} from "@material-ui/core";
 import {
   DealsHeaderContainer,
   DealsPageContainer,
@@ -10,9 +10,6 @@ import {
 } from "@styles/pagesStyle/deals.style";
 import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import Theme from "ui/theme/theme";
-import TextField from "@material-ui/core/TextField";
-import GetAppIcon from "@material-ui/icons/GetApp";
 import DeleteModal from "ui/components/Modal/DeleteModal";
 import UpDateModal from "ui/components/Modal/UpDateModal";
 function DealPipeline() {
