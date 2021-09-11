@@ -14,7 +14,7 @@ const DealCardList = (props) => {
     props.elements.push(mockAddCard);
     console.log(props);
   }
-  const { useDeleteModal } = useContext(ModalContext);
+  const { useDeleteModal, useUpdateModal } = useContext(ModalContext);
 
   return (
     <ColumnContainer>
@@ -54,7 +54,7 @@ const DealCardList = (props) => {
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
               Novo pipeline
             </Button>
-            <Button
+            <Button onClick={() => useUpdateModal()}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-pencil" aria-hidden="true"></i>
