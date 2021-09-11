@@ -30,7 +30,7 @@ const mocks = async () => {
 
     console.log('create company', company.id);
 
-    const contact = await Contact.create({ company: company, name: 'teste', email: 'teste@teste.com', phone: '12 999999999', city: 'SJC', state: 'SP', tag: 'Tá frio!' }).save();
+    const contact = await Contact.create({ company: company, name: 'teste', email: 'teste@teste.com', phone: '12 999999999', city: 'SJC', state: 'SP' }).save();
 
     console.log('create contact', contact.id);
   }

@@ -6,7 +6,7 @@ class Contacts extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne((type) => Company)
+  @ManyToOne(() => Company)
   @JoinColumn()
   company: Company;
 
@@ -24,9 +24,6 @@ class Contacts extends BaseEntity {
 
   @Column({ nullable: true })
   state: string;
-
-  @Column({ nullable: true })
-  tag: string;
 
   @CreateDateColumn()
   createdAt: Date;
