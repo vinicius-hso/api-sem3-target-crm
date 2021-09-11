@@ -27,6 +27,10 @@ export class CreatePipeline1630021912955 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
+          {
+            name: 'deletedAt',
+            type: 'timestamp',
+          },
         ],
       })
     );

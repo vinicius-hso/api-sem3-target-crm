@@ -3,9 +3,10 @@ import Router from 'express';
 
 const routes = Router();
 
-routes.get('/', PipelineController.getPipeline);
-routes.post('/', PipelineController.createPipeline);
-routes.put('/:id', PipelineController.updatePipeline);
-routes.delete('/:id', PipelineController.deletePipeline);
+routes.get('/', PipelineController.findAll);
+routes.get('/:id', PipelineController.findById);
+routes.post('/', PipelineController.create);
+routes.put('/:id', PipelineController.update);
+routes.delete('/:id', PipelineController.delete);
 
 export { routes as PipelineRoutes };

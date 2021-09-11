@@ -7,13 +7,15 @@ interface UserInterface {
   role?: string;
   token?: string;
   picture?: string;
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 }
 class UserController {
   public async findUsers(req: Request, res: Response): Promise<Response> {
     try {
       const users = await User.find();
+
+      users.map(user => user.passwordHash = undefined);
 
       return res.status(200).json(users);
     } catch (error) {
@@ -47,6 +49,8 @@ class UserController {
     }
   }
 
+  // o proprio usuario pode alterar os proprios dados exceto a ROLE;
+  // o admin pode alterar role e email do usuario;
   public async update(req: Request, res: Response): Promise<Response> {
     try {
       const id = req.params.id;
@@ -56,9 +60,9 @@ class UserController {
 
       const user = await User.findOne(id);
 
-      if (!user) return res.status(400).json({ message: 'Cannot find user' });
+      if (!user) return res.status(404).json({ message: 'Cannot find user' });
 
-      const valuesToUpdate = {
+      const valuesToUpdate: UserInterface = {
         name: name || user.name,
         email: email || user.email,
         role: role || user.role,
@@ -81,7 +85,7 @@ class UserController {
 
       const user = await User.findOne(id);
 
-      if (!user) return res.status(400).json({ message: 'Cannot find user' });
+      if (!user) return res.status(404).json({ message: 'Cannot find user' });
 
       await User.softRemove(user);
 

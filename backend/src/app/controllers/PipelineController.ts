@@ -7,7 +7,7 @@ interface PipelineInterface {
 }
 
 class PipelineController {
-  public async createPipeline(req: Request, res: Response): Promise<Response> {
+  public async create(req: Request, res: Response): Promise<Response> {
     try {
       const { name }: PipelineInterface = req.body;
 
@@ -23,7 +23,7 @@ class PipelineController {
     }
   }
 
-  public async getPipeline(req: Request, res: Response): Promise<Response> {
+  public async findAll(req: Request, res: Response): Promise<Response> {
     try {
       const pipeline = await Pipeline.find();
 
@@ -35,10 +35,28 @@ class PipelineController {
     }
   }
 
-  public async updatePipeline(req: Request, res: Response): Promise<Response> {
+  public async findById(req: Request, res: Response): Promise<Response> {
+    try {
+      const id = req.params.id;
+
+      if (!id) return res.status(400).json({ message: 'Please send a pipeline id' });
+
+      const pipeline = await Pipeline.findOne(id);
+
+      if (!pipeline) return res.status(400).json({ error: 'Cannot find Pipeline.' });
+
+      return res.status(200).json(pipeline);
+    } catch (error) {
+      return res.status(400).json({ error: 'Get Pipeline Failed, try again' });
+    }
+  }
+
+  public async update(req: Request, res: Response): Promise<Response> {
     try {
       const { name }: PipelineInterface = req.body;
       const id = req.params.id
+
+      if (!id) return res.status(400).json({ message: 'Please send a pipeline id' });
 
       const pipeline = await Pipeline.findOne(id);
 
@@ -48,11 +66,13 @@ class PipelineController {
 
       res.status(200).json();
     } catch (error) {
+      console.log(error);
+      
       return res.status(400).json({ error: 'Update Pipeline Failed, try again' });
     }
   }
 
-  public async deletePipeline(req: Request, res: Response): Promise<Response> {
+  public async delete(req: Request, res: Response): Promise<Response> {
     try {
       const id = req.params.id
 
@@ -60,7 +80,7 @@ class PipelineController {
 
       if (!pipeline) return res.status(404).json({ message: 'Pipeline does not exist' });
 
-      await Pipeline.delete(id);
+      await Pipeline.softRemove(pipeline);
 
       res.status(200).json();
     } catch (error) {
