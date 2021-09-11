@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import DealCard from "../DealCard/DealCard";
 import { DroppableStyles, ColumnContainer } from "./DealCard.style";
 import Title from "ui/components/Title/Title";
 import { Button, ButtonGroup, Typography } from "@material-ui/core";
 import { mockAddCard } from "data/utils/mock";
+import ModalContext from "contexts/ModalContext";
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
@@ -13,6 +14,7 @@ const DealCardList = (props) => {
     props.elements.push(mockAddCard);
     console.log(props);
   }
+  const { useDeleteModal } = useContext(ModalContext);
 
   return (
     <ColumnContainer>
@@ -59,6 +61,7 @@ const DealCardList = (props) => {
               Editar pipeline
             </Button>
             <Button
+              onClick={() => useDeleteModal()}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-trash" aria-hidden="true"></i>

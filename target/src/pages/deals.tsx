@@ -13,70 +13,16 @@ import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
 import GetAppIcon from "@material-ui/icons/GetApp";
-
+import DeleteModal from "ui/components/Modal/DeleteModal"
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
-  const [open, setOpen] = useState(true);
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const styles = {
-    box: {
-      backgroundColor: "#fff",
-      width: "450px",
-      height: "180px",
-      padding: "15px",
-      borderRadius: "8px"
-    },
-    body: {
-      justifyContent: "center",
-      flexDirection: "column",
-      alignItems: "center",
-      display: "flex",
-    },
-    modal: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
 
-    },
-    title: {
-      fontWeight: "bold",
-      color: Theme.palette.primary.main,
-    },
-    button:{
-      color:"#fff",
-      margin: "20px"
-    }
-  };
-  const body = (
-    <div style={styles.box}>
-      <h2 style={styles.title} id="simple-modal-title">
-        Editar pipeline
-      </h2>
-      <div style={styles.body}>
-        <TextField id="outlined-basic" label="Nome do pipeline" variant="outlined" size="small" fullWidth />
-        <Button variant="contained" color="success" style={styles.button} startIcon={<GetAppIcon/>}>
-          Enviar
-        </Button>
-      </div>
-    </div>
-  );
   return (
     <DealsPageContainer>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        style={styles.modal}
-      >
-        {body}
-      </Modal>
+      <DeleteModal /> 
+
       <DealsHeaderContainer>
         <div>
           <Title
