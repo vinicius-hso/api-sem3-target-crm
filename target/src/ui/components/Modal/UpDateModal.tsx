@@ -13,7 +13,7 @@ const UpDateModal = () => {
     box: {
       backgroundColor: "#fff",
       width: "450px",
-      height: "180px",
+      height: "220px",
       padding: "15px",
       borderRadius: "8px",
     },

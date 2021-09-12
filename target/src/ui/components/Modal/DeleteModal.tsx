@@ -12,7 +12,7 @@ const DeleteModal: React.FC = () => {
   const styles = {
     box: {
       backgroundColor: "#fff",
-      height: "180px",
+      height: "220px",
       width: "450px",
       borderRadius: "10px",
       padding: "15px",
