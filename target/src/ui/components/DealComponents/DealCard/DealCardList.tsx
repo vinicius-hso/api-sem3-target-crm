@@ -14,7 +14,7 @@ const DealCardList = (props) => {
     props.elements.push(mockAddCard);
     console.log(props);
   }
-  const { useDeleteModal, useUpdateModal } = useContext(ModalContext);
+  const { useDeleteModal, useUpdateModal, useCreateModal } = useContext(ModalContext);
 
   return (
     <ColumnContainer>
@@ -48,7 +48,7 @@ const DealCardList = (props) => {
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
               Nova negociação
             </Button>
-            <Button
+            <Button onClick={() =>useCreateModal()}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
