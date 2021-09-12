@@ -6,15 +6,18 @@ export const DealsPageContainer = styled("div")`
   align-items: center;
   padding: ${({ theme }) => theme.spacing(2)};
   overflow: hidden;
-  width: calc(100vw - 150px);
+  width: auto;
 `;
 
 export const DealsHeaderContainer = styled("div")`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: calc(100%);
-  padding: ${({ theme }) => theme.spacing(2)};
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing(3)};
   gap: ${({ theme }) => theme.spacing(2)};
+
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export const DealsTotalTagsContainer = styled("div")`
