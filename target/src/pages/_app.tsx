@@ -7,6 +7,7 @@ import Head from "next/head";
 import NavBar from "ui/components/NavBar/NavBar";
 import { AppContainer, NavContainer } from "ui/styles/pagesStyle/_app.syile";
 import { AuthProvider } from "contexts/AuthContext";
+import { ModalProvider } from "contexts/ModalContext";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
@@ -30,9 +31,11 @@ function MyApp({ Component, pageProps }) {
       {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
         <AuthProvider>
-          <AppContainer>
-            <NavBar CurrentPage={<Component {...pageProps}></Component>} />
-          </AppContainer>
+          <ModalProvider>
+            <AppContainer>
+              <NavBar CurrentPage={<Component {...pageProps}></Component>} />
+            </AppContainer>
+          </ModalProvider>
         </AuthProvider>
       </ThemeProvider>
     </>

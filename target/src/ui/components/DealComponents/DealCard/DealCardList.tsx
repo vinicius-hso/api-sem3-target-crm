@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import DealCard from "../DealCard/DealCard";
 import { DroppableStyles, ColumnContainer } from "./DealCard.style";
 import Title from "ui/components/Title/Title";
 import { Button, ButtonGroup, Typography } from "@material-ui/core";
 import { mockAddCard } from "data/utils/mock";
+import ModalContext from "contexts/ModalContext";
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
 
   function addCardtoList(pipeId: string) {
     props.elements.push(mockAddCard);
-    console.log(props);
   }
+  const { useDeleteModal, useUpdateModal, setUpdateId, setDeleteId } =
+    useContext(ModalContext);
 
   return (
     <ColumnContainer>
@@ -53,12 +55,18 @@ const DealCardList = (props) => {
               Novo pipeline
             </Button>
             <Button
+              onClick={() => {
+                useUpdateModal(), setUpdateId(props.pipeId);
+              }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-pencil" aria-hidden="true"></i>
               Editar pipeline
             </Button>
             <Button
+              onClick={() => {
+                useDeleteModal(), setDeleteId(props.pipeId);
+              }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-trash" aria-hidden="true"></i>

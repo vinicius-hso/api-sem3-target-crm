@@ -1,7 +1,7 @@
 import React from "react";
 import ScrumBoard from "data/services/servicesComponents/ScrumBoard";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
-import { Button, CircularProgress, Typography } from "@material-ui/core";
+import { Button, CircularProgress, Typography} from "@material-ui/core";
 import {
   DealsHeaderContainer,
   DealsPageContainer,
@@ -10,11 +10,18 @@ import {
 } from "@styles/pagesStyle/deals.style";
 import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-
+import DeleteModal from "ui/components/Modal/DeleteModal";
+import UpDateModal from "ui/components/Modal/UpDateModal";
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
+  
+
+
   return (
     <DealsPageContainer>
+      <DeleteModal /> 
+      <UpDateModal />
+
       <DealsHeaderContainer>
         <div>
           <Title
