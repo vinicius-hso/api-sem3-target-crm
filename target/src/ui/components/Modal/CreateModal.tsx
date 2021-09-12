@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Button, Modal } from "@material-ui/core";
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
-import GetAppIcon from "@material-ui/icons/GetApp";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import ModalContext from "contexts/ModalContext";
 
 const CreateModal = () => {
@@ -56,7 +56,7 @@ const CreateModal = () => {
           variant="contained"
           color="success"
           style={styles.button}
-          startIcon={<GetAppIcon />}
+          startIcon={<AddCircleIcon />}
         >
           Adicionar
         </Button>
