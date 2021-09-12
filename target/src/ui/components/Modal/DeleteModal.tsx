@@ -6,7 +6,8 @@ import ModalContext from "contexts/ModalContext";
 
 const DeleteModal: React.FC = () => {
   const [open, setOpen] = React.useState(true);
-  const { deleteModalState, useDeleteModal } = useContext(ModalContext);
+  const { deleteModalState, useDeleteModal, deletePipeline } =
+    useContext(ModalContext);
 
   const styles = {
     box: {
@@ -58,7 +59,7 @@ const DeleteModal: React.FC = () => {
           Todos as negociações do pipeline serão arquivadas
         </h4>
         <Button
-          onClick={() => useDeleteModal()}
+          onClick={() => deletePipeline()}
           style={styles.button}
           variant="contained"
           color="error"
