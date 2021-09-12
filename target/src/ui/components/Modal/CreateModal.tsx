@@ -7,7 +7,8 @@ import GetAppIcon from "@material-ui/icons/GetApp";
 import ModalContext from "contexts/ModalContext";
 
 const CreateModal = () => {
-  const { createModalState, useCreateModal } = useContext(ModalContext);
+  const { createModalState, useCreateModal, createPipeline, setName } =
+    useContext(ModalContext);
   const styles = {
     box: {
       backgroundColor: "#fff",
@@ -39,10 +40,11 @@ const CreateModal = () => {
   const body = (
     <div style={styles.box}>
       <h2 style={styles.title} id="simple-modal-title">
-       Novo pipeline
+        Novo pipeline
       </h2>
       <div style={styles.body}>
-        <TextField 
+        <TextField
+          onChange={(event) => setName(event.target.value)}
           id="outlined-basic"
           label="Nome do pipeline"
           variant="outlined"
@@ -50,13 +52,13 @@ const CreateModal = () => {
           fullWidth
         />
         <Button
-          onClick={() => useCreateModal()}
+          onClick={() => createPipeline()}
           variant="contained"
           color="success"
           style={styles.button}
           startIcon={<GetAppIcon />}
         >
-         Adicionar
+          Adicionar
         </Button>
       </div>
     </div>
