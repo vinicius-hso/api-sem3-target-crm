@@ -4,7 +4,6 @@ import moment from "moment";
 import { ThemeProvider } from "@material-ui/core/";
 import theme from "ui/theme/theme";
 import Head from "next/head";
-import Header from "ui/components/Header/Header";
 import NavBar from "ui/components/NavBar/NavBar";
 import { AppContainer, NavContainer } from "ui/styles/pagesStyle/_app.syile";
 import { AuthProvider } from "contexts/AuthContext";
@@ -32,12 +31,7 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <AuthProvider>
           <AppContainer>
-            <Header />
-            {/* COMPONENTE SÃO TODAS NOSSAS PAGINAS */}
-            <NavContainer>
-              <NavBar />
-              <Component {...pageProps}></Component>
-            </NavContainer>
+            <NavBar CurrentPage={<Component {...pageProps}></Component>} />
           </AppContainer>
         </AuthProvider>
       </ThemeProvider>
