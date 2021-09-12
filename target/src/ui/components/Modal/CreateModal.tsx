@@ -7,7 +7,6 @@ import GetAppIcon from "@material-ui/icons/GetApp";
 import ModalContext from "contexts/ModalContext";
 
 const CreateModal = () => {
-    console.log(CreateModal)
   const { createModalState, useCreateModal } = useContext(ModalContext);
   const styles = {
     box: {
@@ -57,7 +56,7 @@ const CreateModal = () => {
           style={styles.button}
           startIcon={<GetAppIcon />}
         >
-          Enviar
+         Adicionar
         </Button>
       </div>
     </div>
