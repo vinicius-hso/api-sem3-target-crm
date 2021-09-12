@@ -7,7 +7,8 @@ import GetAppIcon from "@material-ui/icons/GetApp";
 import ModalContext from "contexts/ModalContext";
 
 const UpDateModal = () => {
-  const { updateModalState, useUpdateModal } = useContext(ModalContext);
+  const { updateModalState, useUpdateModal, updatePipeline, setName } =
+    useContext(ModalContext);
   const styles = {
     box: {
       backgroundColor: "#fff",
@@ -42,15 +43,16 @@ const UpDateModal = () => {
         Editar pipeline
       </h2>
       <div style={styles.body}>
-        <TextField 
+        <TextField
           id="outlined-basic"
           label="Nome do pipeline"
           variant="outlined"
           size="small"
           fullWidth
+          onChange={(event) => setName(event.target.value)}
         />
         <Button
-          onClick={() => useUpdateModal()}
+          onClick={() => updatePipeline()}
           variant="contained"
           color="success"
           style={styles.button}
