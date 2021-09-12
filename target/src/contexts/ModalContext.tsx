@@ -46,6 +46,12 @@ export const ModalProvider: React.FC = ({ children }) => {
     useUpdateModal();
   };
 
+  const createPipeline = async () => {
+    const response = await PipelineService.createPipeline(name);
+    useCreateModal();
+  };
+
+
   return (
     <ModalContext.Provider
       value={{
@@ -57,6 +63,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         useDeleteModal,
         deletePipeline,
         updatePipeline,
+        createPipeline,
         setUpdateId,
         setName,
         setDeleteId,
