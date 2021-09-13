@@ -5,7 +5,7 @@ body {
   font-family: Poppins, sans-serif;
 }
 ::-webkit-scrollbar {
-  width: 18px;
+  width: 14px;
 }
 ::-webkit-scrollbar-track {
   background-color: #f3b789;

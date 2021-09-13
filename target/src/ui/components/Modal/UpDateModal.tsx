@@ -3,13 +3,12 @@ import React, { useContext } from "react";
 import { Button, Modal } from "@material-ui/core";
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
-import GetAppIcon from "@material-ui/icons/GetApp";
 import ModalContext from "contexts/ModalContext";
 
 const UpDateModal = () => {
   const { updateModalState, useUpdateModal, updatePipeline, setName } =
     useContext(ModalContext);
-  const styles = {
+  const styles: any = {
     box: {
       backgroundColor: "#fff",
       width: "450px",
@@ -56,7 +55,7 @@ const UpDateModal = () => {
           variant="contained"
           color="success"
           style={styles.button}
-          startIcon={<GetAppIcon />}
+          startIcon={<i className="fa fa-pensil"></i>}
         >
           Enviar
         </Button>
