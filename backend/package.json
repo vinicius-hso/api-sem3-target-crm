@@ -21,7 +21,8 @@
     "nodemailer-express-handlebars": "^4.0.0",
     "pg": "^8.7.1",
     "supertest": "^6.1.6",
-    "typeorm": "^0.2.37"
+    "typeorm": "^0.2.37",
+    "yarn": "^1.22.11"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
