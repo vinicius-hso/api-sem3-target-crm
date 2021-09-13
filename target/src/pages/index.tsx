@@ -22,10 +22,10 @@ function HomePage() {
   } = useIndexPage();
 
   return (
-    <div style={{ margin: "auto 0", marginTop: "150px" }}>
+    <div style={{ margin: "auto 0", marginTop: "100px" }}>
       <Title
-        title={"Seja bem vindo!"}
-        subtitle={<p>Faça login para acessar sua area restrita.</p>}
+        title={"Seja bem-vindo(a)!"}
+        subtitle={<p>Faça login para acessar sua área restrita</p>}
       ></Title>
 
       <FormContainer>
@@ -42,7 +42,7 @@ function HomePage() {
         )}
 
         <TextFieldMask
-          label={"Email"}
+          label={"E-mail"}
           fullWidth
           variant={"outlined"}
           icon="fa fa-envelope"
@@ -52,7 +52,7 @@ function HomePage() {
           onChange={(event) => setEmail(event.target.value)}
           onBlur={emailVerification}
           error={!emailIsValid}
-          helperText={!emailIsValid ? "Email com formato invalido" : ""}
+          helperText={!emailIsValid ? "Formato inválido" : ""}
         />
 
         <TextFieldMask
@@ -67,19 +67,19 @@ function HomePage() {
           onBlur={passwordVerification}
           error={!passwordIsValid}
           helperText={
-            !passwordIsValid ? "Senha deve ter no minimo 6 caracteres" : ""
+            !passwordIsValid ? "A senha deve ter no mínimo 6 caracteres" : ""
           }
         />
 
         <Button
           variant="contained"
-          sx={{ width: "200px", mt: 1 }}
-          color="secondary"
+          sx={{ width: "150px", mt: 1 }}
+          color="primary"
           onClick={() => login(email, password)}
           type="submit"
         >
           {isLoading ? (
-            <CircularProgress size={20} color="inherit" />
+            <CircularProgress size={20} color="primary" /> 
           ) : (
             "Entrar"
           )}
@@ -87,7 +87,7 @@ function HomePage() {
 
         <a href="#" style={{ textDecoration: "none" }}>
           <Typography variant="body2" sx={{ mt: 1 }} color="GrayText">
-            Redefinir senha
+            Esqueceu a senha?
           </Typography>
         </a>
       </FormContainer>
