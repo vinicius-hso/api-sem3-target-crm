@@ -64,7 +64,7 @@ const DeleteModal: React.FC = () => {
           variant="contained"
           color="error"
         >
-          Delete
+          Deletar
         </Button>
       </div>
     </div>

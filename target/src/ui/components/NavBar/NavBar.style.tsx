@@ -30,11 +30,11 @@ export const ToolbarHeaderStyled = styled(Toolbar)`
   display: grid;
   width: 100vw;
   align-items: center;
-  grid-template-columns: 50px 1fr 30px;
+  grid-template-columns: 40px 1fr 30px;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     padding: 0;
-    grid-template-columns: 55px 1fr 60px;
+    grid-template-columns: 200px 1fr 60px;
   }
 `;
 
@@ -55,6 +55,7 @@ export const MenuButton = styled(IconButton)`
   display: "none";
   ${({ theme }) => theme.breakpoints.up("md")} {
     display: "none";
+    margin-right: 50px;
   } ;
 `;
 
@@ -62,9 +63,11 @@ export const ToolbarStyled = styled("div")`
   ${({ theme }) => theme.mixins.toolbar}
   min-height: 0;
 `;
+
 export const DrawerPaper = styled(Drawer)`
   width: ${drawerWidth}px;
 `;
+
 export const ContentStyled = styled("main")`
   flex-grow: 1;
   padding: ${({ theme }) => theme.spacing(3)} 0;
@@ -86,6 +89,7 @@ export const DrawerContainer = styled("div")`
     display: none;
   }
 `;
+
 export const HeaderLogoStyled = styled("img")`
   height: 40px;
   margin: 0 auto;

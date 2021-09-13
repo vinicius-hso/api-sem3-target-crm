@@ -22,7 +22,7 @@ function HomePage() {
   } = useIndexPage();
 
   return (
-    <div style={{ margin: "auto 0" }}>
+    <div style={{ margin: "auto 0", marginTop: "150px" }}>
       <Title
         title={"Seja bem vindo!"}
         subtitle={<p>Faça login para acessar sua area restrita.</p>}

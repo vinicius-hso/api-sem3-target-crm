@@ -3,27 +3,10 @@ import { DragDropContext } from "react-beautiful-dnd";
 import DealCardList from "../DealCard/DealCardList";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
+import { ListGrid } from "../DealCard/DealCard.style";
 
 const DragDropContextContainer = styled("div")`
   max-width: 100vw;
-`;
-
-const ListGrid = styled("div")`
-  display: flex;
-  max-width: calc(100vw - 120px);
-  gap: ${({ theme }) => theme.spacing(4)};
-  overflow: auto;
-  ::-webkit-scrollbar {
-    width: 40px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: ${({ theme }) => theme.palette.primary.light};
-    border-radius: 30px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.palette.primary.main};
-    border-radius: 30px;
-  }
 `;
 
 const DealPipeline = () => {

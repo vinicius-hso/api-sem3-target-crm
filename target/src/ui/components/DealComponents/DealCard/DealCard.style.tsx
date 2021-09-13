@@ -76,3 +76,14 @@ export const TitleColumnContainer = styled("div")`
   border-radius: 6px;
   background: #d4d4d4;
 `;
+
+export const ListGrid = styled("div")`
+  display: flex;
+  max-width: calc(100vw - 120px);
+  gap: ${({ theme }) => theme.spacing(4)};
+  overflow: auto;
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    max-width: calc(100%);
+  }
+`;

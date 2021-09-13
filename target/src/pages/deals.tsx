@@ -1,12 +1,13 @@
 import React from "react";
 import ScrumBoard from "data/services/servicesComponents/ScrumBoard";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
-import { Button, CircularProgress, Typography} from "@material-ui/core";
+import { Button, CircularProgress, Typography } from "@material-ui/core";
 import {
   DealsHeaderContainer,
   DealsPageContainer,
   DealsTotalTagsContainer,
   PipelinesContainer,
+  TitleHeaderContainer,
 } from "@styles/pagesStyle/deals.style";
 import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
@@ -15,17 +16,15 @@ import UpDateModal from "ui/components/Modal/UpDateModal";
 import CreateModal from "ui/components/Modal/CreateModal";
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
-  
-
 
   return (
     <DealsPageContainer>
-      <DeleteModal /> 
+      <DeleteModal />
       <UpDateModal />
-      <CreateModal/>
+      <CreateModal />
 
       <DealsHeaderContainer>
-        <div>
+        <TitleHeaderContainer>
           <Title
             title="PIPELINE"
             subtitle={
@@ -59,7 +58,7 @@ function DealPipeline() {
               <span> 2</span>
             </div>
           </DealsTotalTagsContainer>
-        </div>
+        </TitleHeaderContainer>
         <TextFieldMask
           fullWidth
           label={"Buscar"}
@@ -70,7 +69,7 @@ function DealPipeline() {
           value=""
           onChange={(event) => {}}
         ></TextFieldMask>
-        <Button
+        {/*         <Button
           variant="contained"
           color="secondary"
           onClick={() => {}}
@@ -84,10 +83,13 @@ function DealPipeline() {
             "Aquivados"
           )}
         </Button>
+ */}{" "}
       </DealsHeaderContainer>
       <PipelinesContainer>
         {isLoading ? (
-          <CircularProgress />
+          <div style={{ textAlign: "center" }}>
+            <CircularProgress />
+          </div>
         ) : !isLoading && hasError ? (
           <div>{hasError}</div>
         ) : (

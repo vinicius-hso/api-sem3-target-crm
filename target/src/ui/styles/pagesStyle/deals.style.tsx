@@ -14,12 +14,17 @@ export const DealsPageContainer = styled("div")`
 
 export const DealsHeaderContainer = styled("div")`
   display: grid;
-  width: 100%;
-  padding: ${({ theme }) => theme.spacing(3)};
-  gap: ${({ theme }) => theme.spacing(2)};
+  width: 90%;
+  padding: ${({ theme }) => theme.spacing(4)} 0;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+export const TitleHeaderContainer = styled("div")`
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    margin-right: auto;
   }
 `;
 

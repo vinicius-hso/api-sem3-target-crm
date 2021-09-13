@@ -36,9 +36,6 @@ function MyApp({ Component, pageProps }) {
               <NavBar CurrentPage={<Component {...pageProps}></Component>} />
             </AppContainer>
           </ModalProvider>
-          <AppContainer>
-            <NavBar CurrentPage={<Component {...pageProps}></Component>} />
-          </AppContainer>
         </AuthProvider>
       </ThemeProvider>
     </>
