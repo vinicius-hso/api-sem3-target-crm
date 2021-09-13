@@ -94,9 +94,9 @@ As seguintes ferramentas estão sendo usadas na construção do projeto:
 |__Hariel Thums__  | *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/HarielThums)  | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3f9bjUH) |
 |__Jonathan Assis__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/Jonathan-Assis) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/jonathan-gabriel-/) |
 |__Mariana Assis__ | *Scrum Master* | [![](https://bit.ly/3f9Xo0P)](https://github.com/mariana299)   | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3foKv3d) |
-|__Matheus Costa__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)]( ) | [![](https://bit.ly/2P1ZogM)]( ) |
-|__Rita de Cássia__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)]( ) | [![](https://bit.ly/2P1ZogM)]( ) |
-|__Sarah Ribeiro__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)]( ) | [![](https://bit.ly/2P1ZogM)]( ) |
+|__Matheus Costa__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/MatheusCoxxxta?tab=repositories) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/matheus-costa-500695187/) |
+|__Rita de Cássia__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/ferreirarita) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/rita-ferreira-894ba1200/) |
+|__Sarah Ribeiro__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/Sarah6197) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/sarah-fernandes-494000196/) |
 |__Vinícius Oliveira__| *Product Owner*| [![](https://bit.ly/3f9Xo0P)](https://github.com/vinicius-hso) | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3fdl0BE) |
 |__Willian Rodrigues__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/WrsDeveloper) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/willianrsilva/)|
 
