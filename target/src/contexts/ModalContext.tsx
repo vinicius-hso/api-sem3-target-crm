@@ -5,11 +5,16 @@ import ModalTypes from "types/Modal";
 const ModalContext = createContext<ModalTypes>({} as ModalTypes);
 
 export const ModalProvider: React.FC = ({ children }) => {
+  const [createModalState, setCreateModalState] = useState<boolean>(false);
   const [updateModalState, setUpdateModalState] = useState<boolean>(false);
   const [deleteModalState, setDeleteModalState] = useState<boolean>(false);
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
   const [name, setNameState] = useState<string>();
+
+  const useCreateModal = () => {
+    setCreateModalState(!createModalState);
+  };
 
   const useUpdateModal = () => {
     setUpdateModalState(!updateModalState);
@@ -41,15 +46,24 @@ export const ModalProvider: React.FC = ({ children }) => {
     useUpdateModal();
   };
 
+  const createPipeline = async () => {
+    const response = await PipelineService.createPipeline(name);
+    useCreateModal();
+  };
+
+
   return (
     <ModalContext.Provider
       value={{
+        createModalState,
+        useCreateModal,
         updateModalState,
         useUpdateModal,
         deleteModalState,
         useDeleteModal,
         deletePipeline,
         updatePipeline,
+        createPipeline,
         setUpdateId,
         setName,
         setDeleteId,

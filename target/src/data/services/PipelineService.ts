@@ -16,7 +16,7 @@ class PipelineService {
   }
 
   async updatePipeline(id: string, name: string): Promise<object> {
-    const body: string = name;
+    const body: object = {name};
 
     try {
       const response = await api.put(`/pipeline/${id}`, body, {
@@ -28,12 +28,25 @@ class PipelineService {
       return error;
     }
   }
+  async createPipeline(name: string): Promise<object> {
+    const body: object = {name};
+
+    try {
+      const response = await api.post('/pipeline/', body, {
+        headers: this.headers,
+      });
+
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
 
   constructor() {
-    const token = localStorage.getItem("@target:token");
+    /*const token = localStorage.getItem("@target:token");
     this.headers = {
       Authorization: `Bearer ${token}`,
-    };
+    };*/
   }
 }
 

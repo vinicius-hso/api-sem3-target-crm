@@ -3,12 +3,13 @@ import React, { useContext } from "react";
 import { Button, Modal } from "@material-ui/core";
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import ModalContext from "contexts/ModalContext";
 
-const UpDateModal = () => {
-  const { updateModalState, useUpdateModal, updatePipeline, setName } =
+const CreateModal = () => {
+  const { createModalState, useCreateModal, createPipeline, setName } =
     useContext(ModalContext);
-  const styles: any = {
+  const styles = {
     box: {
       backgroundColor: "#fff",
       width: "450px",
@@ -39,25 +40,25 @@ const UpDateModal = () => {
   const body = (
     <div style={styles.box}>
       <h2 style={styles.title} id="simple-modal-title">
-        Editar pipeline
+        Novo pipeline
       </h2>
       <div style={styles.body}>
         <TextField
+          onChange={(event) => setName(event.target.value)}
           id="outlined-basic"
           label="Nome do pipeline"
           variant="outlined"
           size="small"
           fullWidth
-          onChange={(event) => setName(event.target.value)}
         />
         <Button
-          onClick={() => updatePipeline()}
+          onClick={() => createPipeline()}
           variant="contained"
           color="success"
           style={styles.button}
-          startIcon={<i className="fa fa-pensil"></i>}
+          startIcon={<AddCircleIcon />}
         >
-          Enviar
+          Adicionar
         </Button>
       </div>
     </div>
@@ -65,8 +66,8 @@ const UpDateModal = () => {
   return (
     <>
       <Modal
-        open={updateModalState}
-        onClose={() => useUpdateModal()}
+        open={createModalState}
+        onClose={() => useCreateModal()}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         style={styles.modal}
@@ -76,4 +77,4 @@ const UpDateModal = () => {
     </>
   );
 };
-export default UpDateModal;
+export default CreateModal;
