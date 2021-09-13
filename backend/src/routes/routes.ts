@@ -23,4 +23,11 @@ route.use('/user', UserRoutes);
 route.use('/company', CompanyRoutes);
 route.use('/pipeline', PipelineRoutes);
 
+import Contact from '@entities/Contact'
+route.get('/contact', async (req,res) => {
+  const contacts = await Contact.find({ relations: ['company'] });
+
+  res.json(contacts);
+})
+
 export { route };
