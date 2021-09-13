@@ -6,7 +6,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Toolbar from "@material-ui/core/Toolbar";
 import {
   AppBarStyled,
   ContentStyled,
@@ -17,8 +16,12 @@ import {
   HeaderSpace,
   MenuButton,
   Root,
+  ToolbarHeaderStyled,
   ToolbarStyled,
+  UserPictureStyled,
 } from "./NavBar.style";
+import theme from "ui/theme/theme";
+import { getNameInitials } from "data/utils/nameConfig";
 
 interface Props {
   window?: () => Window;
@@ -28,42 +31,76 @@ interface Props {
 export default function NavBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [navHover, setNavHover] = React.useState(false);
+  const [userName, setUserName] = React.useState("Joaquim da Silva");
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <div>
+  const drawerWeb = (
+    <div
+      style={{ backgroundColor: theme.palette.secondary.main, height: "100vh" }}
+    >
       <ToolbarStyled />
       <HeaderSpace />
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? (
-                <i className="fa fa-car"></i>
-              ) : (
-                <i className="fa fa-car"></i>
-              )}
+        {[
+          { name: "Negocios", icon: "fa-bar-chart" },
+          { name: "Contatos", icon: "fa-address-book" },
+          { name: "Empresas", icon: "fa-building" },
+          { name: "Dashboard", icon: "fa-line-chart" },
+        ].map((itemMenu, index) => (
+          <ListItem button key={index}>
+            <ListItemIcon
+              sx={{
+                fontSize: "40px",
+                color: theme.palette.primary.main,
+                mb: 3,
+              }}
+            >
+              <i className={`fa ${itemMenu.icon}`}></i>
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText
+              sx={{ color: theme.palette.primary.main }}
+              style={navHover ? { display: "inline" } : { display: "none" }}
+              primary={itemMenu.name}
+            />
           </ListItem>
         ))}
       </List>
+    </div>
+  );
+
+  const drawerMobile = (
+    <div
+      style={{ backgroundColor: theme.palette.secondary.main, height: "100vh" }}
+    >
+      <ToolbarStyled />
+      <HeaderSpace />
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? (
-                <i className="fa fa-car"></i>
-              ) : (
-                <i className="fa fa-car"></i>
-              )}
+        {[
+          { name: "Negocios", icon: "fa-bar-chart" },
+          { name: "Contatos", icon: "fa-address-book" },
+          { name: "Empresas", icon: "fa-building" },
+          { name: "Dashboard", icon: "fa-line-chart" },
+        ].map((itemMenu, index) => (
+          <ListItem button key={index}>
+            <ListItemIcon
+              sx={{
+                fontSize: "25px",
+                color: theme.palette.primary.main,
+                mb: 3,
+              }}
+            >
+              <i className={`fa ${itemMenu.icon}`}></i>
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText
+              sx={{ color: theme.palette.primary.main }}
+              primary={itemMenu.name}
+            />
           </ListItem>
         ))}
       </List>
@@ -77,17 +114,23 @@ export default function NavBar(props: Props) {
     <Root style={{ maxHeight: "1000px" }}>
       <CssBaseline />
       <AppBarStyled position="fixed">
-        <Toolbar>
+        <ToolbarHeaderStyled>
           <MenuButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
           >
-            <i className="fa fa-car"></i>
+            <i
+              className="fa fa-bars"
+              style={{
+                color: theme.palette.primary.main,
+              }}
+            ></i>
           </MenuButton>
           <HeaderLogoStyled src={"logo.svg"} alt={"Target"} />
-        </Toolbar>
+          <UserPictureStyled>{getNameInitials(userName)}</UserPictureStyled>
+        </ToolbarHeaderStyled>
       </AppBarStyled>
       <DrawerStyled aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -101,13 +144,17 @@ export default function NavBar(props: Props) {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            {drawer}
+            {drawerMobile}
           </DrawerPaper>
         </Hidden>
         <Hidden xsDown>
           <DrawerContainer>
-            <DrawerPaper variant="permanent" open>
-              {drawer}
+            <DrawerPaper
+              onMouseEnter={() => setNavHover(true)}
+              onMouseLeave={() => setNavHover(false)}
+              variant="permanent"
+            >
+              {drawerWeb}
             </DrawerPaper>
           </DrawerContainer>
         </Hidden>

@@ -9,7 +9,7 @@ const DeleteModal: React.FC = () => {
   const { deleteModalState, useDeleteModal, deletePipeline } =
     useContext(ModalContext);
 
-  const styles = {
+  const styles: any = {
     box: {
       backgroundColor: "#fff",
       height: "220px",

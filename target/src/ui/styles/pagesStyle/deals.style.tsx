@@ -6,7 +6,10 @@ export const DealsPageContainer = styled("div")`
   align-items: center;
   padding: ${({ theme }) => theme.spacing(2)};
   overflow: hidden;
-  width: auto;
+  width: calc(100vw - 178px);
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    width: calc(100vw);
+  }
 `;
 
 export const DealsHeaderContainer = styled("div")`
@@ -34,5 +37,5 @@ export const PipelinesContainer = styled("div")`
   width: 95%;
   margin: auto 0;
   border-radius: 6px;
-  background-color: ${({ theme }) => theme.palette.grey[50]};
+  background-color: ${({ theme }) => theme.palette.grey[100]};
 `;

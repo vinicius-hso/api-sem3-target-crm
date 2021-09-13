@@ -4,7 +4,7 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 export const DealCardContainer = styled(Card)`
   display: grid;
   grid-template-columns: 28px 1fr 15px;
-  width: 94%;
+  width: 100%;
   padding: ${({ theme }) => theme.spacing(1)};
   gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(0.5)};
   margin: ${({ theme }) => theme.spacing(1)} 0;
@@ -68,7 +68,7 @@ export const ColumnHeader = styled("div")`
 export const DroppableStyles = styled("div")`
   padding: 10px;
   border-radius: 6px;
-  background: ${({ theme }) => theme.palette.grey[50]};
+  background: ${({ theme }) => theme.palette.grey[100]};
 `;
 
 export const TitleColumnContainer = styled("div")`

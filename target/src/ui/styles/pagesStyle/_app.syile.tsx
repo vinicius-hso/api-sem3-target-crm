@@ -7,7 +7,7 @@ export const AppContainer = styled("div")`
   min-height: 100vh;
   padding: 0 auto;
   ::-webkit-scrollbar {
-    width: 30px;
+    width: 18px;
   }
   ::-webkit-scrollbar-track {
     background-color: ${({ theme }) => theme.palette.primary.main};
