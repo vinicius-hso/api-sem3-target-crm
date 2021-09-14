@@ -14,6 +14,7 @@ import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import DeleteModal from "ui/components/Modal/DeleteModal";
 import UpDateModal from "ui/components/Modal/UpDateModal";
 import CreateModal from "ui/components/Modal/CreateModal";
+import SearchButtom from "ui/components/SearchButton/SearchButton";
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
 
@@ -22,7 +23,6 @@ function DealPipeline() {
       <DeleteModal />
       <UpDateModal />
       <CreateModal />
-
       <DealsHeaderContainer>
         <TitleHeaderContainer>
           <Title
@@ -59,16 +59,18 @@ function DealPipeline() {
             </div>
           </DealsTotalTagsContainer>
         </TitleHeaderContainer>
-        <TextFieldMask
-          fullWidth
-          label={"Buscar"}
-          variant={"outlined"}
-          icon="fa fa-search"
-          type="text"
-          size="small"
-          value=""
-          onChange={(event) => {}}
-        ></TextFieldMask>
+        <SearchButtom
+          placeholder="Buscar"
+          buttomIcon="fa-search"
+          viewButtonGroup={true}
+          typeValue="value"
+          searchTypes={[
+            { value: 10, name: "coxinha" },
+            { value: 10, name: "coxinha" },
+            { value: 10, name: "coxinha" },
+          ]}
+          ChangeType={() => {}}
+        />
         {/*         <Button
           variant="contained"
           color="secondary"
@@ -85,6 +87,7 @@ function DealPipeline() {
         </Button>
  */}{" "}
       </DealsHeaderContainer>
+
       <PipelinesContainer>
         {isLoading ? (
           <div style={{ textAlign: "center" }}>

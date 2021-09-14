@@ -13,7 +13,7 @@ import {
   DrawerPaper,
   DrawerStyled,
   HeaderLogoStyled,
-  HeaderSpace,
+  ListItemStyled,
   MenuButton,
   Root,
   ToolbarHeaderStyled,
@@ -42,8 +42,25 @@ export default function NavBar(props: Props) {
     <div
       style={{ backgroundColor: theme.palette.secondary.main, height: "100vh" }}
     >
-      <ToolbarStyled />
-      <HeaderSpace />
+      <ListItem button sx={{ margin: "24px 0 -14px 0" }}>
+        <ListItemIcon
+          sx={{
+            fontSize: "40px",
+            color: theme.palette.primary.main,
+            mb: 3,
+            mr: 1,
+            ml: "-5px",
+          }}
+        >
+          <UserPictureStyled>{getNameInitials(userName)}</UserPictureStyled>
+        </ListItemIcon>
+        <ListItemText
+          sx={{ color: theme.palette.primary.main, mb: "20px" }}
+          style={navHover ? { display: "inline" } : { display: "none" }}
+          primary="Perfil"
+        />
+      </ListItem>
+
       <Divider />
       <List>
         {[
@@ -51,6 +68,7 @@ export default function NavBar(props: Props) {
           { name: "Contatos", icon: "fa-address-book" },
           { name: "Empresas", icon: "fa-building" },
           { name: "Dashboard", icon: "fa-line-chart" },
+          { name: "Arquivados", icon: "fa-archive" },
         ].map((itemMenu, index) => (
           <ListItem button key={index}>
             <ListItemIcon
@@ -63,7 +81,7 @@ export default function NavBar(props: Props) {
               <i className={`fa ${itemMenu.icon}`}></i>
             </ListItemIcon>
             <ListItemText
-              sx={{ color: theme.palette.primary.main }}
+              sx={{ color: theme.palette.primary.main, mb: "20px" }}
               style={navHover ? { display: "inline" } : { display: "none" }}
               primary={itemMenu.name}
             />
@@ -78,7 +96,24 @@ export default function NavBar(props: Props) {
       style={{ backgroundColor: theme.palette.secondary.main, height: "100vh" }}
     >
       <ToolbarStyled />
-      <HeaderSpace />
+      <ListItem button sx={{ margin: "8px 0 -22px 0", paddingLeft: "8px" }}>
+        <ListItemIcon
+          sx={{
+            fontSize: "40px",
+            color: theme.palette.primary.main,
+            mb: 3,
+            mr: 1,
+            ml: "-5px",
+          }}
+        >
+          <UserPictureStyled>{getNameInitials(userName)}</UserPictureStyled>
+        </ListItemIcon>
+        <ListItemText
+          sx={{ color: theme.palette.primary.main, mb: "20px" }}
+          primary="Perfil"
+        />
+      </ListItem>
+
       <Divider />
       <List>
         {[
@@ -86,6 +121,7 @@ export default function NavBar(props: Props) {
           { name: "Contatos", icon: "fa-address-book" },
           { name: "Empresas", icon: "fa-building" },
           { name: "Dashboard", icon: "fa-line-chart" },
+          { name: "Arquivados", icon: "fa-archive" },
         ].map((itemMenu, index) => (
           <ListItem button key={index}>
             <ListItemIcon
@@ -98,7 +134,7 @@ export default function NavBar(props: Props) {
               <i className={`fa ${itemMenu.icon}`}></i>
             </ListItemIcon>
             <ListItemText
-              sx={{ color: theme.palette.primary.main }}
+              sx={{ color: theme.palette.primary.main, mb: "24px" }}
               primary={itemMenu.name}
             />
           </ListItem>
@@ -129,7 +165,6 @@ export default function NavBar(props: Props) {
             ></i>
           </MenuButton>
           <HeaderLogoStyled src={"logo.svg"} alt={"Target"} />
-          <UserPictureStyled>{getNameInitials(userName)}</UserPictureStyled>
         </ToolbarHeaderStyled>
       </AppBarStyled>
       <DrawerStyled aria-label="mailbox folders">

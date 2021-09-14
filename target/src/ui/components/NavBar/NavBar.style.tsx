@@ -1,4 +1,11 @@
-import { AppBar, Avatar, Drawer, IconButton, Toolbar } from "@material-ui/core";
+import {
+  AppBar,
+  Avatar,
+  Drawer,
+  IconButton,
+  ListItem,
+  Toolbar,
+} from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
@@ -39,12 +46,23 @@ export const ToolbarHeaderStyled = styled(Toolbar)`
 `;
 
 export const UserPictureStyled = styled(Avatar)`
+  background-color: ${({ theme }) => theme.palette.primary.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
+  font-weight: bold;
   width: 30px;
   height: initial;
   aspect-ratio: 1;
   font-family: "Arial Narrow", Arial, sans-serif;
+  margin: auto;
   ${({ theme }) => theme.breakpoints.up("md")} {
     width: 50px;
+  } ;
+`;
+
+export const ListItemStyled = styled(ListItem)`
+  align-items: center;
+  justify-content: center;
+  ${({ theme }) => theme.breakpoints.up("md")} {
   } ;
 `;
 
