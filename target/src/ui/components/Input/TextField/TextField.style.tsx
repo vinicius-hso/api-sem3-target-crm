@@ -6,10 +6,10 @@ export const TextFieldStyled = styled(TextField)`
   min-width: 290px;
 
   .MuiInputBase-root {
-    background-color: ${({ theme }) => theme.palette.grey[50]};
+    background-color: ${({ theme }) => theme.palette.primary[50]};
   }
 
-  .MuiOutlinedInput-notchedOutline {
-    border-color: ${({ theme }) => theme.palette.grey[100]};
+  .MuiStandardInput-notchedStandard {
+    border-color: ${({ theme }) => theme.palette.primary[100]};
   }
 `;

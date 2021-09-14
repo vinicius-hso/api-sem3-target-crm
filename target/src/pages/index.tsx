@@ -44,7 +44,7 @@ function HomePage() {
         <TextFieldMask
           label={"E-mail"}
           fullWidth
-          variant={"outlined"}
+          variant={"standard"}
           icon="fa fa-envelope"
           size="small"
           type="email"
@@ -58,7 +58,7 @@ function HomePage() {
         <TextFieldMask
           fullWidth
           label={"Senha"}
-          variant={"outlined"}
+          variant="standard"
           icon="fa fa-unlock-alt"
           type="password"
           size="small"

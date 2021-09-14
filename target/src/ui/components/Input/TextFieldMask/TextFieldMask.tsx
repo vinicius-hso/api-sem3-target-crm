@@ -3,12 +3,12 @@ import TextField from "../TextField/TextField";
 import {
   Icon,
   InputAdornment,
-  OutlinedTextFieldProps,
+  StandardTextFieldProps,
   useTheme,
 } from "@material-ui/core";
 import { InputContainer } from "./TextFieldMask.style";
 
-export interface TextFieldMaskProps extends OutlinedTextFieldProps {
+export interface TextFieldMaskProps extends StandardTextFieldProps {
   mask?: string;
   icon?: string;
 }
