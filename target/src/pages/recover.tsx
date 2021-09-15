@@ -62,10 +62,10 @@ function PassRecover() {
           size="medium"
           value={password2}
           onChange={(event) => setPassword2(event.target.value)}
-          onBlur={passwordVerification2 && passwordSame}
-          error={!passwordIsValid2 || !passwordIsSame}
+          onBlur={passwordSame}
+          error={!passwordIsSame}
           helperText={
-            passwordIsValid2 && !passwordIsSame ? "Os valores devem corresponder" : ""
+            !passwordIsSame ? "Os valores devem corresponder" : ""
           }
         />
 

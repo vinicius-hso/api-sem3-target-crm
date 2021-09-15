@@ -8,7 +8,6 @@ export const useRecoverPage = () => {
     [hasError, setError] = useState(""),
     [isLoading, setLoading] = useState(false),
     [passwordIsValid1, setPasswordIsValid1] = useState(true),
-    [passwordIsValid2, setPasswordIsValid2] = useState(true),
     [passwordIsSame, setPasswordIsSame] = useState(true),
    
     [data, setData] = useState([]);
@@ -17,10 +16,6 @@ export const useRecoverPage = () => {
   //VERIFICA SE A SENHA 1 É VALIDA
   function passwordVerification1() {
     setPasswordIsValid1(password1.length >= 6);
-  }
-   //VERIFICA SE A SENHA 2 É VALIDA
-   function passwordVerification2() {
-    setPasswordIsValid2(password2.length >= 6);
   }
 
     //VERIFICA SE AS SENHAS CORRESPONDEM
@@ -34,8 +29,8 @@ export const useRecoverPage = () => {
     if (!passwordIsValid1) {
       passwordVerification1();
     }
-    if (!passwordIsValid2) {
-      passwordVerification2();
+    if (!passwordIsSame) {
+      passwordSame();
     }
   }, [password1, password2]);
   
@@ -43,7 +38,6 @@ export const useRecoverPage = () => {
   async function recover(password1, password2) {
     if (
       passwordIsValid1 &&
-      passwordIsValid2 &&
       password1.length > 0 &&
       password2.length > 0 &&
       passwordIsSame
@@ -72,11 +66,9 @@ export const useRecoverPage = () => {
     isLoading,
     data,
     passwordIsValid1,
-    passwordIsValid2,
     passwordIsSame,
     recover,
     passwordVerification1,
-    passwordVerification2,
     passwordSame
   };
 };
