@@ -8,9 +8,12 @@ import NavBar from "ui/components/NavBar/NavBar";
 import { AppContainer } from "ui/styles/pagesStyle/_app.syile";
 import { AuthProvider } from "contexts/AuthContext";
 import { ModalProvider } from "contexts/ModalContext";
+import { useRouter } from "next/dist/client/router";
+import Header from "ui/components/Header/Header";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
+  const currentRoute = useRouter();
   return (
     <>
       <Head>
@@ -30,13 +33,20 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <ModalProvider>
-            <AppContainer>
-              <NavBar CurrentPage={<Component {...pageProps}></Component>} />
-            </AppContainer>
-          </ModalProvider>
-        </AuthProvider>
+        {currentRoute.route === "/login" ? (
+          <>
+            <Header />
+            <Component {...pageProps}></Component>
+          </>
+        ) : (
+          <AuthProvider>
+            <ModalProvider>
+              <AppContainer>
+                <NavBar CurrentPage={<Component {...pageProps}></Component>} />
+              </AppContainer>
+            </ModalProvider>
+          </AuthProvider>
+        )}
       </ThemeProvider>
     </>
   );
