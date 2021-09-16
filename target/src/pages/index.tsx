@@ -1,6 +1,16 @@
 import React from "react";
-import { Button, Typography, CircularProgress } from "@material-ui/core";
+import ScrumBoard from "data/services/servicesComponents/ScrumBoard";
+import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
+import { CircularProgress, Typography } from "@material-ui/core";
+import {
+  DealsHeaderContainer,
+  DealsPageContainer,
+  DealsTotalTagsContainer,
+  PipelinesContainer,
+  TitleHeaderContainer,
+} from "@styles/pagesStyle/deals.style";
 import Title from "ui/components/Title/Title";
+<<<<<<< HEAD
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, LoginContainer } from "@styles/pagesStyle/index.styles";
 import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
@@ -31,19 +41,81 @@ function HomePage() {
         title={"Login"}
         subtitle={<p>Faça login para acessar sua área restrita</p>}
       ></Title>
+=======
+import DeleteModal from "ui/components/Modal/DeleteModal";
+import UpDateModal from "ui/components/Modal/UpDateModal";
+import CreateModal from "ui/components/Modal/CreateModal";
+import SearchButtom from "ui/components/SearchButton/SearchButton";
+function DealPipeline() {
+  const { hasError, isLoading } = usePipelineComponent();
 
-      <FormContainer>
-        {hasError ? (
-          <Typography
-            sx={{ maxWidth: "280px" }}
-            variant="caption"
-            color="error"
-          >
-            <i className="fa fa-info-circle" /> {hasError}
-          </Typography>
+  return (
+    <DealsPageContainer>
+      <DeleteModal />
+      <UpDateModal />
+      <CreateModal />
+      <DealsHeaderContainer>
+        <TitleHeaderContainer>
+          <Title
+            title="PIPELINE"
+            subtitle={
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "10px",
+                }}
+              >
+                <Typography>R$ 12.257,75</Typography>
+                <i
+                  className="fa fa-arrow-right"
+                  style={{ position: "relative", top: "2px" }}
+                ></i>
+                <Typography>8 negociações</Typography>
+              </div>
+            }
+          ></Title>
+          <DealsTotalTagsContainer>
+            <div>
+              <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
+              <span> 5</span>
+            </div>
+            <div>
+              <i className="fa fa-bolt" style={{ color: "#effa5c" }}></i>
+              <span> 4</span>
+            </div>
+            <div>
+              <i className="fa fa-snowflake-o" style={{ color: "#3eccf0" }}></i>
+              <span> 2</span>
+            </div>
+          </DealsTotalTagsContainer>
+        </TitleHeaderContainer>
+        <SearchButtom
+          placeholder="Buscar"
+          buttomIcon="fa-search"
+          viewButtonGroup={true}
+          typeValue="value"
+          searchTypes={[
+            { value: 10, name: "coxinha" },
+            { value: 10, name: "coxinha" },
+            { value: 10, name: "coxinha" },
+          ]}
+          ChangeType={() => {}}
+        />
+      </DealsHeaderContainer>
+>>>>>>> 41902dc8e875d0be9b165ea0c73eb15a6ae58fff
+
+      <PipelinesContainer>
+        {isLoading ? (
+          <div style={{ textAlign: "center" }}>
+            <CircularProgress />
+          </div>
+        ) : !isLoading && hasError ? (
+          <div>{hasError}</div>
         ) : (
-          ""
+          <ScrumBoard />
         )}
+<<<<<<< HEAD
         <TextFieldMask
           label={"E-mail"}
           fullWidth
@@ -90,6 +162,11 @@ function HomePage() {
     </div>
     </LoginContainer>
 
+=======
+      </PipelinesContainer>
+    </DealsPageContainer>
+>>>>>>> 41902dc8e875d0be9b165ea0c73eb15a6ae58fff
   );
 }
-export default HomePage;
+
+export default DealPipeline;

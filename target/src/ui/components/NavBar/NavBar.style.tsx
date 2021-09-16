@@ -21,7 +21,7 @@ export const DrawerStyled = styled("nav")`
 `;
 
 export const AppBarStyled = styled(AppBar)`
-  background-color: ${({ theme }) => theme.palette.background.paper};
+  background-color: ${({ theme }) => theme.palette.secondary.main};
   box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.05);
 
   ${({ theme }) => theme.breakpoints.up("md")} {
@@ -84,6 +84,9 @@ export const ToolbarStyled = styled("div")`
 
 export const DrawerPaper = styled(Drawer)`
   width: ${drawerWidth}px;
+  .MuiDrawer-paper {
+    border: 0;
+  }
 `;
 
 export const ContentStyled = styled("main")`
