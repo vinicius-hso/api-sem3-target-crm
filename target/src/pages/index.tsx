@@ -10,38 +10,6 @@ import {
   TitleHeaderContainer,
 } from "@styles/pagesStyle/deals.style";
 import Title from "ui/components/Title/Title";
-<<<<<<< HEAD
-import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { FormContainer, LoginContainer } from "@styles/pagesStyle/index.styles";
-import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
-import CustomLink from "ui/components/Link/Link";
-import Welcome from "ui/components/Welcome/welcome";
-
-function HomePage() {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    isLoading,
-    data,
-    hasError,
-    emailIsValid,
-    passwordIsValid,
-    login,
-    passwordVerification,
-    emailVerification,
-  } = useIndexPage();
-
-  return (
-    <LoginContainer>
-    <Welcome/>
-    <div style={{ margin: "auto 0", marginTop: "100px" }}>
-      <Title
-        title={"Login"}
-        subtitle={<p>Faça login para acessar sua área restrita</p>}
-      ></Title>
-=======
 import DeleteModal from "ui/components/Modal/DeleteModal";
 import UpDateModal from "ui/components/Modal/UpDateModal";
 import CreateModal from "ui/components/Modal/CreateModal";
@@ -103,7 +71,6 @@ function DealPipeline() {
           ChangeType={() => {}}
         />
       </DealsHeaderContainer>
->>>>>>> 41902dc8e875d0be9b165ea0c73eb15a6ae58fff
 
       <PipelinesContainer>
         {isLoading ? (
@@ -115,57 +82,8 @@ function DealPipeline() {
         ) : (
           <ScrumBoard />
         )}
-<<<<<<< HEAD
-        <TextFieldMask
-          label={"E-mail"}
-          fullWidth
-          variant={"standard"}
-          icon="fa fa-envelope"
-          size="small"
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          onBlur={emailVerification}
-          error={!emailIsValid}
-          helperText={!emailIsValid ? "Formato inválido" : ""}
-        />
-        <TextFieldMask
-          fullWidth
-          label={"Senha"}
-          variant="standard"
-          icon="fa fa-unlock-alt"
-          type="password"
-          size="small"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          onBlur={passwordVerification}
-          error={!passwordIsValid}
-          helperText={
-            !passwordIsValid ? "A senha deve ter no mínimo 6 caracteres" : ""
-          }
-        />
-        <Button
-          variant="contained"
-          sx={{ width: "150px", mt: 1 }}
-          color="primary"
-          onClick={() => login(email, password)}
-          type="submit"
-        >
-          {isLoading ? (
-            <CircularProgress size={20} color="primary" />
-          ) : (
-            "Entrar"
-          )}
-        </Button>
-        <CustomLink href="/deals" text="Esqueceu a senha? Clique aqui" />
-      </FormContainer>
-    </div>
-    </LoginContainer>
-
-=======
       </PipelinesContainer>
     </DealsPageContainer>
->>>>>>> 41902dc8e875d0be9b165ea0c73eb15a6ae58fff
   );
 }
 
