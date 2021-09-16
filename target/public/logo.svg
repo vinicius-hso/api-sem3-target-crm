@@ -6,7 +6,7 @@ viewBox="0 0 1736.68 898.45"
  xmlns:xlink="http://www.w3.org/1999/xlink"
  xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
  <defs>
-  <font id="FontID1" horiz-adv-x="549" font-variant="normal" style="fill-rule:nonzero" font-weight="700">
+  <font id="FontID1" horiz-adv-x="549" font-variant="normal" style="fill-rule:nonzero" font-style="normal" font-weight="700">
 	<font-face 
 		font-family="Consolas">
 		<font-face-src>
@@ -20,7 +20,7 @@ viewBox="0 0 1736.68 898.45"
    <glyph unicode="R" horiz-adv-x="549" d="M384.999 0l-90.1671 205.001c-8.49827,19.4996 -20.3306,34.1647 -35.5003,44.1668 -15.1663,9.83054 -32.9972,14.8333 -53.3312,14.8333l-23.0018 0 0 -264.001 -119.999 0 0 637.999 186 0c35.1672,0 67.1653,-3.00097 95.8326,-8.99955 28.4991,-5.99858 53.0015,-16.0007 73.1672,-29.9996 20.1657,-13.9989 35.6685,-32.3345 46.6665,-54.6668 10.8331,-22.5006 16.3338,-50.0005 16.3338,-82.4998 0,-23.4998 -3.49889,-44.335 -10.3318,-62.4989 -6.8363,-18.1673 -16.502,-33.9998 -28.8356,-47.1677 -12.4984,-13.1679 -27.1669,-23.8328 -44.3316,-31.8332 -17.1681,-8.16857 -35.6685,-13.8341 -56.0024,-17.1681 15.6676,-3.33068 30.003,-12.1654 43.0027,-26.6656 12.9997,-14.5002 26.1643,-35.5003 39.164,-62.6672l102.501 -213.833 -141.167 0zm-29.9996 450.166c0,31.3353 -9.99876,53.6676 -29.8314,67.3335 -19.836,13.6659 -49.6674,20.5022 -89.3361,20.5022l-52.8333 0 0 -180.001 48.8331 0c18.6686,0 35.5003,1.99841 50.6666,5.83373 15.1697,4.00017 28.0012,9.8339 38.8343,17.4978 10.6683,7.8355 19.0017,17.5012 24.8354,29.1686 5.83036,11.4992 8.83134,24.6672 8.83134,39.6653z"/>
    <glyph unicode="T" horiz-adv-x="549" d="M336.001 538.002l0 -538.002 -123.003 0 0 538.002 -174.998 0 0 99.9976 473 0 0 -99.9976 -174.998 0z"/>
   </font>
-  <font id="FontID0" horiz-adv-x="615" font-variant="normal" style="fill-rule:nonzero" font-weight="400">
+  <font id="FontID0" horiz-adv-x="615" font-variant="normal" style="fill-rule:nonzero" font-style="normal" font-weight="400">
 	<font-face 
 		font-family="Fira Code">
 		<font-face-src>
@@ -40,25 +40,15 @@ viewBox="0 0 1736.68 898.45"
   </font>
   <style type="text/css">
    <![CDATA[
-    @font-face { font-family:"Consolas";font-variant:normal;font-weight:bold;src:url("#FontID1") format(svg)}
-    @font-face { font-family:"Fira Code";font-variant:normal;font-weight:normal;src:url("#FontID0") format(svg)}
+    @font-face { font-family:"Consolas";font-variant:normal;font-style:normal;font-weight:bold;src:url("#FontID1") format(svg)}
+    @font-face { font-family:"Fira Code";font-variant:normal;font-style:normal;font-weight:normal;src:url("#FontID0") format(svg)}
     .str0 {stroke:#E2711D;stroke-width:10.44;stroke-miterlimit:22.9256}
+    .fil1 {fill:#FEFEFE}
     .fil0 {fill:#E2711D}
-    .fil2 {fill:url(#id0)}
-    .fil1 {fill:url(#id1)}
     .fnt0 {font-weight:normal;font-size:104.42px;font-family:'Fira Code'}
     .fnt1 {font-weight:bold;font-size:293.28px;font-family:'Consolas'}
    ]]>
   </style>
-  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="653.37" y1="403.59" x2="1736.68" y2="403.59">
-   <stop offset="0" style="stop-opacity:1; stop-color:#2D3142"/>
-   <stop offset="1" style="stop-opacity:1; stop-color:#545559"/>
-  </linearGradient>
-  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="683.43" y1="561.46" x2="1705.37" y2="561.46">
-   <stop offset="0" style="stop-opacity:1; stop-color:#E2711D"/>
-   <stop offset="0.929412" style="stop-opacity:1; stop-color:#EF8A15"/>
-   <stop offset="1" style="stop-opacity:1; stop-color:#FCA40D"/>
-  </linearGradient>
  </defs>
  <g id="Camada_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
@@ -73,8 +63,8 @@ viewBox="0 0 1736.68 898.45"
    <text x="8800.6" y="2815.9"  class="fil1 fnt0">Business solutions</text>
   </g>
   <path class="fil0 str0" d="M885.26 456.63l-872.07 0c-4.4,0 -7.97,-3.31 -7.97,-7.4 0,-4.09 3.57,-7.4 7.97,-7.4l872.07 0c4.4,0 7.97,3.31 7.97,7.4 0,4.09 -3.58,7.4 -7.97,7.4z"/>
-  <g transform="matrix(1.14637 0 0 1 -9448.14 -2318.75)">
-   <text x="8800.6" y="2815.9"  class="fil2 fnt1">TARGET</text>
+  <g transform="matrix(1.14637 0 0 1 -9448.14 -2313.89)">
+   <text x="8800.6" y="2815.9"  class="fil0 fnt1">TARGET</text>
   </g>
   <path class="fil0 str0" d="M456.63 13.19l0 872.07c0,4.4 -3.31,7.97 -7.4,7.97 -4.09,0 -7.4,-3.57 -7.4,-7.97l0 -872.07c0,-4.4 3.31,-7.97 7.4,-7.97 4.09,-0 7.4,3.58 7.4,7.97z"/>
  </g>
