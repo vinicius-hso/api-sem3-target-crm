@@ -2,9 +2,10 @@ import React from "react";
 import { Button, Typography, CircularProgress } from "@material-ui/core";
 import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { FormContainer } from "@styles/pagesStyle/index.styles";
+import { FormContainer, LoginContainer } from "@styles/pagesStyle/index.styles";
 import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
 import CustomLink from "ui/components/Link/Link";
+import Welcome from "ui/components/Welcome/welcome";
 
 function HomePage() {
   const {
@@ -23,9 +24,11 @@ function HomePage() {
   } = useIndexPage();
 
   return (
+    <LoginContainer>
+    <Welcome/>
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
       <Title
-        title={"Seja bem-vindo(a)!"}
+        title={"Login"}
         subtitle={<p>Faça login para acessar sua área restrita</p>}
       ></Title>
 
@@ -82,9 +85,11 @@ function HomePage() {
             "Entrar"
           )}
         </Button>
-        <CustomLink href="/deals" text="Esqueceu a senha? clique aki" />
+        <CustomLink href="/deals" text="Esqueceu a senha? Clique aqui" />
       </FormContainer>
     </div>
+    </LoginContainer>
+
   );
 }
 export default HomePage;
