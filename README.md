@@ -53,7 +53,7 @@ Acesse a *branch* referente a entrega da sprint clicando no link:
 
 ### 💻 Wireframe 
 
-Acesse os links para visualizar:
+Acesse o link para visualizar:
 
 > * [Protótipo interativo no Figma](https://www.figma.com/proto/9Wjemyb5Fc0einoBG4pciU/API---cluster8?node-id=217%3A1296&scaling=contain&page-id=0%3A1&starting-point-node-id=217%3A1296)
  
