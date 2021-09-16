@@ -34,6 +34,16 @@ export const usePipelineComponent = () => {
     }
   }
 
+  // SOMA OS VALORES (R$) DE TODOS DEALS
+  const dealsBudgetSum = () => {
+    let budgetSum = 0
+    deals.map(deal => {
+      budgetSum += Number(deal.budget)
+    }) 
+    return budgetSum.toFixed(2)
+  }
+  
+
   //FILTRA OS PIPELINES
   const getItems = (pipeId) => {
     const pipeDeals = [];
@@ -95,5 +105,6 @@ export const usePipelineComponent = () => {
     onDragEnd,
     hasError,
     isLoading,
+    dealsBudgetSum
   };
 };

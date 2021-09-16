@@ -15,7 +15,7 @@ import UpDateModal from "ui/components/Modal/UpDateModal";
 import CreateModal from "ui/components/Modal/CreateModal";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 function DealPipeline() {
-  const { hasError, isLoading } = usePipelineComponent();
+  const { hasError, isLoading, dealsBudgetSum } = usePipelineComponent();
 
   return (
     <DealsPageContainer>
@@ -34,7 +34,7 @@ function DealPipeline() {
                   gap: "10px",
                 }}
               >
-                <Typography>R$ 12.257,75</Typography>
+                <Typography>R$ {dealsBudgetSum()}</Typography>
                 <i
                   className="fa fa-arrow-right"
                   style={{ position: "relative", top: "2px" }}
