@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
-        {currentRoute.route === "/login" ? (
+        {currentRoute.route === "/login" || currentRoute.route === "/recover" ?(
           <>
             <Header />
             <Component {...pageProps}></Component>
