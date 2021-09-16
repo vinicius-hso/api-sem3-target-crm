@@ -4,6 +4,7 @@ import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer } from "@styles/pagesStyle/index.styles";
 import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
+import CustomLink from "ui/components/Link/Link";
 
 function HomePage() {
   const {
@@ -40,7 +41,6 @@ function HomePage() {
         ) : (
           ""
         )}
-
         <TextFieldMask
           label={"E-mail"}
           fullWidth
@@ -54,7 +54,6 @@ function HomePage() {
           error={!emailIsValid}
           helperText={!emailIsValid ? "Formato inválido" : ""}
         />
-
         <TextFieldMask
           fullWidth
           label={"Senha"}
@@ -70,7 +69,6 @@ function HomePage() {
             !passwordIsValid ? "A senha deve ter no mínimo 6 caracteres" : ""
           }
         />
-
         <Button
           variant="contained"
           sx={{ width: "150px", mt: 1 }}
@@ -79,17 +77,12 @@ function HomePage() {
           type="submit"
         >
           {isLoading ? (
-            <CircularProgress size={20} color="primary" /> 
+            <CircularProgress size={20} color="primary" />
           ) : (
             "Entrar"
           )}
         </Button>
-
-        <a href="#" style={{ textDecoration: "none" }}>
-          <Typography variant="body2" sx={{ mt: 1 }} color="GrayText">
-            Esqueceu a senha?
-          </Typography>
-        </a>
+        <CustomLink href="/deals" text="Esqueceu a senha? clique aki" />
       </FormContainer>
     </div>
   );

@@ -13,7 +13,13 @@ const DealCardList = (props) => {
   function addCardtoList(pipeId: string) {
     props.elements.push(mockAddCard);
   }
-  const { useDeleteModal, useUpdateModal, useCreateModal, setUpdateId, setDeleteId, setCreateId }  = useContext(ModalContext);
+  const {
+    useDeleteModal,
+    useUpdateModal,
+    useCreateModal,
+    setUpdateId,
+    setDeleteId,
+  } = useContext(ModalContext);
 
   return (
     <ColumnContainer>
@@ -47,7 +53,8 @@ const DealCardList = (props) => {
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
               Nova negociação
             </Button>
-            <Button onClick={() =>useCreateModal()}
+            <Button
+              onClick={() => useCreateModal()}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-plus-circle" aria-hidden="true"></i>

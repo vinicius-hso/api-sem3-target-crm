@@ -1,7 +1,7 @@
 import React from "react";
 import ScrumBoard from "data/services/servicesComponents/ScrumBoard";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
-import { Button, CircularProgress, Typography } from "@material-ui/core";
+import { CircularProgress, Typography } from "@material-ui/core";
 import {
   DealsHeaderContainer,
   DealsPageContainer,
@@ -10,7 +10,6 @@ import {
   TitleHeaderContainer,
 } from "@styles/pagesStyle/deals.style";
 import Title from "ui/components/Title/Title";
-import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import DeleteModal from "ui/components/Modal/DeleteModal";
 import UpDateModal from "ui/components/Modal/UpDateModal";
 import CreateModal from "ui/components/Modal/CreateModal";
@@ -71,21 +70,6 @@ function DealPipeline() {
           ]}
           ChangeType={() => {}}
         />
-        {/*         <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => {}}
-          type="submit"
-          sx={{ height: "40px", margin: "auto" }}
-          startIcon={<i className="fa fa-archive"></i>}
-        >
-          {isLoading ? (
-            <CircularProgress size={20} color="inherit" />
-          ) : (
-            "Aquivados"
-          )}
-        </Button>
- */}{" "}
       </DealsHeaderContainer>
 
       <PipelinesContainer>

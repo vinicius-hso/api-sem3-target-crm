@@ -9,7 +9,7 @@ import ModalContext from "contexts/ModalContext";
 const CreateModal = () => {
   const { createModalState, useCreateModal, createPipeline, setName } =
     useContext(ModalContext);
-  const styles = {
+  const styles: any = {
     box: {
       backgroundColor: "#fff",
       width: "450px",

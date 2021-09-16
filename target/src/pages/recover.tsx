@@ -14,18 +14,14 @@ function PassRecover() {
     isLoading,
     data,
     passwordIsValid1,
-    passwordIsValid2,
     passwordIsSame,
     recover,
     passwordVerification1,
-    passwordVerification2,
-    passwordSame
+    passwordSame,
   } = useRecoverPage();
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
-
-
       <FormContainer>
         {hasError ? (
           <Typography
@@ -64,9 +60,7 @@ function PassRecover() {
           onChange={(event) => setPassword2(event.target.value)}
           onBlur={passwordSame}
           error={!passwordIsSame}
-          helperText={
-            !passwordIsSame ? "Os valores devem corresponder" : ""
-          }
+          helperText={!passwordIsSame ? "Os valores devem corresponder" : ""}
         />
 
         <Button
@@ -77,13 +71,11 @@ function PassRecover() {
           type="submit"
         >
           {isLoading ? (
-            <CircularProgress size={20} color="primary" /> 
+            <CircularProgress size={20} color="primary" />
           ) : (
             "Redefinir"
           )}
         </Button>
-
-        
       </FormContainer>
     </div>
   );

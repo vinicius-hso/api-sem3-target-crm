@@ -1,6 +1,6 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { Divider } from "@material-ui/core";
+import { Divider, Link } from "@material-ui/core";
 import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -13,7 +13,6 @@ import {
   DrawerPaper,
   DrawerStyled,
   HeaderLogoStyled,
-  ListItemStyled,
   MenuButton,
   Root,
   ToolbarHeaderStyled,
@@ -22,6 +21,7 @@ import {
 } from "./NavBar.style";
 import theme from "ui/theme/theme";
 import { getNameInitials } from "data/utils/nameConfig";
+import { LinkStyled } from "../Link/Link.style";
 
 interface Props {
   window?: () => Window;
@@ -43,48 +43,53 @@ export default function NavBar(props: Props) {
       style={{ backgroundColor: theme.palette.secondary.main, height: "100vh" }}
     >
       <ListItem button sx={{ margin: "24px 0 -14px 0" }}>
-        <ListItemIcon
-          sx={{
-            fontSize: "40px",
-            color: theme.palette.primary.main,
-            mb: 3,
-            mr: 1,
-            ml: "-5px",
-          }}
-        >
-          <UserPictureStyled>{getNameInitials(userName)}</UserPictureStyled>
-        </ListItemIcon>
-        <ListItemText
-          sx={{ color: theme.palette.primary.main, mb: "20px" }}
-          style={navHover ? { display: "inline" } : { display: "none" }}
-          primary="Perfil"
-        />
+        <LinkStyled href="/account">
+          <ListItemIcon
+            sx={{
+              fontSize: "40px",
+              color: theme.palette.primary.main,
+              mb: 3,
+              mr: 1,
+              ml: "-5px",
+            }}
+          >
+            <UserPictureStyled>{getNameInitials(userName)}</UserPictureStyled>
+          </ListItemIcon>
+
+          <ListItemText
+            sx={{ color: theme.palette.primary.main, mb: "20px" }}
+            style={navHover ? { display: "inline" } : { display: "none" }}
+            primary="Perfil"
+          />
+        </LinkStyled>
       </ListItem>
 
       <Divider />
       <List>
         {[
-          { name: "Negocios", icon: "fa-bar-chart" },
-          { name: "Contatos", icon: "fa-address-book" },
-          { name: "Empresas", icon: "fa-building" },
-          { name: "Dashboard", icon: "fa-line-chart" },
-          { name: "Arquivados", icon: "fa-archive" },
+          { name: "Negocios", icon: "fa-bar-chart", link: "/deals" },
+          { name: "Contatos", icon: "fa-address-book", link: "/contacts" },
+          { name: "Empresas", icon: "fa-building", link: "/companies" },
+          { name: "Dashboard", icon: "fa-line-chart", link: "/dashboard" },
+          { name: "Arquivados", icon: "fa-archive", link: "/archives" },
         ].map((itemMenu, index) => (
           <ListItem button key={index}>
-            <ListItemIcon
-              sx={{
-                fontSize: "40px",
-                color: theme.palette.primary.main,
-                mb: 3,
-              }}
-            >
-              <i className={`fa ${itemMenu.icon}`}></i>
-            </ListItemIcon>
-            <ListItemText
-              sx={{ color: theme.palette.primary.main, mb: "20px" }}
-              style={navHover ? { display: "inline" } : { display: "none" }}
-              primary={itemMenu.name}
-            />
+            <LinkStyled href={itemMenu.link}>
+              <ListItemIcon
+                sx={{
+                  fontSize: "40px",
+                  color: theme.palette.primary.main,
+                  mb: 3,
+                }}
+              >
+                <i className={`fa ${itemMenu.icon}`}></i>
+              </ListItemIcon>
+              <ListItemText
+                sx={{ color: theme.palette.primary.main, mb: "20px" }}
+                style={navHover ? { display: "inline" } : { display: "none" }}
+                primary={itemMenu.name}
+              />
+            </LinkStyled>
           </ListItem>
         ))}
       </List>
@@ -117,26 +122,28 @@ export default function NavBar(props: Props) {
       <Divider />
       <List>
         {[
-          { name: "Negocios", icon: "fa-bar-chart" },
-          { name: "Contatos", icon: "fa-address-book" },
-          { name: "Empresas", icon: "fa-building" },
-          { name: "Dashboard", icon: "fa-line-chart" },
-          { name: "Arquivados", icon: "fa-archive" },
+          { name: "Negocios", icon: "fa-bar-chart", link: "/deals" },
+          { name: "Contatos", icon: "fa-address-book", link: "/contacts" },
+          { name: "Empresas", icon: "fa-building", link: "/companies" },
+          { name: "Dashboard", icon: "fa-line-chart", link: "/dashboard" },
+          { name: "Arquivados", icon: "fa-archive", link: "/archives" },
         ].map((itemMenu, index) => (
           <ListItem button key={index}>
-            <ListItemIcon
-              sx={{
-                fontSize: "25px",
-                color: theme.palette.primary.main,
-                mb: 3,
-              }}
-            >
-              <i className={`fa ${itemMenu.icon}`}></i>
-            </ListItemIcon>
-            <ListItemText
-              sx={{ color: theme.palette.primary.main, mb: "24px" }}
-              primary={itemMenu.name}
-            />
+            <LinkStyled href={itemMenu.link}>
+              <ListItemIcon
+                sx={{
+                  fontSize: "25px",
+                  color: theme.palette.primary.main,
+                  mb: 3,
+                }}
+              >
+                <i className={`fa ${itemMenu.icon}`}></i>
+              </ListItemIcon>
+              <ListItemText
+                sx={{ color: theme.palette.primary.main, mb: "24px" }}
+                primary={itemMenu.name}
+              />
+            </LinkStyled>
           </ListItem>
         ))}
       </List>
@@ -168,7 +175,6 @@ export default function NavBar(props: Props) {
         </ToolbarHeaderStyled>
       </AppBarStyled>
       <DrawerStyled aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <DrawerPaper
             container={container}
@@ -176,7 +182,7 @@ export default function NavBar(props: Props) {
             open={mobileOpen}
             onClose={handleDrawerToggle}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}
           >
             {drawerMobile}
