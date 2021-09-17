@@ -5,7 +5,6 @@ export const ImageContainer = styled('div')`
   flex-direction: column;
   align-items: center;
   gap: 2;
-  max-width: 650px;
   margin: auto 0;
   
 `;
