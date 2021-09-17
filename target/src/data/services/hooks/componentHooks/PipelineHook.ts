@@ -58,10 +58,17 @@ export const usePipelineComponent = () => {
   //FILTRA OS PIPELINES
   const getItems = (pipeId) => {
     const pipeDeals = [];
+    let pipeBudgetSum = 0
     deals.map((d) => {
       d.pipe === pipeId ? pipeDeals.push(d) : null;
+      pipeBudgetSum += Number(d.budget)
     });
-    return pipeDeals;
+    
+    return { 
+      pipeDeals, 
+      pipeBudgetSum: formatValue(pipeBudgetSum.toString()), 
+      totalPipeDeals: pipeDeals.length 
+    }
   };
 
   //FUNÇÃO QUE REMOVE DEAL DO PIPELINE (APENAS KAMBAN)
@@ -115,5 +122,6 @@ export const usePipelineComponent = () => {
     hasError,
     isLoading,
     getDealsInfo,
+    getItems
   };
 };

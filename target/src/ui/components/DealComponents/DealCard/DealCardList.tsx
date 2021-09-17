@@ -6,13 +6,16 @@ import Title from "ui/components/Title/Title";
 import { Button, ButtonGroup, Typography } from "@material-ui/core";
 import { mockAddCard } from "data/utils/mock";
 import PipelineContext from "contexts/PipelineContext";
+import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
+  const { getItems } = usePipelineComponent()
 
   function addCardtoList(pipeId: string) {
     props.elements.push(mockAddCard);
   }
+
   const {
     useDeleteModal,
     useUpdateModal,
@@ -87,12 +90,12 @@ const DealCardList = (props) => {
           title={props.title}
           subtitle={
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Typography>R$ 12.257,75</Typography>
+              <Typography>{getItems(props.pipeId).pipeBudgetSum}</Typography>
               <i
                 className="fa fa-arrow-right"
                 style={{ position: "relative", top: "1px" }}
               ></i>
-              <Typography>8 negociações</Typography>
+              <Typography>{getItems(props.pipeId).totalPipeDeals}</Typography>
             </div>
           }
         ></Title>
@@ -102,8 +105,8 @@ const DealCardList = (props) => {
           <Droppable droppableId={`${props.pipeId}`}>
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
-                {props.elements.length !== 0 ? (
-                  props.elements.map((deal, index) => (
+                {props.elements.pipeDeals.length !== 0 ? (
+                  props.elements.pipeDeals.map((deal, index) => (
                     <Draggable
                       key={deal.id}
                       draggableId={String(deal.id)}
