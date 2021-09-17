@@ -4,7 +4,7 @@
 
 Abaixo encontram-se todos os itens produzidos durante a Sprint 1 conforme estabelecido previamente por meio do planejamento: 
 
-### 1. Planejamento da Sprint
+### 💹 Planejamento da Sprint
 
 #### - User Stories
 
