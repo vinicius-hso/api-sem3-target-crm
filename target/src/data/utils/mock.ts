@@ -105,7 +105,7 @@ export const mockDeals = [
   },
 ];
 
-export const mockPipes = [
+export const oldMockPipes = [
   {
     title: "Won",
     _id: "wonID",
@@ -134,6 +134,14 @@ export const mockPipes = [
   {
     title: "Greater",
     _id: "greaterid",
+    totalColumnValue: 0,
+  },
+];
+
+export const mockPipes = [
+  {
+    name: "Won",
+    id: "wonID",
     totalColumnValue: 0,
   },
 ];
