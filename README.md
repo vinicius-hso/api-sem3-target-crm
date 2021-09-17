@@ -1,10 +1,10 @@
-## 📦 Entrega: __Sprint 1__
+## __Sprint 1__
 
 Abaixo encontram-se todos os itens produzidos durante a __SPRINT 1__ conforme estabelecido previamente por meio do planejamento: 
 
-### 1 - 📅 Planejamento da Sprint
+### 1 - 📝 Planejamento da Sprint
 
-#### 📝 User Stories
+#### User Stories
 
 A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem desenvolvidas durante a Sprint 1:
 
