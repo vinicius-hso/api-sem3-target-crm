@@ -1,8 +1,10 @@
-## __Sprint 1__
+<h2 align="center"> 
+  Sprint 1
+</h2>
 
-Abaixo encontram-se todos os itens produzidos durante a __SPRINT 1__ conforme estabelecido previamente por meio do planejamento: 
+Abaixo encontram-se todos os itens produzidos durante a __Sprint 1__ conforme estabelecido previamente por meio do planejamento: 
 
-### 1 - 📝 Planejamento da Sprint
+### 1. 📝 Planejamento da Sprint
 
 #### - User Stories
 
