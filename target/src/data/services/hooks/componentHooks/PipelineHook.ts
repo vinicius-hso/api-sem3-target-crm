@@ -37,38 +37,41 @@ export const usePipelineComponent = () => {
 
   // RETORNA AS INFOS SOBRE AS DEALSs
   const getDealsInfo = () => {
-    let budgetSum = 0, totalDeals = 0, hotDeals = 0, warmDeals = 0, coldDeals = 0
-    deals.map(deal => {
-      budgetSum += Number(deal.budget)
-      totalDeals += 1
-      if (deal.tag == 'hot') hotDeals += 1
-      else if (deal.tag == 'cold') coldDeals += 1
-      else if (deal.tag === 'warm') warmDeals += 1
-    }) 
+    let budgetSum = 0,
+      totalDeals = 0,
+      hotDeals = 0,
+      warmDeals = 0,
+      coldDeals = 0;
+    deals.map((deal) => {
+      budgetSum += Number(deal.budget);
+      totalDeals += 1;
+      if (deal.tag == "hot") hotDeals += 1;
+      else if (deal.tag == "cold") coldDeals += 1;
+      else if (deal.tag === "warm") warmDeals += 1;
+    });
     const dealsInfo = {
       budgetSum: formatValue(budgetSum.toString()),
       totalDeals: totalDeals,
       hotDeals: hotDeals,
       warmDeals: warmDeals,
       coldDeals: coldDeals,
-    }
-    return dealsInfo
-  }
+    };
+    return dealsInfo;
+  };
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId) => {
     const pipeDeals = [];
-    let pipeBudgetSum = 0
+    const currentPipe = pipelines.find((p) => p._id === pipeId);
+    currentPipe.totalColumnValue = 0;
     deals.map((d) => {
-      d.pipe === pipeId ? pipeDeals.push(d) : null;
-      pipeBudgetSum += Number(d.budget)
+      if (d.pipe === pipeId) {
+        pipeDeals.push(d);
+        currentPipe.totalColumnValue += Number(d.budget);
+      }
     });
-    
-    return { 
-      pipeDeals, 
-      pipeBudgetSum: formatValue(pipeBudgetSum.toString()), 
-      totalPipeDeals: pipeDeals.length 
-    }
+
+    return pipeDeals;
   };
 
   //FUNÇÃO QUE REMOVE DEAL DO PIPELINE (APENAS KAMBAN)
@@ -122,6 +125,6 @@ export const usePipelineComponent = () => {
     hasError,
     isLoading,
     getDealsInfo,
-    getItems
+    getItems,
   };
 };

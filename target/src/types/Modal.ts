@@ -21,6 +21,7 @@ export default interface ModalTypes {
 export interface pipeline {
   id: string;
   name: string;
+  pipeBudgetSum: number;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;

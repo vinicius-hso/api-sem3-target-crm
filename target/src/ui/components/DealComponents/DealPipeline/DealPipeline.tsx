@@ -22,6 +22,7 @@ const DealPipeline = () => {
               key={listKey._id}
               title={listKey.title}
               pipeId={listKey._id}
+              totalColumnValue={listKey.totalColumnValue}
             />
           ))}
         </ListGrid>

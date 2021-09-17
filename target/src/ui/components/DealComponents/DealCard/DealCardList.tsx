@@ -10,18 +10,16 @@ import { usePipelineComponent } from "data/services/hooks/componentHooks/Pipelin
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
-  const { getItems } = usePipelineComponent()
+  const { getItems } = usePipelineComponent();
+
+  console.log(props);
 
   function addCardtoList(pipeId: string) {
-    props.elements.push(mockAddCard);
+    props.elements.pipeDeals.push(mockAddCard);
   }
 
-  const {
-    useDeleteModal,
-    useUpdateModal,
-    useCreateModal,
-    useCreateDealModal
-  } = useContext(PipelineContext);
+  const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } =
+    useContext(PipelineContext);
 
   return (
     <ColumnContainer>
@@ -64,18 +62,14 @@ const DealCardList = (props) => {
               Novo pipeline
             </Button>
             <Button
-              onClick={() =>
-                useUpdateModal(props.pipeId)
-              }
+              onClick={() => useUpdateModal(props.pipeId)}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-pencil" aria-hidden="true"></i>
               Editar pipeline
             </Button>
             <Button
-              onClick={() =>
-                useDeleteModal(props.pipeId)
-              }
+              onClick={() => useDeleteModal(props.pipeId)}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-trash" aria-hidden="true"></i>
@@ -84,29 +78,28 @@ const DealCardList = (props) => {
           </ButtonGroup>
         ) : (
           ""
-        )
-        }
+        )}
         <Title
           title={props.title}
           subtitle={
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Typography>{getItems(props.pipeId).pipeBudgetSum}</Typography>
+              <Typography>{props.totalColumnValue}</Typography>
               <i
                 className="fa fa-arrow-right"
                 style={{ position: "relative", top: "1px" }}
               ></i>
-              <Typography>{getItems(props.pipeId).totalPipeDeals}</Typography>
+              <Typography>{props.elements.length}</Typography>
             </div>
           }
         ></Title>
-      </div >
+      </div>
       <DroppableStyles>
         <div>
           <Droppable droppableId={`${props.pipeId}`}>
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
-                {props.elements.pipeDeals.length !== 0 ? (
-                  props.elements.pipeDeals.map((deal, index) => (
+                {props.elements.length !== 0 ? (
+                  props.elements.map((deal, index) => (
                     <Draggable
                       key={deal.id}
                       draggableId={String(deal.id)}
@@ -150,7 +143,7 @@ const DealCardList = (props) => {
           </Droppable>
         </div>
       </DroppableStyles>
-    </ColumnContainer >
+    </ColumnContainer>
   );
 };
 export default DealCardList;
