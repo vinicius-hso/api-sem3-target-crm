@@ -52,6 +52,7 @@ Acesse os links para visualizar:
 
 ## 📐 Arquitetura da Aplicação
 
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/arquitetura-da-aplica%C3%A7%C3%A3o.jpeg)
  
 ## 🔑 Tela de Login
 
