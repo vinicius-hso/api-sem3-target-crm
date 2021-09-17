@@ -7,6 +7,7 @@ import { Button, ButtonGroup, Typography } from "@material-ui/core";
 import { mockAddCard } from "data/utils/mock";
 import PipelineContext from "contexts/PipelineContext";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
+import { formatValue } from '../../../../data/utils/formatValue';
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
@@ -83,12 +84,12 @@ const DealCardList = (props) => {
           title={props.title}
           subtitle={
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Typography>{props.totalColumnValue}</Typography>
+              <Typography>{formatValue(props.totalColumnValue)}</Typography>
               <i
                 className="fa fa-arrow-right"
                 style={{ position: "relative", top: "1px" }}
               ></i>
-              <Typography>{props.elements.length}</Typography>
+              <Typography>{props.elements.length} negociações</Typography>
             </div>
           }
         ></Title>
