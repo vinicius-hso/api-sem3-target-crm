@@ -23,9 +23,6 @@ __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe
 * Realizar o monitoramento e acompanhamento de clientes;
 * Importação de arquivos;
 * Visualizar as negociações em um Dashboard;
-* 
-*
-*
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
