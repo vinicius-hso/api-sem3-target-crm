@@ -16,7 +16,7 @@ import CreateModal from "ui/components/Modal/CreateModal";
 import CreateDealModal from "ui/components/Modal/CreateDealModal";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 function DealPipeline() {
-  const { hasError, isLoading, dealsBudgetSum, totalDealsByStatus } = usePipelineComponent();
+  const { hasError, isLoading, dealsBudgetSum } = usePipelineComponent();
 
   return (
     <DealsPageContainer>
@@ -48,15 +48,15 @@ function DealPipeline() {
           <DealsTotalTagsContainer>
             <div>
               <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
-              <span> {totalDealsByStatus()[0]}</span>
+              <span> {dealsBudgetSum()[2]}</span>
             </div>
             <div>
               <i className="fa fa-bolt" style={{ color: "#effa5c" }}></i>
-              <span> {totalDealsByStatus()[1]}</span>
+              <span> {dealsBudgetSum()[3]}</span>
             </div>
             <div>
               <i className="fa fa-snowflake-o" style={{ color: "#3eccf0" }}></i>
-              <span> {totalDealsByStatus()[2]}</span>
+              <span> {dealsBudgetSum()[4]}</span>
             </div>
           </DealsTotalTagsContainer>
         </TitleHeaderContainer>
@@ -70,7 +70,7 @@ function DealPipeline() {
             { value: 10, name: "coxinha" },
             { value: 10, name: "coxinha" },
           ]}
-          ChangeType={() => { }}
+          ChangeType={() => {}}
         />
       </DealsHeaderContainer>
 

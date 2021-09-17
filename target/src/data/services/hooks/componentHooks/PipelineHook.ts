@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { serviceApi } from "data/services/serviceApi";
 import { mockDeals, mockPipes } from "data/utils/mock";
+import { formatValue } from "data/utils/formatValue";
 
 export const usePipelineComponent = () => {
   // DECLARAÇÃO DAS VARIAVEIS
@@ -36,27 +37,26 @@ export const usePipelineComponent = () => {
 
   // SOMA OS VALORES (R$) DE TODOS DEALS
   const dealsBudgetSum = () => {
-    let budgetSum = 0
-    let totalDeals = 0
-    deals.map(deal => {
-      
-      budgetSum += Number(deal.budget)
-      totalDeals += 1
-    }) 
-    return [budgetSum.toFixed(2), totalDeals]
-  }
-
-  const totalDealsByStatus = () => {
-    let hotDeals = 0, warmDeals = 0, coldDeals = 0
-    deals.map(deal => {
-      if (deal.tag == 'hot') hotDeals += 1
-      else if (deal.tag == 'cold') coldDeals += 1
-      else if (deal.tag === 'warm') warmDeals += 1
-    })
-    // console.log(hotDeals, warmDeals, coldDeals)
-    return [hotDeals, warmDeals, coldDeals]
-  }
-  
+    let budgetSum = 0,
+      totalDeals = 0,
+      hotDeals = 0,
+      warmDeals = 0,
+      coldDeals = 0;
+    deals.map((deal) => {
+      budgetSum += Number(deal.budget);
+      totalDeals += 1;
+      if (deal.tag == "hot") hotDeals += 1;
+      else if (deal.tag == "cold") coldDeals += 1;
+      else if (deal.tag === "warm") warmDeals += 1;
+    });
+    return [
+      formatValue(budgetSum.toString()),
+      totalDeals,
+      hotDeals,
+      warmDeals,
+      coldDeals,
+    ];
+  };
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId) => {
@@ -82,12 +82,12 @@ export const usePipelineComponent = () => {
   };
 
   //UNI AS DEALS AOS PIPELINES
-  const generateDealsList = () =>
-    pipelines.reduce(
+  const generateDealsList = () => {
+    return pipelines.reduce(
       (acc, listKey) => ({ ...acc, [listKey._id]: getItems(listKey._id) }),
       {}
     );
-
+  };
   const [dealsList, setElements] = React.useState(generateDealsList());
 
   //FUNÇÃO BASE DO KAMBAN
@@ -96,7 +96,6 @@ export const usePipelineComponent = () => {
       return;
     }
     const listCopy = { ...dealsList };
-
     const sourceList = listCopy[result.source.droppableId];
     const [removedElement, newSourceList] = removeFromList(
       sourceList,
@@ -109,7 +108,6 @@ export const usePipelineComponent = () => {
       result.destination.index,
       removedElement
     );
-
     setElements(listCopy);
   };
 
@@ -120,6 +118,5 @@ export const usePipelineComponent = () => {
     hasError,
     isLoading,
     dealsBudgetSum,
-    totalDealsByStatus
   };
 };

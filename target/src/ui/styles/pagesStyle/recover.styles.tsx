@@ -1,14 +1,14 @@
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
-export const FormContainer = styled('div')`
+export const FormContainer = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center
+  justify-content: center;
   max-width: 650px;
-  margin: auto 0; 
+  margin: auto 0;
 `;
 
-export const RecoverContainer = styled('div')`
-margin-top: 100px;
+export const RecoverContainer = styled("div")`
+  margin-top: 100px;
 `;
