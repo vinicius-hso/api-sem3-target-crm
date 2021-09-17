@@ -36,7 +36,7 @@ function DealPipeline() {
                   gap: "10px",
                 }}
               >
-                <Typography>R$ {getDealsInfo().budgetSum}</Typography>
+                <Typography>{getDealsInfo().budgetSum}</Typography>
                 <i
                   className="fa fa-arrow-right"
                   style={{ position: "relative", top: "2px" }}
