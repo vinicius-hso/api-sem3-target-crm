@@ -41,7 +41,7 @@ Acesse os documentos clicando nos links abaixo:
 
 Acesse o link para visualizar:
 
-> * [Protótipo interativo no Figma](https://www.figma.com/proto/9Wjemyb5Fc0einoBG4pciU/API---cluster8?node-id=217%3A1296&scaling=contain&page-id=0%3A1&starting-point-node-id=217%3A1296)
+> * [Protótipo Interativo no Figma](https://www.figma.com/proto/9Wjemyb5Fc0einoBG4pciU/API---cluster8?node-id=217%3A1296&scaling=contain&page-id=0%3A1&starting-point-node-id=217%3A1296)
 
 ## 🎲 Modelagem do Banco de Dados
 
