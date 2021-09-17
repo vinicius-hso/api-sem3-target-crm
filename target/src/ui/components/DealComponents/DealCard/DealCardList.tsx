@@ -17,8 +17,6 @@ const DealCardList = (props) => {
     useDeleteModal,
     useUpdateModal,
     useCreateModal,
-    setUpdateId,
-    setDeleteId,
   } = useContext(ModalContext);
 
   return (
@@ -61,18 +59,18 @@ const DealCardList = (props) => {
               Novo pipeline
             </Button>
             <Button
-              onClick={() => {
-                useUpdateModal(), setUpdateId(props.pipeId);
-              }}
+              onClick={() =>
+                useUpdateModal(props.pipeId)
+              }
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-pencil" aria-hidden="true"></i>
               Editar pipeline
             </Button>
             <Button
-              onClick={() => {
-                useDeleteModal(), setDeleteId(props.pipeId);
-              }}
+              onClick={() =>
+                useDeleteModal(props.pipeId)
+              }
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-trash" aria-hidden="true"></i>
@@ -81,7 +79,8 @@ const DealCardList = (props) => {
           </ButtonGroup>
         ) : (
           ""
-        )}
+        )
+        }
         <Title
           title={props.title}
           subtitle={
@@ -95,7 +94,7 @@ const DealCardList = (props) => {
             </div>
           }
         ></Title>
-      </div>
+      </div >
       <DroppableStyles>
         <div>
           <Droppable droppableId={`${props.pipeId}`}>
@@ -146,7 +145,7 @@ const DealCardList = (props) => {
           </Droppable>
         </div>
       </DroppableStyles>
-    </ColumnContainer>
+    </ColumnContainer >
   );
 };
 export default DealCardList;
