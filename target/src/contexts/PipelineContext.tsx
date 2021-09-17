@@ -1,7 +1,7 @@
 import PipelineService from "data/services/PipelineService";
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { DealTypes } from "types/Deal";
-import ModalTypes from "types/Modal";
+import ModalTypes, { pipeline } from "types/Modal";
 
 const PipelineContext = createContext<ModalTypes>({} as ModalTypes);
 
@@ -13,6 +13,7 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
   const [name, setNameState] = useState<string>();
+  const [pipelines, setPipelines] = useState<pipeline[]>();
 
   const useCreateModal = () => {
     setCreateModalState(!createModalState);
@@ -56,6 +57,16 @@ export const ModalProvider: React.FC = ({ children }) => {
     useCreateDealModal();
   };
 
+  const getPipelines = async () => {
+    const data: pipeline[] = await PipelineService.getPiplines()
+
+    setPipelines(data);
+  }
+
+  useEffect(() => {
+    getPipelines()
+  }, [])
+
 
   return (
     <PipelineContext.Provider
@@ -72,7 +83,9 @@ export const ModalProvider: React.FC = ({ children }) => {
         updatePipeline,
         createPipeline,
         setName,
-        createDeal
+        createDeal,
+        getPipelines,
+        pipelines
       }}
     >
       {children}
