@@ -7,7 +7,7 @@ import Head from "next/head";
 import NavBar from "ui/components/NavBar/NavBar";
 import { AppContainer } from "ui/styles/pagesStyle/_app.syile";
 import { AuthProvider } from "contexts/AuthContext";
-import { ModalProvider } from "contexts/ModalContext";
+import { ModalProvider } from "contexts/PipelineContext";
 import { useRouter } from "next/dist/client/router";
 import Header from "ui/components/Header/Header";
 
@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
-        {currentRoute.route === "/login" || currentRoute.route === "/recover" ?(
+        {currentRoute.route === "/login" || currentRoute.route === "/recover" ? (
           <>
             <Header />
             <Component {...pageProps}></Component>

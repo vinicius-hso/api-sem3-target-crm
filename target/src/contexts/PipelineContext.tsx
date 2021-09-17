@@ -3,7 +3,7 @@ import React, { useState, createContext } from "react";
 import { DealTypes } from "types/Deal";
 import ModalTypes from "types/Modal";
 
-const ModalContext = createContext<ModalTypes>({} as ModalTypes);
+const PipelineContext = createContext<ModalTypes>({} as ModalTypes);
 
 export const ModalProvider: React.FC = ({ children }) => {
   const [createModalState, setCreateModalState] = useState<boolean>(false);
@@ -58,7 +58,7 @@ export const ModalProvider: React.FC = ({ children }) => {
 
 
   return (
-    <ModalContext.Provider
+    <PipelineContext.Provider
       value={{
         createModalState,
         useCreateModal,
@@ -76,8 +76,8 @@ export const ModalProvider: React.FC = ({ children }) => {
       }}
     >
       {children}
-    </ModalContext.Provider>
+    </PipelineContext.Provider>
   );
 };
 
-export default ModalContext;
+export default PipelineContext;

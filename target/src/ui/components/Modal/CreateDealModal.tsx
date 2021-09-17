@@ -4,12 +4,12 @@ import { Button, Modal, FormControl, Select, MenuItem } from "@material-ui/core"
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import ModalContext from "contexts/ModalContext";
+import PipelineContext from "contexts/PipelineContext";
 import { DealTypes } from "types/Deal";
 
 const CreateDealModal = () => {
   const { createDealModalState, useCreateDealModal, createPipeline, createDeal } =
-    useContext(ModalContext);
+    useContext(PipelineContext);
 
   const [data, setData] = useState<any>({
     dealName: "",

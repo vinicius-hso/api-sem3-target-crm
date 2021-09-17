@@ -5,7 +5,7 @@ import { DroppableStyles, ColumnContainer } from "./DealCard.style";
 import Title from "ui/components/Title/Title";
 import { Button, ButtonGroup, Typography } from "@material-ui/core";
 import { mockAddCard } from "data/utils/mock";
-import ModalContext from "contexts/ModalContext";
+import PipelineContext from "contexts/PipelineContext";
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
@@ -18,7 +18,7 @@ const DealCardList = (props) => {
     useUpdateModal,
     useCreateModal,
     useCreateDealModal
-  } = useContext(ModalContext);
+  } = useContext(PipelineContext);
 
   return (
     <ColumnContainer>
