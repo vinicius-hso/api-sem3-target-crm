@@ -16,34 +16,28 @@ export const ModalProvider: React.FC = ({ children }) => {
     setCreateModalState(!createModalState);
   };
 
-  const useUpdateModal = () => {
+  const useUpdateModal = (id: string) => {
+    setUpdateIdState(id);
     setUpdateModalState(!updateModalState);
   };
 
-  const useDeleteModal = () => {
+  const useDeleteModal = (id: string) => {
+    setDeleteIdState(id);
     setDeleteModalState(!deleteModalState);
-  };
-
-  const setUpdateId = (id: string) => {
-    setUpdateIdState(id);
   };
 
   const setName = (name: string) => {
     setNameState(name);
   };
 
-  const setDeleteId = (id: string) => {
-    setDeleteIdState(id);
-  };
-
   const deletePipeline = async () => {
     const response = await PipelineService.deletePipeline(deleteId);
-    useDeleteModal();
+    useDeleteModal("");
   };
 
   const updatePipeline = async () => {
     const response = await PipelineService.updatePipeline(updateId, name);
-    useUpdateModal();
+    useUpdateModal("");
   };
 
   const createPipeline = async () => {
@@ -64,9 +58,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         deletePipeline,
         updatePipeline,
         createPipeline,
-        setUpdateId,
         setName,
-        setDeleteId,
       }}
     >
       {children}
