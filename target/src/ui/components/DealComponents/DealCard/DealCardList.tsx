@@ -17,6 +17,7 @@ const DealCardList = (props) => {
     useDeleteModal,
     useUpdateModal,
     useCreateModal,
+    useCreateDealModal
   } = useContext(ModalContext);
 
   return (
@@ -47,6 +48,7 @@ const DealCardList = (props) => {
           >
             <Button
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
+              onClick={() => useCreateDealModal()}
             >
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
               Nova negociação
