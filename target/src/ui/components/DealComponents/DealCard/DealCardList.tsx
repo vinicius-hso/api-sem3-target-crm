@@ -14,11 +14,11 @@ const DealCardList = (props) => {
 
   console.log(props);
 
-  function addCardtoList(pipeId: string) {
-    props.elements.pipeDeals.push(mockAddCard);
-  }
+  // function addCardtoList(pipeId: string) {
+  //   props.elements.pipeDeals.push(mockAddCard);
+  // }
 
-  const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } =
+  const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } = 
     useContext(PipelineContext);
 
   return (
@@ -130,7 +130,7 @@ const DealCardList = (props) => {
                     sx={{ width: "100%", height: "30px" }}
                     color="primary"
                     onClick={() => {
-                      addCardtoList(props.pipeId);
+                      useCreateDealModal()
                     }}
                     type="submit"
                   >
