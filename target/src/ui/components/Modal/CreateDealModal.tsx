@@ -1,14 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { Button, Modal, FormControl, Select, MenuItem } from "@material-ui/core";
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import ModalContext from "contexts/ModalContext";
+import { DealTypes } from "types/Deal";
 
 const CreateDealModal = () => {
-  const { createModalState, useCreateModal, createPipeline, setName } =
+  const { createDealModalState, useCreateDealModal, createPipeline, createDeal } =
     useContext(ModalContext);
+
+  const [data, setData] = useState<any>({
+    dealName: "",
+    company: "default",
+    contact: "default",
+    email: "",
+    phone: "",
+    pipeline: "default",
+    startDate: "default",
+    price: 999.00,
+    tag: "default",
+    endDate: "default",
+  })
+
   const styles: any = {
     box: {
       backgroundColor: "#fff",
@@ -58,7 +73,7 @@ const CreateDealModal = () => {
       </h2>
       <div style={styles.body}>
         <TextField
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event) => setData({ ...data, dealName: event.target.value })}
           id="outlined-basic"
           label="Nome da negociação"
           variant="outlined"
@@ -68,26 +83,28 @@ const CreateDealModal = () => {
         />
         <FormControl variant="standard" sx={{ m: 1, minWidth: "100%" }}>
           <Select
-            onChange={() => { }}
+            onChange={(event) => setData({ ...data, company: event.target.value })}
             label="Empresa"
             autoWidth
-            value={"default"}
+            value={data.company}
             style={styles.select}>
             <MenuItem value={"default"}>Selecione a Empresa</MenuItem>
+            <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
           </Select>
 
           <Select
-            onChange={() => { }}
+            onChange={(event) => setData({ ...data, contact: event.target.value })}
             label="Contato"
             autoWidth
-            value={"default"}
+            value={data.contact}
             style={styles.select}>
             <MenuItem value={"default"}>Selecionar Contato</MenuItem>
+            <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
           </Select>
 
         </FormControl>
         <TextField
-          onChange={(event) => setName(event.target.value)}
+          onChange={(event) => setData({ ...data, email: event.target.value })}
           id="outlined-basic"
           label="Email"
           variant="outlined"
@@ -98,7 +115,7 @@ const CreateDealModal = () => {
         <div style={styles.row}>
           <div style={styles.column}>
             <TextField
-              onChange={(event) => setName(event.target.value)}
+              onChange={(event) => setData({ ...data, phone: event.target.value })}
               id="outlined-basic"
               label="Telefone"
               variant="outlined"
@@ -109,26 +126,28 @@ const CreateDealModal = () => {
             />
             <FormControl variant="standard" sx={{ m: 1, minWidth: "100%" }}>
               <Select
-                onChange={() => { }}
+                onChange={(event) => setData({ ...data, pipeline: event.target.value })}
                 label="Pipeline"
                 autoWidth
-                value={"default"}
+                value={data.pipeline}
                 style={styles.select}>
                 <MenuItem value={"default"}>Envio de proposta</MenuItem>
+                <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
               </Select>
               <Select
-                onChange={() => { }}
+                onChange={(event) => setData({ ...data, startDate: event.target.value })}
                 label="Data início"
                 autoWidth
-                value={"default"}
+                value={data.startDate}
                 style={styles.select}>
                 <MenuItem value={"default"}>30/08/2021</MenuItem>
+                <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
               </Select>
             </FormControl>
           </div>
           <div style={styles.column}>
             <TextField
-              onChange={(event) => setName(event.target.value)}
+              onChange={(event) => setData({ ...data, price: event.target.value })}
               id="outlined-basic"
               label="Valor R$"
               variant="outlined"
@@ -139,25 +158,27 @@ const CreateDealModal = () => {
             />
             <FormControl variant="standard" sx={{ m: 1, minWidth: "100%" }}>
               <Select
-                onChange={() => { }}
+                onChange={(event) => setData({ ...data, tag: event.target.value })}
                 label="Tag"
                 autoWidth
-                value={"default"}
+                value={data.tag}
                 style={styles.select}>
                 <MenuItem value={"default"}>Selecione a Tag</MenuItem>
+                <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
               </Select>
               <Select
-                onChange={() => { }}
+                onChange={(event) => setData({ ...data, endDate: event.target.value })}
                 label="Data término"
                 autoWidth
-                value={"default"}
+                value={data.endDate}
                 style={styles.select}>
                 <MenuItem value={"default"}>30/09/2021</MenuItem>
+                <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
               </Select>
             </FormControl>
           </div></div>
         <Button
-          onClick={() => createPipeline()}
+          onClick={() => createDeal(data)}
           variant="contained"
           color="success"
           style={styles.button}
@@ -171,8 +192,8 @@ const CreateDealModal = () => {
   return (
     <>
       <Modal
-        open={createModalState}
-        onClose={() => useCreateModal()}
+        open={createDealModalState}
+        onClose={() => createDeal(data)}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         style={styles.modal}
