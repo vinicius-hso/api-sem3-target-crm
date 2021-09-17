@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { serviceApi } from "data/services/serviceApi";
 import { mockDeals, mockPipes } from "data/utils/mock";
 import { formatValue } from "data/utils/formatValue";
+import { DealTypes } from "types/Deal";
 
 export const usePipelineComponent = () => {
   // DECLARAÇÃO DAS VARIAVEIS
   const [pipelines, setPipelines] = useState(mockPipes),
-    [deals, setDeals] = useState(mockDeals),
+    [deals, setDeals] = useState<DealTypes[]>(mockDeals),
     [hasError, setError] = useState(""),
     [isLoading, setLoading] = useState(false);
 
@@ -43,7 +44,7 @@ export const usePipelineComponent = () => {
       warmDeals = 0,
       coldDeals = 0;
     deals.map((deal) => {
-      budgetSum += Number(deal.budget);
+      budgetSum += Number(deal.price);
       totalDeals += 1;
       if (deal.tag == "hot") hotDeals += 1;
       else if (deal.tag == "cold") coldDeals += 1;
@@ -67,7 +68,7 @@ export const usePipelineComponent = () => {
     deals.map((d) => {
       if (d.pipe === pipeId) {
         pipeDeals.push(d);
-        currentPipe.totalColumnValue += Number(d.budget);
+        currentPipe.totalColumnValue += Number(d.price);
       }
     });
 

@@ -9,4 +9,7 @@ export interface DealTypes {
   price: number;
   tag: string;
   endDate: string;
+  id: string;
+  pipe: string;
+  companyPicture: string;
 }

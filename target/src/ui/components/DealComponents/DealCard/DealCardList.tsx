@@ -13,8 +13,6 @@ const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
   const { getItems } = usePipelineComponent();
 
-  console.log(props);
-
   // function addCardtoList(pipeId: string) {
   //   props.elements.pipeDeals.push(mockAddCard);
   // }
@@ -114,10 +112,10 @@ const DealCardList = (props) => {
                         >
                           <DealCard
                             title={deal.title}
-                            companyName={deal.companyName}
+                            companyName={deal.company}
                             companyPicture={deal.companyPicture}
                             contactName={deal.contactName}
-                            budget={deal.budget}
+                            budget={deal.price}
                             startDate={deal.startDate}
                             tag={deal.tag}
                           />
