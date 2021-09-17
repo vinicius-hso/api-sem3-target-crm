@@ -2,13 +2,11 @@ export default interface ModalTypes {
   createModalState: boolean;
   useCreateModal: () => void;
   updateModalState: boolean;
-  useUpdateModal: () => void;
+  useUpdateModal: (id: string) => void;
   deleteModalState: boolean;
-  useDeleteModal: () => void;
+  useDeleteModal: (id: string) => void;
   deletePipeline: () => void;
   createPipeline: () => void;
   updatePipeline: () => void;
-  setUpdateId: (id: string) => void;
   setName: (name: string) => void;
-  setDeleteId: (id: string) => void;
 }
