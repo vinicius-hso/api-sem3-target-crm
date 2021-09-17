@@ -45,7 +45,7 @@ Acesse o link para visualizar:
 
 ## 🎲 Modelagem do Banco de Dados
 
-Acesse os links para visualizar:
+Acesse o link para visualizar:
 
 > * [Modelo Entidade Relacionamento](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/modelo-l%C3%B3gico-relacional.jpeg)
 
