@@ -13,6 +13,7 @@ import Title from "ui/components/Title/Title";
 import DeleteModal from "ui/components/Modal/DeleteModal";
 import UpDateModal from "ui/components/Modal/UpDateModal";
 import CreateModal from "ui/components/Modal/CreateModal";
+import CreateDealModal from "ui/components/Modal/CreateDealModal";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 function DealPipeline() {
   const { hasError, isLoading, dealsBudgetSum } = usePipelineComponent();
@@ -22,6 +23,7 @@ function DealPipeline() {
       <DeleteModal />
       <UpDateModal />
       <CreateModal />
+      <CreateDealModal />
       <DealsHeaderContainer>
         <TitleHeaderContainer>
           <Title
@@ -68,7 +70,7 @@ function DealPipeline() {
             { value: 10, name: "coxinha" },
             { value: 10, name: "coxinha" },
           ]}
-          ChangeType={() => {}}
+          ChangeType={() => { }}
         />
       </DealsHeaderContainer>
 
