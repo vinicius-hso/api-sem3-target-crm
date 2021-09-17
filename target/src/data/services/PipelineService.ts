@@ -17,6 +17,18 @@ class PipelineService {
     }
   }
 
+  async getPipline(id: string): Promise<pipeline> {
+    try {
+      const { data } = await api.get(`/pipeline/${id}`, {
+        headers: this.headers,
+      });
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async createPipeline(name: string): Promise<object> {
     const body: object = { name };
 
