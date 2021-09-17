@@ -19,9 +19,9 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 #### - Sprint Backlog
 
-A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/product-backlog-target.pdf):
+A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/product-backlog-target.pdf) em ordem de prioridade para a Sprint 1:
 
-![](link)
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/user-story.jpeg)
 
 #### - Burndown Chart
 
