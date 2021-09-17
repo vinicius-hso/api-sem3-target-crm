@@ -3,7 +3,7 @@ import { emailValidator } from "../../../utils/emailValidator";
 import { serviceApi } from "data/services/serviceApi";
 import AuthContext from "contexts/AuthContext";
 
-export const useIndexPage = () => {
+export const useLoginPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [email, setEmail] = useState(""),
     [password, setPassword] = useState(""),
@@ -62,6 +62,32 @@ export const useIndexPage = () => {
     }
   }
 
+  //FUNÇÃO FAZ LOGIN SE A SENHA E EMAIL ESTIVEREM VALIDOS
+  async function recoverPass(email) {
+    if (
+      emailIsValid &&
+      email.length > 0
+    ) {
+      setLoading(true);
+      setError("");
+      try {
+        const { data } = await serviceApi.post<any>("/login", {
+          email
+        });
+
+        signIn(data.token)
+
+        setData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
+        setLoading(false);
+      }
+    }
+  }
+
+
+
   return {
     email,
     setEmail,
@@ -73,6 +99,7 @@ export const useIndexPage = () => {
     emailIsValid,
     passwordIsValid,
     login,
+    recoverPass,
     emailVerification,
     passwordVerification,
   };

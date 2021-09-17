@@ -3,7 +3,7 @@ import { Button, Typography, CircularProgress } from "@material-ui/core";
 import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, LoginContainer } from "@styles/pagesStyle/login.styles";
-import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
+import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
 import CustomLink from "ui/components/Link/Link";
 
 import Welcome from "ui/components/Welcome/welcome";
@@ -22,7 +22,7 @@ function HomePage() {
     login,
     passwordVerification,
     emailVerification,
-  } = useIndexPage();
+  } = useLoginPage();
 
   return (
     <LoginContainer>
@@ -87,7 +87,7 @@ function HomePage() {
               "Entrar"
             )}
           </Button>
-          <CustomLink href="/deals" text="Esqueceu a senha? Clique aqui" />
+          <CustomLink href="/recover_pass" text="Esqueceu a senha? Clique aqui" />
         </FormContainer>
       </div>
     </LoginContainer>

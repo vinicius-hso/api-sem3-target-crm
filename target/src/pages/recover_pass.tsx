@@ -2,24 +2,20 @@ import React from "react";
 import { Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, RecoverContainer } from "@styles/pagesStyle/recover.styles";
-import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
+import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
 import Title from "ui/components/Title/Title";
 
-function PassRecover() {
+function EmailRecover() {
   const {
-    password1,
-    password2,
-    setPassword1,
-    setPassword2,
-    hasError,
+    email,
+    setEmail,
     isLoading,
     data,
-    passwordIsValid1,
-    passwordIsSame,
-    recover,
-    passwordVerification1,
-    passwordSame,
-  } = useRecoverPage();
+    hasError,
+    emailIsValid,
+    recoverPass,
+    emailVerification,
+  } = useLoginPage();
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px"}}>
@@ -33,48 +29,35 @@ function PassRecover() {
             <i className="fa fa-info-circle" /> {hasError}
           </Typography>
         ) : (
-          "Redefinir senha"
+          "Recuperar senha"
         )}
 
         <TextFieldMask
-          label={"Nova senha"}
+          label={"Email"}
           fullWidth
           variant={"standard"}
           size="medium"
-          type="password"
-          value={password1}
-          onChange={(event) => setPassword1(event.target.value)}
-          onBlur={passwordVerification1}
-          error={!passwordIsValid1}
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          onBlur={emailVerification}
+          error={!emailIsValid}
           helperText={
-            !passwordIsValid1 ? "A senha deve ter no mínimo 6 caracteres" : ""
+            !emailIsValid ? "Formato inválid" : ""
           }
-        />
-
-        <TextFieldMask
-          fullWidth
-          label={"Confirmar senha"}
-          variant="standard"
-          type="password"
-          size="medium"
-          value={password2}
-          onChange={(event) => setPassword2(event.target.value)}
-          onBlur={passwordSame}
-          error={!passwordIsSame}
-          helperText={!passwordIsSame ? "Os valores devem corresponder" : ""}
         />
 
         <Button
           variant="contained"
           sx={{ width: "150px", mt: 1 }}
           color="primary"
-          onClick={() => recover(password1, password2)}
+          onClick={() => recoverPass(email)}
           type="submit"
         >
           {isLoading ? (
             <CircularProgress size={20} color="primary" />
           ) : (
-            "Redefinir"
+            "Enviar"
           )}
         </Button>
       </FormContainer>
@@ -88,4 +71,4 @@ function PassRecover() {
     </div>
   );
 }
-export default PassRecover;
+export default EmailRecover;
