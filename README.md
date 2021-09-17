@@ -2,9 +2,7 @@
   Aprendizado por Projeto Integrador
 </h2>
 
-<align="center"> 
 Projeto sendo desenvolvido pela equipe Cluster 8 - Turmas A e B do 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
-</>
 
 ## 📌 Desafio
 Desenvolver uma Aplicação Web de **Customer Relationship Management** (Gestão de Relacionamento com o Cliente) para organização dos processos comerciais, oferecendo suporte adequado às áreas de vendas e negócios para a empresa parceira.
