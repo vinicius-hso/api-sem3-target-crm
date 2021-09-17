@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import PipelineContext from "contexts/PipelineContext";
 
 const UpDateModal = () => {
-  const { updateModalState, useUpdateModal, updatePipeline, setName } =
+  const { updateModalState, useUpdateModal, updatePipeline, setName, pipeline } =
     useContext(PipelineContext);
   const styles: any = {
     box: {
@@ -48,6 +48,8 @@ const UpDateModal = () => {
           variant="outlined"
           size="small"
           fullWidth
+          focused={pipeline ? true : false}
+          value={pipeline?.name}
           onChange={(event) => setName(event.target.value)}
         />
         <Button
@@ -66,7 +68,7 @@ const UpDateModal = () => {
     <>
       <Modal
         open={updateModalState}
-        onClose={() => useUpdateModal()}
+        onClose={() => useUpdateModal("")}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         style={styles.modal}
