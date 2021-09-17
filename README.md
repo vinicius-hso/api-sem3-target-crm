@@ -79,7 +79,7 @@ As seguintes ferramentas estão sendo usadas na construção do projeto:
 ### 👨‍💻 Equipe
 
 
-| Aluno(a          | Função           | GitHub                                                         | LinkedIn                                              |
+| Aluno(a)         | Função           | GitHub                                                         | LinkedIn                                              |
 | ---------------- | ---------------- | -------------------------------------------------------------- | ----------------------------------------------------- |
 |__Debora Faria__  | *Developer Team*  | [![](https://bit.ly/3f9Xo0P)](https://github.com/deborafaria01)| [![](https://bit.ly/2P1ZogM)](https://bit.ly/2QwcT8R) |
 |__Hariel Thums__  | *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/HarielThums)  | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3f9bjUH) |
