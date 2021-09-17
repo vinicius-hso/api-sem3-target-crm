@@ -5,7 +5,6 @@ export const FormContainer = styled("div")`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 650px;
   margin: auto 0;
 `;
 
