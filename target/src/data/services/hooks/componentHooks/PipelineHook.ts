@@ -37,10 +37,24 @@ export const usePipelineComponent = () => {
   // SOMA OS VALORES (R$) DE TODOS DEALS
   const dealsBudgetSum = () => {
     let budgetSum = 0
+    let totalDeals = 0
     deals.map(deal => {
+      
       budgetSum += Number(deal.budget)
+      totalDeals += 1
     }) 
-    return budgetSum.toFixed(2)
+    return [budgetSum.toFixed(2), totalDeals]
+  }
+
+  const totalDealsByStatus = () => {
+    let hotDeals = 0, warmDeals = 0, coldDeals = 0
+    deals.map(deal => {
+      if (deal.tag == 'hot') hotDeals += 1
+      else if (deal.tag == 'cold') coldDeals += 1
+      else if (deal.tag === 'warm') warmDeals += 1
+    })
+    // console.log(hotDeals, warmDeals, coldDeals)
+    return [hotDeals, warmDeals, coldDeals]
   }
   
 
@@ -105,6 +119,7 @@ export const usePipelineComponent = () => {
     onDragEnd,
     hasError,
     isLoading,
-    dealsBudgetSum
+    dealsBudgetSum,
+    totalDealsByStatus
   };
 };

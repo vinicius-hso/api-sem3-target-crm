@@ -15,7 +15,7 @@ import UpDateModal from "ui/components/Modal/UpDateModal";
 import CreateModal from "ui/components/Modal/CreateModal";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 function DealPipeline() {
-  const { hasError, isLoading, dealsBudgetSum } = usePipelineComponent();
+  const { hasError, isLoading, dealsBudgetSum, totalDealsByStatus } = usePipelineComponent();
 
   return (
     <DealsPageContainer>
@@ -34,27 +34,27 @@ function DealPipeline() {
                   gap: "10px",
                 }}
               >
-                <Typography>R$ {dealsBudgetSum()}</Typography>
+                <Typography>R$ {dealsBudgetSum()[0]}</Typography>
                 <i
                   className="fa fa-arrow-right"
                   style={{ position: "relative", top: "2px" }}
                 ></i>
-                <Typography>8 negociações</Typography>
+                <Typography>{dealsBudgetSum()[1]} negociações</Typography>
               </div>
             }
           ></Title>
           <DealsTotalTagsContainer>
             <div>
               <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
-              <span> 5</span>
+              <span> {totalDealsByStatus()[0]}</span>
             </div>
             <div>
               <i className="fa fa-bolt" style={{ color: "#effa5c" }}></i>
-              <span> 4</span>
+              <span> {totalDealsByStatus()[1]}</span>
             </div>
             <div>
               <i className="fa fa-snowflake-o" style={{ color: "#3eccf0" }}></i>
-              <span> 2</span>
+              <span> {totalDealsByStatus()[2]}</span>
             </div>
           </DealsTotalTagsContainer>
         </TitleHeaderContainer>
