@@ -38,7 +38,7 @@ Acesse a *branch* referente a entrega da sprint clicando no link:
 
 A imagem abaixo mostra como os itens do [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/product-backlog-target.pdf) foram distribuídos de acordo com as Sprints do projeto:
 
-<align="center"> 
+<> 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/user-story-main.jpeg)
   </>
 
