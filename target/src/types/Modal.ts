@@ -16,6 +16,7 @@ export default interface ModalTypes {
   createDeal: (data: DealTypes) => void;
   getPipelines: () => void;
   pipelines: pipeline[];
+  pipeline: pipeline;
 }
 
 export interface pipeline {
@@ -25,4 +26,5 @@ export interface pipeline {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
+  deals?: any[];
 }
