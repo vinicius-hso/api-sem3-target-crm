@@ -35,28 +35,25 @@ export const usePipelineComponent = () => {
     }
   }
 
-  // SOMA OS VALORES (R$) DE TODOS DEALS
-  const dealsBudgetSum = () => {
-    let budgetSum = 0,
-      totalDeals = 0,
-      hotDeals = 0,
-      warmDeals = 0,
-      coldDeals = 0;
-    deals.map((deal) => {
-      budgetSum += Number(deal.budget);
-      totalDeals += 1;
-      if (deal.tag == "hot") hotDeals += 1;
-      else if (deal.tag == "cold") coldDeals += 1;
-      else if (deal.tag === "warm") warmDeals += 1;
-    });
-    return [
-      formatValue(budgetSum.toString()),
-      totalDeals,
-      hotDeals,
-      warmDeals,
-      coldDeals,
-    ];
-  };
+  // RETORNA AS INFOS SOBRE AS DEALSs
+  const getDealsInfo = () => {
+    let budgetSum = 0, totalDeals = 0, hotDeals = 0, warmDeals = 0, coldDeals = 0
+    deals.map(deal => {
+      budgetSum += Number(deal.budget)
+      totalDeals += 1
+      if (deal.tag == 'hot') hotDeals += 1
+      else if (deal.tag == 'cold') coldDeals += 1
+      else if (deal.tag === 'warm') warmDeals += 1
+    }) 
+    const dealsInfo = {
+      budgetSum: formatValue(budgetSum.toString()),
+      totalDeals: totalDeals,
+      hotDeals: hotDeals,
+      warmDeals: warmDeals,
+      coldDeals: coldDeals,
+    }
+    return dealsInfo
+  }
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId) => {
@@ -117,6 +114,6 @@ export const usePipelineComponent = () => {
     onDragEnd,
     hasError,
     isLoading,
-    dealsBudgetSum,
+    getDealsInfo,
   };
 };
