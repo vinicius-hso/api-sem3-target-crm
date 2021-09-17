@@ -62,7 +62,7 @@ export const usePipelineComponent = () => {
   //FILTRA OS PIPELINES
   const getItems = (pipeId) => {
     const pipeDeals = [];
-    const currentPipe = pipelines.find((p) => p._id === pipeId);
+    const currentPipe = pipelines.find((p) => p.id === pipeId);
     currentPipe.totalColumnValue = 0;
     deals.map((d) => {
       if (d.pipe === pipeId) {
@@ -91,7 +91,7 @@ export const usePipelineComponent = () => {
   //UNI AS DEALS AOS PIPELINES
   const generateDealsList = () => {
     return pipelines.reduce(
-      (acc, listKey) => ({ ...acc, [listKey._id]: getItems(listKey._id) }),
+      (acc, listKey) => ({ ...acc, [listKey.id]: getItems(listKey.id) }),
       {}
     );
   };

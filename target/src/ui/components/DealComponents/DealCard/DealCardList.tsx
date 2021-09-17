@@ -19,7 +19,7 @@ const DealCardList = (props) => {
   //   props.elements.pipeDeals.push(mockAddCard);
   // }
 
-  const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } = 
+  const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } =
     useContext(PipelineContext);
 
   return (
