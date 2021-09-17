@@ -80,7 +80,7 @@ As seguintes ferramentas estão sendo usadas na construção do projeto:
 
 ### 👨‍💻 Equipe
 
-
+<p align="center">
 | Aluno(a)         | Função           | GitHub                                                         | LinkedIn                                              |
 | ---------------- | ---------------- | -------------------------------------------------------------- | ----------------------------------------------------- |
 |__Debora Faria__  | *Developer Team*  | [![](https://bit.ly/3f9Xo0P)](https://github.com/deborafaria01)| [![](https://bit.ly/2P1ZogM)](https://bit.ly/2QwcT8R) |
@@ -91,6 +91,7 @@ As seguintes ferramentas estão sendo usadas na construção do projeto:
 |__Rita de Cássia__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/ferreirarita) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/rita-ferreira-894ba1200/) |
 |__Sarah Ribeiro__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/Sarah6197) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/sarah-fernandes-494000196/) |
 |__Vinícius Oliveira__| *Product Owner*| [![](https://bit.ly/3f9Xo0P)](https://github.com/vinicius-hso) | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3fdl0BE) |
-|__Willian Rodrigues__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/WrsDeveloper) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/willianrsilva/)|
+|__Willian Rodrigues__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/WrsDeveloper) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/willianrsilva/)| ></p>
+  
 
 
