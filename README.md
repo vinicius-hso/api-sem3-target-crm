@@ -50,17 +50,17 @@ Acesse os links para visualizar:
 > * [Modelo Lógico Relacional](link da imagem)
 
 
-## Arquitetura da Aplicação
+## 📐 Arquitetura da Aplicação
 
  
-## Tela de Login
+## 🔑 Tela de Login
 
 Gif?
 
-## Cadastro de Pipeline
+## 📈 Cadastro de Pipeline
 
 Gif?
 
-## Cadastro de Negociação
+## 💼 Cadastro de Negociação
 
 Gif?
