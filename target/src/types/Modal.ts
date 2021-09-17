@@ -1,14 +1,27 @@
+import { DealTypes } from "./Deal";
+
 export default interface ModalTypes {
   createModalState: boolean;
+  createDealModalState: boolean;
   useCreateModal: () => void;
+  useCreateDealModal: () => void;
   updateModalState: boolean;
-  useUpdateModal: () => void;
+  useUpdateModal: (id: string) => void;
   deleteModalState: boolean;
-  useDeleteModal: () => void;
+  useDeleteModal: (id: string) => void;
   deletePipeline: () => void;
   createPipeline: () => void;
   updatePipeline: () => void;
-  setUpdateId: (id: string) => void;
   setName: (name: string) => void;
-  setDeleteId: (id: string) => void;
+  createDeal: (data: DealTypes) => void;
+  getPipelines: () => void;
+  pipelines: pipeline[];
+}
+
+export interface pipeline {
+  id: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
 }

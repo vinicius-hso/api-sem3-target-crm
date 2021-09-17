@@ -1,7 +1,49 @@
 import React from "react";
+import { DealTypes } from "types/Deal";
+import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./serviceApi";
 class PipelineService {
   private headers: object;
+
+  async getPiplines(): Promise<pipeline[]> {
+    try {
+      const { data } = await api.get("/pipeline", {
+        headers: this.headers,
+      });
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async createPipeline(name: string): Promise<object> {
+    const body: object = { name };
+
+    try {
+      const response = await api.post("/pipeline/", body, {
+        headers: this.headers,
+      });
+
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async updatePipeline(id: string, name: string): Promise<object> {
+    const body: object = { name };
+
+    try {
+      const response = await api.put(`/pipeline/${id}`, body, {
+        headers: this.headers,
+      });
+
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
 
   async deletePipeline(id: string): Promise<object> {
     try {
@@ -15,24 +57,9 @@ class PipelineService {
     }
   }
 
-  async updatePipeline(id: string, name: string): Promise<object> {
-    const body: object = {name};
-
+  async createDeal(data: DealTypes): Promise<object> {
     try {
-      const response = await api.put(`/pipeline/${id}`, body, {
-        headers: this.headers,
-      });
-
-      return response.data;
-    } catch (error) {
-      return error;
-    }
-  }
-  async createPipeline(name: string): Promise<object> {
-    const body: object = {name};
-
-    try {
-      const response = await api.post('/pipeline/', body, {
+      const response = await api.post("/deal/", data, {
         headers: this.headers,
       });
 

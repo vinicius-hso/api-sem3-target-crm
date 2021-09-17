@@ -5,7 +5,7 @@ import { DroppableStyles, ColumnContainer } from "./DealCard.style";
 import Title from "ui/components/Title/Title";
 import { Button, ButtonGroup, Typography } from "@material-ui/core";
 import { mockAddCard } from "data/utils/mock";
-import ModalContext from "contexts/ModalContext";
+import PipelineContext from "contexts/PipelineContext";
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
@@ -17,9 +17,8 @@ const DealCardList = (props) => {
     useDeleteModal,
     useUpdateModal,
     useCreateModal,
-    setUpdateId,
-    setDeleteId,
-  } = useContext(ModalContext);
+    useCreateDealModal
+  } = useContext(PipelineContext);
 
   return (
     <ColumnContainer>
@@ -49,6 +48,7 @@ const DealCardList = (props) => {
           >
             <Button
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
+              onClick={() => useCreateDealModal()}
             >
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
               Nova negociação
@@ -61,18 +61,18 @@ const DealCardList = (props) => {
               Novo pipeline
             </Button>
             <Button
-              onClick={() => {
-                useUpdateModal(), setUpdateId(props.pipeId);
-              }}
+              onClick={() =>
+                useUpdateModal(props.pipeId)
+              }
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-pencil" aria-hidden="true"></i>
               Editar pipeline
             </Button>
             <Button
-              onClick={() => {
-                useDeleteModal(), setDeleteId(props.pipeId);
-              }}
+              onClick={() =>
+                useDeleteModal(props.pipeId)
+              }
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-trash" aria-hidden="true"></i>
@@ -81,7 +81,8 @@ const DealCardList = (props) => {
           </ButtonGroup>
         ) : (
           ""
-        )}
+        )
+        }
         <Title
           title={props.title}
           subtitle={
@@ -95,7 +96,7 @@ const DealCardList = (props) => {
             </div>
           }
         ></Title>
-      </div>
+      </div >
       <DroppableStyles>
         <div>
           <Droppable droppableId={`${props.pipeId}`}>
@@ -146,7 +147,7 @@ const DealCardList = (props) => {
           </Droppable>
         </div>
       </DroppableStyles>
-    </ColumnContainer>
+    </ColumnContainer >
   );
 };
 export default DealCardList;

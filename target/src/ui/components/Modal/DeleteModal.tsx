@@ -2,12 +2,11 @@ import React, { useContext } from "react";
 
 import { Button, Modal } from "@material-ui/core";
 
-import ModalContext from "contexts/ModalContext";
+import PipelineContext from "contexts/PipelineContext";
 
 const DeleteModal: React.FC = () => {
-  const [open, setOpen] = React.useState(true);
   const { deleteModalState, useDeleteModal, deletePipeline } =
-    useContext(ModalContext);
+    useContext(PipelineContext);
 
   const styles: any = {
     box: {

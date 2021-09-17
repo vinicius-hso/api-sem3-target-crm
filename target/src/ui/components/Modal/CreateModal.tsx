@@ -4,11 +4,11 @@ import { Button, Modal } from "@material-ui/core";
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import ModalContext from "contexts/ModalContext";
+import PipelineContext from "contexts/PipelineContext";
 
 const CreateModal = () => {
   const { createModalState, useCreateModal, createPipeline, setName } =
-    useContext(ModalContext);
+    useContext(PipelineContext);
   const styles: any = {
     box: {
       backgroundColor: "#fff",

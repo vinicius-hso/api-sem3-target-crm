@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { Button, Modal } from "@material-ui/core";
 import Theme from "ui/theme/theme";
 import TextField from "@material-ui/core/TextField";
-import ModalContext from "contexts/ModalContext";
+import PipelineContext from "contexts/PipelineContext";
 
 const UpDateModal = () => {
   const { updateModalState, useUpdateModal, updatePipeline, setName } =
-    useContext(ModalContext);
+    useContext(PipelineContext);
   const styles: any = {
     box: {
       backgroundColor: "#fff",
