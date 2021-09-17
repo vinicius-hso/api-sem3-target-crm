@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { FormContainer } from "@styles/pagesStyle/index.styles";
+import { FormContainer } from "@styles/pagesStyle/login.styles";
 import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
 
 function PassRecover() {

@@ -5,7 +5,7 @@ export const FormContainer = styled('div')`
   flex-direction: column;
   align-items: center;
   gap: 2;
-  max-width: 650px;
+  max-width: 850px;
   margin: auto 0;
   
 `;
@@ -13,7 +13,7 @@ export const FormContainer = styled('div')`
 export const LoginContainer = styled('div')`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 80vw;
+  width: 100vw;
   height: 45vh; 
   
 `;

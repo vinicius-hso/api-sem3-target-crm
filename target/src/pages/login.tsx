@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Typography, CircularProgress } from "@material-ui/core";
 import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { FormContainer, LoginContainer } from "@styles/pagesStyle/index.styles";
+import { FormContainer, LoginContainer } from "@styles/pagesStyle/login.styles";
 import { useIndexPage } from "data/services/hooks/PageHooks/indexPageHook";
 import CustomLink from "ui/components/Link/Link";
 
@@ -30,7 +30,7 @@ function HomePage() {
 
       <div style={{ margin: "auto 0", marginTop: "100px" }}>
         <Title
-          title={"Seja bem-vindo(a)!"}
+          title={"Login"}
           subtitle={<p>Faça login para acessar sua área restrita</p>}
         ></Title>
 
@@ -51,7 +51,7 @@ function HomePage() {
             fullWidth
             variant={"standard"}
             icon="fa fa-envelope"
-            size="small"
+            size="medium"
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -65,7 +65,7 @@ function HomePage() {
             variant="standard"
             icon="fa fa-unlock-alt"
             type="password"
-            size="small"
+            size="medium"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             onBlur={passwordVerification}
@@ -76,7 +76,7 @@ function HomePage() {
           />
           <Button
             variant="contained"
-            sx={{ width: "150px", mt: 1 }}
+            sx={{ width: "150px", mt: 2 }}
             color="primary"
             onClick={() => login(email, password)}
             type="submit"
