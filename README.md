@@ -8,12 +8,6 @@ Projeto sendo desenvolvido pela equipe Cluster 8 - Turmas A e B do 3º semestre 
 ## 📌 Desafio
 Desenvolver uma Aplicação Web de **Customer Relationship Management** (Gestão de Relacionamento com o Cliente) para organização dos processos comerciais, oferecendo suporte adequado às áreas de vendas e negócios para a empresa parceira.
 
-
-
-## 📝 Solução
-
-
-
 ## 🏁 Projeto
 __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe Cluster 8 em forma de aplicação web. A aplicação finalizada deve:
 
