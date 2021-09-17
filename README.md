@@ -1,8 +1,6 @@
 | ID     | Prioridade | User Story                       | Esforço                              | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ | ------------------------------------ |
-| US_01  | Extrema    | Eu como usuário, gostaria de cadastrar diferentes pipelines de negociação | 37.43 | 1. Visualizar todos os Pipelines; 2. Criar Novo Pipeline; 3. Deletar Pipeline; 4. Definir nome do Pipeline; 5. Exibir total de deals no Pipeline; 6. Exibir total em $ dos deals mo Pipeline; 7. Arrastar e alterar posição do Pipeline; | 
-| US_02  | Extrema    | Eu como usuário, gostaria de cadastrar negociações e atribuí- las a diferentes pipelines  | 19.43 |
-| US_03  | Essencial  | 
-| US_04  | Essencial  | 
-| US_05  | Essencial  | 
-| US_06  | Importante | 
+| US_01  | Essencial  | Eu como usuário, gostaria de cadastrar diferentes pipelines de negociação | 37.43 | 1. Visualizar todos os Pipelines; 2. Criar Novo Pipeline; 3. Deletar Pipeline; 4. Definir nome do Pipeline; 5. Exibir total de deals no Pipeline; 6. Exibir total em $ dos deals mo Pipeline; 7. Arrastar e alterar posição do Pipeline; | 
+| US_02  | Essencial  | Eu como usuário, gostaria de cadastrar negociações e atribuílas a diferentes Pipelines  | 19.43 | 1. Criar Deal; 2. Deletar Deal; 3. Editar (Renomear) propriedades do Deal; 4. Visualizar Deals; 5. Inserir dados na Deal; - Nome do Deal - Nome do Contato (+ sugestão de contato do BD) - Estágio do Deal (Pipeline em que se encontra) - Prioriade - Atribuir uma Tag (userStory 3) - Nome da Organização - Data de criação - Prazo Final (data de fechamento esperada) - Valor do Deal - Telefone do Contato; |
+| US_03  | Essencial  | Eu como administrador gostaria de que o acesso a aplicação fosse limitado apenas aos usuários cadastrados | 24 | 1. Tela de login de usuário com email e senha; |
+| US_04  | Importante | Eu como usuário, gostaria de acessar a aplicação pela web em diferentes dispositivos | 21.71 | 1. Aplicação responsiva em diferentes dispositivos; Obs.: esse item deve ser empregado em todo o processo de desenvolvimento, portanto não estranhe a presença do mesmo em todas as Sptrints; |
