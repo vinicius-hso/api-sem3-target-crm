@@ -1,4 +1,5 @@
 import React from "react";
+import { DealTypes } from "types/Deal";
 import { serviceApi as api } from "./serviceApi";
 class PipelineService {
   private headers: object;
@@ -33,6 +34,19 @@ class PipelineService {
 
     try {
       const response = await api.post('/pipeline/', body, {
+        headers: this.headers,
+      });
+
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async createDeal(data: DealTypes): Promise<object> {
+
+    try {
+      const response = await api.post('/deal/', data, {
         headers: this.headers,
       });
 
