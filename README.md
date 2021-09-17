@@ -6,7 +6,7 @@ Abaixo encontram-se todos os itens produzidos durante a Sprint 1 conforme estabe
 
 ## 💹 Planejamento da Sprint
 
-#### - User Stories
+### - User Stories
 
 A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem desenvolvidas durante a Sprint 1:
 
@@ -17,13 +17,13 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 | US_03  | Essencial  | Eu como administrador gostaria de que o acesso a aplicação fosse limitado apenas aos usuários cadastrados | 24 | 1. Tela de login de usuário com email e senha; |
 | US_04  | Importante | Eu como usuário, gostaria de acessar a aplicação pela web de diferentes dispositivos | 21.71 | 1. Aplicação responsiva em diferentes dispositivos; Obs.: esse item deve ser empregado em todo o processo de desenvolvimento, portanto não estranhe a presença do mesmo em todas as sprints; |
 
-#### - Sprint Backlog
+### - Sprint Backlog
 
 A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/product-backlog-target.pdf) em ordem de prioridade referentes a Sprint 1:
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/user-story.jpeg)
 
-#### - Burndown Chart
+### - Burndown Chart
 
 O gráfico abaixo mostra o desempenho da equipe na realização das tarefas referentes a Sprint 1:
 
