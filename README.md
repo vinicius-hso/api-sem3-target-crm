@@ -4,7 +4,7 @@
 
 Abaixo encontram-se todos os itens produzidos durante a Sprint 1 conforme estabelecido previamente por meio do planejamento: 
 
-### 💹 Planejamento da Sprint
+## 💹 Planejamento da Sprint
 
 #### - User Stories
 
@@ -17,19 +17,19 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 | US_03  | Essencial  | Eu como administrador gostaria de que o acesso a aplicação fosse limitado apenas aos usuários cadastrados | 24 | 1. Tela de login de usuário com email e senha; |
 | US_04  | Importante | Eu como usuário, gostaria de acessar a aplicação pela web em diferentes dispositivos | 21.71 | 1. Aplicação responsiva em diferentes dispositivos; Obs.: esse item deve ser empregado em todo o processo de desenvolvimento, portanto não estranhe a presença do mesmo em todas as sprints; |
 
-#### 📋 Sprint Backlog
+#### - Sprint Backlog
 
 A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/product-backlog-target.pdf):
 
 ![](link)
 
-### 📉 Burndown Chart
+#### - Burndown Chart
 
-*O gráfico abaixo mostra o desempenho da equipe na realização das tarefas referentes a Sprint 1:*
+O gráfico abaixo mostra o desempenho da equipe na realização das tarefas referentes a Sprint 1:
 
 ![](link da imagem)
 
-## 2 - 📂 Documentação do Projeto
+## 📂 Documentação do Projeto
 
 Acesse os documentos clicando nos links abaixo:
 
@@ -38,30 +38,30 @@ Acesse os documentos clicando nos links abaixo:
 * [__Briefing do Projeto__](link)
 * [__Casos de Testes Funcionais__](link)
 
-## 3 - 🖥️ Wireframe 
+## 🖥️ Wireframe 
 
 Acesse o link para visualizar:
 
 > * [Protótipo interativo no Figma](https://www.figma.com/proto/9Wjemyb5Fc0einoBG4pciU/API---cluster8?node-id=217%3A1296&scaling=contain&page-id=0%3A1&starting-point-node-id=217%3A1296)
 
-## 4 - 🎲 Modelagem do Banco de Dados
+## 🎲 Modelagem do Banco de Dados
 
 Acesse os links para visualizar:
 
 > * [Modelo Lógico Relacional](link da imagem)
 
 
-## 5 - (colocar icone) Arquitetura da Aplicação
+## Arquitetura da Aplicação
 
  
-## 6 - Tela de Login
+## Tela de Login
 
 Gif?
 
-## 7 - Cadastro de Pipeline
+## Cadastro de Pipeline
 
 Gif?
 
-## 8 - Cadastro de Negociação
+## Cadastro de Negociação
 
 Gif?
