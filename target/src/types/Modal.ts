@@ -14,4 +14,14 @@ export default interface ModalTypes {
   updatePipeline: () => void;
   setName: (name: string) => void;
   createDeal: (data: DealTypes) => void;
+  getPipelines: () => void;
+  pipelines: pipeline[];
+}
+
+export interface pipeline {
+  id: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
 }
