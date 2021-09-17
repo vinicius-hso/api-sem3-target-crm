@@ -22,7 +22,7 @@ __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe
 
 ### 💹 Planejamento
 
-Acesse a *branch* referente a entrega da sprint clicando no link:
+Acesse a branch referente a entrega da sprint clicando no link:
 
 * [x] __Kick-off__ - 12/08/2021 - ✅
 * [ ] [__Sprint 1__](https://github.com/vinicius-hso/api-sem3/tree/Sprint-1) - 08/09/2021 a 19/09/2021 
