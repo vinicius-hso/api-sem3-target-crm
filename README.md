@@ -47,7 +47,7 @@ Acesse o link para visualizar:
 
 Acesse os links para visualizar:
 
-> * [Modelo Lógico Relacional](link da imagem)
+> * [Modelo Entidade Relacionamento](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/modelo-l%C3%B3gico-relacional.jpeg)
 
 
 ## 📐 Arquitetura da Aplicação
