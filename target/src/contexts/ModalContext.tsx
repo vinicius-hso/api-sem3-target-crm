@@ -1,5 +1,6 @@
 import PipelineService from "data/services/PipelineService";
 import React, { useState, createContext } from "react";
+import { DealTypes } from "types/Deal";
 import ModalTypes from "types/Modal";
 
 const ModalContext = createContext<ModalTypes>({} as ModalTypes);
@@ -8,12 +9,17 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [createModalState, setCreateModalState] = useState<boolean>(false);
   const [updateModalState, setUpdateModalState] = useState<boolean>(false);
   const [deleteModalState, setDeleteModalState] = useState<boolean>(false);
+  const [createDealModalState, setCreateDealModalState] = useState<boolean>(false);
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
   const [name, setNameState] = useState<string>();
 
   const useCreateModal = () => {
     setCreateModalState(!createModalState);
+  };
+
+  const useCreateDealModal = () => {
+    setCreateDealModalState(!createDealModalState);
   };
 
   const useUpdateModal = (id: string) => {
@@ -31,18 +37,23 @@ export const ModalProvider: React.FC = ({ children }) => {
   };
 
   const deletePipeline = async () => {
-    const response = await PipelineService.deletePipeline(deleteId);
+    await PipelineService.deletePipeline(deleteId);
     useDeleteModal("");
   };
 
   const updatePipeline = async () => {
-    const response = await PipelineService.updatePipeline(updateId, name);
+    await PipelineService.updatePipeline(updateId, name);
     useUpdateModal("");
   };
 
   const createPipeline = async () => {
-    const response = await PipelineService.createPipeline(name);
+    await PipelineService.createPipeline(name);
     useCreateModal();
+  };
+
+  const createDeal = async (data: DealTypes) => {
+    await PipelineService.createDeal(data);
+    useCreateDealModal();
   };
 
 
@@ -52,6 +63,8 @@ export const ModalProvider: React.FC = ({ children }) => {
         createModalState,
         useCreateModal,
         updateModalState,
+        useCreateDealModal,
+        createDealModalState,
         useUpdateModal,
         deleteModalState,
         useDeleteModal,
@@ -59,6 +72,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         updatePipeline,
         createPipeline,
         setName,
+        createDeal
       }}
     >
       {children}
