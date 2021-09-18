@@ -27,13 +27,15 @@ function HomePage() {
   return (
     <LoginContainer>
       <Welcome />
+      <div style={{ margin: "auto 0", height: "calc(100vh - 100px)", backgroundColor: "#2D3142" }}>
+        <div style={{margin: "auto 0", marginTop: "calc(35vh - 100px)"}}>
+        <hr/>
 
-      <div style={{ margin: "auto 0", marginTop: "100px" }}>
         <Title
           title={"Login"}
           subtitle={<p>Faça login para acessar sua área restrita</p>}
         ></Title>
-
+  
         <FormContainer>
           {hasError ? (
             <Typography
@@ -89,6 +91,7 @@ function HomePage() {
           </Button>
           <CustomLink href="/recover_pass" text="Esqueceu a senha? Clique aqui" />
         </FormContainer>
+      </div>
       </div>
     </LoginContainer>
   );

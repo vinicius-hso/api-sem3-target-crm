@@ -5,6 +5,5 @@ export const ImageContainer = styled('div')`
   flex-direction: column;
   align-items: center;
   gap: 2;
-  margin: auto 0;
   
 `;
