@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useState, useContext, useCallback } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useContext,
+  useCallback,
+} from "react";
 import { emailValidator } from "../../../utils/emailValidator";
 import { serviceApi } from "data/services/serviceApi";
 import AuthContext from "contexts/AuthContext";
@@ -13,7 +19,7 @@ export const useLoginPage = () => {
     [passwordIsValid, setPasswordIsValid] = useState(true),
     [data, setData] = useState([]);
 
-    const {signIn} = useContext(AuthContext)
+  const { signIn } = useContext(AuthContext);
 
   //VERIFICA SE O EMAIL É VALIDO
   function emailVerification() {
@@ -46,12 +52,12 @@ export const useLoginPage = () => {
       setLoading(true);
       setError("");
       try {
-        const { data } = await serviceApi.post<any>("/login", {
+        const { data } = await serviceApi.post<any>("/auth/authenticate", {
           email,
           password,
         });
 
-        signIn(data.token)
+        signIn(data.token);
 
         setData(data);
         setLoading(false);
@@ -64,18 +70,15 @@ export const useLoginPage = () => {
 
   //FUNÇÃO FAZ LOGIN SE A SENHA E EMAIL ESTIVEREM VALIDOS
   async function recoverPass(email) {
-    if (
-      emailIsValid &&
-      email.length > 0
-    ) {
+    if (emailIsValid && email.length > 0) {
       setLoading(true);
       setError("");
       try {
         const { data } = await serviceApi.post<any>("/login", {
-          email
+          email,
         });
 
-        signIn(data.token)
+        signIn(data.token);
 
         setData(data);
         setLoading(false);
@@ -85,8 +88,6 @@ export const useLoginPage = () => {
       }
     }
   }
-
-
 
   return {
     email,
