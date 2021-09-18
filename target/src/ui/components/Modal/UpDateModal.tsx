@@ -1,80 +1,56 @@
 import React, { useContext } from "react";
 
-import { Button, Modal } from "@material-ui/core";
-import Theme from "ui/theme/theme";
-import TextField from "@material-ui/core/TextField";
 import PipelineContext from "contexts/PipelineContext";
+import { ModalContainer } from "./ModalStyles/ModalContainer";
+import Title from "../Title/Title";
+import { ModalStyled } from "./ModalStyles/Modal";
+import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
+import { Button } from "@material-ui/core";
 
 const UpDateModal = () => {
-  const { updateModalState, useUpdateModal, updatePipeline, setName, pipeline } =
-    useContext(PipelineContext);
-  const styles: any = {
-    box: {
-      backgroundColor: "#fff",
-      width: "450px",
-      height: "220px",
-      padding: "15px",
-      borderRadius: "8px",
-    },
-    body: {
-      justifyContent: "center",
-      flexDirection: "column",
-      alignItems: "center",
-      display: "flex",
-    },
-    modal: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    title: {
-      fontWeight: "bold",
-      color: Theme.palette.primary.main,
-    },
-    button: {
-      color: "#fff",
-      margin: "20px",
-    },
-  };
+  const {
+    updateModalState,
+    useUpdateModal,
+    updatePipeline,
+    setName,
+    pipeline,
+  } = useContext(PipelineContext);
+
   const body = (
-    <div style={styles.box}>
-      <h2 style={styles.title} id="simple-modal-title">
-        Editar pipeline
-      </h2>
-      <div style={styles.body}>
-        <TextField
-          id="outlined-basic"
-          label="Nome do pipeline"
-          variant="outlined"
-          size="small"
-          fullWidth
-          focused={pipeline ? true : false}
-          defaultValue={pipeline?.name}
-          onChange={(event) => setName(event.target.value)}
-        />
-        <Button
-          onClick={() => updatePipeline()}
-          variant="contained"
-          color="success"
-          style={styles.button}
-          startIcon={<i className="fa fa-pensil"></i>}
-        >
-          Enviar
-        </Button>
-      </div>
-    </div>
+    <ModalContainer>
+      <Title title="Editar pipeline" />
+
+      <TextFieldMask
+        id="outlined-basic"
+        label="Nome do pipeline"
+        variant="standard"
+        size="small"
+        fullWidth
+        focused={pipeline ? true : false}
+        defaultValue={pipeline?.name}
+        onChange={(event) => setName(event.target.value)}
+      />
+      <Button
+        onClick={() => updatePipeline()}
+        variant="contained"
+        color="success"
+        startIcon={<i className="fa fa-pensil"></i>}
+        sx={{ mt: 4 }}
+      >
+        Enviar
+      </Button>
+    </ModalContainer>
   );
   return (
     <>
-      <Modal
+      <ModalStyled
         open={updateModalState}
         onClose={() => useUpdateModal("")}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-        style={styles.modal}
       >
         {body}
-      </Modal>
+      </ModalStyled>
     </>
   );
 };

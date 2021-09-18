@@ -6,12 +6,12 @@ import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
 import {
   ModalContainer,
-  ModalStyled,
   TwoColumnsContainer,
 } from "./ModalStyles/ModalContainer";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Select from "../Input/Select/Select";
 import theme from "ui/theme/theme";
+import { ModalStyled } from "./ModalStyles/Modal";
 
 const CreateDealModal = () => {
   const {

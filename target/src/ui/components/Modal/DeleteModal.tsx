@@ -1,85 +1,51 @@
 import React, { useContext } from "react";
 
-import { Button, Modal } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 import PipelineContext from "contexts/PipelineContext";
+import { ModalContainer } from "./ModalStyles/ModalContainer";
+import Title from "../Title/Title";
+import { ModalStyled } from "./ModalStyles/Modal";
 
 const DeleteModal: React.FC = () => {
   const { deleteModalState, useDeleteModal, deletePipeline } =
     useContext(PipelineContext);
 
-  const styles: any = {
-    box: {
-      backgroundColor: "#fff",
-      height: "220px",
-      width: "450px",
-      borderRadius: "10px",
-      padding: "15px",
-    },
-    title: { color: "#E2711D" },
-    body: {
-      flexDirection: "column",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    textBold: {
-      fontWeight: "bold",
-      margin: 0,
-      fontSize: "17px",
-    },
-    textBody: {
-      fontSize: "15px",
-      fontWeight: "normal",
-      margin: 0,
-    },
-    button: {
-      margin: "20px",
-    },
-    modal: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  };
-
   const body = (
-    <div style={styles.box}>
-      <h2 style={styles.title} id="simple-modal-title">
-        Deletar Pipeline
-      </h2>
+    <ModalContainer>
+      <Title
+        title="Deletar Pipeline"
+        subtitle={
+          <>
+            <p>Tem certeza que deseja deletar esse pipeline?</p>
 
-      <div style={styles.body}>
-        <p style={styles.textBold}>
-          Tem certeza que deseja deletar esse pipeline?
-        </p>
+            <p>
+              <strong>Todas as negociações do pipeline serão arquivadas</strong>
+            </p>
+          </>
+        }
+      />
 
-        <h4 style={styles.textBody}>
-          Todos as negociações do pipeline serão arquivadas
-        </h4>
-        <Button
-          onClick={() => deletePipeline()}
-          style={styles.button}
-          variant="contained"
-          color="error"
-        >
-          Deletar
-        </Button>
-      </div>
-    </div>
+      <Button
+        onClick={() => deletePipeline()}
+        variant="contained"
+        color="error"
+      >
+        Deletar
+      </Button>
+    </ModalContainer>
   );
 
   return (
     <>
-      <Modal
-        style={styles.modal}
+      <ModalStyled
         open={deleteModalState}
         onClose={useDeleteModal}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
         {body}
-      </Modal>
+      </ModalStyled>
     </>
   );
 };
