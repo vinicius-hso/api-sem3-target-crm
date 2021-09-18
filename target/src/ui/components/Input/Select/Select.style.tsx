@@ -1,0 +1,16 @@
+import { Select } from "@material-ui/core";
+import { experimentalStyled as styled } from "@material-ui/core/styles";
+
+export const InputContainer = styled("div")`
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  margin-left: -8px;
+`;
+
+export const SelectStyled = styled(Select)`
+  margin: ${({ theme }) => theme.spacing(1)} 0;
+  margin-right: 8px;
+`;
