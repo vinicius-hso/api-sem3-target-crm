@@ -70,9 +70,9 @@ export const ModalProvider: React.FC = ({ children }) => {
       deals: []
     }
     ));
-
-
-    setPipelines(pipes);
+    setPipelines(pipes.sort(function(a,b) {
+      return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;
+  }));
   }
 
   const getPipeline = async (id: string) => {
