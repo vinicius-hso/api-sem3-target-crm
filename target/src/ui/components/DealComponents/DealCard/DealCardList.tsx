@@ -48,27 +48,39 @@ const DealCardList = (props) => {
           >
             <Button
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
-              onClick={() => useCreateDealModal()}
+              onClick={() => {
+                useCreateDealModal()
+                setViewButtonGroup(!viewButtonGroup)
+              }}
             >
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
               Nova negociação
             </Button>
             <Button
-              onClick={() => useCreateModal()}
+              onClick={() => {
+                useCreateModal()
+                setViewButtonGroup(!viewButtonGroup)
+              }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
               Novo pipeline
             </Button>
             <Button
-              onClick={() => useUpdateModal(props.pipeId)}
+              onClick={() => {
+                useUpdateModal(props.pipeId)
+                setViewButtonGroup(!viewButtonGroup)
+              }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-pencil" aria-hidden="true"></i>
               Editar pipeline
             </Button>
             <Button
-              onClick={() => useDeleteModal(props.pipeId)}
+              onClick={() => {
+                useDeleteModal(props.pipeId)
+                setViewButtonGroup(!viewButtonGroup)
+              }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
               <i className="fa fa-trash" aria-hidden="true"></i>
