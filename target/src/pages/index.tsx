@@ -18,6 +18,12 @@ import SearchButtom from "ui/components/SearchButton/SearchButton";
 function DealPipeline() {
   const { hasError, isLoading, getDealsInfo } = usePipelineComponent();
 
+  const [valueType, setValueType] = React.useState('');
+
+  const handleChange = (event) => {
+    setValueType(event.target.value);
+  };
+
   return (
     <DealsPageContainer>
       <DeleteModal />
@@ -64,13 +70,14 @@ function DealPipeline() {
           placeholder="Buscar"
           buttomIcon="fa-search"
           viewButtonGroup={true}
-          typeValue="value"
+          typeValue={valueType}
           searchTypes={[
-            { value: 10, name: "coxinha" },
-            { value: 10, name: "coxinha" },
-            { value: 10, name: "coxinha" },
+            { value: 10, name: "Nome" },
+            { value: 20, name: "Empresa" },
+            { value: 30, name: "Contato" },
+            { value: 40, name: "Tag" }
           ]}
-          ChangeType={() => {}}
+          ChangeType={handleChange}
         />
       </DealsHeaderContainer>
 
