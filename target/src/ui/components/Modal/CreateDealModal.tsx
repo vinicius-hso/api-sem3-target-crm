@@ -45,35 +45,31 @@ const CreateDealModal = () => {
         size="small"
         fullWidth
       />
-      <FormControl variant="standard" sx={{ m: 1, minWidth: "100%" }}>
-        <Select
-          onChange={(event) =>
-            setData({ ...data, company: event.target.value })
-          }
-          label="Empresa"
-          value={data.company}
-          fullWidth
-        >
-          <MenuItem value={"default"}>Selecione a Empresa</MenuItem>
-          <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
-            Cluster8
-          </MenuItem>
-        </Select>
+      <Select
+        onChange={(event) => setData({ ...data, company: event.target.value })}
+        label="Empresa"
+        value={data.company}
+        variant="standard"
+        fullWidth
+      >
+        <MenuItem value={"default"}>Selecione a Empresa</MenuItem>
+        <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
+          Cluster8
+        </MenuItem>
+      </Select>
 
-        <Select
-          onChange={(event) =>
-            setData({ ...data, contact: event.target.value })
-          }
-          label="Contato"
-          fullWidth
-          value={data.contact}
-        >
-          <MenuItem value={"default"}>Selecionar Contato</MenuItem>
-          <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
-            Cluster8
-          </MenuItem>
-        </Select>
-      </FormControl>
+      <Select
+        onChange={(event) => setData({ ...data, contact: event.target.value })}
+        label="Contato"
+        variant="standard"
+        fullWidth
+        value={data.contact}
+      >
+        <MenuItem value={"default"}>Selecionar Contato</MenuItem>
+        <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
+          Cluster8
+        </MenuItem>
+      </Select>
       <TextFieldMask
         onChange={(event) => setData({ ...data, email: event.target.value })}
         id="outlined-basic"
@@ -96,31 +92,31 @@ const CreateDealModal = () => {
             fullWidth
             placeholder="(12) 99999-9999"
           />
-          <FormControl variant="standard" sx={{ m: 1, minWidth: "100%" }}>
-            <Select
-              onChange={(event) =>
-                setData({ ...data, pipeline: event.target.value })
-              }
-              label="Pipeline"
-              fullWidth
-              value={data.pipeline}
-            >
-              <MenuItem value={"default"}>Envio de proposta</MenuItem>
-              <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
-                Cluster8
-              </MenuItem>
-            </Select>
-            <TextFieldMask
-              id="date"
-              label="Início"
-              type="date"
-              defaultValue=""
-              className="start-date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </FormControl>
+          <Select
+            onChange={(event) =>
+              setData({ ...data, pipeline: event.target.value })
+            }
+            label="Pipeline"
+            variant="standard"
+            fullWidth
+            value={data.pipeline}
+          >
+            <MenuItem value={"default"}>Envio de proposta</MenuItem>
+            <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
+              Cluster8
+            </MenuItem>
+          </Select>
+          <TextFieldMask
+            id="date"
+            label="Início"
+            type="date"
+            defaultValue=""
+            variant="standard"
+            className="start-date"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
         </div>
         <div>
           <TextFieldMask
@@ -134,31 +130,29 @@ const CreateDealModal = () => {
             fullWidth
             placeholder="999,00"
           />
-          <FormControl variant="standard" sx={{ m: 1, minWidth: "100%" }}>
-            <Select
-              onChange={(event) =>
-                setData({ ...data, tag: event.target.value })
-              }
-              label="Tag"
-              fullWidth
-              value={data.tag}
-            >
-              <MenuItem value={"default"}>Selecione a Tag</MenuItem>
-              <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
-                Cluster8
-              </MenuItem>
-            </Select>
-            <TextFieldMask
-              id="date"
-              label="Término"
-              type="date"
-              defaultValue=""
-              className="finish-date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </FormControl>
+          <Select
+            onChange={(event) => setData({ ...data, tag: event.target.value })}
+            label="Tag"
+            fullWidth
+            variant="standard"
+            value={data.tag}
+          >
+            <MenuItem value={"default"}>Selecione a Tag</MenuItem>
+            <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
+              Cluster8
+            </MenuItem>
+          </Select>
+          <TextFieldMask
+            id="date"
+            label="Término"
+            type="date"
+            variant="standard"
+            defaultValue=""
+            className="finish-date"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
         </div>
       </TwoColumnsContainer>
       <Button

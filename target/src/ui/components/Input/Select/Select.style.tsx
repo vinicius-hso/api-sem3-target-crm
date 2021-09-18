@@ -6,8 +6,6 @@ export const InputContainer = styled("div")`
   grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
-  margin-right: 8px;
-  margin-left: -8px;
 `;
 
 export const SelectStyled = styled(Select)`
