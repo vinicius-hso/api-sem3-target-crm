@@ -38,7 +38,6 @@ function MyApp({ Component, pageProps }) {
         currentRoute.route === "/welcome" ||
         currentRoute.route === "/recover" ? (
           <>
-            <Header />
             <Component {...pageProps}></Component>
           </>
         ) : (

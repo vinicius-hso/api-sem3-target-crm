@@ -27,9 +27,13 @@ function HomePage() {
   return (
     <LoginContainer>
       <Welcome />
-      <div style={{ margin: "auto 0", height: "calc(100vh - 100px)", backgroundColor: "#2D3142" }}>
-        <div style={{margin: "auto 0", marginTop: "calc(35vh - 100px)"}}>
+      <div style={{ margin: "auto 0", height: "calc(116vh - 100px)", backgroundColor: "#2D3142" }}>
+        <div style={{margin: "auto 0", marginTop: "36px"}}>
         <hr/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
 
         <Title
           title={"Login"}
@@ -78,7 +82,7 @@ function HomePage() {
           />
           <Button
             variant="contained"
-            sx={{ width: "150px", mt: 2 }}
+            sx={{ width: "150px", mt: 3 }}
             color="primary"
             onClick={() => login(email, password)}
             type="submit"
