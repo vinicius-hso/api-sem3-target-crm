@@ -51,6 +51,7 @@ export const DealStartDateStyled = styled("div")`
 `;
 
 export const ColumnContainer = styled("div")`
+  min-height: 450px;
   display: grid;
   grid-template-columns: 300px;
   grid-template-rows: 100px 1fr;

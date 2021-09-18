@@ -14,6 +14,5 @@ export const LoginContainer = styled('div')`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100vw;
-  height: 45vh; 
-  
+  height: 100vh; 
 `;
