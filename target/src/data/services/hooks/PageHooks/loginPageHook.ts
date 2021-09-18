@@ -74,11 +74,10 @@ export const useLoginPage = () => {
       setLoading(true);
       setError("");
       try {
-        const { data } = await serviceApi.post<any>("/login", {
-          email,
+        const { data } = await serviceApi.post("/auth/forgot-password/", {
+          email
         });
 
-        signIn(data.token);
 
         setData(data);
         setLoading(false);
