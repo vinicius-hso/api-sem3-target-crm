@@ -52,12 +52,14 @@ export const useLoginPage = () => {
       setLoading(true);
       setError("");
       try {
-        const { data } = await serviceApi.post<any>("/auth/authenticate", {
+        const data:any = await serviceApi.post("/auth/authenticate", {
           email,
           password,
-        });
+        }).then((res)=>console.log(res));
 
         signIn(data.token);
+
+        //console.log(data)
 
         setData(data);
         setLoading(false);

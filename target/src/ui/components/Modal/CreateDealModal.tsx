@@ -110,19 +110,16 @@ const CreateDealModal = () => {
                 Cluster8
               </MenuItem>
             </Select>
-            <Select
-              onChange={(event) =>
-                setData({ ...data, startDate: event.target.value })
-              }
-              label="Data início"
-              fullWidth
-              value={data.startDate}
-            >
-              <MenuItem value={"default"}>30/08/2021</MenuItem>
-              <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
-                Cluster8
-              </MenuItem>
-            </Select>
+            <TextFieldMask
+              id="date"
+              label="Início"
+              type="date"
+              defaultValue=""
+              className="start-date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
           </FormControl>
         </div>
         <div>
@@ -151,19 +148,16 @@ const CreateDealModal = () => {
                 Cluster8
               </MenuItem>
             </Select>
-            <Select
-              onChange={(event) =>
-                setData({ ...data, endDate: event.target.value })
-              }
-              label="Data término"
-              fullWidth
-              value={data.endDate}
-            >
-              <MenuItem value={"default"}>30/09/2021</MenuItem>
-              <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
-                Cluster8
-              </MenuItem>
-            </Select>
+            <TextFieldMask
+              id="date"
+              label="Término"
+              type="date"
+              defaultValue=""
+              className="finish-date"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
           </FormControl>
         </div>
       </TwoColumnsContainer>

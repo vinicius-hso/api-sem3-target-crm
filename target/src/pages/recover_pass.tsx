@@ -43,7 +43,7 @@ function EmailRecover() {
           onBlur={emailVerification}
           error={!emailIsValid}
           helperText={
-            !emailIsValid ? "Formato inválid" : ""
+            !emailIsValid ? "Formato inválido" : ""
           }
         />
 

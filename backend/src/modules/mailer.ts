@@ -1,11 +1,11 @@
 import path from 'path';
 import mailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
-import { host, port, user, pass } from '@config/mail.json';
+import { host, user, pass } from '@config/mail.json';
 
 const transport = mailer.createTransport({
+  service: 'gmail',
   host,
-  port,
   auth: {
     user,
     pass,

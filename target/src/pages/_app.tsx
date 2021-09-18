@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         {currentRoute.route === "/login" || 
         currentRoute.route === "/recover_pass" ||
+        currentRoute.route === "/welcome" ||
         currentRoute.route === "/recover" ? (
           <>
             <Header />
