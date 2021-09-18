@@ -12,9 +12,9 @@ __TARGET - Business Solutions__ é a proposta de solução oferecida pela equipe
 
 * Organizar e editar os contatos;
 * Realizar o cadastro e a gestão de Pipelines;
-* Realizar o cadastro e a gestão de Deals;
+* Realizar o cadastro e a gestão de Negociações;
 * Realizar o monitoramento e acompanhamento de clientes;
-* Importação de arquivos;
+* Importação de arquivos com contatos;
 * Visualizar as negociações em um Dashboard;
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
