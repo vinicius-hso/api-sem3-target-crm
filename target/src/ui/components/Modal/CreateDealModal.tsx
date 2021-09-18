@@ -134,15 +134,17 @@ const CreateDealModal = () => {
                 <MenuItem value={"default"}>Envio de proposta</MenuItem>
                 <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
               </Select>
-              <Select
-                onChange={(event) => setData({ ...data, startDate: event.target.value })}
-                label="Data início"
-                autoWidth
-                value={data.startDate}
-                style={styles.select}>
-                <MenuItem value={"default"}>30/08/2021</MenuItem>
-                <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
-              </Select>
+              <TextField
+                id="date"
+                label="Início"
+                type="date"
+                defaultValue=""
+                className="start-date"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={styles.input}
+              />
             </FormControl>
           </div>
           <div style={styles.column}>
@@ -166,15 +168,17 @@ const CreateDealModal = () => {
                 <MenuItem value={"default"}>Selecione a Tag</MenuItem>
                 <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
               </Select>
-              <Select
-                onChange={(event) => setData({ ...data, endDate: event.target.value })}
-                label="Data término"
-                autoWidth
-                value={data.endDate}
-                style={styles.select}>
-                <MenuItem value={"default"}>30/09/2021</MenuItem>
-                <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>Cluster8</MenuItem>
-              </Select>
+              <TextField
+                id="date"
+                label="Término"
+                type="date"
+                defaultValue=""
+                className="finish-date"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={styles.input}
+              />
             </FormControl>
           </div></div>
         <Button
