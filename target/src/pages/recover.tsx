@@ -1,9 +1,10 @@
 import React from "react";
 import { Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { FormContainer, RecoverContainer } from "@styles/pagesStyle/recover.styles";
+import { FormContainer, RecoverContainer, ImageContainer } from "@styles/pagesStyle/recover.styles";
 import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
 import Title from "ui/components/Title/Title";
+
 
 function PassRecover() {
   const {
@@ -23,6 +24,15 @@ function PassRecover() {
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px"}}>
+      <ImageContainer>
+      <img src="logo.png" alt="logo" 
+      height="100px" 
+      width="auto"
+      text-align="center"
+      justify-content= "center"
+      align-items="center"
+      />
+    </ImageContainer>
       <FormContainer>
         {hasError ? (
           <Typography
