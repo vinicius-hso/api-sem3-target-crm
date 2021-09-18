@@ -49,7 +49,7 @@ const UpDateModal = () => {
           size="small"
           fullWidth
           focused={pipeline ? true : false}
-          value={pipeline?.name}
+          defaultValue={pipeline?.name}
           onChange={(event) => setName(event.target.value)}
         />
         <Button
