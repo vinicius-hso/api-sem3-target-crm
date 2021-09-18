@@ -34,6 +34,7 @@ export const TwoColumnsContainer = styled("div")`
 
   ${({ theme }) => theme.breakpoints.down("md")} {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 `;
 

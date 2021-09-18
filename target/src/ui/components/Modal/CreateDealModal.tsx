@@ -11,6 +11,7 @@ import {
 } from "./ModalStyles/ModalContainer";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Select from "../Input/Select/Select";
+import theme from "ui/theme/theme";
 
 const CreateDealModal = () => {
   const {

@@ -9,6 +9,7 @@ export const InputContainer = styled("div")`
 `;
 
 export const SelectStyled = styled(Select)`
+  color: ${({ theme }) => theme.palette.grey[400]};
   margin: ${({ theme }) => theme.spacing(1)} 0;
   margin-right: 8px;
 `;
