@@ -27,7 +27,7 @@ const CreateModal = () => {
       <Button
         onClick={() => createPipeline()}
         variant="contained"
-        color="success"
+        color="primary"
         startIcon={<AddCircleIcon />}
         sx={{ mt: 4 }}
       >

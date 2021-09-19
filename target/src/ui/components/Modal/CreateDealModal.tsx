@@ -152,7 +152,8 @@ const CreateDealModal = () => {
           createDeal(data);
         }}
         variant="contained"
-        color="success"
+        color="primary"
+        sx={{ mt: 4 }}
         startIcon={<AddCircleIcon />}
       >
         Adicionar
