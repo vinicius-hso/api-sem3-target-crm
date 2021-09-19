@@ -23,7 +23,7 @@ Na pasta do backend via terminal:
   - rode `yarn typeorm migration:run`;
   - rode `yarn dev`;
   - acesse `http://localhost:3333`;
-  - 
+
 <p align="center">
  <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/localhost_3333.png"/></p>
 
