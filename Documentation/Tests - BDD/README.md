@@ -42,7 +42,7 @@ Nada acontece
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/editar-pipeline-nulo.gif)
 
-✅ __DELETAR PIPELINE - Deleção de pipeline__
+✅ __DELETAR PIPELINE - Remoção de pipeline__
 
 Eu, como usuário da aplicação __Target__
 Quero deletar um pipeline de vendas
