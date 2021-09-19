@@ -75,7 +75,7 @@ O card permanece no seu pipeline de origem
 
 ## User Storie  -> Login
 
-__ACESSO DE USUÁRIO __ ✅ 
+__ACESSO DE USUÁRIO__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero acessar a aplicação por meio de email e senha
 Para ter maior segurança ao utilizar a aplicação
@@ -83,7 +83,9 @@ Para ter maior segurança ao utilizar a aplicação
 Dado que acesso a página de login da aplicação
 Os campos de "Email", "Senha" e um link "Esqueceu a senha?" são exibidos
 
-![]()
+__Gif de testes de Acesso de Usuário e Recuperação de Senha__
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/recuperar-senha.gif)
 
 __a)__ Dado que submeto o formulário de acesso com todos os campos preenchidos
 A aplicação me direciona para a página de Pipelines
@@ -94,7 +96,7 @@ Uma mensagem de alerta é exibida "Email ou senha incorreta!"
 __c)__ Dado que submeto o formulário sem preencher um ou mais campos
 Uma mensagem de alerta é exibida "Preencha todos os campos!"
 
-__RECUPERAÇÃO DE SENHA __ ✅ 
+__RECUPERAÇÃO DE SENHA__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero rexuper a senha de acesso a aplicação por meio de email
 Para ter maior segurança ao utilizar a aplicação
@@ -102,8 +104,6 @@ Para ter maior segurança ao utilizar a aplicação
 Dado que acesso a página de login da aplicação
 Os campos de "Email", "Senha" e um link "Esqueceu a senha?" são exibidos
 Dado que clico no link "Esqueci a senha" e sou direcionado para outra página
-
-![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/recuperar-senha.gif)
 
 __a)__ Dado que insiro um email não cadastrado no campo e submeto
 Uma mensagem de alerta é exibida "Não encontramos esse email em noossa base de dados
