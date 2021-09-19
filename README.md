@@ -35,7 +35,7 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 Acesse os documentos clicando nos links abaixo:
 
 * [__Briefing do Projeto__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/briefing-target.pdf)
-* [__Casos de Testes Funcionais__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/bdd-testes.pdf)
+* [__Casos de Testes Funcionais__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/testes-realizados.pdf)
 * [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/product-backlog-target.pdf)
 
 ## 🖥️ Wireframe 
