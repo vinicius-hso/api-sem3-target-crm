@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
 
 export class createDeal1631391066476 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -49,7 +49,18 @@ export class createDeal1631391066476 implements MigrationInterface {
           },
           {
             name: 'tag',
-            type: 'varchar',
+            type: 'enum',
+            enum: ['COLD', 'HOT', 'WORM'],
+            isNullable: true,
+          },
+          {
+            name: 'status',
+            type: 'enum',
+            enum: ['INPROGRESS', 'LOST', 'WON'],
+          },
+          {
+            name: 'activity',
+            type: 'jsonb',
             isNullable: true,
           },
           {
@@ -67,6 +78,33 @@ export class createDeal1631391066476 implements MigrationInterface {
             type: 'timestamp',
           },
         ],
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      'deals',
+      new TableForeignKey({
+        columnNames: ['pipeline'],
+        referencedTableName: 'pipelines',
+        referencedColumnNames: ['id']
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      'deals',
+      new TableForeignKey({
+        columnNames: ['company'],
+        referencedTableName: 'companies',
+        referencedColumnNames: ['id']
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      'deals',
+      new TableForeignKey({
+        columnNames: ['contact'],
+        referencedTableName: 'contacts',
+        referencedColumnNames: ['id']
       })
     );
   }

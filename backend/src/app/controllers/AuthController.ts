@@ -63,7 +63,7 @@ class AuthController {
         subject: 'Reset password', // assunto do email
         // html: { path: './src/resources/mail/forgotPassword.html' },
         template: 'forgotPassword',
-        context: { token },
+        context: { token, email: user.email },
       },
       (err) => {
         if (err) return res.status(400).json({ message: 'Cannot send forgot password email' });
