@@ -70,7 +70,7 @@ Acesse o link para visualizar:
 
 ## 💼 Cadastro de Negociação
 
-Gif?
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/create-deal.gif)
 
 ## ❇️ Responsividade
 
