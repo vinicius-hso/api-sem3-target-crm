@@ -16,7 +16,7 @@ A aquitetura da aplicação é explicada pela seguite imagem:
 
 ### Inicializando o projeto - BACKEND:
 
-Na pasta do backend via terminal:
+Na pasta "backend" via terminal:
   - rode `yarn` para instalar dependências
   - crie um aquivo na raiz do projeto chamado `.env` copie os valores do `.env.exemple` para ele;
   - rode `docker-compose up -d`;
@@ -29,7 +29,7 @@ Na pasta do backend via terminal:
 
 ### Inicializando o projeto - FRONTEND:
 
-Na pasta do backend via terminal:
+Na pasta "target" via terminal:
   - rode `yarn` para instalar dependências
   - rode `yarn dev`;
   - acesse `http://localhost:3000`;
