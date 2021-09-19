@@ -1,5 +1,5 @@
-# api-sem3: Aplicação Web Full-stack TARGET CRM 
-(Aplicação de gerenciamento de relações com clientes)
+# TARGET CRM 
+Aplicação de gerenciamento de relações com clientes
 
 Nesta branch estão dispostos todos os códigos em ambiente de desenvolvimento da Aplicação TARGET utilizando TypeScript, Node.js, and React.
 
@@ -60,9 +60,9 @@ Para acessibilidade e experiência do usuário, utilizamos de referência o manu
     - [NextJS](https://nextjs.org) para sistema de rotas
 - Developer environment
     - [docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose) for non-Node.js project dependencies
-    - VSCode [launch.json](./.vscode/launch.json) settings have been included to support debugging
+    - VSCode
 - Testing
-    - [jest](https://jestjs.io) test runner/assertions/utilities (**Em contrução)
+    - [jest](https://jestjs.io)(**Em contrução)
     - Tetes funcionais da aplicação e apropriada documentação
 
 ## Contribuição
