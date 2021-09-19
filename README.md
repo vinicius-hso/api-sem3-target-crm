@@ -25,7 +25,7 @@ Na pasta do backend via terminal:
   - acesse `http://localhost:3333`;
   - 
 <p align="center">
- <img src=""/>"https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/localhost_3333.png"</p>
+ <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/localhost_3333.png"/></p>
 
 ### Inicializando o projeto - FRONTEND:
 
@@ -35,7 +35,7 @@ Na pasta do backend via terminal:
   - acesse `http://localhost:3000`;
   
 <p align="center">
- <img src=""/>"https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/localhost_3000.png"</p>
+ <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/localhost_3000.png"/></p>
 
 ## ESTRUTURA DO PROJETO
 
@@ -44,7 +44,7 @@ Para a organização do projeto foram utilizadas [Referência de Projeto em Type
 Para acessibilidade e experiência do usuário, utilizamos de referência o manual [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickr)
 
 <p align="center">
- <img src=""/>"https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/Estrutura_development.png"</p>
+ <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/Estrutura_development.png"/></p>
  
 
 ## TECNOLOGIAS UTILIZADAS
@@ -65,6 +65,6 @@ Para acessibilidade e experiência do usuário, utilizamos de referência o manu
     - [jest](https://jestjs.io)(**Em contrução)
     - Tetes funcionais da aplicação e apropriada documentação
 
-## Contribuição
+## CONTRIBUIÇÃO
 
 - "Features", "issues reports" e "bug fixes" são bem vindos!
