@@ -12,6 +12,8 @@ import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Select from "../Input/Select/Select";
 import theme from "ui/theme/theme";
 import { ModalStyled } from "./ModalStyles/Modal";
+import { DealTypes } from "types/Deal";
+import { create } from "@material-ui/core/styles/createTransitions";
 
 const CreateDealModal = () => {
   const {
@@ -21,25 +23,14 @@ const CreateDealModal = () => {
     createDeal,
   } = useContext(PipelineContext);
 
-  const [data, setData] = useState<any>({
-    dealName: "",
-    company: "default",
-    contact: "default",
-    email: "",
-    phone: "",
-    pipeline: "default",
-    startDate: "default",
-    price: 999.0,
-    tag: "default",
-    endDate: "default",
-  });
+  const [data, setData] = useState<DealTypes>()
 
   const body = (
     <ModalContainer>
       <Title title="Adicionar negociação" />
 
       <TextFieldMask
-        onChange={(event) => setData({ ...data, dealName: event.target.value })}
+        onChange={(event) => setData({ ...data, name: event.target.value })}
         id="outlined-basic"
         label="Nome da negociação"
         variant="standard"
@@ -49,7 +40,6 @@ const CreateDealModal = () => {
       <Select
         onChange={(event) => setData({ ...data, company: event.target.value })}
         label="Empresa"
-        value={data.company}
         variant="standard"
         fullWidth
       >
@@ -64,14 +54,13 @@ const CreateDealModal = () => {
         label="Contato"
         variant="standard"
         fullWidth
-        value={data.contact}
       >
         <MenuItem value={"default"}>Selecionar Contato</MenuItem>
         <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
           Cluster8
         </MenuItem>
       </Select>
-      <TextFieldMask
+      {/* <TextFieldMask
         onChange={(event) => setData({ ...data, email: event.target.value })}
         id="outlined-basic"
         label="Email"
@@ -79,10 +68,10 @@ const CreateDealModal = () => {
         size="small"
         fullWidth
         style={{ margin: 0 }}
-      />
+      /> */}
       <TwoColumnsContainer>
         <div>
-          <TextFieldMask
+          {/* <TextFieldMask
             onChange={(event) =>
               setData({ ...data, phone: event.target.value })
             }
@@ -92,7 +81,7 @@ const CreateDealModal = () => {
             size="small"
             fullWidth
             placeholder="(12) 99999-9999"
-          />
+          /> */}
           <Select
             onChange={(event) =>
               setData({ ...data, pipeline: event.target.value })
@@ -100,14 +89,13 @@ const CreateDealModal = () => {
             label="Pipeline"
             variant="standard"
             fullWidth
-            value={data.pipeline}
           >
             <MenuItem value={"default"}>Envio de proposta</MenuItem>
             <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
               Cluster8
             </MenuItem>
           </Select>
-          <TextFieldMask
+          {/* <TextFieldMask
             id="date"
             label="Início"
             type="date"
@@ -116,13 +104,12 @@ const CreateDealModal = () => {
             className="start-date"
             InputLabelProps={{
               shrink: true,
-            }}
-          />
+            }} */}
         </div>
         <div>
           <TextFieldMask
             onChange={(event) =>
-              setData({ ...data, price: event.target.value })
+              setData({ ...data, value: event.target.value })
             }
             id="outlined-basic"
             label="Valor R$"
@@ -136,7 +123,6 @@ const CreateDealModal = () => {
             label="Tag"
             fullWidth
             variant="standard"
-            value={data.tag}
           >
             <MenuItem value={"default"}>Selecione a Tag</MenuItem>
             <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
@@ -157,7 +143,10 @@ const CreateDealModal = () => {
         </div>
       </TwoColumnsContainer>
       <Button
-        onClick={() => createDeal(data)}
+        onClick={() => {
+          console.log(data)
+          createDeal(data)
+        }}
         variant="contained"
         color="success"
         startIcon={<AddCircleIcon />}

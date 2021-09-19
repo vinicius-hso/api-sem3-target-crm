@@ -44,7 +44,7 @@ export const usePipelineComponent = () => {
       warmDeals = 0,
       coldDeals = 0;
     deals.map((deal) => {
-      budgetSum += Number(deal.price);
+      budgetSum += Number(deal.value);
       totalDeals += 1;
       if (deal.tag == "hot") hotDeals += 1;
       else if (deal.tag == "cold") coldDeals += 1;
@@ -66,9 +66,9 @@ export const usePipelineComponent = () => {
     const currentPipe = pipelines.find((p) => p.id === pipeId);
     currentPipe.totalColumnValue = 0;
     deals.map((d) => {
-      if (d.pipe === pipeId) {
+      if (d.pipeline === pipeId) {
         pipeDeals.push(d);
-        currentPipe.totalColumnValue += Number(d.price);
+        currentPipe.totalColumnValue += Number(d.value);
       }
     });
 
