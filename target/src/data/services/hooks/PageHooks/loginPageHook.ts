@@ -69,7 +69,7 @@ export const useLoginPage = () => {
           })
           setLoading(false);
       } catch (err) {
-        setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
+        setError("Email e senha não correspondem"); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
         setLoading(false);
       }
     }
@@ -86,11 +86,11 @@ export const useLoginPage = () => {
         }).then((res)=>{
           if(res.status===200)
           setMessage(true);
-        })
+        });
 
         setLoading(false);
       } catch (err) {
-        setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
+        setError("Não encontramos esse email em nossa base de dados, por favor, verifique e tente novamente."); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
         setLoading(false);
       }
     }

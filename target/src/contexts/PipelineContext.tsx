@@ -18,7 +18,8 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [name, setNameState] = useState<string>();
   const [pipelines, setPipelines] = useState<pipeline[]>();
   const [pipeline, setPipeline] = useState<pipeline>();
-  const { setPipe, setDeals } = usePipelineComponent();
+  const { setPipe, setDeal } = usePipelineComponent();
+  const [deals, setDeals] = useState<DealTypes[]>();
 
   const useCreateModal = () => {
     setCreateModalState(!createModalState);
@@ -86,6 +87,16 @@ export const ModalProvider: React.FC = ({ children }) => {
     );
   };
 
+  const getAllDeals = async () => {
+    const data: DealTypes[] = await PipelineService.getDeals();
+
+    const dealsList = data.map((element) => ({
+      ...element,
+      deals: [],
+    }));
+    setDeals(dealsList);
+  };
+
   const getPipeline = async (id: string) => {
     const data: pipeline = await PipelineService.getPipline(id);
 
@@ -115,6 +126,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         getPipelines,
         pipelines,
         pipeline,
+        deals,
       }}
     >
       {children}

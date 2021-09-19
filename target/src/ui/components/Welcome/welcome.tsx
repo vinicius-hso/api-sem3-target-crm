@@ -6,7 +6,9 @@ const Welcome = () => {
 
   return (
     <div style={{ margin: "auto 0", marginTop: "30px" }}>
-      <hr/>
+      {//<hr/>
+      }
+      
        <ImageContainer>
       <img src="logo.png" alt="logo" 
       height="100px" 
@@ -16,6 +18,8 @@ const Welcome = () => {
       align-items="center"
       />
     </ImageContainer>
+
+    <div style={{ marginTop: "30px" }}></div>
 
       <Title
         title={"Seja bem-vindo(a)!"}

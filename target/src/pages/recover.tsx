@@ -1,28 +1,29 @@
 import React from "react";
-import { Button, Typography, CircularProgress } from "@material-ui/core";
+import { Alert, Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, RecoverContainer, ImageContainer } from "@styles/pagesStyle/recover.styles";
 import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
 import Title from "ui/components/Title/Title";
-
+import { useRouter } from "next/dist/client/router";
+import CustomLink from "ui/components/Link/Link";
 
 function PassRecover() {
+  const currentRouter = useRouter();
+
   const {
-    password1,
+    password,
     password2,
-    setPassword1,
+    setPassword,
     setPassword2,
     hasError,
     isLoading,
-    data,
-    id,
-    passwordIsValid1,
+    passwordIsValid,
     passwordIsSame,
     recover,
-    passwordVerification1,
+    hasMessage,
+    passwordVerification,
     passwordSame,
   } = useRecoverPage();
-
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px"}}>
@@ -34,7 +35,13 @@ function PassRecover() {
       justify-content= "center"
       align-items="center"
       />
-    </ImageContainer>
+      </ImageContainer>
+
+      <Title
+        title={""}
+        subtitle={<p>Redefinir senha</p>}
+      ></Title>
+    
       <FormContainer>
         {hasError ? (
           <Typography
@@ -45,7 +52,7 @@ function PassRecover() {
             <i className="fa fa-info-circle" /> {hasError}
           </Typography>
         ) : (
-          "Redefinir senha"
+          ""
         )}
 
         <TextFieldMask
@@ -54,12 +61,12 @@ function PassRecover() {
           variant={"standard"}
           size="medium"
           type="password"
-          value={password1}
-          onChange={(event) => setPassword1(event.target.value)}
-          onBlur={passwordVerification1}
-          error={!passwordIsValid1}
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          onBlur={passwordVerification}
+          error={!passwordIsValid}
           helperText={
-            !passwordIsValid1 ? "A senha deve ter no mínimo 6 caracteres" : ""
+            !passwordIsValid ? "A senha deve ter no mínimo 6 caracteres" : ""
           }
         />
 
@@ -80,7 +87,7 @@ function PassRecover() {
           variant="contained"
           sx={{ width: "150px", mt: 1 }}
           color="primary"
-          onClick={() => recover(password1, password2)}
+          onClick={() => recover(password, password2, currentRouter.query.email, currentRouter.query.token)}
           type="submit"
         >
           {isLoading ? (
@@ -90,6 +97,17 @@ function PassRecover() {
           )}
         </Button>
       </FormContainer>
+
+      {hasMessage ? (
+        <Alert color="success">
+          <h1>Sua senha foi alterada com sucesso!</h1>
+          <CustomLink href="/login" text="Clique aqui e faça seu Login!" />
+        <hr />
+          </Alert>
+      ) : (
+        <br/>
+      )
+      }
 
       <RecoverContainer>
         <Title
