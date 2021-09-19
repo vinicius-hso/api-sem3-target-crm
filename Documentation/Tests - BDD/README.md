@@ -4,7 +4,7 @@
 
 ## User Storie  -> Cadastro de pipeline
 
-__NOVO PIPELINE __ ✅ 
+__NOVO PIPELINE__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero cadastrar diferentes pipelines de vendas
 Para gerenciar as negociações em andamento
@@ -14,16 +14,14 @@ Seleciono a opção "Novo pipeline"
 Um modal é exibido com um campo para inserir o nome do Pipeline
 
 __a)__ Dado que submeto as informações 
-Uma mensagem de confirmação é exibida "Pipeline criado com sucesso!"
+O pipeline é criado com sucesso
 
-__b)__ Dado que submeto um nome já existente 
-Uma mensagem de alerta é exibida "Pipeline já existente! Insira outro nome"
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/novo-pipeline.gif)
 
-__c)__ Dado que submeto o formulário sem inserir dados
-Uma mensagem de alerta é exibida "Dados inválidos!"
+__b)__ Dado que submeto o formulário sem inserir dados
+Nada acontece
 
-__d)__ Dado que clico no botão "X"
-A operação é cancelada 
+![]()
 
 __EDITAR PIPELINE - Edição de pipeline__ ✅ 
 Eu, como usuário da aplicação __Target__
@@ -35,10 +33,14 @@ Seleciono a opção "Editar pipeline"
 Um modal é exibido com um campo para inserir o nome do Pipeline
 
 __a)__ Dado que insiro dados e submeto o formulário
-Uma mensagem de confirmação é exibida "Alteração salva!"
+O nome do Pipeline é alterado com sucesso
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/editar-pipeline.gif)
 
 __b)__ Dado que não insiro dados e submeto o formulário
-Uma mensagem de alerta é exibida "Dados inválidos!"
+Nada acontece
+
+![]()
 
 __DELETAR PIPELINE - Deleção de pipeline__ ✅ 
 Eu, como usuário da aplicação __Target__
@@ -50,10 +52,9 @@ Seleciono a opção "Deletar pipeline"
 Um modal é exibido com uma mensagem de alerta "Tem certeza que deseja deletar esse pipeline? Todas as negociações do pipeline serão arquivadas" 
 
 __a)__ Dado que confirmo a operação
-Uma mensagem de confrimação é exibida "Pipeline deletado com sucesso! As negociações foram arquivadas"
+O Pipeline é removido 
 
-__b)__ Dado que clico no botão "X"
-A operação é cancelada e o modal é fechado
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/deletar-pipeline.gif)
 
 ## User Storie -> Cadastro de negociações
 
@@ -65,10 +66,12 @@ Para registrar a evolução no fluxo da negociação
 __a)__ Dado que arrasto o card até um determinado pipeline e solto
 O card é movido para o novo pipeline
 
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/drag-and-drop.gif)
+
 __b)__ Dado que arrasto o card para fora de um pipeline e solto
 O card permanece no seu pipeline de origem
 
-
+![]()
 
 ## User Storie  -> Login
 
@@ -79,6 +82,8 @@ Para ter maior segurança ao utilizar a aplicação
 
 Dado que acesso a página de login da aplicação
 Os campos de "Email", "Senha" e um link "Esqueceu a senha?" são exibidos
+
+![]()
 
 __a)__ Dado que submeto o formulário de acesso com todos os campos preenchidos
 A aplicação me direciona para a página de Pipelines
@@ -97,6 +102,8 @@ Para ter maior segurança ao utilizar a aplicação
 Dado que acesso a página de login da aplicação
 Os campos de "Email", "Senha" e um link "Esqueceu a senha?" são exibidos
 Dado que clico no link "Esqueci a senha" e sou direcionado para outra página
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/recuperar-senha.gif)
 
 __a)__ Dado que insiro um email não cadastrado no campo e submeto
 Uma mensagem de alerta é exibida "Não encontramos esse email em noossa base de dados
