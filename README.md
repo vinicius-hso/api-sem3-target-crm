@@ -71,3 +71,7 @@ Acesse o link para visualizar:
 ## 💼 Cadastro de Negociação
 
 Gif?
+
+## ❇️ Responsividade
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/responsividade.gif)
