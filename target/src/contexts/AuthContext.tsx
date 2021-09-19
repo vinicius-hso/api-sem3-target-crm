@@ -21,9 +21,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     setToken(myToken);
 
     localStorage.setItem('@taget:token', myToken);
-    //console.log("passou");
-   // console.log({ myToken });
-
   };
 
   const signOut = () => {
@@ -35,7 +32,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   return (
    <AuthContext.Provider
       value={{
-        signed: !!token,
+        signed: token,
         token,
         signIn,
         signOut

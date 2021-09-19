@@ -8,6 +8,8 @@ import React, {
 import { emailValidator } from "../../../utils/emailValidator";
 import { serviceApi } from "data/services/serviceApi";
 import AuthContext from "contexts/AuthContext";
+import { useRouter } from "next/dist/client/router";
+
 
 export const useLoginPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
@@ -21,6 +23,8 @@ export const useLoginPage = () => {
     [data, setData] = useState("");
 
   const { signIn } = useContext(AuthContext);
+
+  const router = useRouter()
 
   //VERIFICA SE O EMAIL É VALIDO
   function emailVerification() {
@@ -60,6 +64,8 @@ export const useLoginPage = () => {
           setData(res.data.token)
         }).then(()=>{
             signIn(data);
+          }).then(()=>{
+            router.push('/welcome')
           })
           setLoading(false);
       } catch (err) {
