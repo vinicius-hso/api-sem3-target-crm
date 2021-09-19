@@ -14,10 +14,11 @@ export const useLoginPage = () => {
   const [email, setEmail] = useState(""),
     [password, setPassword] = useState(""),
     [hasError, setError] = useState(""),
+    [hasMessage, setMessage] = useState(false),
     [isLoading, setLoading] = useState(false),
     [emailIsValid, setEmailIsValid] = useState(true),
     [passwordIsValid, setPasswordIsValid] = useState(true),
-    [data, setData] = useState([]);
+    [data, setData] = useState("");
 
   const { signIn } = useContext(AuthContext);
 
@@ -52,17 +53,15 @@ export const useLoginPage = () => {
       setLoading(true);
       setError("");
       try {
-        const data:any = await serviceApi.post("/auth/authenticate", {
+        await serviceApi.post("/auth/authenticate", {
           email,
           password,
-        }).then((res)=>console.log(res));
-
-        signIn(data.token);
-
-        //console.log(data)
-
-        setData(data);
-        setLoading(false);
+        }).then((res)=>{
+          setData(res.data.token)
+        }).then(()=>{
+            signIn(data);
+          })
+          setLoading(false);
       } catch (err) {
         setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
         setLoading(false);
@@ -76,12 +75,13 @@ export const useLoginPage = () => {
       setLoading(true);
       setError("");
       try {
-        const { data } = await serviceApi.post("/auth/forgot-password/", {
+        await serviceApi.post("/auth/forgot-password/", {
           email
-        });
+        }).then((res)=>{
+          if(res.status===200)
+          setMessage(true);
+        })
 
-
-        setData(data);
         setLoading(false);
       } catch (err) {
         setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
@@ -96,6 +96,7 @@ export const useLoginPage = () => {
     password,
     setPassword,
     hasError,
+    hasMessage,
     isLoading,
     data,
     emailIsValid,

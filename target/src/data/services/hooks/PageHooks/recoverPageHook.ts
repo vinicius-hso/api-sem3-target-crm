@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { serviceApi } from "data/services/serviceApi";
+import { useRouter } from "next/dist/client/router";
 
 export const useRecoverPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
@@ -11,6 +12,10 @@ export const useRecoverPage = () => {
     [passwordIsSame, setPasswordIsSame] = useState(true),
    
     [data, setData] = useState([]);
+
+
+    const router = useRouter()
+    const { id } = router.query
 
 
   //VERIFICA SE A SENHA 1 É VALIDA
@@ -69,6 +74,7 @@ export const useRecoverPage = () => {
     passwordIsSame,
     recover,
     passwordVerification1,
-    passwordSame
+    passwordSame, 
+    id
   };
 };

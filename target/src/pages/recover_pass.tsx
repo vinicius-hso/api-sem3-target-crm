@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Typography, CircularProgress } from "@material-ui/core";
+import { Alert, Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, RecoverContainer, ImageContainer } from "@styles/pagesStyle/recover.styles";
 import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
@@ -12,6 +12,7 @@ function EmailRecover() {
     isLoading,
     data,
     hasError,
+    hasMessage,
     emailIsValid,
     recoverPass,
     emailVerification,
@@ -70,6 +71,18 @@ function EmailRecover() {
           )}
         </Button>
       </FormContainer>
+
+      {hasMessage ? (
+        <Alert color="success">
+          <h1>Email enviado!</h1>
+          <p>Enviamos um email com as instruções para a redefinição de sua senha. 
+            Caso não encontre em sua caixa de entrada, por favor, verifique seu Spam.</p>
+        <hr />
+          </Alert>
+      ) : (
+        <br/>
+      )
+      }
 
       <RecoverContainer>
         <Title

@@ -21,6 +21,9 @@ export const AuthProvider: React.FC = ({ children }) => {
     setToken(myToken);
 
     localStorage.setItem('@taget:token', myToken);
+    //console.log("passou");
+   // console.log({ myToken });
+
   };
 
   const signOut = () => {

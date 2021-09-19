@@ -15,12 +15,14 @@ function PassRecover() {
     hasError,
     isLoading,
     data,
+    id,
     passwordIsValid1,
     passwordIsSame,
     recover,
     passwordVerification1,
     passwordSame,
   } = useRecoverPage();
+
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px"}}>

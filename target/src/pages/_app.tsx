@@ -33,6 +33,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {/* THEMEPROVIDER DEIXA O TEMA DA APLICAÇÃO DISPONIVEL EM TODOS ELEMENTOS FILHOS NESSE CASO TODAS AS PAGINAS */}
       <ThemeProvider theme={theme}>
+      <AuthProvider>
         {currentRoute.route === "/login" || 
         currentRoute.route === "/recover_pass" ||
         currentRoute.route === "/welcome" ||
@@ -41,14 +42,14 @@ function MyApp({ Component, pageProps }) {
             <Component {...pageProps}></Component>
           </>
         ) : (
-          <AuthProvider>
             <ModalProvider>
               <AppContainer>
                 <NavBar CurrentPage={<Component {...pageProps}></Component>} />
               </AppContainer>
             </ModalProvider>
-          </AuthProvider>
         )}
+                  </AuthProvider>
+
       </ThemeProvider>
     </>
   );
