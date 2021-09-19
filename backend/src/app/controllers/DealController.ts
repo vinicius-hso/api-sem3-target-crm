@@ -62,14 +62,13 @@ class DealController {
         tag,
         status,
         activity: [{ name: 'Negociação iniciada', type: 'Criação', status: 'Em andamento', description: '', createdBy: createdBy.name, date: new Date()}],
-      })
-
+      }).save();
+      
       if (!deal) return res.status(400).json({ message: 'Cannot create Deal'});
-
-      deal.save();
       
       return res.status(201).json(deal.id);
     } catch (error) {
+      console.log(error);
       return res.status(400).json({ error: 'Cannot create Deal, try again' });
     }
   }
