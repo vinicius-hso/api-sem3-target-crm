@@ -1,10 +1,9 @@
 # Testes Funcionais - Behavior Driven Development - Sprint #1
 
-
-
 ## User Storie  -> Cadastro de pipeline
 
-__NOVO PIPELINE__ ✅ 
+✅  __NOVO PIPELINE__
+
 Eu, como usuário da aplicação __Target__
 Quero cadastrar diferentes pipelines de vendas
 Para gerenciar as negociações em andamento
@@ -21,9 +20,10 @@ O pipeline é criado com sucesso
 __b)__ Dado que submeto o formulário sem inserir dados
 Nada acontece
 
-![]()
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/novo-pipeline-nulo.gif)
 
-__EDITAR PIPELINE - Edição de pipeline__ ✅ 
+✅  __EDITAR PIPELINE - Edição de pipeline__ 
+
 Eu, como usuário da aplicação __Target__
 Quero editar os pipelines de vendas
 Para customizar a aplicação de acordo com minhas necessidades
@@ -40,9 +40,10 @@ O nome do Pipeline é alterado com sucesso
 __b)__ Dado que não insiro dados e submeto o formulário
 Nada acontece
 
-![]()
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/editar-pipeline-nulo.gif)
 
-__DELETAR PIPELINE - Deleção de pipeline__ ✅ 
+✅ __DELETAR PIPELINE - Deleção de pipeline__
+
 Eu, como usuário da aplicação __Target__
 Quero deletar um pipeline de vendas
 Para customizar a aplicação de acordo com minhas necessidades
@@ -58,7 +59,8 @@ O Pipeline é removido
 
 ## User Storie -> Cadastro de negociações
 
-__MOVER NEGOCIAÇÃO__ ✅ 
+✅  __MOVER NEGOCIAÇÃO__
+
 Eu, como usuário da aplicação __Target__
 Quero mover uma negociação para um outro pipeline
 Para registrar a evolução no fluxo da negociação
@@ -71,11 +73,12 @@ O card é movido para o novo pipeline
 __b)__ Dado que arrasto o card para fora de um pipeline e solto
 O card permanece no seu pipeline de origem
 
-![]()
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/drag-and-drop-nulo.gif)
 
 ## User Storie  -> Login
 
-__ACESSO DE USUÁRIO__ ✅ 
+✅ __ACESSO DE USUÁRIO__
+
 Eu, como usuário da aplicação __Target__
 Quero acessar a aplicação por meio de email e senha
 Para ter maior segurança ao utilizar a aplicação
@@ -96,7 +99,8 @@ Uma mensagem de alerta é exibida "Email ou senha incorreta!"
 __c)__ Dado que submeto o formulário sem preencher um ou mais campos
 Uma mensagem de alerta é exibida "Preencha todos os campos!"
 
-__RECUPERAÇÃO DE SENHA__ ✅ 
+✅ __RECUPERAÇÃO DE SENHA__
+
 Eu, como usuário da aplicação __Target__
 Quero rexuper a senha de acesso a aplicação por meio de email
 Para ter maior segurança ao utilizar a aplicação
