@@ -86,7 +86,7 @@ export const useLoginPage = () => {
         }).then((res)=>{
           if(res.status===200)
           setMessage(true);
-        })
+        });
 
         setLoading(false);
       } catch (err) {
