@@ -7,4 +7,4 @@ routes.post('/authenticate', AuthController.authenticate);
 routes.post('/forgot-password', AuthController.forgotPassword);
 routes.put('/reset-password', AuthController.resetPassword);
 
-export { routes as AuthRoutes };
+export default routes;

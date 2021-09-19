@@ -8,4 +8,4 @@ routes.post('/', UserController.create);
 routes.put('/:id', UserController.update);
 routes.delete('/:id', UserController.delete);
 
-export { routes as UserRoutes };
+export default routes;

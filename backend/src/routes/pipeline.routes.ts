@@ -9,4 +9,4 @@ routes.post('/', PipelineController.create);
 routes.put('/:id', PipelineController.update);
 routes.delete('/:id', PipelineController.delete);
 
-export { routes as PipelineRoutes };
+export default routes;

@@ -9,4 +9,4 @@ routes.post('/', CompanyController.create);
 routes.put('/:id', CompanyController.update);
 routes.delete('/:id', CompanyController.delete);
 
-export { routes as CompanyRoutes };
+export default routes;
