@@ -1,3 +1,5 @@
+import DealsService from "data/services/DealsService";
+import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 import PipelineService from "data/services/PipelineService";
 import React, { useState, createContext, useEffect } from "react";
 import { DealTypes } from "types/Deal";
@@ -9,12 +11,14 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [createModalState, setCreateModalState] = useState<boolean>(false);
   const [updateModalState, setUpdateModalState] = useState<boolean>(false);
   const [deleteModalState, setDeleteModalState] = useState<boolean>(false);
-  const [createDealModalState, setCreateDealModalState] = useState<boolean>(false);
+  const [createDealModalState, setCreateDealModalState] =
+    useState<boolean>(false);
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
   const [name, setNameState] = useState<string>();
   const [pipelines, setPipelines] = useState<pipeline[]>();
   const [pipeline, setPipeline] = useState<pipeline>();
+  const { setPipe, setDeals } = usePipelineComponent();
 
   const useCreateModal = () => {
     setCreateModalState(!createModalState);
@@ -26,7 +30,7 @@ export const ModalProvider: React.FC = ({ children }) => {
 
   const useUpdateModal = (id: string) => {
     setUpdateIdState(id);
-    if (id) getPipeline(id)
+    if (id) getPipeline(id);
     setUpdateModalState(!updateModalState);
   };
 
@@ -42,19 +46,19 @@ export const ModalProvider: React.FC = ({ children }) => {
   const deletePipeline = async () => {
     await PipelineService.deletePipeline(deleteId);
     useDeleteModal("");
-    getPipelines()
+    getPipelines();
   };
 
   const updatePipeline = async () => {
     await PipelineService.updatePipeline(updateId, name);
     useUpdateModal("");
-    getPipelines()
+    getPipelines();
   };
 
   const createPipeline = async () => {
     await PipelineService.createPipeline(name);
     useCreateModal();
-    getPipelines()
+    getPipelines();
   };
 
   const createDeal = async (data: DealTypes) => {
@@ -63,28 +67,34 @@ export const ModalProvider: React.FC = ({ children }) => {
   };
 
   const getPipelines = async () => {
-    const data: pipeline[] = await PipelineService.getPiplines()
-
-    const pipes = data.map(element => ({
+    const data: pipeline[] = await PipelineService.getPiplines();
+    const dataDeals = await DealsService.getDeals();
+    setPipe(data);
+    setDeals(dataDeals);
+    const pipes = data.map((element) => ({
       ...element,
-      deals: []
-    }
-    ));
-    setPipelines(pipes.sort(function(a,b) {
-      return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;
-  }));
-  }
+      deals: [],
+    }));
+    setPipelines(
+      pipes.sort(function (a, b) {
+        return a.createdAt < b.createdAt
+          ? -1
+          : a.createdAt > b.createdAt
+          ? 1
+          : 0;
+      })
+    );
+  };
 
   const getPipeline = async (id: string) => {
-    const data: pipeline = await PipelineService.getPipline(id)
+    const data: pipeline = await PipelineService.getPipline(id);
 
-    setPipeline(data)
-  }
+    setPipeline(data);
+  };
 
   useEffect(() => {
-    getPipelines()
-  }, [])
-
+    getPipelines();
+  }, []);
 
   return (
     <PipelineContext.Provider
@@ -104,7 +114,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         createDeal,
         getPipelines,
         pipelines,
-        pipeline
+        pipeline,
       }}
     >
       {children}

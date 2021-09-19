@@ -6,29 +6,27 @@ import { DealTypes } from "types/Deal";
 
 export const usePipelineComponent = () => {
   // DECLARAÇÃO DAS VARIAVEIS
-  const [pipelines, setPipelines] = useState(mockPipes),
-    [deals, setDeals] = useState<DealTypes[]>(mockDeals),
+  const [pipelines, setPipe] = useState([]),
+    [deals, setDeals] = useState<DealTypes[]>([]),
     [hasError, setError] = useState(""),
     [isLoading, setLoading] = useState(false);
 
   //EXECUTA ASSIM QUE ENTRA NA TELA
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
-    setElements(generateDealsList());
-  }, [deals, pipelines]);
+    if (pipelines.length) {
+      setElements(generateDealsList());
+    }
+  }, [pipelines.length]);
 
   //BUSCA NO BACKEND OS DEALS E PIPELINES, SE HOUVER ERRO SETA NA VARIAVEL HASERROR
   async function getData() {
     setError("");
     setLoading(true);
     try {
-      const pipelinesData = await serviceApi.get("pipelines");
-      const dealsData = await serviceApi.get("deals");
+      const pipelinesData = await serviceApi.get("/pipeline");
+      const dealsData = await serviceApi.get("/deal");
       setLoading(false);
-      setPipelines(pipelinesData.data);
+      setPipe(pipelinesData.data);
       setDeals(dealsData.data);
     } catch (err) {
       setLoading(false);
@@ -120,6 +118,8 @@ export const usePipelineComponent = () => {
   };
 
   return {
+    setPipe,
+    setDeals,
     pipelines,
     dealsList,
     onDragEnd,

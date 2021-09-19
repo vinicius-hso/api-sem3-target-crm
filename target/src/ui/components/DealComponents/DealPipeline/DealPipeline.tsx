@@ -13,22 +13,26 @@ const DragDropContextContainer = styled("div")`
 const DealPipeline = () => {
   const { dealsList, onDragEnd } = usePipelineComponent();
 
-  const { pipelines } = useContext(PipelineContext)
+  const { pipelines } = useContext(PipelineContext);
 
   return (
     <DragDropContextContainer>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <ListGrid>
-          {pipelines.map((listKey) => (
-            <DealCardList
-              elements={listKey.deals}
-              key={listKey.id}
-              title={listKey.name}
-              pipeId={listKey.id}
-            />
-          ))}
-        </ListGrid>
-      </DragDropContext>
+      {dealsList.length ? (
+        <DragDropContext onDragEnd={onDragEnd}>
+          <ListGrid>
+            {dealsList.map((listKey) => (
+              <DealCardList
+                elements={listKey.deals}
+                key={listKey.id}
+                title={listKey.name}
+                pipeId={listKey.id}
+              />
+            ))}
+          </ListGrid>
+        </DragDropContext>
+      ) : (
+        <div />
+      )}
     </DragDropContextContainer>
   );
 };
