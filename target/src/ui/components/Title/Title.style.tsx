@@ -10,7 +10,6 @@ export const TitleStyled = styled("h2")`
   color: ${({ theme }) => theme.palette.primary.main};
   font-size: ${({ theme }) => theme.typography.h6.fontSize};
   font-weight: bold;
-
   ${({ theme }) => theme.breakpoints.down("md")} {
     font-size: ${({ theme }) => theme.typography.body1.fontSize};
   }

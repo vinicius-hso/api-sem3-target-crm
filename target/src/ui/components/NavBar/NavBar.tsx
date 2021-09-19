@@ -11,7 +11,6 @@ import {
   MenuButton,
   Root,
   ToolbarHeaderStyled,
-  ToolbarStyled,
 } from "./NavBar.style";
 import theme from "ui/theme/theme";
 import { DrawerWeb } from "./Drawers/DrawerWeb";
@@ -81,10 +80,7 @@ export default function NavBar(props: Props) {
           </DrawerContainer>
         </Hidden>
       </DrawerStyled>
-      <ContentStyled>
-        <ToolbarStyled />
-        {props.CurrentPage}
-      </ContentStyled>
+      <ContentStyled>{props.CurrentPage}</ContentStyled>
     </Root>
   );
 }

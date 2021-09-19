@@ -50,6 +50,7 @@ export const UserPictureStyled = styled(Avatar)`
   color: ${({ theme }) => theme.palette.secondary.main};
   font-weight: bold;
   width: 30px;
+  height: 30px;
   height: initial;
   aspect-ratio: 1;
   font-family: "Arial Narrow", Arial, sans-serif;
@@ -93,6 +94,7 @@ export const ContentStyled = styled("main")`
   flex-grow: 1;
   padding: ${({ theme }) => theme.spacing(3)} 0;
   margin-left: ${({ theme }) => theme.spacing(8)};
+  margin-top: 50px;
 
   ${({ theme }) => theme.breakpoints.down("md")} {
     margin: 0 auto;

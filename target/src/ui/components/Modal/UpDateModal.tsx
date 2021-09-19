@@ -33,7 +33,7 @@ const UpDateModal = () => {
       <Button
         onClick={() => updatePipeline()}
         variant="contained"
-        color="success"
+        color="primary"
         startIcon={<i className="fa fa-pensil"></i>}
         sx={{ mt: 4 }}
       >

@@ -4,25 +4,24 @@ import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, RecoverContainer, ImageContainer } from "@styles/pagesStyle/recover.styles";
 import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
 import Title from "ui/components/Title/Title";
-
+import { useRouter } from "next/dist/client/router";
 
 function PassRecover() {
+  const currentRouter = useRouter();
+
   const {
-    password1,
+    password,
     password2,
-    setPassword1,
+    setPassword,
     setPassword2,
     hasError,
     isLoading,
-    data,
-    id,
-    passwordIsValid1,
+    passwordIsValid,
     passwordIsSame,
     recover,
-    passwordVerification1,
+    passwordVerification,
     passwordSame,
   } = useRecoverPage();
-
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px"}}>
@@ -34,7 +33,13 @@ function PassRecover() {
       justify-content= "center"
       align-items="center"
       />
-    </ImageContainer>
+      </ImageContainer>
+
+      <Title
+        title={""}
+        subtitle={<p>Redefinir senha</p>}
+      ></Title>
+    
       <FormContainer>
         {hasError ? (
           <Typography
@@ -45,7 +50,7 @@ function PassRecover() {
             <i className="fa fa-info-circle" /> {hasError}
           </Typography>
         ) : (
-          "Redefinir senha"
+          ""
         )}
 
         <TextFieldMask
@@ -54,12 +59,12 @@ function PassRecover() {
           variant={"standard"}
           size="medium"
           type="password"
-          value={password1}
-          onChange={(event) => setPassword1(event.target.value)}
-          onBlur={passwordVerification1}
-          error={!passwordIsValid1}
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          onBlur={passwordVerification}
+          error={!passwordIsValid}
           helperText={
-            !passwordIsValid1 ? "A senha deve ter no mínimo 6 caracteres" : ""
+            !passwordIsValid ? "A senha deve ter no mínimo 6 caracteres" : ""
           }
         />
 
@@ -75,12 +80,18 @@ function PassRecover() {
           error={!passwordIsSame}
           helperText={!passwordIsSame ? "Os valores devem corresponder" : ""}
         />
+{
+console.log(currentRouter.query.email)}
+{console.log(currentRouter.query.token)}
+
+
+
 
         <Button
           variant="contained"
           sx={{ width: "150px", mt: 1 }}
           color="primary"
-          onClick={() => recover(password1, password2)}
+          onClick={() => recover(password, password2, currentRouter.query.email, currentRouter.query.token)}
           type="submit"
         >
           {isLoading ? (

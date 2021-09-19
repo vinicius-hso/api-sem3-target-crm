@@ -26,7 +26,7 @@ export const DrawerMobile = ({ navHover, ...props }) => {
         sx={{
           paddingLeft: "8px",
           backgroundColor:
-            router.route === "/dashboard"
+            router.route === "/account"
               ? theme.palette.primary.main
               : theme.palette.secondary.main,
           paddingTop: "20px",
@@ -45,11 +45,11 @@ export const DrawerMobile = ({ navHover, ...props }) => {
           <UserPictureStyled
             style={{
               backgroundColor:
-                router.route === "/dashboard"
+                router.route === "/account"
                   ? theme.palette.secondary.main
                   : theme.palette.primary.main,
               color:
-                router.route === "/dashboard"
+                router.route === "/account"
                   ? theme.palette.primary.main
                   : theme.palette.secondary.main,
             }}
@@ -60,7 +60,7 @@ export const DrawerMobile = ({ navHover, ...props }) => {
         <ListItemText
           sx={{
             color:
-              router.route === "/dashboard"
+              router.route === "/account"
                 ? theme.palette.secondary.main
                 : theme.palette.primary.main,
             mb: "20px",
