@@ -23,7 +23,7 @@ const CreateDealModal = () => {
     createDeal,
   } = useContext(PipelineContext);
 
-  const [data, setData] = useState<DealTypes>()
+  const [data, setData] = useState<DealTypes>();
 
   const body = (
     <ModalContainer>
@@ -40,6 +40,7 @@ const CreateDealModal = () => {
       <Select
         onChange={(event) => setData({ ...data, company: event.target.value })}
         label="Empresa"
+        value="default"
         variant="standard"
         fullWidth
       >
@@ -52,6 +53,7 @@ const CreateDealModal = () => {
       <Select
         onChange={(event) => setData({ ...data, contact: event.target.value })}
         label="Contato"
+        value="default"
         variant="standard"
         fullWidth
       >
@@ -87,6 +89,7 @@ const CreateDealModal = () => {
               setData({ ...data, pipeline: event.target.value })
             }
             label="Pipeline"
+            value="default"
             variant="standard"
             fullWidth
           >
@@ -105,6 +108,18 @@ const CreateDealModal = () => {
             InputLabelProps={{
               shrink: true,
             }} */}
+          <Select
+            onChange={(event) => setData({ ...data, tag: event.target.value })}
+            label="Tag"
+            fullWidth
+            value="default"
+            variant="standard"
+          >
+            <MenuItem value={"default"}>Selecione a Tag</MenuItem>
+            <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
+              Cluster8
+            </MenuItem>
+          </Select>
         </div>
         <div>
           <TextFieldMask
@@ -113,22 +128,11 @@ const CreateDealModal = () => {
             }
             id="outlined-basic"
             label="Valor R$"
-            variant="standard"
             size="small"
+            variant="standard"
             fullWidth
             placeholder="999,00"
           />
-          <Select
-            onChange={(event) => setData({ ...data, tag: event.target.value })}
-            label="Tag"
-            fullWidth
-            variant="standard"
-          >
-            <MenuItem value={"default"}>Selecione a Tag</MenuItem>
-            <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
-              Cluster8
-            </MenuItem>
-          </Select>
           <TextFieldMask
             id="date"
             label="Término"
@@ -144,8 +148,8 @@ const CreateDealModal = () => {
       </TwoColumnsContainer>
       <Button
         onClick={() => {
-          console.log(data)
-          createDeal(data)
+          console.log(data);
+          createDeal(data);
         }}
         variant="contained"
         color="success"

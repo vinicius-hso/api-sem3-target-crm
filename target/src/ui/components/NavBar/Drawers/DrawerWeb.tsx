@@ -26,7 +26,7 @@ export const DrawerWeb = ({ navHover, ...props }) => {
         sx={{ margin: "" }}
         style={{
           backgroundColor:
-            router.route === "/dashboard"
+            router.route === "/account"
               ? theme.palette.primary.main
               : theme.palette.secondary.main,
           paddingTop: "20px",
