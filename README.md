@@ -1,7 +1,7 @@
 # TARGET CRM 
 Aplicação de gerenciamento de relações com clientes
 
-Nesta branch estão dispostos todos os códigos em ambiente de desenvolvimento da Aplicação TARGET utilizando TypeScript, Node.js, and React.
+Nesta branch estão dispostos todos os códigos em ambiente de desenvolvimento da Aplicação TARGET utilizando TypeScript, Node.js, e React.
 
 A aquitetura da aplicação é explicada pela seguite imagem:
 <p align="center">
