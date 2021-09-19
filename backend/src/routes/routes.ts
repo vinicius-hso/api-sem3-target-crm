@@ -1,10 +1,10 @@
 import Contact from '@entities/Contact';
 import DealRoutes from '@routes/deal.routes';
 import Router from 'express';
-import { AuthRoutes } from './auth.routes';
-import { CompanyRoutes } from './company.routes';
-import { PipelineRoutes } from './pipeline.routes';
-import { UserRoutes } from './user.routes';
+import AuthRoutes from './auth.routes';
+import CompanyRoutes from './company.routes';
+import PipelineRoutes from './pipeline.routes';
+import UserRoutes from './user.routes';
 
 const routes = Router();
 
