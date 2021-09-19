@@ -7,7 +7,7 @@ import { DealTypes } from "types/Deal";
 export const usePipelineComponent = () => {
   // DECLARAÇÃO DAS VARIAVEIS
   const [pipelines, setPipe] = useState([]),
-    [deals, setDeals] = useState<DealTypes[]>([]),
+    [deals, setDeal] = useState<DealTypes[]>([]),
     [hasError, setError] = useState(""),
     [isLoading, setLoading] = useState(false);
 
@@ -27,7 +27,7 @@ export const usePipelineComponent = () => {
       const dealsData = await serviceApi.get("/deal");
       setLoading(false);
       setPipe(pipelinesData.data);
-      setDeals(dealsData.data);
+      setDeal(dealsData.data);
     } catch (err) {
       setLoading(false);
       setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK: Erro ao carregar, verifique sua conexão e tente novamente!
@@ -119,7 +119,7 @@ export const usePipelineComponent = () => {
 
   return {
     setPipe,
-    setDeals,
+    setDeal,
     pipelines,
     dealsList,
     onDragEnd,
