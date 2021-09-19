@@ -59,11 +59,14 @@ Acesse o link para visualizar:
  
 ## 🔑 Tela de Login
 
-Gif?
+* Login de usuário
+* Recuperação de senha
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/recuperar-senha.gif)
 
 ## 📈 Cadastro de Pipeline
 
-Gif?
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/novo-pipeline.gif)
 
 ## 💼 Cadastro de Negociação
 
