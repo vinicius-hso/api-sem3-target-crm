@@ -29,6 +29,12 @@ function EmailRecover() {
       align-items="center"
       />
     </ImageContainer>
+
+    <Title
+          title={""}
+          subtitle={<p>Recuperar senha</p>}
+        ></Title>
+
       <FormContainer>
         {hasError ? (
           <Typography
@@ -39,7 +45,7 @@ function EmailRecover() {
             <i className="fa fa-info-circle" /> {hasError}
           </Typography>
         ) : (
-          "Recuperar senha"
+          ""
         )}
 
         <TextFieldMask

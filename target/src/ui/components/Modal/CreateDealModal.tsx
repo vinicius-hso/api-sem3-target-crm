@@ -45,7 +45,7 @@ const CreateDealModal = () => {
         fullWidth
       >
         <MenuItem value={"default"}>Selecione a Empresa</MenuItem>
-        <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
+        <MenuItem value={"ec3d93bd-ff6b-4ef8-973d-0848dd84768a"}>
           Cluster8
         </MenuItem>
       </Select>
@@ -58,7 +58,7 @@ const CreateDealModal = () => {
         fullWidth
       >
         <MenuItem value={"default"}>Selecionar Contato</MenuItem>
-        <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
+        <MenuItem value={"99bcf53a-4829-464c-ae01-0cf55919f9b7"}>
           Cluster8
         </MenuItem>
       </Select>
@@ -94,7 +94,7 @@ const CreateDealModal = () => {
             fullWidth
           >
             <MenuItem value={"default"}>Envio de proposta</MenuItem>
-            <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
+            <MenuItem value={"708c98a9-ab68-476b-9e3f-d0b64740a784"}>
               Cluster8
             </MenuItem>
           </Select>
@@ -133,6 +133,17 @@ const CreateDealModal = () => {
             fullWidth
             placeholder="999,00"
           />
+          <Select
+            onChange={(event) => setData({ ...data, tag: event.target.value })}
+            label="Tag"
+            fullWidth
+            variant="standard"
+          >
+            <MenuItem value={"default"}>Selecione a Tag</MenuItem>
+            <MenuItem value={"COLD"}>
+              Cluster8
+            </MenuItem>
+          </Select>
           <TextFieldMask
             id="date"
             label="Término"
