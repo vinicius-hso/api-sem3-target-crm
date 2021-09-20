@@ -30,6 +30,8 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 
 <p align="center">
   <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/Burndown_chart_S1.png"/></p>
+  
+  O gráfico é apresentado em horas. As tarefas restantes no início da Sprint tem um total menor que o ideal, pois antes da inicialização da sprint já havíamos adiantado algumas delas. Já ao final da sprint conseguimos concluir todas as estórias de usuário com êxito, entretanto algumas tarefas dentro das US #2 entraram para a tarefa de "correção de bugs" que já estava previsto em nosso product backlog (correspondem as 6 horas finais "não concluídas" nessa sprint). 
 
 ## 📂 Documentação do Projeto
 
