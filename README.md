@@ -40,6 +40,8 @@ A imagem abaixo mostra como os itens do [__Product Backlog__](https://github.com
 <p align="center">
   <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/user-story-main.jpeg"/></p>
   
+<p align="center">
+  <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/planejamento-sprints.png"/></p>
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
