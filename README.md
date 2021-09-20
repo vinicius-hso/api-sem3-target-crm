@@ -59,7 +59,7 @@ Para acessibilidade e experiência do usuário, utilizamos de referência o manu
     - [UI Biblioteca](https://material-ui.com/pt/) para estilização dos componentes
     - [NextJS](https://nextjs.org) para sistema de rotas
 - Developer environment
-    - [docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose) for non-Node.js project dependencies
+    - [docker](https://www.docker.com/) e [docker-compose](https://docs.docker.com/compose)
     - VSCode
 - Testing
     - [jest](https://jestjs.io)(**Em contrução)
