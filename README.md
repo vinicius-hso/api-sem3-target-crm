@@ -11,7 +11,7 @@ A aquitetura da aplicação é explicada pela seguite imagem:
 
 ### Requerimentos do Sistema
 - [Node.js](https://nodejs.org/en/download/)
-- [docker](https://www.docker.com) and [docker-compose](https://docs.docker.com/compose)
+- [docker](https://www.docker.com) e [docker-compose](https://docs.docker.com/compose)
 - [yarn](https://yarnpkg.com/en)
 
 ### Inicializando o projeto - BACKEND:
@@ -41,7 +41,7 @@ Na pasta "target" via terminal:
 
 Para a organização do projeto foram utilizadas [Referência de Projeto em Typescript](https://www.typescriptlang.org/docs/handbook/project-references.html)
 
-Para acessibilidade e experiência do usuário, utilizamos de referência o manual [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickr)
+Para acessibilidade e experiência do usuário utilizamos como referência o manual [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickr)
 
 <p align="center">
  <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/Estrutura_development.png"/></p>
