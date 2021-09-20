@@ -17,9 +17,12 @@ export default interface ModalTypes {
   getPipelines: () => void;
   pipelines: pipeline[];
   pipeline: pipeline;
+  dealsList: any[];
+  onDragEnd: (any) => void;
 }
 
 export interface pipeline {
+  totalColumnValue: number;
   id: string;
   name: string;
   pipeBudgetSum: number;

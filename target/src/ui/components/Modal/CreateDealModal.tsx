@@ -140,9 +140,7 @@ const CreateDealModal = () => {
             variant="standard"
           >
             <MenuItem value={"default"}>Selecione a Tag</MenuItem>
-            <MenuItem value={"COLD"}>
-              Cluster8
-            </MenuItem>
+            <MenuItem value={"COLD"}>Cluster8</MenuItem>
           </Select>
           <TextFieldMask
             id="date"
@@ -159,7 +157,6 @@ const CreateDealModal = () => {
       </TwoColumnsContainer>
       <Button
         onClick={() => {
-          console.log(data);
           createDeal(data);
         }}
         variant="contained"

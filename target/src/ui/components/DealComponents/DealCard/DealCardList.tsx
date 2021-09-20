@@ -4,19 +4,12 @@ import DealCard from "../DealCard/DealCard";
 import { DroppableStyles, ColumnContainer } from "./DealCard.style";
 import Title from "ui/components/Title/Title";
 import { Button, ButtonGroup, Typography } from "@material-ui/core";
-import { mockAddCard } from "data/utils/mock";
 import PipelineContext from "contexts/PipelineContext";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
-import { formatValue } from '../../../../data/utils/formatValue';
+import { formatValue } from "../../../../data/utils/formatValue";
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
-  const { getItems } = usePipelineComponent();
-
-  // function addCardtoList(pipeId: string) {
-  //   props.elements.pipeDeals.push(mockAddCard);
-  // }
-
   const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } =
     useContext(PipelineContext);
 
@@ -49,8 +42,8 @@ const DealCardList = (props) => {
             <Button
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
               onClick={() => {
-                useCreateDealModal()
-                setViewButtonGroup(!viewButtonGroup)
+                useCreateDealModal();
+                setViewButtonGroup(!viewButtonGroup);
               }}
             >
               <i className="fa fa-plus-circle" aria-hidden="true"></i>
@@ -58,8 +51,8 @@ const DealCardList = (props) => {
             </Button>
             <Button
               onClick={() => {
-                useCreateModal()
-                setViewButtonGroup(!viewButtonGroup)
+                useCreateModal();
+                setViewButtonGroup(!viewButtonGroup);
               }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
@@ -68,8 +61,8 @@ const DealCardList = (props) => {
             </Button>
             <Button
               onClick={() => {
-                useUpdateModal(props.pipeId)
-                setViewButtonGroup(!viewButtonGroup)
+                useUpdateModal(props.pipeId);
+                setViewButtonGroup(!viewButtonGroup);
               }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
@@ -78,8 +71,8 @@ const DealCardList = (props) => {
             </Button>
             <Button
               onClick={() => {
-                useDeleteModal(props.pipeId)
-                setViewButtonGroup(!viewButtonGroup)
+                useDeleteModal(props.pipeId);
+                setViewButtonGroup(!viewButtonGroup);
               }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
             >
@@ -113,7 +106,7 @@ const DealCardList = (props) => {
                   props.elements.map((deal, index) => (
                     <Draggable
                       key={deal.id}
-                      draggableId={String(deal.id)}
+                      draggableId={deal.id}
                       index={index}
                     >
                       {(provided) => (
@@ -123,12 +116,12 @@ const DealCardList = (props) => {
                           ref={provided.innerRef}
                         >
                           <DealCard
-                            title={deal.title}
-                            companyName={deal.company}
-                            companyPicture={deal.companyPicture}
-                            contactName={deal.contactName}
-                            budget={deal.price}
-                            startDate={deal.startDate}
+                            title={deal.name}
+                            companyName={deal.company.name}
+                            companyPicture={""}
+                            contactName={deal.contact.name}
+                            budget={deal.value}
+                            startDate={deal.createdAt}
                             tag={deal.tag}
                           />
                         </div>
@@ -141,7 +134,7 @@ const DealCardList = (props) => {
                     sx={{ width: "100%", height: "30px" }}
                     color="primary"
                     onClick={() => {
-                      useCreateDealModal()
+                      useCreateDealModal();
                     }}
                     type="submit"
                   >
