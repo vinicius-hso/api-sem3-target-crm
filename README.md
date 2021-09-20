@@ -1,4 +1,4 @@
-# TARGET CRM 
+# <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/development/target/public/favicon.svg" width="30"/> TARGET CRM
 Aplicação de gerenciamento de relações com clientes
 
 Nesta branch estão dispostos todos os códigos em ambiente de desenvolvimento da Aplicação TARGET utilizando TypeScript, Node.js, e React.
