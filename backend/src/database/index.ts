@@ -15,6 +15,7 @@ import Deal from '@entities/Deal'
 import User from '@entities/User';
 import bcrypt from 'bcryptjs';
 const mocks = async () => {
+  // inserindo dados iniciais no Banco de dados;
   await createConnection();
   if (!(await User.findOne({ email: 'admin@admin.com' }))) {
     const pass = await bcrypt.hash('password', 10);
