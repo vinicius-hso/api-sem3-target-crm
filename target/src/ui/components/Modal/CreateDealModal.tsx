@@ -137,15 +137,6 @@ const CreateDealModal = () => {
             fullWidth
             placeholder="999,00"
           />
-          <Select
-            onChange={(event) => setData({ ...data, tag: event.target.value })}
-            label="Tag"
-            fullWidth
-            variant="standard"
-          >
-            <MenuItem value={"default"}>Selecione a Tag</MenuItem>
-            <MenuItem value={"COLD"}>Cluster8</MenuItem>
-          </Select>
           <TextFieldMask
             id="date"
             label="Término"

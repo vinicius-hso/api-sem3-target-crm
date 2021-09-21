@@ -171,6 +171,9 @@ export const ModalProvider: React.FC = ({ children }) => {
     const sourceList = listCopy.find(
       (pipe) => pipe.id === result.source.droppableId
     );
+    const value = sourceList.deals[result.source.index].value;
+    sourceList.totalColumnValue -= value;
+
     const [removedElement, newSourceList] = removeFromList(
       sourceList,
       result.source.index
@@ -186,6 +189,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         return pipe;
       }
     });
+    destinationList.totalColumnValue += value;
     listCopy[result.destination.droppableId] = addToList(
       destinationList,
       result.destination.index,
