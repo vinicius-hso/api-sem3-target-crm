@@ -157,8 +157,6 @@ export const ModalProvider: React.FC = ({ children }) => {
 
   //FUNÇÃO QUE ADICIONA DEAL AO PIPELINE (APENAS KAMBAN)
   const addToList = (list, index, element) => {
-    console.log(list);
-
     list.deals.splice(index, 0, element);
     return list;
   };
@@ -169,7 +167,7 @@ export const ModalProvider: React.FC = ({ children }) => {
       return;
     }
     const listCopy = [...Object.values(dealsList)];
-    setElements([]);
+
     const sourceList = listCopy.find(
       (pipe) => pipe.id === result.source.droppableId
     );
@@ -182,15 +180,23 @@ export const ModalProvider: React.FC = ({ children }) => {
         pipe.deals = newSourceList;
       }
     });
-    const destinationList = listCopy.find(
-      (pipe) => pipe.id === result.destination.droppableId
-    );
+    const destinationList = listCopy.find((pipe, index) => {
+      if (pipe.id === result.destination.droppableId) {
+        Object.values(listCopy).splice(index, 1);
+        return pipe;
+      }
+    });
     listCopy[result.destination.droppableId] = addToList(
       destinationList,
       result.destination.index,
       removedElement
     );
-    setElements(listCopy);
+    Object.values(listCopy).sort(function (a, b) {
+      return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0;
+    });
+    const temp = [];
+    listCopy.map((a) => temp.push(a));
+    setElements(temp);
   };
 
   useEffect(() => {
