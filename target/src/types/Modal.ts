@@ -18,6 +18,7 @@ export default interface ModalTypes {
   pipelines: pipeline[];
   pipeline: pipeline;
   dealsList: any[];
+  dealTotalParams: any;
   onDragEnd: (any) => void;
 }
 

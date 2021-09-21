@@ -19,17 +19,41 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [deals, setDeals] = useState<DealTypes[]>([]);
   const [pipelines, setPipelines] = useState<pipeline[]>();
   const [pipeline, setPipeline] = useState<pipeline>();
+  const [dealTotalParams, setDealTotalParams] = useState({
+    budgetSum: 0,
+    totalDeals: 0,
+    hotDeals: 0,
+    warmDeals: 0,
+    coldDeals: 0,
+  });
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId, deals, pipelines) => {
     const pipeDeals = [];
     const currentPipe = pipelines.find((p) => p.id === pipeId);
+    let budgetSum = 0,
+      totalDeals = 0,
+      hotDeals = 0,
+      warmDeals = 0,
+      coldDeals = 0;
     currentPipe.totalColumnValue = 0;
     deals.map((d) => {
       if (d.pipeline.id === pipeId) {
         pipeDeals.push(d);
         currentPipe.totalColumnValue += Number(d.value);
+        budgetSum += Number(d.value);
+        totalDeals += 1;
+        if (d.tag == "HOT") hotDeals += 1;
+        else if (d.tag == "COLD") coldDeals += 1;
+        else if (d.tag === "WARM") warmDeals += 1;
       }
+    });
+    setDealTotalParams({
+      budgetSum: (dealTotalParams.budgetSum += budgetSum),
+      totalDeals: (dealTotalParams.totalDeals += totalDeals),
+      hotDeals: (dealTotalParams.hotDeals += hotDeals),
+      warmDeals: (dealTotalParams.warmDeals += warmDeals),
+      coldDeals: (dealTotalParams.coldDeals += coldDeals),
     });
     return pipeDeals;
   };
@@ -91,6 +115,7 @@ export const ModalProvider: React.FC = ({ children }) => {
     await PipelineService.createPipeline(name);
     useCreateModal();
     getPipelines();
+    getPipelines();
   };
 
   const createDeal = async (data: DealTypes) => {
@@ -124,41 +149,19 @@ export const ModalProvider: React.FC = ({ children }) => {
     setPipeline(data);
   };
 
-  const getDealsInfo = () => {
-    let budgetSum = 0,
-      totalDeals = 0,
-      hotDeals = 0,
-      warmDeals = 0,
-      coldDeals = 0;
-    deals.map((deal) => {
-      budgetSum += Number(deal.value);
-      totalDeals += 1;
-      if (deal.tag == "hot") hotDeals += 1;
-      else if (deal.tag == "cold") coldDeals += 1;
-      else if (deal.tag === "warm") warmDeals += 1;
-    });
-    const dealsInfo = {
-      budgetSum: formatValue(budgetSum.toString()),
-      totalDeals: totalDeals,
-      hotDeals: hotDeals,
-      warmDeals: warmDeals,
-      coldDeals: coldDeals,
-    };
-    return dealsInfo;
-  };
-
   //FUNÇÃO QUE REMOVE DEAL DO PIPELINE (APENAS KAMBAN)
   const removeFromList = (list, index) => {
-    const result = Array.from(list);
+    const result = Array.from(list.deals);
     const [removed] = result.splice(index, 1);
     return [removed, result];
   };
 
   //FUNÇÃO QUE ADICIONA DEAL AO PIPELINE (APENAS KAMBAN)
   const addToList = (list, index, element) => {
-    const result = Array.from(list);
-    result.splice(index, 0, element);
-    return result;
+    console.log(list);
+
+    list.deals.splice(index, 0, element);
+    return list;
   };
 
   //FUNÇÃO BASE DO KAMBAN
@@ -166,14 +169,23 @@ export const ModalProvider: React.FC = ({ children }) => {
     if (!result.destination) {
       return;
     }
-    const listCopy = { ...dealsList };
-    const sourceList = listCopy[result.source.droppableId];
+    const listCopy = [...Object.values(dealsList)];
+    setElements([]);
+    const sourceList = listCopy.find(
+      (pipe) => pipe.id === result.source.droppableId
+    );
     const [removedElement, newSourceList] = removeFromList(
       sourceList,
       result.source.index
     );
-    listCopy[result.source.droppableId] = newSourceList;
-    const destinationList = listCopy[result.destination.droppableId];
+    listCopy.find((pipe) => {
+      if (pipe.id === result.source.droppableId) {
+        pipe.deals = newSourceList;
+      }
+    });
+    const destinationList = listCopy.find(
+      (pipe) => pipe.id === result.destination.droppableId
+    );
     listCopy[result.destination.droppableId] = addToList(
       destinationList,
       result.destination.index,
@@ -207,6 +219,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         pipeline,
         onDragEnd,
         dealsList,
+        dealTotalParams,
       }}
     >
       {children}

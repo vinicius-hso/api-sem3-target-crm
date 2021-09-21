@@ -118,7 +118,6 @@ const DealCardList = (props) => {
                           <DealCard
                             title={deal.name}
                             companyName={deal.company.name}
-                            companyPicture={""}
                             contactName={deal.contact.name}
                             budget={deal.value}
                             startDate={deal.createdAt}

@@ -1,5 +1,7 @@
 import { Icon } from "@material-ui/core";
+import { formatValue } from "data/utils/formatValue";
 import { getNameInitials } from "data/utils/nameConfig";
+import moment from "moment";
 import React, { useMemo } from "react";
 import theme from "ui/theme/theme";
 import {
@@ -25,9 +27,9 @@ export interface DealCardProps {
 
 const DealCard: React.FC<DealCardProps> = (props) => {
   const iconTag = useMemo(() => {
-    if (props.tag === "hot") {
+    if (props.tag === "HOT") {
       return { icon: "fire", color: "#e63706" };
-    } else if (props.tag === "cold") {
+    } else if (props.tag === "COLD") {
       return { icon: "snowflake-o", color: "#3eccf0" };
     } else {
       return { icon: "bolt", color: "#effa5c" };
@@ -53,10 +55,12 @@ const DealCard: React.FC<DealCardProps> = (props) => {
         <DealTitleStyled>{props.title}</DealTitleStyled>
         <DealTypeStyled>{props.contactName}</DealTypeStyled>
         <DealFooterContainer>
-          <DealBudgetStyled>R$ {props.budget.toFixed(2)}</DealBudgetStyled>
+          <DealBudgetStyled>
+            {formatValue(props.budget.toString())}
+          </DealBudgetStyled>
           <DealStartDateStyled>
             <Icon className="fa fa-calendar" fontSize="inherit" />
-            {props.startDate}
+            {moment(props.startDate).format(" DD/MM/YYYY HH:MM")}
           </DealStartDateStyled>
         </DealFooterContainer>
       </DealDescriptionContainer>

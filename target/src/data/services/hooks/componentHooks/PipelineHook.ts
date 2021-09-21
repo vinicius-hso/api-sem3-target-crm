@@ -6,15 +6,14 @@ import { DealTypes } from "types/Deal";
 
 export const usePipelineComponent = () => {
   // DECLARAÇÃO DAS VARIAVEIS
-  const [pipelines, setPipelines] = useState<any[]>(mockPipes),
-    [deals, setDeals] = useState<DealTypes[]>(mockDeals),
+  const [pipelines, setPipelines] = useState<any[]>([]),
+    [deals, setDeals] = useState<DealTypes[]>([]),
     [hasError, setError] = useState(""),
     [isLoading, setLoading] = useState(false);
 
   //EXECUTA ASSIM QUE ENTRA NA TELA
   useEffect(() => {
     if (pipelines.length > 0) {
-      getData();
     }
   }, []);
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ScrumBoard from "data/services/servicesComponents/ScrumBoard";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 import { CircularProgress, Typography } from "@material-ui/core";
@@ -15,11 +15,12 @@ import UpDateModal from "ui/components/Modal/UpDateModal";
 import CreateModal from "ui/components/Modal/CreateModal";
 import CreateDealModal from "ui/components/Modal/CreateDealModal";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
+import PipelineContext from "contexts/PipelineContext";
+
 function DealPipeline() {
   const { hasError, isLoading, getDealsInfo } = usePipelineComponent();
-
-  const [valueType, setValueType] = React.useState('');
-
+  const { dealTotalParams } = useContext(PipelineContext);
+  const [valueType, setValueType] = React.useState("");
   const handleChange = (event) => {
     setValueType(event.target.value);
   };
@@ -42,27 +43,29 @@ function DealPipeline() {
                   gap: "10px",
                 }}
               >
-                <Typography>{getDealsInfo().budgetSum}</Typography>
+                <Typography>{dealTotalParams.budgetSum}</Typography>
                 <i
                   className="fa fa-arrow-right"
                   style={{ position: "relative", top: "2px" }}
                 ></i>
-                <Typography>{getDealsInfo().totalDeals} negociações</Typography>
+                <Typography>
+                  {dealTotalParams.totalDeals} negociações
+                </Typography>
               </div>
             }
           ></Title>
           <DealsTotalTagsContainer>
             <div>
               <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
-              <span> {getDealsInfo().hotDeals}</span>
+              <span> {dealTotalParams.hotDeals}</span>
             </div>
             <div>
               <i className="fa fa-bolt" style={{ color: "#effa5c" }}></i>
-              <span> {getDealsInfo().warmDeals}</span>
+              <span> {dealTotalParams.warmDeals}</span>
             </div>
             <div>
               <i className="fa fa-snowflake-o" style={{ color: "#3eccf0" }}></i>
-              <span> {getDealsInfo().coldDeals}</span>
+              <span> {dealTotalParams.coldDeals}</span>
             </div>
           </DealsTotalTagsContainer>
         </TitleHeaderContainer>
@@ -75,7 +78,7 @@ function DealPipeline() {
             { value: 10, name: "Nome" },
             { value: 20, name: "Empresa" },
             { value: 30, name: "Contato" },
-            { value: 40, name: "Tag" }
+            { value: 40, name: "Tag" },
           ]}
           ChangeType={handleChange}
         />

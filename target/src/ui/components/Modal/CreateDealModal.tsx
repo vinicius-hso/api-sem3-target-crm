@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
-
-import { Button, FormControl, MenuItem } from "@material-ui/core";
+import { Button, MenuItem } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
@@ -10,28 +9,33 @@ import {
 } from "./ModalStyles/ModalContainer";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Select from "../Input/Select/Select";
-import theme from "ui/theme/theme";
 import { ModalStyled } from "./ModalStyles/Modal";
 import { DealTypes } from "types/Deal";
-import { create } from "@material-ui/core/styles/createTransitions";
 
 const CreateDealModal = () => {
-  const {
-    createDealModalState,
-    useCreateDealModal,
-    createPipeline,
-    createDeal,
-  } = useContext(PipelineContext);
+  const { createDealModalState, useCreateDealModal, createDeal } =
+    useContext(PipelineContext);
 
-  const [data, setData] = useState<DealTypes>();
+  const [data, setData] = useState<DealTypes>({
+    name: "",
+    company: "",
+    contact: "",
+    pipeline: "",
+    value: 0,
+    tag: "COLD",
+  });
+
+  async function handleSubmit() {
+    console.log(data);
+    createDeal(data);
+  }
 
   const body = (
     <ModalContainer>
       <Title title="Adicionar negociação" />
-
       <TextFieldMask
         onChange={(event) => setData({ ...data, name: event.target.value })}
-        id="outlined-basic"
+        value={data.name}
         label="Nome da negociação"
         variant="standard"
         size="small"
@@ -39,13 +43,13 @@ const CreateDealModal = () => {
       />
       <Select
         onChange={(event) => setData({ ...data, company: event.target.value })}
+        value={data.company}
         label="Empresa"
-        value="default"
         variant="standard"
         fullWidth
       >
-        <MenuItem value={"default"}>Selecione a Empresa</MenuItem>
-        <MenuItem value={"ec3d93bd-ff6b-4ef8-973d-0848dd84768a"}>
+        <MenuItem value={""}>Selecione a Empresa</MenuItem>
+        <MenuItem value={"aabce0c7-964c-4ffd-ad80-95c8ead4f367"}>
           Cluster8
         </MenuItem>
       </Select>
@@ -53,12 +57,12 @@ const CreateDealModal = () => {
       <Select
         onChange={(event) => setData({ ...data, contact: event.target.value })}
         label="Contato"
-        value="default"
+        value={data.contact}
         variant="standard"
         fullWidth
       >
-        <MenuItem value={"default"}>Selecionar Contato</MenuItem>
-        <MenuItem value={"99bcf53a-4829-464c-ae01-0cf55919f9b7"}>
+        <MenuItem value={""}>Selecionar Contato</MenuItem>
+        <MenuItem value={"e0566909-9ae7-46e5-8b65-a5ca133a137d"}>
           Cluster8
         </MenuItem>
       </Select>
@@ -89,12 +93,12 @@ const CreateDealModal = () => {
               setData({ ...data, pipeline: event.target.value })
             }
             label="Pipeline"
-            value="default"
+            value={data.pipeline}
             variant="standard"
             fullWidth
           >
-            <MenuItem value={"default"}>Envio de proposta</MenuItem>
-            <MenuItem value={"708c98a9-ab68-476b-9e3f-d0b64740a784"}>
+            <MenuItem value={""}>Envio de proposta</MenuItem>
+            <MenuItem value={"eb7d54d4-db90-45ca-900f-e734c2be2d54"}>
               Cluster8
             </MenuItem>
           </Select>
@@ -112,13 +116,12 @@ const CreateDealModal = () => {
             onChange={(event) => setData({ ...data, tag: event.target.value })}
             label="Tag"
             fullWidth
-            value="default"
+            value={data.tag}
             variant="standard"
           >
-            <MenuItem value={"default"}>Selecione a Tag</MenuItem>
-            <MenuItem value={"487adc34-1759-11ec-9621-0242ac130002"}>
-              Cluster8
-            </MenuItem>
+            <MenuItem value={"COLD"}>Fria</MenuItem>
+            <MenuItem value={"WARM"}>Morna</MenuItem>
+            <MenuItem value={"HOT"}>Quente</MenuItem>
           </Select>
         </div>
         <div>
@@ -126,6 +129,7 @@ const CreateDealModal = () => {
             onChange={(event) =>
               setData({ ...data, value: event.target.value })
             }
+            value={data.value}
             id="outlined-basic"
             label="Valor R$"
             size="small"
@@ -133,15 +137,6 @@ const CreateDealModal = () => {
             fullWidth
             placeholder="999,00"
           />
-          <Select
-            onChange={(event) => setData({ ...data, tag: event.target.value })}
-            label="Tag"
-            fullWidth
-            variant="standard"
-          >
-            <MenuItem value={"default"}>Selecione a Tag</MenuItem>
-            <MenuItem value={"COLD"}>Cluster8</MenuItem>
-          </Select>
           <TextFieldMask
             id="date"
             label="Término"
@@ -157,7 +152,7 @@ const CreateDealModal = () => {
       </TwoColumnsContainer>
       <Button
         onClick={() => {
-          createDeal(data);
+          handleSubmit();
         }}
         variant="contained"
         color="primary"
@@ -172,7 +167,7 @@ const CreateDealModal = () => {
     <>
       <ModalStyled
         open={createDealModalState}
-        onClose={() => createDeal(data)}
+        onClose={() => useCreateDealModal()}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
