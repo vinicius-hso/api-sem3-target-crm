@@ -6,6 +6,7 @@ export const useRecoverPage = () => {
   const [password, setPassword] = useState(""),
     [password2, setPassword2] = useState(""),
     [hasError, setError] = useState(""),
+    [hasMessage, setMessage] = useState(false),
     [isLoading, setLoading] = useState(false),
     [passwordIsValid, setPasswordIsValid] = useState(true),
     [passwordIsSame, setPasswordIsSame] = useState(true);
@@ -47,6 +48,9 @@ export const useRecoverPage = () => {
           email,
           password,
           token,
+        }).then((res)=>{
+          if(res.status===200)
+          setMessage(true);
         });
         setLoading(false);
       } catch (err) {
@@ -62,6 +66,7 @@ export const useRecoverPage = () => {
     setPassword,
     setPassword2,
     hasError,
+    hasMessage,
     isLoading,
     passwordIsValid,
     passwordIsSame,

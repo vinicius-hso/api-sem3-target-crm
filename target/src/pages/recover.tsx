@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Typography, CircularProgress } from "@material-ui/core";
+import { Alert, Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, RecoverContainer, ImageContainer } from "@styles/pagesStyle/recover.styles";
 import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
 import Title from "ui/components/Title/Title";
 import { useRouter } from "next/dist/client/router";
+import CustomLink from "ui/components/Link/Link";
 
 function PassRecover() {
   const currentRouter = useRouter();
@@ -19,6 +20,7 @@ function PassRecover() {
     passwordIsValid,
     passwordIsSame,
     recover,
+    hasMessage,
     passwordVerification,
     passwordSame,
   } = useRecoverPage();
@@ -80,12 +82,6 @@ function PassRecover() {
           error={!passwordIsSame}
           helperText={!passwordIsSame ? "Os valores devem corresponder" : ""}
         />
-{
-console.log(currentRouter.query.email)}
-{console.log(currentRouter.query.token)}
-
-
-
 
         <Button
           variant="contained"
@@ -101,6 +97,17 @@ console.log(currentRouter.query.email)}
           )}
         </Button>
       </FormContainer>
+
+      {hasMessage ? (
+        <Alert color="success">
+          <h1>Sua senha foi alterada com sucesso!</h1>
+          <CustomLink href="/login" text="Clique aqui e faça seu Login!" />
+        <hr />
+          </Alert>
+      ) : (
+        <br/>
+      )
+      }
 
       <RecoverContainer>
         <Title

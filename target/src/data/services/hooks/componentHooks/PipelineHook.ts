@@ -6,30 +6,25 @@ import { DealTypes } from "types/Deal";
 
 export const usePipelineComponent = () => {
   // DECLARAÇÃO DAS VARIAVEIS
-  const [pipelines, setPipelines] = useState(mockPipes),
-    [deals, setDeals] = useState<DealTypes[]>(mockDeals),
+  const [pipelines, setPipelines] = useState<any[]>([]),
+    [deals, setDeals] = useState<DealTypes[]>([]),
     [hasError, setError] = useState(""),
     [isLoading, setLoading] = useState(false);
 
   //EXECUTA ASSIM QUE ENTRA NA TELA
   useEffect(() => {
-    getData();
+    if (pipelines.length > 0) {
+    }
   }, []);
-
-  useEffect(() => {
-    setElements(generateDealsList());
-  }, [deals, pipelines]);
 
   //BUSCA NO BACKEND OS DEALS E PIPELINES, SE HOUVER ERRO SETA NA VARIAVEL HASERROR
   async function getData() {
     setError("");
     setLoading(true);
     try {
-      const pipelinesData = await serviceApi.get("pipelines");
-      const dealsData = await serviceApi.get("deals");
+      const pipelinesData = await serviceApi.get("pipeline");
+      const dealsData = await serviceApi.get("deal");
       setLoading(false);
-      setPipelines(pipelinesData.data);
-      setDeals(dealsData.data);
     } catch (err) {
       setLoading(false);
       setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK: Erro ao carregar, verifique sua conexão e tente novamente!
@@ -91,10 +86,12 @@ export const usePipelineComponent = () => {
 
   //UNI AS DEALS AOS PIPELINES
   const generateDealsList = () => {
-    return pipelines.reduce(
-      (acc, listKey) => ({ ...acc, [listKey.id]: getItems(listKey.id) }),
-      {}
-    );
+    if (pipelines.length > 0) {
+      return pipelines.reduce(
+        (acc, listKey) => ({ ...acc, [listKey.id]: getItems(listKey.id) }),
+        {}
+      );
+    }
   };
   const [dealsList, setElements] = React.useState(generateDealsList());
 

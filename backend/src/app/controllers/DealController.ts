@@ -69,6 +69,7 @@ class DealController {
       
       return res.status(201).json(deal.id);
     } catch (error) {
+      console.log(error);
       return res.status(400).json({ error: 'Cannot create Deal, try again' });
     }
   }
