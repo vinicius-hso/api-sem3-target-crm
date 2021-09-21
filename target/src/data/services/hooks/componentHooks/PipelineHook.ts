@@ -25,8 +25,6 @@ export const usePipelineComponent = () => {
       const pipelinesData = await serviceApi.get("pipeline");
       const dealsData = await serviceApi.get("deal");
       setLoading(false);
-      setPipelines(pipelinesData.data);
-      setDeals(dealsData.data);
     } catch (err) {
       setLoading(false);
       setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK: Erro ao carregar, verifique sua conexão e tente novamente!

@@ -115,7 +115,6 @@ export const ModalProvider: React.FC = ({ children }) => {
     await PipelineService.createPipeline(name);
     useCreateModal();
     getPipelines();
-    getPipelines();
   };
 
   const createDeal = async (data: DealTypes) => {
