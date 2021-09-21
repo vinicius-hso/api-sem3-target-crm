@@ -50,6 +50,7 @@ class DealController {
       if (!name || !company || !contact || !pipeline) return res.status(400).json({ message: 'Invalid values for Deal' });
 
       const createdBy = await User.findOne(req.userId);
+      const schedule = `${new Date().getHours()}:${new Date().getMinutes()}`
 
       const deal = await Deal.create({
         name,
@@ -61,12 +62,10 @@ class DealController {
         value,
         tag,
         status,
-        activity: [{ name: 'Negociação iniciada', type: 'Criação', status: 'Em andamento', description: '', createdBy: createdBy.name, date: new Date()}],
-      })
+        activity: [{ name: 'Negociação iniciada', type: 'Criação', status: 'Em andamento', description: '', createdBy: createdBy.name, date: new Date(), schedule }],
+      }).save();
 
       if (!deal) return res.status(400).json({ message: 'Cannot create Deal'});
-
-      deal.save();
       
       return res.status(201).json(deal.id);
     } catch (error) {
