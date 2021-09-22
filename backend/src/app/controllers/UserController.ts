@@ -71,7 +71,7 @@ class UserController {
 
       await User.update(id, { ...valuesToUpdate });
 
-      res.status(200).json();
+      return res.status(200).json({ message: 'Update successfully' } );
     } catch (error) {
       res.status(400).json({ error: 'Update failed, try again' });
     }

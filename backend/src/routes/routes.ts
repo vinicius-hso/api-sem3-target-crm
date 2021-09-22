@@ -1,10 +1,10 @@
-import Contact from '@entities/Contact';
 import DealRoutes from '@routes/deal.routes';
 import Router from 'express';
 import AuthRoutes from './auth.routes';
 import CompanyRoutes from './company.routes';
 import PipelineRoutes from './pipeline.routes';
 import UserRoutes from './user.routes';
+import ContactRoutes from './contact.routes';
 
 const routes = Router();
 
@@ -23,15 +23,6 @@ routes.use('/deal', DealRoutes);
 routes.use('/user', UserRoutes);
 routes.use('/company', CompanyRoutes);
 routes.use('/pipeline', PipelineRoutes);
-
-routes.get('/contact', async (req,res) => {
-  try {  
-    const contacts = await Contact.find({ relations: ['company'] });
-  
-    res.json(contacts);
-  } catch (error) {
-    console.log(error);
-  }
-})
+routes.use('/contact', ContactRoutes);
 
 export default routes;
