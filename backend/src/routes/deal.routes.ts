@@ -9,5 +9,6 @@ routes.post('/', DealController.create);
 routes.put('/:id', DealController.update);
 routes.delete('/:id', DealController.delete);
 routes.post('/:id/activity', DealController.insertActivity);
+routes.put('/:id/pipelineUpdate', DealController.pipelineUpdate);
 
 export default routes;

@@ -69,7 +69,6 @@ class DealController {
       
       return res.status(201).json(deal.id);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ error: 'Cannot create Deal, try again' });
     }
   }
@@ -144,6 +143,23 @@ class DealController {
       return res.status(201).json();
     } catch (error) {
       return res.status(400).json({ error: 'Cannot insert activity, try again' });
+    }
+  }
+
+  public async pipelineUpdate(req: Request, res: Response): Promise<Response> {
+    try {
+      const { pipeline } = req.body
+      const id = req.params.id;
+  
+      const deal = await Deal.findOne(id);
+  
+      if (!deal) return res.status(404).json({ error: 'Deal not exist'});
+  
+      await Deal.update(id, { pipeline });
+  
+      res.status(200).json();
+    } catch (error) {
+      return res.status(400).json({ error: 'Cannot update Deal pipeline, try again'});
     }
   }
 }
