@@ -8,6 +8,7 @@ interface CompanyInterface {
   state?: string;
   city?: string;
   site?: string;
+  picture?: string;
 }
 
 class CompanyController {
@@ -37,11 +38,11 @@ class CompanyController {
 
   public async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, country, state, city, site }: CompanyInterface = req.body;
+      const { name, country, state, city, site, picture}: CompanyInterface = req.body;
 
       if (!name) return res.status(400).json({ message: 'Invalid company name' });
 
-      const company = await Company.create({ name, country, state, city, site }).save();
+      const company = await Company.create({ name, country, state, city, site, picture}).save();
 
       if (!company) return res.status(400).json({ message: 'Cannot create company' });
 
@@ -53,7 +54,7 @@ class CompanyController {
 
   public async update(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, country, state, city, site }: CompanyInterface = req.body;
+      const { name, country, state, city, site, picture }: CompanyInterface = req.body;
       const id = req.params.id;
 
       if (!id) return res.status(400).json({ message: 'Please send a company id' });
@@ -68,6 +69,7 @@ class CompanyController {
         name: name || company.name,
         city: city || company.city,
         site: site || company.site,
+        picture : picture || company.picture,
       };
 
       await Company.update(id, { ...valuesToUpdate });

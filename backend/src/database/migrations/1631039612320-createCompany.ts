@@ -38,6 +38,11 @@ export class createCompany1631039612320 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'picture',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()',

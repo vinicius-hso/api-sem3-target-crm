@@ -33,6 +33,7 @@ export class CreateUsers1629211336265 implements MigrationInterface {
           {
             name: 'picture',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'passwordResetToken',

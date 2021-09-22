@@ -20,6 +20,9 @@ class Companies extends BaseEntity {
   @Column({ nullable: true })
   site: string;
 
+  @Column({ nullable: true })
+  picture: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
