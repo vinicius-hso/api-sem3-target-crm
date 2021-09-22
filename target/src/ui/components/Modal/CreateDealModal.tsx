@@ -3,18 +3,23 @@ import { Button, MenuItem } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
+import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
+import Select from "../Input/Select/Select";
+import { DealTypes } from "types/Deal";
 import {
   ModalContainer,
   TwoColumnsContainer,
-} from "./ModalStyles/ModalContainer";
-import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import Select from "../Input/Select/Select";
-import { ModalStyled } from "./ModalStyles/Modal";
-import { DealTypes } from "types/Deal";
+} from "./ModalStyles/ModalContainer.style";
+import { ModalStyled } from "./ModalStyles/Modal.style";
+import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
 const CreateDealModal = () => {
-  const { createDealModalState, useCreateDealModal, createDeal } =
-    useContext(PipelineContext);
+  const {
+    createDealModalState,
+    useCreateDealModal,
+    createDeal,
+    useDeleteModal,
+  } = useContext(PipelineContext);
 
   const [data, setData] = useState<DealTypes>({
     name: "",
@@ -32,6 +37,13 @@ const CreateDealModal = () => {
 
   const body = (
     <ModalContainer>
+      <CloseButtonStyled
+        onClick={() => {
+          useCreateDealModal();
+        }}
+      >
+        <i className="fa fa-times" aria-hidden="true"></i>
+      </CloseButtonStyled>
       <Title title="Adicionar negociação" />
       <TextFieldMask
         onChange={(event) => setData({ ...data, name: event.target.value })}
@@ -49,11 +61,10 @@ const CreateDealModal = () => {
         fullWidth
       >
         <MenuItem value={""}>Selecione a Empresa</MenuItem>
-        <MenuItem value={"aabce0c7-964c-4ffd-ad80-95c8ead4f367"}>
+        <MenuItem value={"bbcebf0b-917c-4763-b196-9293adfe7cea"}>
           Cluster8
         </MenuItem>
       </Select>
-
       <Select
         onChange={(event) => setData({ ...data, contact: event.target.value })}
         label="Contato"

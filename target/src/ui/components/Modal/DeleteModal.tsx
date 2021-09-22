@@ -3,9 +3,10 @@ import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 
 import PipelineContext from "contexts/PipelineContext";
-import { ModalContainer } from "./ModalStyles/ModalContainer";
 import Title from "../Title/Title";
-import { ModalStyled } from "./ModalStyles/Modal";
+import { ModalContainer } from "./ModalStyles/ModalContainer.style";
+import { ModalStyled } from "./ModalStyles/Modal.style";
+import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
 const DeleteModal: React.FC = () => {
   const { deleteModalState, useDeleteModal, deletePipeline } =
@@ -13,6 +14,12 @@ const DeleteModal: React.FC = () => {
 
   const body = (
     <ModalContainer>
+      <CloseButtonStyled
+        onClick={() => {
+          useDeleteModal("");
+        }}
+      ></CloseButtonStyled>
+
       <Title
         title="Deletar Pipeline"
         subtitle={

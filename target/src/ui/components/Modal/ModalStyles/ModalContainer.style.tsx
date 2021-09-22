@@ -2,6 +2,7 @@ import React from "react";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 export const ModalContainer = styled("div")`
+  position: relative;
   background-color: #fff;
   display: grid;
   grid-template-columns: 1fr;

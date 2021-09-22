@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 
 import PipelineContext from "contexts/PipelineContext";
-import { ModalContainer } from "./ModalStyles/ModalContainer";
 import Title from "../Title/Title";
-import { ModalStyled } from "./ModalStyles/Modal";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import { Button } from "@material-ui/core";
+import { ModalContainer } from "./ModalStyles/ModalContainer.style";
+import { ModalStyled } from "./ModalStyles/Modal.style";
+import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
 const UpDateModal = () => {
   const {
@@ -18,6 +19,12 @@ const UpDateModal = () => {
 
   const body = (
     <ModalContainer>
+      <CloseButtonStyled
+        onClick={() => {
+          useUpdateModal("");
+        }}
+      ></CloseButtonStyled>
+
       <Title title="Editar pipeline" />
 
       <TextFieldMask

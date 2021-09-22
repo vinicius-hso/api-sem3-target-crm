@@ -17,6 +17,20 @@ class DealsService {
       return error;
     }
   }
+  async dealPipelineUpdate(pipeline: string, dealId: string) {
+    try {
+      const { data } = await api.put(
+        `/deal/${dealId}/pipelineUpdate`,
+        { pipeline },
+        {
+          headers: this.headers,
+        }
+      );
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new DealsService();

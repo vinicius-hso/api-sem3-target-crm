@@ -3,10 +3,11 @@ import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PipelineContext from "contexts/PipelineContext";
-import { ModalStyled } from "./ModalStyles/Modal";
 import Title from "../Title/Title";
-import { ModalContainer } from "./ModalStyles/ModalContainer";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
+import { ModalContainer } from "./ModalStyles/ModalContainer.style";
+import { ModalStyled } from "./ModalStyles/Modal.style";
+import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
 const CreateModal = () => {
   const { createModalState, useCreateModal, createPipeline, setName } =
@@ -14,6 +15,12 @@ const CreateModal = () => {
 
   const body = (
     <ModalContainer>
+      <CloseButtonStyled
+        onClick={() => {
+          useCreateModal();
+        }}
+      ></CloseButtonStyled>
+
       <Title title="Novo pipeline" />
 
       <TextFieldMask

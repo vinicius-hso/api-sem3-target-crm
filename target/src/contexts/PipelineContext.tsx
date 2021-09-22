@@ -183,9 +183,8 @@ export const ModalProvider: React.FC = ({ children }) => {
         pipe.deals = newSourceList;
       }
     });
-    const destinationList = listCopy.find((pipe, index) => {
+    const destinationList = listCopy.find((pipe) => {
       if (pipe.id === result.destination.droppableId) {
-        Object.values(listCopy).splice(index, 1);
         return pipe;
       }
     });
@@ -200,6 +199,14 @@ export const ModalProvider: React.FC = ({ children }) => {
     });
     const temp = [];
     listCopy.map((a) => temp.push(a));
+
+    if (result.source.droppableId !== result.destination.droppableId) {
+      DealsService.dealPipelineUpdate(
+        result.destination.droppableId,
+        destinationList.deals[result.destination.index].id
+      );
+    }
+
     setElements(temp);
   };
 

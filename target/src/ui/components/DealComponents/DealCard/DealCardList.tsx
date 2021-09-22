@@ -12,6 +12,7 @@ const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
   const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } =
     useContext(PipelineContext);
+  console.log(props);
 
   return (
     <ColumnContainer>
@@ -119,6 +120,7 @@ const DealCardList = (props) => {
                             title={deal.name}
                             companyName={deal.company.name}
                             contactName={deal.contact.name}
+                            companyPicture={deal.company.picture}
                             budget={deal.value}
                             startDate={deal.createdAt}
                             tag={deal.tag}
