@@ -14,12 +14,8 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
 const CreateDealModal = () => {
-  const {
-    createDealModalState,
-    useCreateDealModal,
-    createDeal,
-    useDeleteModal,
-  } = useContext(PipelineContext);
+  const { createDealModalState, useCreateDealModal, createDeal } =
+    useContext(PipelineContext);
 
   const [data, setData] = useState<DealTypes>({
     name: "",
