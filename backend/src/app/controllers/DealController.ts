@@ -96,9 +96,9 @@ class DealController {
         tag: tag || deal.tag,
       }
 
-      await Deal.update(id, { ...valuesToUpdate })
+      await Deal.update(id, { ...valuesToUpdate });
 
-      res.status(200).json();
+      return res.status(200).json();
     } catch (error) {
       return res.status(400).json({ error: 'Cannot update Deal, try again' });
     }
@@ -157,7 +157,7 @@ class DealController {
   
       await Deal.update(id, { pipeline });
   
-      res.status(200).json();
+      return res.status(200).json();
     } catch (error) {
       return res.status(400).json({ error: 'Cannot update Deal pipeline, try again'});
     }
