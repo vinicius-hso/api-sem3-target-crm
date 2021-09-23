@@ -35,3 +35,9 @@ export const CardsContainer = styled("div")`
   padding: ${({ theme }) => theme.spacing(2)};
   border-radius: 8px;
 `;
+
+export const TitleContainer = styled("div")`
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    margin-right: auto;
+  }
+`;

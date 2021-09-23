@@ -9,8 +9,8 @@ export const CompanyCardContainer = styled("div")`
   grid-template-rows: repeat(3, auto);
   grid-template-areas:
     "picture name"
-    "picture rating"
-    "picture description";
+    "picture city"
+    "picture email";
   background-color: ${({ theme }) => theme.palette.background.paper};
   padding: ${({ theme }) => theme.spacing(2)};
   align-items: center;

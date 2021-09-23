@@ -3,6 +3,7 @@ import {
   CardsContainer,
   CompanyHeaderContainer,
   CompanyPageContainer,
+  TitleContainer,
 } from "@styles/pagesStyle/company.style";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyCard from "ui/components/CompanyCard/CompanyCard";
@@ -19,7 +20,9 @@ function DealPipeline() {
   return (
     <CompanyPageContainer>
       <CompanyHeaderContainer>
-        <Title title="EMPRESAS"></Title>
+        <TitleContainer>
+          <Title title="EMPRESAS"></Title>
+        </TitleContainer>
         <SearchButtom
           placeholder="Buscar"
           buttomIcon="fa-search"

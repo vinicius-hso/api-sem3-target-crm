@@ -16,6 +16,7 @@ import CreateModal from "ui/components/Modal/CreateModal";
 import CreateDealModal from "ui/components/Modal/CreateDealModal";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import PipelineContext from "contexts/PipelineContext";
+import { formatValue } from "data/utils/formatValue";
 
 function DealPipeline() {
   const { hasError, isLoading, getDealsInfo } = usePipelineComponent();
@@ -43,7 +44,9 @@ function DealPipeline() {
                   gap: "10px",
                 }}
               >
-                <Typography>{dealTotalParams.budgetSum}</Typography>
+                <Typography>
+                  {formatValue(dealTotalParams.budgetSum)}
+                </Typography>
                 <i
                   className="fa fa-arrow-right"
                   style={{ position: "relative", top: "2px" }}

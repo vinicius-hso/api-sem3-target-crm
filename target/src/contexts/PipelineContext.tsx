@@ -1,6 +1,6 @@
 import DealsService from "data/services/DealsService";
 import PipelineService from "data/services/PipelineService";
-import { formatValue } from "data/utils/formatValue";
+import { useRouter } from "next/dist/client/router";
 import React, { useState, createContext, useEffect } from "react";
 import { DealTypes } from "types/Deal";
 import ModalTypes, { pipeline } from "types/Modal";
@@ -26,6 +26,7 @@ export const ModalProvider: React.FC = ({ children }) => {
     warmDeals: 0,
     coldDeals: 0,
   });
+  const route = useRouter();
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId, deals, pipelines) => {
@@ -211,7 +212,9 @@ export const ModalProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    getPipelines();
+    if (route.route === "/") {
+      getPipelines();
+    }
   }, []);
 
   return (
