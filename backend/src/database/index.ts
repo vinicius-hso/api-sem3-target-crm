@@ -28,7 +28,7 @@ const mocks = async () => {
 
     console.log('create pipeline', pipeline.id);
     
-    const company = await Company.create({ name: 'teste', country: 'BR', state: 'SP', city: 'SJC', site: 'www.teste.com' }).save();
+    const company = await Company.create({ name: 'teste', country: 'BR', state: 'SP', city: 'SJC', site: 'www.teste.com', picture: 'https://conteudo.imguol.com.br/c/entretenimento/54/2020/04/28/cachorro-pug-1588098472110_v2_900x506.jpg.webp' }).save();
 
     console.log('create company', company.id);
 

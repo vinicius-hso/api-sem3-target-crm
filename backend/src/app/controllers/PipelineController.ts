@@ -11,6 +11,8 @@ class PipelineController {
     try {
       const { name }: PipelineInterface = req.body;
 
+      if (!name) return res.status(400).json({message: 'Invalid value for pipeline'});
+
       const existsPipeline = await Pipeline.findOne({ name });
 
       if (existsPipeline) return res.status(400).json({ message: 'Pipeline already exists' });
