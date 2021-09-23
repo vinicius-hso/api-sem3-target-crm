@@ -5,4 +5,5 @@ export const LinkStyled = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
+  position: relative;
 `;

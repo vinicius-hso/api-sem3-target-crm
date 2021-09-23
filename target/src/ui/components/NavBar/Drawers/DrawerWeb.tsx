@@ -36,10 +36,10 @@ export const DrawerWeb = ({ navHover, ...props }) => {
           <ListItemIcon
             sx={{
               fontSize: "40px",
-              mb: "22px",
+              mb: "16px",
               mr: 1,
               ml: "-5px",
-              mt: 1,
+              minWidth: "40px",
             }}
           >
             <UserPictureStyled
@@ -93,7 +93,8 @@ export const DrawerWeb = ({ navHover, ...props }) => {
                     router.route === itemMenu.link
                       ? theme.palette.secondary.main
                       : theme.palette.primary.main,
-                  mb: 3,
+                  mb: 2,
+                  minWidth: "40px",
                 }}
               >
                 <i className={`fa ${itemMenu.icon}`}></i>
