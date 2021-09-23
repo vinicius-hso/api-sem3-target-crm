@@ -19,7 +19,9 @@ const CreateModal = () => {
         onClick={() => {
           useCreateModal();
         }}
-      ></CloseButtonStyled>
+      >
+        <i className="fa fa-times" aria-hidden="true"></i>
+      </CloseButtonStyled>
 
       <Title title="Novo pipeline" />
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Hidden from "@material-ui/core/Hidden";
 import {
@@ -15,6 +15,8 @@ import {
 import theme from "ui/theme/theme";
 import { DrawerWeb } from "./Drawers/DrawerWeb";
 import { DrawerMobile } from "./Drawers/DrawerMobile";
+import { route } from "next/dist/server/router";
+import { useRouter } from "next/dist/client/router";
 
 interface Props {
   window?: () => Window;
@@ -25,10 +27,16 @@ export default function NavBar(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [navHover, setNavHover] = React.useState(false);
-
+  const route = useRouter();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  useEffect(() => {
+    const storagedToken = localStorage.getItem("@taget:token");
+    if (!storagedToken) {
+      route.push("/login");
+    }
+  }, []);
 
   const container =
     window !== undefined ? () => window().document.body : undefined;

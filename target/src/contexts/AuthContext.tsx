@@ -1,5 +1,5 @@
-import React, { useState, createContext, useEffect } from 'react';
-import AuthContextData from "../types/Auth"
+import React, { useState, createContext, useEffect } from "react";
+import AuthContextData from "../types/Auth";
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
@@ -8,7 +8,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const getStoragedData = () => {
-      const storagedToken = localStorage.getItem('@taget:token');
+      const storagedToken = localStorage.getItem("@taget:token");
 
       if (storagedToken) {
         setToken(storagedToken);
@@ -20,24 +20,26 @@ export const AuthProvider: React.FC = ({ children }) => {
   const signIn = (myToken: string, myUser?: object): void => {
     setToken(myToken);
 
-    localStorage.setItem('@taget:token', myToken);
+    localStorage.setItem("@taget:token", myToken);
   };
 
   const signOut = () => {
     setToken(null);
 
-    localStorage.removeItem('@taget:token');
+    localStorage.removeItem("@taget:token");
   };
 
   return (
-   <AuthContext.Provider
+    <AuthContext.Provider
       value={{
         signed: token,
         token,
         signIn,
-        signOut
+        signOut,
+        setToken,
       }}
-    >{children}
+    >
+      {children}
     </AuthContext.Provider>
   );
 };

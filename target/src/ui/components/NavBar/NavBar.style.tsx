@@ -28,7 +28,7 @@ export const AppBarStyled = styled(AppBar)`
     width: calc(100vw);
     margin-left: 240px;
     .MuiToolbar-root {
-      height: 100px;
+      height: 80px;
     }
   }
 `;
@@ -114,7 +114,7 @@ export const DrawerContainer = styled("div")`
 `;
 
 export const HeaderLogoStyled = styled("img")`
-  height: 40px;
+  height: 30px;
   margin: 0 auto;
 
   ${({ theme }) => theme.breakpoints.up("md")} {

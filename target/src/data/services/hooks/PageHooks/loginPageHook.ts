@@ -1,15 +1,8 @@
-import React, {
-  useEffect,
-  useMemo,
-  useState,
-  useContext,
-  useCallback,
-} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { emailValidator } from "../../../utils/emailValidator";
 import { serviceApi } from "data/services/serviceApi";
 import AuthContext from "contexts/AuthContext";
 import { useRouter } from "next/dist/client/router";
-
 
 export const useLoginPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
@@ -24,7 +17,7 @@ export const useLoginPage = () => {
 
   const { signIn } = useContext(AuthContext);
 
-  const router = useRouter()
+  const router = useRouter();
 
   //VERIFICA SE O EMAIL É VALIDO
   function emailVerification() {
@@ -57,17 +50,16 @@ export const useLoginPage = () => {
       setLoading(true);
       setError("");
       try {
-        await serviceApi.post("/auth/authenticate", {
-          email,
-          password,
-        }).then((res)=>{
-          setData(res.data.token)
-        }).then(()=>{
-            signIn(data);
-          }).then(()=>{
-            router.push('/welcome')
+        await serviceApi
+          .post("/auth/authenticate", {
+            email,
+            password,
           })
-          setLoading(false);
+          .then((res) => {
+            signIn(res.data.token);
+            router.push("/welcome");
+          });
+        setLoading(false);
       } catch (err) {
         setError("Email e senha não correspondem"); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
         setLoading(false);
@@ -81,16 +73,19 @@ export const useLoginPage = () => {
       setLoading(true);
       setError("");
       try {
-        await serviceApi.post("/auth/forgot-password/", {
-          email
-        }).then((res)=>{
-          if(res.status===200)
-          setMessage(true);
-        });
+        await serviceApi
+          .post("/auth/forgot-password/", {
+            email,
+          })
+          .then((res) => {
+            if (res.status === 200) setMessage(true);
+          });
 
         setLoading(false);
       } catch (err) {
-        setError("Não encontramos esse email em nossa base de dados, por favor, verifique e tente novamente."); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
+        setError(
+          "Não encontramos esse email em nossa base de dados, por favor, verifique e tente novamente."
+        ); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK
         setLoading(false);
       }
     }

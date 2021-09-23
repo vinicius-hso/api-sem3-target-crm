@@ -23,7 +23,9 @@ const UpDateModal = () => {
         onClick={() => {
           useUpdateModal("");
         }}
-      ></CloseButtonStyled>
+      >
+        <i className="fa fa-times" aria-hidden="true"></i>
+      </CloseButtonStyled>
 
       <Title title="Editar pipeline" />
 

@@ -12,8 +12,6 @@ const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
   const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } =
     useContext(PipelineContext);
-  console.log(props);
-
   return (
     <ColumnContainer>
       <div style={{ position: "relative" }}>

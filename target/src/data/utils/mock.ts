@@ -86,7 +86,7 @@ export const mockAddCard = {
 export const navBarRoutes = [
   { name: "Negocios", icon: "fa-bar-chart", link: "/" },
   { name: "Contatos", icon: "fa-address-book", link: "/contacts" },
-  { name: "Empresas", icon: "fa-building", link: "/companies" },
+  { name: "Empresas", icon: "fa-building", link: "/company" },
   { name: "Dashboard", icon: "fa-line-chart", link: "/dashboard" },
   { name: "Arquivados", icon: "fa-archive", link: "/archives" },
 ];

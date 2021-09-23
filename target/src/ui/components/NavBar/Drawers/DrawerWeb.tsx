@@ -88,7 +88,7 @@ export const DrawerWeb = ({ navHover, ...props }) => {
             <LinkStyled href={itemMenu.link}>
               <ListItemIcon
                 sx={{
-                  fontSize: "40px",
+                  fontSize: "30px",
                   color:
                     router.route === itemMenu.link
                       ? theme.palette.secondary.main

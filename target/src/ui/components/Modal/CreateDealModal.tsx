@@ -27,7 +27,6 @@ const CreateDealModal = () => {
   });
 
   async function handleSubmit() {
-    console.log(data);
     createDeal(data);
   }
 

@@ -18,7 +18,9 @@ const DeleteModal: React.FC = () => {
         onClick={() => {
           useDeleteModal("");
         }}
-      ></CloseButtonStyled>
+      >
+        <i className="fa fa-times" aria-hidden="true"></i>
+      </CloseButtonStyled>
 
       <Title
         title="Deletar Pipeline"
