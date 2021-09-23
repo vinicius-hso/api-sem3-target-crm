@@ -8,7 +8,7 @@ export const DealsPageContainer = styled("div")`
   overflow: hidden;
   width: calc(100vw - 178px);
   ${({ theme }) => theme.breakpoints.down("md")} {
-    width: calc(100vw);
+    width: 100vw;
   }
 `;
 

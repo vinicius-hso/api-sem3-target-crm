@@ -1,12 +1,16 @@
+import React from "react";
 import {
+  CardsContainer,
   CompanyHeaderContainer,
   CompanyPageContainer,
 } from "@styles/pagesStyle/company.style";
-import React, { useContext } from "react";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
 
 function DealPipeline() {
+  const { companies } = useCompanyPage();
   const [valueType, setValueType] = React.useState("");
   const handleChange = (event) => {
     setValueType(event.target.value);
@@ -15,7 +19,7 @@ function DealPipeline() {
   return (
     <CompanyPageContainer>
       <CompanyHeaderContainer>
-        <Title style={{ textAlign: "left" }} title="EMPRESAS"></Title>
+        <Title title="EMPRESAS"></Title>
         <SearchButtom
           placeholder="Buscar"
           buttomIcon="fa-search"
@@ -30,7 +34,19 @@ function DealPipeline() {
           ChangeType={handleChange}
         />
       </CompanyHeaderContainer>
-      <hr />
+      <hr style={{ width: "90%" }} />
+      <CardsContainer>
+        {companies.map((company) => (
+          <CompanyCard
+            key={company.id}
+            name={company.name}
+            city={company.city}
+            state={company.state}
+            email={company.site}
+            picture={company.picture}
+          />
+        ))}
+      </CardsContainer>
     </CompanyPageContainer>
   );
 }

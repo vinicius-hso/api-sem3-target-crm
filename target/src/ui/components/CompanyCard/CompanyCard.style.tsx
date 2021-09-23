@@ -4,16 +4,27 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 //@deprecated
 export const CompanyCardContainer = styled("div")`
   display: grid;
+  width: 100%;
   grid-template-columns: 60px 1fr;
   grid-template-rows: repeat(3, auto);
   grid-template-areas:
     "picture name"
     "picture rating"
     "picture description";
-  background-color: ${({ theme }) => theme.palette.grey[50]};
+  background-color: ${({ theme }) => theme.palette.background.paper};
   padding: ${({ theme }) => theme.spacing(2)};
   align-items: center;
   gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
+
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 60px repeat(3, 1fr);
+    grid-template-areas: "picture name city email";
+  }
 `;
 
 export const CompanyNameStyled = styled("div")`
@@ -23,10 +34,10 @@ export const CompanyNameStyled = styled("div")`
   grid-area: name;
 `;
 
-export const CompanyDescriptionStyled = styled("div")`
+export const CompanyCityStyled = styled("div")`
   color: ${({ theme }) => theme.palette.text.secondary};
   font-size: ${({ theme }) => theme.typography.body2.fontSize};
-  grid-area: description;
+  grid-area: city;
 `;
 
 export const CompanyPictureStyled = styled(Avatar)`
@@ -37,7 +48,8 @@ export const CompanyPictureStyled = styled(Avatar)`
   font-family: "Arial Narrow", Arial, sans-serif;
 `;
 
-export const CompanyRatingStyled = styled(Rating)`
-  font-size: 14px;
-  grid-area: rating;
+export const CompanyEmailStyled = styled("div")`
+  color: ${({ theme }) => theme.palette.text.secondary};
+  font-size: ${({ theme }) => theme.typography.body2.fontSize};
+  grid-area: email;
 `;
