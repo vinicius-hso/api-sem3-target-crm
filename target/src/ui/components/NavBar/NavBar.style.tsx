@@ -75,7 +75,7 @@ export const MenuButton = styled(IconButton)`
   display: "none";
   ${({ theme }) => theme.breakpoints.up("md")} {
     display: "none";
-    margin-right: 50px;
+    width: 10px;
   } ;
 `;
 

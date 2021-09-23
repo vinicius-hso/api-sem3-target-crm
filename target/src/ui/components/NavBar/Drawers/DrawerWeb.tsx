@@ -67,7 +67,7 @@ export const DrawerWeb = ({ navHover, ...props }) => {
               mb: "20px",
             }}
             style={navHover ? { display: "inline" } : { display: "none" }}
-            primary="Perfil"
+            primary="Minha conta"
           />
         </LinkStyled>
       </ListItem>

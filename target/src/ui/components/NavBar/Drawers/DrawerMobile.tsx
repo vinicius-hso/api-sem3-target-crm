@@ -65,7 +65,7 @@ export const DrawerMobile = ({ navHover, ...props }) => {
                 : theme.palette.primary.main,
             mb: "20px",
           }}
-          primary="Perfil"
+          primary="Minha conta"
         />
       </ListItem>
 

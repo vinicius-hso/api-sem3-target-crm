@@ -6,8 +6,7 @@ export const CompanyPageContainer = styled("div")`
   align-items: center;
   padding: ${({ theme }) => theme.spacing(2)};
   overflow: hidden;
-  background-color: ${({ theme }) => theme.palette.primary.main}
-    ${({ theme }) => theme.breakpoints.down("md")} {
+  ${({ theme }) => theme.breakpoints.down("md")} {
     width: 100vw;
   }
 `;
