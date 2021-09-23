@@ -60,11 +60,13 @@ class PipelineController {
 
       if (!id) return res.status(400).json({ message: 'Please send a pipeline id' });
 
+      if (!name) return res.status(400).json({ error: 'Invalid value for pipeline'})
+
       const pipeline = await Pipeline.findOne(id);
 
       if (!pipeline) return res.status(404).json({ message: 'Pipeline does not exist' });
 
-      await Pipeline.update({ id }, { name });
+      await Pipeline.update(id , { name });
 
       res.status(200).json();
     } catch (error) {
