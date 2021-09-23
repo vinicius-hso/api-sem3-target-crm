@@ -8,6 +8,7 @@ export const DealCardContainer = styled(Card)`
   padding: ${({ theme }) => theme.spacing(1)};
   gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(0.5)};
   margin: ${({ theme }) => theme.spacing(1)} 0;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
 `;
 
 export const DealPictureStyled = styled(Avatar)`

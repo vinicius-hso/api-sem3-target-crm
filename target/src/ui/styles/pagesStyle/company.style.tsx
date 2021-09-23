@@ -28,7 +28,7 @@ export const CardsContainer = styled("div")`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(2)};
-  width: 90%;
+  width: 100%;
   margin: ${({ theme }) => theme.spacing(4)} 0;
   background-color: ${({ theme }) => theme.palette.grey[100]};
   padding: ${({ theme }) => theme.spacing(2)};

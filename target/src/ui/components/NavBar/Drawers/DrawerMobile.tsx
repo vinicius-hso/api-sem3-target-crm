@@ -24,12 +24,12 @@ export const DrawerMobile = ({ navHover, ...props }) => {
       <ListItem
         button
         sx={{
-          paddingLeft: "8px",
+          pl: "8px",
           backgroundColor:
             router.route === "/account"
               ? theme.palette.primary.main
               : theme.palette.secondary.main,
-          paddingTop: "20px",
+          pt: "20px",
           height: "55px",
         }}
       >

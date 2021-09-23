@@ -79,7 +79,9 @@ export default function NavBar(props: Props) {
           </DrawerContainer>
         </Hidden>
       </DrawerStyled>
-      <ContentStyled>{props.CurrentPage}</ContentStyled>
+      <ContentStyled style={{ marginLeft: navHover ? "104px" : 0 }}>
+        {props.CurrentPage}
+      </ContentStyled>
     </Root>
   );
 }

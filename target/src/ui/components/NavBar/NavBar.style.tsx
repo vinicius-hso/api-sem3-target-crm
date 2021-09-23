@@ -16,7 +16,7 @@ export const Root = styled("div")`
 
 export const DrawerStyled = styled("nav")`
   ${({ theme }) => theme.breakpoints.up("md")} {
-    width: 100px;
+    width: 80px;
   }
 `;
 
@@ -36,7 +36,7 @@ export const AppBarStyled = styled(AppBar)`
 export const ToolbarHeaderStyled = styled("div")`
   display: grid;
   width: 100vw;
-  padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(2)};
+  padding: 6px ${({ theme }) => theme.spacing(2)};
   align-items: center;
   grid-template-columns: 40px 1fr 30px;
 
@@ -115,7 +115,7 @@ export const DrawerContainer = styled("div")`
 `;
 
 export const HeaderLogoStyled = styled("img")`
-  height: 50px;
+  height: 40px;
   margin: 0 auto;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
