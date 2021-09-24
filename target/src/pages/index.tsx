@@ -17,6 +17,7 @@ import CreateDealModal from "ui/components/Modal/CreateDealModal";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import PipelineContext from "contexts/PipelineContext";
 import { formatValue } from "data/utils/formatValue";
+import DetailModal from "ui/components/Modal/DealDetailModal";
 
 function DealPipeline() {
   const { hasError, isLoading, getDealsInfo } = usePipelineComponent();
@@ -32,6 +33,7 @@ function DealPipeline() {
       <UpDateModal />
       <CreateModal />
       <CreateDealModal />
+      <DetailModal />
       <DealsHeaderContainer>
         <TitleHeaderContainer>
           <Title
@@ -86,7 +88,6 @@ function DealPipeline() {
           ChangeType={handleChange}
         />
       </DealsHeaderContainer>
-
       <PipelinesContainer>
         {isLoading ? (
           <div style={{ textAlign: "center" }}>

@@ -23,6 +23,7 @@ export interface DealCardProps {
   startDate?: any;
   contactName: string;
   tag?: string;
+  onClick: any;
 }
 
 const DealCard: React.FC<DealCardProps> = (props) => {
@@ -36,7 +37,7 @@ const DealCard: React.FC<DealCardProps> = (props) => {
     }
   }, [props.tag]);
   return (
-    <DealCardContainer>
+    <DealCardContainer onClick={props.onClick}>
       <div
         style={{
           backgroundColor: theme.palette.grey[50],

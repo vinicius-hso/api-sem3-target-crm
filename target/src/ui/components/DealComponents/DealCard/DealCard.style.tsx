@@ -15,7 +15,7 @@ export const DealPictureStyled = styled(Avatar)`
   width: 20px;
   height: initial;
   aspect-ratio: 1;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 16px;
 `;
 
 export const DealDescriptionContainer = styled("div")`

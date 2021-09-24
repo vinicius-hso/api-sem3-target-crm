@@ -5,6 +5,8 @@ export default interface ModalTypes {
   createDealModalState: boolean;
   useCreateModal: () => void;
   useCreateDealModal: () => void;
+  dealDetailModalState: boolean;
+  useDealDetailModal: (deal: any) => void;
   updateModalState: boolean;
   useUpdateModal: (id: string) => void;
   deleteModalState: boolean;

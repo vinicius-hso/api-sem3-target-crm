@@ -13,6 +13,8 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [deleteModalState, setDeleteModalState] = useState<boolean>(false);
   const [createDealModalState, setCreateDealModalState] =
     useState<boolean>(false);
+  const [dealDetailModalState, setDealDetailModalState] =
+    useState<boolean>(false);
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
   const [name, setNameState] = useState<string>();
@@ -94,6 +96,10 @@ export const ModalProvider: React.FC = ({ children }) => {
   const useDeleteModal = (id: string) => {
     setDeleteIdState(id);
     setDeleteModalState(!deleteModalState);
+  };
+
+  const useDealDetailModal = (deal: any) => {
+    setDealDetailModalState(!dealDetailModalState);
   };
 
   const setName = (name: string) => {
@@ -228,6 +234,8 @@ export const ModalProvider: React.FC = ({ children }) => {
         useUpdateModal,
         deleteModalState,
         useDeleteModal,
+        dealDetailModalState,
+        useDealDetailModal,
         deletePipeline,
         updatePipeline,
         createPipeline,

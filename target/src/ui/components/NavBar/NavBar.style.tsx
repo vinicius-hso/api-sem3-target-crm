@@ -51,11 +51,9 @@ export const UserPictureStyled = styled(Avatar)`
   color: ${({ theme }) => theme.palette.secondary.main};
   font-weight: bold;
   width: 30px;
-  height: 30px;
   height: initial;
   aspect-ratio: 1;
-  font-family: "Arial Narrow", Arial, sans-serif;
-  margin: auto;
+  font-size: 16px;
   ${({ theme }) => theme.breakpoints.up("md")} {
     width: 40px;
   } ;
