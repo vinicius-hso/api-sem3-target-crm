@@ -45,7 +45,7 @@ function DealPipeline() {
     setSearchTerm(event.target.value);
     setTimeout(() => {
       filterDeals(event.target.value, valueType);
-    }, 500);
+    }, 1000);
   };
 
   return (

@@ -10,9 +10,10 @@ import {
 export const PaperStyled = styled(Paper)`
   position: relative;
   padding: 2px 4px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 20px 1fr 20px 100px;
   align-items: center;
-  height: 40px;
+  height: 50px;
   margin: auto 0;
   margin-left: auto;
   width: 100%;

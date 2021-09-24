@@ -1,14 +1,6 @@
-import {
-  FormControl,
-  IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@material-ui/core";
-import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import React, { useEffect, useState } from "react";
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import React, { useEffect } from "react";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { mockTags } from "../../../data/utils/mock";
 import { DividerStyled, PaperStyled } from "./SearchButton.style";
 
 interface SearchButtomProps {
@@ -34,12 +26,13 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
       ></i>
       {props.typeValue === "name" ? (
         <TextFieldMask
-          label={"Filtre pelo nome da negociação"}
+          label={"Filtre pelo nome"}
           fullWidth
           variant={"standard"}
           size="medium"
           value={props.value}
           onChange={props.onChange}
+          sx={{ minWidth: "150px" }}
         />
       ) : (
         <FormControl fullWidth>
