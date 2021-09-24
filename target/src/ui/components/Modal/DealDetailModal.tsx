@@ -27,7 +27,7 @@ const DetailModal: React.FC = () => {
     useContext(PipelineContext);
   const body = (
     <ModalContainer>
-      <CloseButtonStyled onClick={() => {}}>
+      <CloseButtonStyled onClick={() => {useDealDetailModal('')}}>
         <i className="fa fa-times" aria-hidden="true"></i>
       </CloseButtonStyled>
       <Title title={`Detalhes da negociação ${"Google"}`} />
