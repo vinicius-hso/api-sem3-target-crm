@@ -20,6 +20,7 @@ import { formatValue } from "data/utils/formatValue";
 import DetailModal from "ui/components/Modal/DealDetailModal";
 import { mockTags } from "data/utils/mock";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
@@ -28,6 +29,7 @@ function DealPipeline() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [selectListValues, setSelectListValues] = React.useState([]);
   const { formatCompaniesToSelect } = useCompanyPage();
+  const { formatContactToSelect } = useContactPage();
 
   const handleChangeValueType = (event) => {
     setSearchTerm("");
@@ -36,6 +38,8 @@ function DealPipeline() {
       setSelectListValues(mockTags);
     } else if (event.target.value === "company") {
       setSelectListValues(formatCompaniesToSelect);
+    } else if (event.target.value === "contact") {
+      setSelectListValues(formatContactToSelect)
     } else {
       setSelectListValues([]);
     }
