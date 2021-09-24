@@ -222,7 +222,7 @@ export const ModalProvider: React.FC = ({ children }) => {
     Object.values(dealsList).forEach((pipe) => {
       const deals = [];
       pipe.deals.forEach((deal) => {
-        if (deal.name.includes(value)) {
+        if (deal.name.toLowerCase().includes(value.toLocaleLowerCase())) {
           deals.push(deal);
         } else {
           switch(typeValue) {
