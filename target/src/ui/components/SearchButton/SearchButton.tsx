@@ -30,17 +30,16 @@ interface SearchButtomProps {
 const SearchButtom: React.FC<SearchButtomProps> = (props) => {
 
   const [selectListValues, setSelectListValues] = useState([])
-  const { companies } = useCompanyPage();
-
-  console.log(companies)
+  const { formatListToSelect } = useCompanyPage();
 
   useEffect(() => {
     if (props.typeValue === "tag") {
-      setSelectListValues(mockTags)
+      setSelectListValues([{ value: "default", label: "todos" }])
+      selectListValues.push(...mockTags)
     } else if (props.typeValue === "company") {
-      setSelectListValues(companies.map((company) => {
-        return { value: company.id, label: company.name}
-      }))
+      setSelectListValues([{ value: "default", label: "todos" }])
+      const res = formatListToSelect()
+      
     } 
   }, [props.typeValue])
 
@@ -55,7 +54,7 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
           onChange={props.onChange}
           />
         : 
-          <Select native value={props.typeValue} onChange={props.ChangeType}>
+          <Select native value={props.value} onChange={props.onChange}>
               {selectListValues.map((type, index) => (
                 <option key={index} value={type.value}>
                   {type.label}
