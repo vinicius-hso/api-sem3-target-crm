@@ -18,14 +18,34 @@ import SearchButtom from "ui/components/SearchButton/SearchButton";
 import PipelineContext from "contexts/PipelineContext";
 import { formatValue } from "data/utils/formatValue";
 import DetailModal from "ui/components/Modal/DealDetailModal";
+import { mockTags } from "data/utils/mock";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 
 function DealPipeline() {
-  const { hasError, isLoading, getDealsInfo } = usePipelineComponent();
+  const { hasError, isLoading } = usePipelineComponent();
   const { dealTotalParams, filterDeals } = useContext(PipelineContext);
   const [valueType, setValueType] = React.useState("name");
   const [searchTerm, setSearchTerm] = React.useState("");
-  const handleChange = (event) => {
-    console.log(valueType)
+  const [selectListValues, setSelectListValues] = React.useState([]);
+  const { formatCompaniesToSelect } = useCompanyPage();
+
+  const handleChangeValueType = (event) => {
+    setSearchTerm("");
+    setValueType(event.target.value);
+    if (event.target.value === "tag") {
+      setSelectListValues(mockTags);
+    } else if (event.target.value === "company") {
+      setSelectListValues(formatCompaniesToSelect);
+    } else {
+      setSelectListValues([]);
+    }
+  };
+
+  const handleChangeSearchTerm = (event) => {
+    setSearchTerm(event.target.value);
+    setTimeout(() => {
+      filterDeals(event.target.value, valueType);
+    }, 500);
   };
 
   return (
@@ -80,6 +100,8 @@ function DealPipeline() {
           buttomIcon="fa-search"
           viewButtonGroup={true}
           typeValue={valueType}
+          value={searchTerm}
+          selectListValues={selectListValues}
           searchTypes={[
             { value: "name", name: "Nome" },
             { value: "company", name: "Empresa" },
@@ -87,17 +109,13 @@ function DealPipeline() {
             { value: "tag", name: "Tag" },
           ]}
           ChangeType={(event) => {
-            setValueType(event.target.value)
+            handleChangeValueType(event);
           }}
-          onClick={() => {
-            filterDeals(searchTerm, valueType);
-          } } 
-          value={searchTerm} 
           onChange={(event) => {
-            handleChange(event.target.value)
+            setSearchTerm(event.target.value);
+            handleChangeSearchTerm(event);
           }}
-               
-          />
+        />
       </DealsHeaderContainer>
       <PipelinesContainer>
         {isLoading ? (

@@ -218,9 +218,8 @@ export const ModalProvider: React.FC = ({ children }) => {
   };
 
   const filterDeals = (value: any, typeValue: any) => {
-    let t = dealsList;
-  }
-
+    console.log(value, typeValue);
+  };
 
   useEffect(() => {
     if (route.route === "/") {
@@ -252,7 +251,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         onDragEnd,
         dealsList,
         dealTotalParams,
-        filterDeals
+        filterDeals,
       }}
     >
       {children}

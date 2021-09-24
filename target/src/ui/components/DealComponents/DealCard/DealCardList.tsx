@@ -17,7 +17,7 @@ const DealCardList = (props) => {
     useCreateDealModal,
     useDealDetailModal,
   } = useContext(PipelineContext);
-  console.log(props);
+  //console.log(props);
 
   return (
     <ColumnContainer>

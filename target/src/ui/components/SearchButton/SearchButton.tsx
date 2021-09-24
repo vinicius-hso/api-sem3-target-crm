@@ -1,19 +1,15 @@
 import {
   FormControl,
   IconButton,
-  Paper,
+  InputLabel,
+  MenuItem,
   Select,
-  Typography,
 } from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import React, { useEffect, useMemo, useState } from "react";
-import TextFieldMask from 'ui/components/Input/TextFieldMask/TextFieldMask';
-import { mockTags } from '../../../data/utils/mock';
-import {
-  DividerStyled,
-  InputBaseStyled,
-  PaperStyled,
-} from "./SearchButton.style";
+import React, { useEffect, useState } from "react";
+import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
+import { mockTags } from "../../../data/utils/mock";
+import { DividerStyled, PaperStyled } from "./SearchButton.style";
 
 interface SearchButtomProps {
   placeholder: string;
@@ -22,56 +18,63 @@ interface SearchButtomProps {
   viewButtonGroup: boolean;
   ChangeType: any;
   typeValue: string | number;
-  onClick: any;
   value: string;
   onChange: any;
+  selectListValues?: any[];
 }
 
 const SearchButtom: React.FC<SearchButtomProps> = (props) => {
-
-  const [selectListValues, setSelectListValues] = useState([])
-  const { formatListToSelect } = useCompanyPage();
-
-  useEffect(() => {
-    if (props.typeValue === "tag") {
-      setSelectListValues([{ value: "default", label: "todos" }])
-      selectListValues.push(...mockTags)
-    } else if (props.typeValue === "company") {
-      setSelectListValues([{ value: "default", label: "todos" }])
-      const res = formatListToSelect()
-      
-    } 
-  }, [props.typeValue])
+  useEffect(() => {}, [props.typeValue]);
 
   return (
     <PaperStyled>
-      {
-        props.typeValue === "name" ? 
-          <TextFieldMask
-          placeholder={props.placeholder}
-          inputProps={{ "aria-label": "search google maps" }}
+      <i
+        style={{ marginTop: "10px", marginRight: "5px", fontSize: "20px" }}
+        className="fa fa-search"
+      ></i>
+      {props.typeValue === "name" ? (
+        <TextFieldMask
+          label={"Filtre pelo nome da negociação"}
+          fullWidth
+          variant={"standard"}
+          size="medium"
           value={props.value}
           onChange={props.onChange}
-          />
-        : 
-          <Select native value={props.value} onChange={props.onChange}>
-              {selectListValues.map((type, index) => (
-                <option key={index} value={type.value}>
-                  {type.label}
-                </option>
-              ))}
+        />
+      ) : (
+        <FormControl fullWidth>
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+            Selecione um valor
+          </InputLabel>
+
+          <Select
+            variant="standard"
+            fullWidth
+            value={props.value}
+            onChange={props.onChange}
+          >
+            {props.selectListValues.map((type, index) => (
+              <MenuItem key={index} value={type.value}>
+                {type.label}
+              </MenuItem>
+            ))}
           </Select>
-      }
-      <IconButton type="submit" aria-label="search" onClick={props.onClick}>
-        <i className={`fa ${props.buttomIcon}`}></i>
-      </IconButton>
-      <DividerStyled orientation="vertical" />
-      <FormControl variant="outlined" size="small">
-        <Select native value={props.typeValue} onChange={props.ChangeType}>
+        </FormControl>
+      )}
+      <DividerStyled orientation="vertical" sx={{ mx: 1 }} />
+      <FormControl fullWidth>
+        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+          Tipo do filtro
+        </InputLabel>
+        <Select
+          value={props.typeValue}
+          onChange={props.ChangeType}
+          variant="standard"
+        >
           {props.searchTypes.map((type, index) => (
-            <option key={index} value={type.value}>
+            <MenuItem key={index} value={type.value}>
               {type.name}
-            </option>
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
