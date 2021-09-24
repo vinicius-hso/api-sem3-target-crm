@@ -20,6 +20,7 @@ export default interface ModalTypes {
   dealsList: any[];
   dealTotalParams: any;
   onDragEnd: (any) => void;
+  filterDeals: (value: string, type: string) => void;
 }
 
 export interface pipeline {

@@ -211,6 +211,11 @@ export const ModalProvider: React.FC = ({ children }) => {
     setElements(temp);
   };
 
+  const filterDeals = (value: any, typeValue: any) => {
+    let t = dealsList;
+  }
+
+
   useEffect(() => {
     if (route.route === "/") {
       getPipelines();
@@ -239,6 +244,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         onDragEnd,
         dealsList,
         dealTotalParams,
+        filterDeals
       }}
     >
       {children}

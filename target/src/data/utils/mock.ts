@@ -90,3 +90,9 @@ export const navBarRoutes = [
   { name: "Dashboard", icon: "fa-line-chart", link: "/dashboard" },
   { name: "Arquivados", icon: "fa-archive", link: "/archives" },
 ];
+
+export const mockTags = [
+  { value: 'HOT', label: 'Quente' },
+  { value: 'COLD', label: 'Frio' },
+  { value: 'WARM', label: 'Morno' },
+]
