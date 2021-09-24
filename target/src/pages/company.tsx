@@ -34,8 +34,7 @@ function DealPipeline() {
             { value: 30, name: "Contato" },
             { value: 40, name: "Tag" },
           ]}
-          ChangeType={handleChange}
-        />
+          ChangeType={handleChange} value={""} onChange={undefined}        />
       </CompanyHeaderContainer>
       <hr style={{ width: "90%" }} />
       <CardsContainer>
