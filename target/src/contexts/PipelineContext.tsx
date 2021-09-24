@@ -224,6 +224,24 @@ export const ModalProvider: React.FC = ({ children }) => {
       pipe.deals.forEach((deal) => {
         if (deal.name.includes(value)) {
           deals.push(deal);
+        } else {
+          switch(typeValue) {
+            case 'contact':
+              if (deal.contact.id.includes(value)) {
+                deals.push(deal);
+              }
+              break;
+            case 'company':
+              if (deal.company.id.includes(value)) {
+                deals.push(deal);
+              }
+              break;
+            case 'tag':
+              if (deal.tag.includes(value)) {
+                deals.push(deal);
+              }
+              break;
+          }
         }
       });
       pipe.deals = deals;
