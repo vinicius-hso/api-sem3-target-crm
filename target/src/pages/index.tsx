@@ -24,10 +24,13 @@ import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
-  const { dealTotalParams, filterDeals } = useContext(PipelineContext);
+  const { dealTotalParams, filterDeals, removefilterDeals } =
+    useContext(PipelineContext);
   const [valueType, setValueType] = React.useState("name");
   const [searchTerm, setSearchTerm] = React.useState("");
   const [selectListValues, setSelectListValues] = React.useState([]);
+  const [hasFiltered, setHasFiltered] = React.useState(false);
+  const [time, setTime] = React.useState(null);
   const { formatCompaniesToSelect } = useCompanyPage();
   const { formatContactToSelect } = useContactPage();
 
@@ -39,7 +42,7 @@ function DealPipeline() {
     } else if (event.target.value === "company") {
       setSelectListValues(formatCompaniesToSelect);
     } else if (event.target.value === "contact") {
-      setSelectListValues(formatContactToSelect)
+      setSelectListValues(formatContactToSelect);
     } else {
       setSelectListValues([]);
     }
@@ -47,9 +50,23 @@ function DealPipeline() {
 
   const handleChangeSearchTerm = (event) => {
     setSearchTerm(event.target.value);
-    setTimeout(() => {
-      filterDeals(event.target.value, valueType);
-    }, 1000);
+    if (time) {
+      clearTimeout(time);
+      setTime(null);
+    }
+    setTime(
+      setTimeout(() => {
+        filterDeals(event.target.value, valueType);
+        setHasFiltered(true);
+      }, 1000)
+    );
+    clearTimeout(time);
+  };
+
+  const removeFilters = () => {
+    setHasFiltered(false);
+    setSearchTerm("");
+    removefilterDeals();
   };
 
   return (
@@ -106,6 +123,8 @@ function DealPipeline() {
           typeValue={valueType}
           value={searchTerm}
           selectListValues={selectListValues}
+          hasFiltered={hasFiltered}
+          onClick={removeFilters}
           searchTypes={[
             { value: "name", name: "Nome" },
             { value: "company", name: "Empresa" },

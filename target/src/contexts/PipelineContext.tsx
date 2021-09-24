@@ -217,8 +217,23 @@ export const ModalProvider: React.FC = ({ children }) => {
     setElements(temp);
   };
 
-  const filterDeals = (value: any, typeValue: any) => {
-    console.log(value, typeValue);
+  const filterDeals = (value: string, typeValue: string) => {
+    localStorage.setItem("dealsList", JSON.stringify(dealsList));
+    Object.values(dealsList).forEach((pipe) => {
+      const deals = [];
+      pipe.deals.forEach((deal) => {
+        if (deal.name.includes(value)) {
+          deals.push(deal);
+        }
+      });
+      pipe.deals = deals;
+    });
+    setElements(dealsList);
+  };
+
+  const removefilterDeals = () => {
+    setElements(JSON.parse(localStorage.getItem("dealsList")));
+    localStorage.removeItem("dealsList");
   };
 
   useEffect(() => {
@@ -252,6 +267,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         dealsList,
         dealTotalParams,
         filterDeals,
+        removefilterDeals,
       }}
     >
       {children}

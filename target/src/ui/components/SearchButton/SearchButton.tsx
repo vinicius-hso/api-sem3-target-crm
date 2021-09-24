@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import React, { useEffect } from "react";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { DividerStyled, PaperStyled } from "./SearchButton.style";
+import { DividerStyled, HasFilter, PaperStyled } from "./SearchButton.style";
 
 interface SearchButtomProps {
   placeholder: string;
@@ -13,13 +13,17 @@ interface SearchButtomProps {
   value: string;
   onChange: any;
   selectListValues?: any[];
+  hasFiltered?: boolean;
+  onClick: any;
 }
 
 const SearchButtom: React.FC<SearchButtomProps> = (props) => {
   useEffect(() => {}, [props.typeValue]);
 
   return (
-    <PaperStyled>
+    <PaperStyled
+      style={{ paddingBottom: props.typeValue === "name" ? "30px" : 0 }}
+    >
       <i
         style={{ marginTop: "10px", marginRight: "5px", fontSize: "20px" }}
         className="fa fa-search"
@@ -32,7 +36,7 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
           size="medium"
           value={props.value}
           onChange={props.onChange}
-          sx={{ minWidth: "150px" }}
+          sx={{ minWidth: "150px", mt: "2px" }}
         />
       ) : (
         <FormControl fullWidth>
@@ -71,6 +75,14 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
           ))}
         </Select>
       </FormControl>
+      {props.hasFiltered ? (
+        <HasFilter onClick={props.onClick}>
+          <i className="fa fa-times" aria-hidden="true"></i>
+          Remover filtro
+        </HasFilter>
+      ) : (
+        <div />
+      )}
     </PaperStyled>
   );
 };

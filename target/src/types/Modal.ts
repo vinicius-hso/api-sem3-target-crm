@@ -22,6 +22,7 @@ export default interface ModalTypes {
   dealsList: any[];
   dealTotalParams: any;
   onDragEnd: (any) => void;
+  removefilterDeals: () => void;
   filterDeals: (value: string, type: string) => void;
 }
 

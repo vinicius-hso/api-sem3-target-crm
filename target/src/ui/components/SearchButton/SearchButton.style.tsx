@@ -9,7 +9,6 @@ import {
 
 export const PaperStyled = styled(Paper)`
   position: relative;
-  padding: 2px 4px;
   display: grid;
   grid-template-columns: 20px 1fr 20px 100px;
   align-items: center;
@@ -40,4 +39,14 @@ export const DividerStyled = styled(Divider)`
 
 export const IconButtonStyled = styled(IconButton)`
   padding: 10;
+`;
+
+export const HasFilter = styled("div")`
+  position: absolute;
+  top: 60px;
+  left: 0;
+  padding: 10px;
+  border-radius: 24px;
+  background-color: ${({ theme }) => theme.palette.grey[100]};
+  cursor: pointer;
 `;
