@@ -21,10 +21,11 @@ import DetailModal from "ui/components/Modal/DealDetailModal";
 
 function DealPipeline() {
   const { hasError, isLoading, getDealsInfo } = usePipelineComponent();
-  const { dealTotalParams } = useContext(PipelineContext);
-  const [valueType, setValueType] = React.useState("");
+  const { dealTotalParams, filterDeals } = useContext(PipelineContext);
+  const [valueType, setValueType] = React.useState("name");
+  const [searchTerm, setSearchTerm] = React.useState("");
   const handleChange = (event) => {
-    setValueType(event.target.value);
+    console.log(valueType)
   };
 
   return (
@@ -80,13 +81,23 @@ function DealPipeline() {
           viewButtonGroup={true}
           typeValue={valueType}
           searchTypes={[
-            { value: 10, name: "Nome" },
-            { value: 20, name: "Empresa" },
-            { value: 30, name: "Contato" },
-            { value: 40, name: "Tag" },
+            { value: "name", name: "Nome" },
+            { value: "company", name: "Empresa" },
+            { value: "contact", name: "Contato" },
+            { value: "tag", name: "Tag" },
           ]}
-          ChangeType={handleChange}
-        />
+          ChangeType={(event) => {
+            setValueType(event.target.value)
+          }}
+          onClick={() => {
+            filterDeals(searchTerm, valueType);
+          } } 
+          value={searchTerm} 
+          onChange={(event) => {
+            handleChange(event.target.value)
+          }}
+               
+          />
       </DealsHeaderContainer>
       <PipelinesContainer>
         {isLoading ? (
