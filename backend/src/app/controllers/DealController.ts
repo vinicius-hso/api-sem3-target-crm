@@ -31,8 +31,8 @@ interface ActivityInterface {
 class DealController {
   public async findAll(req: Request, res: Response): Promise<Response> {
     try {
-      const { query } = req.query;
-      const deal = await Deal.find({ where: query ? { status: query } : '', relations: ['company', 'contact', 'pipeline'] });
+      const { status } = req.query;
+      const deal = await Deal.find({ where: status ? { status } : '', relations: ['company', 'contact', 'pipeline'] });
 
       return res.status(200).json(deal);
     } catch (error) {
