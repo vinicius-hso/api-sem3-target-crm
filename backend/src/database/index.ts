@@ -36,11 +36,11 @@ const mocks = async () => {
 
     console.log('create contact', contact.id);
 
-    const deal = await Deal.create({ pipeline: pipeline, company: company, contact: contact, name: 'teste', deadline: (new Date()), priority: 'teste', value: 123, tag: 'COLD', activity: [{ type: 'teste', name: 'teste', description: 'testando', status: 'Concluida!', date: new Date(), createdBy: user.name }] }).save();
+    const deal = await Deal.create({ pipeline: pipeline, company: company, contact: contact, name: 'teste', deadline: (new Date()), priority: 'teste', value: 123, activity: [{ type: 'teste', name: 'teste', description: 'testando', status: 'Concluida!', date: new Date(), createdBy: user.name, tag: 'COLD' }] }).save();
 
     console.log('create deal', deal.id);
 
-    const insertActivity = deal.activity.push({ type: 'teste2', name: 'teste', description: 'testando', status: 'Concluida!', date: new Date(), createdBy: user.name, schedule: '12:00' });
+    const insertActivity = deal.activity.push({ type: 'teste2', name: 'teste', description: 'testando', status: 'Concluida!', date: new Date(), createdBy: user.name, schedule: '12:00', tag: 'HOT' });
 
     await deal.save();
 

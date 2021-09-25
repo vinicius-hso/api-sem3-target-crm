@@ -7,7 +7,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from 'typeorm';
 import Company from './Company';
 import Contact from './Contact';
@@ -44,14 +44,20 @@ class Deals extends BaseEntity {
   @Column({ nullable: true })
   value: number;
 
-  @Column({ type: 'enum', enum: ['COLD', 'HOT', 'WORM'], nullable: true })
-  tag: string;
-
-  @Column({ type: 'enum', enum: ['INPROGRESS', 'LOST', 'WON'], default: 'INPROGRESS' })
+  @Column({ type: 'enum', enum: ['INPROGRESS', 'LOST', 'WON', 'ARCHIVED'], default: 'INPROGRESS' })
   status: string;
 
-  @Column({ type: 'jsonb', nullable: true})
-  activity: Array<{ type: string; name: string; description: string; status: string; createdBy: string; date: Date, schedule: string }>;
+  @Column({ type: 'jsonb', nullable: true })
+  activity: Array<{
+    type: string;
+    name: string;
+    description: string;
+    status: string;
+    tag: string;
+    createdBy: string;
+    schedule: string;
+    date: Date;
+  }>;
 
   @CreateDateColumn()
   createdAt: Date;
