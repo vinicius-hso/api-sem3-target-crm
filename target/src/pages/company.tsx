@@ -68,7 +68,6 @@ function DealPipeline() {
           hasFiltered={hasFiltered}
         />
       </CompanyHeaderContainer>
-      <hr style={{ width: "90%" }} />
       <CardsContainer>
         {companies.map((company) => (
           <CompanyCard

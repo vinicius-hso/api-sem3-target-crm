@@ -42,7 +42,7 @@ export const ToolbarHeaderStyled = styled("div")`
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     padding: ${({ theme }) => theme.spacing(1)} 0;
-    grid-template-columns: 200px 1fr 60px;
+    grid-template-columns: 120px 1fr 60px;
   }
 `;
 
