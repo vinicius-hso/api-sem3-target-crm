@@ -8,13 +8,14 @@ export const DealCardContainer = styled(Card)`
   padding: ${({ theme }) => theme.spacing(1)};
   gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(0.5)};
   margin: ${({ theme }) => theme.spacing(1)} 0;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
 `;
 
 export const DealPictureStyled = styled(Avatar)`
   width: 20px;
   height: initial;
   aspect-ratio: 1;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 16px;
 `;
 
 export const DealDescriptionContainer = styled("div")`

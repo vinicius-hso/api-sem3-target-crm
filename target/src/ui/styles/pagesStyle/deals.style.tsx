@@ -4,9 +4,7 @@ export const DealsPageContainer = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: ${({ theme }) => theme.spacing(2)};
   overflow: hidden;
-  width: calc(100vw - 178px);
   ${({ theme }) => theme.breakpoints.down("md")} {
     width: 100vw;
   }

@@ -34,7 +34,7 @@ export const ContactPictureStyled = styled(Avatar)`
   width: 100%;
   height: initial;
   aspect-ratio: 1;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-size: 16px;
 `;
 
 export const ContactRatingStyled = styled(Rating)`

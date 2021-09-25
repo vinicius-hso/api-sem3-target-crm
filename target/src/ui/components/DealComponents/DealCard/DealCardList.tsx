@@ -10,8 +10,15 @@ import { formatValue } from "../../../../data/utils/formatValue";
 
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
-  const { useDeleteModal, useUpdateModal, useCreateModal, useCreateDealModal } =
-    useContext(PipelineContext);
+  const {
+    useDeleteModal,
+    useUpdateModal,
+    useCreateModal,
+    useCreateDealModal,
+    useDealDetailModal,
+  } = useContext(PipelineContext);
+  //console.log(props);
+
   return (
     <ColumnContainer>
       <div style={{ position: "relative" }}>
@@ -122,6 +129,7 @@ const DealCardList = (props) => {
                             budget={deal.value}
                             startDate={deal.createdAt}
                             tag={deal.tag}
+                            onClick={useDealDetailModal}
                           />
                         </div>
                       )}

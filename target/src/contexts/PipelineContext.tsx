@@ -13,6 +13,8 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [deleteModalState, setDeleteModalState] = useState<boolean>(false);
   const [createDealModalState, setCreateDealModalState] =
     useState<boolean>(false);
+  const [dealDetailModalState, setDealDetailModalState] =
+    useState<boolean>(false);
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
   const [name, setNameState] = useState<string>();
@@ -94,6 +96,10 @@ export const ModalProvider: React.FC = ({ children }) => {
   const useDeleteModal = (id: string) => {
     setDeleteIdState(id);
     setDeleteModalState(!deleteModalState);
+  };
+
+  const useDealDetailModal = (deal: any) => {
+    setDealDetailModalState(!dealDetailModalState);
   };
 
   const setName = (name: string) => {
@@ -211,8 +217,50 @@ export const ModalProvider: React.FC = ({ children }) => {
     setElements(temp);
   };
 
+  const filterDeals = (value: string, typeValue: string) => {
+    if (!localStorage.getItem("dealsListFilter")) {
+      localStorage.setItem("dealsListFilter", JSON.stringify(dealsList));
+    }
+    Object.values(dealsList).forEach((pipe) => {
+      const deals = [];
+      pipe.deals.forEach((deal) => {
+        if (deal.name.toLowerCase().includes(value.toLocaleLowerCase())) {
+          deals.push(deal);
+        } else {
+          switch (typeValue) {
+            case "contact":
+              if (deal.contact.id.includes(value)) {
+                deals.push(deal);
+              }
+              break;
+            case "company":
+              if (deal.company.id.includes(value)) {
+                deals.push(deal);
+              }
+              break;
+            case "tag":
+              if (deal.tag.includes(value)) {
+                deals.push(deal);
+              }
+              break;
+          }
+        }
+      });
+      pipe.deals = deals;
+    });
+    setElements(dealsList);
+  };
+
+  const removefilterDeals = (isNewSearched: boolean) => {
+    setElements(JSON.parse(localStorage.getItem("dealsListFilter")));
+    if (!isNewSearched) {
+      localStorage.removeItem("dealsListFilter");
+    }
+  };
+
   useEffect(() => {
     if (route.route === "/") {
+      localStorage.removeItem("dealsListFilter");
       getPipelines();
     }
   }, []);
@@ -228,6 +276,8 @@ export const ModalProvider: React.FC = ({ children }) => {
         useUpdateModal,
         deleteModalState,
         useDeleteModal,
+        dealDetailModalState,
+        useDealDetailModal,
         deletePipeline,
         updatePipeline,
         createPipeline,
@@ -239,6 +289,8 @@ export const ModalProvider: React.FC = ({ children }) => {
         onDragEnd,
         dealsList,
         dealTotalParams,
+        filterDeals,
+        removefilterDeals,
       }}
     >
       {children}

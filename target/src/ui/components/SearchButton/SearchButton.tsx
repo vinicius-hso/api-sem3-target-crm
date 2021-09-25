@@ -1,16 +1,7 @@
-import {
-  FormControl,
-  IconButton,
-  Paper,
-  Select,
-  Typography,
-} from "@material-ui/core";
-import React from "react";
-import {
-  DividerStyled,
-  InputBaseStyled,
-  PaperStyled,
-} from "./SearchButton.style";
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import React, { useEffect } from "react";
+import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
+import { DividerStyled, HasFilter, PaperStyled } from "./SearchButton.style";
 
 interface SearchButtomProps {
   placeholder: string;
@@ -19,28 +10,81 @@ interface SearchButtomProps {
   viewButtonGroup: boolean;
   ChangeType: any;
   typeValue: string | number;
+  value: string;
+  onChange: any;
+  selectListValues?: any[];
+  hasFiltered: boolean;
+  onClick: any;
 }
 
 const SearchButtom: React.FC<SearchButtomProps> = (props) => {
+  useEffect(() => {}, [props.typeValue]);
+
   return (
-    <PaperStyled>
-      <InputBaseStyled
-        placeholder={props.placeholder}
-        inputProps={{ "aria-label": "search google maps" }}
-      />
-      <IconButton type="submit" aria-label="search">
-        <i className={`fa ${props.buttomIcon}`}></i>
-      </IconButton>
-      <DividerStyled orientation="vertical" />
-      <FormControl variant="outlined" size="small">
-        <Select native value={props.typeValue} onChange={props.ChangeType}>
+    <PaperStyled
+      style={{ paddingBottom: props.typeValue === "name" ? "30px" : 0 }}
+    >
+      <i
+        style={{ marginTop: "10px", marginRight: "5px", fontSize: "20px" }}
+        className="fa fa-search"
+      ></i>
+      {props.typeValue === "name" || props.typeValue === "city" ? (
+        <TextFieldMask
+          label={`Filtre pelo ${
+            props.typeValue === "name" ? "nome" : "cidade"
+          } `}
+          fullWidth
+          variant={"standard"}
+          size="medium"
+          value={props.value}
+          onChange={props.onChange}
+          sx={{ minWidth: "150px", mt: "2px" }}
+        />
+      ) : (
+        <FormControl fullWidth>
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+            Selecione um valor
+          </InputLabel>
+
+          <Select
+            variant="standard"
+            fullWidth
+            value={props.value}
+            onChange={props.onChange}
+          >
+            {props.selectListValues.map((type, index) => (
+              <MenuItem key={index} value={type.value}>
+                {type.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
+      <DividerStyled orientation="vertical" sx={{ mx: 1 }} />
+      <FormControl fullWidth>
+        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+          Tipo do filtro
+        </InputLabel>
+        <Select
+          value={props.typeValue}
+          onChange={props.ChangeType}
+          variant="standard"
+        >
           {props.searchTypes.map((type, index) => (
-            <option key={index} value={type.value}>
+            <MenuItem key={index} value={type.value}>
               {type.name}
-            </option>
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
+      {props.hasFiltered ? (
+        <HasFilter onClick={props.onClick}>
+          <i className="fa fa-times" aria-hidden="true"></i>
+          Remover filtro
+        </HasFilter>
+      ) : (
+        <div />
+      )}
     </PaperStyled>
   );
 };

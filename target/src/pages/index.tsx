@@ -17,13 +17,59 @@ import CreateDealModal from "ui/components/Modal/CreateDealModal";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import PipelineContext from "contexts/PipelineContext";
 import { formatValue } from "data/utils/formatValue";
+import DetailModal from "ui/components/Modal/DealDetailModal";
+import { mockTags } from "data/utils/mock";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 
 function DealPipeline() {
-  const { hasError, isLoading, getDealsInfo } = usePipelineComponent();
-  const { dealTotalParams } = useContext(PipelineContext);
-  const [valueType, setValueType] = React.useState("");
-  const handleChange = (event) => {
+  const { hasError, isLoading } = usePipelineComponent();
+  const { dealTotalParams, filterDeals, removefilterDeals } =
+    useContext(PipelineContext);
+  const [valueType, setValueType] = React.useState("name");
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [selectListValues, setSelectListValues] = React.useState([]);
+  const [hasFiltered, setHasFiltered] = React.useState(false);
+  const [time, setTime] = React.useState(null);
+  const { formatCompaniesToSelect } = useCompanyPage();
+  const { formatContactToSelect } = useContactPage();
+
+  const handleChangeValueType = (event) => {
+    setSearchTerm("");
     setValueType(event.target.value);
+    if (event.target.value === "tag") {
+      setSelectListValues(mockTags);
+    } else if (event.target.value === "company") {
+      setSelectListValues(formatCompaniesToSelect);
+    } else if (event.target.value === "contact") {
+      setSelectListValues(formatContactToSelect);
+    } else {
+      setSelectListValues([]);
+    }
+  };
+
+  const handleChangeSearchTerm = (event) => {
+    if (hasFiltered) {
+      removefilterDeals(true);
+    }
+    setSearchTerm(event.target.value);
+    if (time) {
+      clearTimeout(time);
+      setTime(null);
+    }
+    setTime(
+      setTimeout(() => {
+        filterDeals(event.target.value, valueType);
+        setHasFiltered(true);
+      }, 1000)
+    );
+    clearTimeout(time);
+  };
+
+  const removeFilters = () => {
+    removefilterDeals(false);
+    setHasFiltered(false);
+    setSearchTerm("");
   };
 
   return (
@@ -32,6 +78,7 @@ function DealPipeline() {
       <UpDateModal />
       <CreateModal />
       <CreateDealModal />
+      <DetailModal />
       <DealsHeaderContainer>
         <TitleHeaderContainer>
           <Title
@@ -77,16 +124,25 @@ function DealPipeline() {
           buttomIcon="fa-search"
           viewButtonGroup={true}
           typeValue={valueType}
+          value={searchTerm}
+          selectListValues={selectListValues}
+          hasFiltered={hasFiltered}
+          onClick={removeFilters}
           searchTypes={[
-            { value: 10, name: "Nome" },
-            { value: 20, name: "Empresa" },
-            { value: 30, name: "Contato" },
-            { value: 40, name: "Tag" },
+            { value: "name", name: "Nome" },
+            { value: "company", name: "Empresa" },
+            { value: "contact", name: "Contato" },
+            { value: "tag", name: "Tag" },
           ]}
-          ChangeType={handleChange}
+          ChangeType={(event) => {
+            handleChangeValueType(event);
+          }}
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+            handleChangeSearchTerm(event);
+          }}
         />
       </DealsHeaderContainer>
-
       <PipelinesContainer>
         {isLoading ? (
           <div style={{ textAlign: "center" }}>

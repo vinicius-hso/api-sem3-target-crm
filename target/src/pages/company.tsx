@@ -5,16 +5,41 @@ import {
   CompanyPageContainer,
   TitleContainer,
 } from "@styles/pagesStyle/company.style";
-import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 
 function DealPipeline() {
-  const { companies } = useCompanyPage();
-  const [valueType, setValueType] = React.useState("");
-  const handleChange = (event) => {
-    setValueType(event.target.value);
+  const { companies, filteredCompany, removeFiltered } = useCompanyPage();
+  const [valueType, setValueType] = React.useState("name");
+  const [selectListValues, setSelectListValues] = React.useState([]);
+  const [hasFiltered, setHasFiltered] = React.useState(false);
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [time, setTime] = React.useState(null);
+
+  const handleChangeSearchTerm = (event) => {
+    if (hasFiltered) {
+      removeFiltered(true);
+    }
+    setSearchTerm(event.target.value);
+    if (time) {
+      clearTimeout(time);
+      setTime(null);
+    }
+    setTime(
+      setTimeout(() => {
+        filteredCompany(event.target.value, valueType);
+        setHasFiltered(true);
+      }, 1000)
+    );
+    clearTimeout(time);
+  };
+
+  const removeFilters = () => {
+    removeFiltered(false);
+    setHasFiltered(false);
+    setSearchTerm("");
   };
 
   return (
@@ -29,15 +54,20 @@ function DealPipeline() {
           viewButtonGroup={true}
           typeValue={valueType}
           searchTypes={[
-            { value: 10, name: "Nome" },
-            { value: 20, name: "Empresa" },
-            { value: 30, name: "Contato" },
-            { value: 40, name: "Tag" },
+            { value: "name", name: "Nome" },
+            { value: "city", name: "Cidade" },
           ]}
-          ChangeType={handleChange}
+          ChangeType={(event) => {
+            setValueType(event.target.value);
+          }}
+          onChange={(event) => {
+            handleChangeSearchTerm(event);
+          }}
+          value={searchTerm}
+          onClick={removeFilters}
+          hasFiltered={hasFiltered}
         />
       </CompanyHeaderContainer>
-      <hr style={{ width: "90%" }} />
       <CardsContainer>
         {companies.map((company) => (
           <CompanyCard

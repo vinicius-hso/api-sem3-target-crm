@@ -5,6 +5,8 @@ export default interface ModalTypes {
   createDealModalState: boolean;
   useCreateModal: () => void;
   useCreateDealModal: () => void;
+  dealDetailModalState: boolean;
+  useDealDetailModal: (deal: any) => void;
   updateModalState: boolean;
   useUpdateModal: (id: string) => void;
   deleteModalState: boolean;
@@ -20,6 +22,8 @@ export default interface ModalTypes {
   dealsList: any[];
   dealTotalParams: any;
   onDragEnd: (any) => void;
+  removefilterDeals: (boolean) => void;
+  filterDeals: (value: string, type: string) => void;
 }
 
 export interface pipeline {

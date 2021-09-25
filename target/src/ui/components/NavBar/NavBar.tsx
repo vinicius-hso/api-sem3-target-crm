@@ -17,6 +17,7 @@ import { DrawerWeb } from "./Drawers/DrawerWeb";
 import { DrawerMobile } from "./Drawers/DrawerMobile";
 import { route } from "next/dist/server/router";
 import { useRouter } from "next/dist/client/router";
+import { useNavBarComponent } from "data/services/hooks/componentHooks/navBarHook";
 
 interface Props {
   window?: () => Window;
@@ -24,19 +25,9 @@ interface Props {
 }
 
 export default function NavBar(props: Props) {
+  const { mobileOpen, navHover, setNavHover, handleDrawerToggle } =
+    useNavBarComponent();
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [navHover, setNavHover] = React.useState(false);
-  const route = useRouter();
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-  useEffect(() => {
-    const storagedToken = localStorage.getItem("@taget:token");
-    if (!storagedToken) {
-      route.push("/login");
-    }
-  }, []);
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -88,7 +79,9 @@ export default function NavBar(props: Props) {
           </DrawerContainer>
         </Hidden>
       </DrawerStyled>
-      <ContentStyled>{props.CurrentPage}</ContentStyled>
+      <ContentStyled style={{ marginLeft: navHover ? "104px" : "-6px" }}>
+        {props.CurrentPage}
+      </ContentStyled>
     </Root>
   );
 }

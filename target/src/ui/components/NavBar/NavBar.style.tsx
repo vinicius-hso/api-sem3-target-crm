@@ -16,12 +16,12 @@ export const Root = styled("div")`
 
 export const DrawerStyled = styled("nav")`
   ${({ theme }) => theme.breakpoints.up("md")} {
-    width: 100px;
+    width: 80px;
   }
 `;
 
 export const AppBarStyled = styled(AppBar)`
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+  background-color: ${({ theme }) => theme.palette.background.paper};
   box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.05);
 
   ${({ theme }) => theme.breakpoints.up("md")} {
@@ -33,15 +33,16 @@ export const AppBarStyled = styled(AppBar)`
   }
 `;
 
-export const ToolbarHeaderStyled = styled(Toolbar)`
+export const ToolbarHeaderStyled = styled("div")`
   display: grid;
   width: 100vw;
+  padding: 6px ${({ theme }) => theme.spacing(2)};
   align-items: center;
   grid-template-columns: 40px 1fr 30px;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
-    padding: 0;
-    grid-template-columns: 200px 1fr 60px;
+    padding: ${({ theme }) => theme.spacing(1)} 0;
+    grid-template-columns: 120px 1fr 60px;
   }
 `;
 
@@ -50,13 +51,11 @@ export const UserPictureStyled = styled(Avatar)`
   color: ${({ theme }) => theme.palette.secondary.main};
   font-weight: bold;
   width: 30px;
-  height: 30px;
   height: initial;
   aspect-ratio: 1;
-  font-family: "Arial Narrow", Arial, sans-serif;
-  margin: auto;
+  font-size: 16px;
   ${({ theme }) => theme.breakpoints.up("md")} {
-    width: 50px;
+    width: 40px;
   } ;
 `;
 
@@ -74,7 +73,7 @@ export const MenuButton = styled(IconButton)`
   display: "none";
   ${({ theme }) => theme.breakpoints.up("md")} {
     display: "none";
-    margin-right: 50px;
+    width: 10px;
   } ;
 `;
 
@@ -114,11 +113,11 @@ export const DrawerContainer = styled("div")`
 `;
 
 export const HeaderLogoStyled = styled("img")`
-  height: 30px;
+  height: 40px;
   margin: 0 auto;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     margin: 0 auto;
-    height: 70px;
+    height: 60px;
   }
 `;
