@@ -218,25 +218,27 @@ export const ModalProvider: React.FC = ({ children }) => {
   };
 
   const filterDeals = (value: string, typeValue: string) => {
-    localStorage.setItem("dealsList", JSON.stringify(dealsList));
+    if (!localStorage.getItem("dealsListFilter")) {
+      localStorage.setItem("dealsListFilter", JSON.stringify(dealsList));
+    }
     Object.values(dealsList).forEach((pipe) => {
       const deals = [];
       pipe.deals.forEach((deal) => {
         if (deal.name.toLowerCase().includes(value.toLocaleLowerCase())) {
           deals.push(deal);
         } else {
-          switch(typeValue) {
-            case 'contact':
+          switch (typeValue) {
+            case "contact":
               if (deal.contact.id.includes(value)) {
                 deals.push(deal);
               }
               break;
-            case 'company':
+            case "company":
               if (deal.company.id.includes(value)) {
                 deals.push(deal);
               }
               break;
-            case 'tag':
+            case "tag":
               if (deal.tag.includes(value)) {
                 deals.push(deal);
               }
@@ -249,13 +251,16 @@ export const ModalProvider: React.FC = ({ children }) => {
     setElements(dealsList);
   };
 
-  const removefilterDeals = () => {
-    setElements(JSON.parse(localStorage.getItem("dealsList")));
-    localStorage.removeItem("dealsList");
+  const removefilterDeals = (isNewSearched: boolean) => {
+    setElements(JSON.parse(localStorage.getItem("dealsListFilter")));
+    if (!isNewSearched) {
+      localStorage.removeItem("dealsListFilter");
+    }
   };
 
   useEffect(() => {
     if (route.route === "/") {
+      localStorage.removeItem("dealsListFilter");
       getPipelines();
     }
   }, []);

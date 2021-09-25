@@ -13,7 +13,7 @@ interface SearchButtomProps {
   value: string;
   onChange: any;
   selectListValues?: any[];
-  hasFiltered?: boolean;
+  hasFiltered: boolean;
   onClick: any;
 }
 
@@ -28,9 +28,11 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
         style={{ marginTop: "10px", marginRight: "5px", fontSize: "20px" }}
         className="fa fa-search"
       ></i>
-      {props.typeValue === "name" ? (
+      {props.typeValue === "name" || props.typeValue === "city" ? (
         <TextFieldMask
-          label={"Filtre pelo nome"}
+          label={`Filtre pelo ${
+            props.typeValue === "name" ? "nome" : "cidade"
+          } `}
           fullWidth
           variant={"standard"}
           size="medium"

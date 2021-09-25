@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { serviceApi } from "data/services/serviceApi";
 import CompanyService from "data/services/CompanyService";
 
 export const useCompanyPage = () => {
@@ -24,8 +23,36 @@ export const useCompanyPage = () => {
     setCompanies(response);
     formatListToSelect(response);
   };
+
+  const filteredCompany = async (terms: string, typeValue: string) => {
+    if (!localStorage.getItem("companiesFilter")) {
+      localStorage.setItem("companiesFilter", JSON.stringify(companies));
+    }
+    if (typeValue === "name")
+      setCompanies(
+        companies.filter((company) =>
+          company.name.toLowerCase().includes(terms.toLocaleLowerCase())
+        )
+      );
+    else
+      setCompanies(
+        companies.filter((company) =>
+          company?.city.toLowerCase().includes(terms.toLocaleLowerCase())
+        )
+      );
+  };
+
+  const removeFiltered = async (isNewSearched: boolean) => {
+    setCompanies(JSON.parse(localStorage.getItem("dealsListFilter")));
+    if (!isNewSearched) {
+      localStorage.removeItem("dealsListFilter");
+    }
+  };
+
   return {
     companies,
     formatCompaniesToSelect,
+    filteredCompany,
+    removeFiltered,
   };
 };
