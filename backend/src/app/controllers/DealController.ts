@@ -31,7 +31,8 @@ interface ActivityInterface {
 class DealController {
   public async findAll(req: Request, res: Response): Promise<Response> {
     try {
-      const deal = await Deal.find({ relations: ['company', 'contact', 'pipeline'] });
+      const { query } = req.query;
+      const deal = await Deal.find({ where: query ? { status: query } : '', relations: ['company', 'contact', 'pipeline'] });
 
       return res.status(200).json(deal);
     } catch (error) {
@@ -60,7 +61,7 @@ class DealController {
       if (!name || !company || !contact || !pipeline) return res.status(400).json({ message: 'Invalid values for Deal' });
 
       const createdBy = await User.findOne(req.userId);
-      const schedule = `${new Date().getHours()}:${new Date().getMinutes()}`
+      const schedule = `${new Date().getHours()}:${new Date().getMinutes()}`;
 
       const deal = await Deal.create({
         name,
@@ -71,11 +72,19 @@ class DealController {
         priority,
         value,
         status,
-        activity: [{ name: 'Negociação iniciada', type: 'Criação', status: 'Em andamento', description: '', createdBy: createdBy.name, date: new Date(), schedule }],
+        activity: [{
+          name: 'Negociação iniciada',
+          type: 'Criação',
+          status: 'Em andamento',
+          description: '',
+          schedule,
+          createdBy: createdBy.name,
+          date: new Date(),
+        }]
       }).save();
 
-      if (!deal) return res.status(400).json({ message: 'Cannot create Deal'});
-      
+      if (!deal) return res.status(400).json({ message: 'Cannot create Deal' });
+
       return res.status(201).json(deal.id);
     } catch (error) {
       return res.status(400).json({ error: 'Cannot create Deal, try again' });
@@ -87,11 +96,11 @@ class DealController {
       const { name, priority, value, status, company, contact, pipeline, deadline }: DealInteface = req.body;
       const id = req.params.id;
 
-      if (!id) return res.status(400).json({ message: 'Please send Deal id'});
-      
-      const deal = await Deal.findOne(id, { relations: ['company', 'contact', 'pipeline']});
+      if (!id) return res.status(400).json({ message: 'Please send Deal id' });
 
-      if (!deal) return res.status(404).json({ message: 'Deal does not exist'});
+      const deal = await Deal.findOne(id, { relations: ['company', 'contact', 'pipeline'] });
+
+      if (!deal) return res.status(404).json({ message: 'Deal does not exist' });
 
       const valuesToUpdate: DealInteface = {
         company: company || deal.company,
@@ -102,7 +111,7 @@ class DealController {
         status: status || deal.status,
         value: value || deal.value,
         name: name || deal.name,
-      }
+      };
 
       await Deal.update(id, { ...valuesToUpdate });
 
@@ -120,7 +129,7 @@ class DealController {
 
       const deal = await Deal.findOne(id);
 
-      if (!deal) return res.status(404).json({ message: 'Deal does not exist'});
+      if (!deal) return res.status(404).json({ message: 'Deal does not exist' });
 
       await Deal.softRemove(deal);
 
@@ -135,12 +144,12 @@ class DealController {
       const { type, name, description, status, date, schedule, tag }: ActivityInterface = req.body;
       const id = req.params.id;
 
-      if (!id) return res.status(400).json({ message: 'Please send Deal id'})
+      if (!id) return res.status(400).json({ message: 'Please send Deal id' });
 
       const createdBy = await User.findOne(req.userId);
 
-      if (!type || !name || !date || !description || !status || !createdBy || !schedule || !tag ) 
-        return res.status(400).json({ message: 'Invalid values to insert Activity'});
+      if (!type || !name || !date || !description || !status || !createdBy || !schedule || !tag)
+        return res.status(400).json({ message: 'Invalid values to insert Activity' });
 
       const deal = await Deal.findOne(id);
 
@@ -158,18 +167,18 @@ class DealController {
 
   public async pipelineUpdate(req: Request, res: Response): Promise<Response> {
     try {
-      const { pipeline } = req.body
+      const { pipeline } = req.body;
       const id = req.params.id;
-  
+
       const deal = await Deal.findOne(id);
-  
-      if (!deal) return res.status(404).json({ error: 'Deal not exist'});
-  
+
+      if (!deal) return res.status(404).json({ error: 'Deal not exist' });
+
       await Deal.update(id, { pipeline });
-  
+
       return res.status(200).json();
     } catch (error) {
-      return res.status(400).json({ error: 'Cannot update Deal pipeline, try again'});
+      return res.status(400).json({ error: 'Cannot update Deal pipeline, try again' });
     }
   }
 }
