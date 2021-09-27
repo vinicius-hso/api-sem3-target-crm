@@ -1,4 +1,4 @@
-import React, { useState  } from "react";
+import React, { useState, useContext } from "react";
 import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
@@ -8,9 +8,10 @@ import { Button } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { ModalStyled } from "./ModalStyles/Modal.style";
+import PipelineContext from "contexts/PipelineContext";
 
 const CreateCompanyModal = () => {
-    const { createCompanyModalState, useCreateCompanyModal, createCompany } = useCompanyPage()
+    const { createCompanyModalState, useCreateCompanyModal, createCompany } = useContext(PipelineContext)
 
     const [data, setData] = useState<CompanyTypes>({
         name: "",
