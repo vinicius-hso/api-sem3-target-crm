@@ -3,14 +3,33 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 //@deprecated
 export const DealDetailCardContainer = styled("div")`
+  max-width: 90vw;
   display: grid;
-  height: auto;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
   background-color: ${({ theme }) => theme.palette.grey[50]};
   padding: ${({ theme }) => theme.spacing(2)};
-  align-items: center;
   gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
-  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: auto;
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const ActionsDealDetailCardContainer = styled("div")`
+  max-width: 90vw;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.palette.grey[50]};
+  padding: ${({ theme }) => theme.spacing(2)};
+  gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
   border-radius: 8px;
   box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
   position: relative;

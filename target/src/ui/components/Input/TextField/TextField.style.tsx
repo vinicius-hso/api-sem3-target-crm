@@ -3,7 +3,7 @@ import { TextField } from "@material-ui/core";
 
 export const TextFieldStyled = styled(TextField)`
   margin: ${({ theme }) => theme.spacing(1)} 0;
-  min-width: 290px;
+  min-width: 200px;
 
   .MuiInputBase-root {
     background-color: ${({ theme }) => theme.palette.primary[50]};

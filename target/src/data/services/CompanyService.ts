@@ -4,7 +4,6 @@ import { serviceApi as api } from "./serviceApi";
 
 class CompanyService {
   private headers: object;
-
   async getCompanies() {
     try {
       const { data } = await api.get("/company", {

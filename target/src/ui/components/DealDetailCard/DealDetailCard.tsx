@@ -10,6 +10,7 @@ import {
 import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
 import React from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
+import { ThreeColumnsContainer } from "../Modal/ModalStyles/ModalContainer.style";
 import {
   DealDetailCardContainer,
   EditButton,
@@ -42,20 +43,23 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
       <InputContainer>
         <FormControl fullWidth>
           <TextFieldMask
+            disabled
             label={"Negociação"}
             variant={"standard"}
             size="medium"
             fullWidth
             value={props.name}
+            sx={{ mt: "16px" }}
           />
         </FormControl>
       </InputContainer>
       <InputContainer>
-        <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+        <div>
+          <Typography color="lightgrey" variant="caption">
             Empresa
-          </InputLabel>
+          </Typography>
           <Select
+            disabled
             onChange={() => {}}
             value={props.company}
             label="Empresa"
@@ -67,15 +71,15 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
               Empresa
             </MenuItem>
           </Select>
-        </FormControl>
+        </div>
       </InputContainer>
       <InputContainer>
-        <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+        <div>
+          <Typography color="lightgrey" variant="caption">
             Contato
-          </InputLabel>
-
+          </Typography>
           <Select
+            disabled
             onChange={(event) => {}}
             label="Contato"
             value={props.contact}
@@ -87,10 +91,11 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
               Contato
             </MenuItem>
           </Select>
-        </FormControl>
+        </div>
       </InputContainer>
       <InputContainer>
         <TextFieldMask
+          disabled
           label={"Valor"}
           fullWidth
           variant={"standard"}
@@ -100,6 +105,7 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
       </InputContainer>
       <InputContainer>
         <TextFieldMask
+          disabled
           label={"Responsavel"}
           fullWidth
           variant={"standard"}
