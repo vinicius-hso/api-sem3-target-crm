@@ -14,9 +14,9 @@ export const ModalContainer = styled("div")`
   border-radius: 8px;
   overflow: auto;
   overflow-x: hidden;
-
+  min-width: 50vw;
+  max-height: 80vh;
   ${({ theme }) => theme.breakpoints.down("md")} {
-    max-height: 80vh;
   }
 `;
 export const TwoColumnsContainer = styled("div")`

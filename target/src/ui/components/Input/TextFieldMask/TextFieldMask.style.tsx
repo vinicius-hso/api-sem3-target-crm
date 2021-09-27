@@ -5,6 +5,7 @@ export const InputContainer = styled("div")`
   grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
+  width: auto;
 `;
 
 export const InputIconStyled = styled("i")`
