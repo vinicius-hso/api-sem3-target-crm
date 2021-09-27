@@ -48,16 +48,10 @@ export class createDeal1631391066476 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'tag',
-            type: 'enum',
-            enum: ['COLD', 'HOT', 'WARM'],
-            isNullable: true,
-          },
-          {
             name: 'status',
             type: 'enum',
             enum: ['DONE', 'LOST', 'INPROGRESS', 'ARCHIVED'],
-            default: 'INPROGRESS',
+            default: `'INPROGRESS'`,
           },
           {
             name: 'activity',

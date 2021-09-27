@@ -15,11 +15,27 @@ class UserController {
     try {
       const users = await User.find();
 
-      users.map(user => user.passwordHash = undefined);
+      users.map((user) => (user.passwordHash = undefined));
 
       return res.status(200).json(users);
     } catch (error) {
       res.status(400).json({ error: 'Find users failed, try again' });
+    }
+  }
+
+  public async findUserById(req: Request, res: Response): Promise<Response> {
+    try {
+      const id = req.params.id;
+
+      const user = await User.findOne(id);
+      
+      if (!user) return res.status(404).json({ message: 'User not exist' });
+
+      user.passwordHash = undefined;
+
+      return res.status(200).json(user);
+    } catch (error) {
+      res.status(400).json({ error: 'Find user failed, try again' });
     }
   }
 
@@ -49,11 +65,10 @@ class UserController {
     }
   }
 
-  // o proprio usuario pode alterar os proprios dados exceto a ROLE;
-  // o admin pode alterar role e email do usuario;
   public async update(req: Request, res: Response): Promise<Response> {
     try {
       const id = req.params.id;
+      const requesterId = req.userId;
       const { name, email, role, picture }: UserInterface = req.body;
 
       if (!id) return res.status(400).json({ message: 'Please send user id' });
@@ -62,16 +77,36 @@ class UserController {
 
       if (!user) return res.status(404).json({ message: 'Cannot find user' });
 
-      const valuesToUpdate: UserInterface = {
-        name: name || user.name,
-        email: email || user.email,
-        role: role || user.role,
-        picture: picture || user.picture,
-      };
+      const isOwner = requesterId === user.id ? true : false;
+
+      let valuesToUpdate: UserInterface;
+
+      if (isOwner && user.role === 'ADMIN') {
+        //case Owner and Admin
+        valuesToUpdate = {
+          name: name || user.name,
+          role: role || user.role,
+          email: email || user.email,
+          picture: picture || user.picture,
+        };
+      } else if (isOwner) {
+        // case Owner
+        valuesToUpdate = {
+          name: name || user.name,
+          email: email || user.email,
+          picture: picture || user.picture,
+        };
+      } else {
+        // case Admin;
+        valuesToUpdate = {
+          role: role || user.role,
+          email: email || user.email,
+        };
+      }
 
       await User.update(id, { ...valuesToUpdate });
 
-      return res.status(200).json({ message: 'Update successfully' } );
+      return res.status(200).json();
     } catch (error) {
       res.status(400).json({ error: 'Update failed, try again' });
     }

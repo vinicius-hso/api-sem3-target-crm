@@ -14,13 +14,12 @@ routes.get('/', (req, res) => {
 
 // prefix
 routes.use('/auth', AuthRoutes);
-// route.use('/user', ensureAuthenticated, ensureAdmin, UserRoutes);
-// route.use('/pipeline', ensureAuthenticated, PipelineRoutes);
-// route.use('/company', ensureAuthenticated, CompanyRoutes);
+routes.use('/user', UserRoutes); // middlewares estão no UserRoutes;
+// routes.use('/pipeline', ensureAuthenticated, PipelineRoutes);
+// routes.use('/company', ensureAuthenticated, CompanyRoutes);
 
 // rotas sem auth para devs;
 routes.use('/deal', DealRoutes);
-routes.use('/user', UserRoutes);
 routes.use('/company', CompanyRoutes);
 routes.use('/pipeline', PipelineRoutes);
 routes.use('/contact', ContactRoutes);
