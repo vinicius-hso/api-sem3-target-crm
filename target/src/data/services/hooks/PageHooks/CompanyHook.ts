@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import CompanyService from "data/services/CompanyService";
 import { CompanyTypes } from 'types/Company';
-
+import ModalTypes from 'types/Modal';
+import PipelineContext from "contexts/PipelineContext";
+import CompanyContext from 'contexts/CompanyContext';
 
 export const useCompanyPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [companies, setCompanies] = useState([]);
   const [formatCompaniesToSelect, setFormat] = useState([]);
   const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
+
 
   useEffect(() => {
     getData();
@@ -66,9 +69,12 @@ export const useCompanyPage = () => {
     formatCompaniesToSelect,
     filteredCompany,
     removeFiltered,
+    
+    // CREATE MODAL
     createCompany,
     useCreateCompanyModal,
     createCompanyModalState,
+    setCreateCompanyModalState
   };
 };
 

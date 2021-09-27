@@ -4,6 +4,8 @@ import { useRouter } from "next/dist/client/router";
 import React, { useState, createContext, useEffect } from "react";
 import { DealTypes } from "types/Deal";
 import ModalTypes, { pipeline } from "types/Modal";
+import CompanyService from 'data/services/CompanyService';
+import { CompanyTypes } from 'types/Company';
 
 const PipelineContext = createContext<ModalTypes>({} as ModalTypes);
 
@@ -15,6 +17,9 @@ export const ModalProvider: React.FC = ({ children }) => {
     useState<boolean>(false);
   const [dealDetailModalState, setDealDetailModalState] =
     useState<boolean>(false);
+
+  const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
+
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
   const [name, setNameState] = useState<string>();
@@ -29,6 +34,16 @@ export const ModalProvider: React.FC = ({ children }) => {
     coldDeals: 0,
   });
   const route = useRouter();
+
+  const createCompany = async (data: CompanyTypes) => {
+    await CompanyService.createCompany(data);
+    useCreateCompanyModal();
+  };
+
+  const useCreateCompanyModal = () => {
+    console.log('CREATE COMPANY MODAL')
+    setCreateCompanyModalState(!createCompanyModalState);
+  };
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId, deals, pipelines) => {
@@ -291,6 +306,9 @@ export const ModalProvider: React.FC = ({ children }) => {
         dealTotalParams,
         filterDeals,
         removefilterDeals,
+        createCompany,
+        useCreateCompanyModal,
+        createCompanyModalState
       }}
     >
       {children}

@@ -3,24 +3,30 @@ import { CompanyTypes } from './Company';
 
 export default interface ModalTypes {
   createModalState: boolean;
+  useCreateModal: () => void;
+  createPipeline: () => void;
+
+  updateModalState: boolean;
+  useUpdateModal: (id: string) => void;
+  updatePipeline: () => void;
+
+  deleteModalState: boolean;
+  useDeleteModal: (id: string) => void;
+  deletePipeline: () => void;
+
   createDealModalState: boolean;
-  createCompanyModalState: boolean;
+  useCreateDealModal: () => void; 
+  createDeal: (data: DealTypes) => void;
 
   dealDetailModalState: boolean;
-  updateModalState: boolean;
-  deleteModalState: boolean;
-
-  useCreateModal: () => void;
-  useCreateDealModal: () => void;  
   useDealDetailModal: (deal: any) => void;
-  useUpdateModal: (id: string) => void;
-  useDeleteModal: (id: string) => void;
 
-  deletePipeline: () => void;
-  createPipeline: () => void;
-  updatePipeline: () => void;
-  setName: (name: string) => void;
+  // CREATE COMPANY MODAL
+  createCompanyModalState: boolean;
+  useCreateCompanyModal: () => void;
+  createCompany: (data: CompanyTypes) => void;
   
+  setName: (name: string) => void;
   getPipelines: () => void;
   pipelines: pipeline[];
   pipeline: pipeline;
@@ -30,9 +36,6 @@ export default interface ModalTypes {
   removefilterDeals: (boolean) => void;
   filterDeals: (value: string, type: string) => void;
   
-  createDeal: (data: DealTypes) => void;
-  createCompany: (data: CompanyTypes) => void;
-  useCreateCompanyModal: () => void;
 }
 
 export interface pipeline {

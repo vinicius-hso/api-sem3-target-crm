@@ -6,4 +6,5 @@ export interface CompanyTypes {
     site?: string;
     picture?: string;
     cnpj?: string;
+    cep?: string;
 }
