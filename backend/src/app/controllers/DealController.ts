@@ -14,18 +14,15 @@ interface DealInteface {
   priority?: string;
   value?: number;
   status?: string;
-  // activity?: ActivityInterface;
+  activity?: ActivityInterface;
 }
 
 interface ActivityInterface {
-  type: string;
-  name: string;
-  description: string;
-  status: string;
-  date: Date;
-  createdBy: string;
-  schedule: string;
   tag: string;
+  name: string;
+  createdAt: Date;
+  createdBy: { id: string; name: string; };
+  description: string;
 }
 
 class DealController {
@@ -61,7 +58,6 @@ class DealController {
       if (!name || !company || !contact || !pipeline) return res.status(400).json({ message: 'Invalid values for Deal' });
 
       const createdBy = await User.findOne(req.userId);
-      const schedule = `${new Date().getHours()}:${new Date().getMinutes()}`;
 
       const deal = await Deal.create({
         name,
@@ -73,14 +69,12 @@ class DealController {
         value,
         status,
         activity: [{
+          tag: 'Negociação iniciada',
           name: 'Negociação iniciada',
-          type: 'Criação',
-          status: 'Em andamento',
           description: '',
-          schedule,
-          createdBy: createdBy.name,
-          date: new Date(),
-        }]
+          createdAt: new Date(),
+          createdBy: { id: createdBy.id, name: createdBy.name },
+        }],
       }).save();
 
       if (!deal) return res.status(400).json({ message: 'Cannot create Deal' });
@@ -102,7 +96,7 @@ class DealController {
 
       if (!deal) return res.status(404).json({ message: 'Deal does not exist' });
 
-      const valuesToUpdate: DealInteface = {
+      const valuesToUpdate = {
         company: company || deal.company,
         contact: contact || deal.contact,
         pipeline: pipeline || deal.pipeline,
@@ -141,21 +135,21 @@ class DealController {
 
   public async insertActivity(req: Request, res: Response): Promise<Response> {
     try {
-      const { type, name, description, status, date, schedule, tag }: ActivityInterface = req.body;
+      const { name, description, tag, createdAt }: ActivityInterface = req.body;
       const id = req.params.id;
 
       if (!id) return res.status(400).json({ message: 'Please send Deal id' });
 
       const createdBy = await User.findOne(req.userId);
 
-      if (!type || !name || !date || !description || !status || !createdBy || !schedule || !tag)
+      if (!name || !description || !tag || !createdAt || !createdBy)
         return res.status(400).json({ message: 'Invalid values to insert Activity' });
 
       const deal = await Deal.findOne(id);
 
       if (!deal) return res.status(404).json({ message: 'Deal does not exist' });
 
-      deal.activity.push({ type, name, description, status, date, schedule, tag, createdBy: createdBy.name });
+      deal.activity.push({ name, description, createdAt, tag, createdBy: { id: createdBy.id, name: createdBy.name } });
 
       await deal.save();
 

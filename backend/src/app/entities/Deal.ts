@@ -7,7 +7,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm';
 import Company from './Company';
 import Contact from './Contact';
@@ -49,14 +49,11 @@ class Deals extends BaseEntity {
 
   @Column({ type: 'jsonb', nullable: true })
   activity: Array<{
-    type: string;
+    tag: string;
     name: string;
     description: string;
-    status: string;
-    tag: string;
-    createdBy: string;
-    schedule: string;
-    date: Date;
+    createdBy: { id: string; name: string };
+    createdAt: Date;
   }>;
 
   @CreateDateColumn()
