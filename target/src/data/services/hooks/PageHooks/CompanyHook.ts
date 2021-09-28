@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CompanyService from "data/services/CompanyService";
+import { CompanyTypes } from "types/Company";
 
 export const useCompanyPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [companies, setCompanies] = useState([]);
   const [formatCompaniesToSelect, setFormat] = useState([]);
+  const [createCompanyModalState, setCreateCompanyModalState] =
+    useState<boolean>(false);
 
   useEffect(() => {
     getData();
@@ -49,10 +52,25 @@ export const useCompanyPage = () => {
     }
   };
 
+  const createCompany = async (data: CompanyTypes) => {
+    await CompanyService.createCompany(data);
+    useCreateCompanyModal();
+  };
+
+  const useCreateCompanyModal = () => {
+    setCreateCompanyModalState(!createCompanyModalState);
+  };
+
   return {
     companies,
     formatCompaniesToSelect,
     filteredCompany,
     removeFiltered,
+
+    // CREATE MODAL
+    createCompany,
+    useCreateCompanyModal,
+    createCompanyModalState,
+    setCreateCompanyModalState,
   };
 };

@@ -4,6 +4,8 @@ import { useRouter } from "next/dist/client/router";
 import React, { useState, createContext, useEffect } from "react";
 import { DealTypes } from "types/Deal";
 import ModalTypes, { pipeline } from "types/Modal";
+import CompanyService from 'data/services/CompanyService';
+import { CompanyTypes } from 'types/Company';
 
 const PipelineContext = createContext<ModalTypes>({} as ModalTypes);
 
@@ -15,6 +17,9 @@ export const ModalProvider: React.FC = ({ children }) => {
     useState<boolean>(false);
   const [dealDetailModalState, setDealDetailModalState] =
     useState<boolean>(false);
+
+  const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
+
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
   const [name, setNameState] = useState<string>();
@@ -29,6 +34,16 @@ export const ModalProvider: React.FC = ({ children }) => {
     coldDeals: 0,
   });
   const route = useRouter();
+
+  const createCompany = async (data: CompanyTypes) => {
+    await CompanyService.createCompany(data);
+    useCreateCompanyModal();
+  };
+
+  const useCreateCompanyModal = () => {
+    console.log('CREATE COMPANY MODAL')
+    setCreateCompanyModalState(!createCompanyModalState);
+  };
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId, deals, pipelines) => {
@@ -46,9 +61,11 @@ export const ModalProvider: React.FC = ({ children }) => {
         currentPipe.totalColumnValue += Number(d.value);
         budgetSum += Number(d.value);
         totalDeals += 1;
-        if (d.tag == "HOT") hotDeals += 1;
-        else if (d.tag == "COLD") coldDeals += 1;
-        else if (d.tag === "WARM") warmDeals += 1;
+        if (d.activity[d.activity.length - 1].tag == "HOT") hotDeals += 1;
+        else if (d.activity[d.activity.length - 1].tag == "COLD")
+          coldDeals += 1;
+        else if (d.activity[d.activity.length - 1].tag === "WARM")
+          warmDeals += 1;
       }
     });
     setDealTotalParams({
@@ -239,7 +256,7 @@ export const ModalProvider: React.FC = ({ children }) => {
               }
               break;
             case "tag":
-              if (deal.tag.includes(value)) {
+              if (deal.activity[deal.activity.length - 1].tag.includes(value)) {
                 deals.push(deal);
               }
               break;
@@ -291,6 +308,9 @@ export const ModalProvider: React.FC = ({ children }) => {
         dealTotalParams,
         filterDeals,
         removefilterDeals,
+        createCompany,
+        useCreateCompanyModal,
+        createCompanyModalState
       }}
     >
       {children}

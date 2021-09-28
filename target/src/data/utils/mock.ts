@@ -85,14 +85,14 @@ export const mockAddCard = {
 
 export const navBarRoutes = [
   { name: "Negocios", icon: "fa-bar-chart", link: "/" },
-  { name: "Contatos", icon: "fa-address-book", link: "/contacts" },
+  { name: "Contatos", icon: "fa-address-book", link: "/contact" },
   { name: "Empresas", icon: "fa-building", link: "/company" },
   { name: "Dashboard", icon: "fa-line-chart", link: "/dashboard" },
   { name: "Arquivados", icon: "fa-archive", link: "/archives" },
 ];
 
 export const mockTags = [
-  { value: 'HOT', label: 'Quente' },
-  { value: 'COLD', label: 'Frio' },
-  { value: 'WARM', label: 'Morno' },
-]
+  { value: "HOT", label: "Quente" },
+  { value: "COLD", label: "Frio" },
+  { value: "WARM", label: "Morno" },
+];
