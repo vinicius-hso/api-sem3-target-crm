@@ -1,24 +1,20 @@
 import React from "react";
 import {
   CardsContainer,
-  CompanyHeaderContainer,
   TitleContainer,
 } from "@styles/pagesStyle/company.style";
-import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
 import {
   ContactsHeaderContainer,
   ContactsPageContainer,
 } from "@styles/pagesStyle/contacts.style";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 import ContactCard from "ui/components/ContactCard/ContactCard";
 import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 
 function ContactPage() {
   const { contacts } = useContactPage();
   const [valueType, setValueType] = React.useState("name");
-  const [selectListValues, setSelectListValues] = React.useState([]);
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [time, setTime] = React.useState(null);

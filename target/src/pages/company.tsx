@@ -8,15 +8,13 @@ import {
 import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
-import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 import { Button } from "@material-ui/core";
-import CreateCompanyModal from 'ui/components/Modal/CreateCompanyModal';
-import PipelineContext from 'contexts/PipelineContext';
-import CompanyContext from 'contexts/CompanyContext';
+import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
+import PipelineContext from "contexts/PipelineContext";
 
 function CompanyPage() {
-  
-  const { companies, filteredCompany, removeFiltered} = useCompanyPage();
+  const { companies, filteredCompany, removeFiltered } = useCompanyPage();
   const [valueType, setValueType] = React.useState("name");
   const [selectListValues, setSelectListValues] = React.useState([]);
   const [hasFiltered, setHasFiltered] = React.useState(false);
@@ -26,7 +24,6 @@ function CompanyPage() {
   const { useCreateCompanyModal } = useContext(PipelineContext);
   // const { useCreateCompanyModal } = useContext(CompanyContext);
   // const { useCreateCompanyModal } = useCompanyPage();
-
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
@@ -60,13 +57,13 @@ function CompanyPage() {
           <Title title="EMPRESAS"></Title>
         </TitleContainer>
         <Button
-              variant="contained"
-              sx={{ width: "100%", height: "30px" }}
-              color="primary"
-              onClick={() => useCreateCompanyModal()}
-              type="submit"
-            >
-              <i className="fa fa-plus"></i>
+          variant="contained"
+          sx={{ width: "100%", height: "30px" }}
+          color="primary"
+          onClick={() => useCreateCompanyModal()}
+          type="submit"
+        >
+          <i className="fa fa-plus"></i>
         </Button>
         <SearchButtom
           placeholder="Buscar"
