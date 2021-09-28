@@ -25,13 +25,15 @@ class AuthController {
 
       if (!email || !password) return res.status(400).json({ message: 'Invalid values for User' });
 
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }, { select: ['id', 'email', 'name', 'passwordHash', 'role', 'picture'] });
 
       if (!user) return res.status(404).json({ message: 'User does not exist' });
 
       if (!(await bcrypt.compare(password, user.passwordHash))) return res.status(400).json({ message: 'Invalid email or password' });
 
-      return res.json({ token: generateToken({ id: user.id }) });
+      user.passwordHash = undefined;
+
+      return res.json({ ...user, token: generateToken({ id: user.id }) });
     } catch (error) {
       return res.status(400).json({ error: 'Authenticate failed, try again' });
     }
