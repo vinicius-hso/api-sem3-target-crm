@@ -27,7 +27,7 @@ class AuthController {
 
       const user = await User.findOne({ email }, { select: ['id', 'email', 'name', 'passwordHash', 'role', 'picture'] });
 
-      if (!user) return res.status(404).json({ message: 'User does not exist' });
+      if (!user) return res.status(404).json({ message: 'Invalid email or password' });
 
       if (!(await bcrypt.compare(password, user.passwordHash))) return res.status(400).json({ message: 'Invalid email or password' });
 
