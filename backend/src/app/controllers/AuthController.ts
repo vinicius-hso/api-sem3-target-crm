@@ -29,7 +29,7 @@ class AuthController {
 
       if (!user) return res.status(404).json({ message: 'Invalid email or password' });
 
-      if (!(await bcrypt.compare(password, user.passwordHash))) return res.status(400).json({ message: 'Invalid email or password' });
+      if (!(await bcrypt.compare(password, user.passwordHash))) return res.status(404).json({ message: 'Invalid email or password' });
 
       user.passwordHash = undefined;
 
