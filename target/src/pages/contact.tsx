@@ -7,12 +7,16 @@ import {
 import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
-import { ContactsHeaderContainer, ContactsPageContainer } from "@styles/pagesStyle/contacts.style";
-import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import {
+  ContactsHeaderContainer,
+  ContactsPageContainer,
+} from "@styles/pagesStyle/contacts.style";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 import ContactCard from "ui/components/ContactCard/ContactCard";
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 
-function Contacts() {
-  const { companies, filteredCompany, removeFiltered } = useCompanyPage();
+function ContactPage() {
+  const { contacts } = useContactPage();
   const [valueType, setValueType] = React.useState("name");
   const [selectListValues, setSelectListValues] = React.useState([]);
   const [hasFiltered, setHasFiltered] = React.useState(false);
@@ -21,7 +25,7 @@ function Contacts() {
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
-      removeFiltered(true);
+      //removeFiltered(true);
     }
     setSearchTerm(event.target.value);
     if (time) {
@@ -30,7 +34,7 @@ function Contacts() {
     }
     setTime(
       setTimeout(() => {
-        filteredCompany(event.target.value, valueType);
+        //filteredCompany(event.target.value, valueType);
         setHasFiltered(true);
       }, 1000)
     );
@@ -38,7 +42,7 @@ function Contacts() {
   };
 
   const removeFilters = () => {
-    removeFiltered(false);
+    //removeFiltered(false);
     setHasFiltered(false);
     setSearchTerm("");
   };
@@ -47,7 +51,7 @@ function Contacts() {
     <ContactsPageContainer>
       <ContactsHeaderContainer>
         <TitleContainer>
-          <Title title="Contatos"></Title>
+          <Title title="CONTATOS"></Title>
         </TitleContainer>
         <SearchButtom
           placeholder="Buscar"
@@ -71,10 +75,15 @@ function Contacts() {
         />
       </ContactsHeaderContainer>
       <CardsContainer>
-        {companies.map(() => (
+        {contacts.map((contact) => (
           <ContactCard
-            
-                name={Contacts.name} rating={0}            
+            key={contact.id}
+            name={contact.name}
+            city={contact.city}
+            company={contact.company.name}
+            phone={contact.phone}
+            state={contact.state}
+            picture={contact.picture}
           />
         ))}
       </CardsContainer>
@@ -82,6 +91,4 @@ function Contacts() {
   );
 }
 
-export default Contacts;
-
-
+export default ContactPage;

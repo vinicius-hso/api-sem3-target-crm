@@ -4,16 +4,29 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 //@deprecated
 export const ContactCardContainer = styled("div")`
   display: grid;
+  width: 100%;
   grid-template-columns: 60px 1fr;
   grid-template-rows: repeat(3, auto);
   grid-template-areas:
     "picture name"
-    "picture rating"
-    "picture description";
-  background-color: ${({ theme }) => theme.palette.grey[50]};
+    "picture company"
+    "picture phone"
+    "picture city";
+  background-color: ${({ theme }) => theme.palette.background.paper};
   padding: ${({ theme }) => theme.spacing(2)};
   align-items: center;
   gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
+
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 60px repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: "picture name phone company city";
+  }
 `;
 
 export const ContactNameStyled = styled("div")`
@@ -23,10 +36,10 @@ export const ContactNameStyled = styled("div")`
   grid-area: name;
 `;
 
-export const ContactDescriptionStyled = styled("div")`
+export const ContactCityStyled = styled("div")`
   color: ${({ theme }) => theme.palette.text.secondary};
   font-size: ${({ theme }) => theme.typography.body2.fontSize};
-  grid-area: description;
+  grid-area: city;
 `;
 
 export const ContactPictureStyled = styled(Avatar)`
@@ -37,7 +50,14 @@ export const ContactPictureStyled = styled(Avatar)`
   font-size: 16px;
 `;
 
-export const ContactRatingStyled = styled(Rating)`
-  font-size: 14px;
-  grid-area: rating;
+export const ContactPhoneStyled = styled("div")`
+  color: ${({ theme }) => theme.palette.text.secondary};
+  font-size: ${({ theme }) => theme.typography.body2.fontSize};
+  grid-area: phone;
+`;
+
+export const ContactCompanyStyled = styled("div")`
+  color: ${({ theme }) => theme.palette.text.secondary};
+  font-size: ${({ theme }) => theme.typography.body2.fontSize};
+  grid-area: company;
 `;
