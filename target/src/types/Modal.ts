@@ -25,6 +25,10 @@ export default interface ModalTypes {
   createCompanyModalState: boolean;
   useCreateCompanyModal: () => void;
   createCompany: (data: CompanyTypes) => void;
+
+  // COMPANY DETAILS MODAL
+  companyDetailModalState: boolean;
+  useCompanyDetailModal: (company: any) => void;
   
   setName: (name: string) => void;
   getPipelines: () => void;

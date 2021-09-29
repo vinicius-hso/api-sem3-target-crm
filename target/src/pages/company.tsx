@@ -8,10 +8,10 @@ import {
 import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 import { Button } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import PipelineContext from "contexts/PipelineContext";
+import { useCompanyPage } from 'data/services/hooks/PageHooks/CompanyHook';
 
 function CompanyPage() {
   const { companies, filteredCompany, removeFiltered } = useCompanyPage();

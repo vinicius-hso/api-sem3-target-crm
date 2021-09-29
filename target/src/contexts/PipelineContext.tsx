@@ -18,7 +18,9 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [dealDetailModalState, setDealDetailModalState] =
     useState<boolean>(false);
 
+  //* COMPANY
   const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
+  const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
 
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
@@ -35,6 +37,8 @@ export const ModalProvider: React.FC = ({ children }) => {
   });
   const route = useRouter();
 
+  //* COMPANY
+  // create company
   const createCompany = async (data: CompanyTypes) => {
     await CompanyService.createCompany(data);
     useCreateCompanyModal();
@@ -44,6 +48,12 @@ export const ModalProvider: React.FC = ({ children }) => {
     console.log('CREATE COMPANY MODAL')
     setCreateCompanyModalState(!createCompanyModalState);
   };
+
+  // company details
+  const useCompanyDetailModal = () => {
+    console.log('Oi!')
+    setCompanyDetailModalState(!companyDetailModalState)
+  }
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId, deals, pipelines) => {
@@ -310,7 +320,9 @@ export const ModalProvider: React.FC = ({ children }) => {
         removefilterDeals,
         createCompany,
         useCreateCompanyModal,
-        createCompanyModalState
+        createCompanyModalState,
+        useCompanyDetailModal,
+        companyDetailModalState,
       }}
     >
       {children}
