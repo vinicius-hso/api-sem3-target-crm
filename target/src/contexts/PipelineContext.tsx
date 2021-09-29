@@ -4,8 +4,8 @@ import { useRouter } from "next/dist/client/router";
 import React, { useState, createContext, useEffect } from "react";
 import { DealTypes } from "types/Deal";
 import ModalTypes, { pipeline } from "types/Modal";
-import CompanyService from 'data/services/CompanyService';
-import { CompanyTypes } from 'types/Company';
+import CompanyService from "data/services/CompanyService";
+import { CompanyTypes } from "types/Company";
 
 const PipelineContext = createContext<ModalTypes>({} as ModalTypes);
 
@@ -18,10 +18,12 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [dealDetailModalState, setDealDetailModalState] =
     useState<boolean>(false);
 
-  const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
+  const [createCompanyModalState, setCreateCompanyModalState] =
+    useState<boolean>(false);
 
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
+  const [dealDetail, setDealDetail] = useState({});
   const [name, setNameState] = useState<string>();
   const [deals, setDeals] = useState<DealTypes[]>([]);
   const [pipelines, setPipelines] = useState<pipeline[]>();
@@ -41,7 +43,6 @@ export const ModalProvider: React.FC = ({ children }) => {
   };
 
   const useCreateCompanyModal = () => {
-    console.log('CREATE COMPANY MODAL')
     setCreateCompanyModalState(!createCompanyModalState);
   };
 
@@ -116,6 +117,7 @@ export const ModalProvider: React.FC = ({ children }) => {
   };
 
   const useDealDetailModal = (deal: any) => {
+    setDealDetail(deal);
     setDealDetailModalState(!dealDetailModalState);
   };
 
@@ -310,7 +312,8 @@ export const ModalProvider: React.FC = ({ children }) => {
         removefilterDeals,
         createCompany,
         useCreateCompanyModal,
-        createCompanyModalState
+        createCompanyModalState,
+        dealDetail,
       }}
     >
       {children}

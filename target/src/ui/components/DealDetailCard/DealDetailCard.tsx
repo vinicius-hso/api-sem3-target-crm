@@ -1,16 +1,8 @@
-import {
-  Container,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
-import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
-import React from "react";
+import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
+import React, { useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import { ThreeColumnsContainer } from "../Modal/ModalStyles/ModalContainer.style";
 import {
   DealDetailCardContainer,
   EditButton,
@@ -19,111 +11,203 @@ import {
 
 //@deprecated
 interface DealDetailCardProps {
-  company: string;
-  contact: string;
+  company: any;
+  contact: any;
   name: string;
   value: string;
   status: string;
-  contactEmail: string;
-  contactPhone: string;
   currentResponsible: string;
+  hasEdit: boolean;
+  onClick: any;
+  saveEdit: any;
 }
 
 const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
+  const { formatCompaniesToSelect } = useCompanyPage();
+  const { formatListThisCompanyToSelect } = useContactPage();
+  const [contactsThisCompany, setContactsThisCompany] = useState([]);
+  const [selectedContact, setSelectedContact] = useState(props.contact);
+  const [selectedCompany, setSelectedCompany] = useState(props.company);
+  const [isInitialValue, setInitialValue] = useState(true);
+  const [value, setValue] = useState(props.value);
+  const [name, setName] = useState(props.name);
+  const [error, setError] = useState(false);
+
+  const handleSubmit = () => {
+    const data = {
+      company: selectedCompany.value,
+      contact: selectedContact.value,
+      name,
+      value,
+    };
+    if (
+      value &&
+      data.company.length &&
+      data.contact !== "default" &&
+      name.length
+    ) {
+      setError(false);
+      props.saveEdit(data);
+    } else {
+      setError(true);
+    }
+  };
   return (
-    <DealDetailCardContainer>
-      <EditButton>
-        Editar
-        <i
-          style={{ marginLeft: "2px" }}
-          className="fa fa-pencil"
-          aria-hidden="true"
-        ></i>
-      </EditButton>
-      <InputContainer>
-        <FormControl fullWidth>
+    <div>
+      <Typography
+        sx={{
+          position: "relative",
+          top: "20px",
+          left: "15px",
+          zIndex: 1,
+          display: error ? "inline" : "none",
+        }}
+        color="error"
+        variant="caption"
+      >
+        <i className="fa fa-info-circle" /> Formulario incompleto
+      </Typography>
+
+      <DealDetailCardContainer>
+        <EditButton
+          style={{ right: props.hasEdit ? "80px" : 0 }}
+          onClick={props.onClick}
+        >
+          {!props.hasEdit ? "Editar" : "Cancelar"}
+          <i
+            style={{ marginLeft: "2px" }}
+            className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+            aria-hidden="true"
+          ></i>
+        </EditButton>
+        <EditButton
+          style={{
+            display: props.hasEdit ? "inline" : "none",
+          }}
+          onClick={handleSubmit}
+        >
+          {"Salvar"}
+          <i
+            style={{ marginLeft: "2px" }}
+            className="fa fa-check"
+            aria-hidden="true"
+          ></i>
+        </EditButton>
+        <InputContainer>
+          <FormControl fullWidth>
+            <TextFieldMask
+              disabled={!props.hasEdit}
+              label={"Negociação"}
+              variant={"standard"}
+              size="medium"
+              fullWidth
+              value={name}
+              sx={{ mt: "16px" }}
+              onChange={(event) => setName(event.target.value)}
+            />
+          </FormControl>
+        </InputContainer>
+        <InputContainer>
+          <div>
+            <Typography
+              color={`${props.hasEdit ? "grey" : "lightgrey"}`}
+              variant="caption"
+            >
+              Empresa
+            </Typography>
+            <Select
+              disabled={!props.hasEdit}
+              onChange={(event) => {
+                setSelectedCompany({ value: event.target.value });
+                setInitialValue(false);
+                const temp = formatListThisCompanyToSelect(event.target.value);
+                temp.unshift({ name: "Escolha um contato", id: "default" });
+                setContactsThisCompany(temp);
+                setSelectedContact({ value: temp[0].id });
+              }}
+              value={selectedCompany.value}
+              label="Empresa"
+              variant="standard"
+              fullWidth
+            >
+              {formatCompaniesToSelect.map((company) => (
+                <MenuItem key={company.value} value={company.value}>
+                  {company.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+        </InputContainer>
+        <InputContainer>
+          <div>
+            <Typography
+              color={`${props.hasEdit ? "grey" : "lightgrey"}`}
+              variant="caption"
+            >
+              Contato
+            </Typography>
+            <Select
+              disabled={!props.hasEdit}
+              onChange={(event) => {
+                setSelectedContact({ value: event.target.value });
+              }}
+              label="Contato"
+              value={selectedContact.value}
+              variant="standard"
+              fullWidth
+            >
+              {contactsThisCompany.length && !isInitialValue ? (
+                contactsThisCompany.map((contact) => (
+                  <MenuItem key={contact.id} value={contact.id}>
+                    {contact.name}
+                  </MenuItem>
+                ))
+              ) : !contactsThisCompany.length && !isInitialValue ? (
+                <MenuItem value="default">Empresa sem contatos</MenuItem>
+              ) : (
+                <MenuItem
+                  key={selectedContact.value}
+                  value={selectedContact.value}
+                >
+                  {selectedContact.label}
+                </MenuItem>
+              )}
+            </Select>
+          </div>
+        </InputContainer>
+        <InputContainer>
           <TextFieldMask
-            disabled
-            label={"Negociação"}
+            disabled={!props.hasEdit}
+            label={"Valor"}
+            fullWidth
             variant={"standard"}
             size="medium"
-            fullWidth
-            value={props.name}
-            sx={{ mt: "16px" }}
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
           />
-        </FormControl>
-      </InputContainer>
-      <InputContainer>
-        <div>
-          <Typography color="lightgrey" variant="caption">
-            Empresa
-          </Typography>
-          <Select
+        </InputContainer>
+        <InputContainer>
+          <TextFieldMask
             disabled
-            onChange={() => {}}
-            value={props.company}
-            label="Empresa"
-            variant="standard"
+            label={"Responsavel"}
             fullWidth
-          >
-            <MenuItem value={props.company}>{props.company}</MenuItem>
-            <MenuItem value={"bbcebf0b-917c-4763-b196-9293adfe7cea"}>
-              Empresa
-            </MenuItem>
-          </Select>
-        </div>
-      </InputContainer>
-      <InputContainer>
-        <div>
-          <Typography color="lightgrey" variant="caption">
-            Contato
-          </Typography>
-          <Select
+            variant={"standard"}
+            size="medium"
+            value={props.currentResponsible}
+          />
+        </InputContainer>
+        <InputContainer>
+          <TextFieldMask
             disabled
-            onChange={(event) => {}}
-            label="Contato"
-            value={props.contact}
-            variant="standard"
+            label={"Status"}
             fullWidth
-          >
-            <MenuItem value={props.contact}>{props.contact}</MenuItem>
-            <MenuItem value={"e0566909-9ae7-46e5-8b65-a5ca133a137d"}>
-              Contato
-            </MenuItem>
-          </Select>
-        </div>
-      </InputContainer>
-      <InputContainer>
-        <TextFieldMask
-          disabled
-          label={"Valor"}
-          fullWidth
-          variant={"standard"}
-          size="medium"
-          value={props.value}
-        />
-      </InputContainer>
-      <InputContainer>
-        <TextFieldMask
-          disabled
-          label={"Responsavel"}
-          fullWidth
-          variant={"standard"}
-          size="medium"
-          value={props.currentResponsible}
-        />
-      </InputContainer>
-      <InputContainer>
-        <TextFieldMask
-          disabled
-          label={"Status"}
-          fullWidth
-          variant={"standard"}
-          size="medium"
-          value={props.status}
-        />
-      </InputContainer>
-    </DealDetailCardContainer>
+            variant={"standard"}
+            size="medium"
+            value={props.status}
+          />
+        </InputContainer>
+      </DealDetailCardContainer>
+    </div>
   );
 };
 export default DealDetailCard;

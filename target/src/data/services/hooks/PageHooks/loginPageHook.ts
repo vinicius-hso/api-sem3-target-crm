@@ -56,7 +56,7 @@ export const useLoginPage = () => {
             password,
           })
           .then((res) => {
-            signIn(res.data.token);
+            signIn(res.data.token, res.data);
             router.push("/welcome");
           });
         setLoading(false);

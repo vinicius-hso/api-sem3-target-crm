@@ -17,6 +17,43 @@ class DealsService {
       return error;
     }
   }
+
+  async editDeal(dealId, deal) {
+    try {
+      const { data } = await api.put(`/deal/${dealId}`, deal, {
+        headers: this.headers,
+      });
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async createActivity(dealId, activity) {
+    try {
+      const { data } = await api.post(`deal/${dealId}/activity`, activity, {
+        headers: this.headers,
+      });
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async updateStatus(dealId, newStatus) {
+    try {
+      const { data } = await api.put(`deal/${dealId}`, newStatus, {
+        headers: this.headers,
+      });
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async dealPipelineUpdate(pipeline: string, dealId: string) {
     try {
       const { data } = await api.put(
