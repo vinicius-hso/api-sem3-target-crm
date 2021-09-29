@@ -17,7 +17,7 @@ export const ActivityContainer = styled("div")`
 
 export const ActivityTimeContainer = styled("div")`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 80px 80px;
   gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
   max-width: 300px;
 `;

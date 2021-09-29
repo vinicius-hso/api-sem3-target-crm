@@ -39,6 +39,24 @@ export const ActionsDealDetailCardContainer = styled("div")`
   }
 `;
 
+export const NewActivityContainer = styled("div")`
+  max-width: 90vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.palette.grey[50]};
+  padding: ${({ theme }) => theme.spacing(2)};
+  gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
+  border-radius: 8px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  margin-top: ${({ theme }) => theme.spacing(2)};
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+  }
+`;
+
 export const EditButton = styled(Button)`
   position: absolute;
   top: 0;
@@ -64,5 +82,20 @@ export const PaperDealDetailModalStyled = styled(Paper)`
   }
   ${({ theme }) => theme.breakpoints.down("md")} {
     margin-top: 20px;
+  }
+`;
+
+export const NewActivityButton = styled(Button)`
+  position: absolute;
+  right: 0;
+  top: -20px;
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    top: -16px;
+    font-size: 12px;
+  }
+`;
+export const NewActivityButtonLabel = styled("label")`
+  ${({ theme }) => theme.breakpoints.down("md")} {
   }
 `;

@@ -17,7 +17,6 @@ const DealCardList = (props) => {
     useCreateDealModal,
     useDealDetailModal,
   } = useContext(PipelineContext);
-  console.log(props);
 
   return (
     <ColumnContainer>
@@ -129,7 +128,7 @@ const DealCardList = (props) => {
                             budget={deal.value}
                             startDate={deal.createdAt}
                             tag={deal.activity[deal.activity.length - 1].tag}
-                            onClick={useDealDetailModal}
+                            onClick={() => useDealDetailModal(deal)}
                           />
                         </div>
                       )}
