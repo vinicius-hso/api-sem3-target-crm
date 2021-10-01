@@ -1,21 +1,36 @@
 import React, { useContext, useState } from "react";
-import { Button, IconButton } from "@material-ui/core";
+// import { Button, IconButton } from "@material-ui/core";
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
-import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
+// import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import { CompanyTypes } from 'types/Company';
 // import AddCircleIcon from '@material-ui/icons/AddCircle';
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
+// import DealDetailCard from '../DealDetailCard/DealDetailCard';
+// import { ActionsDealDetailCardContainer } from '../DealDetailCard/DealDetailCard.style';
+// import { LinkStyled } from '../Link/Link.style';
+// import { CopyToClipboard } from 'react-copy-to-clipboard';
+import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 
 
 const CompanyDetailModal: React.FC = () => {
-  const { companyDetailModalState, useCompanyDetailModal } = useContext(PipelineContext);
+  
+  const { 
+    companyDetailModalState, 
+    useCompanyDetailModal, 
+    companyDetail, 
+    editCompany,
+    // useUpdateCompanyModal,
+    company
+  } = useContext(PipelineContext);
+
+  const [hasEdit, setHasEdit] = useState(false);
 
   /**
-   * TODO - useEditCompanyModal
+   * TODO - useEditCompanyModal, companyDetailCard
    */
 
   const [data, setData] = useState<CompanyTypes>({
@@ -27,95 +42,52 @@ const CompanyDetailModal: React.FC = () => {
     picture: "",
   });
 
+  const handleSubmitEdit = (data) => {
+    editCompany(companyDetail.id, data);
+    setHasEdit(false);
+  };
+
   function handleSubmit() {
     console.log('Aoobah!');
   }
 
   const body = (
+
     <ModalContainer>
-        <CloseButtonStyled
-        onClick={() => {
-            useCompanyDetailModal('');
-        }}
-        >
-        <i className="fa fa-times" aria-hidden="true"></i>
-        </CloseButtonStyled>
-
-        <Title title={`Detalhes da ${'EMPRESA'}`} />
-
-        <TextFieldMask
-            onChange={(event) => setData({ ...data, name: event.target.value })}
-            value={data.name}
-            label="Nome da empresa"
-            variant="standard"
-            size="small"
-            fullWidth
-            disabled
-        />
-
-        <TextFieldMask
-            onChange={(event) => setData({ ...data, city: event.target.value })}
-            value={data.city}
-            label="Cidade"
-            variant="standard"
-            size="small"
-            fullWidth
-            disabled
-        />
-
-        <TextFieldMask
-            onChange={(event) => setData({ ...data, state: event.target.value })}
-            value={data.state}
-            label="Estado"
-            variant="standard"
-            size="small"
-            fullWidth
-            disabled
-        />
-
-        <TextFieldMask
-            onChange={(event) => setData({ ...data, country: event.target.value })}
-            value={data.country}
-            label="País"
-            variant="standard"
-            size="small"
-            fullWidth
-            disabled
-        />
-
-        <TextFieldMask
-            onChange={(event) => setData({ ...data, site: event.target.value })}
-            value={data.site}
-            label="Site"
-            variant="standard"
-            size="small"
-            fullWidth
-            disabled
-        />
-
-        <TextFieldMask
-            onChange={(event) => setData({ ...data, picture: event.target.value })}
-            value={data.picture}
-            label="Imagem"
-            variant="standard"
-            size="small"
-            fullWidth
-            disabled
-        />
-
-        <Button
+      {/* {companyDetail.id ? ( */}
+        <>
+          <CloseButtonStyled
             onClick={() => {
-                // useEditCompanyModal()
-                useCompanyDetailModal('')
+              useCompanyDetailModal("");
             }}
-            variant="contained"
-            color="primary"
-            startIcon={<EditIcon />}
-            sx={{ mt: 4 }}
-        >
-            Editar
-        </Button>
+          >
+            <i className="fa fa-times" aria-hidden="true"></i>
+          </CloseButtonStyled>
+
+          <Title title={`Detalhes da empresa ${companyDetail?.name}`} />
+
+          <CompanyDetailCard
+            onClick={() => setHasEdit(!hasEdit)}
+            hasEdit={hasEdit}
+            id={data.id}
+            name={data?.name}
+            city={data?.city}
+            state={data?.state}
+            country={data?.country}
+            site={data?.site}
+            picture={data?.picture}
+            saveEdit={(data) => {
+              setData(data)
+              handleSubmitEdit(data)
+            }}
+          />
+        </>
+      {/* // ) : (
+      //   <div>Não foi possivel carregar dados, atualize a pagina</div>
+      // )} */}
     </ModalContainer>
+
+
   );
   return (
     <>

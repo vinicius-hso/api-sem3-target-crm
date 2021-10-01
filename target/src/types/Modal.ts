@@ -26,13 +26,17 @@ export default interface ModalTypes {
   useCreateCompanyModal: () => void;
   createCompany: (data: CompanyTypes) => void;
 
-<<<<<<< HEAD
   // COMPANY DETAILS MODAL
   companyDetailModalState: boolean;
   useCompanyDetailModal: (company: any) => void;
+  // useUpdateCompanyModal: (company: any) => void;
+
+  companyDetail: any;
+  company: CompanyTypes;
+
+  // EDIT COMPANY
+  editCompany: (id: any, data: CompanyTypes) => void;
   
-=======
->>>>>>> 47b11a88587a448fe4b4715110095f0e753a807c
   setName: (name: string) => void;
   getPipelines: () => void;
   pipelines: pipeline[];
