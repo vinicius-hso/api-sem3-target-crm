@@ -10,10 +10,10 @@ import {
   ContactsPageContainer,
 } from "@styles/pagesStyle/contacts.style";
 import ContactCard from "ui/components/ContactCard/ContactCard";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 
-function ContactPage() {
-  const { contacts } = useContactPage();
+function UserPage() {
+  const { users } = useUserPage();
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -47,7 +47,7 @@ function ContactPage() {
     <ContactsPageContainer>
       <ContactsHeaderContainer>
         <TitleContainer>
-          <Title title="CONTATOS"></Title>
+          <Title title="Usuarios"></Title>
         </TitleContainer>
         <SearchButtom
           placeholder="Buscar"
@@ -56,8 +56,7 @@ function ContactPage() {
           typeValue={valueType}
           searchTypes={[
             { value: "name", name: "Nome" },
-            { value: "city", name: "Cidade" },
-            { value: "company", name: "Empresa" },
+            { value: "role", name: "Role" },
           ]}
           ChangeType={(event) => {
             setValueType(event.target.value);
@@ -71,15 +70,15 @@ function ContactPage() {
         />
       </ContactsHeaderContainer>
       <CardsContainer>
-        {contacts.map((contact) => (
+        {users.map((user) => (
           <ContactCard
-            key={contact.id}
-            name={contact.name}
-            city={contact.city}
-            company={contact.company.name}
-            phone={contact.phone}
-            state={contact.state}
-            picture={contact.picture}
+            key={user.name}
+            name={user.name}
+            city={user.email}
+            company={user.name}
+            phone={user.name}
+            state={user.name}
+            picture={user.name}
           />
         ))}
       </CardsContainer>
@@ -87,4 +86,4 @@ function ContactPage() {
   );
 }
 
-export default ContactPage;
+export default UserPage;

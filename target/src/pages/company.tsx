@@ -3,6 +3,7 @@ import {
   CardsContainer,
   CompanyHeaderContainer,
   CompanyPageContainer,
+  NewCompanyButtonContainer,
   TitleContainer,
 } from "@styles/pagesStyle/company.style";
 import CompanyCard from "ui/components/CompanyCard/CompanyCard";
@@ -56,15 +57,6 @@ function CompanyPage() {
         <TitleContainer>
           <Title title="EMPRESAS"></Title>
         </TitleContainer>
-        <Button
-          variant="contained"
-          sx={{ width: "100%", height: "30px" }}
-          color="primary"
-          onClick={() => useCreateCompanyModal()}
-          type="submit"
-        >
-          <i className="fa fa-plus"></i>
-        </Button>
         <SearchButtom
           placeholder="Buscar"
           buttomIcon="fa-search"
@@ -85,6 +77,19 @@ function CompanyPage() {
           hasFiltered={hasFiltered}
         />
       </CompanyHeaderContainer>
+      <NewCompanyButtonContainer>
+        <Button
+          variant="contained"
+          sx={{ width: "auto", height: "30px" }}
+          color="primary"
+          onClick={() => useCreateCompanyModal()}
+          type="submit"
+        >
+          <i className="fa fa-plus" style={{ marginRight: "2px" }}></i> Nova
+          empresa
+        </Button>
+      </NewCompanyButtonContainer>
+
       <CardsContainer>
         {companies.map((company) => (
           <CompanyCard

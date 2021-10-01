@@ -1,15 +1,15 @@
 import React from "react";
-import { IContact } from "types/Contact";
+import { IUser } from "types/User";
 import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./serviceApi";
 
-class ContactService {
+class UserService {
   private headers: object;
 
-  async getContacts() {
+  async getUsers() {
     try {
-      const { data } = await api.get("/contact", {
+      const { data } = await api.get("/user", {
         headers: this.headers,
       });
 
@@ -19,27 +19,21 @@ class ContactService {
     }
   }
 
-  async createContact({
+  async createUser({
     name,
     email,
-    phone,
-    city,
-    state,
-    company_id,
-    tag,
-  }: IContact): Promise<string> {
-    const body: IContact = {
+    role,
+    picture,
+  }: IUser): Promise<string> {
+    const body: IUser = {
       name,
       email,
-      phone,
-      city,
-      state,
-      company_id,
-      tag,
+      role,
+      picture,
     };
 
     try {
-      const { data } = await api.post("/contact", body, {
+      const { data } = await api.post("/user", body, {
         headers: this.headers,
       });
 
@@ -49,28 +43,22 @@ class ContactService {
     }
   }
 
-  async updateContact({
+  async updateUser({
     id,
     name,
     email,
-    phone,
-    city,
-    state,
-    company_id,
-    tag,
-  }: IContact): Promise<string> {
-    const body: IContact = {
+    role,
+    picture,
+  }: IUser): Promise<string> {
+    const body: IUser = {
       name,
       email,
-      phone,
-      city,
-      state,
-      company_id,
-      tag,
+      role,
+      picture,
     };
 
     try {
-      const { data } = await api.put(`/contact/${id}`, body, {
+      const { data } = await api.put(`/user/${id}`, body, {
         headers: this.headers,
       });
 
@@ -80,9 +68,9 @@ class ContactService {
     }
   }
 
-  async deleteContact(id: string): Promise<string> {
+  async deleteUser(id: string): Promise<string> {
     try {
-      const { data } = await api.delete(`/contact/${id}`, {
+      const { data } = await api.delete(`/user/${id}`, {
         headers: this.headers,
       });
 
@@ -93,4 +81,4 @@ class ContactService {
   }
 }
 
-export default new ContactService();
+export default new UserService();

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useContext } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import DealCard from "../DealCard/DealCard";
@@ -122,9 +123,9 @@ const DealCardList = (props) => {
                         >
                           <DealCard
                             title={deal.name}
-                            companyName={deal.company.name}
-                            contactName={deal.contact.name}
-                            companyPicture={deal.company.picture}
+                            companyName={deal.company?.name}
+                            contactName={deal.contact?.name}
+                            companyPicture={deal.company?.picture}
                             budget={deal.value}
                             startDate={deal.createdAt}
                             tag={deal.activity[deal.activity.length - 1].tag}
