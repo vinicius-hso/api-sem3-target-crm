@@ -48,6 +48,37 @@ class ContactService {
       return error;
     }
   }
+
+  async updateContact({
+    id,
+    name,
+    email,
+    phone,
+    city,
+    state,
+    company_id,
+    tag,
+  }: IContact): Promise<string> {
+    const body: IContact = {
+      name,
+      email,
+      phone,
+      city,
+      state,
+      company_id,
+      tag,
+    };
+
+    try {
+      const { data } = await api.put(`/contact/${id}`, body, {
+        headers: this.headers,
+      });
+
+      return data.message;
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 export default new ContactService();
