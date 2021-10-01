@@ -25,7 +25,7 @@ import {
   NewActivityContainer,
 } from "../DealDetailCard/DealDetailCard.style";
 import Activity from "../Activity/Activity";
-import { useDealPage } from "data/services/hooks/PageHooks/dealHook";
+import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import AuthContext from "contexts/AuthContext";
 import { ButtonsContainer } from "./ModalStyles/ButtonsContainer";
 import { LinkStyled } from "../Link/Link.style";
