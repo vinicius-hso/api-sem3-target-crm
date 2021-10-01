@@ -18,3 +18,4 @@
   - rode `yarn dev` ou `npm run dev`;
   - acesse `localhost:3333`;
     - SE NECESSÁRIO, PARA REVERTER AS MIGRATIONS, rode `yarn typeorm migration:revert`;
+
