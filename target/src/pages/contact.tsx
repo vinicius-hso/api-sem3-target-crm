@@ -10,7 +10,7 @@ import {
   ContactsPageContainer,
 } from "@styles/pagesStyle/contacts.style";
 import ContactCard from "ui/components/ContactCard/ContactCard";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 
 function ContactPage() {
   const { contacts } = useContactPage();
