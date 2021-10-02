@@ -10,6 +10,7 @@ import { AuthProvider } from "contexts/AuthContext";
 import { ModalProvider } from "contexts/PipelineContext";
 import { useRouter } from "next/dist/client/router";
 import Header from "ui/components/Header/Header";
+import { ContactProvider } from "contexts/ContactContext";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
@@ -35,18 +36,20 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <AuthProvider>
           {currentRoute.route === "/login" ||
-          currentRoute.route === "/recover_pass" ||
-          currentRoute.route === "/welcome" ||
-          currentRoute.route === "/recover" ? (
+            currentRoute.route === "/recover_pass" ||
+            currentRoute.route === "/welcome" ||
+            currentRoute.route === "/recover" ? (
             <>
               <Header />
               <Component {...pageProps}></Component>
             </>
           ) : (
             <ModalProvider>
-              <AppContainer>
-                <NavBar CurrentPage={<Component {...pageProps}></Component>} />
-              </AppContainer>
+              <ContactProvider>
+                <AppContainer>
+                  <NavBar CurrentPage={<Component {...pageProps}></Component>} />
+                </AppContainer>
+              </ContactProvider>
             </ModalProvider>
           )}
         </AuthProvider>
