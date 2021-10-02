@@ -18,16 +18,24 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [dealDetailModalState, setDealDetailModalState] =
     useState<boolean>(false);
 
-  const [createCompanyModalState, setCreateCompanyModalState] =
-    useState<boolean>(false);
+  //* COMPANY
+  // const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
+  // const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
+  // const [companyDetail, setCompanyDetail] = useState({});
+  // const [company, setCompany] = useState<CompanyTypes>();
+  // const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
 
+  //* ID
   const [updateId, setUpdateIdState] = useState<string>();
   const [deleteId, setDeleteIdState] = useState<string>();
+
+  //* DEAL
   const [dealDetail, setDealDetail] = useState({});
   const [name, setNameState] = useState<string>();
   const [deals, setDeals] = useState<DealTypes[]>([]);
   const [pipelines, setPipelines] = useState<pipeline[]>();
   const [pipeline, setPipeline] = useState<pipeline>();
+  
   const [dealTotalParams, setDealTotalParams] = useState({
     budgetSum: 0,
     totalDeals: 0,
@@ -37,14 +45,42 @@ export const ModalProvider: React.FC = ({ children }) => {
   });
   const route = useRouter();
 
-  const createCompany = async (data: CompanyTypes) => {
-    await CompanyService.createCompany(data);
-    useCreateCompanyModal();
-  };
+  //* COMPANY
+  // create company
+  // const createCompany = async (data: CompanyTypes) => {
+  //   await CompanyService.createCompany(data);
+  //   useCreateCompanyModal();
+  // };
 
-  const useCreateCompanyModal = () => {
-    setCreateCompanyModalState(!createCompanyModalState);
-  };
+  // const useCreateCompanyModal = () => {
+  //   setCreateCompanyModalState(!createCompanyModalState);
+  // };
+
+  // // company details
+  // const useCompanyDetailModal = (company: any) => {
+  //   // console.log('Oi!')
+  //   // console.log(company.id)
+  //   setCompanyDetail(company)
+  //   setCompanyDetailModalState(!companyDetailModalState)
+  // }
+
+  // // edit company
+  // const editCompany = async (companyId: any, data: any) => {
+  //   const response = await CompanyService.editCompany(companyId, data);
+  // };
+
+  // const useUpdateCompanyModal = (id: string) => {
+  //   setUpdateIdState(id);
+  //   if (id) getCompany(id);
+  //   setUpdateModalState(!updateModalState);
+  // };
+
+  // const getCompany = async (id: string) => {
+  //   const data: CompanyTypes = await CompanyService.getCompanyById(id);
+
+  //   setCompany(data);
+  // };
+
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId, deals, pipelines) => {
@@ -310,10 +346,16 @@ export const ModalProvider: React.FC = ({ children }) => {
         dealTotalParams,
         filterDeals,
         removefilterDeals,
-        createCompany,
-        useCreateCompanyModal,
-        createCompanyModalState,
+        // createCompany,
+        // useCreateCompanyModal,
+        // createCompanyModalState,
+        // useCompanyDetailModal,
+        // companyDetailModalState,
         dealDetail,
+
+        // companyDetail,
+        // editCompany,
+        // useUpdateCompanyModal
       }}
     >
       {children}

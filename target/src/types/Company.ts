@@ -1,4 +1,5 @@
 export interface CompanyTypes {
+    id?: string
     name?: string;
     country?: string;
     state?: string;

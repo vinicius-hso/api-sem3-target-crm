@@ -22,10 +22,21 @@ export default interface ModalTypes {
   useDealDetailModal: (deal: any) => void;
 
   // CREATE COMPANY MODAL
-  createCompanyModalState: boolean;
-  useCreateCompanyModal: () => void;
-  createCompany: (data: CompanyTypes) => void;
+  // createCompanyModalState: boolean;
+  // useCreateCompanyModal: () => void;
+  // createCompany: (data: CompanyTypes) => void;
 
+  // COMPANY DETAILS MODAL
+  // companyDetailModalState: boolean;
+  // useCompanyDetailModal: (company: any) => void;
+  // useUpdateCompanyModal: (company: any) => void;
+
+  // companyDetail: any;
+  // company: CompanyTypes;
+
+  // EDIT COMPANY
+  // editCompany: (id: any, data: CompanyTypes) => void;
+  
   setName: (name: string) => void;
   getPipelines: () => void;
   pipelines: pipeline[];
