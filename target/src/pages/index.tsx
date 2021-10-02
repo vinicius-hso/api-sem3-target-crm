@@ -19,8 +19,8 @@ import PipelineContext from "contexts/PipelineContext";
 import { formatValue } from "data/utils/formatValue";
 import DetailModal from "ui/components/Modal/DealDetailModal";
 import { mockTags } from "data/utils/mock";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
-import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
