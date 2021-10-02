@@ -10,11 +10,8 @@ import {
   ContactsPageContainer,
 } from "@styles/pagesStyle/contacts.style";
 import ContactCard from "ui/components/ContactCard/ContactCard";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
-<<<<<<< HEAD
-=======
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 import CreateContactModal from "ui/components/Modal/CreateContactModal";
->>>>>>> 7523e5ad18f619c932d28d6f4c7bdf2d6cd661db
 
 function ContactPage() {
   const { contacts } = useContactPage();

@@ -36,9 +36,9 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <AuthProvider>
           {currentRoute.route === "/login" ||
-            currentRoute.route === "/recover_pass" ||
-            currentRoute.route === "/welcome" ||
-            currentRoute.route === "/recover" ? (
+          currentRoute.route === "/recover_pass" ||
+          currentRoute.route === "/welcome" ||
+          currentRoute.route === "/recover" ? (
             <>
               <Header />
               <Component {...pageProps}></Component>
@@ -47,7 +47,9 @@ function MyApp({ Component, pageProps }) {
             <ModalProvider>
               <ContactProvider>
                 <AppContainer>
-                  <NavBar CurrentPage={<Component {...pageProps}></Component>} />
+                  <NavBar
+                    CurrentPage={<Component {...pageProps}></Component>}
+                  />
                 </AppContainer>
               </ContactProvider>
             </ModalProvider>

@@ -1,9 +1,9 @@
 import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
-import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import PipelineContext from 'contexts/PipelineContext';
+import PipelineContext from "contexts/PipelineContext";
 import {
   CompanyDetailCardContainer,
   EditButton,
@@ -48,15 +48,14 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
   const [error, setError] = useState(false);
 
   const handleSubmit = () => {
-    
     const data = {
       name,
       city,
       state,
       country,
       site,
-      picture
-    }
+      picture,
+    };
   };
   return (
     <div>
@@ -99,7 +98,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             aria-hidden="true"
           ></i>
         </EditButton>
-  
+
         <InputContainer>
           <div>
             <Typography

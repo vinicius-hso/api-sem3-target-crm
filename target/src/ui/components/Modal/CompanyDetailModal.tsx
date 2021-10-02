@@ -6,7 +6,7 @@ import Title from "../Title/Title";
 import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
-import { CompanyTypes } from 'types/Company';
+import { CompanyTypes } from "types/Company";
 // import AddCircleIcon from '@material-ui/icons/AddCircle';
 // import EditIcon from '@material-ui/icons/Edit';
 // import DealDetailCard from '../DealDetailCard/DealDetailCard';
@@ -14,15 +14,13 @@ import { CompanyTypes } from 'types/Company';
 // import { LinkStyled } from '../Link/Link.style';
 // import { CopyToClipboard } from 'react-copy-to-clipboard';
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
-import { useCompanyPage } from '../../../data/services/hooks/PageHooks/CompanyHook';
-
+import { useCompanyPage } from "../../../data/services/hooks/PageHooks/companyHook";
 
 const CompanyDetailModal: React.FC = () => {
-  
-  const { 
-    companyDetailModalState, 
-    useCompanyDetailModal, 
-    companyDetail, 
+  const {
+    companyDetailModalState,
+    useCompanyDetailModal,
+    companyDetail,
     editCompany,
     // useUpdateCompanyModal,
     // company
@@ -49,46 +47,43 @@ const CompanyDetailModal: React.FC = () => {
   };
 
   function handleSubmit() {
-    console.log('Aoobah!');
+    console.log("Aoobah!");
   }
 
   const body = (
-
     <ModalContainer>
       {/* {companyDetail.id ? ( */}
-        <>
-          <CloseButtonStyled
-            onClick={() => {
-              useCompanyDetailModal(companyDetail);
-            }}
-          >
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </CloseButtonStyled>
+      <>
+        <CloseButtonStyled
+          onClick={() => {
+            useCompanyDetailModal(companyDetail);
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
 
-          <Title title={`Detalhes da empresa ${companyDetail?.name}`} />
+        <Title title={`Detalhes da empresa ${companyDetail?.name}`} />
 
-          <CompanyDetailCard
-            onClick={() => setHasEdit(!hasEdit)}
-            hasEdit={hasEdit}
-            // id={companyDetail.id}
-            name={companyDetail?.name}
-            city={companyDetail?.city}
-            state={companyDetail?.state}
-            country={companyDetail?.country}
-            site={companyDetail?.site}
-            picture={companyDetail?.picture}
-            saveEdit={(data) => {
-              setData(data)
-              handleSubmitEdit(data)
-            }}
-          />
-        </>
+        <CompanyDetailCard
+          onClick={() => setHasEdit(!hasEdit)}
+          hasEdit={hasEdit}
+          // id={companyDetail.id}
+          name={companyDetail?.name}
+          city={companyDetail?.city}
+          state={companyDetail?.state}
+          country={companyDetail?.country}
+          site={companyDetail?.site}
+          picture={companyDetail?.picture}
+          saveEdit={(data) => {
+            setData(data);
+            handleSubmitEdit(data);
+          }}
+        />
+      </>
       {/* // ) : (
       //   <div>Não foi possivel carregar dados, atualize a pagina</div>
       // )} */}
     </ModalContainer>
-
-
   );
   return (
     <>

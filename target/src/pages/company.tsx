@@ -12,10 +12,16 @@ import Title from "ui/components/Title/Title";
 import { Button } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import PipelineContext from "contexts/PipelineContext";
-import { useCompanyPage } from 'data/services/hooks/PageHooks/CompanyHook';
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 
 function CompanyPage() {
-  const { companies, filteredCompany, removeFiltered, useCreateCompanyModal, useCompanyDetailModal } = useCompanyPage();
+  const {
+    companies,
+    filteredCompany,
+    removeFiltered,
+    useCreateCompanyModal,
+    useCompanyDetailModal,
+  } = useCompanyPage();
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -100,7 +106,7 @@ function CompanyPage() {
             email={company.site}
             picture={company.picture}
             onClick={() => {
-              useCompanyDetailModal(company)
+              useCompanyDetailModal(company);
             }}
           />
         ))}
