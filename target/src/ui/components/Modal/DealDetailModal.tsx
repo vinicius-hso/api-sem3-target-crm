@@ -20,12 +20,13 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import DealDetailCard from "../DealDetailCard/DealDetailCard";
 import {
   ActionsDealDetailCardContainer,
+  LinkPhoneStyled,
   NewActivityButton,
   NewActivityButtonLabel,
   NewActivityContainer,
 } from "../DealDetailCard/DealDetailCard.style";
 import Activity from "../Activity/Activity";
-import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
+import { useDealPage } from "data/services/hooks/PageHooks/dealHook";
 import AuthContext from "contexts/AuthContext";
 import { ButtonsContainer } from "./ModalStyles/ButtonsContainer";
 import { LinkStyled } from "../Link/Link.style";
@@ -213,11 +214,11 @@ const DetailModal: React.FC = () => {
                   </CopyToClipboard>
                 </IconButton>
               </LinkStyled>
-              <LinkStyled href={`tel:${dealDetail.contact.phone}`}>
+              <LinkPhoneStyled href={`tel:${dealDetail.contact.phone}`}>
                 <IconButton type="submit" aria-label="search">
                   <i className={`fa fa-phone`}></i>
                 </IconButton>
-              </LinkStyled>
+              </LinkPhoneStyled>
               <LinkStyled
                 target="__blank"
                 rel="no-referrer"

@@ -17,7 +17,6 @@ import PipelineContext from "contexts/PipelineContext";
 function CompanyPage() {
   const { companies, filteredCompany, removeFiltered } = useCompanyPage();
   const [valueType, setValueType] = React.useState("name");
-  const [selectListValues, setSelectListValues] = React.useState([]);
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [time, setTime] = React.useState(null);

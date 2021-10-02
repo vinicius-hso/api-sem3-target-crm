@@ -28,9 +28,6 @@ export const useCompanyPage = () => {
   };
 
   const filteredCompany = async (terms: string, typeValue: string) => {
-    if (!localStorage.getItem("companiesFilter")) {
-      localStorage.setItem("companiesFilter", JSON.stringify(companies));
-    }
     if (typeValue === "name")
       setCompanies(
         companies.filter((company) =>
@@ -46,7 +43,8 @@ export const useCompanyPage = () => {
   };
 
   const removeFiltered = async (isNewSearched: boolean) => {
-    setCompanies(JSON.parse(localStorage.getItem("dealsListFilter")));
+    const teste = await JSON.parse(localStorage.getItem("dealsListFilter"));
+    setCompanies(teste);
     if (!isNewSearched) {
       localStorage.removeItem("dealsListFilter");
     }
@@ -66,7 +64,6 @@ export const useCompanyPage = () => {
     formatCompaniesToSelect,
     filteredCompany,
     removeFiltered,
-
     // CREATE MODAL
     createCompany,
     useCreateCompanyModal,

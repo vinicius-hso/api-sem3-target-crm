@@ -1,4 +1,4 @@
-import { Avatar, Button, Paper, Rating } from "@material-ui/core";
+import { Avatar, Button, Link, Paper, Rating } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 //@deprecated
@@ -97,5 +97,16 @@ export const NewActivityButton = styled(Button)`
 `;
 export const NewActivityButtonLabel = styled("label")`
   ${({ theme }) => theme.breakpoints.down("md")} {
+  }
+`;
+
+export const LinkPhoneStyled = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    display: none;
   }
 `;

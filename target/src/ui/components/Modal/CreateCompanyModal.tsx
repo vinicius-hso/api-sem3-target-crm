@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
-import { ModalContainer } from "./ModalStyles/ModalContainer.style";
+import {
+  ModalContainer,
+  TwoColumnsContainer,
+} from "./ModalStyles/ModalContainer.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
-import { Button, useForkRef } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
@@ -68,69 +70,74 @@ const CreateCompanyModal = () => {
       </CloseButtonStyled>
 
       <Title title="Nova empresa" />
+      <TwoColumnsContainer>
+        <TextFieldMask
+          onChange={(event) => setData({ ...data, name: event.target.value })}
+          value={data.name}
+          label="Nome da empresa"
+          variant="standard"
+          size="small"
+          fullWidth
+        />
 
-      <TextFieldMask
-        onChange={(event) => setData({ ...data, name: event.target.value })}
-        value={data.name}
-        label="Nome da empresa"
-        variant="standard"
-        size="small"
-        fullWidth
-      />
+        <TextFieldMask
+          onChange={(event) => handleChangeCep(event)}
+          value={data.cep}
+          label="CEP"
+          variant="standard"
+          size="small"
+          fullWidth
+        />
 
-      <TextFieldMask
-        onChange={(event) => handleChangeCep(event)}
-        value={data.cep}
-        label="CEP"
-        variant="standard"
-        size="small"
-        fullWidth
-      />
+        <TextFieldMask
+          onChange={(event) => setData({ ...data, city: event.target.value })}
+          value={data.city}
+          label="Cidade"
+          variant="standard"
+          size="small"
+          fullWidth
+        />
 
-      <TextFieldMask
-        onChange={(event) => setData({ ...data, city: event.target.value })}
-        value={data.city}
-        label="Cidade"
-        variant="standard"
-        size="small"
-        fullWidth
-      />
+        <TextFieldMask
+          onChange={(event) => setData({ ...data, state: event.target.value })}
+          value={data.state}
+          label="Estado"
+          variant="standard"
+          size="small"
+          fullWidth
+        />
 
-      <TextFieldMask
-        onChange={(event) => setData({ ...data, state: event.target.value })}
-        value={data.state}
-        label="Estado"
-        variant="standard"
-        size="small"
-        fullWidth
-      />
+        <TextFieldMask
+          onChange={(event) =>
+            setData({ ...data, country: event.target.value })
+          }
+          value={data.country}
+          label="País"
+          variant="standard"
+          size="small"
+          fullWidth
+        />
 
-      <TextFieldMask
-        onChange={(event) => setData({ ...data, country: event.target.value })}
-        value={data.country}
-        label="País"
-        variant="standard"
-        size="small"
-        fullWidth
-      />
+        <TextFieldMask
+          onChange={(event) => setData({ ...data, site: event.target.value })}
+          value={data.site}
+          label="Site"
+          variant="standard"
+          size="small"
+          fullWidth
+        />
 
-      <TextFieldMask
-        onChange={(event) => setData({ ...data, site: event.target.value })}
-        value={data.site}
-        label="Site"
-        variant="standard"
-        size="small"
-        fullWidth
-      />
-
-      <TextFieldMask
-        onChange={(event) => setData({ ...data, picture: event.target.value })}
-        value={data.picture}
-        label="Imagem"
-        variant="standard"
-        size="small"
-        fullWidth
-      />
+        <TextFieldMask
+          onChange={(event) =>
+            setData({ ...data, picture: event.target.value })
+          }
+          value={data.picture}
+          label="Link de imagem"
+          variant="standard"
+          size="small"
+          fullWidth
+        />
+      </TwoColumnsContainer>
 
       <Button
         onClick={() => handleSubmit()}
