@@ -9,12 +9,14 @@ import { Button, useForkRef } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
-import PipelineContext from "contexts/PipelineContext";
+// import PipelineContext from 'contexts/PipelineContext';
 import { getCepService } from "data/utils/getCepService";
 
 const CreateCompanyModal = () => {
-  const { createCompanyModalState, useCreateCompanyModal, createCompany } =
-    useContext(PipelineContext);
+  const { createCompanyModalState, useCreateCompanyModal, createCompany } = useCompanyPage();
+
+  // const { createCompanyModalState, useCreateCompanyModal, createCompany } =
+  //   useContext(PipelineContext);
 
   const [time, setTime] = useState(null);
   const [data, setData] = useState<CompanyTypes>({

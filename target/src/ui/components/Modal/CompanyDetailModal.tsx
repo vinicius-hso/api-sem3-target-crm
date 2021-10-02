@@ -14,6 +14,7 @@ import { CompanyTypes } from 'types/Company';
 // import { LinkStyled } from '../Link/Link.style';
 // import { CopyToClipboard } from 'react-copy-to-clipboard';
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
+import { useCompanyPage } from '../../../data/services/hooks/PageHooks/CompanyHook';
 
 
 const CompanyDetailModal: React.FC = () => {
@@ -24,8 +25,8 @@ const CompanyDetailModal: React.FC = () => {
     companyDetail, 
     editCompany,
     // useUpdateCompanyModal,
-    company
-  } = useContext(PipelineContext);
+    // company
+  } = useCompanyPage();
 
   const [hasEdit, setHasEdit] = useState(false);
 
@@ -58,7 +59,7 @@ const CompanyDetailModal: React.FC = () => {
         <>
           <CloseButtonStyled
             onClick={() => {
-              useCompanyDetailModal("");
+              useCompanyDetailModal(companyDetail);
             }}
           >
             <i className="fa fa-times" aria-hidden="true"></i>
@@ -69,13 +70,13 @@ const CompanyDetailModal: React.FC = () => {
           <CompanyDetailCard
             onClick={() => setHasEdit(!hasEdit)}
             hasEdit={hasEdit}
-            id={data.id}
-            name={data?.name}
-            city={data?.city}
-            state={data?.state}
-            country={data?.country}
-            site={data?.site}
-            picture={data?.picture}
+            // id={companyDetail.id}
+            name={companyDetail?.name}
+            city={companyDetail?.city}
+            state={companyDetail?.state}
+            country={companyDetail?.country}
+            site={companyDetail?.site}
+            picture={companyDetail?.picture}
             saveEdit={(data) => {
               setData(data)
               handleSubmitEdit(data)
@@ -93,7 +94,7 @@ const CompanyDetailModal: React.FC = () => {
     <>
       <ModalStyled
         open={companyDetailModalState}
-        onClose={() => useCompanyDetailModal('')}
+        onClose={() => useCompanyDetailModal(companyDetail)}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

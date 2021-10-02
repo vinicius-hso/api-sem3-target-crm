@@ -1,8 +1,9 @@
 import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
+import PipelineContext from 'contexts/PipelineContext';
 import {
   CompanyDetailCardContainer,
   EditButton,
@@ -11,7 +12,7 @@ import {
 
 //@deprecated
 interface CompanyDetailCardProps {
-  id: string
+  // id: string
   name: string;
   city: string;
   state: string;
@@ -28,8 +29,10 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
   // const { formatListThisCompanyToSelect } = useContactPage();
   // const [contactsThisCompany, setContactsThisCompany] = useState([]);
 
-//   const [selectedContact, setSelectedContact] = useState(props.contact);
-//   const [selectedCompany, setSelectedCompany] = useState(props.company);
+  //   const [selectedContact, setSelectedContact] = useState(props.contact);
+  //   const [selectedCompany, setSelectedCompany] = useState(props.company);
+
+  const { companyDetail } = useCompanyPage();
 
   const [isInitialValue, setInitialValue] = useState(true);
 
@@ -54,7 +57,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
       site,
       picture
     }
-    console.log(props)
   };
   return (
     <div>

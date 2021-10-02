@@ -19,10 +19,10 @@ export const ModalProvider: React.FC = ({ children }) => {
     useState<boolean>(false);
 
   //* COMPANY
-  const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
-  const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
-  const [companyDetail, setCompanyDetail] = useState({});
-  const [company, setCompany] = useState<CompanyTypes>();
+  // const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
+  // const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
+  // const [companyDetail, setCompanyDetail] = useState({});
+  // const [company, setCompany] = useState<CompanyTypes>();
   // const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
 
   //* ID
@@ -47,39 +47,39 @@ export const ModalProvider: React.FC = ({ children }) => {
 
   //* COMPANY
   // create company
-  const createCompany = async (data: CompanyTypes) => {
-    await CompanyService.createCompany(data);
-    useCreateCompanyModal();
-  };
+  // const createCompany = async (data: CompanyTypes) => {
+  //   await CompanyService.createCompany(data);
+  //   useCreateCompanyModal();
+  // };
 
-  const useCreateCompanyModal = () => {
-    setCreateCompanyModalState(!createCompanyModalState);
-  };
+  // const useCreateCompanyModal = () => {
+  //   setCreateCompanyModalState(!createCompanyModalState);
+  // };
 
-  // company details
-  const useCompanyDetailModal = (company: any) => {
-    console.log('Oi!')
-    console.log(company)
-    setCompanyDetail(company)
-    setCompanyDetailModalState(!companyDetailModalState)
-  }
+  // // company details
+  // const useCompanyDetailModal = (company: any) => {
+  //   // console.log('Oi!')
+  //   // console.log(company.id)
+  //   setCompanyDetail(company)
+  //   setCompanyDetailModalState(!companyDetailModalState)
+  // }
 
-  // edit company
-  const editCompany = async (companyId, data) => {
-    const response = await CompanyService.editCompany(companyId, data);
-  };
+  // // edit company
+  // const editCompany = async (companyId: any, data: any) => {
+  //   const response = await CompanyService.editCompany(companyId, data);
+  // };
 
-  const useUpdateCompanyModal = (id: string) => {
-    setUpdateIdState(id);
-    if (id) getCompany(id);
-    setUpdateModalState(!updateModalState);
-  };
+  // const useUpdateCompanyModal = (id: string) => {
+  //   setUpdateIdState(id);
+  //   if (id) getCompany(id);
+  //   setUpdateModalState(!updateModalState);
+  // };
 
-  const getCompany = async (id: string) => {
-    const data: CompanyTypes = await CompanyService.getCompanyById(id);
+  // const getCompany = async (id: string) => {
+  //   const data: CompanyTypes = await CompanyService.getCompanyById(id);
 
-    setCompany(data);
-  };
+  //   setCompany(data);
+  // };
 
 
   //FILTRA OS PIPELINES
@@ -346,16 +346,16 @@ export const ModalProvider: React.FC = ({ children }) => {
         dealTotalParams,
         filterDeals,
         removefilterDeals,
-        createCompany,
-        useCreateCompanyModal,
-        createCompanyModalState,
-        useCompanyDetailModal,
-        companyDetailModalState,
+        // createCompany,
+        // useCreateCompanyModal,
+        // createCompanyModalState,
+        // useCompanyDetailModal,
+        // companyDetailModalState,
         dealDetail,
 
-        companyDetail,
-        editCompany,
-        useUpdateCompanyModal
+        // companyDetail,
+        // editCompany,
+        // useUpdateCompanyModal
       }}
     >
       {children}

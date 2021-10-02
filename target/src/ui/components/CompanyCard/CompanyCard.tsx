@@ -1,7 +1,7 @@
 import { Container, Toolbar } from "@material-ui/core";
 import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
 import React, {useContext} from "react";
-import PipelineContext from 'contexts/PipelineContext';
+// import PipelineContext from 'contexts/PipelineContext';
 // import CreateCompanyModal from '../Modal/CreateCompanyModal';
 import CompanyDetailModal from '../Modal/CompanyDetailModal';
 import {
@@ -19,17 +19,17 @@ interface CompanyCardProps {
   city: string;
   state?: string;
   email?: string;
-  // onClick: any;
+  onClick: any;
 }
 
 const CompanyCard: React.FC<CompanyCardProps> = (props) => {
 
-  const { useCompanyDetailModal } = useContext(PipelineContext);
+  // const { useCompanyDetailModal, companyDetail } = useContext(PipelineContext);
 
   return (
     <>
       <CompanyDetailModal />
-      <CompanyCardContainer onClick={() => useCompanyDetailModal("")}>
+      <CompanyCardContainer onClick={props.onClick}>
         <CompanyPictureStyled src={props.picture}>
         {getNameInitials(props.name)}
         </CompanyPictureStyled>
