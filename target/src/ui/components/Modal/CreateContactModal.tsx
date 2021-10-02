@@ -17,7 +17,6 @@ import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 const CreateContactModal = () => {
   const { createContactModal, useCreateContactModal } =
     useContext(ContactContext);
-  const { getData } = useContactPage();
   const [states, setStates] = useState<IState[]>([])
 
   const [time, setTime] = useState(null);
@@ -56,7 +55,6 @@ const CreateContactModal = () => {
         })
 
         useCreateContactModal()
-        getData()
       }
     } catch (error) {
       console.log(error.message)
