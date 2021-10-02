@@ -3,14 +3,14 @@ import CompanyService from "data/services/CompanyService";
 import { CompanyTypes } from "types/Company";
 
 export const useCompanyPage = () => {
-
   //DECLARAÇÃO DAS VARIAVEIS
   const [companies, setCompanies] = useState([]);
   const [formatCompaniesToSelect, setFormat] = useState([]);
   const [createCompanyModalState, setCreateCompanyModalState] =
     useState<boolean>(false);
 
-  const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
+  const [companyDetailModalState, setCompanyDetailModalState] =
+    useState<boolean>(false);
   const [companyDetail, setCompanyDetail] = useState<CompanyTypes>({});
 
   useEffect(() => {
@@ -60,16 +60,16 @@ export const useCompanyPage = () => {
   };
 
   const useCreateCompanyModal = () => {
-    console.log('Function -> useCreateCompanyModal')
+    console.log("Function -> useCreateCompanyModal");
     setCreateCompanyModalState(!createCompanyModalState);
   };
 
   const useCompanyDetailModal = (companyDetail: any) => {
     // console.log('Oi!')
-    console.log(companyDetail)
-    setCompanyDetail(companyDetail)
-    setCompanyDetailModalState(!companyDetailModalState)
-  }
+    console.log(companyDetail);
+    setCompanyDetail(companyDetail);
+    setCompanyDetailModalState(!companyDetailModalState);
+  };
 
   const editCompany = async (companyId: any, data: any) => {
     const response = await CompanyService.editCompany(companyId, data);
@@ -90,6 +90,6 @@ export const useCompanyPage = () => {
     useCompanyDetailModal,
     companyDetailModalState,
     editCompany,
-    companyDetail
+    companyDetail,
   };
 };

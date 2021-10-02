@@ -15,8 +15,15 @@ import { CompanyTypes } from "types/Company";
 // import { CopyToClipboard } from 'react-copy-to-clipboard';
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 import { useCompanyPage } from "../../../data/services/hooks/PageHooks/companyHook";
+interface CompanyDetailModalProps {
+  open: boolean;
+  company: any;
+}
 
-const CompanyDetailModal: React.FC = () => {
+const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
+  open,
+  company,
+}) => {
   const {
     companyDetailModalState,
     useCompanyDetailModal,
@@ -68,7 +75,7 @@ const CompanyDetailModal: React.FC = () => {
           onClick={() => setHasEdit(!hasEdit)}
           hasEdit={hasEdit}
           // id={companyDetail.id}
-          name={companyDetail?.name}
+          name={company?.name}
           city={companyDetail?.city}
           state={companyDetail?.state}
           country={companyDetail?.country}
@@ -88,8 +95,8 @@ const CompanyDetailModal: React.FC = () => {
   return (
     <>
       <ModalStyled
-        open={companyDetailModalState}
-        onClose={() => useCompanyDetailModal(companyDetail)}
+        open={open}
+        onClose={() => (open = false)}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useContext, useEffect } from "react";
-import { ModalContainer, TwoColumnsContainer } from "./ModalStyles/ModalContainer.style";
+import {
+  ModalContainer,
+  TwoColumnsContainer,
+} from "./ModalStyles/ModalContainer.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
@@ -11,13 +14,13 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 import ContactContext from "contexts/ContactContext";
 import { IContact } from "types/Contact";
 import ContactService from "data/services/ContactService";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 
 const CreateContactModal = () => {
   const { createContactModal, useCreateContactModal } =
     useContext(ContactContext);
-  const [states, setStates] = useState<IState[]>([])
+  const [states, setStates] = useState<IState[]>([]);
 
   const [time, setTime] = useState(null);
   const [data, setData] = useState<IContact>({
@@ -27,19 +30,18 @@ const CreateContactModal = () => {
     city: "",
     email: "",
     phone: "12000000000",
-    tag: "null"
+    tag: "null",
   });
 
   const getState = async (): Promise<void> => {
     try {
-      const response: any = await getBrazilianStates()
+      const response: any = await getBrazilianStates();
 
-      setStates(response.data)
+      setStates(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
+  };
 
   const createContact = async () => {
     try {
@@ -51,20 +53,19 @@ const CreateContactModal = () => {
           city: data?.city,
           state: data?.state,
           company_id: data?.company_id,
-          tag: data?.tag
-        })
+          tag: data?.tag,
+        });
 
-        useCreateContactModal()
+        useCreateContactModal();
       }
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
+  };
 
   useEffect(() => {
-    getState()
-  }, [])
-
+    getState();
+  }, []);
 
   const body = (
     <ModalContainer>
@@ -89,7 +90,9 @@ const CreateContactModal = () => {
       />
 
       <Select
-        onChange={(event) => setData({ ...data, company_id: event.target.value })}
+        onChange={(event) =>
+          setData({ ...data, company_id: event.target.value })
+        }
         value={data.company_id}
         label="Empresa"
         variant="standard"
@@ -152,10 +155,13 @@ const CreateContactModal = () => {
           fullWidth
         >
           <MenuItem value={"null"}>--</MenuItem>
-          {
-            states.length > 0 ?
-              states.map((state) => <MenuItem key={state.id} value={state.sigla}>{state.sigla}</MenuItem>) : null
-          }
+          {states.length > 0
+            ? states.map((state) => (
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
+            : null}
         </Select>
       </TwoColumnsContainer>
 

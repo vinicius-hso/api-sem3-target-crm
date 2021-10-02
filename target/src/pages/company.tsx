@@ -13,6 +13,7 @@ import { Button } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import PipelineContext from "contexts/PipelineContext";
 import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
 
 function CompanyPage() {
   const {
@@ -25,6 +26,11 @@ function CompanyPage() {
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
+  const [openCreateCompanyModal, setOpenCreateCompanyModal] =
+    React.useState(false);
+  const [openDetailCompanyModal, setOpenDetailCompanyModal] =
+    React.useState(false);
+  const [selectedCompany, setSelectedCompany] = React.useState({});
   const [time, setTime] = React.useState(null);
 
   // const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
@@ -58,7 +64,11 @@ function CompanyPage() {
 
   return (
     <CompanyPageContainer>
-      <CreateCompanyModal />
+      <CreateCompanyModal open={openCreateCompanyModal} />
+      <CompanyDetailModal
+        open={openDetailCompanyModal}
+        company={selectedCompany}
+      />
       <CompanyHeaderContainer>
         <TitleContainer>
           <Title title="EMPRESAS"></Title>
@@ -88,7 +98,7 @@ function CompanyPage() {
           variant="contained"
           sx={{ width: "auto", height: "30px" }}
           color="primary"
-          onClick={() => useCreateCompanyModal()}
+          onClick={() => setOpenCreateCompanyModal(true)}
           type="submit"
         >
           <i className="fa fa-plus" style={{ marginRight: "2px" }}></i> Nova
@@ -106,7 +116,8 @@ function CompanyPage() {
             email={company.site}
             picture={company.picture}
             onClick={() => {
-              useCompanyDetailModal(company);
+              setSelectedCompany(company);
+              setOpenDetailCompanyModal(true);
             }}
           />
         ))}

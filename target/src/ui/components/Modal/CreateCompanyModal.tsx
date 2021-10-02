@@ -16,7 +16,10 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 import PipelineContext from "contexts/PipelineContext";
 import { getCepService } from "data/utils/getCepService";
 
-const CreateCompanyModal = () => {
+interface CreateCompanyModalProps {
+  open: boolean;
+}
+const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
   const { createCompanyModalState, useCreateCompanyModal, createCompany } =
     useCompanyPage();
 
@@ -159,7 +162,7 @@ const CreateCompanyModal = () => {
   return (
     <>
       <ModalStyled
-        open={createCompanyModalState}
+        open={open}
         onClose={() => useCreateCompanyModal()}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
