@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
-import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import PipelineContext from "contexts/PipelineContext";
@@ -12,7 +12,7 @@ import {
 
 //@deprecated
 interface CompanyDetailCardProps {
-  // id: string
+  id: string
   name: string;
   city: string;
   state: string;
@@ -32,7 +32,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
   //   const [selectedContact, setSelectedContact] = useState(props.contact);
   //   const [selectedCompany, setSelectedCompany] = useState(props.company);
 
-  const { companyDetail } = useCompanyPage();
+  const { editCompany } = useCompanyPage();
 
   const [isInitialValue, setInitialValue] = useState(true);
 
@@ -48,6 +48,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
   const [error, setError] = useState(false);
 
   const handleSubmit = () => {
+    const id = props.id
     const data = {
       name,
       city,
@@ -56,6 +57,9 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
       site,
       picture,
     };
+    editCompany(id, data).then(() => {
+      window.location.reload();
+    })
   };
   return (
     <div>
@@ -117,6 +121,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
+            defaultValue={props.name}
             value={value}
             onChange={(event) => setName(event.target.value)}
           />
@@ -129,6 +134,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
+            defaultValue={props.city}
             value={value}
             onChange={(event) => setCity(event.target.value)}
           />
@@ -141,6 +147,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
+            defaultValue={props.state}
             value={value}
             onChange={(event) => setState(event.target.value)}
           />
@@ -153,6 +160,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
+            defaultValue={props.country}
             value={value}
             onChange={(event) => setCountry(event.target.value)}
           />
@@ -165,6 +173,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
+            defaultValue={props.site}
             value={value}
             onChange={(event) => setSite(event.target.value)}
           />
@@ -177,6 +186,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
+            defaultValue={props.picture}
             value={value}
             onChange={(event) => setPicture(event.target.value)}
           />

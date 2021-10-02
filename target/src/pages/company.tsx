@@ -12,7 +12,7 @@ import Title from "ui/components/Title/Title";
 import { Button } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import PipelineContext from "contexts/PipelineContext";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
 
 function CompanyPage() {
@@ -23,6 +23,7 @@ function CompanyPage() {
     useCreateCompanyModal,
     useCompanyDetailModal,
   } = useCompanyPage();
+
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -36,7 +37,7 @@ function CompanyPage() {
   // const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
   // const { useCreateCompanyModal, useCompanyDetailModal } = useContext(PipelineContext);
   // const { useCreateCompanyModal } = useContext(CompanyContext);
-  // const { useCreateCompanyModal } = useCompanyPage();
+  const { openCompanyModalState, setOpenCompanyModalState } = useCompanyPage();
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
@@ -66,7 +67,7 @@ function CompanyPage() {
     <CompanyPageContainer>
       <CreateCompanyModal open={openCreateCompanyModal} />
       <CompanyDetailModal
-        open={openDetailCompanyModal}
+        open={openCompanyModalState}
         company={selectedCompany}
       />
       <CompanyHeaderContainer>
@@ -117,7 +118,7 @@ function CompanyPage() {
             picture={company.picture}
             onClick={() => {
               setSelectedCompany(company);
-              setOpenDetailCompanyModal(true);
+              setOpenCompanyModalState(true);
             }}
           />
         ))}
