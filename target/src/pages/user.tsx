@@ -9,7 +9,7 @@ import {
   ContactsHeaderContainer,
   ContactsPageContainer,
 } from "@styles/pagesStyle/contacts.style";
-import ContactCard from "ui/components/ContactCard/ContactCard";
+import UserCard from "ui/components/UserCard/UserCard";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 
 function UserPage() {
@@ -47,7 +47,7 @@ function UserPage() {
     <ContactsPageContainer>
       <ContactsHeaderContainer>
         <TitleContainer>
-          <Title title="Usuarios"></Title>
+          <Title title="Gerenciamento de Usuarios"></Title>
         </TitleContainer>
         <SearchButtom
           placeholder="Buscar"
@@ -71,14 +71,12 @@ function UserPage() {
       </ContactsHeaderContainer>
       <CardsContainer>
         {users.map((user) => (
-          <ContactCard
-            key={user.name}
+          <UserCard
+            key={user.id}
             name={user.name}
-            city={user.email}
-            company={user.name}
-            phone={user.name}
-            state={user.name}
-            picture={user.name}
+            email={user.email}
+            role={user.role}
+            picture={user.picture}
           />
         ))}
       </CardsContainer>

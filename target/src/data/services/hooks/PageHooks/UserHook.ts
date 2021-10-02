@@ -7,7 +7,6 @@ export const useUserPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [users, setUsers] = useState([]);
   const [formatUserToSelect, setFormat] = useState([]);
-  const [formatUserThisCompanyToSelect, setFormatThisCompany] = useState([]);
 
   useEffect(() => {
     getData();
@@ -21,15 +20,6 @@ export const useUserPage = () => {
     );
   };
 
-  const formatListThisCompanyToSelect = (companyId): any => {
-    const formatedUsers = [];
-    users.forEach((user) => {
-      if (companyId === user.company.id) {
-        formatedUsers.push(user);
-      }
-    });
-    return formatedUsers;
-  };
 
   const getData = async () => {
     const response = await UserService.getUsers();
@@ -39,6 +29,5 @@ export const useUserPage = () => {
   return {
     users,
     formatUserToSelect,
-    formatListThisCompanyToSelect,
   };
 };
