@@ -11,3 +11,8 @@ export interface IContact {
   updatedAt?: Date;
   deletedAt?: Date;
 }
+
+export interface IContactContext {
+  useCreateContactModal: () => void;
+  createContactModal: boolean;
+}
