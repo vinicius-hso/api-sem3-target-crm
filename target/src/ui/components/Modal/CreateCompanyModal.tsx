@@ -10,6 +10,7 @@ import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 // import PipelineContext from 'contexts/PipelineContext';
+import PipelineContext from "contexts/PipelineContext";
 import { getCepService } from "data/utils/getCepService";
 
 const CreateCompanyModal = () => {

@@ -11,6 +11,10 @@ import {
 } from "@styles/pagesStyle/contacts.style";
 import ContactCard from "ui/components/ContactCard/ContactCard";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+<<<<<<< HEAD
+=======
+import CreateContactModal from "ui/components/Modal/CreateContactModal";
+>>>>>>> 7523e5ad18f619c932d28d6f4c7bdf2d6cd661db
 
 function ContactPage() {
   const { contacts } = useContactPage();
@@ -46,6 +50,7 @@ function ContactPage() {
   return (
     <ContactsPageContainer>
       <ContactsHeaderContainer>
+        <CreateContactModal />
         <TitleContainer>
           <Title title="CONTATOS"></Title>
         </TitleContainer>
@@ -76,7 +81,7 @@ function ContactPage() {
             key={contact.id}
             name={contact.name}
             city={contact.city}
-            company={contact.company.name}
+            company={contact.company?.name}
             phone={contact.phone}
             state={contact.state}
             picture={contact.picture}
