@@ -35,7 +35,8 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [deals, setDeals] = useState<DealTypes[]>([]);
   const [pipelines, setPipelines] = useState<pipeline[]>();
   const [pipeline, setPipeline] = useState<pipeline>();
-  
+  const [selectedPipeline, setSelectedPipeline] = useState("");
+
   const [dealTotalParams, setDealTotalParams] = useState({
     budgetSum: 0,
     totalDeals: 0,
@@ -80,7 +81,6 @@ export const ModalProvider: React.FC = ({ children }) => {
 
   //   setCompany(data);
   // };
-
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId, deals, pipelines) => {
@@ -346,6 +346,8 @@ export const ModalProvider: React.FC = ({ children }) => {
         dealTotalParams,
         filterDeals,
         removefilterDeals,
+        selectedPipeline,
+        setSelectedPipeline,
         // createCompany,
         // useCreateCompanyModal,
         // createCompanyModalState,

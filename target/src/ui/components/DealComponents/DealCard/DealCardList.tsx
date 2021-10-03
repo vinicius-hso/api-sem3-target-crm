@@ -17,6 +17,7 @@ const DealCardList = (props) => {
     useCreateModal,
     useCreateDealModal,
     useDealDetailModal,
+    setSelectedPipeline,
   } = useContext(PipelineContext);
 
   return (
@@ -48,6 +49,7 @@ const DealCardList = (props) => {
             <Button
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
               onClick={() => {
+                setSelectedPipeline(props.pipeId);
                 useCreateDealModal();
                 setViewButtonGroup(!viewButtonGroup);
               }}
@@ -141,7 +143,7 @@ const DealCardList = (props) => {
                     sx={{ width: "100%", height: "30px" }}
                     color="primary"
                     onClick={() => {
-                      useCreateDealModal();
+                      useCreateDealModal(props.pipeId);
                     }}
                     type="submit"
                   >

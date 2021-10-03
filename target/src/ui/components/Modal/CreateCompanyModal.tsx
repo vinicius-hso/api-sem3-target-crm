@@ -15,6 +15,7 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 // import PipelineContext from 'contexts/PipelineContext';
 import PipelineContext from "contexts/PipelineContext";
 import { getCepService } from "data/utils/getCepService";
+import { formatCep } from "data/utils/formatCep";
 
 interface CreateCompanyModalProps {
   open: boolean;
@@ -35,6 +36,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
     site: "",
     picture: "",
     cep: "",
+    address: "",
   });
 
   async function handleSubmit() {
@@ -42,8 +44,8 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
   }
 
   const handleChangeCep = (event) => {
-    setData({ ...data, cep: event.target.value });
-    if (event.target.value.length === 8) {
+    setData({ ...data, cep: formatCep(event.target.value) });
+    if (event.target.value.length === 9) {
       if (time) {
         clearTimeout(time);
         setTime(null);
@@ -57,6 +59,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
               cep: event.target.value,
               city: address.localidade,
               state: address.uf,
+              address: address.logradouro,
               country: "Brasil",
             });
           } else {
@@ -92,6 +95,17 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
         <TextFieldMask
           onChange={(event) => handleChangeCep(event)}
           value={data.cep}
+          label="CEP"
+          variant="standard"
+          size="small"
+          fullWidth
+        />
+
+        <TextFieldMask
+          onChange={(event) =>
+            setData({ ...data, address: event.target.value })
+          }
+          value={data.address}
           label="CEP"
           variant="standard"
           size="small"

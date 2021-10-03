@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, MenuItem } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PipelineContext from "contexts/PipelineContext";
@@ -12,21 +12,43 @@ import {
 } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
+import {
+  formatCurrency,
+  formatValue,
+  formatValueToSave,
+} from "data/utils/formatValue";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 
 const CreateDealModal = () => {
-  const { createDealModalState, useCreateDealModal, createDeal } =
-    useContext(PipelineContext);
+  const {
+    createDealModalState,
+    useCreateDealModal,
+    createDeal,
+    selectedPipeline,
+  } = useContext(PipelineContext);
+  const { formatCompaniesToSelect } = useCompanyPage();
+  const { formatListThisCompanyToSelect } = useContactPage();
+
+  const [contacts, setContacts] = useState([]);
 
   const [data, setData] = useState<DealTypes>({
     name: "",
-    company: "",
-    contact: "",
+    company: "default",
+    contact: "default",
     pipeline: "",
-    value: 0,
-    tag: "COLD",
+    value: "",
+    tag: "WARM",
   });
+  useEffect(() => {
+    if (selectedPipeline.length) {
+      setData({ ...data, pipeline: selectedPipeline });
+    }
+  }, [selectedPipeline]);
 
   async function handleSubmit() {
+    data.value = formatValueToSave(data.value);
+    data.value = Number(data.value);
     createDeal(data);
   }
 
@@ -49,16 +71,21 @@ const CreateDealModal = () => {
         fullWidth
       />
       <Select
-        onChange={(event) => setData({ ...data, company: event.target.value })}
+        onChange={(event) => {
+          setData({ ...data, company: event.target.value });
+          setContacts(formatListThisCompanyToSelect(event.target.value));
+        }}
         value={data.company}
         label="Empresa"
         variant="standard"
         fullWidth
       >
-        <MenuItem value={""}>Selecione a Empresa</MenuItem>
-        <MenuItem value={"bbcebf0b-917c-4763-b196-9293adfe7cea"}>
-          Cluster8
-        </MenuItem>
+        <MenuItem value="default">Selecione uma empresa</MenuItem>
+        {formatCompaniesToSelect.map((company) => (
+          <MenuItem key={company.value} value={company.value}>
+            {company.label}
+          </MenuItem>
+        ))}
       </Select>
       <Select
         onChange={(event) => setData({ ...data, contact: event.target.value })}
@@ -67,10 +94,12 @@ const CreateDealModal = () => {
         variant="standard"
         fullWidth
       >
-        <MenuItem value={""}>Selecionar Contato</MenuItem>
-        <MenuItem value={"e0566909-9ae7-46e5-8b65-a5ca133a137d"}>
-          Cluster8
-        </MenuItem>
+        <MenuItem value={"default"}>Selecione um contato</MenuItem>
+        {contacts.map((contact) => (
+          <MenuItem key={contact.id} value={contact.id}>
+            {contact.name}
+          </MenuItem>
+        ))}
       </Select>
       {/* <TextFieldMask
         onChange={(event) => setData({ ...data, email: event.target.value })}
@@ -94,7 +123,7 @@ const CreateDealModal = () => {
             fullWidth
             placeholder="(12) 99999-9999"
           /> */}
-          <Select
+          {/*           <Select
             onChange={(event) =>
               setData({ ...data, pipeline: event.target.value })
             }
@@ -108,6 +137,7 @@ const CreateDealModal = () => {
               Cluster8
             </MenuItem>
           </Select>
+ */}{" "}
           {/* <TextFieldMask
             id="date"
             label="Início"
@@ -133,7 +163,7 @@ const CreateDealModal = () => {
         <div>
           <TextFieldMask
             onChange={(event) =>
-              setData({ ...data, value: event.target.value })
+              setData({ ...data, value: formatCurrency(event.target.value) })
             }
             value={data.value}
             id="outlined-basic"
@@ -143,7 +173,7 @@ const CreateDealModal = () => {
             fullWidth
             placeholder="999,00"
           />
-          <TextFieldMask
+          {/*           <TextFieldMask
             id="date"
             label="Término"
             type="date"
@@ -154,6 +184,7 @@ const CreateDealModal = () => {
               shrink: true,
             }}
           />
+ */}{" "}
         </div>
       </TwoColumnsContainer>
       <Button
