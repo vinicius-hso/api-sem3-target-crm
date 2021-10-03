@@ -12,7 +12,7 @@ import Title from "ui/components/Title/Title";
 import { Button } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import PipelineContext from "contexts/PipelineContext";
-import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
 
 function CompanyPage() {

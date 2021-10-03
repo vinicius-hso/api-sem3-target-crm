@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
-import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import PipelineContext from "contexts/PipelineContext";
@@ -12,7 +12,7 @@ import {
 
 //@deprecated
 interface CompanyDetailCardProps {
-  id: string
+  id: string;
   name: string;
   city: string;
   state: string;
@@ -48,7 +48,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
   const [error, setError] = useState(false);
 
   const handleSubmit = () => {
-    const id = props.id
+    const id = props.id;
     const data = {
       name,
       city,
@@ -59,7 +59,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
     };
     editCompany(id, data).then(() => {
       window.location.reload();
-    })
+    });
   };
   return (
     <div>
@@ -102,17 +102,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             aria-hidden="true"
           ></i>
         </EditButton>
-
-        <InputContainer>
-          <div>
-            <Typography
-              color={`${props.hasEdit ? "grey" : "lightgrey"}`}
-              variant="caption"
-            >
-              Empresa
-            </Typography>
-          </div>
-        </InputContainer>
 
         <InputContainer>
           <TextFieldMask
@@ -182,7 +171,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
         <InputContainer>
           <TextFieldMask
             disabled={!props.hasEdit}
-            label={"Imagem"}
+            label={"Link de imagem"}
             fullWidth
             variant={"standard"}
             size="medium"
