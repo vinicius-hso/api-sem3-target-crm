@@ -2,6 +2,7 @@ import React from "react";
 import {
   CardsContainer,
   TitleContainer,
+  NewCompanyButtonContainer,
 } from "@styles/pagesStyle/company.style";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
@@ -9,15 +10,28 @@ import {
   ContactsHeaderContainer,
   ContactsPageContainer,
 } from "@styles/pagesStyle/contacts.style";
-import ContactCard from "ui/components/ContactCard/ContactCard";
+import { Button } from "@material-ui/core";
+import UserCard from "ui/components/UserCard/UserCard";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 
+import CreateUserModal from "ui/components/Modal/CreateUserModal";
+import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
+
+
 function UserPage() {
+ 
+
   const { users } = useUserPage();
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [time, setTime] = React.useState(null);
+  const [openCreateUserModal, setOpenCreateUserModal] =
+    React.useState(false);
+  const { openUserModalState, setOpenUserModalState } = useUserPage();
+  const [selectedUser, setSelectedUser] = React.useState({});
+
+
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
@@ -45,10 +59,30 @@ function UserPage() {
 
   return (
     <ContactsPageContainer>
-      <ContactsHeaderContainer>
-        <TitleContainer>
-          <Title title="Usuarios"></Title>
+      <TitleContainer>
+          <Title title="Gerenciamento de Usuarios"></Title>
         </TitleContainer>
+
+      <CreateUserModal open={openCreateUserModal} />
+      <CompanyDetailModal
+        open={openUserModalState}
+        company={selectedUser}
+      />
+      <ContactsHeaderContainer>
+      <NewCompanyButtonContainer>
+        <Button
+          variant="contained"
+          sx={{ width: "auto", height: "30px" }}
+          color="primary"
+          onClick={() => setOpenCreateUserModal(true)}
+          type="submit"
+        >
+          <i className="fa fa-plus" style={{ marginRight: "2px" }}></i> Novo
+          usuario
+        </Button>
+      </NewCompanyButtonContainer>
+
+        
         <SearchButtom
           placeholder="Buscar"
           buttomIcon="fa-search"
@@ -71,14 +105,12 @@ function UserPage() {
       </ContactsHeaderContainer>
       <CardsContainer>
         {users.map((user) => (
-          <ContactCard
-            key={user.name}
+          <UserCard
+            key={user.id}
             name={user.name}
-            city={user.email}
-            company={user.name}
-            phone={user.name}
-            state={user.name}
-            picture={user.name}
+            email={user.email}
+            role={user.role}
+            picture={user.picture}
           />
         ))}
       </CardsContainer>

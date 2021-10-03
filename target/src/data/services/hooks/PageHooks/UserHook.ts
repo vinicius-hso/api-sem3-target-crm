@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { serviceApi } from "data/services/serviceApi";
 import UserService from "data/services/UserService";
+import { IUser } from "types/User";
+
 // import CompanyService from "data/services/CompanyService";
 
 export const useUserPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [users, setUsers] = useState([]);
   const [formatUserToSelect, setFormat] = useState([]);
-  const [formatUserThisCompanyToSelect, setFormatThisCompany] = useState([]);
+  const [createUserModalState, setCreateUserModalState] =
+    useState<boolean>(false);
+  const [openUserModalState, setOpenUserModalState] = useState<boolean>(false);
 
   useEffect(() => {
     getData();
@@ -21,14 +24,13 @@ export const useUserPage = () => {
     );
   };
 
-  const formatListThisCompanyToSelect = (companyId): any => {
-    const formatedUsers = [];
-    users.forEach((user) => {
-      if (companyId === user.company.id) {
-        formatedUsers.push(user);
-      }
-    });
-    return formatedUsers;
+  const createUser = async (data: IUser) => {
+    await UserService.createUser(data);
+    useCreateUserModal();
+  };
+
+  const useCreateUserModal = () => {
+    setCreateUserModalState(!createUserModalState);
   };
 
   const getData = async () => {
@@ -39,6 +41,11 @@ export const useUserPage = () => {
   return {
     users,
     formatUserToSelect,
-    formatListThisCompanyToSelect,
+    createUser,
+    useCreateUserModal,
+    createUserModalState,
+    setCreateUserModalState,
+    openUserModalState,
+    setOpenUserModalState,
   };
 };

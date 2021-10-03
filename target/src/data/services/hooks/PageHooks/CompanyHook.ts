@@ -13,6 +13,8 @@ export const useCompanyPage = () => {
     useState<boolean>(false);
   const [companyDetail, setCompanyDetail] = useState<CompanyTypes>({});
 
+  const [openCompanyModalState, setOpenCompanyModalState] = useState<boolean>(false);
+
   useEffect(() => {
     getData();
   }, []);
@@ -66,13 +68,17 @@ export const useCompanyPage = () => {
 
   const useCompanyDetailModal = (companyDetail: any) => {
     // console.log('Oi!')
-    console.log(companyDetail);
+    // console.log(companyDetail);
     setCompanyDetail(companyDetail);
     setCompanyDetailModalState(!companyDetailModalState);
   };
 
   const editCompany = async (companyId: any, data: any) => {
     const response = await CompanyService.editCompany(companyId, data);
+  };
+
+  const deleteCompany = async (companyId: any) => {
+    const response = await CompanyService.deleteCompany(companyId);
   };
 
   return {
@@ -91,5 +97,8 @@ export const useCompanyPage = () => {
     companyDetailModalState,
     editCompany,
     companyDetail,
+    openCompanyModalState,
+    setOpenCompanyModalState,
+    deleteCompany
   };
 };

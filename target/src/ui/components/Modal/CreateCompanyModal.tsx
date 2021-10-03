@@ -7,7 +7,7 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
 // import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { Button, useForkRef } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -40,7 +40,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
   });
 
   async function handleSubmit() {
-    createCompany(data);
+    createCompany(data).then(() => window.location.reload());
   }
 
   const handleChangeCep = (event) => {

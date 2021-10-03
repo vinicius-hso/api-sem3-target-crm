@@ -1,20 +1,14 @@
 import React, { useContext, useState } from "react";
-// import { Button, IconButton } from "@material-ui/core";
-import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
-// import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import { CompanyTypes } from "types/Company";
-// import AddCircleIcon from '@material-ui/icons/AddCircle';
-// import EditIcon from '@material-ui/icons/Edit';
-// import DealDetailCard from '../DealDetailCard/DealDetailCard';
-// import { ActionsDealDetailCardContainer } from '../DealDetailCard/DealDetailCard.style';
-// import { LinkStyled } from '../Link/Link.style';
-// import { CopyToClipboard } from 'react-copy-to-clipboard';
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
-import { useCompanyPage } from "../../../data/services/hooks/PageHooks/companyHook";
+import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHook";
+import {useEffect} from 'react';
+import { Button } from '@material-ui/core';
+
 interface CompanyDetailModalProps {
   open: boolean;
   company: any;
@@ -29,8 +23,11 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     useCompanyDetailModal,
     companyDetail,
     editCompany,
+    deleteCompany,
     // useUpdateCompanyModal,
     // company
+    openCompanyModalState,
+    setOpenCompanyModalState
   } = useCompanyPage();
 
   const [hasEdit, setHasEdit] = useState(false);
@@ -53,50 +50,80 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     setHasEdit(false);
   };
 
-  function handleSubmit() {
-    console.log("Aoobah!");
+  const handleDeleteCompany = () => {
+    const id = company.id
+    deleteCompany(id).then(() => {window.location.reload()})
   }
+
+  // function handleSubmit() {
+  //   console.log("Aoobah!");
+  // }
+
 
   const body = (
     <ModalContainer>
-      {/* {companyDetail.id ? ( */}
+      {company.id ? (
       <>
         <CloseButtonStyled
           onClick={() => {
-            useCompanyDetailModal(companyDetail);
+            // console.log('>>>>');
+            // useCompanyDetailModal(companyDetail)
+            setOpenCompanyModalState(false)
+            console.log('COMPANY -->', company.id)
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
         </CloseButtonStyled>
 
-        <Title title={`Detalhes da empresa ${companyDetail?.name}`} />
+        <Title title={`Detalhes da empresa ${company?.name}`} />
 
         <CompanyDetailCard
           onClick={() => setHasEdit(!hasEdit)}
           hasEdit={hasEdit}
-          // id={companyDetail.id}
+          id={company.id}
           name={company?.name}
-          city={companyDetail?.city}
-          state={companyDetail?.state}
-          country={companyDetail?.country}
-          site={companyDetail?.site}
-          picture={companyDetail?.picture}
+          city={company?.city}
+          state={company?.state}
+          country={company?.country}
+          site={company?.site}
+          picture={company?.picture}
           saveEdit={(data) => {
             setData(data);
             handleSubmitEdit(data);
           }}
         />
+        <Button
+          onClick={() => {
+            // updateStatus(dealDetail.id, { status: "ARCHIVED" });
+            // setHasStatusChange(false);
+            handleDeleteCompany()
+            // window.location.reload();
+          }}
+          variant="contained"
+          size="small"
+          sx={{
+            width: "160px",
+            mb: 2,
+          }}
+          color="secondary"
+          type="submit"
+        >
+          Deletar
+        </Button>
       </>
-      {/* // ) : (
-      //   <div>Não foi possivel carregar dados, atualize a pagina</div>
-      // )} */}
+       ) : (
+         <div>Não foi possivel carregar dados, atualize a pagina</div>
+       )}
     </ModalContainer>
   );
   return (
     <>
       <ModalStyled
         open={open}
-        onClose={() => (open = false)}
+        onClose={() => {
+          open = false
+          setOpenCompanyModalState(false)
+        }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
