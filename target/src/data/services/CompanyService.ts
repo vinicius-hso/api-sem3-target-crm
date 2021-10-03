@@ -51,6 +51,18 @@ class CompanyService {
       return error;
     }
   }
+
+  async deleteCompany(companyId) {
+    try {
+      const { data } = await api.delete(`/company/${companyId}`, {
+        headers: this.headers,
+      });
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 

@@ -7,6 +7,7 @@ import { CompanyTypes } from "types/Company";
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHook";
 import {useEffect} from 'react';
+import { Button } from '@material-ui/core';
 
 interface CompanyDetailModalProps {
   open: boolean;
@@ -22,6 +23,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     useCompanyDetailModal,
     companyDetail,
     editCompany,
+    deleteCompany,
     // useUpdateCompanyModal,
     // company
     openCompanyModalState,
@@ -48,14 +50,19 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     setHasEdit(false);
   };
 
-  function handleSubmit() {
-    console.log("Aoobah!");
+  const handleDeleteCompany = () => {
+    const id = company.id
+    deleteCompany(id).then(() => {window.location.reload()})
   }
+
+  // function handleSubmit() {
+  //   console.log("Aoobah!");
+  // }
 
 
   const body = (
     <ModalContainer>
-      {/* {companyDetail.id ? ( */}
+      {company.id ? (
       <>
         <CloseButtonStyled
           onClick={() => {
@@ -85,10 +92,28 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
             handleSubmitEdit(data);
           }}
         />
+        <Button
+          onClick={() => {
+            // updateStatus(dealDetail.id, { status: "ARCHIVED" });
+            // setHasStatusChange(false);
+            handleDeleteCompany()
+            // window.location.reload();
+          }}
+          variant="contained"
+          size="small"
+          sx={{
+            width: "160px",
+            mb: 2,
+          }}
+          color="secondary"
+          type="submit"
+        >
+          Deletar
+        </Button>
       </>
-      {/* // ) : (
-      //   <div>Não foi possivel carregar dados, atualize a pagina</div>
-      // )} */}
+       ) : (
+         <div>Não foi possivel carregar dados, atualize a pagina</div>
+       )}
     </ModalContainer>
   );
   return (

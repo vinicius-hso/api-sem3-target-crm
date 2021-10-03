@@ -38,7 +38,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
   });
 
   async function handleSubmit() {
-    createCompany(data);
+    createCompany(data).then(() => window.location.reload());
   }
 
   const handleChangeCep = (event) => {

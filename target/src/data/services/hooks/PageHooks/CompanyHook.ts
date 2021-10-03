@@ -77,6 +77,10 @@ export const useCompanyPage = () => {
     const response = await CompanyService.editCompany(companyId, data);
   };
 
+  const deleteCompany = async (companyId: any) => {
+    const response = await CompanyService.deleteCompany(companyId);
+  };
+
   return {
     companies,
     formatCompaniesToSelect,
@@ -94,6 +98,7 @@ export const useCompanyPage = () => {
     editCompany,
     companyDetail,
     openCompanyModalState,
-    setOpenCompanyModalState
+    setOpenCompanyModalState,
+    deleteCompany
   };
 };
