@@ -19,8 +19,12 @@ import { formatCep } from "data/utils/formatCep";
 
 interface CreateCompanyModalProps {
   open: boolean;
+  setOpen: any;
 }
-const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
+const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
+  open,
+  setOpen,
+}) => {
   const { createCompanyModalState, useCreateCompanyModal, createCompany } =
     useCompanyPage();
 
@@ -75,7 +79,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
     <ModalContainer>
       <CloseButtonStyled
         onClick={() => {
-          useCreateCompanyModal();
+          setOpen(false);
         }}
       >
         <i className="fa fa-times" aria-hidden="true"></i>
@@ -177,7 +181,9 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({ open }) => {
     <>
       <ModalStyled
         open={open}
-        onClose={() => useCreateCompanyModal()}
+        onClose={() => {
+          setOpen(false);
+        }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

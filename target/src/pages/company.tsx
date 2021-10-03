@@ -16,28 +16,24 @@ import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
 
 function CompanyPage() {
-  const {
-    companies,
-    filteredCompany,
-    removeFiltered,
-    useCreateCompanyModal,
-    useCompanyDetailModal,
-  } = useCompanyPage();
+  const { companies, filteredCompany, removeFiltered } = useCompanyPage();
 
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
+
+  //MODAL CONTROL
   const [openCreateCompanyModal, setOpenCreateCompanyModal] =
     React.useState(false);
   const [openDetailCompanyModal, setOpenDetailCompanyModal] =
     React.useState(false);
   const [selectedCompany, setSelectedCompany] = React.useState({});
+
   const [time, setTime] = React.useState(null);
 
   // const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
   // const { useCreateCompanyModal, useCompanyDetailModal } = useContext(PipelineContext);
   // const { useCreateCompanyModal } = useContext(CompanyContext);
-  const { openCompanyModalState, setOpenCompanyModalState } = useCompanyPage();
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
@@ -65,9 +61,13 @@ function CompanyPage() {
 
   return (
     <CompanyPageContainer>
-      <CreateCompanyModal open={openCreateCompanyModal} />
+      <CreateCompanyModal
+        open={openCreateCompanyModal}
+        setOpen={setOpenCreateCompanyModal}
+      />
       <CompanyDetailModal
-        open={openCompanyModalState}
+        open={openDetailCompanyModal}
+        setOpen={setOpenDetailCompanyModal}
         company={selectedCompany}
       />
       <CompanyHeaderContainer>
@@ -118,7 +118,7 @@ function CompanyPage() {
             picture={company.picture}
             onClick={() => {
               setSelectedCompany(company);
-              setOpenCompanyModalState(true);
+              setOpenDetailCompanyModal(true);
             }}
           />
         ))}

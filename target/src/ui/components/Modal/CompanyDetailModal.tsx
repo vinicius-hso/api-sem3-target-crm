@@ -6,28 +6,25 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import { CompanyTypes } from "types/Company";
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 import { useCompanyPage } from "../../../data/services/hooks/PageHooks/companyHook";
-import { useEffect } from "react";
 import { Button } from "@material-ui/core";
 
 interface CompanyDetailModalProps {
   open: boolean;
   company: any;
+  setOpen: any;
 }
 
 const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   open,
   company,
+  setOpen,
 }) => {
   const {
-    companyDetailModalState,
-    useCompanyDetailModal,
     companyDetail,
     editCompany,
     deleteCompany,
     // useUpdateCompanyModal,
     // company
-    openCompanyModalState,
-    setOpenCompanyModalState,
   } = useCompanyPage();
 
   const [hasEdit, setHasEdit] = useState(false);
@@ -68,8 +65,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
             onClick={() => {
               // console.log('>>>>');
               // useCompanyDetailModal(companyDetail)
-              setOpenCompanyModalState(false);
-              console.log("COMPANY -->", company.id);
+              setOpen(false);
             }}
           >
             <i className="fa fa-times" aria-hidden="true"></i>
@@ -123,8 +119,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
       <ModalStyled
         open={open}
         onClose={() => {
-          open = false;
-          setOpenCompanyModalState(false);
+          setOpen(false);
         }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

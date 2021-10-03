@@ -8,13 +8,7 @@ export const useCompanyPage = () => {
   const [formatCompaniesToSelect, setFormat] = useState([]);
   const [createCompanyModalState, setCreateCompanyModalState] =
     useState<boolean>(false);
-
-  const [companyDetailModalState, setCompanyDetailModalState] =
-    useState<boolean>(false);
   const [companyDetail, setCompanyDetail] = useState<CompanyTypes>({});
-
-  const [openCompanyModalState, setOpenCompanyModalState] = useState<boolean>(false);
-
   useEffect(() => {
     getData();
   }, []);
@@ -70,7 +64,6 @@ export const useCompanyPage = () => {
     // console.log('Oi!')
     // console.log(companyDetail);
     setCompanyDetail(companyDetail);
-    setCompanyDetailModalState(!companyDetailModalState);
   };
 
   const editCompany = async (companyId: any, data: any) => {
@@ -92,13 +85,9 @@ export const useCompanyPage = () => {
     createCompanyModalState,
     setCreateCompanyModalState,
     setCompanyDetail,
-    setCompanyDetailModalState,
     useCompanyDetailModal,
-    companyDetailModalState,
     editCompany,
     companyDetail,
-    openCompanyModalState,
-    setOpenCompanyModalState,
-    deleteCompany
+    deleteCompany,
   };
 };
