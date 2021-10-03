@@ -4,7 +4,6 @@ import { serviceApi as api } from "./serviceApi";
 
 class UserService {
   private headers: object;
-
   async getUsers() {
     try {
       const { data } = await api.get("/user", {
@@ -17,64 +16,51 @@ class UserService {
     }
   }
 
-  async createUser({
-    name,
-    email,
-    role,
-    picture,
-  }: IUser): Promise<string> {
-    const body: IUser = {
-      name,
-      email,
-      role,
-      picture,
-    };
-
+  async getCompanyById(id: string): Promise<IUser> {
     try {
-      const { data } = await api.post("/user", body, {
+      const { data } = await api.get(`/user/${id}`, {
         headers: this.headers,
       });
 
-      return data.id;
+      return data;
     } catch (error) {
       return error;
     }
   }
 
-  async updateUser({
-    id,
-    name,
-    email,
-    role,
-    picture,
-  }: IUser): Promise<string> {
-    const body: IUser = {
-      name,
-      email,
-      role,
-      picture,
-    };
-
+  async createUser(data:IUser) {
     try {
-      const { data } = await api.put(`/user/${id}`, body, {
+      const response = await api.post("/user", data, {
         headers: this.headers,
       });
 
-      return data.message;
+      return response.data;
     } catch (error) {
-      return error.message;
+      return error;
     }
   }
 
-  async deleteUser(id: string): Promise<string> {
+  async editUser(userId, user) {
     try {
-      const { data } = await api.delete(`/user/${id}`, {
+      const { data } = await api.put(`/user/${userId}`, user, {
         headers: this.headers,
       });
 
-      return data.message;
+      return data;
     } catch (error) {
-      return error.message;
+      return error;
+    }
+  }
+
+  async deleteUser(userId) {
+    try {
+      const { data } = await api.delete(`/user/${userId}`, {
+        headers: this.headers,
+      });
+
+      return data;
+    } catch (error) {
+      return error;
     }
   }
 }

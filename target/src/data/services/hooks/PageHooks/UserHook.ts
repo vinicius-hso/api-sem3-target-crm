@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { serviceApi } from "data/services/serviceApi";
 import UserService from "data/services/UserService";
+import { IUser } from "types/User";
+
 // import CompanyService from "data/services/CompanyService";
 
 export const useUserPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [users, setUsers] = useState([]);
   const [formatUserToSelect, setFormat] = useState([]);
+  const [createUserModalState, setCreateUserModalState] =
+    useState<boolean>(false);
+  const [openUserModalState, setOpenUserModalState] = useState<boolean>(false);
 
   useEffect(() => {
     getData();
@@ -20,6 +24,14 @@ export const useUserPage = () => {
     );
   };
 
+  const createUser = async (data: IUser) => {
+    await UserService.createUser(data);
+    useCreateUserModal();
+  };
+
+  const useCreateUserModal = () => {
+    setCreateUserModalState(!createUserModalState);
+  };
 
   const getData = async () => {
     const response = await UserService.getUsers();
@@ -29,5 +41,11 @@ export const useUserPage = () => {
   return {
     users,
     formatUserToSelect,
+    createUser,
+    useCreateUserModal,
+    createUserModalState,
+    setCreateUserModalState,
+    openUserModalState,
+    setOpenUserModalState,
   };
 };
