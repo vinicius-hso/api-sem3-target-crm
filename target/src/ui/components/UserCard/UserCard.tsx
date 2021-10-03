@@ -10,16 +10,17 @@ import {
 } from "./UserCard.style";
 
 //@deprecated
-interface CompanyCardProps {
-  picture: string;
-  name: string;
-  role: string;
-  email: string;
+interface UserCardProps {
+  picture?: string;
+  name?: string;
+  role?: string;
+  email?: string;
+  onClick: any;
 }
 
-const UserCard: React.FC<CompanyCardProps> = (props) => {
+const UserCard: React.FC<UserCardProps> = (props) => {
   return (
-    <UserCardContainer>
+    <UserCardContainer onClick={props.onClick}>
       <UserPictureStyled src={props.picture}>
         {getNameInitials(props.name)}
       </UserPictureStyled>

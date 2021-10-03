@@ -1,41 +1,44 @@
 import React from "react";
 import {
   CardsContainer,
+  UserHeaderContainer,
+  UserPageContainer,
+  NewUserButtonContainer,
   TitleContainer,
-  NewCompanyButtonContainer,
-} from "@styles/pagesStyle/company.style";
+} from "@styles/pagesStyle/user.style";
+import UserCard from "ui/components/UserCard/UserCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
-import {
-  ContactsHeaderContainer,
-  ContactsPageContainer,
-} from "@styles/pagesStyle/contacts.style";
 import { Button } from "@material-ui/core";
-import UserCard from "ui/components/UserCard/UserCard";
-import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
-
 import CreateUserModal from "ui/components/Modal/CreateUserModal";
-import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
+import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
+import UserDetailModal from "ui/components/Modal/UserDetailModal";
 
 
 function UserPage() {
+  const { users, filteredUser, removeFiltered} = useUserPage();
  
 
-  const { users } = useUserPage();
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [time, setTime] = React.useState(null);
+  
+  
   const [openCreateUserModal, setOpenCreateUserModal] =
     React.useState(false);
-  const { openUserModalState, setOpenUserModalState } = useUserPage();
+  const [openDetailUserModal, setOpenDetailUserModal] = 
+  React.useState(false);
   const [selectedUser, setSelectedUser] = React.useState({});
+
+
+
+  const [time, setTime] = React.useState(null);
 
 
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
-      //removeFiltered(true);
+      removeFiltered(true);
     }
     setSearchTerm(event.target.value);
     if (time) {
@@ -44,7 +47,7 @@ function UserPage() {
     }
     setTime(
       setTimeout(() => {
-        //filteredCompany(event.target.value, valueType);
+        filteredUser(event.target.value, valueType);
         setHasFiltered(true);
       }, 1000)
     );
@@ -52,24 +55,49 @@ function UserPage() {
   };
 
   const removeFilters = () => {
-    //removeFiltered(false);
+    removeFiltered(false);
     setHasFiltered(false);
     setSearchTerm("");
   };
 
   return (
-    <ContactsPageContainer>
-      <TitleContainer>
-          <Title title="Gerenciamento de Usuarios"></Title>
+    <UserPageContainer>
+      <CreateUserModal 
+        open={openCreateUserModal} 
+        setOpen={setOpenCreateUserModal}
+      />
+      <UserDetailModal
+        open={openDetailUserModal}
+        setOpen={setOpenDetailUserModal}
+        user={selectedUser}
+      />
+ 
+      <UserHeaderContainer>
+        <TitleContainer>
+          <Title title="Gerenciamento de Usuários"></Title>
         </TitleContainer>
 
-      <CreateUserModal open={openCreateUserModal} />
-      <CompanyDetailModal
-        open={openUserModalState}
-        company={selectedUser}
-      />
-      <ContactsHeaderContainer>
-      <NewCompanyButtonContainer>
+        <SearchButtom
+            placeholder="Buscar"
+            buttomIcon="fa-search"
+            viewButtonGroup={true}
+            typeValue={valueType}
+            searchTypes={[
+              { value: "name", name: "Nome" },
+              { value: "role", name: "Role" },
+            ]}
+            ChangeType={(event) => {
+              setValueType(event.target.value);
+            }}
+            onChange={(event) => {
+              handleChangeSearchTerm(event);
+            }}
+            value={searchTerm}
+            onClick={removeFilters}
+          hasFiltered={hasFiltered}
+        />
+       </UserHeaderContainer>
+       <NewUserButtonContainer>
         <Button
           variant="contained"
           sx={{ width: "auto", height: "30px" }}
@@ -78,31 +106,12 @@ function UserPage() {
           type="submit"
         >
           <i className="fa fa-plus" style={{ marginRight: "2px" }}></i> Novo
-          usuario
+          usuário
         </Button>
-      </NewCompanyButtonContainer>
+      </NewUserButtonContainer>
 
         
-        <SearchButtom
-          placeholder="Buscar"
-          buttomIcon="fa-search"
-          viewButtonGroup={true}
-          typeValue={valueType}
-          searchTypes={[
-            { value: "name", name: "Nome" },
-            { value: "role", name: "Role" },
-          ]}
-          ChangeType={(event) => {
-            setValueType(event.target.value);
-          }}
-          onChange={(event) => {
-            handleChangeSearchTerm(event);
-          }}
-          value={searchTerm}
-          onClick={removeFilters}
-          hasFiltered={hasFiltered}
-        />
-      </ContactsHeaderContainer>
+       
       <CardsContainer>
         {users.map((user) => (
           <UserCard
@@ -111,10 +120,15 @@ function UserPage() {
             email={user.email}
             role={user.role}
             picture={user.picture}
+            onClick={() => {
+              console.log("button clicked");
+              setSelectedUser(user);
+              setOpenDetailUserModal(true);
+            }}
           />
         ))}
       </CardsContainer>
-    </ContactsPageContainer>
+    </UserPageContainer>
   );
 }
 
