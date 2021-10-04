@@ -4,7 +4,6 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 //@deprecated
 export const UserCardContainer = styled("div")`
   display: grid;
-  width: 70% !important;
   grid-template-columns: 60px 1fr;
   grid-template-rows: repeat(3, auto);
   grid-template-areas:
@@ -54,4 +53,3 @@ export const UserEmailStyled = styled("div")`
   font-size: ${({ theme }) => theme.typography.body2.fontSize};
   grid-area: email;
 `;
-
