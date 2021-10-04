@@ -5,12 +5,15 @@ import { CompanyTypes } from "types/Company";
 export const useCompanyPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [companies, setCompanies] = useState([]);
+  const [removeFilteredCompanies, setFilteredCompanies] = useState([]);
   const [formatCompaniesToSelect, setFormat] = useState([]);
   const [createCompanyModalState, setCreateCompanyModalState] =
     useState<boolean>(false);
   const [companyDetail, setCompanyDetail] = useState<CompanyTypes>({});
   useEffect(() => {
-    getData();
+    if (!companies.length) {
+      getData();
+    }
   }, []);
 
   const formatListToSelect = (companies: any[]): any => {
@@ -24,30 +27,26 @@ export const useCompanyPage = () => {
   const getData = async () => {
     const response = await CompanyService.getCompanies();
     setCompanies(response);
+    setFilteredCompanies(response);
     formatListToSelect(response);
   };
 
   const filteredCompany = async (terms: string, typeValue: string) => {
-    if (typeValue === "name")
-      setCompanies(
-        companies.filter((company) =>
-          company.name.toLowerCase().includes(terms.toLocaleLowerCase())
-        )
+    let filtered = [];
+    if (typeValue === "name") {
+      filtered = companies.filter((company) =>
+        company.name.toLowerCase().includes(terms.toLocaleLowerCase())
       );
-    else
-      setCompanies(
-        companies.filter((company) =>
-          company?.city.toLowerCase().includes(terms.toLocaleLowerCase())
-        )
+    } else {
+      filtered = companies.filter((company) =>
+        company?.city.toLowerCase().includes(terms.toLocaleLowerCase())
       );
+    }
+    setCompanies(filtered);
   };
 
   const removeFiltered = async (isNewSearched: boolean) => {
-    const teste = await JSON.parse(localStorage.getItem("dealsListFilter"));
-    setCompanies(teste);
-    if (!isNewSearched) {
-      localStorage.removeItem("dealsListFilter");
-    }
+    if (!isNewSearched) setCompanies(removeFilteredCompanies);
   };
 
   const createCompany = async (data: CompanyTypes) => {
@@ -56,13 +55,10 @@ export const useCompanyPage = () => {
   };
 
   const useCreateCompanyModal = () => {
-    console.log("Function -> useCreateCompanyModal");
     setCreateCompanyModalState(!createCompanyModalState);
   };
 
   const useCompanyDetailModal = (companyDetail: any) => {
-    // console.log('Oi!')
-    // console.log(companyDetail);
     setCompanyDetail(companyDetail);
   };
 

@@ -12,17 +12,20 @@ import {
 import ContactCard from "ui/components/ContactCard/ContactCard";
 import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 import CreateContactModal from "ui/components/Modal/CreateContactModal";
+import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
 
 function ContactPage() {
-  const { contacts } = useContactPage();
+  const { contacts, filteredContact, removeFiltered } = useContactPage();
+  const { formatCompaniesToSelect, filteredCompany } = useCompanyPage();
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [time, setTime] = React.useState(null);
 
   const handleChangeSearchTerm = (event) => {
+    let resetFilter = false;
     if (hasFiltered) {
-      //removeFiltered(true);
+      resetFilter = true;
     }
     setSearchTerm(event.target.value);
     if (time) {
@@ -31,7 +34,7 @@ function ContactPage() {
     }
     setTime(
       setTimeout(() => {
-        //filteredCompany(event.target.value, valueType);
+        filteredContact(event.target.value, valueType, resetFilter);
         setHasFiltered(true);
       }, 1000)
     );
@@ -39,7 +42,7 @@ function ContactPage() {
   };
 
   const removeFilters = () => {
-    //removeFiltered(false);
+    removeFiltered();
     setHasFiltered(false);
     setSearchTerm("");
   };
@@ -67,11 +70,13 @@ function ContactPage() {
           onChange={(event) => {
             handleChangeSearchTerm(event);
           }}
+          selectListValues={formatCompaniesToSelect}
           value={searchTerm}
           onClick={removeFilters}
           hasFiltered={hasFiltered}
         />
       </ContactsHeaderContainer>
+      <br />
       <CardsContainer>
         {contacts.map((contact) => (
           <ContactCard

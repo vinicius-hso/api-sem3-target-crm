@@ -48,7 +48,7 @@ export default interface ModalTypes {
   dealTotalParams: any;
   onDragEnd: (any) => void;
   removefilterDeals: (boolean) => void;
-  filterDeals: (value: string, type: string) => void;
+  filterDeals: (value: string, type: string, resetFilter: boolean) => void;
 }
 
 export interface pipeline {

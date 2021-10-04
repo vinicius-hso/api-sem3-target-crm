@@ -32,6 +32,7 @@ export const ModalProvider: React.FC = ({ children }) => {
   //* DEAL
   const [dealDetail, setDealDetail] = useState({});
   const [name, setNameState] = useState<string>();
+  const [removeElementsFiltered, setRemoveElementsFiltered] = useState([]);
   const [deals, setDeals] = useState<DealTypes[]>([]);
   const [pipelines, setPipelines] = useState<pipeline[]>();
   const [pipeline, setPipeline] = useState<pipeline>();
@@ -117,6 +118,11 @@ export const ModalProvider: React.FC = ({ children }) => {
 
   //UNI AS DEALS AOS PIPELINES
   const generateDealsList = (pipelines, deals): any[] => {
+    dealTotalParams.budgetSum = 0;
+    dealTotalParams.totalDeals = 0;
+    dealTotalParams.hotDeals = 0;
+    dealTotalParams.warmDeals = 0;
+    dealTotalParams.coldDeals = 0;
     return pipelines.reduce(
       (acc, listKey) => ({
         ...acc,
@@ -131,7 +137,7 @@ export const ModalProvider: React.FC = ({ children }) => {
     );
   };
 
-  const [dealsList, setElements] = React.useState([]);
+  const [dealsList, setElements] = useState([]);
 
   const useCreateModal = () => {
     setCreateModalState(!createModalState);
@@ -202,6 +208,7 @@ export const ModalProvider: React.FC = ({ children }) => {
       })
     );
     setElements(generateDealsList(pipelinesData, dealsData));
+    setRemoveElementsFiltered(generateDealsList(pipelinesData, dealsData));
   };
 
   const getPipeline = async (id: string) => {
@@ -270,13 +277,17 @@ export const ModalProvider: React.FC = ({ children }) => {
     }
 
     setElements(temp);
+    setRemoveElementsFiltered(temp);
   };
 
-  const filterDeals = (value: string, typeValue: string) => {
-    if (!localStorage.getItem("dealsListFilter")) {
-      localStorage.setItem("dealsListFilter", JSON.stringify(dealsList));
-    }
-    Object.values(dealsList).forEach((pipe) => {
+  const filterDeals = (
+    value: string,
+    typeValue: string,
+    resetFilter: boolean
+  ) => {
+    let list = dealsList;
+    if (resetFilter) list = [...Object.values(removeElementsFiltered)];
+    Object.values(list).forEach((pipe) => {
       const deals = [];
       pipe.deals.forEach((deal) => {
         if (deal.name.toLowerCase().includes(value.toLocaleLowerCase())) {
@@ -303,14 +314,11 @@ export const ModalProvider: React.FC = ({ children }) => {
       });
       pipe.deals = deals;
     });
-    setElements(dealsList);
+    setElements(list);
   };
 
-  const removefilterDeals = (isNewSearched: boolean) => {
-    setElements(JSON.parse(localStorage.getItem("dealsListFilter")));
-    if (!isNewSearched) {
-      localStorage.removeItem("dealsListFilter");
-    }
+  const removefilterDeals = () => {
+    getPipelines();
   };
 
   useEffect(() => {

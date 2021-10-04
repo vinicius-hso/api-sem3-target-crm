@@ -49,8 +49,9 @@ function DealPipeline() {
   };
 
   const handleChangeSearchTerm = (event) => {
+    let resetFilter = false;
     if (hasFiltered) {
-      removefilterDeals(true);
+      resetFilter = true;
     }
     setSearchTerm(event.target.value);
     if (time) {
@@ -59,7 +60,7 @@ function DealPipeline() {
     }
     setTime(
       setTimeout(() => {
-        filterDeals(event.target.value, valueType);
+        filterDeals(event.target.value, valueType, resetFilter);
         setHasFiltered(true);
       }, 1000)
     );

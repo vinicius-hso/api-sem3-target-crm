@@ -6,6 +6,7 @@ import ContactService from "data/services/ContactService";
 export const useContactPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [contacts, setContacts] = useState([]);
+  const [removeFilteredContacts, setRemoveFilteredContacts] = useState([]);
   const [formatContactToSelect, setFormat] = useState([]);
   const [formatContactThisCompanyToSelect, setFormatThisCompany] = useState([]);
 
@@ -31,9 +32,39 @@ export const useContactPage = () => {
     return formatedContacts;
   };
 
+  const filteredContact = async (
+    terms: string,
+    typeValue: string,
+    resetFilter: boolean
+  ) => {
+    let list = contacts;
+    if (resetFilter) list = removeFilteredContacts;
+    let filtered = [];
+    setContacts([]);
+    if (typeValue === "name") {
+      filtered = list.filter((contact) =>
+        contact.name.toLowerCase().includes(terms.toLocaleLowerCase())
+      );
+    } else if (typeValue === "city") {
+      filtered = list.filter((contact) =>
+        contact?.city.toLowerCase().includes(terms.toLocaleLowerCase())
+      );
+    } else {
+      filtered = list.filter((contact) =>
+        contact?.company.id.toLowerCase().includes(terms.toLocaleLowerCase())
+      );
+    }
+    setContacts(filtered);
+  };
+
+  const removeFiltered = () => {
+    setContacts(removeFilteredContacts);
+  };
+
   const getData = async () => {
     const response = await ContactService.getContacts();
     setContacts(response);
+    setRemoveFilteredContacts(response);
     formatListToSelect(response);
   };
   return {
@@ -41,5 +72,7 @@ export const useContactPage = () => {
     formatContactToSelect,
     formatContactThisCompanyToSelect,
     formatListThisCompanyToSelect,
+    filteredContact,
+    removeFiltered,
   };
 };
