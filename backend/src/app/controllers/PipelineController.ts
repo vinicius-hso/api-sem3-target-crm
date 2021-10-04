@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Pipeline from '@entities/Pipeline';
+import Deal from '@entities/Deal';
 
 interface PipelineInterface {
   id?: string;
@@ -85,6 +86,10 @@ class PipelineController {
       if (!pipeline) return res.status(404).json({ message: 'Pipeline does not exist' });
 
       await Pipeline.softRemove(pipeline);
+
+      const deals = await Deal.find({ where: { pipeline: pipeline.id } });
+
+      deals.map(async deal => await Deal.update(deal.id, { status: 'ARCHIVED' }));
 
       res.status(200).json();
     } catch (error) {
