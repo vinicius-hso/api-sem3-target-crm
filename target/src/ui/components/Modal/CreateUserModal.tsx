@@ -17,8 +17,12 @@ import PipelineContext from "contexts/PipelineContext";
 
 interface CreateUserModalProps {
   open: boolean;
+  setOpen: any;
 }
-const CreateUserModal: React.FC<CreateUserModalProps> = ({ open }) => {
+const CreateUserModal: React.FC<CreateUserModalProps> = ({
+   open,
+   setOpen,
+  }) => {
   const { createUserModalState, useCreateUserModal, createUser } =
     useUserPage();
 
@@ -42,7 +46,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open }) => {
     <ModalContainer>
       <CloseButtonStyled
         onClick={() => {
-          useCreateUserModal();
+          setOpen(false);
         }}
       >
         <i className="fa fa-times" aria-hidden="true"></i>
@@ -114,7 +118,9 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open }) => {
     <>
       <ModalStyled
         open={open}
-        onClose={() => useCreateUserModal()}
+        onClose={() => {
+          setOpen(false);
+        }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

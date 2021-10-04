@@ -16,7 +16,7 @@ class UserService {
     }
   }
 
-  async getCompanyById(id: string): Promise<IUser> {
+  async getUserById(id: string): Promise<IUser> {
     try {
       const { data } = await api.get(`/user/${id}`, {
         headers: this.headers,
