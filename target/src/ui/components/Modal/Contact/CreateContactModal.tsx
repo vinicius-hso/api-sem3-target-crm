@@ -3,18 +3,18 @@ import React, { useState, useContext, useEffect } from "react";
 import {
   ModalContainer,
   TwoColumnsContainer,
-} from "./ModalStyles/ModalContainer.style";
-import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
-import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import Title from "../Title/Title";
+} from "../ModalStyles/ModalContainer.style";
+import { CloseButtonStyled } from "../ModalStyles/CloseButtonModal.style";
+import TextFieldMask from "../../Input/TextFieldMask/TextFieldMask";
+import Title from "../../Title/Title";
 import { Button, Select, MenuItem } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { ModalStyled } from "./ModalStyles/Modal.style";
+import { ModalStyled } from "../ModalStyles/Modal.style";
 import ContactContext from "contexts/ContactContext";
 import { IContact } from "types/Contact";
 import ContactService from "data/services/ContactService";
-import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 
 const CreateContactModal = () => {
@@ -157,10 +157,10 @@ const CreateContactModal = () => {
           <MenuItem value={"null"}>--</MenuItem>
           {states.length > 0
             ? states.map((state) => (
-                <MenuItem key={state.id} value={state.sigla}>
-                  {state.sigla}
-                </MenuItem>
-              ))
+              <MenuItem key={state.id} value={state.sigla}>
+                {state.sigla}
+              </MenuItem>
+            ))
             : null}
         </Select>
       </TwoColumnsContainer>
