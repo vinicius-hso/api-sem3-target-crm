@@ -19,6 +19,18 @@ class ContactService {
     }
   }
 
+  async getContact(id: string): Promise<IContact> {
+    try {
+      const response = await api.get(`/contact/${id}`, {
+        headers: this.headers,
+      });
+
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async deleteContact(id: string): Promise<string> {
     try {
       const response = await api.delete(`/contact/${id}`, {
@@ -91,7 +103,6 @@ class ContactService {
       return error.message;
     }
   }
-
 }
 
 export default new ContactService();
