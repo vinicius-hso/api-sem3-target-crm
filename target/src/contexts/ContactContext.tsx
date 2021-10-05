@@ -6,6 +6,7 @@ const ContactContext = createContext<IContactContext>({} as IContactContext);
 export const ContactProvider: React.FC = ({ children }) => {
   const [createContactModal, setCreateContactModal] = useState<boolean>(false);
   const [updateContactModal, setUpdateContactModal] = useState<boolean>(false);
+  const [deleteContactModal, setDeleteContactModal] = useState<boolean>(false);
 
   const useCreateContactModal = () => {
     setCreateContactModal(!createContactModal);
@@ -15,6 +16,10 @@ export const ContactProvider: React.FC = ({ children }) => {
     setUpdateContactModal(!updateContactModal);
   };
 
+  const useDeleteContactModal = () => {
+    setDeleteContactModal(!deleteContactModal);
+  };
+
 
   return (
     <ContactContext.Provider
@@ -22,7 +27,9 @@ export const ContactProvider: React.FC = ({ children }) => {
         useCreateContactModal,
         createContactModal,
         useUpdateContactModal,
-        updateContactModal
+        updateContactModal,
+        useDeleteContactModal,
+        deleteContactModal
       }}
     >
       {children}
