@@ -40,10 +40,10 @@ Acesse os documentos clicando nos links abaixo:
 * [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/product-backlog-target.pdf)
 
 
-## 👤 Página de Contato
+## 👤 Página de Cadastro/Remoção de Contato
 
 
-## 💼 Página de Empresa
+## 💼 Página de Cadastro de Empresa
 
 
 
