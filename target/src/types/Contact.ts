@@ -10,9 +10,14 @@ export interface IContact {
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
+  company?: {
+    id: string;
+  };
 }
 
 export interface IContactContext {
   useCreateContactModal: () => void;
   createContactModal: boolean;
+  useUpdateContactModal: () => void;
+  updateContactModal: boolean;
 }
