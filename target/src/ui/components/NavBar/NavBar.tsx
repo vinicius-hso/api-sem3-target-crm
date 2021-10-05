@@ -50,7 +50,7 @@ export default function NavBar(props: Props) {
               }}
             ></i>
           </MenuButton>
-          <HeaderLogoStyled src={"logo.svg"} alt={"Target"} />
+          <HeaderLogoStyled src={"logo.png"} alt={"Target"} />
         </ToolbarHeaderStyled>
       </AppBarStyled>
       <DrawerStyled aria-label="mailbox folders">
