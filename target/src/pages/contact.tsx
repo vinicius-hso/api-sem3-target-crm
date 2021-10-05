@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useContext, useState } from "react";
 import {
   CardsContainer,
   TitleContainer,
@@ -11,17 +12,20 @@ import {
 } from "@styles/pagesStyle/contacts.style";
 import ContactCard from "ui/components/ContactCard/ContactCard";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
-import CreateContactModal from "ui/components/Modal/CreateContactModal";
+import CreateContactModal from "ui/components/Modal/Contact/CreateContactModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { Button } from "@material-ui/core";
+import ContactContext from "contexts/ContactContext";
+import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
 
 function ContactPage() {
   const { contacts, filteredContact, removeFiltered } = useContactPage();
   const { formatCompaniesToSelect, filteredCompany } = useCompanyPage();
-  const [valueType, setValueType] = React.useState("name");
-  const [hasFiltered, setHasFiltered] = React.useState(false);
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [time, setTime] = React.useState(null);
+  const [valueType, setValueType] = useState("name");
+  const [hasFiltered, setHasFiltered] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [time, setTime] = useState(null);
+  const [selectedId, setSelectedId] = useState<string>("")
 
   const handleChangeSearchTerm = (event) => {
     let resetFilter = false;
@@ -48,9 +52,16 @@ function ContactPage() {
     setSearchTerm("");
   };
 
+  const { useCreateContactModal, useUpdateContactModal } = useContext(ContactContext)
+
   return (
     <ContactsPageContainer>
       <CreateContactModal />
+      {
+        selectedId ?
+          <UpdateContactModal id={selectedId} />
+          : null
+      }
       <ContactsHeaderContainer>
         <TitleContainer>
           <Title title="CONTATOS"></Title>
@@ -76,9 +87,10 @@ function ContactPage() {
           onClick={removeFilters}
           hasFiltered={hasFiltered}
         />
-        <div>
-          <Button variant="contained">Importar</Button>
-          <Button variant="contained">Adicionar</Button>
+        <div style={{ display: "flex", justifyContent: "end" }}>
+          <Button variant="contained" color="secondary">Importar</Button>
+          <Button variant="contained" color="success" style={{ color: "white", marginLeft: "10px" }}
+            onClick={() => useCreateContactModal()}>Adicionar</Button>
         </div>
       </ContactsHeaderContainer>
       <br />
@@ -92,6 +104,8 @@ function ContactPage() {
             phone={contact.phone}
             state={contact.state}
             picture={contact.picture}
+            onClick={() => { useUpdateContactModal(), setSelectedId(contact.id) }}
+
           />
         ))}
       </CardsContainer>
