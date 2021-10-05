@@ -8,7 +8,7 @@ Abaixo encontram-se todos os itens produzidos durante a Sprint 2 conforme estabe
 
 ### - User Stories
 
-A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem desenvolvidas durante a Sprint 1:
+A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem desenvolvidas durante a Sprint 2:
 
 | ID     | Prioridade | User Story                       | Esforço                              | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ | ------------------------------------ |
@@ -19,7 +19,7 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 ### - Sprint Backlog
 
-A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/product-backlog-target.pdf) em ordem de prioridade referentes a Sprint 2:
+A imagem abaixo mostra os itens do [__Product Backlog__]() em ordem de prioridade referentes a Sprint 2:
 
 <p align="center">
   <img src=link/></p>
