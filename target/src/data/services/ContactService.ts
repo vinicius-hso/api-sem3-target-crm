@@ -19,6 +19,18 @@ class ContactService {
     }
   }
 
+  async deleteContact(id: string): Promise<string> {
+    try {
+      const response = await api.delete(`/contact/${id}`, {
+        headers: this.headers,
+      });
+
+      return response.data.message;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async createContact({
     name,
     email,
@@ -80,17 +92,6 @@ class ContactService {
     }
   }
 
-  async deleteContact(id: string): Promise<string> {
-    try {
-      const { data } = await api.delete(`/contact/${id}`, {
-        headers: this.headers,
-      });
-
-      return data.message;
-    } catch (error) {
-      return error.message;
-    }
-  }
 }
 
 export default new ContactService();
