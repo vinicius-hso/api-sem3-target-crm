@@ -6,14 +6,11 @@ import {
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
-// import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import { Button, useForkRef } from "@material-ui/core";
 import { IUser } from "types/User";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
-// import PipelineContext from 'contexts/PipelineContext';
-import PipelineContext from "contexts/PipelineContext";
 
 interface CreateUserModalProps {
   open: boolean;
@@ -33,7 +30,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
   const [data, setData] = useState<IUser>({
     name: "",
     email: "",
-    password: "",
     role: "",
     picture: ""
   });
@@ -81,16 +77,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
           fullWidth
         />
 
-        <TextFieldMask
-          onChange={(event) =>
-            setData({ ...data, password: event.target.value })
-          }
-          value={data.password}
-          label="password"
-          variant="standard"
-          size="small"
-          fullWidth
-        />
         <TextFieldMask
           onChange={(event) =>
             setData({ ...data, picture: event.target.value })
