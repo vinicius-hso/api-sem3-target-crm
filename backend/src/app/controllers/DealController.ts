@@ -4,6 +4,7 @@ import Deal from '@entities/Deal';
 import Pipeline from '@entities/Pipeline';
 import { Request, Response } from 'express';
 import User from '@entities/User';
+import { Not } from 'typeorm';
 
 interface DealInteface {
   pipeline?: Pipeline;
@@ -28,8 +29,16 @@ interface ActivityInterface {
 class DealController {
   public async findAll(req: Request, res: Response): Promise<Response> {
     try {
-      const { status } = req.query;
-      const deal = await Deal.find({ where: status ? { status } : '', relations: ['company', 'contact', 'pipeline'] });
+      const query = req.query;
+
+      let status: string;
+      if (query.status) {
+        typeof query.status !== 'string' ? status = query.status[0] : status = query.status; 
+      }
+
+      const deal = await Deal.find({ where: status ? { status: status[0] === '!' ? Not(status.substr(1, status.length)) : status } : '',
+       relations: ['company', 'contact', 'pipeline']
+      });
 
       return res.status(200).json(deal);
     } catch (error) {
