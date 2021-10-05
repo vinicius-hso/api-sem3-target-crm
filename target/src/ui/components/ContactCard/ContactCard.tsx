@@ -18,11 +18,12 @@ interface CompanyCardProps {
   state?: string;
   company: string;
   phone: string;
+  onClick: () => void
 }
 
 const CompanyCard: React.FC<CompanyCardProps> = (props) => {
   return (
-    <ContactCardContainer>
+    <ContactCardContainer onClick={() => props.onClick()}>
       <ContactPictureStyled src={props.picture}>
         {getNameInitials(props.name)}
       </ContactPictureStyled>
