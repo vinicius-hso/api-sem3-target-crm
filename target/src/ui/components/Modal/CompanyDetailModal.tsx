@@ -23,8 +23,6 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     companyDetail,
     editCompany,
     deleteCompany,
-    // useUpdateCompanyModal,
-    // company
   } = useCompanyPage();
 
   const [hasEdit, setHasEdit] = useState(false);
@@ -42,20 +40,20 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   });
 
   const handleSubmitEdit = (data) => {
-    editCompany(companyDetail.id, data);
+    editCompany(companyDetail.id, data).then(() => {
+      setOpen(false);
+      window.location.reload();
+    });
     setHasEdit(false);
   };
 
   const handleDeleteCompany = () => {
     const id = company.id;
     deleteCompany(id).then(() => {
+      setOpen(false);
       window.location.reload();
     });
   };
-
-  // function handleSubmit() {
-  //   console.log("Aoobah!");
-  // }
 
   const body = (
     <ModalContainer>
@@ -63,8 +61,6 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
         <>
           <CloseButtonStyled
             onClick={() => {
-              // console.log('>>>>');
-              // useCompanyDetailModal(companyDetail)
               setOpen(false);
             }}
           >
@@ -75,10 +71,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
           <div style={{ display: "flex", justifyContent: "right" }}>
             <Button
               onClick={() => {
-                // updateStatus(dealDetail.id, { status: "ARCHIVED" });
-                // setHasStatusChange(false);
                 handleDeleteCompany();
-                // window.location.reload();
               }}
               variant="contained"
               size="small"
@@ -86,7 +79,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
                 width: "160px",
                 mb: 2,
               }}
-              color="secondary"
+              color="error"
               type="submit"
             >
               Deletar

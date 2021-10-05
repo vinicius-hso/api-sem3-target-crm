@@ -28,12 +28,7 @@ function CompanyPage() {
   const [openDetailCompanyModal, setOpenDetailCompanyModal] =
     React.useState(false);
   const [selectedCompany, setSelectedCompany] = React.useState({});
-
   const [time, setTime] = React.useState(null);
-
-  // const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
-  // const { useCreateCompanyModal, useCompanyDetailModal } = useContext(PipelineContext);
-  // const { useCreateCompanyModal } = useContext(CompanyContext);
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
