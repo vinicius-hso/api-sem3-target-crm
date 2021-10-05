@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
-import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import PipelineContext from "contexts/PipelineContext";

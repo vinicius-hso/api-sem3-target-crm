@@ -5,7 +5,7 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import { CompanyTypes } from "types/Company";
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
-import { useCompanyPage } from "../../../data/services/hooks/PageHooks/companyHook";
+import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHook";
 import { Button } from "@material-ui/core";
 
 interface CompanyDetailModalProps {

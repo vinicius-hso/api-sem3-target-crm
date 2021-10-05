@@ -10,9 +10,10 @@ import {
   ContactsPageContainer,
 } from "@styles/pagesStyle/contacts.style";
 import ContactCard from "ui/components/ContactCard/ContactCard";
-import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import CreateContactModal from "ui/components/Modal/CreateContactModal";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import { Button } from "@material-ui/core";
 
 function ContactPage() {
   const { contacts, filteredContact, removeFiltered } = useContactPage();
@@ -49,8 +50,8 @@ function ContactPage() {
 
   return (
     <ContactsPageContainer>
+      <CreateContactModal />
       <ContactsHeaderContainer>
-        <CreateContactModal />
         <TitleContainer>
           <Title title="CONTATOS"></Title>
         </TitleContainer>
@@ -75,6 +76,10 @@ function ContactPage() {
           onClick={removeFilters}
           hasFiltered={hasFiltered}
         />
+        <div>
+          <Button variant="contained">Importar</Button>
+          <Button variant="contained">Adicionar</Button>
+        </div>
       </ContactsHeaderContainer>
       <br />
       <CardsContainer>

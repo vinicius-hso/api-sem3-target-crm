@@ -17,8 +17,8 @@ import {
   formatValue,
   formatValueToSave,
 } from "data/utils/formatValue";
-import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
-import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
+import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
 const CreateDealModal = () => {
   const {

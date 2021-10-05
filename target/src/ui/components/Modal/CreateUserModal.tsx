@@ -6,7 +6,7 @@ import {
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
-// import { useCompanyPage } from "data/services/hooks/PageHooks/companyHook";
+// import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import { Button, useForkRef } from "@material-ui/core";
 import { IUser } from "types/User";
@@ -20,9 +20,9 @@ interface CreateUserModalProps {
   setOpen: any;
 }
 const CreateUserModal: React.FC<CreateUserModalProps> = ({
-   open,
-   setOpen,
-  }) => {
+  open,
+  setOpen,
+}) => {
   const { createUserModalState, useCreateUserModal, createUser } =
     useUserPage();
 
@@ -33,7 +33,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
   const [data, setData] = useState<IUser>({
     name: "",
     email: "",
-    password:"",
+    password: "",
     role: "",
     picture: ""
   });

@@ -20,7 +20,7 @@ export const ContactsHeaderContainer = styled("div")`
   justify-content: center;
   margin: 0 auto;
   ${({ theme }) => theme.breakpoints.up("md")} {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
