@@ -69,7 +69,8 @@ Acesse o link para visualizar:
 
 ## 📈 Cadastro de Pipeline
 
-![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/novo-pipeline.gif)
+<p align="center">
+  <img src="![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/novo-pipeline.gif)"/></p>
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/deletar-pipeline.gif)
 
