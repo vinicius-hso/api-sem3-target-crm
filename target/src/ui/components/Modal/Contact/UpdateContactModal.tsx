@@ -19,7 +19,7 @@ import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 
 const UpdateContactModal = ({ id }) => {
 
-  const { updateContactModal, useUpdateContactModal } =
+  const { updateContactModal, useUpdateContactModal,useDeleteContactModal} =
     useContext(ContactContext);
   const [states, setStates] = useState<IState[]>([]);
 
@@ -191,7 +191,7 @@ const UpdateContactModal = ({ id }) => {
         <Button
           variant="contained"
           color="error"
-          onClick={() => updateContact()}
+          onClick={() => {useDeleteContactModal(),useUpdateContactModal()}}
           startIcon={<DeleteIcon />}
           sx={{ mt: 4 }}
         >

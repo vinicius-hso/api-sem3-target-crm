@@ -17,6 +17,7 @@ import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { Button } from "@material-ui/core";
 import ContactContext from "contexts/ContactContext";
 import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
+import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
 
 function ContactPage() {
   const { contacts, filteredContact, removeFiltered } = useContactPage();
@@ -62,6 +63,8 @@ function ContactPage() {
           <UpdateContactModal id={selectedId} />
           : null
       }
+        <DeleteContactModal id={selectedId}/>
+
       <ContactsHeaderContainer>
         <TitleContainer>
           <Title title="CONTATOS"></Title>
