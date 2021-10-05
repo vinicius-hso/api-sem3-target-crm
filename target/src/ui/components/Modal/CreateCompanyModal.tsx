@@ -97,8 +97,8 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
           variant="standard"
           size="small"
           fullWidth
-          error={submit === true && !data.name}
-          helperText={!data.name && submit === true ? 'Nome obrigatório' : ' '}
+          error={submit && !data.name}
+          helperText={!data.name && submit ? 'Nome é obrigatório' : ' '}
         />
 
         <TextFieldMask

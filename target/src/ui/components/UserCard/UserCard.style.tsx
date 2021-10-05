@@ -10,6 +10,7 @@ export const UserCardContainer = styled("div")`
     "picture name"
     "picture role"
     "picture email";
+  cursor: pointer;
   background-color: ${({ theme }) => theme.palette.background.paper};
   padding: ${({ theme }) => theme.spacing(2)};
   align-items: center;

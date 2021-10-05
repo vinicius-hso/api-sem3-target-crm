@@ -11,6 +11,7 @@ export const CompanyCardContainer = styled("div")`
     "picture name"
     "picture city"
     "picture email";
+  cursor: pointer;
   background-color: ${({ theme }) => theme.palette.background.paper};
   padding: ${({ theme }) => theme.spacing(2)};
   align-items: center;

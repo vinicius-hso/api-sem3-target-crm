@@ -1,4 +1,6 @@
 import User from '@entities/User';
+import transport from '@src/modules/mailer';
+import generatePassword from '@src/utils/generatePassword';
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 
@@ -41,14 +43,30 @@ class UserController {
 
   public async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, email, password, role, picture }: UserInterface = req.body;
+      const { name, email, role, picture }: UserInterface = req.body;
 
-      if (!name || !email || !password) return res.status(400).json({ message: 'Invalid values for new User!' });
+      if (!name || !email) return res.status(400).json({ message: 'Invalid values for new User!' });
 
       // User.findOne({ email }, { withDeleted: true });
       const findUser = await User.findOne({ email });
 
       if (findUser) return res.status(400).json({ message: 'User already exists' });
+
+      const password = generatePassword();
+
+      transport.sendMail({
+        to: email,
+        from: '"Contato" <api@contato.com>',
+        subject: 'new user', // assunto do email
+        template: 'newUser',
+
+        context: { password },
+      },
+      (err) => {
+        if (err) return res.status(400).json({ message: 'Cannot send new user password email' });
+
+        transport.close();
+      });
 
       const passwordHash = await bcrypt.hash(password, 10);
 
@@ -60,7 +78,6 @@ class UserController {
 
       res.status(201).json(user.id);
     } catch (error) {
-      console.log(error);
       res.status(400).json({ error: 'Registration failed, try again' });
     }
   }
