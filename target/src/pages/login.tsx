@@ -1,12 +1,12 @@
 import React from "react";
 import { Button, Typography, CircularProgress } from "@material-ui/core";
 import Title from "ui/components/Title/Title";
-import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, LoginContainer } from "@styles/pagesStyle/login.styles";
 import { useLoginPage } from "data/services/hooks/PageHooks/LoginPageHook";
 import CustomLink from "ui/components/Link/Link";
 
 import Welcome from "ui/components/Welcome/welcome";
+import TextFieldMaskLogin from "ui/components/Input/TextFieldLogin/TextFieldMaskLogin";
 
 function HomePage() {
   const {
@@ -29,8 +29,8 @@ function HomePage() {
       <Welcome />
       
      <div style={{ margin: "auto 0", height: "calc(116vh - 100px)", backgroundColor: "#2D3142" }}>
-       <div style={{margin: "auto 0", marginTop: "36px"}}>
-        <hr/>
+       <div style={{margin: "0 auto", marginTop: "36px"}}>
+        <hr />
          <br/>
 
           <Title
@@ -50,7 +50,7 @@ function HomePage() {
             ) : (
               ""
             )}
-            <TextFieldMask
+            <TextFieldMaskLogin
               label={"E-mail"}
               fullWidth
               variant={"standard"}
@@ -63,7 +63,7 @@ function HomePage() {
               error={!emailIsValid}
               helperText={!emailIsValid ? "Formato inválido" : ""}
             />
-            <TextFieldMask
+            <TextFieldMaskLogin
               fullWidth
               label={"Senha"}
               variant="standard"

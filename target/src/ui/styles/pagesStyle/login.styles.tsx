@@ -16,11 +16,9 @@ export const LoginContainer = styled('div')`
   width: 100vw;
   height: 100vh; 
   hr {
-  margin: 60px 0;
-  border: 0;
-  border-top: 2px solid #C4C4C4;
-  width: 80%;
-  text-align: center;
+  margin: 60px auto;
+  border: 2px solid #C4C4C4;
+  width: 70%;
   
 }
 `;
