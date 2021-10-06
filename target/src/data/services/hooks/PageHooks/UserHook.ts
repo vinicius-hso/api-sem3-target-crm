@@ -7,6 +7,7 @@ import { IUser } from "types/User";
 export const useUserPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [users, setUsers] = useState([]);
+  const [removeFilteredUsers, setFilteredUsers] = useState([]);
   const [formatUsersToSelect, setFormat] = useState([]);
   const [createUserModalState, setCreateUserModalState] =
     useState<boolean>(false);
@@ -15,7 +16,9 @@ export const useUserPage = () => {
 
 
   useEffect(() => {
-    getData();
+    if (!users.length) {
+      getData();
+    }
   }, []);
 
   const formatListToSelect = (users: any[]): any => {
@@ -29,30 +32,26 @@ export const useUserPage = () => {
   const getData = async () => {
     const response = await UserService.getUsers();
     setUsers(response);
+    setFilteredUsers(response);
     formatListToSelect(response);
   };
 
   const filteredUser = async (terms: string, typeValue: string) => {
-    if (typeValue === "name")
-      setUsers(
-        users.filter((user) =>
-          user.name.toLowerCase().includes(terms.toLocaleLowerCase())
-        )
+    let filtered = [];
+    if (typeValue === "name") {
+      filtered = users.filter((company) =>
+        company.name.toLowerCase().includes(terms.toLocaleLowerCase())
       );
-    else
-      setUsers(
-        users.filter((user) =>
-          user?.role.toLowerCase().includes(terms.toLocaleLowerCase())
-        )
+    } else {
+      filtered = users.filter((user) =>
+        user?.role.toLowerCase().includes(terms.toLocaleLowerCase())
       );
+    }
+    setUsers(filtered);
   };
 
   const removeFiltered = async (isNewSearched: boolean) => {
-    const teste = await JSON.parse(localStorage.getItem("dealsListFilter"));
-    setUsers(teste);
-    if (!isNewSearched) {
-      localStorage.removeItem("dealsListFilter");
-    }
+    if (!isNewSearched) setUsers(removeFilteredUsers);
   };
 
 
