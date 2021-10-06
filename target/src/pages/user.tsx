@@ -14,27 +14,18 @@ import CreateUserModal from "ui/components/Modal/CreateUserModal";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import UserDetailModal from "ui/components/Modal/UserDetailModal";
 
-
 function UserPage() {
-  const { users, filteredUser, removeFiltered} = useUserPage();
- 
+  const { users, filteredUser, removeFiltered } = useUserPage();
 
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
-  
-  
-  const [openCreateUserModal, setOpenCreateUserModal] =
-    React.useState(false);
-  const [openDetailUserModal, setOpenDetailUserModal] = 
-  React.useState(false);
+
+  const [openCreateUserModal, setOpenCreateUserModal] = React.useState(false);
+  const [openDetailUserModal, setOpenDetailUserModal] = React.useState(false);
   const [selectedUser, setSelectedUser] = React.useState({});
 
-
-
   const [time, setTime] = React.useState(null);
-
-
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
@@ -62,8 +53,8 @@ function UserPage() {
 
   return (
     <UserPageContainer>
-      <CreateUserModal 
-        open={openCreateUserModal} 
+      <CreateUserModal
+        open={openCreateUserModal}
         setOpen={setOpenCreateUserModal}
       />
       <UserDetailModal
@@ -71,33 +62,33 @@ function UserPage() {
         setOpen={setOpenDetailUserModal}
         user={selectedUser}
       />
- 
+
       <UserHeaderContainer>
         <TitleContainer>
           <Title title="Gerenciamento de Usuários"></Title>
         </TitleContainer>
 
         <SearchButtom
-            placeholder="Buscar"
-            buttomIcon="fa-search"
-            viewButtonGroup={true}
-            typeValue={valueType}
-            searchTypes={[
-              { value: "name", name: "Nome" },
-              { value: "role", name: "Role" },
-            ]}
-            ChangeType={(event) => {
-              setValueType(event.target.value);
-            }}
-            onChange={(event) => {
-              handleChangeSearchTerm(event);
-            }}
-            value={searchTerm}
-            onClick={removeFilters}
+          placeholder="Buscar"
+          buttomIcon="fa-search"
+          viewButtonGroup={true}
+          typeValue={valueType}
+          searchTypes={[
+            { value: "name", name: "Nome" },
+            { value: "role", name: "Role" },
+          ]}
+          ChangeType={(event) => {
+            setValueType(event.target.value);
+          }}
+          onChange={(event) => {
+            handleChangeSearchTerm(event);
+          }}
+          value={searchTerm}
+          onClick={removeFilters}
           hasFiltered={hasFiltered}
         />
-       </UserHeaderContainer>
-       <NewUserButtonContainer>
+      </UserHeaderContainer>
+      <NewUserButtonContainer>
         <Button
           variant="contained"
           sx={{ width: "auto", height: "30px" }}
@@ -110,8 +101,6 @@ function UserPage() {
         </Button>
       </NewUserButtonContainer>
 
-        
-       
       <CardsContainer>
         {users.map((user) => (
           <UserCard
@@ -121,7 +110,6 @@ function UserPage() {
             role={user.role}
             picture={user.picture}
             onClick={() => {
-              console.log("button clicked");
               setSelectedUser(user);
               setOpenDetailUserModal(true);
             }}

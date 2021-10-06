@@ -1,6 +1,6 @@
 import React from "react";
 import { CompanyTypes } from "types/Company";
-import { serviceApi as api } from "./serviceApi";
+import { serviceApi as api } from "./ServiceApi";
 
 class CompanyService {
   private headers: object;
@@ -64,7 +64,5 @@ class CompanyService {
     }
   }
 }
-
-
 
 export default new CompanyService();

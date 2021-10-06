@@ -7,7 +7,13 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
-import { Button, useForkRef } from "@material-ui/core";
+import {
+  Button,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+} from "@material-ui/core";
 import { IUser } from "types/User";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
@@ -16,10 +22,7 @@ interface CreateUserModalProps {
   open: boolean;
   setOpen: any;
 }
-const CreateUserModal: React.FC<CreateUserModalProps> = ({
-  open,
-  setOpen,
-}) => {
+const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
   const { createUserModalState, useCreateUserModal, createUser } =
     useUserPage();
 
@@ -31,7 +34,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
     name: "",
     email: "",
     role: "",
-    picture: ""
+    picture: "",
   });
 
   async function handleSubmit() {
@@ -48,7 +51,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
         <i className="fa fa-times" aria-hidden="true"></i>
       </CloseButtonStyled>
 
-      <Title title="Novo usuario" />
+      <Title title="Novo usuário" />
       <TwoColumnsContainer>
         <TextFieldMask
           onChange={(event) => setData({ ...data, name: event.target.value })}
@@ -60,29 +63,37 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
         />
 
         <TextFieldMask
-          onChange={(event) => setData({ ...data, role: event.target.value })}
-          value={data.role}
-          label="Role"
+          onChange={(event) => setData({ ...data, email: event.target.value })}
+          value={data.email}
+          label="Email"
           variant="standard"
           size="small"
           fullWidth
         />
 
-        <TextFieldMask
-          onChange={(event) => setData({ ...data, email: event.target.value })}
-          value={data.email}
-          label="email"
-          variant="standard"
-          size="small"
-          fullWidth
-        />
+        <FormControl fullWidth >
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+            Perfil
+          </InputLabel>
+          <Select
+            onChange={(event) => setData({ ...data, role: event.target.value })}
+            value={data.role}
+            variant="standard"
+            size="medium"
+            fullWidth
+            defaultValue={""}
+          >
+            <MenuItem value={"ADMIN"}>Administrador</MenuItem>
+            <MenuItem value={"SELLER"}>Vendedor</MenuItem>
+          </Select>
+        </FormControl>
 
         <TextFieldMask
           onChange={(event) =>
             setData({ ...data, picture: event.target.value })
           }
           value={data.picture}
-          label="Link de imagem"
+          label="Link da imagem"
           variant="standard"
           size="small"
           fullWidth

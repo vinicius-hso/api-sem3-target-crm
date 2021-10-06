@@ -63,6 +63,7 @@ class DealController {
   public async create(req: Request, res: Response): Promise<Response> {
     try {
       const { name, deadline, priority, value, status, company, contact, pipeline }: DealInteface = req.body;
+      const { tag } = req.body
 
       if (!name || !company || !contact || !pipeline) return res.status(400).json({ message: 'Invalid values for Deal' });
 
@@ -78,7 +79,7 @@ class DealController {
         value,
         status,
         activity: [{
-          tag: 'Negociação iniciada',
+          tag: tag || 'HOT',
           name: 'Negociação iniciada',
           description: '',
           createdAt: new Date(),

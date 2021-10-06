@@ -19,7 +19,6 @@ const DealCardList = (props) => {
     useDealDetailModal,
     setSelectedPipeline,
   } = useContext(PipelineContext);
-
   return (
     <ColumnContainer>
       <div style={{ position: "relative" }}>

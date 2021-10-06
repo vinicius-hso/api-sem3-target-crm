@@ -89,7 +89,7 @@ export const navBarRoutes = [
   { name: "Empresas", icon: "fa-building", link: "/company" },
   { name: "usuarios", icon: "fa-users", link: "/user" },
   { name: "Dashboard", icon: "fa-line-chart", link: "/dashboard" },
-  { name: "Arquivados", icon: "fa-archive", link: "/archives" },
+  { name: "Finalizadas", icon: "fa-archive", link: "/completed" },
 ];
 
 export const mockTags = [

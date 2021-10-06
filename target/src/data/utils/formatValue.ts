@@ -26,7 +26,6 @@ export function formatCurrency(value = "") {
     if (isNegativeValue && tmp) tmp = "-" + tmp;
     return tmp ? "R$ " + tmp : isNegativeValue ? "R$ -" : "";
   } catch (e) {
-    console.log(e);
     return "R$ 0,00";
   }
 }
@@ -37,7 +36,6 @@ export function formatValueToSave(value = "") {
     tmp = tmp.substring(0, tmp.length - 3);
     return tmp;
   } catch (e) {
-    console.log(e);
     return "0";
   }
 }

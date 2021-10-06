@@ -57,7 +57,7 @@ const DealCard: React.FC<DealCardProps> = (props) => {
         <DealTypeStyled>{props.contactName}</DealTypeStyled>
         <DealFooterContainer>
           <DealBudgetStyled>
-            {formatValue(props.budget.toString())}
+            {formatValue(props.budget?.toString() || "0")}
           </DealBudgetStyled>
           <DealStartDateStyled>
             <Icon className="fa fa-calendar" fontSize="inherit" />

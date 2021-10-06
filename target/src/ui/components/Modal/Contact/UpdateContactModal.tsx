@@ -10,7 +10,7 @@ import Title from "../../Title/Title";
 import { Button, Select, MenuItem } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/Delete";
 import { ModalStyled } from "../ModalStyles/Modal.style";
 import ContactContext from "contexts/ContactContext";
 import { IContact } from "types/Contact";
@@ -18,8 +18,7 @@ import ContactService from "data/services/ContactService";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 
 const UpdateContactModal = ({ id }) => {
-
-  const { updateContactModal, useUpdateContactModal,useDeleteContactModal} =
+  const { updateContactModal, useUpdateContactModal, useDeleteContactModal } =
     useContext(ContactContext);
   const [states, setStates] = useState<IState[]>([]);
 
@@ -40,18 +39,15 @@ const UpdateContactModal = ({ id }) => {
 
     const myResponse = {
       ...data,
-      company_id: data.company?.id
-    }
+      company_id: data.company?.id,
+    };
 
-    console.log(myResponse)
-
-    setData(myResponse)
-  }
-
+    setData(myResponse);
+  };
 
   useEffect(() => {
-    getSelectedContact()
-  }, [])
+    getSelectedContact();
+  }, []);
 
   const getState = async (): Promise<void> => {
     try {
@@ -178,20 +174,21 @@ const UpdateContactModal = ({ id }) => {
           <MenuItem value={"null"}>---</MenuItem>
           {states.length > 0
             ? states.map((state) => (
-              <MenuItem key={state.id} value={state.sigla}>
-                {state.sigla}
-              </MenuItem>
-            ))
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
             : null}
         </Select>
       </TwoColumnsContainer>
 
       <TwoColumnsContainer>
-
         <Button
           variant="contained"
           color="error"
-          onClick={() => {useDeleteContactModal(),useUpdateContactModal()}}
+          onClick={() => {
+            useDeleteContactModal(), useUpdateContactModal();
+          }}
           startIcon={<DeleteIcon />}
           sx={{ mt: 4 }}
         >
@@ -208,7 +205,6 @@ const UpdateContactModal = ({ id }) => {
           Salvar
         </Button>
       </TwoColumnsContainer>
-
     </ModalContainer>
   );
   return (

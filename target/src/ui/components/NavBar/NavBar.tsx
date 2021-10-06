@@ -17,7 +17,7 @@ import { DrawerWeb } from "./Drawers/DrawerWeb";
 import { DrawerMobile } from "./Drawers/DrawerMobile";
 import { route } from "next/dist/server/router";
 import { useRouter } from "next/dist/client/router";
-import { useNavBarComponent } from "data/services/hooks/componentHooks/navBarHook";
+import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHook";
 
 interface Props {
   window?: () => Window;
@@ -25,8 +25,9 @@ interface Props {
 }
 
 export default function NavBar(props: Props) {
-  const { mobileOpen, navHover, setNavHover, handleDrawerToggle } =
+  const { mobileOpen, navHover, setNavHover, handleDrawerToggle, isAdmin } =
     useNavBarComponent();
+
   const { window } = props;
 
   const container =
@@ -64,7 +65,7 @@ export default function NavBar(props: Props) {
               keepMounted: true,
             }}
           >
-            <DrawerMobile navHover={navHover} />
+            <DrawerMobile navHover={navHover} isAdmin={isAdmin} />
           </DrawerPaper>
         </Hidden>
         <Hidden xsDown>
@@ -74,7 +75,7 @@ export default function NavBar(props: Props) {
               onMouseLeave={() => setNavHover(false)}
               variant="permanent"
             >
-              <DrawerWeb navHover={navHover} />
+              <DrawerWeb navHover={navHover} isAdmin={isAdmin} />
             </DrawerPaper>
           </DrawerContainer>
         </Hidden>

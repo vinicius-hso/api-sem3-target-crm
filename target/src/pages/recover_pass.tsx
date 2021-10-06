@@ -1,8 +1,12 @@
 import React from "react";
 import { Alert, Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { FormContainer, RecoverContainer, ImageContainer } from "@styles/pagesStyle/recover.styles";
-import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
+import {
+  FormContainer,
+  RecoverContainer,
+  ImageContainer,
+} from "@styles/pagesStyle/recover.styles";
+import { useLoginPage } from "data/services/hooks/PageHooks/LoginPageHook";
 import Title from "ui/components/Title/Title";
 
 function EmailRecover() {
@@ -19,21 +23,20 @@ function EmailRecover() {
   } = useLoginPage();
 
   return (
-    <div style={{ margin: "auto 0", marginTop: "100px"}}>
+    <div style={{ margin: "auto 0", marginTop: "100px" }}>
       <ImageContainer>
-      <img src="logo.png" alt="logo" 
-      height="100px" 
-      width="auto"
-      text-align="center"
-      justify-content= "center"
-      align-items="center"
-      />
-    </ImageContainer>
+        <img
+          src="logo.png"
+          alt="logo"
+          height="100px"
+          width="auto"
+          text-align="center"
+          justify-content="center"
+          align-items="center"
+        />
+      </ImageContainer>
 
-    <Title
-          title={""}
-          subtitle={<p>Recuperar senha</p>}
-        ></Title>
+      <Title title={""} subtitle={<p>Recuperar senha</p>}></Title>
 
       <FormContainer>
         {hasError ? (
@@ -58,9 +61,7 @@ function EmailRecover() {
           onChange={(event) => setEmail(event.target.value)}
           onBlur={emailVerification}
           error={!emailIsValid}
-          helperText={
-            !emailIsValid ? "Formato inválido" : ""
-          }
+          helperText={!emailIsValid ? "Formato inválido" : ""}
         />
 
         <Button
@@ -81,20 +82,22 @@ function EmailRecover() {
       {hasMessage ? (
         <Alert color="success">
           <h1>Email enviado!</h1>
-          <p>Enviamos um email com as instruções para a redefinição de sua senha. 
-            Caso não encontre em sua caixa de entrada, por favor, verifique seu Spam.</p>
-        <hr />
-          </Alert>
+          <p>
+            Enviamos um email com as instruções para a redefinição de sua senha.
+            Caso não encontre em sua caixa de entrada, por favor, verifique seu
+            Spam.
+          </p>
+          <hr />
+        </Alert>
       ) : (
-        <br/>
-      )
-      }
+        <br />
+      )}
 
       <RecoverContainer>
         <Title
           title={""}
-            subtitle={<p>Suas vendas organizadas em um único lugar!</p>}
-          ></Title>
+          subtitle={<p>Suas vendas organizadas em um único lugar!</p>}
+        ></Title>
       </RecoverContainer>
     </div>
   );

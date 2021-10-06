@@ -1,6 +1,6 @@
 import React from "react";
 import { IUser } from "types/User";
-import { serviceApi as api } from "./serviceApi";
+import { serviceApi as api } from "./ServiceApi";
 
 class UserService {
   private headers: object;
@@ -28,7 +28,7 @@ class UserService {
     }
   }
 
-  async createUser(data:IUser) {
+  async createUser(data: IUser) {
     try {
       const response = await api.post("/user", data, {
         headers: this.headers,

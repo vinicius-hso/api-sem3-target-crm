@@ -3,7 +3,7 @@ import { Button, Typography, CircularProgress } from "@material-ui/core";
 import Title from "ui/components/Title/Title";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { FormContainer, LoginContainer } from "@styles/pagesStyle/login.styles";
-import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
+import { useLoginPage } from "data/services/hooks/PageHooks/LoginPageHook";
 import CustomLink from "ui/components/Link/Link";
 
 import Welcome from "ui/components/Welcome/welcome";
