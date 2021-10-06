@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { emailValidator } from "../../../utils/emailValidator";
-import { serviceApi } from "data/services/serviceApi";
+import { serviceApi } from "data/services/ServiceApi";
 import AuthContext from "contexts/AuthContext";
 import { useRouter } from "next/dist/client/router";
 

@@ -7,7 +7,7 @@ import { LinkStyled } from "ui/components/Link/Link.style";
 import theme from "ui/theme/theme";
 import { UserPictureStyled } from "../NavBar.style";
 
-export const DrawerMobile = ({ navHover, ...props }) => {
+export const DrawerMobile = ({ isAdmin, navHover, ...props }) => {
   const [_navHover, setNavHover] = React.useState(false);
   const [userName, setUserName] = React.useState("Joaquim da Silva");
 
@@ -37,9 +37,8 @@ export const DrawerMobile = ({ navHover, ...props }) => {
           sx={{
             fontSize: "40px",
             color: theme.palette.primary.main,
-            mb: 3,
-            mr: 1,
-            ml: "-5px",
+            mb: 2,
+            ml: "6px",
           }}
         >
           <UserPictureStyled
@@ -72,7 +71,12 @@ export const DrawerMobile = ({ navHover, ...props }) => {
       <List>
         {navBarRoutes.map((itemMenu, index) => (
           <ListItem
-            sx={{ paddingTop: 2, mt: "-7px" }}
+            disabled={!isAdmin && itemMenu.name === "usuarios"}
+            sx={{
+              paddingTop: 2,
+              mt: "-7px",
+              display: !isAdmin && itemMenu.name === "usuarios" ? "none" : "",
+            }}
             button
             key={index}
             style={{

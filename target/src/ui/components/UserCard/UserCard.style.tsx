@@ -19,9 +19,9 @@ export const UserCardContainer = styled("div")`
   border-radius: 8px;
   box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
 
+  width: 100%;
   ${({ theme }) => theme.breakpoints.up("md")} {
     display: grid;
-    width: 100%;
     grid-template-columns: 60px repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
     grid-template-areas: "picture name role email";

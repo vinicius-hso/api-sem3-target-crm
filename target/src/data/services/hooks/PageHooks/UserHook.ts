@@ -1,25 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UserService from "data/services/UserService";
 import { IUser } from "types/User";
+import AuthContext from "contexts/AuthContext";
+import { useRouter } from "next/dist/client/router";
 
 // import CompanyService from "data/services/CompanyService";
 
 export const useUserPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
+  const { user } = useContext(AuthContext);
+  const route = useRouter();
   const [users, setUsers] = useState([]);
   const [removeFilteredUsers, setFilteredUsers] = useState([]);
   const [formatUsersToSelect, setFormat] = useState([]);
   const [createUserModalState, setCreateUserModalState] =
     useState<boolean>(false);
-  
-  const [userDetail, setUserDetail] = useState<IUser>({});
 
+  const [userDetail, setUserDetail] = useState<IUser>({});
 
   useEffect(() => {
     if (!users.length) {
       getData();
     }
-  }, []);
+    // if (user?.role !== "ADMIN") {
+    //   console.log(user);
+    //   route.push("/account");
+    // }
+  }, [user]);
 
   const formatListToSelect = (users: any[]): any => {
     setFormat(
@@ -54,7 +61,6 @@ export const useUserPage = () => {
     if (!isNewSearched) setUsers(removeFilteredUsers);
   };
 
-
   const createUser = async (data: IUser) => {
     await UserService.createUser(data);
     useCreateUserModal();
@@ -77,8 +83,6 @@ export const useUserPage = () => {
   const deleteUser = async (userId: any) => {
     const response = await UserService.deleteUser(userId);
   };
-
-
 
   return {
     users,

@@ -2,7 +2,7 @@ import React from "react";
 import { IContact } from "types/Contact";
 import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
-import { serviceApi as api } from "./serviceApi";
+import { serviceApi as api } from "./ServiceApi";
 
 class ContactService {
   private headers: object;

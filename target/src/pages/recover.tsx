@@ -1,8 +1,12 @@
 import React from "react";
 import { Alert, Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
-import { FormContainer, RecoverContainer, ImageContainer } from "@styles/pagesStyle/recover.styles";
-import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
+import {
+  FormContainer,
+  RecoverContainer,
+  ImageContainer,
+} from "@styles/pagesStyle/recover.styles";
+import { useRecoverPage } from "data/services/hooks/PageHooks/RecoverPageHook";
 import Title from "ui/components/Title/Title";
 import { useRouter } from "next/dist/client/router";
 import CustomLink from "ui/components/Link/Link";
@@ -26,22 +30,21 @@ function PassRecover() {
   } = useRecoverPage();
 
   return (
-    <div style={{ margin: "auto 0", marginTop: "100px"}}>
+    <div style={{ margin: "auto 0", marginTop: "100px" }}>
       <ImageContainer>
-      <img src="logo.png" alt="logo" 
-      height="100px" 
-      width="auto"
-      text-align="center"
-      justify-content= "center"
-      align-items="center"
-      />
+        <img
+          src="logo.png"
+          alt="logo"
+          height="100px"
+          width="auto"
+          text-align="center"
+          justify-content="center"
+          align-items="center"
+        />
       </ImageContainer>
 
-      <Title
-        title={""}
-        subtitle={<p>Redefinir senha</p>}
-      ></Title>
-    
+      <Title title={""} subtitle={<p>Redefinir senha</p>}></Title>
+
       <FormContainer>
         {hasError ? (
           <Typography
@@ -87,7 +90,14 @@ function PassRecover() {
           variant="contained"
           sx={{ width: "150px", mt: 1 }}
           color="primary"
-          onClick={() => recover(password, password2, currentRouter.query.email, currentRouter.query.token)}
+          onClick={() =>
+            recover(
+              password,
+              password2,
+              currentRouter.query.email,
+              currentRouter.query.token
+            )
+          }
           type="submit"
         >
           {isLoading ? (
@@ -102,18 +112,17 @@ function PassRecover() {
         <Alert color="success">
           <h1>Sua senha foi alterada com sucesso!</h1>
           <CustomLink href="/login" text="Clique aqui e faça seu Login!" />
-        <hr />
-          </Alert>
+          <hr />
+        </Alert>
       ) : (
-        <br/>
-      )
-      }
+        <br />
+      )}
 
       <RecoverContainer>
         <Title
           title={""}
-            subtitle={<p>Suas vendas organizadas em um único lugar!</p>}
-          ></Title>
+          subtitle={<p>Suas vendas organizadas em um único lugar!</p>}
+        ></Title>
       </RecoverContainer>
     </div>
   );

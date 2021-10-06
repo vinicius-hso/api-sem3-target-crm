@@ -7,7 +7,13 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
-import { Button, MenuItem, FormControl, InputLabel, Select} from "@material-ui/core";
+import {
+  Button,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+} from "@material-ui/core";
 import { IUser } from "types/User";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
@@ -16,10 +22,7 @@ interface CreateUserModalProps {
   open: boolean;
   setOpen: any;
 }
-const CreateUserModal: React.FC<CreateUserModalProps> = ({
-  open,
-  setOpen,
-}) => {
+const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
   const { createUserModalState, useCreateUserModal, createUser } =
     useUserPage();
 
@@ -31,7 +34,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
     name: "",
     email: "",
     role: "",
-    picture: ""
+    picture: "",
   });
 
   async function handleSubmit() {
@@ -69,7 +72,9 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
         />
 
         <FormControl fullWidth style={{ marginTop: "2px" }}>
-          <InputLabel>Perfil</InputLabel>
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+            Perfil
+          </InputLabel>
           <Select
             onChange={(event) => setData({ ...data, role: event.target.value })}
             value={data.role}
@@ -78,8 +83,8 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
             fullWidth
             defaultValue={""}
           >
-          <MenuItem value={"ADMIN"}>Administrador</MenuItem>
-          <MenuItem value={"SELLER"}>Vendedor</MenuItem>
+            <MenuItem value={"ADMIN"}>Administrador</MenuItem>
+            <MenuItem value={"SELLER"}>Vendedor</MenuItem>
           </Select>
         </FormControl>
 
@@ -93,7 +98,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
           size="small"
           fullWidth
         />
-
       </TwoColumnsContainer>
 
       <Button

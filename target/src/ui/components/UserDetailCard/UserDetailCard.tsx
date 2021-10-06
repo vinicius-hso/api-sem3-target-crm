@@ -1,6 +1,13 @@
-import { FormControl, MenuItem, Select, Typography, InputLabel } from "@material-ui/core";
+import {
+  FormControl,
+  MenuItem,
+  Select,
+  Typography,
+  InputLabel,
+  useTheme,
+} from "@material-ui/core";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
-import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import {
@@ -41,7 +48,7 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
   const [picture, setPicture] = useState(props.picture);
 
   const [error, setError] = useState(false);
-
+  const theme = useTheme();
   const handleSubmit = () => {
     const id = props.id;
     const data = {
@@ -96,7 +103,6 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
           ></i>
         </EditButton>
 
-
         <InputContainer>
           <TextFieldMask
             disabled={!props.hasEdit}
@@ -149,9 +155,18 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
           />
         </InputContainer>
 
-
-        <FormControl fullWidth >
-          <InputLabel>Perfil</InputLabel>
+        <FormControl fullWidth>
+          <InputLabel
+            sx={{
+              color: props.hasEdit
+                ? theme.palette.text.secondary
+                : theme.palette.text.disabled,
+            }}
+            variant="standard"
+            htmlFor="uncontrolled-native"
+          >
+            Perfil
+          </InputLabel>
           <Select
             disabled={!props.hasEdit}
             defaultValue={props.role}
@@ -162,12 +177,10 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             size="medium"
             fullWidth
           >
-          <MenuItem value={"ADMIN"}>Administrador</MenuItem>
-          <MenuItem value={"SELLER"}>Vendedor</MenuItem>
+            <MenuItem value={"ADMIN"}>Administrador</MenuItem>
+            <MenuItem value={"SELLER"}>Vendedor</MenuItem>
           </Select>
         </FormControl>
-
-
       </UserDetailCardContainer>
     </div>
   );

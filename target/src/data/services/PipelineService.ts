@@ -1,7 +1,7 @@
 import React from "react";
 import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
-import { serviceApi as api } from "./serviceApi";
+import { serviceApi as api } from "./ServiceApi";
 class PipelineService {
   private headers: object;
 

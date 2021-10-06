@@ -7,7 +7,7 @@ import { LinkStyled } from "ui/components/Link/Link.style";
 import theme from "ui/theme/theme";
 import { UserPictureStyled } from "../NavBar.style";
 
-export const DrawerWeb = ({ navHover, ...props }) => {
+export const DrawerWeb = ({ isAdmin, navHover, ...props }) => {
   const [_navHover, setNavHover] = React.useState(false);
   const [userName, setUserName] = React.useState("Joaquim da Silva");
 
@@ -83,6 +83,7 @@ export const DrawerWeb = ({ navHover, ...props }) => {
                   ? theme.palette.primary.main
                   : theme.palette.secondary.main,
               paddingTop: "20px",
+              display: !isAdmin && itemMenu.name === "usuarios" ? "none" : "",
             }}
           >
             <LinkStyled href={itemMenu.link}>
