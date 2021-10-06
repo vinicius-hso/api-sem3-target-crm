@@ -16,7 +16,6 @@ export const TextFieldStyled = styled(TextField)`
 export const TextFieldLoginStyled = styled(TextField)`
   margin: ${({ theme }) => theme.spacing(1)} 0;
   min-width: 200px;
-  color: red;
 
   .MuiInputBase-root {
     background-color: ${({ theme }) => theme.palette.primary[50]};
