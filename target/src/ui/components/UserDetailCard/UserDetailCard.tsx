@@ -132,19 +132,6 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
         <InputContainer>
           <TextFieldMask
             disabled={!props.hasEdit}
-            label={"Role"}
-            fullWidth
-            variant={"standard"}
-            size="medium"
-            defaultValue={props.role}
-            value={value}
-            onChange={(event) => setRole(event.target.value)}
-          />
-        </InputContainer>
-
-        <InputContainer>
-          <TextFieldMask
-            disabled={!props.hasEdit}
             label={"Imagem"}
             fullWidth
             variant={"standard"}
