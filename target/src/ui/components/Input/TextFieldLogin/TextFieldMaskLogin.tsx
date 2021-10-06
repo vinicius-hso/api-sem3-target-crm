@@ -1,5 +1,5 @@
 import React from "react";
-import TextField from "../TextField/TextField";
+import { TextFieldLoginStyled } from "../TextField/TextField.style";
 import {
   Icon,
   InputAdornment,
@@ -23,7 +23,7 @@ const TextFieldMaskLogin: React.FC<TextFieldMaskProps> = ({
   const theme = useTheme();
   return (
     <InputContainer>
-      <TextField
+      <TextFieldLoginStyled
         value={value}
         onChange={onChange}
         {...props}

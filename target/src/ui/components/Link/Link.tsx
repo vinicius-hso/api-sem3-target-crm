@@ -6,6 +6,7 @@ export interface LinkComponentProps {
   href: string;
   text?: string;
   query?: {};
+  textColor?: string;
 }
 
 const CustomLink: React.FC<LinkComponentProps> = (props) => {
@@ -17,7 +18,11 @@ const CustomLink: React.FC<LinkComponentProps> = (props) => {
           query: props.query,
         }}
       >
-        <Typography variant="body2" sx={{ my: 2 }} color="GrayText">
+        <Typography
+          variant="body2"
+          sx={{ my: 2 }}
+          color={props.textColor || "GrayText"}
+        >
           {props.text}
         </Typography>
       </Link>

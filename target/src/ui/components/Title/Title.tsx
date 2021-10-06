@@ -5,13 +5,16 @@ interface TitleProps {
   title: string;
   subtitle?: string | JSX.Element;
   style?: any;
+  subtitleColor?: string;
 }
 
 const Title: React.FC<TitleProps> = (props) => {
   return (
-    <TitleContainer style={props.style}>
+    <TitleContainer>
       <TitleStyled>{props.title}</TitleStyled>
-      <SubtitleStyled>{props.subtitle}</SubtitleStyled>
+      <SubtitleStyled style={{ color: props.subtitleColor }}>
+        {props.subtitle}
+      </SubtitleStyled>
     </TitleContainer>
   );
 };

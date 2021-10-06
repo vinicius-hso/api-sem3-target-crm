@@ -27,15 +27,22 @@ function HomePage() {
   return (
     <LoginContainer>
       <Welcome />
-      
-     <div style={{ margin: "auto 0", height: "calc(116vh - 100px)", backgroundColor: "#2D3142" }}>
-       <div style={{margin: "0 auto", marginTop: "36px"}}>
-        <hr />
-         <br/>
+
+      <div
+        style={{
+          margin: "auto 0",
+          height: "calc(116vh - 100px)",
+          backgroundColor: "#2D3142",
+        }}
+      >
+        <div style={{ margin: "0 auto", marginTop: "36px" }}>
+          <hr />
+          <br />
 
           <Title
             title={"Login"}
             subtitle={<p>Faça login para acessar sua área restrita</p>}
+            subtitleColor="#ddd"
           ></Title>
 
           <FormContainer>
@@ -75,9 +82,7 @@ function HomePage() {
               onBlur={passwordVerification}
               error={!passwordIsValid}
               helperText={
-                !passwordIsValid
-                  ? "Deve ter no mínimo 6 caracteres"
-                  : ""
+                !passwordIsValid ? "Deve ter no mínimo 6 caracteres" : ""
               }
             />
             <Button
@@ -96,12 +101,12 @@ function HomePage() {
             <CustomLink
               href="/recover_pass"
               text="Esqueceu a senha? Clique aqui"
+              textColor="#ddd"
             />
           </FormContainer>
         </div>
       </div>
     </LoginContainer>
-    
   );
 }
 export default HomePage;
