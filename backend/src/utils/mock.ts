@@ -38,7 +38,7 @@ const mocks = async (): Promise<void> => {
     }
 
     const companiesFind = await Company.find();
-    if (!(await Contact.findOne({ email: 'adriano_silveira@gmail.com' })) && companiesFind.length === 5) {
+    if (!(await Contact.findOne({ email: 'adriano_silveira@gmail.com' })) && companiesFind.length >= 5) {
       contacts.map(async (contact, index) => {
         await Contact.create({ ...contact, company: companiesFind[index] }).save();
       });
@@ -50,9 +50,9 @@ const mocks = async (): Promise<void> => {
     const pipelineFind = await Pipeline.find();
     if (
       !(await Deal.findOne({ name: 'Gynamedic' })) &&
-      contactFind.length === 5 &&
-      pipelineFind.length === 5 &&
-      companiesFind.length === 5
+      contactFind.length >= 5 &&
+      pipelineFind.length >= 5 &&
+      companiesFind.length >= 5
     ) {
       deals.map(async (deal, index) => {
         await Deal.create({
