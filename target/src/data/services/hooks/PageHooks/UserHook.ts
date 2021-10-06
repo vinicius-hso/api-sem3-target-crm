@@ -3,14 +3,16 @@ import UserService from "data/services/UserService";
 import { IUser } from "types/User";
 import AuthContext from "contexts/AuthContext";
 import { useRouter } from "next/dist/client/router";
+import { useNavBarComponent } from "../componentHooks/NavBarHook";
 
 // import CompanyService from "data/services/CompanyService";
 
 export const useUserPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
-  const { user } = useContext(AuthContext);
+  const { isAdmin } = useNavBarComponent();
   const route = useRouter();
   const [users, setUsers] = useState([]);
+  const [timer, setTimer] = useState(null);
   const [removeFilteredUsers, setFilteredUsers] = useState([]);
   const [formatUsersToSelect, setFormat] = useState([]);
   const [createUserModalState, setCreateUserModalState] =
@@ -22,11 +24,18 @@ export const useUserPage = () => {
     if (!users.length) {
       getData();
     }
-    // if (user?.role !== "ADMIN") {
-    //   console.log(user);
-    //   route.push("/account");
-    // }
-  }, [user]);
+    if (timer) {
+      clearTimeout(timer);
+      setTimer(null);
+    }
+    setTimer(
+      setTimeout(() => {
+        if (!isAdmin) {
+          route.push("/account");
+        }
+      }, 1000)
+    );
+  }, [isAdmin]);
 
   const formatListToSelect = (users: any[]): any => {
     setFormat(
