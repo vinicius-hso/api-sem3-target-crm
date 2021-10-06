@@ -1,4 +1,4 @@
-import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
+import { FormControl, MenuItem, Select, Typography, InputLabel } from "@material-ui/core";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import { useContactPage } from "data/services/hooks/PageHooks/contactHook";
 import React, { useContext, useState } from "react";
@@ -148,6 +148,26 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             onChange={(event) => setPicture(event.target.value)}
           />
         </InputContainer>
+
+
+        <FormControl fullWidth >
+          <InputLabel>Perfil</InputLabel>
+          <Select
+            disabled={!props.hasEdit}
+            defaultValue={props.role}
+            value={value}
+            onChange={(event) => setRole(event.target.value)}
+            label={"Role"}
+            variant="standard"
+            size="medium"
+            fullWidth
+          >
+          <MenuItem value={"ADMIN"}>Administrador</MenuItem>
+          <MenuItem value={"SELLER"}>Vendedor</MenuItem>
+          </Select>
+        </FormControl>
+
+
       </UserDetailCardContainer>
     </div>
   );
