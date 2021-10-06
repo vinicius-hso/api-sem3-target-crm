@@ -27,17 +27,12 @@ function HomePage() {
   return (
     <LoginContainer>
       <Welcome />
-      {
-        //<div style={{ margin: "auto 0", height: "calc(116vh - 100px)", backgroundColor: "#2D3142" }}>
-        // <div style={{margin: "auto 0", marginTop: "36px"}}>
-        // <hr/>
-        // <br/>
-        // <br/>
-        // <br/>
-        // <br/>
-      }
-      <div style={{ margin: "auto 0", height: "calc(100vh - 100px)" }}>
-        <div style={{ margin: "auto 0", marginTop: "115px" }}>
+      
+     <div style={{ margin: "auto 0", height: "calc(116vh - 100px)", backgroundColor: "#2D3142" }}>
+       <div style={{margin: "auto 0", marginTop: "36px"}}>
+        <hr/>
+         <br/>
+
           <Title
             title={"Login"}
             subtitle={<p>Faça login para acessar sua área restrita</p>}
@@ -81,7 +76,7 @@ function HomePage() {
               error={!passwordIsValid}
               helperText={
                 !passwordIsValid
-                  ? "A senha deve ter no mínimo 6 caracteres"
+                  ? "Deve ter no mínimo 6 caracteres"
                   : ""
               }
             />
@@ -106,6 +101,7 @@ function HomePage() {
         </div>
       </div>
     </LoginContainer>
+    
   );
 }
 export default HomePage;

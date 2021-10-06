@@ -6,6 +6,7 @@ import { Button } from "@material-ui/core";
 const Welcome = () => {
   return (
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
+      
       <Title
         title={"Seja bem-vindo(a)!"}
         subtitle={<p>Suas vendas organizadas em um único lugar!</p>}
