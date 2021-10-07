@@ -21,9 +21,6 @@ export const useUserPage = () => {
   const [userDetail, setUserDetail] = useState<IUser>({});
 
   useEffect(() => {
-    if (!users.length) {
-      getData();
-    }
     if (timer) {
       clearTimeout(timer);
       setTimer(null);
@@ -36,6 +33,12 @@ export const useUserPage = () => {
       }, 1000)
     );
   }, [isAdmin]);
+
+  useEffect(() => {
+    if (!users.length) {
+      getData();
+    }
+  }, [])
 
   const formatListToSelect = (users: any[]): any => {
     setFormat(

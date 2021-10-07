@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { serviceApi } from "data/services/ServiceApi";
 import ContactService from "data/services/ContactService";
+import contact from "pages/contact";
 // import CompanyService from "data/services/CompanyService";
 
 export const useContactPage = () => {
@@ -11,7 +12,9 @@ export const useContactPage = () => {
   const [formatContactThisCompanyToSelect, setFormatThisCompany] = useState([]);
 
   useEffect(() => {
-    getData();
+    if(!contacts.length) {
+      getData();
+    }
   }, []);
 
   const formatListToSelect = (contacts: any[]): any => {
