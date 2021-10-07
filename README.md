@@ -30,6 +30,11 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 <p align="center">
   <img src=link/></p>
    
+## 📃 Código - Ambiente de Desenvolvimento 
+
+Acesse o link para visualizar:
+
+> * [Código](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
 
 ## 📂 Documentação do Projeto
 
@@ -43,17 +48,3 @@ Acesse os documentos clicando nos links abaixo:
 
 
 ## 💼 Página de Cadastro de Empresa
-
-
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-### 📃 Código - Ambiente de Desenvolvimento 
-
-Acesse o link para visualizar:
-
-> * [Código](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
- 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 
-
