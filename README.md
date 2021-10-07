@@ -25,7 +25,7 @@ Foram realizadas melhorias na Página de Deals em razão do tempo disponível qu
 *	 Estilização. 
 
 Acesse o link para visualizar os gifs:
-> [__Gifs__](link)
+>   [__Gifs__](link)
 
 ### - Sprint Backlog
 
@@ -45,7 +45,7 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 
 Acesse o link para visualizar:
 
-> * [Código](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
+>   [__Código__](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
 
 ## 📂 Documentação do Projeto
 
