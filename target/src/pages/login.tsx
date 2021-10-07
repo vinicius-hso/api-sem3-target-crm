@@ -31,7 +31,7 @@ function HomePage() {
       <div
         style={{
           margin: "auto 0",
-          height: "calc(116vh - 100px)",
+          height: "100vh",
           backgroundColor: "#2D3142",
         }}
       >

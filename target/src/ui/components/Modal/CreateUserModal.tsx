@@ -71,7 +71,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
           fullWidth
         />
 
-        <FormControl fullWidth >
+        <FormControl fullWidth>
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
             Perfil
           </InputLabel>

@@ -11,17 +11,17 @@ import {
 } from "./ContactCard.style";
 
 //@deprecated
-interface CompanyCardProps {
+interface ContactCardProps {
   picture?: string;
   name: string;
   city: string;
   state?: string;
   company: string;
   phone: string;
-  onClick: () => void
+  onClick: () => void;
 }
 
-const CompanyCard: React.FC<CompanyCardProps> = (props) => {
+const CompanyCard: React.FC<ContactCardProps> = (props) => {
   return (
     <ContactCardContainer onClick={() => props.onClick()}>
       <ContactPictureStyled src={props.picture}>
