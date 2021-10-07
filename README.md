@@ -25,7 +25,7 @@ Foram realizadas melhorias na Página de Deals em razão do tempo disponível qu
 *	 Estilização. 
 
 Acesse o link para visualizar os gifs:
-> * [__Gifs__](link)
+> [__Gifs__](link)
 
 ### - Sprint Backlog
 
