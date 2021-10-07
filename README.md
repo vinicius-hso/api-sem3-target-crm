@@ -18,11 +18,11 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 ### - Melhorias Implementadas – Página de Deals
 Foram realizadas melhorias na Página de Deals em razão do tempo disponível que restou na Sprint 2. As melhorias implementadas foram: 
-•	Modal de Edição;
-•	Integração Completa;
-•	Filtros;
-•	Possibilidade de Adicionar Atividade na Negociação;
-•	 Estilização. 
+*	Modal de Edição;
+*	Integração Completa;
+*	Filtros;
+*	Possibilidade de Adicionar Atividade na Negociação;
+*	 Estilização. 
 
 Acesse o link para visualizar os gifs:
 * [__Gifs__](link)
