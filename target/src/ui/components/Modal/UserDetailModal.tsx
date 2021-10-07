@@ -72,7 +72,7 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
           <i className="fa fa-times" aria-hidden="true"></i>
         </CloseButtonStyled>
 
-        <Title title={`Detalhes do usuario ${user?.name}`} />
+        <Title title={`Detalhes do usuário ${user?.name}`} />
 
         <UserDetailCard
           onClick={() => setHasEdit(!hasEdit)}

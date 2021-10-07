@@ -132,7 +132,7 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
         <InputContainer>
           <TextFieldMask
             disabled={!props.hasEdit}
-            label={"Imagem"}
+            label={"Link da Imagem"}
             fullWidth
             variant={"standard"}
             size="medium"
