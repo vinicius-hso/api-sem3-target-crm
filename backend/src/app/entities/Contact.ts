@@ -35,6 +35,9 @@ class Contacts extends BaseEntity {
   @Column({ nullable: true })
   state: string;
 
+  @Column({ nullable: true })
+  picture: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

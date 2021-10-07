@@ -48,6 +48,7 @@ const contacts = [
     phone: '+5512987789556',
     city: 'Rio de Janeiro',
     state: 'RJ',
+    picture: 'https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg'
   },
   {
     name: 'Olívia da Silva',
@@ -55,6 +56,7 @@ const contacts = [
     phone: '+5512986989556',
     city: 'Jaraguá do Sul',
     state: 'SC',
+    picture: 'https://cdn.pixabay.com/photo/2015/09/02/13/24/girl-919048_1280.jpg'
   },
   {
     name: 'Maísa Oliveira',
@@ -62,6 +64,7 @@ const contacts = [
     phone: '+5512986989543',
     city: 'Salvador',
     state: 'BA',
+    picture: 'https://cdn.pixabay.com/photo/2016/06/06/17/05/woman-1439909_1280.jpg'
   },
   {
     name: 'Emanuel Kant',
@@ -69,6 +72,7 @@ const contacts = [
     phone: '+5512987889543',
     city: 'Montes Claros',
     state: 'MG',
+    picture: 'https://cdn.pixabay.com/photo/2015/01/27/09/58/man-613601_1280.jpg'
   },
   {
     name: 'Adriano Silveira',
@@ -76,6 +80,7 @@ const contacts = [
     phone: '+5512987979532',
     city: 'Rio de Janeiro',
     state: 'RJ',
+    picture: 'https://cdn.pixabay.com/photo/2017/06/26/02/47/man-2442565_1280.jpg'
   },
 ];
 
@@ -84,44 +89,64 @@ const users = [
     name: 'Vinícius Oliveira',
     email: 'viniciushsoliveira@gmail.com',
     role: 'SELLER',
-    password: 'AbC123',
+    password: 'https://media-exp1.licdn.com/dms/image/C4D03AQEqhTpYikHwmw/profile-displayphoto-shrink_400_400/0/1608846304994?e=1639008000&v=beta&t=BVCrE8TSVQUhyK7aEHXA7gIJaLhBbiMCJLgsqvTaes4'
   },
   {
     name: 'Mariana Assis',
     email: 'mariana.assis01@fatec.sp.gov.br',
     role: 'SELLER',
     password: 'ABc123',
+    picture: 'https://media-exp1.licdn.com/dms/image/C5603AQH5L4jiw6Ta3Q/profile-displayphoto-shrink_400_400/0/1517377302754?e=1639008000&v=beta&t=W6V1a_HE5qsOhNQ0g13nPpl04N6okn2RWULcK1b_ZIE'
   },
   {
     name: 'Hariel Thums',
     email: 'hariel.rigelli@fatec.sp.gov.br',
     role: 'SELLER',
     password: 'aBC123',
+    picture: 'https://media-exp1.licdn.com/dms/image/C4D03AQGTDa7ayhnpwA/profile-displayphoto-shrink_400_400/0/1606655420507?e=1639008000&v=beta&t=y4lDocMSmy50FsB7_Khn--cy5UJJEBaSxScnx1Y-IuA'
   },
   {
     name: 'Will Rodrigues',
     email: 'willian.silva109@fatec.sp.gov.br',
     role: 'SELLER',
     password: 'abC123',
+    picture: 'https://media-exp1.licdn.com/dms/image/C5603AQEpnVzMKATRwg/profile-displayphoto-shrink_400_400/0/1619473534912?e=1639008000&v=beta&t=ZTTPDs9oCgAha39q688Gb19KVDj0RYw0E_vKhU_2eMY'
   },
   {
     name: 'Debora Faria',
     email: 'debora.faria01@fatec.sp.gov.br',
     role: 'SELLER',
     password: 'aBc123',
+    picture: 'https://media-exp1.licdn.com/dms/image/C4D35AQHwiHDETDgBQA/profile-framedphoto-shrink_400_400/0/1613835670580?e=1633701600&v=beta&t=Ewm-hhi_N8kUTILd9YbCY6Zf8mOsEw8xAEDKgHZ9ku8'
   },
   {
     name: 'Sarah Ribeiro',
     email: 'sarah.silva10@fatec.sp.gov.br',
     role: 'SELLER',
     password: 'abc456',
+    picture: 'https://media-exp1.licdn.com/dms/image/C4D03AQGsGwxNwmjjUA/profile-displayphoto-shrink_400_400/0/1614077349792?e=1639008000&v=beta&t=kbIPUfM7uMm7B8OhDcNV33rWnRfHFOK2cOkOocqKPQ8'
   },
   {
     name: 'John Assis',
     email: 'jonathan.assis@fatec.sp.gov.br',
     role: 'SELLER',
     password: 'abc654',
+    picture: 'https://media-exp1.licdn.com/dms/image/C4D03AQENUFsCho0yFg/profile-displayphoto-shrink_400_400/0/1632947075306?e=1639008000&v=beta&t=IxBpl7WRjtcaTnIomgzf2dBUrSDrzI-ppPtu5z62lmc'
   },
+  {
+    name: 'Rita Ferreira',
+    email: 'rita.ferreira@fatec.sp.gov.br',
+    role: 'SELLER',
+    password: 'abc987',
+    picture: 'https://media-exp1.licdn.com/dms/image/C5603AQHkG1iPuMGRHQ/profile-displayphoto-shrink_400_400/0/1615499114098?e=1639008000&v=beta&t=kC5jrFMiEiYXMnZOHKs0BhjARt9i9N7JdNa42RS6AUs',
+  },
+  {
+    name: 'Matheus Costa',
+    email: 'matheus.costa55@fatec.sp.gov.br',
+    role: 'SELLER',
+    password: 'aBc987',
+    picture: 'https://media-exp1.licdn.com/dms/image/C4D03AQElCUxKWRq9AA/profile-displayphoto-shrink_400_400/0/1576814616254?e=1639008000&v=beta&t=QlvsHbTey3KQRd4i1q9bNDaeKjfqEC9kQP0yhD0PGMM',
+  }
 ];
 
 const pipelines = [

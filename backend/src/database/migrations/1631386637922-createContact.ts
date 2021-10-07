@@ -42,6 +42,11 @@ export class createContact1631386637922 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'picture',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()',
