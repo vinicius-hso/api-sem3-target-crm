@@ -59,11 +59,17 @@ Acesse o link para visualizar:
 Acesse o link para visualizar:
 
 > * [Modelo Cliente–Servidor](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/arquitetura-da-aplica%C3%A7%C3%A3o.jpeg)
+
+## 📃 Código - Ambiente de Desenvolvimento 
+
+Acesse o link para visualizar:
+
+> * [Código](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
  
 ## 🔑 Tela de Login
 
-* Login de usuário
-* Recuperação de senha
+* Login de Usuário
+* Recuperação de Senha
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/recuperar-senha.gif)
 
@@ -83,12 +89,3 @@ Acesse o link para visualizar:
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/Tests%20-%20BDD/gifs/responsividade.gif)
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-### 📃 Código - Ambiente de Desenvolvimento 
-
-Acesse o link para visualizar:
-
-> * [Código](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
- 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
