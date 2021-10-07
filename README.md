@@ -4,6 +4,12 @@
 
 Abaixo encontram-se todos os itens produzidos durante a Sprint 2 conforme estabelecido previamente por meio do planejamento: 
 
+## 📃 Código - Ambiente de Desenvolvimento 
+
+Acesse o link para visualizar:
+
+> * [__Código__](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
+
 ## 💹 Planejamento da Sprint
 
 ### - User Stories
@@ -43,12 +49,6 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 <p align="center">
   <img src=link/></p>
    
-## 📃 Código - Ambiente de Desenvolvimento 
-
-Acesse o link para visualizar:
-
-> * [__Código__](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
-
 ## 📂 Documentação do Projeto
 
 Acesse os documentos clicando nos links abaixo:
