@@ -15,9 +15,10 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 | US_05  | Essencial  | Eu como usuário, gostaria de cadastrar/remover os contatos com os quais estou realizando negociações | 25.00 | 1. Criar contato (cliente); 2. Deletar contato (cliente); 3. Editar contato (cliente); 4. Visualizar contatos; 5. Dados do contato: - Nome (completo) do contato - Telefone - Email - Site - Nome da Empresa - Cidade - Estado. | 
 | US_11  | Importante  | Eu como usuário, gostaria de cadastrar as empresas que estou realizando negociações  | 25.00 | 1. Criar empresa; 2. Deletar empresa; 3. Editar empresa; 4. Visualizar empresa; 5. Dados do contato: - Nome - Site - Cidade - Estado - País. |
 | US_04  | Importante | Eu como usuário, gostaria de atribuir tags/labels às negociações | 23.14 | 1. Criar uma Tag/Label; 2. Atribuir Tags/Labels em uma Deal; 2. Remover Tags/Labels em uma Deal; 3. Sugerir Tags existentes (Hot, Warm, Cold e outras já cadastradas no BD). |
+__Obs.: Foi alinhado com o cliente que a User Story Responsividade será entregue na Sprint 4.__
 
 ### - Melhorias Implementadas – Página de Deals
-Foram realizadas melhorias na Página de Deals em razão do tempo disponível que restou na Sprint 2. As melhorias implementadas foram: 
+Baseado em nosso planejamento foi realizado também melhorias na Página de Deals. As melhorias implementadas foram: 
 *	Modal de Edição;
 *	Integração Completa;
 *	Filtros;
