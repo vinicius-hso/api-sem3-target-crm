@@ -17,7 +17,7 @@ import { DrawerWeb } from "./Drawers/DrawerWeb";
 import { DrawerMobile } from "./Drawers/DrawerMobile";
 import { route } from "next/dist/server/router";
 import { useRouter } from "next/dist/client/router";
-import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHook";
+import { useNavBarComponent } from "data/services/hooks/componentHooks/navBarHook";
 
 interface Props {
   window?: () => Window;
