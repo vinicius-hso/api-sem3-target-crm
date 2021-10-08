@@ -13,7 +13,7 @@ import {
   DealStartDateStyled,
   DealDescriptionContainer,
   DealFooterContainer,
-} from "./DealCard.style";
+} from "./DealCompletedCard.style";
 
 export interface DealCardProps {
   companyName: string;
@@ -22,25 +22,26 @@ export interface DealCardProps {
   budget: number;
   startDate?: any;
   contactName: string;
-  tag?: string;
+  status?: string;
   onClick: any;
+  style?: any;
 }
 
-const DealCard: React.FC<DealCardProps> = (props) => {
+const DealCompletedCard: React.FC<DealCardProps> = (props) => {
   const iconTag = useMemo(() => {
-    switch (props.tag) {
-      case "FIRE":
-        return { icon: "fire", color: "#e63706" };
-      case "COLD":
-        return { icon: "snowflake-o", color: "#3eccf0" };
-      case "WARM":
-        return { icon: "bolt", color: "#effa5c" };
+    switch (props.status) {
+      case "WON":
+        return { icon: "thumbs-o-up", color: "#03f518" };
+      case "LOST":
+        return { icon: "thumbs-o-down", color: "#e63706" };
+      case "ARCHIVED":
+        return { icon: "archive", color: "#01306e" };
       default:
         return { icon: "bolt", color: "#effa5c" };
     }
-  }, [props.tag]);
+  }, [props.status]);
   return (
-    <DealCardContainer onClick={props.onClick}>
+    <DealCardContainer onClick={props.onClick} style={props.style}>
       <div
         style={{
           backgroundColor: theme.palette.grey[50],
@@ -77,4 +78,4 @@ const DealCard: React.FC<DealCardProps> = (props) => {
     </DealCardContainer>
   );
 };
-export default DealCard;
+export default DealCompletedCard;

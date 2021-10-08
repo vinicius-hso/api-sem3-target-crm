@@ -1,7 +1,11 @@
 import React from "react";
 import { Button, Typography, CircularProgress } from "@material-ui/core";
 import Title from "ui/components/Title/Title";
-import { FormContainer, LoginContainer } from "@styles/pagesStyle/login.styles";
+import {
+  FormContainer,
+  LoginContainer,
+  LoginRightContainer,
+} from "@styles/pagesStyle/login.styles";
 import { useLoginPage } from "data/services/hooks/PageHooks/LoginPageHook";
 import CustomLink from "ui/components/Link/Link";
 
@@ -28,13 +32,7 @@ function HomePage() {
     <LoginContainer>
       <Welcome />
 
-      <div
-        style={{
-          margin: "auto 0",
-          height: "100vh",
-          backgroundColor: "#2D3142",
-        }}
-      >
+      <LoginRightContainer>
         <div style={{ margin: "0 auto", marginTop: "36px" }}>
           <hr />
           <br />
@@ -105,7 +103,7 @@ function HomePage() {
             />
           </FormContainer>
         </div>
-      </div>
+      </LoginRightContainer>
     </LoginContainer>
   );
 }
