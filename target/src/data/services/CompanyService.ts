@@ -41,21 +41,17 @@ class CompanyService {
   }
 
   async editCompany(companyId, company) {
-    const resp = {};
     try {
       await api.put(`/company/${companyId}`, company, {
         headers: this.headers,
-      }).then((response) => {
-          resp['data'] = response.data;
-          resp['status'] = response.status;
-          resp['statusText'] = response.statusText;
-          resp['headers'] = response.headers;
-          resp['config'] = response.config;
       });
-      return resp;
+      return { status: "success", message: "Empresa editada com sucesso!" };
     } catch (error) {
-      
-      return [error, resp];
+      return {
+        status: "error",
+        message:
+          "Ops! algo deu errado, verifique sua conexão e tente novamente.",
+      };
     }
   }
 

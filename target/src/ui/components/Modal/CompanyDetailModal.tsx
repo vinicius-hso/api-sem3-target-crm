@@ -7,6 +7,7 @@ import { CompanyTypes } from "types/Company";
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHook";
 import { Button } from "@material-ui/core";
+import Alert from "../AlertComponent/AlertComponent";
 
 interface CompanyDetailModalProps {
   open: boolean;
@@ -19,32 +20,22 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   company,
   setOpen,
 }) => {
-  const {
-    companyDetail,
-    editCompany,
-    deleteCompany,
-  } = useCompanyPage();
-
+  const { editCompany, deleteCompany } = useCompanyPage();
   const [hasEdit, setHasEdit] = useState(false);
+  const [status, setStatus] = useState<{ status: string; message: string }>({
+    status: "",
+    message: "",
+  });
   /**
    * TODO - useEditCompanyModal, companyDetailCard
    */
 
-  const [data, setData] = useState<CompanyTypes>({
-    name: "",
-    country: "",
-    state: "",
-    city: "",
-    site: "",
-    picture: "",
-  });
-
-  const handleSubmitEdit = (data) => {
-    editCompany(companyDetail.id, data).then(() => {
-      setOpen(false);
-      window.location.reload();
-    });
-    setHasEdit(false);
+  const handleSubmitEdit = async (data: CompanyTypes) => {
+    const res = await editCompany(company.id, data);
+    setStatus(res);
+    setTimeout(() => {
+      setStatus({ status: "", message: "" });
+    }, 3000);
   };
 
   const handleDeleteCompany = () => {
@@ -59,6 +50,10 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     <ModalContainer>
       {company.id ? (
         <>
+          {status.status ? (
+            <Alert severity={status.status} message={status.message} />
+          ) : null}
+
           <CloseButtonStyled
             onClick={() => {
               setOpen(false);
@@ -96,8 +91,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
             country={company?.country}
             site={company?.site}
             picture={company?.picture}
-            saveEdit={(data) => {
-              setData(data);
+            saveEdit={(data: CompanyTypes) => {
               handleSubmitEdit(data);
             }}
           />

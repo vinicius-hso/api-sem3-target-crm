@@ -1,15 +1,16 @@
-import { FormControl, MenuItem, Select, Typography } from '@material-ui/core';
+import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import PipelineContext from "contexts/PipelineContext";
-import Alert from '../AlertComponent/AlertComponent';
+import Alert from "../AlertComponent/AlertComponent";
 import {
   CompanyDetailCardContainer,
   EditButton,
   InputContainer,
 } from "./CompanyDetailCard.style";
+import { CompanyTypes } from "types/Company";
 
 //@deprecated
 interface CompanyDetailCardProps {
@@ -26,54 +27,24 @@ interface CompanyDetailCardProps {
 }
 
 const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
-  
-  const { editCompany } = useCompanyPage();
-  const [name, setName] = useState(props.name);
-  const [city, setCity] = useState(props.city);
-  const [state, setState] = useState(props.state);
-  const [country, setCountry] = useState(props.country);
-  const [site, setSite] = useState(props.site);
-  const [picture, setPicture] = useState(props.picture);
-  const [error, setError] = useState(false);
-  const [showErrorAlert, isShowErrorAlert] = useState(false);
-  const [showSuccessAlert, isShowSuccessAlert] = useState(false);
-  const [submit, isSubmit] = useState(false);
+  const [data, setData] = useState<CompanyTypes>({
+    name: props.name,
+    city: props.city,
+    state: props.state,
+    country: props.country,
+    site: props.site,
+    picture: props.picture,
+  });
 
-  const handleSubmit = () => {
-    isSubmit(true);
-    const id = props.id;
-    const data = {
-      name,
-      city,
-      state,
-      country,
-      site,
-      picture,
-    };
-     //* Funcionando apenas o SuccessAlert e ErrorAlert
-     (data.name ? editCompany(id, data).then((resp) => {
-       const t = Object.keys(resp).length;
-       if (resp['status'] === 200) {
-         isShowSuccessAlert(true);
-         setTimeout(() => {isShowSuccessAlert(false)}, 3000)
-         window.location.reload();
-       } else if (t === 2) {
-        isShowErrorAlert(true);
-        setTimeout(() => {isShowErrorAlert(false)}, 3000)
-       }
-    }) : null );
-  };
-  
   return (
     <div>
-      
       <Typography
         sx={{
           position: "relative",
           top: "20px",
           left: "15px",
           zIndex: 1,
-          display: error ? "inline" : "none",
+          display: "none",
         }}
         color="error"
         variant="caption"
@@ -82,10 +53,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
       </Typography>
 
       <CompanyDetailCardContainer>
-
-        {(showSuccessAlert ? <Alert severity="success" message="Empresa editada com sucesso!"/> : null)}
-        {(showErrorAlert ? <Alert severity="error" message="Ops! Algo deu errado :("/> : null)}
-
         <EditButton
           style={{ right: props.hasEdit ? "80px" : 0 }}
           onClick={props.onClick}
@@ -101,7 +68,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
           style={{
             display: props.hasEdit ? "inline" : "none",
           }}
-          onClick={handleSubmit}
+          onClick={() => props.saveEdit(data)}
         >
           {"Salvar"}
           <i
@@ -118,10 +85,10 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.name}
-            onChange={(event) => setName(event.target.value)}
-            error={submit && !name}
-            helperText={!name && submit ? 'Nome é obrigatório' : ' '}
+            value={data.name}
+            onChange={(event) => setData({ ...data, name: event.target.value })}
+            error={!data.name}
+            helperText={!data.name ? "Nome é obrigatório" : " "}
           />
         </InputContainer>
 
@@ -132,8 +99,8 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.city}
-            onChange={(event) => setCity(event.target.value)}
+            defaultValue={data.city}
+            onChange={(event) => setData({ ...data, city: event.target.value })}
           />
         </InputContainer>
 
@@ -144,8 +111,10 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.state}
-            onChange={(event) => setState(event.target.value)}
+            defaultValue={data.state}
+            onChange={(event) =>
+              setData({ ...data, state: event.target.value })
+            }
           />
         </InputContainer>
 
@@ -156,8 +125,10 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.country}
-            onChange={(event) => setCountry(event.target.value)}
+            defaultValue={data.country}
+            onChange={(event) =>
+              setData({ ...data, country: event.target.value })
+            }
           />
         </InputContainer>
 
@@ -168,8 +139,8 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.site}
-            onChange={(event) => setSite(event.target.value)}
+            defaultValue={data.site}
+            onChange={(event) => setData({ ...data, site: event.target.value })}
           />
         </InputContainer>
 
@@ -180,8 +151,10 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.picture}
-            onChange={(event) => setPicture(event.target.value)}
+            defaultValue={data.picture}
+            onChange={(event) =>
+              setData({ ...data, picture: event.target.value })
+            }
           />
         </InputContainer>
       </CompanyDetailCardContainer>

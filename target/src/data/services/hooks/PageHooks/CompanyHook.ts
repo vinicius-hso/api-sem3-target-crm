@@ -10,7 +10,7 @@ export const useCompanyPage = () => {
   const [createCompanyModalState, setCreateCompanyModalState] =
     useState<boolean>(false);
   const [companyDetail, setCompanyDetail] = useState<CompanyTypes>({});
-  
+
   useEffect(() => {
     if (!companies.length) {
       getData();
@@ -64,13 +64,8 @@ export const useCompanyPage = () => {
   };
 
   const editCompany = async (companyId: any, data: any) => {
-    let resp = {}
-    await CompanyService.editCompany(companyId, data)
-      .then((response) => {
-        console.log('HOOK', response);
-        resp = response;
-      });
-    return resp;
+    const res = await CompanyService.editCompany(companyId, data);
+    return res;
   };
 
   const deleteCompany = async (companyId: any) => {
