@@ -18,7 +18,7 @@ import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 
 const CreateContactModal = () => {
-  const { createContactModal, useCreateContactModal } =
+  const { createContactModal, useCreateContactModal, getContacts } =
     useContext(ContactContext);
   const [states, setStates] = useState<IState[]>([]);
 
@@ -55,6 +55,8 @@ const CreateContactModal = () => {
           company_id: data?.company_id,
           tag: data?.tag,
         });
+
+        await getContacts()
 
         useCreateContactModal();
       }
