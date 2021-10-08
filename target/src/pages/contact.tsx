@@ -20,7 +20,7 @@ import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
 import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
 
 function ContactPage() {
-  const { contacts, filteredContact, removeFiltered } = useContactPage();
+  const { filteredContact, removeFiltered } = useContactPage();
   const { formatCompaniesToSelect, filteredCompany } = useCompanyPage();
   const [valueType, setValueType] = useState("name");
   const [hasFiltered, setHasFiltered] = useState(false);
@@ -53,7 +53,7 @@ function ContactPage() {
     setSearchTerm("");
   };
 
-  const { useCreateContactModal, useUpdateContactModal } = useContext(ContactContext)
+  const { useCreateContactModal, useUpdateContactModal, contacts } = useContext(ContactContext)
 
   return (
     <ContactsPageContainer>
@@ -63,7 +63,7 @@ function ContactPage() {
           <UpdateContactModal id={selectedId} />
           : null
       }
-        <DeleteContactModal id={selectedId}/>
+      <DeleteContactModal id={selectedId} />
 
       <ContactsHeaderContainer>
         <TitleContainer>
@@ -98,7 +98,7 @@ function ContactPage() {
       </ContactsHeaderContainer>
       <br />
       <CardsContainer>
-        {contacts.map((contact) => (
+        {contacts?.map((contact) => (
           <ContactCard
             key={contact.id}
             name={contact.name}
