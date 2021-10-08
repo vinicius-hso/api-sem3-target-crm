@@ -1,5 +1,6 @@
+import ContactService from "data/services/ContactService";
 import React, { useState, createContext, useEffect } from "react";
-import { IContactContext } from "types/Contact";
+import { IContact, IContactContext } from "types/Contact";
 
 const ContactContext = createContext<IContactContext>({} as IContactContext);
 
@@ -7,6 +8,7 @@ export const ContactProvider: React.FC = ({ children }) => {
   const [createContactModal, setCreateContactModal] = useState<boolean>(false);
   const [updateContactModal, setUpdateContactModal] = useState<boolean>(false);
   const [deleteContactModal, setDeleteContactModal] = useState<boolean>(false);
+  const [contacts, setContacts] = useState<IContact[]>();
 
   const useCreateContactModal = () => {
     setCreateContactModal(!createContactModal);
@@ -20,6 +22,15 @@ export const ContactProvider: React.FC = ({ children }) => {
     setDeleteContactModal(!deleteContactModal);
   };
 
+  const getContacts = async (): Promise<void> => {
+    const data = await ContactService.getContacts()
+    setContacts(data)
+  }
+
+  useEffect(() => {
+    getContacts()
+  }, [])
+
 
   return (
     <ContactContext.Provider
@@ -29,7 +40,9 @@ export const ContactProvider: React.FC = ({ children }) => {
         useUpdateContactModal,
         updateContactModal,
         useDeleteContactModal,
-        deleteContactModal
+        deleteContactModal,
+        contacts,
+        getContacts
       }}
     >
       {children}
