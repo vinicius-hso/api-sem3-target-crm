@@ -24,35 +24,35 @@ import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import { useCompletedPage } from "data/services/hooks/PageHooks/CompletedHook";
 import DealCard from "ui/components/DealComponents/DealCard/DealCard";
 import DealCompletedCard from "ui/components/DealCompletedCard/DealCompletedCard";
+import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
 function CompletedPage() {
-  const [value, setValue] = React.useState("WON");
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setSelectedStatus(newValue);
-  };
-  const handleClick = (deal) => {
-    console.log(deal);
-  };
-
-  const { deals } = useCompletedPage();
-
+  const { deals, filterDeals, removefilterDeals } = useCompletedPage();
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
-
-  //MODAL CONTROL
-  const [openCreateCompanyModal, setOpenCreateCompanyModal] =
-    React.useState(false);
-  const [openDetailCompanyModal, setOpenDetailCompanyModal] =
-    React.useState(false);
-  const [selectedCompany, setSelectedCompany] = React.useState({});
   const [time, setTime] = React.useState(null);
   const [selectedStatus, setSelectedStatus] = React.useState("WON");
+  const [selectListValues, setSelectListValues] = React.useState([]);
+  const { formatCompaniesToSelect } = useCompanyPage();
+  const { formatContactToSelect } = useContactPage();
+
+  const handleChangeValueType = (event) => {
+    setSearchTerm("");
+    setValueType(event.target.value);
+    if (event.target.value === "company") {
+      setSelectListValues(formatCompaniesToSelect);
+    } else if (event.target.value === "contact") {
+      setSelectListValues(formatContactToSelect);
+    } else {
+      setSelectListValues([]);
+    }
+  };
 
   const handleChangeSearchTerm = (event) => {
+    let resetFilter = false;
     if (hasFiltered) {
-      //removeFiltered(true);
+      resetFilter = true;
     }
     setSearchTerm(event.target.value);
     if (time) {
@@ -61,17 +61,24 @@ function CompletedPage() {
     }
     setTime(
       setTimeout(() => {
-        // filteredCompany(event.target.value, valueType);
-        // setHasFiltered(true);
+        filterDeals(event.target.value, valueType, resetFilter);
+        setHasFiltered(true);
       }, 1000)
     );
     clearTimeout(time);
   };
 
   const removeFilters = () => {
-    // removeFiltered(false);
+    removefilterDeals();
     setHasFiltered(false);
     setSearchTerm("");
+  };
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setSelectedStatus(newValue);
+  };
+  const handleClick = (deal) => {
+    console.log(deal);
   };
 
   return (
@@ -85,19 +92,22 @@ function CompletedPage() {
           buttomIcon="fa-search"
           viewButtonGroup={true}
           typeValue={valueType}
+          value={searchTerm}
+          selectListValues={selectListValues}
+          hasFiltered={hasFiltered}
+          onClick={removeFilters}
           searchTypes={[
             { value: "name", name: "Nome" },
-            { value: "city", name: "Cidade" },
+            { value: "company", name: "Empresa" },
+            { value: "contact", name: "Contato" },
           ]}
           ChangeType={(event) => {
-            setValueType(event.target.value);
+            handleChangeValueType(event);
           }}
           onChange={(event) => {
+            setSearchTerm(event.target.value);
             handleChangeSearchTerm(event);
           }}
-          value={searchTerm}
-          onClick={removeFilters}
-          hasFiltered={hasFiltered}
         />
       </CompletedHeaderContainer>
       <CompletedButtonsContainer>

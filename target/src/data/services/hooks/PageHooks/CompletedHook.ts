@@ -1,90 +1,66 @@
 import React, { useEffect, useState } from "react";
-import CompanyService from "data/services/CompanyService";
-import { CompanyTypes } from "types/Company";
 import DealsService from "data/services/DealsService";
 
 export const useCompletedPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [deals, setDeals] = useState([]);
-  const [removeFilteredCompanies, setFilteredCompanies] = useState([]);
-  const [formatCompaniesToSelect, setFormat] = useState([]);
-  const [createCompanyModalState, setCreateCompanyModalState] =
-    useState<boolean>(false);
-  const [companyDetail, setCompanyDetail] = useState<CompanyTypes>({});
+  const [removeFilteredDeals, setFilteredDeals] = useState([]);
+
   useEffect(() => {
     if (!deals.length) {
       getData();
     }
   }, []);
 
-  const formatListToSelect = (companies: any[]): any => {
-    setFormat(
-      companies.map((company) => {
-        return { value: company.id, label: company.name };
-      })
-    );
-  };
-
   const getData = async () => {
     const response = await DealsService.getDealsCompleted();
     setDeals(response);
-    setFilteredCompanies(response);
-    formatListToSelect(response);
+    setFilteredDeals(response);
   };
 
-  const filteredCompany = async (terms: string, typeValue: string) => {
-    let filtered = [];
-    if (typeValue === "name") {
-      //filtered = companies.filter((company) =>
-      // company.name.toLowerCase().includes(terms.toLocaleLowerCase())
-      // );
-    } else {
-      //filtered = companies.filter((company) =>
-      // company?.city.toLowerCase().includes(terms.toLocaleLowerCase())
-      //);
-    }
-    //setCompanies(filtered);
+  const filterDeals = (
+    value: string,
+    typeValue: string,
+    resetFilter: boolean
+  ) => {
+    let list = deals;
+    if (resetFilter) list = [...removeFilteredDeals];
+    const tempDeals = [];
+    list.forEach((deal) => {
+      if (deal.name.toLowerCase().includes(value.toLocaleLowerCase())) {
+        tempDeals.push(deal);
+      } else {
+        switch (typeValue) {
+          case "contact":
+            if (deal.contact.id.includes(value)) {
+              tempDeals.push(deal);
+            }
+            break;
+          case "company":
+            if (deal.company.id.includes(value)) {
+              tempDeals.push(deal);
+            }
+            break;
+          case "tag":
+            if (deal.activity[deal.activity.length - 1].tag.includes(value)) {
+              tempDeals.push(deal);
+            }
+            break;
+        }
+      }
+    });
+    console.log(tempDeals);
+
+    setDeals(tempDeals);
   };
 
-  const removeFiltered = async (isNewSearched: boolean) => {
-    //if (!isNewSearched) setCompanies(removeFilteredCompanies);
-  };
-
-  const createCompany = async (data: CompanyTypes) => {
-    await CompanyService.createCompany(data);
-    useCreateCompanyModal();
-  };
-
-  const useCreateCompanyModal = () => {
-    setCreateCompanyModalState(!createCompanyModalState);
-  };
-
-  const useCompanyDetailModal = (companyDetail: any) => {
-    setCompanyDetail(companyDetail);
-  };
-
-  const editCompany = async (companyId: any, data: any) => {
-    const response = await CompanyService.editCompany(companyId, data);
-  };
-
-  const deleteCompany = async (companyId: any) => {
-    const response = await CompanyService.deleteCompany(companyId);
+  const removefilterDeals = () => {
+    getData();
   };
 
   return {
     deals,
-    formatCompaniesToSelect,
-    filteredCompany,
-    removeFiltered,
-    // CREATE MODAL
-    createCompany,
-    useCreateCompanyModal,
-    createCompanyModalState,
-    setCreateCompanyModalState,
-    setCompanyDetail,
-    useCompanyDetailModal,
-    editCompany,
-    companyDetail,
-    deleteCompany,
+    filterDeals,
+    removefilterDeals,
   };
 };

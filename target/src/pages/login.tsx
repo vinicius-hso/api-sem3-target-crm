@@ -91,7 +91,7 @@ function HomePage() {
               type="submit"
             >
               {isLoading ? (
-                <CircularProgress size={20} color="primary" />
+                <CircularProgress size={20} color="secondary" />
               ) : (
                 "Entrar"
               )}
