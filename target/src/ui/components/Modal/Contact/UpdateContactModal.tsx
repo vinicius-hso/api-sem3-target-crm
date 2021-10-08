@@ -18,7 +18,7 @@ import ContactService from "data/services/ContactService";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 
 const UpdateContactModal = ({ id }) => {
-  const { updateContactModal, useUpdateContactModal, useDeleteContactModal } =
+  const { updateContactModal, useUpdateContactModal, useDeleteContactModal, getContacts } =
     useContext(ContactContext);
   const [states, setStates] = useState<IState[]>([]);
 
@@ -73,6 +73,7 @@ const UpdateContactModal = ({ id }) => {
           tag: data?.tag,
         });
 
+        await getContacts()
         useUpdateContactModal();
       }
     } catch (error) {
@@ -174,10 +175,10 @@ const UpdateContactModal = ({ id }) => {
           <MenuItem value={"null"}>---</MenuItem>
           {states.length > 0
             ? states.map((state) => (
-                <MenuItem key={state.id} value={state.sigla}>
-                  {state.sigla}
-                </MenuItem>
-              ))
+              <MenuItem key={state.id} value={state.sigla}>
+                {state.sigla}
+              </MenuItem>
+            ))
             : null}
         </Select>
       </TwoColumnsContainer>
