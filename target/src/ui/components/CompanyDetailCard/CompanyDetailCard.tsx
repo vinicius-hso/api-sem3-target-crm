@@ -25,29 +25,21 @@ interface CompanyDetailCardProps {
 }
 
 const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
-  // const { formatCompaniesToSelect } = useCompanyPage();
-  // const { formatListThisCompanyToSelect } = useContactPage();
-  // const [contactsThisCompany, setContactsThisCompany] = useState([]);
-
-  //   const [selectedContact, setSelectedContact] = useState(props.contact);
-  //   const [selectedCompany, setSelectedCompany] = useState(props.company);
-
+  
   const { editCompany } = useCompanyPage();
-
-  const [isInitialValue, setInitialValue] = useState(true);
-
   const [value, setValue] = useState();
-
   const [name, setName] = useState(props.name);
   const [city, setCity] = useState(props.city);
   const [state, setState] = useState(props.state);
   const [country, setCountry] = useState(props.country);
   const [site, setSite] = useState(props.site);
   const [picture, setPicture] = useState(props.picture);
-
   const [error, setError] = useState(false);
+  const [submit, isSubmit] = useState(false);
 
   const handleSubmit = () => {
+    isSubmit(true);
+    
     const id = props.id;
     const data = {
       name,
@@ -57,10 +49,12 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
       site,
       picture,
     };
-    editCompany(id, data).then(() => {
+
+    (data.name ? editCompany(id, data).then(() => {
       window.location.reload();
-    });
+    }) : null );
   };
+  
   return (
     <div>
       <Typography
@@ -111,8 +105,9 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.name}
-            value={value}
             onChange={(event) => setName(event.target.value)}
+            error={submit && !name}
+            helperText={!name && submit ? 'Nome é obrigatório' : ' '}
           />
         </InputContainer>
 
@@ -124,7 +119,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.city}
-            value={value}
             onChange={(event) => setCity(event.target.value)}
           />
         </InputContainer>
@@ -137,7 +131,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.state}
-            value={value}
             onChange={(event) => setState(event.target.value)}
           />
         </InputContainer>
@@ -150,7 +143,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.country}
-            value={value}
             onChange={(event) => setCountry(event.target.value)}
           />
         </InputContainer>
@@ -163,7 +155,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.site}
-            value={value}
             onChange={(event) => setSite(event.target.value)}
           />
         </InputContainer>
@@ -176,7 +167,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.picture}
-            value={value}
             onChange={(event) => setPicture(event.target.value)}
           />
         </InputContainer>

@@ -49,6 +49,7 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
 
   const [error, setError] = useState(false);
   const theme = useTheme();
+  
   const handleSubmit = () => {
     const id = props.id;
     const data = {
