@@ -28,7 +28,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
 
   // const { createCompanyModalState, useCreateCompanyModal, createCompany } =
   //   useContext(PipelineContext);
-
+  const [submit, setSubmit] = useState(false);
   const [time, setTime] = useState(null);
   const [data, setData] = useState<IUser>({
     name: "",
@@ -38,7 +38,9 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
   });
 
   async function handleSubmit() {
-    createUser(data).then(() => window.location.reload());
+    setSubmit(true);
+    (data.name && data.email? createUser(data).then(() => window.location.reload()): null)
+
   }
 
   const body = (
@@ -60,6 +62,9 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
           variant="standard"
           size="small"
           fullWidth
+          required
+          error={submit && !data.name}
+          helperText={!data.name && submit ? 'Nome é obrigatório' : ' '}
         />
 
         <TextFieldMask
@@ -69,6 +74,9 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
           variant="standard"
           size="small"
           fullWidth
+          required
+          error={submit && !data.email}
+          helperText={!data.email && submit ? 'Email é obrigatório' : ' '}
         />
 
         <FormControl fullWidth>
@@ -82,6 +90,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
             size="medium"
             fullWidth
             defaultValue={""}
+
           >
             <MenuItem value={"ADMIN"}>Administrador</MenuItem>
             <MenuItem value={"SELLER"}>Vendedor</MenuItem>
