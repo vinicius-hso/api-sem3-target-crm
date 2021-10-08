@@ -18,8 +18,8 @@ import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 import Delete from "@material-ui/icons/Delete";
 
-const DeleteContactModal = ({id}) => {
-  const { deleteContactModal, useDeleteContactModal } =
+const DeleteContactModal = ({ id }) => {
+  const { deleteContactModal, useDeleteContactModal, getContacts } =
     useContext(ContactContext);
   const [states, setStates] = useState<IState[]>([]);
 
@@ -34,17 +34,19 @@ const DeleteContactModal = ({id}) => {
     tag: "null",
   });
 
-  
+
   const deleteContact = async () => {
     try {
-     await ContactService.deleteContact(id) 
-     useDeleteContactModal ()
+      await ContactService.deleteContact(id)
+
+      await getContacts()
+      useDeleteContactModal()
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  
+
   const body = (
     <ModalContainer>
       <CloseButtonStyled
@@ -56,20 +58,20 @@ const DeleteContactModal = ({id}) => {
       </CloseButtonStyled>
 
       <Title title="Deletar contato" subtitle={
-          <>
-          
-            <p>
-              <strong>Tem certeza que deseja deletar o contato selecionado?</strong>
-            </p>
-          </>
-        }
+        <>
+
+          <p>
+            <strong>Tem certeza que deseja deletar o contato selecionado?</strong>
+          </p>
+        </>
+      }
       />
 
-      
+
       <Button
         variant="contained"
         color="error"
-        style={{color:"#ffffff"}}
+        style={{ color: "#ffffff" }}
         onClick={() => deleteContact()}
         startIcon={<Delete />}
         sx={{ mt: 4 }}
