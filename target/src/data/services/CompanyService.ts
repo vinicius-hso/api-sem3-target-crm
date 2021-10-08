@@ -41,14 +41,21 @@ class CompanyService {
   }
 
   async editCompany(companyId, company) {
+    const resp = {};
     try {
-      const { data } = await api.put(`/company/${companyId}`, company, {
+      await api.put(`/company/${companyId}`, company, {
         headers: this.headers,
+      }).then((response) => {
+          resp['data'] = response.data;
+          resp['status'] = response.status;
+          resp['statusText'] = response.statusText;
+          resp['headers'] = response.headers;
+          resp['config'] = response.config;
       });
-
-      return data;
+      return resp;
     } catch (error) {
-      return error;
+      
+      return [error, resp];
     }
   }
 
@@ -57,7 +64,6 @@ class CompanyService {
       const { data } = await api.delete(`/company/${companyId}`, {
         headers: this.headers,
       });
-
       return data;
     } catch (error) {
       return error;

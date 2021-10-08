@@ -1,9 +1,10 @@
-import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
+import { FormControl, MenuItem, Select, Typography } from '@material-ui/core';
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import PipelineContext from "contexts/PipelineContext";
+import Alert from '../AlertComponent/AlertComponent';
 import {
   CompanyDetailCardContainer,
   EditButton,
@@ -27,7 +28,6 @@ interface CompanyDetailCardProps {
 const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
   
   const { editCompany } = useCompanyPage();
-  const [value, setValue] = useState();
   const [name, setName] = useState(props.name);
   const [city, setCity] = useState(props.city);
   const [state, setState] = useState(props.state);
@@ -35,11 +35,12 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
   const [site, setSite] = useState(props.site);
   const [picture, setPicture] = useState(props.picture);
   const [error, setError] = useState(false);
+  const [showErrorAlert, isShowErrorAlert] = useState(false);
+  const [showSuccessAlert, isShowSuccessAlert] = useState(false);
   const [submit, isSubmit] = useState(false);
 
   const handleSubmit = () => {
     isSubmit(true);
-    
     const id = props.id;
     const data = {
       name,
@@ -49,14 +50,23 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
       site,
       picture,
     };
-
-    (data.name ? editCompany(id, data).then(() => {
-      window.location.reload();
+     //* Funcionando apenas o SuccessAlert e ErrorAlert
+     (data.name ? editCompany(id, data).then((resp) => {
+       const t = Object.keys(resp).length;
+       if (resp['status'] === 200) {
+         isShowSuccessAlert(true);
+         setTimeout(() => {isShowSuccessAlert(false)}, 3000)
+         window.location.reload();
+       } else if (t === 2) {
+        isShowErrorAlert(true);
+        setTimeout(() => {isShowErrorAlert(false)}, 3000)
+       }
     }) : null );
   };
   
   return (
     <div>
+      
       <Typography
         sx={{
           position: "relative",
@@ -72,6 +82,10 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
       </Typography>
 
       <CompanyDetailCardContainer>
+
+        {(showSuccessAlert ? <Alert severity="success" message="Empresa editada com sucesso!"/> : null)}
+        {(showErrorAlert ? <Alert severity="error" message="Ops! Algo deu errado :("/> : null)}
+
         <EditButton
           style={{ right: props.hasEdit ? "80px" : 0 }}
           onClick={props.onClick}

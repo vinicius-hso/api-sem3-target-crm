@@ -64,7 +64,13 @@ export const useCompanyPage = () => {
   };
 
   const editCompany = async (companyId: any, data: any) => {
-    const response = await CompanyService.editCompany(companyId, data);
+    let resp = {}
+    await CompanyService.editCompany(companyId, data)
+      .then((response) => {
+        console.log('HOOK', response);
+        resp = response;
+      });
+    return resp;
   };
 
   const deleteCompany = async (companyId: any) => {
