@@ -9,6 +9,7 @@ interface ContactInterface {
     city?: string;
     state?: string;
     company?: Company; 
+    picture?: string;
 }
 
 class ContactController {
@@ -40,13 +41,13 @@ class ContactController {
 
     public async create(req: Request, res: Response): Promise<Response> {
         try {
-            const { name, email, phone, city, state, company }: ContactInterface = req.body;
+            const { name, email, phone, city, state, company, picture }: ContactInterface = req.body;
 
             const findContact = await Contact.findOne({ email })
 
             if (findContact) return res.status(400).json({ message: 'Contact already exists' });
 
-            const contact = await Contact.create({ name, email, phone, city, state, company }).save();
+            const contact = await Contact.create({ name, email, phone, city, state, company, picture }).save();
 
             if (!contact) return res.status(400).json({ message: 'Cannot create contact' });
 
@@ -60,7 +61,7 @@ class ContactController {
     public async update(req: Request, res: Response): Promise<Response> {
         try {
             const id = req.params.id;
-            const { name, email, phone, city, state, company }: ContactInterface = req.body;
+            const { name, email, phone, city, state, company, picture}: ContactInterface = req.body;
 
             if (!id) return res.status(400).json({ message: 'Please send contact id' });
 
@@ -75,6 +76,7 @@ class ContactController {
                 city: city || contact.city,
                 state: state || contact.state,
                 company: company || contact.company,
+                picture: picture || contact.picture,
             };
 
             await Contact.update(id, { ...valuesToUpdate});

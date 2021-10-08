@@ -10,6 +10,7 @@ export const useCompanyPage = () => {
   const [createCompanyModalState, setCreateCompanyModalState] =
     useState<boolean>(false);
   const [companyDetail, setCompanyDetail] = useState<CompanyTypes>({});
+  
   useEffect(() => {
     if (!companies.length) {
       getData();
