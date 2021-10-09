@@ -1,0 +1,19 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+	  {
+		"type": "node",
+		"request": "attach",
+		"name": "Attach to Node",
+		"port": 7007,
+		"address": "localhost", // ou "127.0.0.1"
+		"localRoot": "${workspaceFolder}",
+		"sourceMapPathOverrides": {
+		  "/app/*": "${workspaceRoot}/*"
+		},
+		// "remoteRoot": "/app/", // se não for, comentar essa linha
+		"webRoot": "${workspaceFolder}/src",
+        "sourceMaps": true
+	  }
+	]
+  }

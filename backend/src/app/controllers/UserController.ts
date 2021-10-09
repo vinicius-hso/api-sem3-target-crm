@@ -63,7 +63,7 @@ class UserController {
         context: { password },
       },
       (err) => {
-        if (err) return res.status(400).json({ message: 'Cannot send new user password email' });
+        if (err) console.log('Email not sent')
 
         transport.close();
       });
