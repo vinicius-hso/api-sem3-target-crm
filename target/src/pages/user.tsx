@@ -75,7 +75,7 @@ function UserPage() {
           typeValue={valueType}
           searchTypes={[
             { value: "name", name: "Nome" },
-            { value: "role", name: "Role" },
+            { value: "role", name: "Perfil" },
           ]}
           ChangeType={(event) => {
             setValueType(event.target.value);

@@ -28,7 +28,9 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
         style={{ marginTop: "10px", marginRight: "5px", fontSize: "20px" }}
         className="fa fa-search"
       ></i>
-      {props.typeValue === "name" || props.typeValue === "city" ? (
+      {props.typeValue === "name" 
+      || props.typeValue === "city"
+      || props.typeValue === "role" ? (
         <TextFieldMask
           label={`Filtre pelo ${
             props.typeValue === "name" ? "nome" : "cidade"
