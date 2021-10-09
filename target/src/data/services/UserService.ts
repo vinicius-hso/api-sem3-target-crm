@@ -56,6 +56,22 @@ class UserService {
     }
   }
 
+  async editUserPassword(userId, data) {
+    try {
+      await api.put(`/user/update-password/${userId}`, data, {
+        headers: this.headers,
+      });
+
+      return { status: "success", message: "Senha editada com sucesso!" };
+    } catch (error) {
+      return {
+        status: "error",
+        message:
+          "Ops! algo deu errado, verifique sua conexão e tente novamente.",
+      };
+    }
+  }
+
   async deleteUser(userId) {
     try {
       const { data } = await api.delete(`/user/${userId}`, {

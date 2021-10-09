@@ -1,10 +1,11 @@
-import { Avatar, Button, Paper, Rating } from "@material-ui/core";
+import { Avatar, Button, Container, } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 //@deprecated
-export const CompanyDetailCardContainer = styled("div")`
+export const UserAccountCardContainer = styled("div")`
   max-width: 90vw;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   justify-content: center;
@@ -15,7 +16,7 @@ export const CompanyDetailCardContainer = styled("div")`
   box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: auto;
-  margin-top: 100px;
+  top: 20px;
 
   ${({ theme }) => theme.breakpoints.down("md")} {
     grid-template-columns: 1fr;
@@ -33,19 +34,8 @@ export const InputContainer = styled("div")`
   width: 100%;
 `;
 
-export const PaperDealDetailModalStyled = styled(Paper)`
-  position: relative;
-  padding: 2px 4px;
-  display: flex;
-  align-items: center;
-  height: 40px;
-  margin: auto 0;
-  margin-left: auto;
-  background-color: ${({ theme }) => theme.palette.grey[100]}
-    ${({ theme }) => theme.breakpoints.up("md")} {
-    width: 400px;
-  }
-  ${({ theme }) => theme.breakpoints.down("md")} {
-    margin-top: 20px;
-  }
-`;
+export const ContainerStyled = styled(Container)`
+  margin-top: 50px;
+  padding-bottom: 20px;
+  
+`

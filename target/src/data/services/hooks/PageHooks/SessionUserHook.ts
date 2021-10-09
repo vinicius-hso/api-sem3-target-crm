@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { IUser } from "types/User";
+import React, { useContext } from "react";
 import AuthContext from '../../../../contexts/AuthContext';
 import UserService from 'data/services/UserService';
 
@@ -14,9 +13,18 @@ export const useSessionUserPage = () => {
         }
         return res;
       };
+
+    const editUserPassword = async (userId: any, data: any) => {
+        const res = await UserService.editUserPassword(userId, data);
+        console.log('User Id: ',userId)
+        console.log('Passwords: ',data)
+        console.log('Res -> ', res)
+        return res;
+    }
     
     return {
         user,
-        editUser
+        editUser,
+        editUserPassword
     }
 }
