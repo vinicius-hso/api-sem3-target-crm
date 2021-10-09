@@ -77,9 +77,9 @@ class UserController {
 
       user.passwordHash = undefined;
 
-      res.status(201).json(user.id);
+      return res.status(201).json(user.id);
     } catch (error) {
-      res.status(400).json({ error: 'Registration failed, try again' });
+      return res.status(400).json({ error: 'Registration failed, try again' });
     }
   }
 
@@ -146,6 +146,27 @@ class UserController {
       res.status(200).json();
     } catch (error) {
       res.status(400).json({ error: 'Remove failed, try again' });
+    }
+  }
+
+  public async passwordUpdate(req: Request, res: Response): Promise<Response> {
+    try {
+      const { oldPassword, newPassword } = req.body;
+      const id = req.params.id
+
+      if (!oldPassword || !newPassword) return res.status(400).json({ message: 'Invalid values for update password' });
+
+      const user = await User.findOneOrFail(id);
+
+      if (!(await bcrypt.compare(oldPassword, user.passwordHash))) return res.status(404).json({ message: 'Invalid password' });
+
+      const passwordHash = await bcrypt.hash(newPassword, 10);
+
+      await User.update(id, { passwordHash });
+
+      return res.status(200).json();
+    } catch (error) {
+      return res.status(400).json({ error: 'Update password failed, ckeck values and try again' });
     }
   }
 }
