@@ -97,3 +97,8 @@ export const mockTags = [
   { value: "COLD", label: "Frio" },
   { value: "WARM", label: "Morno" },
 ];
+
+export const mockRoles = [
+  { value: "ADMIN", label: "Administrador" },
+  { value: "SELLER", label: "Vendedor" },
+];

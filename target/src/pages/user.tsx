@@ -13,6 +13,7 @@ import { Button } from "@material-ui/core";
 import CreateUserModal from "ui/components/Modal/CreateUserModal";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import UserDetailModal from "ui/components/Modal/UserDetailModal";
+import { mockRoles } from "data/utils/mock";
 
 function UserPage() {
   const { users, filteredUser, removeFiltered } = useUserPage();
@@ -73,6 +74,7 @@ function UserPage() {
           buttomIcon="fa-search"
           viewButtonGroup={true}
           typeValue={valueType}
+          selectListValues={mockRoles}
           searchTypes={[
             { value: "name", name: "Nome" },
             { value: "role", name: "Perfil" },
