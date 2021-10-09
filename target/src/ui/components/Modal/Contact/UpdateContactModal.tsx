@@ -18,7 +18,7 @@ import ContactService from "data/services/ContactService";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 import CompanyService from "data/services/CompanyService";
 
-const UpdateContactModal = ({ id }) => {
+const UpdateContactModal = ({ id, setId }) => {
   const { updateContactModal, useUpdateContactModal, useDeleteContactModal, getContacts } =
     useContext(ContactContext);
   const [states, setStates] = useState<IState[]>([]);
@@ -35,6 +35,10 @@ const UpdateContactModal = ({ id }) => {
     phone: "",
     tag: "null",
   });
+
+  const mySetId = () => {
+    setId()
+  }
 
   const getSelectedContact = async () => {
     const data = await ContactService.getContact(id);
@@ -76,6 +80,7 @@ const UpdateContactModal = ({ id }) => {
         });
 
         await getContacts()
+        mySetId()
         useUpdateContactModal();
       }
     } catch (error) {
@@ -102,6 +107,7 @@ const UpdateContactModal = ({ id }) => {
       <CloseButtonStyled
         onClick={() => {
           useUpdateContactModal();
+          mySetId()
         }}
       >
         <i className="fa fa-times" aria-hidden="true"></i>
@@ -229,6 +235,7 @@ const UpdateContactModal = ({ id }) => {
     <>
       <ModalStyled
         open={updateContactModal}
+        onClose={mySetId}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

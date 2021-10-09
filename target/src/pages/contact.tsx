@@ -55,12 +55,16 @@ function ContactPage() {
 
   const { useCreateContactModal, useUpdateContactModal, contacts } = useContext(ContactContext)
 
+  const setId = () => {
+    setSelectedId("")
+  }
+
   return (
     <ContactsPageContainer>
       <CreateContactModal />
       {
         selectedId ?
-          <UpdateContactModal id={selectedId} />
+          <UpdateContactModal setId={setId} id={selectedId} />
           : null
       }
       <DeleteContactModal id={selectedId} />
