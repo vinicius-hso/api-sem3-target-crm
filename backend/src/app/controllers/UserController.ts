@@ -1,6 +1,7 @@
 import User from '@entities/User';
 import transport from '@src/modules/mailer';
-import generatePassword from '@src/utils/generatePassword';
+import generatePassword from '@utils/generatePassword';
+import emailValidator from '@utils/emailValidator';
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 
@@ -45,7 +46,7 @@ class UserController {
     try {
       const { name, email, role, picture }: UserInterface = req.body;
 
-      if (!name || !email) return res.status(400).json({ message: 'Invalid values for new User!' });
+      if (!name || !email || !emailValidator(email)) return res.status(400).json({ message: 'Invalid values for new User!' });
 
       // User.findOne({ email }, { withDeleted: true });
       const findUser = await User.findOne({ email });
@@ -89,6 +90,7 @@ class UserController {
       const { name, email, role, picture }: UserInterface = req.body;
 
       if (!id) return res.status(400).json({ message: 'Please send user id' });
+      if (email && !emailValidator(email)) return res.status(400).json({ message: 'Invalid email for User!' });
 
       const user = await User.findOne(id);
 
