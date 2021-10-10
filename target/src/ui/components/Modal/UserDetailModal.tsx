@@ -6,8 +6,9 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import { IUser } from "types/User";
 import UserDetailCard from "../UserDetailCard/UserDetailCard";
 import { useUserPage } from "../../../data/services/hooks/PageHooks/UserHook";
-import { useEffect } from "react";
 import { Button } from '@material-ui/core';
+import Alert from "../AlertComponent/AlertComponent";
+
 
 interface UserDetailModalProps {
   open: boolean;
@@ -21,34 +22,35 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
   setOpen,
 }) => {
   const {
-    userDetail,
     editUser,
     deleteUser,
     // useUpdateCompanyModal,
-    // company
   } = useUserPage();
 
   const [hasEdit, setHasEdit] = useState(false);
+
+  const [status, setStatus] = useState<{ status: string; message: string }>({
+    status: "",
+    message: "",
+  });
 
   /**
    * TODO - useEditCompanyModal, companyDetailCard
    */
 
-  const [data, setData] = useState<IUser>({
-    name: "",
-    email: "",
-    role: "",
-    picture: "",
-  });
-
-  const handleSubmitEdit = (data) => {
-    editUser(userDetail.id, data);
-    setHasEdit(false);
+  const handleSubmitEdit = async (data: IUser) => {
+    const res = await editUser(user.id, data);
+    setStatus(res);
+    setTimeout(() => {
+      setStatus({ status: "", message: "" });
+    }, 3000);
+    //setHasEdit(false);
   };
 
   const handleDeleteUser = () => {
     const id = user.id
     deleteUser(id).then(() => {
+      setOpen(false);
       window.location.reload()
     });
   };
@@ -62,17 +64,38 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
     <ModalContainer>
       {user.id ? (
       <>
+      {status.status ? (
+            <Alert severity={status.status} message={status.message} />
+          ) : null}
+
         <CloseButtonStyled
           onClick={() => {
-            // console.log('>>>>');
-            // useCompanyDetailModal(companyDetail)
             setOpen(false);
+            window.location.reload()
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
         </CloseButtonStyled>
 
         <Title title={`Detalhes do usuário ${user?.name}`} />
+        <div style={{ display: "flex", justifyContent: "right" }}>
+
+        <Button
+              onClick={() => {
+                handleDeleteUser();
+              }}
+              variant="contained"
+              size="small"
+              sx={{
+                width: "160px",
+                mb: 2,
+              }}
+              color="error"
+              type="submit"
+            >
+              Deletar
+            </Button>
+          </div>
 
         <UserDetailCard
           onClick={() => setHasEdit(!hasEdit)}
@@ -82,32 +105,13 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
           email={user?.email}
           role={user?.role}
           picture={user?.picture}
-          saveEdit={(data) => {
-            setData(data);
+          saveEdit={(data: IUser) => {
             handleSubmitEdit(data);
           }}
         />
-        <Button
-          onClick={() => {
-            // updateStatus(dealDetail.id, { status: "ARCHIVED" });
-            // setHasStatusChange(false);
-            handleDeleteUser()
-            // window.location.reload();
-          }}
-          variant="contained"
-          size="small"
-          sx={{
-            width: "160px",
-            mb: 2,
-          }}
-          color="secondary"
-          type="submit"
-        >
-          Deletar
-        </Button>
       </>
        ) : (
-         <div>Não foi possivel carregar dados, atualize a pagina</div>
+         <div>Não foi possivel carregar os dados, atualize a página</div>
        )}
     </ModalContainer>
   );

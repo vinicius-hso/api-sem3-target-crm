@@ -30,7 +30,7 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
       ></i>
       {props.typeValue === "name" || props.typeValue === "city" ? (
         <TextFieldMask
-          label={`Filtre pelo ${
+          label={`Filtre por ${
             props.typeValue === "name" ? "nome" : "cidade"
           } `}
           fullWidth

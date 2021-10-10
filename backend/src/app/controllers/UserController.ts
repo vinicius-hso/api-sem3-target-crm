@@ -1,6 +1,7 @@
 import User from '@entities/User';
 import transport from '@src/modules/mailer';
-import generatePassword from '@src/utils/generatePassword';
+import generatePassword from '@utils/generatePassword';
+import emailValidator from '@utils/emailValidator';
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 
@@ -45,7 +46,7 @@ class UserController {
     try {
       const { name, email, role, picture }: UserInterface = req.body;
 
-      if (!name || !email) return res.status(400).json({ message: 'Invalid values for new User!' });
+      if (!name || !email || !emailValidator(email)) return res.status(400).json({ message: 'Invalid values for new User!' });
 
       // User.findOne({ email }, { withDeleted: true });
       const findUser = await User.findOne({ email });
@@ -63,7 +64,7 @@ class UserController {
         context: { password },
       },
       (err) => {
-        if (err) return res.status(400).json({ message: 'Cannot send new user password email' });
+        if (err) console.log('Email not sent')
 
         transport.close();
       });
@@ -76,9 +77,9 @@ class UserController {
 
       user.passwordHash = undefined;
 
-      res.status(201).json(user.id);
+      return res.status(201).json(user.id);
     } catch (error) {
-      res.status(400).json({ error: 'Registration failed, try again' });
+      return res.status(400).json({ error: 'Registration failed, try again' });
     }
   }
 
@@ -89,6 +90,7 @@ class UserController {
       const { name, email, role, picture }: UserInterface = req.body;
 
       if (!id) return res.status(400).json({ message: 'Please send user id' });
+      if (email && !emailValidator(email)) return res.status(400).json({ message: 'Invalid email for User!' });
 
       const user = await User.findOne(id);
 
@@ -144,6 +146,27 @@ class UserController {
       res.status(200).json();
     } catch (error) {
       res.status(400).json({ error: 'Remove failed, try again' });
+    }
+  }
+
+  public async passwordUpdate(req: Request, res: Response): Promise<Response> {
+    try {
+      const { oldPassword, newPassword } = req.body;
+      const id = req.params.id
+
+      if (!oldPassword || !newPassword) return res.status(400).json({ message: 'Invalid values for update password' });
+
+      const user = await User.findOneOrFail(id);
+
+      if (!(await bcrypt.compare(oldPassword, user.passwordHash))) return res.status(404).json({ message: 'Invalid password' });
+
+      const passwordHash = await bcrypt.hash(newPassword, 10);
+
+      await User.update(id, { passwordHash });
+
+      return res.status(200).json();
+    } catch (error) {
+      return res.status(400).json({ error: 'Update password failed, ckeck values and try again' });
     }
   }
 }

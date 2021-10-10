@@ -16,11 +16,13 @@ import ContactContext from "contexts/ContactContext";
 import { IContact } from "types/Contact";
 import ContactService from "data/services/ContactService";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
+import CompanyService from "data/services/CompanyService";
 
-const UpdateContactModal = ({ id }) => {
-  const { updateContactModal, useUpdateContactModal, useDeleteContactModal } =
+const UpdateContactModal = ({ id, setId }) => {
+  const { updateContactModal, useUpdateContactModal, useDeleteContactModal, getContacts } =
     useContext(ContactContext);
   const [states, setStates] = useState<IState[]>([]);
+  const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
   const [time, setTime] = useState(null);
 
@@ -33,6 +35,10 @@ const UpdateContactModal = ({ id }) => {
     phone: "",
     tag: "null",
   });
+
+  const mySetId = () => {
+    setId()
+  }
 
   const getSelectedContact = async () => {
     const data = await ContactService.getContact(id);
@@ -73,6 +79,8 @@ const UpdateContactModal = ({ id }) => {
           tag: data?.tag,
         });
 
+        await getContacts()
+        mySetId()
         useUpdateContactModal();
       }
     } catch (error) {
@@ -84,11 +92,22 @@ const UpdateContactModal = ({ id }) => {
     getState();
   }, []);
 
+  const getCompanies = async () => {
+    const companies = await CompanyService.getCompanies()
+
+    setCompanies(companies)
+  }
+
+  useEffect(() => {
+    getCompanies()
+  }, [])
+
   const body = (
     <ModalContainer>
       <CloseButtonStyled
         onClick={() => {
           useUpdateContactModal();
+          mySetId()
         }}
       >
         <i className="fa fa-times" aria-hidden="true"></i>
@@ -115,10 +134,15 @@ const UpdateContactModal = ({ id }) => {
         variant="standard"
         fullWidth
       >
-        <MenuItem value={"null"}>Selecione a Empresa</MenuItem>
-        <MenuItem value={"e05cf55f-5272-41a1-a9c0-ef69c0444b95"}>
-          Cluster8
-        </MenuItem>
+        <MenuItem value={"null"} disabled>Selecione a Empresa</MenuItem>
+        {
+          companies?.map((company) => (
+            <MenuItem value={company.id} key={company.id}>
+              {company.name}
+            </MenuItem>
+          ))
+        }
+
       </Select>
 
       <TextFieldMask
@@ -147,7 +171,7 @@ const UpdateContactModal = ({ id }) => {
           variant="standard"
           fullWidth
         >
-          <MenuItem value={"null"}>Selecione a Tag</MenuItem>
+          <MenuItem value={"null"} disabled>Selecione a Tag</MenuItem>
           <MenuItem value={"COLD"}>Fria</MenuItem>
           <MenuItem value={"WARM"}>Morna</MenuItem>
           <MenuItem value={"HOT"}>Quente</MenuItem>
@@ -171,13 +195,13 @@ const UpdateContactModal = ({ id }) => {
           variant="standard"
           fullWidth
         >
-          <MenuItem value={"null"}>---</MenuItem>
+          <MenuItem value={"null"} disabled>Selecione o estado...</MenuItem>
           {states.length > 0
             ? states.map((state) => (
-                <MenuItem key={state.id} value={state.sigla}>
-                  {state.sigla}
-                </MenuItem>
-              ))
+              <MenuItem key={state.id} value={state.sigla}>
+                {state.sigla}
+              </MenuItem>
+            ))
             : null}
         </Select>
       </TwoColumnsContainer>
@@ -211,6 +235,7 @@ const UpdateContactModal = ({ id }) => {
     <>
       <ModalStyled
         open={updateContactModal}
+        onClose={mySetId}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

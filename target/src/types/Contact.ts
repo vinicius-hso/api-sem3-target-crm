@@ -12,7 +12,9 @@ export interface IContact {
   deletedAt?: Date;
   company?: {
     id: string;
+    name: string;
   };
+  picture?: string;
 }
 
 export interface IContactContext {
@@ -22,4 +24,6 @@ export interface IContactContext {
   updateContactModal: boolean;
   useDeleteContactModal: () => void;
   deleteContactModal: boolean;
+  contacts: IContact[];
+  getContacts: () => Promise<void>;
 }

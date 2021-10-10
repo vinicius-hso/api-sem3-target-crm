@@ -25,7 +25,9 @@ const UserCard: React.FC<UserCardProps> = (props) => {
         {getNameInitials(props.name)}
       </UserPictureStyled>
       <UserNameStyled>{getNameUpperCase(props.name)}</UserNameStyled>
-      <UserRoleStyled>{props.role}</UserRoleStyled>
+      <UserRoleStyled>{
+      props.role === "ADMIN" ? "Administrador" : "Vendedor"
+      }</UserRoleStyled>
       <UserEmailStyled>{props.email}</UserEmailStyled>
     </UserCardContainer>
   );

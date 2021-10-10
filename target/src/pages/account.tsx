@@ -1,26 +1,99 @@
-import React from "react";
-import ContactCard from "ui/components/ContactCard/ContactCard";
-//AINDA N ESTA EM USO... APENAS PARA TESTE DE LAYOUT
+import { Container } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import UserAccountComponent from '../ui/components/UserAccountComponent/UserAccountComponent';
+import { useSessionUserPage } from "data/services/hooks/PageHooks/SessionUserHook";
+import Alert from '../ui/components/AlertComponent/AlertComponent';
+
 function Home() {
+
+  const [hasEdit, setHasEdit] = useState(false);
+  const [hasEditPassword, setHasEditPassword] = useState(false);
+  const { user, editUser, editUserPassword } = useSessionUserPage();
+  
+  const [status, setStatus] = useState<{status: string, message: string}>({
+    status: '',
+    message: ''
+  });
+
+  const [data, setData] = useState({
+    id: '',
+    name: '',
+    email: '',
+    picture: '',
+  });
+
+  const [passwords, setPasswords] = useState({
+    oldPassword: '',
+    newPassword: '',
+    confirmNewPassword: '',
+  })
+
+  useEffect(() => {
+    setData({...user});
+  }, [user]);
+
+  function checkPasswords() {
+    return passwords.newPassword === passwords.confirmNewPassword && passwords.confirmNewPassword.length > 0
+  }
+
   return (
     <div>
-      <ContactCard
-        name="Contact"
-        picture={
-          "https://avatars.githubusercontent.com/u/57255222?s=400&u=6fac4383a94553b8987954882444ba7e826e4092&v=4"
-        }
-        description="teste"
-        rating={3}
-      />
-      <br />
-      <ContactCard
-        name="Willian Rodrigues da silva"
-        description="teste"
-        rating={3}
-      />
-      <br />
-      <ContactCard name="Mirian" description="teste" rating={3} />
-      <br />
+      {status.status ? (
+            <Alert severity={status.status} message={status.message} />
+          ) : null}
+      <Container>
+        {data ? <UserAccountComponent 
+          user={data}
+          setUser={(user) => setData(user)}
+          onClick={() => setHasEdit(!hasEdit)}
+          hasEdit={hasEdit}
+          saveEdit={async (data) => {
+            setHasEdit(false);
+            setStatus(await editUser(data.id, data));
+            
+            setTimeout(() => {
+              setStatus({
+                status: '',
+                message: ''
+              })
+            }, 3000)
+          }}
+          password={passwords}
+          setUserPassword={(passwords) => setPasswords(passwords)}
+          onClickPassword={() => setHasEditPassword(!hasEditPassword)}
+          hasEditPassword={hasEditPassword}
+          saveEditPassword={async (passwords) => {
+            if(passwords.newPassword !== passwords.confirmNewPassword) {
+              setHasEditPassword(false);
+              setStatus(await editUserPassword('', ''));
+              setTimeout(() => {
+                setStatus({
+                  status: '',
+                  message: ''
+                })
+              }, 3000)
+              return null;
+            } else {
+              console.log(checkPasswords());
+              setHasEditPassword(false);
+              setStatus(await editUserPassword(data.id, passwords));
+              setPasswords({
+                oldPassword: '',
+                newPassword: '',
+                confirmNewPassword: '',
+              })
+              setTimeout(() => {
+                setStatus({
+                  status: '',
+                  message: ''
+                })
+              }, 3000)
+            }
+          }}
+        />
+       : <div></div>}
+      </Container>
+        
     </div>
   );
 }

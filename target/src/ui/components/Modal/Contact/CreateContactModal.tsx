@@ -16,17 +16,19 @@ import { IContact } from "types/Contact";
 import ContactService from "data/services/ContactService";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
+import CompanyService from "data/services/CompanyService";
 
 const CreateContactModal = () => {
-  const { createContactModal, useCreateContactModal } =
+  const { createContactModal, useCreateContactModal, getContacts } =
     useContext(ContactContext);
   const [states, setStates] = useState<IState[]>([]);
+  const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
   const [time, setTime] = useState(null);
   const [data, setData] = useState<IContact>({
     name: "",
     company_id: "null",
-    state: "",
+    state: "null",
     city: "",
     email: "",
     phone: "12000000000",
@@ -56,6 +58,8 @@ const CreateContactModal = () => {
           tag: data?.tag,
         });
 
+        await getContacts()
+
         useCreateContactModal();
       }
     } catch (error) {
@@ -66,6 +70,16 @@ const CreateContactModal = () => {
   useEffect(() => {
     getState();
   }, []);
+
+  const getCompanies = async () => {
+    const companies = await CompanyService.getCompanies()
+
+    setCompanies(companies)
+  }
+
+  useEffect(() => {
+    getCompanies()
+  }, [])
 
   const body = (
     <ModalContainer>
@@ -98,10 +112,15 @@ const CreateContactModal = () => {
         variant="standard"
         fullWidth
       >
-        <MenuItem value={"null"}>Selecione a Empresa</MenuItem>
-        <MenuItem value={"bbcebf0b-917c-4763-b196-9293adfe7cea"}>
-          Cluster8
-        </MenuItem>
+        <MenuItem value={"null"} disabled>Selecione a Empresa</MenuItem>
+        {
+          companies?.map((company) => (
+            <MenuItem value={company.id} key={company.id}>
+              {company.name}
+            </MenuItem>
+          ))
+        }
+
       </Select>
 
       <TextFieldMask
@@ -130,7 +149,7 @@ const CreateContactModal = () => {
           variant="standard"
           fullWidth
         >
-          <MenuItem value={"null"}>Selecione a Tag</MenuItem>
+          <MenuItem value={"null"} disabled>Selecione a Tag</MenuItem>
           <MenuItem value={"COLD"}>Fria</MenuItem>
           <MenuItem value={"WARM"}>Morna</MenuItem>
           <MenuItem value={"HOT"}>Quente</MenuItem>
@@ -154,7 +173,7 @@ const CreateContactModal = () => {
           variant="standard"
           fullWidth
         >
-          <MenuItem value={"null"}>--</MenuItem>
+          <MenuItem value={"null"} disabled>Selecione o estado...</MenuItem>
           {states.length > 0
             ? states.map((state) => (
               <MenuItem key={state.id} value={state.sigla}>

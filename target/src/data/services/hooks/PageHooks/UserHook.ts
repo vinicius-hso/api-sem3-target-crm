@@ -58,8 +58,8 @@ export const useUserPage = () => {
   const filteredUser = async (terms: string, typeValue: string) => {
     let filtered = [];
     if (typeValue === "name") {
-      filtered = users.filter((company) =>
-        company.name.toLowerCase().includes(terms.toLocaleLowerCase())
+      filtered = users.filter((user) =>
+        user.name.toLowerCase().includes(terms.toLocaleLowerCase())
       );
     } else {
       filtered = users.filter((user) =>
@@ -83,13 +83,12 @@ export const useUserPage = () => {
   };
 
   const useUserDetailModal = (userDetail: any) => {
-    // console.log('Oi!')
-    // console.log(companyDetail);
     setUserDetail(userDetail);
   };
 
   const editUser = async (userId: any, data: any) => {
-    const response = await UserService.editUser(userId, data);
+    const res = await UserService.editUser(userId, data);
+    return res;
   };
 
   const deleteUser = async (userId: any) => {

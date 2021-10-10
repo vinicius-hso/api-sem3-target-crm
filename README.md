@@ -41,10 +41,10 @@ Na pasta "target" via terminal:
 
 Para a organização do projeto foram utilizadas [Referência de Projeto em Typescript](https://www.typescriptlang.org/docs/handbook/project-references.html)
 
-Para acessibilidade e experiência do usuário utilizamos como referência o manual [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickr)
+Para acessibilidade e experiência do usuário utilizamos como referência o manual [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 
 <p align="center">
- <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Images/Estrutura_development.png"/></p>
+ <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Images/Estrutura_development.png"/></p>
  
 
 ## TECNOLOGIAS UTILIZADAS
@@ -62,8 +62,7 @@ Para acessibilidade e experiência do usuário utilizamos como referência o man
     - [docker](https://www.docker.com/) e [docker-compose](https://docs.docker.com/compose)
     - VSCode
 - Testing
-    - [jest](https://jestjs.io)(**Em contrução)
-    - Tetes funcionais da aplicação e apropriada documentação
+    - Testes funcionais da aplicação e apropriada documentação
 
 ## CONTRIBUIÇÃO
 

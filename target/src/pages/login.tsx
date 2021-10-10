@@ -6,7 +6,7 @@ import {
   LoginContainer,
   LoginRightContainer,
 } from "@styles/pagesStyle/login.styles";
-import { useLoginPage } from "data/services/hooks/PageHooks/LoginPageHook";
+import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
 import CustomLink from "ui/components/Link/Link";
 
 import Welcome from "ui/components/Welcome/welcome";
