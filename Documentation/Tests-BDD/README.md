@@ -203,7 +203,7 @@ Os dados da empresa permanecem inalterados e a empresa é apresentada na página
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/update-company.gif)
 
-__DELETAR EMPRESA __ ✅ 
+__DELETAR EMPRESA__ ✅ 
 
 Eu, como usuário da aplicação __Target__
 Quero deletar uma empresa cadastrada
