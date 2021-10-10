@@ -41,7 +41,7 @@ Acesse o link para visualizar os gifs:
 A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/product-backlog-target-sprint2.pdf) em ordem de prioridade referentes a Sprint 2:
 
 <p align="center">
-  <img src=link/></p>
+  <img src=https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Images/sprint-backlog.png/></p>
 
 ### - Burndown Chart
 
