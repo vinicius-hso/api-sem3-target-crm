@@ -19,6 +19,7 @@ import AchivedDealModal from "ui/components/Modal/Completed/ArchivedModal";
 import Title from "ui/components/Title/Title";
 import { StatusTypes } from "types/Status";
 import Alert from "ui/components/AlertComponent/AlertComponent";
+import Dialog from "ui/components/Dialog/Dialog";
 
 function CompletedPage() {
   const { deals, filterDeals, removefilterDeals } = useCompletedPage();
@@ -90,6 +91,7 @@ function CompletedPage() {
   }, [status]);
   return (
     <CompletedPageContainer>
+      <div></div>
       {status.type ? (
         <Alert
           severity={status.type}
@@ -97,7 +99,6 @@ function CompletedPage() {
           title={status.title}
         />
       ) : null}
-
       <AchivedDealModal
         open={openAchivedModal}
         setOpen={setOpenAchivedModal}

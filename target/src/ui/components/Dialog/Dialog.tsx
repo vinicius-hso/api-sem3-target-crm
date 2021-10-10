@@ -1,0 +1,86 @@
+import {
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import HelpOutlineOutlined from "@material-ui/icons/HelpOutlineOutlined";
+import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
+import React from "react";
+import { DialogIconContainer, DialogStyled, IconStyled } from "./Dialog.style";
+
+interface DialogProps {
+  title: string;
+  message: string;
+  type: "question" | "success" | "info";
+  open: boolean;
+  setOpen: (value: boolean) => void;
+  result: (value: boolean) => void;
+}
+const Dialog: React.FC<DialogProps> = ({
+  title,
+  message,
+  type,
+  open,
+  setOpen,
+  result,
+}) => {
+  return (
+    <DialogStyled open={open}>
+      <DialogIconContainer>
+        {type === "info" ? (
+          <InfoOutlinedIcon fontSize="inherit" color="primary" />
+        ) : type === "question" ? (
+          <HelpOutlineOutlined fontSize="inherit" color="primary" />
+        ) : (
+          <CheckCircleOutline fontSize="inherit" color="success" />
+        )}
+      </DialogIconContainer>
+      <DialogTitle>{title}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>{message}</DialogContentText>
+      </DialogContent>
+
+      <DialogActions>
+        {type === "question" ? (
+          <>
+            <Button
+              variant="contained"
+              color="error"
+              type="submit"
+              onClick={() => setOpen(false)}
+              autoFocus
+            >
+              Cancelar
+            </Button>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={() => {
+                result(true);
+              }}
+              type="submit"
+              sx={{ color: "#fff" }}
+            >
+              Confirmar
+            </Button>
+          </>
+        ) : (
+          <Button
+            variant="contained"
+            color="secondary"
+            type="submit"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            Ok
+          </Button>
+        )}
+      </DialogActions>
+    </DialogStyled>
+  );
+};
+export default Dialog;

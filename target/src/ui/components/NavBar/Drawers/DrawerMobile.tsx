@@ -33,39 +33,41 @@ export const DrawerMobile = ({ isAdmin, navHover, ...props }) => {
           height: "55px",
         }}
       >
-        <ListItemIcon
-          sx={{
-            fontSize: "40px",
-            color: theme.palette.primary.main,
-            mb: 2,
-            ml: "6px",
-          }}
-        >
-          <UserPictureStyled
-            style={{
-              backgroundColor:
+        <LinkStyled href="/account" sx={{ mb: -1 }}>
+          <ListItemIcon
+            sx={{
+              fontSize: "40px",
+              color: theme.palette.primary.main,
+              mb: 2,
+              ml: "6px",
+            }}
+          >
+            <UserPictureStyled
+              style={{
+                backgroundColor:
+                  router.route === "/account"
+                    ? theme.palette.secondary.main
+                    : theme.palette.primary.main,
+                color:
+                  router.route === "/account"
+                    ? theme.palette.primary.main
+                    : theme.palette.secondary.main,
+              }}
+            >
+              {getNameInitials(userName)}
+            </UserPictureStyled>
+          </ListItemIcon>
+          <ListItemText
+            sx={{
+              color:
                 router.route === "/account"
                   ? theme.palette.secondary.main
                   : theme.palette.primary.main,
-              color:
-                router.route === "/account"
-                  ? theme.palette.primary.main
-                  : theme.palette.secondary.main,
+              mb: "20px",
             }}
-          >
-            {getNameInitials(userName)}
-          </UserPictureStyled>
-        </ListItemIcon>
-        <ListItemText
-          sx={{
-            color:
-              router.route === "/account"
-                ? theme.palette.secondary.main
-                : theme.palette.primary.main,
-            mb: "20px",
-          }}
-          primary="Minha conta"
-        />
+            primary="Minha conta"
+          />
+        </LinkStyled>
       </ListItem>
 
       <List>

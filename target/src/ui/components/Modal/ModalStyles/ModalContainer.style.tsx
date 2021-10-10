@@ -3,7 +3,7 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 export const ModalContainer = styled("div")`
   position: relative;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.palette.background.paper};
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
