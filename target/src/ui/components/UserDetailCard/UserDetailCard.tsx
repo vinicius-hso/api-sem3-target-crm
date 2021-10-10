@@ -15,6 +15,8 @@ import {
   EditButton,
   InputContainer,
 } from "./UserDetailCard.style";
+import { IUser } from "types/User";
+import theme from "ui/theme/theme";
 
 //@deprecated
 interface UserDetailCardProps {
@@ -29,39 +31,14 @@ interface UserDetailCardProps {
 }
 
 const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
-  // const { formatCompaniesToSelect } = useCompanyPage();
-  // const { formatListThisCompanyToSelect } = useContactPage();
-  // const [contactsThisCompany, setContactsThisCompany] = useState([]);
+  const [data, setData] = useState<IUser>({
+    name: props.name,
+    email: props.email,
+    role: props.role,
+    picture: props.picture,
+  });
 
-  //   const [selectedContact, setSelectedContact] = useState(props.contact);
-  //   const [selectedCompany, setSelectedCompany] = useState(props.company);
 
-  const { editUser } = useUserPage();
-
-  const [isInitialValue, setInitialValue] = useState(true);
-
-  const [value, setValue] = useState();
-
-  const [name, setName] = useState(props.name);
-  const [email, setEmail] = useState(props.email);
-  const [role, setRole] = useState(props.role);
-  const [picture, setPicture] = useState(props.picture);
-
-  const [error, setError] = useState(false);
-  const theme = useTheme();
-  
-  const handleSubmit = () => {
-    const id = props.id;
-    const data = {
-      name,
-      email,
-      role,
-      picture,
-    };
-    editUser(id, data).then(() => {
-      window.location.reload();
-    });
-  };
   return (
     <div>
       <Typography
@@ -70,7 +47,7 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
           top: "20px",
           left: "15px",
           zIndex: 1,
-          display: error ? "inline" : "none",
+          display: "none",
         }}
         color="error"
         variant="caption"
@@ -94,7 +71,7 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
           style={{
             display: props.hasEdit ? "inline" : "none",
           }}
-          onClick={handleSubmit}
+          onClick={() => props.saveEdit(data)}
         >
           {"Salvar"}
           <i
@@ -112,8 +89,8 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.name}
-            value={value}
-            onChange={(event) => setName(event.target.value)}
+            value={data.name}
+            onChange={(event) => setData({ ...data, name: event.target.value })}
           />
         </InputContainer>
 
@@ -125,9 +102,9 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.email}
-            value={value}
-            onChange={(event) => setEmail(event.target.value)}
-          />
+            value={data.email}
+            onChange={(event) => setData({ ...data, email: event.target.value })}
+            />
         </InputContainer>
 
         <InputContainer>
@@ -138,9 +115,9 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={props.picture}
-            value={value}
-            onChange={(event) => setPicture(event.target.value)}
-          />
+            value={data.picture}
+            onChange={(event) => setData({ ...data, picture: event.target.value })}
+            />
         </InputContainer>
 
         <FormControl fullWidth>
@@ -158,8 +135,8 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
           <Select
             disabled={!props.hasEdit}
             defaultValue={props.role}
-            value={value}
-            onChange={(event) => setRole(event.target.value)}
+            value={data.role}
+            onChange={(event) => setData({ ...data, role: event.target.value })}
             label={"Role"}
             variant="standard"
             size="medium"
