@@ -80,6 +80,9 @@ Acesse os documentos clicando nos links abaixo:
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/delete-company.gif)
 
+## 👥 Página Cadastro de Usuário
+
+![Link]()
 
 ## ⚙️ Página de Minha Conta
 
