@@ -246,7 +246,7 @@ Após 1 segundo nenhuma empresa é apresentada.
 
 ## User Storie  -> Perfil do Usuário
 
-__NOVO USUÁRIO__ ✅ 
+__Meus dados__ ✅ 
 
 Eu como usuário da aplicação __Target__
 Quero visualizar e alterar meus dados pessoais
@@ -263,6 +263,8 @@ __b)__ Dado que altero as informações dos campos e clico em "Salvar"
 Uma mensagem de sucesso é apresentada "Usuário editado com sucesso"
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/update-info-profile.gif)
+
+__Alterar senha__ ✅ 
 
 Dado que acesso a página de Minha Conta
 Clico no botão "Alterar senha"
