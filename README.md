@@ -61,6 +61,20 @@ Acesse o link para visualizar:
  
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## 🎲 Modelagem do Banco de Dados
+
+Acesse o link para visualizar:
+
+> * [Modelo Entidade Relacionamento](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Images/mer-target-ok.jpg)
+
+
+## 📐 Arquitetura da Aplicação
+
+Acesse o link para visualizar:
+
+> * [Modelo Cliente–Servidor](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/arquitetura-da-aplica%C3%A7%C3%A3o.jpeg)
+
+
 ### 🛠 Tecnologias
 
 As seguintes ferramentas estão sendo usadas na construção do projeto:
