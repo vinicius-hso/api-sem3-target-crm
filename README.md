@@ -82,7 +82,13 @@ Acesse os documentos clicando nos links abaixo:
 
 ## 👥 Página Cadastro de Usuário
 
-![Link]()
+* __Novo Usuário/ Deletar Usuário__
+
+![Link](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/new%20user_delete%20user.gif)
+
+* __Filtros de Pesquisa__
+
+![Link](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/search_filters.gif)
 
 ## ⚙️ Página de Minha Conta
 
