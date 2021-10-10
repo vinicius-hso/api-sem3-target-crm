@@ -18,8 +18,8 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 | ID     | Prioridade | User Story                       | Esforço                              | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ | ------------------------------------ |
-| US_05  | Essencial  | Eu como usuário, gostaria de cadastrar/remover os contatos com os quais estou realizando negociações | 25.00 | 1. Criar contato (cliente); 2. Deletar contato (cliente); 3. Editar contato (cliente); 4. Visualizar contatos; 5. Dados do contato: - Nome (completo) do contato - Telefone - Email - Site - Nome da Empresa - Cidade - Estado. | 
-| US_11  | Importante  | Eu como usuário, gostaria de cadastrar as empresas que estou realizando negociações  | 25.00 | 1. Criar empresa; 2. Deletar empresa; 3. Editar empresa; 4. Visualizar empresa; 5. Dados do contato: - Nome - Site - Cidade - Estado - País. |
+| US_05  | Essencial  | Eu como usuário, gostaria de cadastrar, editar e remover os contatos com os quais estou realizando negociações | 25.00 | 1. Criar contato (cliente); 2. Deletar contato (cliente); 3. Editar contato (cliente); 4. Visualizar contatos; 5. Dados do contato: - Nome (completo) do contato - Telefone - Email - Site - Nome da Empresa - Cidade - Estado. | 
+| US_11  | Importante  | Eu como usuário, gostaria de cadastrar, editar e remover as empresas que estou realizando negociações  | 25.00 | 1. Criar empresa; 2. Deletar empresa; 3. Editar empresa; 4. Visualizar empresa; 5. Dados do contato: - Nome - Site - Cidade - Estado - País. |
 | US_04  | Importante | Eu como administrador, gostaria de cadastrar/remover/editar usuários | 23.14 | 1. Cadastrar usuário; 2. Deletar usuário; 3. Editar usuário; 4. Visualizar usuário; |
 | US_12  | Importante | Eu como usuário, gostaria visualizar e alterar meus dados pessoais para customizar minhas informações quando necessário | 25.00 | 1. Meus dados: editar nome, email e foto; 2. Alterar senha: alterar senha; |
 
