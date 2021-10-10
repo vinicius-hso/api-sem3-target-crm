@@ -64,16 +64,25 @@ Acesse os documentos clicando nos links abaixo:
 
 ## 💼 Página de Cadastro de Empresa
 
+* __Criar Empresa__
+
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/create-company.gif)
+
+* __Editar Empresa__
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/update-company.gif)
 
-![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/delete-company.gif)
+* __Deletar Empresa__
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/delete-company.gif)
+
 
 ## ⚙️ Página de Minha Conta
 
+* __Meus dados__
+
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/update-info-profile.gif)
+
+* __Alterar senha__
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/update-password.gif)
