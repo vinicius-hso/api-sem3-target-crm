@@ -82,7 +82,7 @@ Acesse os documentos clicando nos links abaixo:
 
 ## 👥 Página Cadastro de Usuário
 
-* __Novo Usuário/ Deletar Usuário__
+* __Novo Usuário e Deletar Usuário__
 
 ![Link](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/new%20user_delete%20user.gif)
 
@@ -92,11 +92,11 @@ Acesse os documentos clicando nos links abaixo:
 
 ## ⚙️ Página de Minha Conta
 
-* __Meus dados__
+* __Meus Dados__
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/update-info-profile.gif)
 
-* __Alterar senha__
+* __Alterar Senha__
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/update-password.gif)
 
