@@ -47,7 +47,9 @@ A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vini
 O gráfico abaixo mostra o desempenho da equipe na realização das tarefas referentes a Sprint 2:
 
 <p align="center">
-  <img src=link/></p>
+  <img src=link/>https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Images/Burndown_S2.png</p>
+  
+  Algumas atividades relacionadas ao Backend foram adiantadas antes do início da Sprint. Todas as tarefas previstas foram concluídas com êxito, e inclusive foi possível implementar melhorias nas funcionalidades já implementadas.
    
 ## 📂 Documentação do Projeto
 
