@@ -78,6 +78,7 @@ const DetailModal: React.FC = () => {
           <CloseButtonStyled
             onClick={() => {
               useDealDetailModal("");
+              window.location.reload()
             }}
           >
             <i className="fa fa-times" aria-hidden="true"></i>
