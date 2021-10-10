@@ -39,7 +39,7 @@ function Home() {
   return (
     <div>
       {status.status ? (
-            <Alert severity={status.status} message={status.message} />
+            <Alert title='Passwords' severity={status.status} message={status.message} />
           ) : null}
       <Container>
         {data ? <UserAccountComponent 

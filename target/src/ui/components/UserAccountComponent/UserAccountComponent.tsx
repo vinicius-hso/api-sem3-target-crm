@@ -59,7 +59,9 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({user, setUser, pa
             style={{
               display: props.hasEdit ? "inline" : "none",
             }}
-            onClick={() => {props.saveEdit(user)}}
+            onClick={() => {
+              (user.name.length > 0 && user.email.length > 0 ? props.saveEdit(user) : null)
+            }}
           >
             {"Salvar"}
             <i
@@ -84,8 +86,8 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({user, setUser, pa
               size="medium"
               value={user.name}
               onChange={(event) => setUser({...user, name: event.target.value})}
-              // error={submit && !user.name}
-              // helperText={!user.name && submit ? 'Nome é obrigatório' : ' '}
+              error={!user.name}
+              helperText={!user.name ? 'Informe o nome!' : ' '}
             />
           </InputContainer>
 
@@ -98,6 +100,8 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({user, setUser, pa
               size="medium"
               value={user.email}
               onChange={(event) => setUser({...user, email: event.target.value})}
+              error={!user.email}
+              helperText={!user.email ? 'Informe o email!' : ' '}
             />
           </InputContainer>
 
@@ -125,7 +129,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({user, setUser, pa
                 onClick={props.onClickPassword}
               >
                 <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
-                <NewActivityButtonLabel> Editar senha</NewActivityButtonLabel>
+                <NewActivityButtonLabel> Alterar senha</NewActivityButtonLabel>
               </NewActivityButton>
             </div>
       </ContainerStyled>
@@ -133,11 +137,11 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({user, setUser, pa
       {
         props.hasEditPassword ?  
           (<ContainerStyled>
-          <Typography variant='h5' color='primary'>Editar Senha</Typography>
+          <Typography variant='h5' color='primary'>Alterar Senha</Typography>
           <UserAccountCardContainer>
             <InputContainer>
               <TextFieldMask
-                label={"Senha"}
+                label={"Senha atual"}
                 fullWidth
                 variant={"standard"}
                 size="medium"

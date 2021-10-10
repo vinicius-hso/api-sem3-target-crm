@@ -101,7 +101,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
           size="small"
           fullWidth
           error={submit && !data.name}
-          helperText={!data.name && submit ? 'Nome é obrigatório' : ' '}
+          helperText={!data.name && submit ? 'Informe o nome da empresa' : ' '}
         />
 
         <TextFieldMask
@@ -118,7 +118,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
             setData({ ...data, address: event.target.value })
           }
           value={data.address}
-          label="CEP"
+          label="Endereço"
           variant="standard"
           size="small"
           fullWidth
