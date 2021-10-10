@@ -5,7 +5,7 @@ Nesta branch estão dispostos todos os códigos em ambiente de desenvolvimento d
 
 A aquitetura da aplicação é explicada pela seguite imagem:
 <p align="center">
- <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Images/Estrutura_development.png"/></p>
+ <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-1/Documentation/arquitetura-da-aplicação.jpeg"/></p>
 
 ## AMBIENTE DE DESENVOLVIMENTO:
 
