@@ -34,7 +34,7 @@ Baseado em nosso planejamento foi realizado também melhorias na Página de Neg�
 *	 Estilização. 
 
 Acesse o link para visualizar os gifs:
->  * [__Gifs__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/README.md#-p%C3%A1gina-de-cadastro--remo%C3%A7%C3%A3o-de-contato)
+>  * [__Gifs__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/README.md#-p%C3%A1gina-de-cadastro-de-contato)
 
 ### - Sprint Backlog
 
