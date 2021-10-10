@@ -25,8 +25,8 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 __Obs.:__ Alinhamos com o cliente que a User Story Responsividade será entregue na Sprint 4.
 
-### - Melhorias Implementadas – Página de Deals
-Baseado em nosso planejamento foi realizado também melhorias na Página de Deals. As melhorias implementadas foram: 
+### - Melhorias Implementadas – Página de Negócios
+Baseado em nosso planejamento foi realizado também melhorias na Página de Negócios. As melhorias implementadas foram: 
 *	Modal de Edição;
 *	Integração Completa;
 *	Filtros;
@@ -93,3 +93,5 @@ Acesse os documentos clicando nos links abaixo:
 * __Alterar senha__
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/update-password.gif)
+
+## ✨ Melhorias Implementadas - Página de Negócios
