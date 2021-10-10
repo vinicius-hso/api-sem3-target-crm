@@ -23,8 +23,6 @@ __b)__ Dado que tento submeto sem preencher o campo "Nome"
 __c)__ Dado que tento submeter as informações sem "Selecionar nome da empresa"
      A ação não é efetivada.
 
-![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/contacts.gif)
-
 __VISUALIZAR CONTATO__ ✅ 
 
 Eu, como usuário da aplicação __Target__
@@ -66,6 +64,8 @@ Os dados do contato são alterados e o contaro é apresentado na página.
 
 __b)__ Dado que não altero os dados do contato e clico em "Salvar"
 Os dados do contato permanecem inalterados e contato é apresentada na página
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/contacts.gif)
 
 ## User Storie  -> Cadastro de Usuários 
 
