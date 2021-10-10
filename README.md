@@ -60,8 +60,11 @@ Acesse os documentos clicando nos links abaixo:
 * [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/product-backlog-target-sprint2.pdf)
 
 
-## 👤 Página de Cadastro / Remoção de Contato
+## 👤 Página de Cadastro de Contato
 
+* __Criar, Visualizar, Editar e Remover Contato__
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/contacts.gif)
 
 ## 💼 Página de Cadastro de Empresa
 
