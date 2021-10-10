@@ -124,6 +124,8 @@ Clico no cartão de usuário
 Um modal é exibido com um botão "Editar"
 Clico no botão "Editar"
 
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/new%20user_delete%20user.gif)
+
 __BUSCA FILTRADA__ ✅ 
 
 Eu, como administrador da aplicação __Target__
@@ -147,6 +149,8 @@ Após 1 segundo nenhum usuário é apresentado.
 
 __e)__ Dado que digito um ou mais caracteres que estão presentes mais um ou mais caracteres que não estão presentes em nenhum nome de usuário
 Após 1 segundo nenhum usuário é apresentado.
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/search_filters.gif)
 
 ## User Storie  -> Cadastro de empresa 
 
