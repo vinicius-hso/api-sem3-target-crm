@@ -62,8 +62,7 @@ Para acessibilidade e experiência do usuário utilizamos como referência o man
     - [docker](https://www.docker.com/) e [docker-compose](https://docs.docker.com/compose)
     - VSCode
 - Testing
-    - [jest](https://jestjs.io)(**Em contrução)
-    - Tetes funcionais da aplicação e apropriada documentação
+    - Testes funcionais da aplicação e apropriada documentação
 
 ## CONTRIBUIÇÃO
 
