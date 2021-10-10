@@ -41,7 +41,7 @@ class Deals extends BaseEntity {
   @Column({ nullable: true })
   priority: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'float'})
   value: number;
 
   @Column({ type: 'enum', enum: ['INPROGRESS', 'LOST', 'WON', 'ARCHIVED'], default: 'INPROGRESS' })

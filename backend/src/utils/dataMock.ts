@@ -172,31 +172,31 @@ const deals = [
     name: 'Medicine Den',
     deadline: new Date(),
     priority: 'high',
-    value: 1597,
+    value: 1597.10,
   },
   {
     name: 'Physician.ly',
     deadline: new Date(),
     priority: 'high',
-    value: 2584,
+    value: 2584.55,
   },
   {
     name: 'Bimedical',
     deadline: new Date(),
     priority: 'medium',
-    value: 2584,
+    value: 2584.45,
   },
   {
     name: 'Medpharm',
     deadline: new Date(),
     priority: 'low',
-    value: 4181,
+    value: 4181.14,
   },
   {
     name: 'Gynamedic',
     deadline: new Date(),
     priority: 'medium',
-    value: 6765,
+    value: 6765.77,
   },
 ];
 
