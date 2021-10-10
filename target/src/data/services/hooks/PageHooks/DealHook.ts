@@ -36,11 +36,22 @@ export const useDealPage = () => {
     const response = await DealsService.updateStatus(dealId, newStatus);
   };
 
+  const updateStatusAndRestore = async (dealId, pipelineId) => {
+    const status = "INPROGRESS";
+    const response = await DealsService.updateStatusAndRestore(
+      dealId,
+      pipelineId,
+      status
+    );
+    return response;
+  };
+
   return {
     deals,
     formatDealToSelect,
     createActivity,
     editDeal,
     updateStatus,
+    updateStatusAndRestore,
   };
 };

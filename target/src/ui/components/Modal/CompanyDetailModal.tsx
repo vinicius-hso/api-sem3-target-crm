@@ -8,6 +8,7 @@ import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHook";
 import { Button } from "@material-ui/core";
 import Alert from "../AlertComponent/AlertComponent";
+import { StatusTypes } from "types/Status";
 
 interface CompanyDetailModalProps {
   open: boolean;
@@ -22,10 +23,8 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
 }) => {
   const { editCompany, deleteCompany } = useCompanyPage();
   const [hasEdit, setHasEdit] = useState(false);
-  const [status, setStatus] = useState<{ status: string; message: string }>({
-    status: "",
-    message: "",
-  });
+  const [status, setStatus] = useState<StatusTypes>({});
+
   /**
    * TODO - useEditCompanyModal, companyDetailCard
    */
@@ -33,8 +32,9 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   const handleSubmitEdit = async (data: CompanyTypes) => {
     const res = await editCompany(company.id, data);
     setStatus(res);
+    setHasEdit(false);
     setTimeout(() => {
-      setStatus({ status: "", message: "" });
+      setStatus({});
     }, 3000);
   };
 
@@ -50,8 +50,12 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     <ModalContainer>
       {company.id ? (
         <>
-          {status.status ? (
-            <Alert severity={status.status} message={status.message} />
+          {status.type ? (
+            <Alert
+              title={status.title}
+              severity={status.type}
+              message={status.message}
+            />
           ) : null}
 
           <CloseButtonStyled

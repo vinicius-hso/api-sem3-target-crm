@@ -1,41 +1,38 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardsContainer,
-  CompanyHeaderContainer,
-  NewCompanyButtonContainer,
   TitleContainer,
 } from "@styles/pagesStyle/company.style";
-import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
-import Title from "ui/components/Title/Title";
-import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
-import PipelineContext from "contexts/PipelineContext";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
 import {
   CompletedButtonsContainer,
   CompletedHeaderContainer,
   CompletedPageContainer,
 } from "@styles/pagesStyle/completed.style";
-import Box from "@material-ui/core/Box";
-import Tab from "@material-ui/core/Tab";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
-import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import { useCompletedPage } from "data/services/hooks/PageHooks/CompletedHook";
-import DealCard from "ui/components/DealComponents/DealCard/DealCard";
 import DealCompletedCard from "ui/components/DealCompletedCard/DealCompletedCard";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { DealTypes } from "types/Deal";
+import AchivedDealModal from "ui/components/Modal/Completed/ArchivedModal";
+import Title from "ui/components/Title/Title";
+import { StatusTypes } from "types/Status";
+import Alert from "ui/components/AlertComponent/AlertComponent";
 
 function CompletedPage() {
   const { deals, filterDeals, removefilterDeals } = useCompletedPage();
-  const [valueType, setValueType] = React.useState("name");
-  const [hasFiltered, setHasFiltered] = React.useState(false);
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const [valueType, setValueType] = useState("name");
+  const [hasFiltered, setHasFiltered] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [time, setTime] = React.useState(null);
-  const [selectedStatus, setSelectedStatus] = React.useState("WON");
-  const [selectListValues, setSelectListValues] = React.useState([]);
+  const [selectedStatus, setSelectedStatus] = useState("WON");
+  const [selectListValues, setSelectListValues] = useState([]);
   const { formatCompaniesToSelect } = useCompanyPage();
   const { formatContactToSelect } = useContactPage();
+  const [openAchivedModal, setOpenAchivedModal] = useState(false);
+  const [selectedDeal, setSelectedDeal] = useState<DealTypes>({});
+  const [status, setStatus] = useState<StatusTypes>({});
 
   const handleChangeValueType = (event) => {
     setSearchTerm("");
@@ -78,11 +75,35 @@ function CompletedPage() {
     setSelectedStatus(newValue);
   };
   const handleClick = (deal) => {
-    console.log(deal);
+    setSelectedDeal(deal);
+    setOpenAchivedModal(true);
   };
 
+  useEffect(() => {
+    if (status.type) {
+      const i = deals.indexOf(selectedDeal);
+      deals.splice(i, 1);
+      setTimeout(() => {
+        setStatus({});
+      }, 3000);
+    }
+  }, [status]);
   return (
     <CompletedPageContainer>
+      {status.type ? (
+        <Alert
+          severity={status.type}
+          message={status.message}
+          title={status.title}
+        />
+      ) : null}
+
+      <AchivedDealModal
+        open={openAchivedModal}
+        setOpen={setOpenAchivedModal}
+        deal={selectedDeal}
+        setStatus={setStatus}
+      />
       <CompletedHeaderContainer>
         <TitleContainer>
           <Title title="NEGOCIAÇÕES FINALIZADAS"></Title>

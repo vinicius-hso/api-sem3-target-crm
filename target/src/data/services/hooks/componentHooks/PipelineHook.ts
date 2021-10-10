@@ -13,25 +13,24 @@ export const usePipelineComponent = () => {
 
   //EXECUTA ASSIM QUE ENTRA NA TELA
   useEffect(() => {
-    if (pipelines.length > 0) {
+    if (!pipelines.length) {
+      getData();
     }
   }, []);
 
   //BUSCA NO BACKEND OS DEALS E PIPELINES, SE HOUVER ERRO SETA NA VARIAVEL HASERROR
   async function getData() {
     setError("");
-    setLoading(true);
+    setLoading(false);
     try {
-      const pipelinesData = await serviceApi.get("pipeline");
-      const dealsData = await serviceApi.get("deal");
-      setLoading(false);
+      const { data } = await serviceApi.get("pipeline");
+      setPipelines(data);
     } catch (err) {
-      setLoading(false);
       setError(""); //COLOCAR ERRO DEPOIS DE CONFIGURAR BACK: Erro ao carregar, verifique sua conexão e tente novamente!
     }
   }
 
-  // RETORNA AS INFOS SOBRE AS DEALSs
+  /*   // RETORNA AS INFOS SOBRE AS DEALSs
   const getDealsInfo = () => {
     let budgetSum = 0,
       totalDeals = 0,
@@ -115,14 +114,10 @@ export const usePipelineComponent = () => {
     );
     setElements(listCopy);
   };
-
+ */
   return {
     pipelines,
-    dealsList,
-    onDragEnd,
     hasError,
     isLoading,
-    getDealsInfo,
-    getItems,
   };
 };

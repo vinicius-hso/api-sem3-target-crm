@@ -33,8 +33,7 @@ class CompanyService {
       const response = await api.post("/company", data, {
         headers: this.headers,
       });
-
-      return response.data;
+      return response;
     } catch (error) {
       return error;
     }
@@ -45,12 +44,17 @@ class CompanyService {
       await api.put(`/company/${companyId}`, company, {
         headers: this.headers,
       });
-      return { status: "success", message: "Empresa editada com sucesso!" };
+      return {
+        status: "success",
+        message: "Empresa editada com sucesso!",
+        titulo: "Sucesso",
+      };
     } catch (error) {
       return {
         status: "error",
         message:
           "Ops! algo deu errado, verifique sua conexão e tente novamente.",
+        titulo: "Erro",
       };
     }
   }

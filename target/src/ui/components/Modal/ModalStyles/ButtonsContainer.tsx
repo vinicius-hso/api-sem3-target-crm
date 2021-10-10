@@ -5,9 +5,12 @@ export const ButtonsContainer = styled("div")`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(3)};
+  flex-direction: column;
+
+  gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
   ${({ theme }) => theme.breakpoints.up("md")} {
     flex-wrap: wrap-reverse;
+    flex-direction: row;
     flex-direction: row-reverse;
   }
 `;

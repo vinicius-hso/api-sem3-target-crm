@@ -1,4 +1,5 @@
 import React from "react";
+import { pipe } from "rxjs";
 import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
@@ -63,6 +64,34 @@ class DealsService {
       return data;
     } catch (error) {
       return error;
+    }
+  }
+
+  async updateStatusAndRestore(
+    dealId: string,
+    pipeline: string,
+    status: string
+  ) {
+    try {
+      await api.put(
+        `deal/${dealId}`,
+        { pipeline, status },
+        {
+          headers: this.headers,
+        }
+      );
+      return {
+        type: "success",
+        message: "Empresa editada com sucesso!",
+        title: "Sucesso",
+      };
+    } catch (error) {
+      return {
+        type: "error",
+        message:
+          "Ops! algo deu errado, verifique sua conexão e tente novamente.",
+        title: "Erro",
+      };
     }
   }
 
