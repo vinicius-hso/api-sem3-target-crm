@@ -4,7 +4,7 @@
 
 ## User Storie  -> Cadastro de Contato 
 
-__NOVO CONTATO__✅ 
+__NOVO CONTATO__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero cadastrar diferentes contatos
 Para associá-los as negociações em andamento
@@ -22,7 +22,7 @@ __b)__ Dado que tento submeto sem preencher o campo "Nome"
 __c)__ Dado que tento submeter as informações sem "Selecionar nome da empresa"
      A ação não é efetivada.
 
-__VISUALIZAR CONTATO__✅ 
+__VISUALIZAR CONTATO__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero visualizar as contatos cadastrados
 Para ter um melhor gerenciamento da aplicação
@@ -33,7 +33,7 @@ Uma lista de cartões com as informações do contatos é exibida.
 __a)__ Dado que clico em um cartão de contato
 Um modal é exibido apresentando as informações contato.
 
-__DELETAR CONTATO__✅ 
+__DELETAR CONTATO__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero deletar um contato cadastrado
 Para ter um melhor gerenciamento da aplicação
@@ -45,7 +45,7 @@ Um modal é exibido com um botão "Deletar"
 __a)__ Dado que clico no botão "Deletar"
 O contato é deletado e não é mais apresentada na página -Resolvido
 
-__EDITAR CONTATO__✅ 
+__EDITAR CONTATO__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero editar um contato já cadastrado
 Para ter um melhor gerenciamento da aplicação
@@ -63,7 +63,7 @@ Os dados do contato permanecem inalterados e contato é apresentada na página
 
 ## User Storie  -> Cadastro de Usuários 
 
-__NOVO USUÁRIO__✅ 
+__NOVO USUÁRIO__ ✅ 
 
 Eu como administrador da aplicação __Target__
 Quero cadastrar, remover e editar diferentes usuários 
@@ -82,7 +82,7 @@ Uma mensagem de alerta é exibida "Nome é obrigatório"
 __c)__ Dado que submeto as informações sem preencher o campo "Email"
 Uma mensagem de alerta é exibida "Email é obrigatório"
 
-__VISUALIZAR USUÁRIO__✅ 
+__VISUALIZAR USUÁRIO__ ✅ 
 Eu, como administrador da aplicação __Target__
 Quero visualizar os usuários cadastradas
 Para ter um melhor gerenciamento da aplicação
@@ -93,7 +93,7 @@ Uma lista de cartões com as informações dos usuários é exibida
 __a)__ Dado que clico em um cartão de usuário
 Um modal é exibido apresentando as informações do usuário
 
-__DELETAR USUÁRIO__✅ 
+__DELETAR USUÁRIO__ ✅ 
 Eu, como administrador da aplicação __Target__
 Quero deletar um usuário cadastrado
 Para ter um melhor gerenciamento da aplicação
@@ -105,7 +105,7 @@ Um modal é exibido com um botão "Deletar"
 __a)__ Dado que clico no botão "Deletar"
 O usuário é deletado e não é mais apresentado na página
 
-__EDITAR USUÁRIO__✅ 
+__EDITAR USUÁRIO__ ✅ 
 Eu, como administrador da aplicação __Target__
 Quero editar um usuário cadastrado
 Para ter um melhor gerenciamento da aplicação
@@ -115,7 +115,7 @@ Clico no cartão de usuário
 Um modal é exibido com um botão "Editar"
 Clico no botão "Editar"
 
-__BUSCA FILTRADA__✅ 
+__BUSCA FILTRADA__ ✅ 
 Eu, como administrador da aplicação __Target__
 Quero buscar um usuário pelo nome ou role
 Para ter maior agilidade para encontrar um usuário específico
@@ -140,7 +140,7 @@ Após 1 segundo nenhum usuário é apresentado.
 
 ## User Storie  -> Cadastro de empresa 
 
-__NOVA EMPRESA__✅ 
+__NOVA EMPRESA__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero cadastrar diferentes empresas
 Para associá-las as negociações em andamento
@@ -155,7 +155,7 @@ Uma nova empresa é adicionada e exibida na página
 __b)__ Dado que submeto as informações sem preencher o campo "Nome"
 Uma mensagem de alerta é exibida "Informe o nome da empresa"
 
-__VISUALIZAR EMPRESA__✅ 
+__VISUALIZAR EMPRESA__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero visualizar as empresas cadastradas
 Para ter um melhor gerenciamento da aplicação
@@ -206,7 +206,7 @@ A empresa é deletada e não é mais apresentada na página
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/delete-company.gif)
 
-__BUSCA FILTRADA__✅ 
+__BUSCA FILTRADA__ ✅ 
 Eu, como usuário da aplicação __Target__
 Quero buscar uma empresa pelo nome ou cidade
 Para ter um maior agilidade para encontrar uma empresa específica
