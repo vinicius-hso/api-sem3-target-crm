@@ -1,8 +1,10 @@
-import { Typography, Avatar } from '@material-ui/core';
+import { Typography, Avatar, Button } from '@material-ui/core';
 import { useUserPage } from 'data/services/hooks/PageHooks/UserHook';
 import React, { useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Alert from '../AlertComponent/AlertComponent';
+import { NewActivityButton, NewActivityButtonLabel } from '../DealDetailCard/DealDetailCard.style';
+import { ButtonsContainer } from '../Modal/ModalStyles/ButtonsContainer';
 import {
   UserAccountCardContainer,
   EditButton,
@@ -35,7 +37,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({user, setUser, pa
     <div>
       <ContainerStyled>
 
-        <Typography variant='h4' color='primary'>Editar Perfil</Typography>
+        <Typography variant='h4' color='primary'>Meus dados</Typography>
 
         <UserAccountCardContainer>
 
@@ -113,61 +115,99 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({user, setUser, pa
         </UserAccountCardContainer>
       </ContainerStyled>
       
-      {/* TODO -> lógica */}
       <ContainerStyled>
-        <Typography variant='h5' color='primary'>Editar Senha</Typography>
-        <UserAccountCardContainer>
-          <EditButton
-            style={{ right: props.hasEditPassword ? "80px" : 0 }}
-            onClick={props.onClickPassword}
-          >
-            {!props.hasEditPassword ? "Editar" : "Cancelar"}
-            <i
-              style={{ marginLeft: "2px" }}
-              className={`fa fa-${!props.hasEditPassword ? "pencil" : "times"}`}
-              aria-hidden="true"
-            ></i>
-          </EditButton>
-          <EditButton
-            style={{
-              display: props.hasEditPassword ? "inline" : "none",
-            }}
-            onClick={() => {props.saveEditPassword(password)}}
-          >
-            {"Salvar"}
-            <i
-              style={{ marginLeft: "2px" }}
-              className="fa fa-check"
-              aria-hidden="true"
-            ></i>
-          </EditButton>
-
-          <InputContainer>
-            <TextFieldMask
-              disabled={!props.hasEditPassword}
-              label={"Senha"}
-              fullWidth
-              variant={"standard"}
-              size="medium"
-              value={password.oldPassword}
-              onChange={(event) => setUserPassword({...password, oldPassword: event.target.value})}
-            />
-          </InputContainer>
-
-          <InputContainer>
-            <TextFieldMask
-              disabled={!props.hasEditPassword}
-              label={"Nova Senha"}
-              fullWidth
-              variant={"standard"}
-              size="medium"
-              value={password.newPassword}
-              onChange={(event) => setUserPassword({...password, newPassword: event.target.value})}
-            />
-          </InputContainer>
-
-        </UserAccountCardContainer>
+        <div style={{ position: "relative" }}>
+              <NewActivityButton
+                variant="contained"
+                size="small"
+                color="primary"
+                type="submit"
+                onClick={props.onClickPassword}
+              >
+                <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
+                <NewActivityButtonLabel> Editar senha</NewActivityButtonLabel>
+              </NewActivityButton>
+            </div>
       </ContainerStyled>
+
+      {
+        props.hasEditPassword ?  
+          (<ContainerStyled>
+          <Typography variant='h5' color='primary'>Editar Senha</Typography>
+          <UserAccountCardContainer>
+            <InputContainer>
+              <TextFieldMask
+                label={"Senha"}
+                fullWidth
+                variant={"standard"}
+                size="medium"
+                value={password.oldPassword}
+                onChange={(event) => setUserPassword({...password, oldPassword: event.target.value})}
+              />
+            </InputContainer>
+
+            <InputContainer>
+              <TextFieldMask
+                label={"Nova Senha"}
+                fullWidth
+                variant={"standard"}
+                size="medium"
+                value={password.newPassword}
+                onChange={(event) => setUserPassword({...password, newPassword: event.target.value})}
+              />
+            </InputContainer>
+
+            <InputContainer>
+              <TextFieldMask
+                label={"Confirmar Nova Senha"}
+                fullWidth
+                variant={"standard"}
+                size="medium"
+                value={password.confirmNewPassword}
+                onChange={(event) => setUserPassword({...password, confirmNewPassword: event.target.value})}
+              />
+            </InputContainer>
+
+            <ButtonsContainer>
+              <div
+                style={{ margin: '24px'}}>
+                  <Button
+                        onClick={() => props.saveEditPassword(password)}
+                        variant="contained"
+                        size="small"
+                        sx={{
+                          width: "160px",
+                          mt: 1,
+                        }}
+                        color="primary"
+                        type="submit"
+                      >
+                        Salvar
+                    </Button>
+                </div> 
+                <div
+                  style={{ margin: '24px'}}>
+                    <Button
+                        onClick={props.onClickPassword}
+                        variant="contained"
+                        size="small"
+                        color="error"
+                        type="submit"
+                        sx={{
+                          width: "160px",
+                          mt: 1,
+                        }}
+                      >
+                        Cancelar
+                    </Button>
+                </div>   
+            </ButtonsContainer>
+
+          </UserAccountCardContainer>
+        </ContainerStyled>) : null
+      }
+      
+      
     </div>
   );
 };

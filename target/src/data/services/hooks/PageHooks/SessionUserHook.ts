@@ -16,9 +16,6 @@ export const useSessionUserPage = () => {
 
     const editUserPassword = async (userId: any, data: any) => {
         const res = await UserService.editUserPassword(userId, data);
-        console.log('User Id: ',userId)
-        console.log('Passwords: ',data)
-        console.log('Res -> ', res)
         return res;
     }
     

@@ -24,12 +24,17 @@ function Home() {
 
   const [passwords, setPasswords] = useState({
     oldPassword: '',
-    newPassword: ''
+    newPassword: '',
+    confirmNewPassword: '',
   })
 
   useEffect(() => {
     setData({...user});
   }, [user]);
+
+  function checkPasswords() {
+    return passwords.newPassword === passwords.confirmNewPassword && passwords.confirmNewPassword.length > 0
+  }
 
   return (
     <div>
@@ -58,19 +63,32 @@ function Home() {
           onClickPassword={() => setHasEditPassword(!hasEditPassword)}
           hasEditPassword={hasEditPassword}
           saveEditPassword={async (passwords) => {
-            setHasEditPassword(false);
-            setStatus(await editUserPassword(data.id, passwords));
-            setPasswords({
-              oldPassword: '',
-              newPassword: ''
-            })
-
-            setTimeout(() => {
-              setStatus({
-                status: '',
-                message: ''
+            if(passwords.newPassword !== passwords.confirmNewPassword) {
+              setHasEditPassword(false);
+              setStatus(await editUserPassword('', ''));
+              setTimeout(() => {
+                setStatus({
+                  status: '',
+                  message: ''
+                })
+              }, 3000)
+              return null;
+            } else {
+              console.log(checkPasswords());
+              setHasEditPassword(false);
+              setStatus(await editUserPassword(data.id, passwords));
+              setPasswords({
+                oldPassword: '',
+                newPassword: '',
+                confirmNewPassword: '',
               })
-            }, 3000)
+              setTimeout(() => {
+                setStatus({
+                  status: '',
+                  message: ''
+                })
+              }, 3000)
+            }
           }}
         />
        : <div></div>}
