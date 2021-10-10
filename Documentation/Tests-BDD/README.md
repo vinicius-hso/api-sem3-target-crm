@@ -23,6 +23,8 @@ __b)__ Dado que tento submeto sem preencher o campo "Nome"
 __c)__ Dado que tento submeter as informações sem "Selecionar nome da empresa"
      A ação não é efetivada.
 
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-2/Documentation/Tests-BDD/gifs/contacts.gif)
+
 __VISUALIZAR CONTATO__ ✅ 
 
 Eu, como usuário da aplicação __Target__
