@@ -41,8 +41,8 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({user, setUser, pa
 
         <UserAccountCardContainer>
 
-          {(showSuccessAlert ? <Alert severity="success" message="Empresa editada com sucesso!"/> : null)}
-          {(showErrorAlert ? <Alert severity="error" message="Ops! Algo deu errado :("/> : null)}
+          {(showSuccessAlert ? <Alert title='Sucesso' severity="success" message="Empresa editada com sucesso!"/> : null)}
+          {(showErrorAlert ? <Alert title='Erro' severity="error" message="Ops! Algo deu errado :("/> : null)}
 
           <EditButton
             style={{ right: props.hasEdit ? "80px" : 0 }}
