@@ -23,7 +23,7 @@ class Users extends BaseEntity {
   @Column({ nullable: true })
   passwordResetToken: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'timestamp' })
   passwordResetExpires: Date;
 
   @CreateDateColumn()

@@ -35,7 +35,7 @@ class Deals extends BaseEntity {
   @Column()
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'timestamp' })
   deadline: Date;
 
   @Column({ nullable: true })
