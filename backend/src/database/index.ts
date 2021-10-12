@@ -1,15 +1,13 @@
 import { createConnection } from 'typeorm';
-import * as dotenv from 'dotenv';
+import config from '../../ormconfig';
 import mocks from '../utils/mock';
 
-dotenv.config({
-  path: process.env.NODE_ENV === 'test' ? '.env' : '.env',
-});
-
 async function connect() {
-  await createConnection();
+  await createConnection(config);
 
   await mocks();
 }
 
-connect();
+if (process.env.NODE_ENV !== 'test') {
+  connect();
+}
