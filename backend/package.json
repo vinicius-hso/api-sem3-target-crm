@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:7007 --transpile-only --exit-child src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js -f ./ormconfig.ts",
-    "test": "jest --detectOpenHandles"
+    "test": "NODE_ENV=test jest --detectOpenHandles"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

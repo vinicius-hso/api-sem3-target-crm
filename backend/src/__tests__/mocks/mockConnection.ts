@@ -6,7 +6,7 @@ const connection = {
   },
 
   async close(){
-    // await getConnection().dropDatabase(); // se precisar rodar novas migrations;
+    await getConnection().dropDatabase();
     await getConnection().close(); 
   },
 
