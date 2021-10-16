@@ -8,14 +8,10 @@ import { ensureAuthenticated } from '@middlewares/ensureAuthenticated';
 const routes = Router();
 
 routes.get('/', ensureAuthenticated, ensureAdmin, UserController.findUsers);
-routes.get('/:id', ensureAuthenticated, ensureAdmin, UserController.findUserById);
-// routes.put('/update-password/:id', ensureAuthenticated, ensureOwner, UserController.passwordUpdate);
+routes.get('/:id', ensureAuthenticated, ensureAdminOrOwner, UserController.findUserById);
+routes.put('/:id', ensureAuthenticated, ensureAdminOrOwner, UserController.update);
+routes.put('/update-password/:id', ensureAuthenticated, ensureOwner, UserController.passwordUpdate);
 routes.post('/', ensureAuthenticated, ensureAdmin, UserController.create);
-// routes.put('/:id', ensureAuthenticated, ensureAdminOrOwner, UserController.update);
-// routes.delete('/:id', ensureAuthenticated, ensureAdmin, UserController.delete);
-
-routes.put('/update-password/:id', UserController.passwordUpdate);
-routes.put('/:id', UserController.update);
-routes.delete('/:id', UserController.delete);
+routes.delete('/:id', ensureAuthenticated, ensureAdmin, UserController.delete);
 
 export default routes;
