@@ -1,15 +1,15 @@
-import connection from '../__mocks__/mockConnection';
-import { mocks } from '../__mocks__/dataMock';
-import request from 'supertest';
-import app from '../../app';
-import { v4 } from 'uuid';
-import { AuthMock } from '../__mocks__/mockAuth';
 import User from '@entities/User';
 import Chance from 'chance';
+import request from 'supertest';
+import { v4 } from 'uuid';
+import app from '../../app';
+import { mocks } from '../__mocks__/dataMock';
+import { AuthMock } from '../__mocks__/mockAuth';
+import connection from '../__mocks__/mockConnection';
 const chance = new Chance();
 
 describe('User Controller', () => {
-  let env: any;
+  let env;
   beforeAll(async () => {
     await connection.create();
     env = await mocks();

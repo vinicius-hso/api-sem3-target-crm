@@ -1,7 +1,7 @@
 import User from '@entities/User';
 import transport from '@src/modules/mailer';
-import generatePassword from '@utils/generatePassword';
 import emailValidator from '@utils/emailValidator';
+import generatePassword from '@utils/generatePassword';
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 
@@ -13,6 +13,7 @@ interface UserInterface {
   email?: string;
   password?: string;
 }
+
 class UserController {
   public async findUsers(req: Request, res: Response): Promise<Response> {
     try {
