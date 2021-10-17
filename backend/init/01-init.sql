@@ -1,1 +1,1 @@
-CREATE DATABASE docker;
+CREATE DATABASE test;
