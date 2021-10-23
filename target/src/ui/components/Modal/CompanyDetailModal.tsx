@@ -9,6 +9,7 @@ import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHo
 import { Button } from "@material-ui/core";
 import Alert from "../AlertComponent/AlertComponent";
 import { StatusTypes } from "types/Status";
+import CompanyContext from "contexts/CompanyContext";
 
 interface CompanyDetailModalProps {
   open: boolean;
@@ -21,6 +22,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   company,
   setOpen,
 }) => {
+  const {useDeleteCompanyModal}=useContext(CompanyContext);
   const { editCompany, deleteCompany } = useCompanyPage();
   const [hasEdit, setHasEdit] = useState(false);
   const [status, setStatus] = useState<StatusTypes>({});
@@ -70,7 +72,8 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
           <div style={{ display: "flex", justifyContent: "right" }}>
             <Button
               onClick={() => {
-                handleDeleteCompany();
+                setOpen(false);
+                useDeleteCompanyModal();
               }}
               variant="contained"
               size="small"
