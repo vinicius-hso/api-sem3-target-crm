@@ -13,6 +13,8 @@ import { Button } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
+import DeleteCompanyModal from "ui/components/Modal/Company/DeleteCompanyModal";
+import { CompanyTypes } from "types/Company";
 
 function CompanyPage() {
   const { companies, filteredCompany, removeFiltered } = useCompanyPage();
@@ -26,7 +28,7 @@ function CompanyPage() {
     React.useState(false);
   const [openDetailCompanyModal, setOpenDetailCompanyModal] =
     React.useState(false);
-  const [selectedCompany, setSelectedCompany] = React.useState({});
+  const [selectedCompany, setSelectedCompany] = React.useState({} as CompanyTypes);
   const [time, setTime] = React.useState(null);
 
   const handleChangeSearchTerm = (event) => {
@@ -55,6 +57,9 @@ function CompanyPage() {
 
   return (
     <CompanyPageContainer>
+      <DeleteCompanyModal 
+      id={selectedCompany.id}
+      />
       <CreateCompanyModal
         open={openCreateCompanyModal}
         setOpen={setOpenCreateCompanyModal}
