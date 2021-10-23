@@ -90,6 +90,7 @@ export const navBarRoutes = [
   { name: "Usuários", icon: "fa-users", link: "/user" },
   { name: "Dashboard", icon: "fa-line-chart", link: "/dashboard" },
   { name: "Finalizadas", icon: "fa-archive", link: "/completed" },
+  { name: "Sair", icon: "fa-sign-out", link: "/bye" },
 ];
 
 export const mockTags = [
