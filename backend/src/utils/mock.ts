@@ -78,7 +78,7 @@ const mocks = async (): Promise<void> => {
     const dealsFind = await Deal.find();
     if (!dealsFind.length) mocks();
   } catch (error) {
-    console.log('Rodando mocks!');
+    console.log('Erro ao rodar mocks!');
   }
 };
 
