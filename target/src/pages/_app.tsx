@@ -11,6 +11,7 @@ import { ModalProvider } from "contexts/PipelineContext";
 import { useRouter } from "next/dist/client/router";
 import Header from "ui/components/Header/Header";
 import { ContactProvider } from "contexts/ContactContext";
+import { CompanyProvider } from "contexts/CompanyContext";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
@@ -46,11 +47,13 @@ function MyApp({ Component, pageProps }) {
           ) : (
             <ModalProvider>
               <ContactProvider>
-                <AppContainer>
-                  <NavBar
-                    CurrentPage={<Component {...pageProps}></Component>}
-                  />
-                </AppContainer>
+                <CompanyProvider>
+                  <AppContainer>
+                    <NavBar
+                      CurrentPage={<Component {...pageProps}></Component>}
+                    />
+                  </AppContainer>
+                </CompanyProvider>
               </ContactProvider>
             </ModalProvider>
           )}
