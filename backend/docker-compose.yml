@@ -3,10 +3,9 @@ services:
     restart: always
     image: postgres:latest
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=docker
-      - POSTGRES_DB=test
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       # copy the sql script to create db
       - ./init:/docker-entrypoint-initdb.d

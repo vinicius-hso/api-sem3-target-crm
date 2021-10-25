@@ -1,7 +1,7 @@
 import User from '@entities/User';
 import transport from '@src/modules/mailer';
-import generatePassword from '@utils/generatePassword';
 import emailValidator from '@utils/emailValidator';
+import generatePassword from '@utils/generatePassword';
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 
@@ -13,6 +13,7 @@ interface UserInterface {
   email?: string;
   password?: string;
 }
+
 class UserController {
   public async findUsers(req: Request, res: Response): Promise<Response> {
     try {
@@ -22,7 +23,7 @@ class UserController {
 
       return res.status(200).json(users);
     } catch (error) {
-      res.status(400).json({ error: 'Find users failed, try again' });
+      return res.status(400).json({ error: 'Find users failed, try again' });
     }
   }
 
@@ -37,8 +38,8 @@ class UserController {
       user.passwordHash = undefined;
 
       return res.status(200).json(user);
-    } catch (error) {
-      res.status(400).json({ error: 'Find user failed, try again' });
+    } catch (error) {      
+      return res.status(400).json({ error: 'Find user failed, try again' });
     }
   }
 
@@ -89,7 +90,6 @@ class UserController {
       const requesterId = req.userId;
       const { name, email, role, picture }: UserInterface = req.body;
 
-      if (!id) return res.status(400).json({ message: 'Please send user id' });
       if (email && !emailValidator(email)) return res.status(400).json({ message: 'Invalid email for User!' });
 
       const user = await User.findOne(id);
@@ -127,7 +127,7 @@ class UserController {
 
       return res.status(200).json();
     } catch (error) {
-      res.status(400).json({ error: 'Update failed, try again' });
+      return res.status(400).json({ error: 'Update failed, try again' });
     }
   }
 
@@ -135,17 +135,15 @@ class UserController {
     try {
       const id = req.params.id;
 
-      if (!id) return res.status(400).json({ message: 'Please send user id' });
-
       const user = await User.findOne(id);
 
       if (!user) return res.status(404).json({ message: 'Cannot find user' });
 
       await User.softRemove(user);
 
-      res.status(200).json();
+      return res.status(200).json();
     } catch (error) {
-      res.status(400).json({ error: 'Remove failed, try again' });
+      return res.status(400).json({ error: 'Remove failed, try again' });     
     }
   }
 

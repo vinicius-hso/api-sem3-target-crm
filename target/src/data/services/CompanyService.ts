@@ -7,7 +7,9 @@ class CompanyService {
   async getCompanies(): Promise<CompanyTypes[]> {
     try {
       const { data } = await api.get("/company", {
-        headers: this.headers,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
+        },
       });
 
       return data;
@@ -19,7 +21,9 @@ class CompanyService {
   async getCompanyById(id: string): Promise<CompanyTypes> {
     try {
       const { data } = await api.get(`/company/${id}`, {
-        headers: this.headers,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
+        },
       });
 
       return data;
@@ -31,7 +35,9 @@ class CompanyService {
   async createCompany(data: CompanyTypes) {
     try {
       const response = await api.post("/company", data, {
-        headers: this.headers,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
+        },
       });
       return response;
     } catch (error) {
@@ -42,7 +48,9 @@ class CompanyService {
   async editCompany(companyId, company) {
     try {
       await api.put(`/company/${companyId}`, company, {
-        headers: this.headers,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
+        },
       });
       return {
         status: "success",
@@ -62,7 +70,9 @@ class CompanyService {
   async deleteCompany(companyId) {
     try {
       const { data } = await api.delete(`/company/${companyId}`, {
-        headers: this.headers,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
+        },
       });
       return data;
     } catch (error) {
