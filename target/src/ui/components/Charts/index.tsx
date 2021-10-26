@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
+import StackedColumnChart from "./StackedColumnChart/StackedColumnChartComponent";
 //AINDA N ESTA EM USO... APENAS PARA TESTE DE LAYOUT
 
 function Charts() {
@@ -21,7 +22,9 @@ function Charts() {
   return (
     <div id="chart">
       <Chart options={options} series={series} type="bar" height={350} />
+      <StackedColumnChart />
     </div>
+    
   );
 }
 export default Charts;
