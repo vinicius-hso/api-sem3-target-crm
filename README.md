@@ -42,7 +42,5 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 
 Acesse os documentos clicando nos links abaixo:
 
-* [__Casos de Testes Funcionais__]( )
-* [__Product Backlog__]( )
 * 
 
