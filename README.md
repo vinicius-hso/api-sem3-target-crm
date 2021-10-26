@@ -19,8 +19,7 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 | ID     | Prioridade | User Story                       | Esforço                              | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ | ------------------------------------ |
 |   #9   | Importante  | Eu como usuário, gostaria de visualizar indicativos sobre as negociações em um Dashboard | 30.57 | 1. Visualizar indicativos dos Deals em um
-dashboard: - Indicativos: —> Deals iniciados; —> Deals perdidos; —> Deals ganhos por período; —> Valor médio de Deals ganhos; —> Duração média dos Deals; —> Emails enviados e
-recebidos. | 
+dashboard: - Indicativos: —> Deals iniciados; —> Deals perdidos; —> Deals ganhos por período; —> Valor médio de Deals ganhos; —> Duração média dos Deals; —> Emails enviados e recebidos. | 
 |   #10  | Importante  | Eu como usuário, gostaria de enviar mensagens de emails de forma automática e personalizável  | 22.29 | 1. Envio automatizado de emails. 
 |   #8   | Desejave    
 
