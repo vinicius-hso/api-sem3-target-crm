@@ -18,9 +18,9 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 | ID     | Prioridade | User Story                       | Esforço                              | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ | ------------------------------------ |
-| US_06  | Importante | Eu como usuário, gostaria de visualizar indicativos sobre as negociações em um Dashboard | 30.57 | 1. Visualizar indicativos dos Deals em um dashboard: - Indicativos —> Deals iniciados; —> Deals perdidos; —> Deals ganhos por período; —> Valor médio de Deals ganhos; —> Duração média dos Deals; —> Emails enviados e recebidos. | 
-| US_10  | Importante | Eu como usuário, gostaria de enviar mensagens de emails de forma automática e personalizável  | 22.29 | 1. Envio automatizado de emails. |
-| US_07  | Desejável  | Eu como usuário, gostaria de importar contatos para a aplicação de uma base de dados em CSV ou XLS  | 39.71 | 1. Importar aquivo CSV e XLS. |
+| US_06  | Importante | Eu como usuário, gostaria de visualizar indicativos sobre as negociações em um Dashboard. | 30.57 | 1. Visualizar indicativos dos Deals em um dashboard: Indicativos —> Deals iniciados; —> Deals perdidos; —> Deals ganhos por período; —> Valor médio de Deals ganhos; —> Duração média dos Deals; —> Emails enviados e recebidos. | 
+| US_10  | Importante | Eu como usuário, gostaria de enviar mensagens de emails de forma automática e personalizável.  | 22.29 | 1. Envio automatizado de emails. |
+| US_07  | Desejável  | Eu como usuário, gostaria de importar contatos para a aplicação de uma base de dados em CSV ou XLS.  | 39.71 | 1. Importar aquivo CSV e XLS. |
 
 __Obs.:__ Alinhamos com o cliente que a User Story Responsividade será entregue na Sprint 4.
 
