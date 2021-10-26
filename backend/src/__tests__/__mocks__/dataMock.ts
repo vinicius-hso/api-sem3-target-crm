@@ -20,15 +20,16 @@ export const mocks = async (): Promise<any> => {
   const userAdmin = await User.create({ name: 'admin', email: 'admin@admin.com', role: 'ADMIN', passwordHash: pass }).save();
 
   const company = await Company.create({
-    name: 'Mochip',
+    id: "c0d140ad-3268-4587-b484-10f910334fe8",
+    name: 'Geniv',
     country: 'Brasil',
-    state: 'SP',
-    city: 'Botucatu',
-    site: 'www.mochip.com.br',
-    picture: 'https://cdn.pixabay.com/photo/2019/09/29/22/06/light-bulb-4514505_1280.jpg',
+    state: 'MG',
+    city: 'Montes Claros',
+    site: "www.geniv.com.br",
+    picture: "https://cdn.pixabay.com/photo/2020/05/18/16/17/social-media-5187243_1280.png",
   }).save();
 
   // Pipelines
 
-  return { userSeller, otherUserSeller, userAdmin, company };
+  return { userSeller, otherUserSeller, userAdmin };
 };

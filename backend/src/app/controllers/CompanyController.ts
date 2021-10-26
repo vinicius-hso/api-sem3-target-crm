@@ -46,7 +46,7 @@ class CompanyController {
 
       if (!company) return res.status(400).json({ message: 'Cannot create company' });
 
-      return res.status(201).json(company.id);
+      return res.status(201).json({ id: company.id, message: 'Company created successfully'});
     } catch (error) {
       return res.status(404).json({ message: 'Create failed, try again' });
     }
@@ -56,8 +56,6 @@ class CompanyController {
     try {
       const { name, country, state, city, site, picture }: CompanyInterface = req.body;
       const id = req.params.id;
-
-      if (!id) return res.status(400).json({ message: 'Please send a company id' });
 
       const company = await Company.findOne(id);
 
@@ -74,7 +72,7 @@ class CompanyController {
 
       await Company.update(id, { ...valuesToUpdate });
 
-      return res.status(200).json();
+      return res.status(200).json({ message: 'Company updated successfully'});
     } catch (error) {
       return res.status(404).json({ error: 'Update failed, try again' });
     }
@@ -92,9 +90,9 @@ class CompanyController {
 
       await Company.softRemove(company);
 
-      res.status(200).json();
+      return res.status(200).json({ message: 'Company deleted successfully'});
     } catch (error) {
-      res.status(400).json({ error: 'Remove failed, try again' });
+      return res.status(400).json({ error: 'Remove failed, try again' });
     }
   }
 }
