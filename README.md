@@ -14,7 +14,7 @@ Acesse o link para visualizar:
 
 ### - User Stories
 
-A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem desenvolvidas durante a Sprint 2:
+A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem desenvolvidas durante a Sprint 3:
 
 | ID     | Prioridade | User Story                       | Esforço                              | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ | ------------------------------------ |
