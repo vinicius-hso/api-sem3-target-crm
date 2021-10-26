@@ -81,7 +81,9 @@ As seguintes ferramentas estão sendo usadas na construção do projeto:
 
 #### **Front-end**  
 
--   **[React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/)**
+-   **[React](https://reactjs.org/)**
+-   **[Next.js](https://nextjs.org/)**
+-   **[TypeScript](https://www.typescriptlang.org/)**
 -   Axios
 -   HTML5 
 -   CSS3
