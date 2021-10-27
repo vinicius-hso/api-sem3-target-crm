@@ -7,6 +7,18 @@ import { serviceApi as api } from "./ServiceApi";
 class DealsService {
   private headers: object;
 
+  async getAllDeals() {
+    try {
+      const { data } = await api.get("/deal", {
+        headers: this.headers,
+      });
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async getDeals() {
     try {
       const { data } = await api.get("/deal?status=INPROGRESS", {

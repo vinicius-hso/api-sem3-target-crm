@@ -1,38 +1,30 @@
 import { Container } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import Chart, { Props } from "react-apexcharts";
-import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
-import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { ApexOptions } from "apexcharts";
-
-// tipo auxiliar
-// type SeriesData = {
-//     name: string;
-//     data: number[];
-// }
-
-// type ChartData = {
-//     labels: {
-//         companies: string[],
-//     };
-//     series: SeriesData[];
-// }
+import { useDashboardPage } from '../../../../data/services/hooks/PageHooks/DashboardHook';
 
 function StackedColumnChart() {
-  const companies = ["Geniv", "Mochip", "Sshare", "Astack", "Dronix"];
+
+  const [ganhas, setGanhas] = useState([]);
+  const [perdidas, setPerdidas] = useState([]);
+  const [emAndamento, setEmAndamento] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  
+  const { dealsByCompany } = useDashboardPage();
 
   const series = [
     {
       name: "GANHAS",
-      data: [44, 55, 41, 67, 22],
+      data: ganhas,
     },
     {
       name: "EM ANDAMENTO",
-      data: [13, 23, 20, 8, 13],
+      data: emAndamento,
     },
     {
       name: "PERDIDAS",
-      data: [11, 17, 15, 15, 21],
+      data: perdidas,
     },
   ];
 
@@ -89,37 +81,28 @@ function StackedColumnChart() {
     options: options,
   };
 
-  // const mockData = {
-  //     labels: {
-  //         categories: ['Anakin', 'Barry Allen', 'Kal-El', 'Logan', 'Padmé']
-  //     },
-  //     series: [
-  //         {
-  //             name: "% Sucesso",
-  //             data: [43.6, 67.1, 67.7, 45.6, 71.1]
-  //         }
-  //     ]
-  // };
+  function setData() {
+    let g = []
+    let p = []
+    let inP = []
+    let companies = []
 
-  useEffect(() => {
-    // axios.get(`${BASE_URL}/sales/success-by-seller`)
-    //     .then((response) => {
-    //         const data = response.data as SaleSuccess[]
-    //         const myLabels = data.map(x => x.sellerName)
-    //         const mySeries = data.map(x => round(100.0 * x.deals / x.visited, 1))
-    //         setChartData({
-    //             labels: {
-    //                 categories: myLabels
-    //             },
-    //             series: [
-    //                 {
-    //                     name: "% Sucesso",
-    //                     data: mySeries
-    //                 }
-    //             ]
-    //         })
-    //     })
-  }, []);
+    dealsByCompany.map((c) => {
+      companies.push(c.name);
+      g.push(c.won)
+      p.push(c.lost)
+      inP.push(c.inProgress)
+    })
+
+    setCompanies(companies);
+    setGanhas(g);
+    setPerdidas(p);
+    setEmAndamento(inP);
+  }
+
+  useEffect(() => { 
+      setData();
+  }, [dealsByCompany]);
 
   return (
     <Container>
