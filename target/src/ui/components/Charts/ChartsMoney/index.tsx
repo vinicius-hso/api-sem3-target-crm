@@ -1,9 +1,6 @@
 import moment from "moment";
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
-import ChartsMoney from "./ChartsMoney";
-import Pizza from "./Pizza";
-import StackedColumnChart from "./StackedColumnChart/StackedColumnChartComponent";
 //AINDA N ESTA EM USO... APENAS PARA TESTE DE LAYOUT
 
 const date = moment().format("MMM");
@@ -15,14 +12,14 @@ const options = {
   xaxis: {
     name: "Mês",
     categories: [
-      moment().subtract(7, "month").format("MMM"),
-      moment().subtract(6, "month").format("MMM"),
-      moment().subtract(5, "month").format("MMM"),
-      moment().subtract(4, "month").format("MMM"),
-      moment().subtract(3, "month").format("MMM"),
-      moment().subtract(2, "month").format("MMM"),
-      moment().subtract(1, "month").format("MMM"),
-      date,
+      ["John", "Doe"],
+      ["Joe", "Smith"],
+      ["Jake", "Williams"],
+      "Amber",
+      ["Peter", "Brown"],
+      ["Mary", "Evans"],
+      ["David", "Wilson"],
+      ["Lily", "Roberts"],
     ],
   },
 };
@@ -42,18 +39,15 @@ const series = [
   },
 ];
 
-function Charts() {
+function ChartsMoney() {
   return (
     <div id="chart">
       {window && (
         <>
           <Chart options={options} series={series} type="bar" height={350} />
-          <StackedColumnChart />
-          <ChartsMoney />
-          <Pizza />
         </>
       )}
     </div>
   );
 }
-export default Charts;
+export default ChartsMoney;
