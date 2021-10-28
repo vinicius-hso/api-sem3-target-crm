@@ -19,7 +19,7 @@ class ContactController {
 
       return res.status(200).json(contacts);
     } catch (error) {
-      res.status(400).json({ error: 'Find contact failed, try again' });
+      return res.status(400).json({ error: 'Find contact failed, try again' });
     }
   }
 
@@ -49,7 +49,7 @@ class ContactController {
 
       if (!contact) return res.status(400).json({ message: 'Cannot create contact' });
 
-      res.status(201).json(contact.id);
+      return res.status(201).json(contact.id);
     } catch (error) {
       console.error(error);
       return res.status(400).json({ error: 'Create contact failed, try again' });

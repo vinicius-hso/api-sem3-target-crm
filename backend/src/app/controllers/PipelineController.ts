@@ -69,7 +69,7 @@ class PipelineController {
 
       await Pipeline.update(id , { name });
 
-      res.status(200).json();
+      return res.status(200).json();
     } catch (error) {
       console.log(error);
       
@@ -91,7 +91,7 @@ class PipelineController {
 
       deals.map(async deal => await Deal.update(deal.id, { status: 'ARCHIVED' }));
 
-      res.status(200).json();
+      return res.status(200).json();
     } catch (error) {
       return res.status(400).json({ error: 'Update Pipeline Failed, try again' });
     }
