@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Pipeline from '@entities/Pipeline';
 import Deal from '@entities/Deal';
+import queryBuilder from '@utils/queryBuilder';
 
 interface PipelineInterface {
   id?: string;
@@ -12,7 +13,7 @@ class PipelineController {
     try {
       const { name }: PipelineInterface = req.body;
 
-      if (!name) return res.status(400).json({message: 'Invalid value for pipeline'});
+      if (!name) return res.status(400).json({ message: 'Invalid value for pipeline' });
 
       const existsPipeline = await Pipeline.findOne({ name });
 
@@ -28,7 +29,7 @@ class PipelineController {
 
   public async findAll(req: Request, res: Response): Promise<Response> {
     try {
-      const pipeline = await Pipeline.find();
+      const pipeline = await Pipeline.find(queryBuilder(req.query));
 
       if (!pipeline) return res.status(400).json({ error: 'Cannot find Pipelines.' });
 
@@ -44,7 +45,7 @@ class PipelineController {
 
       if (!id) return res.status(400).json({ message: 'Please send a pipeline id' });
 
-      const pipeline = await Pipeline.findOne(id);
+      const pipeline = await Pipeline.findOne(id, queryBuilder(req.query));
 
       if (!pipeline) return res.status(400).json({ error: 'Cannot find Pipeline.' });
 
@@ -57,29 +58,29 @@ class PipelineController {
   public async update(req: Request, res: Response): Promise<Response> {
     try {
       const { name }: PipelineInterface = req.body;
-      const id = req.params.id
+      const id = req.params.id;
 
       if (!id) return res.status(400).json({ message: 'Please send a pipeline id' });
 
-      if (!name) return res.status(400).json({ error: 'Invalid value for pipeline'})
+      if (!name) return res.status(400).json({ error: 'Invalid value for pipeline' });
 
       const pipeline = await Pipeline.findOne(id);
 
       if (!pipeline) return res.status(404).json({ message: 'Pipeline does not exist' });
 
-      await Pipeline.update(id , { name });
+      await Pipeline.update(id, { name });
 
       return res.status(200).json();
     } catch (error) {
       console.log(error);
-      
+
       return res.status(400).json({ error: 'Update Pipeline Failed, try again' });
     }
   }
 
   public async delete(req: Request, res: Response): Promise<Response> {
     try {
-      const id = req.params.id
+      const id = req.params.id;
 
       const pipeline = await Pipeline.findOne(id);
 
@@ -89,7 +90,7 @@ class PipelineController {
 
       const deals = await Deal.find({ where: { pipeline: pipeline.id } });
 
-      deals.map(async deal => await Deal.update(deal.id, { status: 'ARCHIVED' }));
+      deals.map(async (deal) => await Deal.update(deal.id, { status: 'ARCHIVED' }));
 
       return res.status(200).json();
     } catch (error) {

@@ -4,7 +4,8 @@ import Deal from '@entities/Deal';
 import Pipeline from '@entities/Pipeline';
 import { Request, Response } from 'express';
 import User from '@entities/User';
-import { Not } from 'typeorm';
+import { QueryBuilder } from 'typeorm-express-query-builder';
+import queryBuilder from '@utils/queryBuilder';
 
 interface DealInteface {
   pipeline?: Pipeline;
@@ -22,23 +23,15 @@ interface ActivityInterface {
   tag: string;
   name: string;
   createdAt: Date;
-  createdBy: { id: string; name: string; };
+  createdBy: { id: string; name: string };
   description: string;
 }
 
 class DealController {
   public async findAll(req: Request, res: Response): Promise<Response> {
     try {
-      const query = req.query;
-
-      let status: string;
-      if (query.status) {
-        typeof query.status !== 'string' ? status = query.status[0] : status = query.status; 
-      }
-
-      const deal = await Deal.find({ where: status ? { status: status[0] === '!' ? Not(status.substr(1, status.length)) : status } : '',
-       relations: ['company', 'contact', 'pipeline']
-      });
+      const deal = await Deal.find(queryBuilder(req.query));
+      // relations: ['company', 'contact', 'pipeline'],
 
       return res.status(200).json(deal);
     } catch (error) {
@@ -50,7 +43,8 @@ class DealController {
     try {
       const id = req.params.id;
 
-      const deal = await Deal.findOne(id, { relations: ['company', 'contact', 'pipeline'] });
+      const deal = await Deal.findOne(id, queryBuilder(req.query));
+      // relations: ['company', 'contact', 'pipeline'],
 
       if (!deal) return res.status(404).json({ message: 'Deal does not exist' });
 
@@ -63,7 +57,7 @@ class DealController {
   public async create(req: Request, res: Response): Promise<Response> {
     try {
       const { name, deadline, priority, value, status, company, contact, pipeline }: DealInteface = req.body;
-      const { tag } = req.body
+      const { tag } = req.body;
 
       if (!name || !company || !contact || !pipeline) return res.status(400).json({ message: 'Invalid values for Deal' });
 
@@ -78,18 +72,20 @@ class DealController {
         priority,
         value,
         status,
-        activity: [{
-          tag: tag || 'HOT',
-          name: 'Negociação iniciada',
-          description: '',
-          createdAt: new Date(),
-          createdBy: { id: createdBy.id, name: createdBy.name },
-        }],
+        activity: [
+          {
+            tag: tag || 'HOT',
+            name: 'Negociação iniciada',
+            description: '',
+            createdAt: new Date(),
+            createdBy: { id: createdBy.id, name: createdBy.name },
+          },
+        ],
       }).save();
 
       if (!deal) return res.status(400).json({ message: 'Cannot create Deal' });
 
-      return res.status(201).json(deal.id);
+      return res.status(201).json({ id: deal.id });
     } catch (error) {
       return res.status(400).json({ error: 'Cannot create Deal, try again' });
     }

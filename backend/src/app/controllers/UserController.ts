@@ -2,6 +2,7 @@ import User from '@entities/User';
 import transport from '@src/modules/mailer';
 import emailValidator from '@utils/emailValidator';
 import generatePassword from '@utils/generatePassword';
+import queryBuilder from '@utils/queryBuilder';
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 
@@ -17,7 +18,7 @@ interface UserInterface {
 class UserController {
   public async findUsers(req: Request, res: Response): Promise<Response> {
     try {
-      const users = await User.find();
+      const users = await User.find(queryBuilder(req.query));
 
       users.map((user) => (user.passwordHash = undefined));
 
@@ -31,7 +32,7 @@ class UserController {
     try {
       const id = req.params.id;
 
-      const user = await User.findOne(id);
+      const user = await User.findOne(id, queryBuilder(req.query));
       
       if (!user) return res.status(404).json({ message: 'User not exist' });
 

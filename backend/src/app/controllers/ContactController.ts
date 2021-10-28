@@ -1,5 +1,6 @@
 import Company from '@entities/Company';
 import Contact from '@entities/Contact';
+import queryBuilder from '@utils/queryBuilder';
 import { Request, Response } from 'express';
 
 interface ContactInterface {
@@ -15,7 +16,7 @@ interface ContactInterface {
 class ContactController {
   public async findAll(req: Request, res: Response): Promise<Response> {
     try {
-      const contacts = await Contact.find({ relations: ['company'] });
+      const contacts = await Contact.find(queryBuilder(req.query));
 
       return res.status(200).json(contacts);
     } catch (error) {
@@ -27,7 +28,7 @@ class ContactController {
     try {
       const id = req.params.id;
 
-      const contact = await Contact.findOne(id, { relations: ['company'] });
+      const contact = await Contact.findOne(id, queryBuilder(req.query));
 
       if (!contact) return res.status(400).json({ message: 'Contact does not exist' });
 
@@ -49,7 +50,7 @@ class ContactController {
 
       if (!contact) return res.status(400).json({ message: 'Cannot create contact' });
 
-      return res.status(201).json(contact.id);
+      return res.status(201).json({ id: contact.id });
     } catch (error) {
       console.error(error);
       return res.status(400).json({ error: 'Create contact failed, try again' });
@@ -79,7 +80,7 @@ class ContactController {
 
       await Contact.update(id, { ...valuesToUpdate });
 
-      return res.status(200).json({ message: 'Update successful' });
+      return res.status(200).json();
     } catch (error) {
       return res.status(400).json({ error: 'Update failed, try again' });
     }
@@ -97,7 +98,7 @@ class ContactController {
 
       await Contact.softRemove(contact);
 
-      return res.status(200).json({ message: 'Contact deleted successfully' });
+      return res.status(200).json();
     } catch (error) {
       return res.status(400).json({ error: 'Cannot delete Contact, try again' });
     }

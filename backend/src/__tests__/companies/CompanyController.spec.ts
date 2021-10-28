@@ -1,10 +1,10 @@
-import { mocks } from "../__mocks__/dataMock";
-import connection from "../__mocks__/mockConnection";
+import { mocks } from '../__mocks__/dataMock';
+import connection from '../__mocks__/mockConnection';
 import request from 'supertest';
-import app from "@src/app";
-import { AuthMock } from "../__mocks__/mockAuth";
+import app from '@src/app';
+import { AuthMock } from '../__mocks__/mockAuth';
 import { v4 } from 'uuid';
-import Company from "@entities/Company";
+import Company from '@entities/Company';
 import Chance from 'chance';
 const chance = new Chance();
 
@@ -24,18 +24,18 @@ describe('Company Controller', () => {
     it('should be get 401', async () => {
       await request(app)
         .get('/company')
-        .then(res => {
-          expect(res.status).toBe(401)
-          expect(res.body.message).toBe('No Token provided')
-        })
-    })
+        .then((res) => {
+          expect(res.status).toBe(401);
+          expect(res.body.message).toBe('No Token provided');
+        });
+    });
 
     it('should be get companies with Seller', async () => {
       await request(app)
         .get('/company')
         .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
-        .then(res => {
-          expect(res.status).toBe(200)
+        .then((res) => {
+          expect(res.status).toBe(200);
           expect(res.body[0]).toHaveProperty('id');
           expect(res.body[0]).toHaveProperty('name');
           expect(res.body[0]).toHaveProperty('country');
@@ -50,8 +50,8 @@ describe('Company Controller', () => {
       await request(app)
         .get('/company')
         .set('authorization', 'Bearer ' + AuthMock(env.userAdmin.email, env.userAdmin.id))
-        .then(res => {
-          expect(res.status).toBe(200)
+        .then((res) => {
+          expect(res.status).toBe(200);
           expect(res.body[0]).toHaveProperty('id');
           expect(res.body[0]).toHaveProperty('name');
           expect(res.body[0]).toHaveProperty('country');
@@ -59,13 +59,12 @@ describe('Company Controller', () => {
           expect(res.body[0]).toHaveProperty('city');
           expect(res.body[0]).toHaveProperty('site');
           expect(res.body[0]).toHaveProperty('picture');
-        })
-    })
-  })
+        });
+    });
+  });
 
   describe('get company by id', () => {
     it('should be get 401', async () => {
-
       const company = await Company.create({
         name: chance.name(),
         country: chance.country(),
@@ -79,12 +78,11 @@ describe('Company Controller', () => {
         .get(`/company/${company.id}`)
         .then((res) => {
           expect(res.status).toBe(401);
-          expect(res.body.message).toBe('No Token provided')
+          expect(res.body.message).toBe('No Token provided');
         });
     });
 
     it('should be get companyById with Seller', async () => {
-
       const company = await Company.create({
         name: chance.name(),
         country: chance.country(),
@@ -96,9 +94,9 @@ describe('Company Controller', () => {
 
       await request(app)
         .get(`/company/${company.id}`)
-        .set('authorization', 'Bearer '  + AuthMock(env.userSeller.email, env.userSeller.id))
+        .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
         .then((res) => {
-          expect(res.status).toBe(200)
+          expect(res.status).toBe(200);
           expect(res.body).toHaveProperty('id');
           expect(res.body).toHaveProperty('name');
           expect(res.body).toHaveProperty('country');
@@ -113,7 +111,6 @@ describe('Company Controller', () => {
     });
 
     it('should be get companyById with Admin', async () => {
-
       const company = await Company.create({
         name: chance.name(),
         country: chance.country(),
@@ -122,12 +119,12 @@ describe('Company Controller', () => {
         site: chance.string(),
         picture: chance.avatar(),
       }).save();
-      
+
       await request(app)
         .get(`/company/${company.id}`)
-        .set('authorization', 'Bearer '  + AuthMock(env.userAdmin.email, env.userAdmin.id))
+        .set('authorization', 'Bearer ' + AuthMock(env.userAdmin.email, env.userAdmin.id))
         .then((res) => {
-          expect(res.status).toBe(200)
+          expect(res.status).toBe(200);
           expect(res.body).toHaveProperty('id');
           expect(res.body).toHaveProperty('name');
           expect(res.body).toHaveProperty('country');
@@ -140,21 +137,20 @@ describe('Company Controller', () => {
           expect(res.body).toHaveProperty('deletedAt');
         });
     });
-  })
+  });
 
   describe('create company', () => {
     it('should be get 401', async () => {
       await request(app)
-      .post('/company')
-      .send()
-      .then(res => {
-        expect(res.status).toBe(401)
-        expect(res.body.message).toBe('No Token provided');
-      })
-    })
+        .post('/company')
+        .send()
+        .then((res) => {
+          expect(res.status).toBe(401);
+          expect(res.body.message).toBe('No Token provided');
+        });
+    });
 
     it('should not be create a company', async () => {
-
       const company = {
         country: chance.country(),
         state: chance.state(),
@@ -164,34 +160,32 @@ describe('Company Controller', () => {
       };
 
       await request(app)
-      .post('/company')
-      .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
-      .send(company)
-      .then(res => {
-        expect(res.status).toBe(400)
-        expect(res.body.message).toBe('Invalid company name')
-      })
-    })
+        .post('/company')
+        .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
+        .send(company)
+        .then((res) => {
+          expect(res.status).toBe(400);
+          expect(res.body.message).toBe('Invalid company name');
+        });
+    });
 
     it('should be create a company', async () => {
       const company = {
         name: chance.name(),
-      }
+      };
       await request(app)
-      .post('/company')
-      .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
-      .send(company)
-      .then(res => {
-        expect(res.status).toBe(201);
-        expect(res.body).toHaveProperty('id');
-        expect(res.body.message).toBe('Company created successfully')
-      })
-    }) 
-  })
+        .post('/company')
+        .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
+        .send(company)
+        .then((res) => {
+          expect(res.status).toBe(201);
+          expect(res.body).toHaveProperty('id');
+        });
+    });
+  });
 
   describe('update company', () => {
     it('should be get 401 - No Token provided', async () => {
-
       const company = await Company.create({
         name: chance.name(),
         country: chance.country(),
@@ -220,7 +214,7 @@ describe('Company Controller', () => {
     });
 
     it('should be get 404 - Update failed, try again', async () => {
-    const company = await Company.create({
+      const company = await Company.create({
         name: chance.name(),
         country: chance.country(),
         state: chance.state(),
@@ -249,7 +243,6 @@ describe('Company Controller', () => {
     });
 
     it('should be get 404 - Company does not exist', async () => {
-    
       const company = await Company.create({
         name: chance.name(),
         country: chance.country(),
@@ -305,17 +298,17 @@ describe('Company Controller', () => {
           expect(res.status).toBe(200);
           expect(res.body.message).toBe('Company updated successfully');
         });
-      
+
       const companyFind = await Company.findOne(company.id);
 
-        expect(companyFind.name).toBe(companyUpdated.name);
-        expect(companyFind.country).toBe(companyUpdated.country);
-        expect(companyFind.state).toBe(companyUpdated.state);
-        expect(companyFind.city).toBe(companyUpdated.city);
-        expect(companyFind.site).toBe(companyUpdated.site);
-        expect(companyFind.picture).toBe(companyUpdated.picture);
+      expect(companyFind.name).toBe(companyUpdated.name);
+      expect(companyFind.country).toBe(companyUpdated.country);
+      expect(companyFind.state).toBe(companyUpdated.state);
+      expect(companyFind.city).toBe(companyUpdated.city);
+      expect(companyFind.site).toBe(companyUpdated.site);
+      expect(companyFind.picture).toBe(companyUpdated.picture);
     });
-  })
+  });
 
   describe('delete company', () => {
     it('should be get 401 - No Token provided', async () => {
@@ -349,7 +342,7 @@ describe('Company Controller', () => {
 
     it('should be get 200 - Company deleted successfully', async () => {
       const company = await Company.create({
-         name: chance.name(),
+        name: chance.name(),
         country: chance.country(),
         state: chance.state(),
         city: chance.city(),
@@ -368,10 +361,10 @@ describe('Company Controller', () => {
       const userFind = await Company.findOne(company.id);
       expect(userFind).toBeUndefined();
 
-      const companyFindWithDeleted = await Company.findOne(company.id, {withDeleted: true});
+      const companyFindWithDeleted = await Company.findOne(company.id, { withDeleted: true });
       expect(companyFindWithDeleted.id).toBe(company.id);
       expect(companyFindWithDeleted).not.toBeUndefined();
       expect(companyFindWithDeleted.deletedAt).not.toBeNull();
-    })
-  })
-})
+    });
+  });
+});

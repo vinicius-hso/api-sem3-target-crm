@@ -1,5 +1,7 @@
 import Company from '@entities/Company';
+import queryBuilder from '@utils/queryBuilder';
 import { Request, Response } from 'express';
+import { QueryBuilder } from 'typeorm-express-query-builder'
 
 interface CompanyInterface {
   id?: string;
@@ -14,7 +16,7 @@ interface CompanyInterface {
 class CompanyController {
   public async findAll(req: Request, res: Response): Promise<Response> {
     try {
-     const companies = await Company.find();
+      const companies = await Company.find(queryBuilder(req.query));
 
       return res.status(200).json(companies);
     } catch (error) {
@@ -25,10 +27,10 @@ class CompanyController {
   public async findById(req: Request, res: Response): Promise<Response> {
     try {
       const id = req.params.id;
-      
+
       if (!id) return res.status(400).json({ message: 'Please send a company id' });
 
-      const company = await Company.findOne(id);
+      const company = await Company.findOne(id, queryBuilder(req.query));
 
       return res.status(200).json(company);
     } catch (error) {
@@ -38,15 +40,15 @@ class CompanyController {
 
   public async create(req: Request, res: Response): Promise<Response> {
     try {
-      const { name, country, state, city, site, picture}: CompanyInterface = req.body;
+      const { name, country, state, city, site, picture }: CompanyInterface = req.body;
 
       if (!name) return res.status(400).json({ message: 'Invalid company name' });
 
-      const company = await Company.create({ name, country, state, city, site, picture}).save();
+      const company = await Company.create({ name, country, state, city, site, picture }).save();
 
       if (!company) return res.status(400).json({ message: 'Cannot create company' });
 
-      return res.status(201).json({ id: company.id, message: 'Company created successfully'});
+      return res.status(201).json({ id: company.id, message: 'Company created successfully' });
     } catch (error) {
       return res.status(404).json({ message: 'Create failed, try again' });
     }
@@ -67,12 +69,12 @@ class CompanyController {
         name: name || company.name,
         city: city || company.city,
         site: site || company.site,
-        picture : picture || company.picture,
+        picture: picture || company.picture,
       };
 
       await Company.update(id, { ...valuesToUpdate });
 
-      return res.status(200).json({ message: 'Company updated successfully'});
+      return res.status(200).json({ message: 'Company updated successfully' });
     } catch (error) {
       return res.status(404).json({ error: 'Update failed, try again' });
     }
@@ -90,7 +92,7 @@ class CompanyController {
 
       await Company.softRemove(company);
 
-      return res.status(200).json({ message: 'Company deleted successfully'});
+      return res.status(200).json({ message: 'Company deleted successfully' });
     } catch (error) {
       return res.status(400).json({ error: 'Remove failed, try again' });
     }
