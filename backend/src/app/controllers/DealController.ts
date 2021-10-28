@@ -4,7 +4,6 @@ import Deal from '@entities/Deal';
 import Pipeline from '@entities/Pipeline';
 import { Request, Response } from 'express';
 import User from '@entities/User';
-import { QueryBuilder } from 'typeorm-express-query-builder';
 import queryBuilder from '@utils/queryBuilder';
 
 interface DealInteface {

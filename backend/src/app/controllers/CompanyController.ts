@@ -1,7 +1,6 @@
 import Company from '@entities/Company';
 import queryBuilder from '@utils/queryBuilder';
 import { Request, Response } from 'express';
-import { QueryBuilder } from 'typeorm-express-query-builder'
 
 interface CompanyInterface {
   id?: string;
