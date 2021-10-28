@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import ScrumBoard from "data/services/servicesComponents/ScrumBoard";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 import { CircularProgress, Typography } from "@material-ui/core";
 import {
@@ -21,6 +20,7 @@ import DetailModal from "ui/components/Modal/DealDetailModal";
 import { mockTags } from "data/utils/mock";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { DynamicPiline } from "data/services/servicesComponents/DynamicPipelines";
 
 function DealPipeline() {
   const { hasError, isLoading } = usePipelineComponent();
@@ -152,7 +152,7 @@ function DealPipeline() {
         ) : !isLoading && hasError ? (
           <div>{hasError}</div>
         ) : (
-          <ScrumBoard />
+          <DynamicPiline />
         )}
       </PipelinesContainer>
     </DealsPageContainer>

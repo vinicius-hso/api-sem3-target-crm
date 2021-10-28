@@ -33,7 +33,7 @@ class DealsService {
 
   async getDealsCompleted() {
     try {
-      const { data } = await api.get("/deal?status=!INPROGRESS", {
+      const { data } = await api.get("/deal", {
         headers: this.headers,
       });
 
