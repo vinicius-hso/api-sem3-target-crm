@@ -49,22 +49,22 @@ const DealCard: React.FC<DealCardProps> = (props) => {
       >
         <DealPictureStyled
           sx={{ ml: 0.5, mt: 0.5 }}
-          src={props.companyPicture}
-          alt={props.companyName}
+          src={props?.companyPicture}
+          alt={props?.companyName}
         >
-          {getNameInitials(props.companyName)}
+          {getNameInitials(props?.companyName)}
         </DealPictureStyled>
       </div>
       <DealDescriptionContainer>
-        <DealTitleStyled>{props.title}</DealTitleStyled>
-        <DealTypeStyled>{props.contactName}</DealTypeStyled>
+        <DealTitleStyled>{props?.title}</DealTitleStyled>
+        <DealTypeStyled>{props?.contactName}</DealTypeStyled>
         <DealFooterContainer>
           <DealBudgetStyled>
-            {formatValue(props.budget?.toString() || "0")}
+            {formatValue(props?.budget?.toString() || "0")}
           </DealBudgetStyled>
           <DealStartDateStyled>
             <Icon className="fa fa-calendar" fontSize="inherit" />
-            {moment(props.startDate).format(" DD/MM/YYYY HH:MM")}
+            {moment(props?.startDate).format(" DD/MM/YYYY HH:MM")}
           </DealStartDateStyled>
         </DealFooterContainer>
       </DealDescriptionContainer>
