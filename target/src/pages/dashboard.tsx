@@ -4,6 +4,7 @@ import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCha
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { DatePickerContainer } from "@styles/pagesStyle/dashboard.style";
 import DealsInfoCard from '../ui/components/DealsInfoCard/DealsInfoCardComponent';
+import ConversionRateCard from '../ui/components/ConversionRateCardComponent/ConversionRateCardComponent';
 
 function Dashboard() {
   const series = [
@@ -57,6 +58,7 @@ function Dashboard() {
         />
       </DatePickerContainer>
       <DealsInfoCard/>
+      <ConversionRateCard/>
     </>
   );
 }

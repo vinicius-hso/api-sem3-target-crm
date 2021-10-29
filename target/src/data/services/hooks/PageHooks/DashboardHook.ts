@@ -11,11 +11,13 @@ export const useDashboardPage = () => {
     totalValue: '',
     totalDeals: ''
   });
+  const [conversionRateInfo, setConversionRateInfo] = useState({});
 
   useEffect(() => {
     if (!dealsByCompany.length) {
       // getDealsByCompany();
       getDealsInfo();
+      getConversionRateCardInfo();
     }
     
   }, []);
@@ -79,8 +81,51 @@ export const useDashboardPage = () => {
     
   }
   
+  const getConversionRateCardInfo = async () => {
+    const allDeals = await DealsService.getAllDeals();
+
+    let totalWon = 0;
+    let totalLost = 0;
+    let totalInProgress = 0;
+    let totalArchived = 0;
+
+    allDeals.map((d) => {
+      switch(d.status) {
+        case 'WON':
+          totalWon += 1;
+          break;
+        case 'LOST':
+          totalLost += 1;
+          break;
+        case 'INPROGRESS':
+          totalInProgress += 1;
+          break;
+        case 'ARCHIVED':
+          totalArchived += 1;
+          break;
+      }
+    })
+
+    // let data = {
+    //   conversionRate: (totalWon / allDeals.length) * 100,
+    //   totalWon,
+    //   totalLost,
+    //   totalInProgress,
+    //   totalArchived,
+    // }
+
+    setConversionRateInfo({
+      conversionRate: (totalWon / allDeals.length) * 100,
+      totalWon,
+      totalLost,
+      totalInProgress,
+      totalArchived,
+    });
+  }
+
   return {
       dealsByCompany,
-      dealsInfo
+      dealsInfo,
+      conversionRateInfo
   };
 };
