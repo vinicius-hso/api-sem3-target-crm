@@ -21,9 +21,12 @@ class DealsService {
 
   async getDeals() {
     try {
-      const { data } = await api.get("/deal?status=INPROGRESS&with=pipeline", {
-        headers: this.headers,
-      });
+      const { data } = await api.get(
+        "/deal?status=INPROGRESS&with=pipeline,company",
+        {
+          headers: this.headers,
+        }
+      );
 
       return data;
     } catch (error) {
