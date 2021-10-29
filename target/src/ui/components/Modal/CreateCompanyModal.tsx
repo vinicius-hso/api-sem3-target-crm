@@ -43,14 +43,15 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
     address: "",
   });
 
-  const [submit, isSubmit] = useState(false)
+  const [submit, isSubmit] = useState(false);
 
   async function handleSubmit() {
     isSubmit(true);
-    (data.name ? createCompany(data).then(() => {
-      setOpen(false);
-      window.location.reload();
-    }) : null)
+    data.name
+      ? createCompany(data).then(() => {
+          setOpen(false);
+        })
+      : null;
   }
 
   const handleChangeCep = (event) => {
@@ -101,7 +102,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
           size="small"
           fullWidth
           error={submit && !data.name}
-          helperText={!data.name && submit ? 'Informe o nome da empresa' : ' '}
+          helperText={!data.name && submit ? "Informe o nome da empresa" : " "}
         />
 
         <TextFieldMask

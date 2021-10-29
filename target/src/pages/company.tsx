@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   CardsContainer,
   CompanyHeaderContainer,
@@ -17,7 +17,8 @@ import DeleteCompanyModal from "ui/components/Modal/Company/DeleteCompanyModal";
 import { CompanyTypes } from "types/Company";
 
 function CompanyPage() {
-  const { companies, filteredCompany, removeFiltered } = useCompanyPage();
+  const { companies, filteredCompany, removeFiltered, getData } =
+    useCompanyPage();
 
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
@@ -28,7 +29,9 @@ function CompanyPage() {
     React.useState(false);
   const [openDetailCompanyModal, setOpenDetailCompanyModal] =
     React.useState(false);
-  const [selectedCompany, setSelectedCompany] = React.useState({} as CompanyTypes);
+  const [selectedCompany, setSelectedCompany] = React.useState(
+    {} as CompanyTypes
+  );
   const [time, setTime] = React.useState(null);
 
   const handleChangeSearchTerm = (event) => {
@@ -49,6 +52,14 @@ function CompanyPage() {
     clearTimeout(time);
   };
 
+  useEffect(() => {
+    if (openCreateCompanyModal) {
+      setTimeout(() => {
+        getData();
+      }, 5000);
+    }
+  }, [openCreateCompanyModal]);
+
   const removeFilters = () => {
     removeFiltered(false);
     setHasFiltered(false);
@@ -57,9 +68,7 @@ function CompanyPage() {
 
   return (
     <CompanyPageContainer>
-      <DeleteCompanyModal 
-      id={selectedCompany.id}
-      />
+      <DeleteCompanyModal id={selectedCompany.id} />
       <CreateCompanyModal
         open={openCreateCompanyModal}
         setOpen={setOpenCreateCompanyModal}

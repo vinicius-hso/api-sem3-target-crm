@@ -5,7 +5,11 @@ import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
 
 class ContactService {
-  private headers: object;
+  private headers: any;
+
+  constructor() {
+    this.headers = api.defaults.headers.common;
+  }
 
   async getContacts() {
     try {

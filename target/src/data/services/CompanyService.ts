@@ -35,19 +35,17 @@ class CompanyService {
 
   async createCompany(data: CompanyTypes) {
     try {
-      const response = await api.post("/company", data, {
+      const response = await api.post("/cofWmpany", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
         },
       });
       toast.success("Empresa Criada com sucesso!");
-
       return response;
     } catch (error) {
       toast.error(
         "Ops! algo deu errado, verifique sua conexão e tente novamente."
       );
-
       return error;
     }
   }

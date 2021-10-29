@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, ButtonGroup } from "@material-ui/core";
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
+import { DatePickerContainer } from "@styles/pagesStyle/dashboard.style";
 
 function Dashboard() {
   const series = [
@@ -27,7 +28,7 @@ function Dashboard() {
         title="Negociações por Empresa"
         xaxis={xaxis}
       />
-      <Box>
+      <DatePickerContainer>
         <ButtonGroup variant="contained" aria-label="outlined button group">
           <Button>Empresa</Button>
           <Button>Geral</Button>
@@ -37,21 +38,23 @@ function Dashboard() {
           <Button>Quantidade</Button>
           <Button>Valor</Button>
         </ButtonGroup>
-        data inicia
         <TextFieldMask
           id="outlined-basic"
           variant="standard"
           size="small"
           type="date"
+          focused
+          label="Data inicial"
         />
-        data final
         <TextFieldMask
           id="outlined-basic"
           variant="standard"
           size="small"
           type="date"
+          label="Data final"
+          focused
         />
-      </Box>
+      </DatePickerContainer>
     </>
   );
 }

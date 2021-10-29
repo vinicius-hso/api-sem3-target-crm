@@ -52,6 +52,7 @@ export const useCompanyPage = () => {
 
   const createCompany = async (data: CompanyTypes) => {
     await CompanyService.createCompany(data);
+
     useCreateCompanyModal();
   };
 
@@ -87,5 +88,6 @@ export const useCompanyPage = () => {
     editCompany,
     companyDetail,
     deleteCompany,
+    getData,
   };
 };
