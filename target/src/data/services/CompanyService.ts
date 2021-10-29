@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { CompanyTypes } from "types/Company";
 import { serviceApi as api } from "./ServiceApi";
 
@@ -39,8 +40,14 @@ class CompanyService {
           Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
         },
       });
+      toast.success("Empresa Criada com sucesso!");
+
       return response;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
+
       return error;
     }
   }
@@ -52,6 +59,7 @@ class CompanyService {
           Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
         },
       });
+      toast.success("Empresa editada com sucesso!");
       return {
         status: "success",
         message: "Empresa editada com sucesso!",

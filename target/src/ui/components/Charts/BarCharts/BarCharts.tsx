@@ -18,7 +18,7 @@ const StackedColumnChart: React.FC<BarChartsProps> = ({
       chart: {
         type: "bar",
         height: 350,
-        width: "80%",
+        width: "100%",
         toolbar: {
           show: true,
         },

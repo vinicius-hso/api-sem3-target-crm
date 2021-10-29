@@ -1,5 +1,6 @@
 import React from "react";
 import "@styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 import { ThemeProvider } from "@material-ui/core/";
 import theme from "ui/theme/theme";
@@ -9,9 +10,9 @@ import { AppContainer } from "ui/styles/pagesStyle/_app.syile";
 import { AuthProvider } from "contexts/AuthContext";
 import { ModalProvider } from "contexts/PipelineContext";
 import { useRouter } from "next/dist/client/router";
-import Header from "ui/components/Header/Header";
 import { ContactProvider } from "contexts/ContactContext";
 import { CompanyProvider } from "contexts/CompanyContext";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
   moment.locale("pt-br");
@@ -41,7 +42,6 @@ function MyApp({ Component, pageProps }) {
           currentRoute.route === "/welcome" ||
           currentRoute.route === "/recover" ? (
             <>
-              
               <Component {...pageProps}></Component>
             </>
           ) : (
@@ -49,6 +49,7 @@ function MyApp({ Component, pageProps }) {
               <ContactProvider>
                 <CompanyProvider>
                   <AppContainer>
+                    <ToastContainer autoClose={3000} />
                     <NavBar
                       CurrentPage={<Component {...pageProps}></Component>}
                     />

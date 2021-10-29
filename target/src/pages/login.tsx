@@ -6,11 +6,12 @@ import {
   LoginContainer,
   LoginRightContainer,
 } from "@styles/pagesStyle/login.styles";
-import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
 import CustomLink from "ui/components/Link/Link";
 
 import Welcome from "ui/components/Welcome/welcome";
 import TextFieldMaskLogin from "ui/components/Input/TextFieldLogin/TextFieldMaskLogin";
+import { useLoginPage } from "data/services/hooks/PageHooks/LoginPageHook";
+import { ImageContainer } from "ui/components/Welcome/welcome.style";
 
 function HomePage() {
   const {
@@ -35,10 +36,21 @@ function HomePage() {
       <LoginRightContainer>
         <div style={{ margin: "0 auto", marginTop: "36px" }}>
           <hr />
+          <ImageContainer>
+            <img
+              src="logo.png"
+              alt="logo"
+              height="75px"
+              width="auto"
+              text-align="center"
+              justify-content="center"
+              align-items="center"
+            />
+          </ImageContainer>
           <br />
 
           <Title
-            title={"Login"}
+            title={""}
             subtitle={<p>Faça login para acessar sua área restrita</p>}
             subtitleColor="#ddd"
           ></Title>
