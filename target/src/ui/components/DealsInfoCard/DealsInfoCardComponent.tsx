@@ -12,10 +12,9 @@ import { red } from '@material-ui/core/colors';
 import { useDashboardPage } from '../../../data/services/hooks/PageHooks/DashboardHook';
 import { Container } from '@material-ui/core';
 
-function BudgetCard(props) {
+function DealsInfoCard(props) {
 
   const { dealsInfo } = useDashboardPage();
-  console.log(dealsInfo);
     
   return (
     <Container sx={{ justifyContent: 'center'}}>
@@ -32,97 +31,63 @@ function BudgetCard(props) {
           <Grid item>
 
             <Typography
-              color="textSecondary"
+              color="primary"
               gutterBottom
               variant="h5"
             >
-                NEGOCIAÇÕES ({dealsInfo.totalDeals})
+                NEGOCIAÇÕES
             </Typography>
-            <br/>
+
             <Typography
               color="textSecondary"
-              gutterBottom
-              variant="h6"
+              variant="body1"
             >
                 VALOR MÉDIO
             </Typography>
             
             <Typography
               color="textPrimary"
-              variant="h4"
+              variant="h5"
+              gutterBottom
             >
               {dealsInfo.meanValue}
             </Typography>
-             <br/>
+             
             <Typography
               color="textSecondary"
-              gutterBottom
-              variant="h6"
+              variant="body1"
             >
                 VALOR TOTAL
             </Typography>
             
             <Typography
               color="textPrimary"
-              variant="h4"
+              variant="h5"
+              gutterBottom
             >
               {dealsInfo.totalValue}
             </Typography>
-            {/* <Typography
+
+            <Typography
               color="textSecondary"
               gutterBottom
-              variant="h6"
+              variant="body1"
             >
                 TOTAL DE NEGOCIAÇÕES
             </Typography>
-            
+
             <Typography
               color="textPrimary"
-              variant="h4"
+              variant="h5"
             >
-              {dealsMean.totalDeals}
-            </Typography> */}
-          </Grid>
-          <Grid item>
-            {/* <Avatar
-              sx={{
-                backgroundColor: red[600],
-                height: 56,
-                width: 56
-              }}
-            >
-              <MoneyIcon />
-            </Avatar> */}
+              {dealsInfo.totalDeals}
+            </Typography>
           </Grid>
         </Grid>
-        <Box
-          sx={{
-            pt: 2,
-            display: 'flex',
-            alignItems: 'center'
-          }}
-        >
-          {/* <ArrowDownwardIcon sx={{ color: red[900] }} />
-          <Typography
-            sx={{
-              color: red[900],
-              mr: 1
-            }}
-            variant="body2"
-          >
-            12%
-          </Typography>
-          <Typography
-            color="textSecondary"
-            variant="caption"
-          >
-            Since last month
-          </Typography> */}
-        </Box>
       </CardContent>
     </Card>
     </Container>
   )
 };
 
-export default BudgetCard;
+export default DealsInfoCard;

@@ -21,43 +21,43 @@ export const useDashboardPage = () => {
   }, []);
 
 
-  // const getDealsByCompany = async () => {
-  //   const allDeals = await DealsService.getAllDeals();
-  //   const allCompanies = await CompanyService.getCompanies();
-  //   let companies = []
+  const getDealsByCompany = async () => {
+    const allDeals = await DealsService.getAllDeals();
+    const allCompanies = await CompanyService.getCompanies();
+    let companies = []
 
-  //   allCompanies.map((c) => {
-  //       const company = {
-  //           id: c.id,
-  //           name: c.name,
-  //           won: 0,
-  //           lost: 0,
-  //           inProgress: 0,
-  //           archived: 0
-  //       }
+    allCompanies.map((c) => {
+        const company = {
+            id: c.id,
+            name: c.name,
+            won: 0,
+            lost: 0,
+            inProgress: 0,
+            archived: 0
+        }
 
-  //       allDeals.map((d) => {
-  //           if (d.company.id === company.id) {
-  //               switch (d.status) {
-  //                   case 'INPROGRESS':
-  //                       company.inProgress += d.value;
-  //                       break;
-  //                   case 'LOST':
-  //                       company.lost += d.value;
-  //                       break;
-  //                   case 'WON':
-  //                       company.won += d.value;
-  //                       break;
-  //                   case 'ARCHIVED':
-  //                       company.archived += d.value;
-  //                       break;
-  //               }
-  //           }
-  //       })
-  //       companies.push(company)
-  //   })
-  //   setDealsByCompany(companies);
-  // };
+        allDeals.map((d) => {
+            if (d.company.id === company.id) {
+                switch (d.status) {
+                    case 'INPROGRESS':
+                        company.inProgress += d.value;
+                        break;
+                    case 'LOST':
+                        company.lost += d.value;
+                        break;
+                    case 'WON':
+                        company.won += d.value;
+                        break;
+                    case 'ARCHIVED':
+                        company.archived += d.value;
+                        break;
+                }
+            }
+        })
+        companies.push(company)
+    })
+    setDealsByCompany(companies);
+  };
 
   const getDealsInfo = async () => {
     const allDeals = await DealsService.getAllDeals();

@@ -3,6 +3,7 @@ import { Box, Button, ButtonGroup } from "@material-ui/core";
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { DatePickerContainer } from "@styles/pagesStyle/dashboard.style";
+import DealsInfoCard from '../ui/components/DealsInfoCard/DealsInfoCardComponent';
 
 function Dashboard() {
   const series = [
@@ -55,6 +56,7 @@ function Dashboard() {
           focused
         />
       </DatePickerContainer>
+      <DealsInfoCard/>
     </>
   );
 }
