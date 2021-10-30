@@ -95,7 +95,7 @@ class AuthController {
 
       const passwordHash = await bcrypt.hash(password, 10);
 
-      await User.update(user.id, { passwordHash });
+      await User.update(user.id, { passwordHash, passwordResetToken: undefined });
 
       return res.json({ message: 'Ok' });
     } catch (error) {
