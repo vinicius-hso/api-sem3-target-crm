@@ -6,12 +6,6 @@ export const useCompletedPage = () => {
   const [deals, setDeals] = useState([]);
   const [removeFilteredDeals, setFilteredDeals] = useState([]);
 
-  useEffect(() => {
-    if (!deals.length) {
-      getData();
-    }
-  }, []);
-
   const getData = async () => {
     const response = await DealsService.getDealsCompleted();
     setDeals(response);
@@ -49,8 +43,6 @@ export const useCompletedPage = () => {
         }
       }
     });
-    console.log(tempDeals);
-
     setDeals(tempDeals);
   };
 
@@ -60,6 +52,7 @@ export const useCompletedPage = () => {
 
   return {
     deals,
+    getData,
     filterDeals,
     removefilterDeals,
   };

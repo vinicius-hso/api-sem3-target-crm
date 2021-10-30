@@ -5,17 +5,9 @@ import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
 
 class ContactService {
-  private headers: any;
-
-  constructor() {
-    this.headers = api.defaults.headers.common;
-  }
-
   async getContacts() {
     try {
-      const { data } = await api.get("/contact", {
-        headers: this.headers,
-      });
+      const { data } = await api.get("/contact");
 
       return data;
     } catch (error) {
@@ -25,9 +17,7 @@ class ContactService {
 
   async getContact(id: string): Promise<IContact> {
     try {
-      const response = await api.get(`/contact/${id}`, {
-        headers: this.headers,
-      });
+      const response = await api.get(`/contact/${id}`);
 
       return response.data;
     } catch (error) {
@@ -37,9 +27,7 @@ class ContactService {
 
   async deleteContact(id: string): Promise<string> {
     try {
-      const response = await api.delete(`/contact/${id}`, {
-        headers: this.headers,
-      });
+      const response = await api.delete(`/contact/${id}`);
 
       return response.data.message;
     } catch (error) {
@@ -67,9 +55,7 @@ class ContactService {
     };
 
     try {
-      const { data } = await api.post("/contact", body, {
-        headers: this.headers,
-      });
+      const { data } = await api.post("/contact", body);
 
       return data.id;
     } catch (error) {
@@ -98,9 +84,7 @@ class ContactService {
     };
 
     try {
-      const { data } = await api.put(`/contact/${id}`, body, {
-        headers: this.headers,
-      });
+      const { data } = await api.put(`/contact/${id}`, body);
 
       return data.message;
     } catch (error) {

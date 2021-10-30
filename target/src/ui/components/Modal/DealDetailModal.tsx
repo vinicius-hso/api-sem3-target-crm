@@ -78,7 +78,7 @@ const DetailModal: React.FC = () => {
           <CloseButtonStyled
             onClick={() => {
               useDealDetailModal("");
-              window.location.reload()
+              window.location.reload();
             }}
           >
             <i className="fa fa-times" aria-hidden="true"></i>
@@ -182,18 +182,18 @@ const DetailModal: React.FC = () => {
                 label={"Negociação"}
                 variant={"standard"}
                 size="medium"
-                value={dealDetail.contact.email}
+                value={dealDetail.contact?.email}
                 disabled
               />
               <LinkStyled>
                 <IconButton type="submit" aria-label="search">
-                  <CopyToClipboard text={dealDetail.contact.email}>
+                  <CopyToClipboard text={dealDetail.contact?.email}>
                     <i className={`fa fa-clone`}></i>
                   </CopyToClipboard>
                 </IconButton>
               </LinkStyled>
 
-              <LinkStyled href={`mailto:${dealDetail.contact.email}`}>
+              <LinkStyled href={`mailto:${dealDetail.contact?.email}`}>
                 <IconButton type="submit" aria-label="search">
                   <i className={`fa fa-envelope-o`}></i>
                 </IconButton>
@@ -204,18 +204,18 @@ const DetailModal: React.FC = () => {
                 label={"Negociação"}
                 variant={"standard"}
                 size="medium"
-                value={dealDetail.contact.phone}
+                value={dealDetail.contact?.phone}
                 sx={{ width: "45px" }}
                 disabled
               />{" "}
               <LinkStyled>
                 <IconButton type="submit">
-                  <CopyToClipboard text={dealDetail.contact.phone}>
+                  <CopyToClipboard text={dealDetail.contact?.phone}>
                     <i className={`fa fa-clone`}></i>
                   </CopyToClipboard>
                 </IconButton>
               </LinkStyled>
-              <LinkPhoneStyled href={`tel:${dealDetail.contact.phone}`}>
+              <LinkPhoneStyled href={`tel:${dealDetail.contact?.phone}`}>
                 <IconButton type="submit" aria-label="search">
                   <i className={`fa fa-phone`}></i>
                 </IconButton>
@@ -223,7 +223,7 @@ const DetailModal: React.FC = () => {
               <LinkStyled
                 target="__blank"
                 rel="no-referrer"
-                href={`https://api.whatsapp.com/send?phone=55${dealDetail.contact.phone}`}
+                href={`https://api.whatsapp.com/send?phone=55${dealDetail.contact?.phone}`}
               >
                 <IconButton type="submit" aria-label="search">
                   <i className={`fa fa-whatsapp`}></i>

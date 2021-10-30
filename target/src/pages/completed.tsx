@@ -19,10 +19,9 @@ import AchivedDealModal from "ui/components/Modal/Completed/ArchivedModal";
 import Title from "ui/components/Title/Title";
 import { StatusTypes } from "types/Status";
 import Alert from "ui/components/AlertComponent/AlertComponent";
-import Dialog from "ui/components/Dialog/Dialog";
 
 function CompletedPage() {
-  const { deals, filterDeals, removefilterDeals } = useCompletedPage();
+  const { deals, filterDeals, removefilterDeals, getData } = useCompletedPage();
   const [valueType, setValueType] = useState("name");
   const [hasFiltered, setHasFiltered] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,6 +33,12 @@ function CompletedPage() {
   const [openAchivedModal, setOpenAchivedModal] = useState(false);
   const [selectedDeal, setSelectedDeal] = useState<DealTypes>({});
   const [status, setStatus] = useState<StatusTypes>({});
+
+  useEffect(() => {
+    if (!deals.length) {
+      getData();
+    }
+  }, []);
 
   const handleChangeValueType = (event) => {
     setSearchTerm("");

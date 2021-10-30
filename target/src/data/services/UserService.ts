@@ -3,12 +3,9 @@ import { IUser } from "types/User";
 import { serviceApi as api } from "./ServiceApi";
 
 class UserService {
-  private headers: object;
   async getUsers() {
     try {
-      const { data } = await api.get("/user", {
-        headers: this.headers,
-      });
+      const { data } = await api.get("/user");
 
       return data;
     } catch (error) {
@@ -18,9 +15,7 @@ class UserService {
 
   async getUserById(id: string): Promise<IUser> {
     try {
-      const { data } = await api.get(`/user/${id}`, {
-        headers: this.headers,
-      });
+      const { data } = await api.get(`/user/${id}`);
 
       return data;
     } catch (error) {
@@ -30,9 +25,7 @@ class UserService {
 
   async createUser(data: IUser) {
     try {
-      const response = await api.post("/user", data, {
-        headers: this.headers,
-      });
+      const response = await api.post("/user", data);
 
       return response.data;
     } catch (error) {
@@ -42,9 +35,7 @@ class UserService {
 
   async editUser(userId, user) {
     try {
-      await api.put(`/user/${userId}`, user, {
-        headers: this.headers,
-      });
+      await api.put(`/user/${userId}`, user);
 
       return { status: "success", message: "Usuário editado com sucesso!" };
     } catch (error) {
@@ -58,9 +49,7 @@ class UserService {
 
   async editUserPassword(userId, data) {
     try {
-      await api.put(`/user/update-password/${userId}`, data, {
-        headers: this.headers,
-      });
+      await api.put(`/user/update-password/${userId}`, data);
 
       return { status: "success", message: "Senha editada com sucesso!" };
     } catch (error) {
@@ -74,9 +63,7 @@ class UserService {
 
   async deleteUser(userId) {
     try {
-      const { data } = await api.delete(`/user/${userId}`, {
-        headers: this.headers,
-      });
+      const { data } = await api.delete(`/user/${userId}`);
 
       return data;
     } catch (error) {

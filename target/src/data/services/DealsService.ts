@@ -5,13 +5,9 @@ import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
 
 class DealsService {
-  private headers: object;
-
   async getAllDeals() {
     try {
-      const { data } = await api.get("/deal", {
-        headers: this.headers,
-      });
+      const { data } = await api.get("/deal");
 
       return data;
     } catch (error) {
@@ -22,10 +18,7 @@ class DealsService {
   async getDeals() {
     try {
       const { data } = await api.get(
-        "/deal?status=INPROGRESS&with=pipeline,company",
-        {
-          headers: this.headers,
-        }
+        "/deal?status=INPROGRESS&with=pipeline,company,contact"
       );
 
       return data;
@@ -36,10 +29,7 @@ class DealsService {
 
   async getDealsCompleted() {
     try {
-      const { data } = await api.get("/deal", {
-        headers: this.headers,
-      });
-
+      const { data } = await api.get("/deal?status=ARCHIVED");
       return data;
     } catch (error) {
       return error;
@@ -48,9 +38,7 @@ class DealsService {
 
   async editDeal(dealId, deal) {
     try {
-      const { data } = await api.put(`/deal/${dealId}`, deal, {
-        headers: this.headers,
-      });
+      const { data } = await api.put(`/deal/${dealId}`, deal);
 
       return data;
     } catch (error) {
@@ -60,9 +48,7 @@ class DealsService {
 
   async createActivity(dealId, activity) {
     try {
-      const { data } = await api.post(`deal/${dealId}/activity`, activity, {
-        headers: this.headers,
-      });
+      const { data } = await api.post(`deal/${dealId}/activity`, activity);
 
       return data;
     } catch (error) {
@@ -72,9 +58,7 @@ class DealsService {
 
   async updateStatus(dealId, newStatus) {
     try {
-      const { data } = await api.put(`deal/${dealId}`, newStatus, {
-        headers: this.headers,
-      });
+      const { data } = await api.put(`deal/${dealId}`, newStatus);
 
       return data;
     } catch (error) {
@@ -88,13 +72,7 @@ class DealsService {
     status: string
   ) {
     try {
-      await api.put(
-        `deal/${dealId}`,
-        { pipeline, status },
-        {
-          headers: this.headers,
-        }
-      );
+      await api.put(`deal/${dealId}`, { pipeline, status });
       return {
         type: "success",
         message: "Empresa editada com sucesso!",
@@ -112,13 +90,9 @@ class DealsService {
 
   async dealPipelineUpdate(pipeline: string, dealId: string) {
     try {
-      const { data } = await api.put(
-        `/deal/${dealId}/pipelineUpdate`,
-        { pipeline },
-        {
-          headers: this.headers,
-        }
-      );
+      const { data } = await api.put(`/deal/${dealId}/pipelineUpdate`, {
+        pipeline,
+      });
       return data;
     } catch (error) {
       return error;

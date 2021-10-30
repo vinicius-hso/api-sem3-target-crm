@@ -16,7 +16,7 @@ interface DialogProps {
   message: string;
   type: "question" | "success" | "info";
   open: boolean;
-  setOpen: (value: boolean) => void;
+  setOpen: () => void;
   result: (value: boolean) => void;
 }
 const Dialog: React.FC<DialogProps> = ({
@@ -50,7 +50,9 @@ const Dialog: React.FC<DialogProps> = ({
               variant="contained"
               color="error"
               type="submit"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                result(false);
+              }}
               autoFocus
             >
               Cancelar
@@ -73,7 +75,7 @@ const Dialog: React.FC<DialogProps> = ({
             color="secondary"
             type="submit"
             onClick={() => {
-              setOpen(false);
+              result(false);
             }}
           >
             Ok

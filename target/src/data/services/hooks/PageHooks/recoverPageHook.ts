@@ -68,6 +68,7 @@ export const useRecoverPage = () => {
     setPassword2,
     hasError,
     hasMessage,
+    setMessage,
     isLoading,
     passwordIsValid,
     passwordIsSame,

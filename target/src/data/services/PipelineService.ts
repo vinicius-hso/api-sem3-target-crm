@@ -3,13 +3,9 @@ import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
 class PipelineService {
-  private headers: object;
-
   async getPiplines(): Promise<pipeline[]> {
     try {
-      const { data } = await api.get("/pipeline", {
-        headers: this.headers,
-      });
+      const { data } = await api.get("/pipeline");
 
       return data;
     } catch (error) {
@@ -19,9 +15,7 @@ class PipelineService {
 
   async getPipline(id: string): Promise<pipeline> {
     try {
-      const { data } = await api.get(`/pipeline/${id}`, {
-        headers: this.headers,
-      });
+      const { data } = await api.get(`/pipeline/${id}`);
 
       return data;
     } catch (error) {
@@ -33,9 +27,7 @@ class PipelineService {
     const body: object = { name };
 
     try {
-      const response = await api.post("/pipeline/", body, {
-        headers: this.headers,
-      });
+      const response = await api.post("/pipeline/", body);
 
       return response.data;
     } catch (error) {
@@ -47,9 +39,7 @@ class PipelineService {
     const body: object = { name };
 
     try {
-      const response = await api.put(`/pipeline/${id}`, body, {
-        headers: this.headers,
-      });
+      const response = await api.put(`/pipeline/${id}`, body);
 
       return response.data;
     } catch (error) {
@@ -59,9 +49,7 @@ class PipelineService {
 
   async deletePipeline(id: string): Promise<object> {
     try {
-      const response = await api.delete(`/pipeline/${id}`, {
-        headers: this.headers,
-      });
+      const response = await api.delete(`/pipeline/${id}`);
 
       return response.data;
     } catch (error) {
@@ -71,21 +59,12 @@ class PipelineService {
 
   async createDeal(data: DealTypes): Promise<object> {
     try {
-      const response = await api.post("/deal/", data, {
-        headers: this.headers,
-      });
+      const response = await api.post("/deal/", data);
 
       return response.data;
     } catch (error) {
       return error;
     }
-  }
-
-  constructor() {
-    /*const token = localStorage.getItem("@target:token");
-    this.headers = {
-      Authorization: `Bearer ${token}`,
-    };*/
   }
 }
 

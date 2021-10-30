@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Typography } from "@material-ui/core";
+import { RecoveryPassLink } from "./Link.style";
 
 export interface LinkComponentProps {
   href: string;
@@ -11,22 +12,18 @@ export interface LinkComponentProps {
 
 const CustomLink: React.FC<LinkComponentProps> = (props) => {
   return (
-    <a href="" style={{ textDecoration: "none" }}>
+    <RecoveryPassLink href="" style={{ textDecoration: "none" }}>
       <Link
         href={{
           pathname: props.href,
           query: props.query,
         }}
       >
-        <Typography
-          variant="body2"
-          sx={{ my: 2 }}
-          color={props.textColor || "GrayText"}
-        >
+        <Typography variant="body2" sx={{ my: 2 }}>
           {props.text}
         </Typography>
       </Link>
-    </a>
+    </RecoveryPassLink>
   );
 };
 

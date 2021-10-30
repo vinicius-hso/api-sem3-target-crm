@@ -7,3 +7,13 @@ export const LinkStyled = styled(Link)`
   align-items: center;
   position: relative;
 `;
+
+export const RecoveryPassLink = styled("a")`
+  text-decoration: none;
+  color: ${({ theme }) => theme.palette.grey[100]};
+  transition: color 0.4s;
+
+  &:hover {
+    color: ${({ theme }) => theme.palette.primary.main};
+  }
+`;

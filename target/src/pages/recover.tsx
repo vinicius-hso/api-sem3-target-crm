@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Button, Typography, CircularProgress } from "@material-ui/core";
+import { Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import {
   FormContainer,
@@ -9,7 +9,7 @@ import {
 import { useRecoverPage } from "data/services/hooks/PageHooks/RecoverPageHook";
 import Title from "ui/components/Title/Title";
 import { useRouter } from "next/dist/client/router";
-import CustomLink from "ui/components/Link/Link";
+import Dialog from "ui/components/Dialog/Dialog";
 
 function PassRecover() {
   const currentRouter = useRouter();
@@ -20,6 +20,7 @@ function PassRecover() {
     setPassword,
     setPassword2,
     hasError,
+    setMessage,
     isLoading,
     passwordIsValid,
     passwordIsSame,
@@ -109,11 +110,17 @@ function PassRecover() {
       </FormContainer>
 
       {hasMessage ? (
-        <Alert color="success">
-          <h1>Sua senha foi alterada com sucesso!</h1>
-          <CustomLink href="/login" text="Clique aqui e faça seu Login!" />
-          <hr />
-        </Alert>
+        <Dialog
+          title={"Sucesso"}
+          message={"Senha ataulizada com sucesso"}
+          type={"success"}
+          open={hasMessage}
+          setOpen={() => setMessage(!hasMessage)}
+          result={(res) => {
+            setMessage(false);
+            currentRouter.push("/login");
+          }}
+        />
       ) : (
         <br />
       )}

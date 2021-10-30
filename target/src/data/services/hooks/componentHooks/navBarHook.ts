@@ -1,3 +1,4 @@
+import { serviceApi } from "data/services/ServiceApi";
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import AuthContext from "contexts/AuthContext";
@@ -23,6 +24,13 @@ export const useNavBarComponent = () => {
       setIsAdmin(true);
     }
   }, [user]);
+
+  useEffect(() => {
+    if (!serviceApi.defaults.headers.common.Authorization) {
+      const storedToken = localStorage.getItem("@taget:token");
+      serviceApi.defaults.headers.common.Authorization = `Bearer ${storedToken}`;
+    }
+  }, []);
 
   return {
     setMobileOpen,
