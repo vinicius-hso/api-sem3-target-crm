@@ -19,6 +19,7 @@ export const mocks = async (): Promise<any> => {
 
   const userAdmin = await User.create({ name: 'admin', email: 'admin@admin.com', role: 'ADMIN', passwordHash: pass }).save();
 
+  // Company
   const company = await Company.create({
     id: "c0d140ad-3268-4587-b484-10f910334fe8",
     name: 'Geniv',
@@ -30,6 +31,9 @@ export const mocks = async (): Promise<any> => {
   }).save();
 
   // Pipelines
+  const pipeline = await Pipeline.create({
+    name: 'Pipeline',
+  }).save();
 
   return { userSeller, otherUserSeller, userAdmin };
 };

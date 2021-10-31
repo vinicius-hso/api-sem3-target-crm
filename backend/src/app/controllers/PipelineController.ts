@@ -21,9 +21,9 @@ class PipelineController {
 
       const pipeline = await Pipeline.create({ name }).save();
 
-      return res.status(201).json(pipeline.id);
+      return res.status(201).json({id: pipeline.id, message: 'Pipeline created successfully' });
     } catch (error) {
-      return res.status(400).json({ error: 'Create failed, try again' });
+      return res.status(404).json({ error: 'Create failed, try again' });
     }
   }
 
@@ -35,7 +35,7 @@ class PipelineController {
 
       return res.status(200).json(pipeline);
     } catch (error) {
-      return res.status(400).json({ error: 'Get Pipeline Failed, try again' });
+      return res.status(404).json({ error: 'Get Pipeline Failed, try again' });
     }
   }
 
@@ -51,7 +51,7 @@ class PipelineController {
 
       return res.status(200).json(pipeline);
     } catch (error) {
-      return res.status(400).json({ error: 'Get Pipeline Failed, try again' });
+      return res.status(404).json({ error: 'Get Pipeline Failed, try again' });
     }
   }
 
@@ -60,9 +60,9 @@ class PipelineController {
       const { name }: PipelineInterface = req.body;
       const id = req.params.id;
 
-      if (!id) return res.status(400).json({ message: 'Please send a pipeline id' });
+      //if (!id) return res.status(400).json({ message: 'Please send a pipeline id' });
 
-      if (!name) return res.status(400).json({ error: 'Invalid value for pipeline' });
+     //if (!name) return res.status(400).json({ error: 'Invalid value for pipeline' });
 
       const pipeline = await Pipeline.findOne(id);
 
@@ -70,11 +70,9 @@ class PipelineController {
 
       await Pipeline.update(id, { name });
 
-      return res.status(200).json();
+      return res.status(200).json({ message: 'Pipeline updated successfully' });
     } catch (error) {
-      console.log(error);
-
-      return res.status(400).json({ error: 'Update Pipeline Failed, try again' });
+      return res.status(404).json({ error: 'Update failed, try again' });
     }
   }
 
@@ -92,9 +90,9 @@ class PipelineController {
 
       deals.map(async (deal) => await Deal.update(deal.id, { status: 'ARCHIVED' }));
 
-      return res.status(200).json();
+      return res.status(200).json({ message: 'Pipeline deleted successfully' });
     } catch (error) {
-      return res.status(400).json({ error: 'Update Pipeline Failed, try again' });
+      return res.status(404).json({ error: 'Remove failed, try again' });
     }
   }
 }
