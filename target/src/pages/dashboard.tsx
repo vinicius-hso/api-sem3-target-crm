@@ -1,34 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import readXlsxFile from "read-excel-file";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { DatePickerContainer } from "@styles/pagesStyle/dashboard.style";
 import DealsInfoCard from "../ui/components/DealsInfoCard/DealsInfoCardComponent";
 import ConversionRateCard from "../ui/components/ConversionRateCardComponent/ConversionRateCardComponent";
-import { useDashboardPage } from '../data/services/hooks/PageHooks/DashboardHook';
-import {useEffect} from 'react';
+import { useDashboardPage } from "../data/services/hooks/PageHooks/DashboardHook";
+import { useEffect } from "react";
+import { Teste } from "data/services/importContactService";
 
 function Dashboard() {
-
-  const { 
+  const {
     dealsInfo,
     getDealsInfo,
     conversionRateInfo,
-    getConversionRateCardInfo
+    getConversionRateCardInfo,
   } = useDashboardPage();
-
+  const [file, setFile] = useState(null);
   useEffect(() => {
-
-    if(!dealsInfo.meanValue) {
+    if (!dealsInfo.meanValue) {
       getDealsInfo();
     }
 
-    if(!conversionRateInfo.conversionRate) {
+    if (!conversionRateInfo.conversionRate) {
       getConversionRateCardInfo();
     }
-
   }, []);
-
 
   const series = [
     {
@@ -46,8 +44,35 @@ function Dashboard() {
   ];
 
   const xaxis = ["maria", "joão", "jose", "marcia"];
+
+  const teste = async (file) => {
+    const errors = [];
+    await readXlsxFile(file).then((rows) => {
+      rows.splice(0, 1);
+      rows.forEach(async (row) => {
+        const contact = {
+          name: row[0],
+          email: row[1],
+          phone: row[2],
+        };
+        const err = await Teste(contact);
+        if (err) {
+          errors.push(contact);
+        }
+      });
+    });
+    console.log(errors);
+  };
+
   return (
     <>
+      <input
+        type="file"
+        onChange={(event) => {
+          setFile(event.target.files[0]);
+          teste(event.target.files[0]);
+        }}
+      />
       <DynamicBarCharts
         series={series}
         title="Negociações por Empresa"
@@ -81,15 +106,15 @@ function Dashboard() {
         />
       </DatePickerContainer>
 
-      {dealsInfo && 
+      {dealsInfo && (
         <DealsInfoCard
-        meanvalue={dealsInfo?.meanValue}
-        totalvalue={dealsInfo?.totalValue}
-        totaldeals={dealsInfo?.totalDeals}
-      />
-      }
+          meanvalue={dealsInfo?.meanValue}
+          totalvalue={dealsInfo?.totalValue}
+          totaldeals={dealsInfo?.totalDeals}
+        />
+      )}
 
-      {conversionRateInfo &&
+      {conversionRateInfo && (
         <ConversionRateCard
           conversionrate={conversionRateInfo.conversionRate}
           totalwon={conversionRateInfo.totalWon}
@@ -97,7 +122,7 @@ function Dashboard() {
           totalinprogress={conversionRateInfo.totalInProgress}
           totalarchived={conversionRateInfo.totalArchived}
         />
-      }
+      )}
     </>
   );
 }

@@ -14,21 +14,29 @@ import {
   InputContainer,
   ContainerStyled,
 } from "./UserAccountComponent.style";
+import { IUser } from "types/User";
+import Title from "../Title/Title";
 
 //@deprecated
+
+type Passwords = {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+};
 interface UserAccountCardProps {
-  user: any;
-  password: any;
+  user: IUser;
+  password: Passwords;
 
-  setUser: any;
+  setUser: (event) => void;
   hasEdit: boolean;
-  onClick: any;
-  saveEdit: any;
+  onClick: () => void;
+  saveEdit: (user) => void;
 
-  setUserPassword: any;
+  setUserPassword: (event) => void;
   hasEditPassword: boolean;
-  onClickPassword: any;
-  saveEditPassword: any;
+  onClickPassword: () => void;
+  saveEditPassword: (password) => void;
 }
 
 const UserAccountComponent: React.FC<UserAccountCardProps> = ({
@@ -44,9 +52,9 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
   return (
     <div>
       <ContainerStyled>
-        <Typography variant="h4" color="primary">
-          Meus dados
-        </Typography>
+        <div>
+          <Title title="Meus dados" />
+        </div>
 
         <ContainerStyled>
           <div style={{ position: "relative" }}>
@@ -63,7 +71,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
           </div>
         </ContainerStyled>
 
-        {props.hasEditPassword ? (
+        {props.hasEditPassword && (
           <ContainerStyled>
             <Typography variant="h5" color="primary">
               Alterar Senha
@@ -151,7 +159,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               </ButtonsContainer>
             </UserAccountCardContainer>
           </ContainerStyled>
-        ) : null}
+        )}
 
         <UserAccountCardContainer>
           {showSuccessAlert ? (
@@ -182,12 +190,12 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
           </EditButton>
           <EditButton
             style={{
-              display: props.hasEdit ? "inline" : "none",
+              display: !props.hasEdit && "none",
             }}
             onClick={() => {
-              user.name.length > 0 && user.email.length > 0
-                ? props.saveEdit(user)
-                : null;
+              user.name.length > 0 &&
+                user.email.length > 0 &&
+                props.saveEdit(user);
             }}
           >
             {"Salvar"}
@@ -198,14 +206,12 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
             ></i>
           </EditButton>
 
-          {user ? (
+          {user && (
             <Avatar
               alt={user.name}
               src={user.picture}
               sx={{ width: 126, height: 126, margin: 5 }}
             />
-          ) : (
-            <div></div>
           )}
 
           <InputContainer>
@@ -215,7 +221,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               fullWidth
               variant={"standard"}
               size="medium"
-              value={user.name}
+              value={user.name || "usuario"}
               onChange={(event) =>
                 setUser({ ...user, name: event.target.value })
               }
@@ -231,7 +237,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               fullWidth
               variant={"standard"}
               size="medium"
-              value={user.email}
+              value={user.email || "usuario@usuario.com"}
               onChange={(event) =>
                 setUser({ ...user, email: event.target.value })
               }
@@ -247,7 +253,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               fullWidth
               variant={"standard"}
               size="medium"
-              value={user.picture}
+              value={user.picture || "usuario"}
               onChange={(event) =>
                 setUser({ ...user, picture: event.target.value })
               }

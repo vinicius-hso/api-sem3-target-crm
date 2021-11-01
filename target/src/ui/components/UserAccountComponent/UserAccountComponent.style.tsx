@@ -1,4 +1,4 @@
-import { Avatar, Button, Container, } from "@material-ui/core";
+import { Avatar, Button, Container } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 //@deprecated
@@ -37,5 +37,8 @@ export const InputContainer = styled("div")`
 export const ContainerStyled = styled(Container)`
   margin-top: 50px;
   padding-bottom: 20px;
-  
-`
+
+  h2 {
+    text-align: left;
+  }
+`;

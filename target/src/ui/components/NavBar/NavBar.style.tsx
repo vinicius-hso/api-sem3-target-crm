@@ -59,13 +59,6 @@ export const UserPictureStyled = styled(Avatar)`
   } ;
 `;
 
-export const ListItemStyled = styled(ListItem)`
-  align-items: center;
-  justify-content: center;
-  ${({ theme }) => theme.breakpoints.up("md")} {
-  } ;
-`;
-
 export const MenuButton = styled(IconButton)`
   margin-right: ${({ theme }) => theme.spacing(2)};
   margin-left: -${({ theme }) => theme.spacing(2)};

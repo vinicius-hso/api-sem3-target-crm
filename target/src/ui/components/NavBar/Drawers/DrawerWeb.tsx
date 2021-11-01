@@ -7,11 +7,15 @@ import { LinkStyled } from "ui/components/Link/Link.style";
 import theme from "ui/theme/theme";
 import { UserPictureStyled } from "../NavBar.style";
 
-export const DrawerWeb = ({ isAdmin, navHover, ...props }) => {
+export const DrawerWeb = ({ isAdmin, navHover, user, ...props }) => {
   const [_navHover, setNavHover] = React.useState(false);
   const [userName, setUserName] = React.useState("Joaquim da Silva");
 
   const router = useRouter();
+
+  useEffect(() => {
+    setUserName(user.name);
+  }, [user]);
 
   useEffect(() => {
     setNavHover(navHover);
@@ -83,10 +87,10 @@ export const DrawerWeb = ({ isAdmin, navHover, ...props }) => {
                   ? theme.palette.primary.main
                   : theme.palette.secondary.main,
               paddingTop: "20px",
-              display: !isAdmin && itemMenu.name === "usuarios" ? "none" : "",
+              display: !isAdmin && itemMenu.name === "Usuários" ? "none" : "",
             }}
           >
-            <LinkStyled href={itemMenu.link}>
+            <LinkStyled className="navBar" href={itemMenu.link}>
               <ListItemIcon
                 sx={{
                   fontSize: "30px",

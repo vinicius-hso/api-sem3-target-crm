@@ -29,7 +29,7 @@ class DealsService {
 
   async getDealsCompleted() {
     try {
-      const { data } = await api.get("/deal?status=ARCHIVED");
+      const { data } = await api.get("/deal?status__in=WON,LOST,ARCHIVED");
       return data;
     } catch (error) {
       return error;

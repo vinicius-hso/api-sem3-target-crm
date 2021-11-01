@@ -23,8 +23,14 @@ interface Props {
 }
 
 export default function NavBar(props: Props) {
-  const { mobileOpen, navHover, setNavHover, handleDrawerToggle, isAdmin } =
-    useNavBarComponent();
+  const {
+    mobileOpen,
+    navHover,
+    setNavHover,
+    handleDrawerToggle,
+    isAdmin,
+    user,
+  } = useNavBarComponent();
 
   const { window } = props;
 
@@ -63,7 +69,7 @@ export default function NavBar(props: Props) {
               keepMounted: true,
             }}
           >
-            <DrawerMobile navHover={navHover} isAdmin={isAdmin} />
+            <DrawerMobile navHover={navHover} isAdmin={isAdmin} user={user} />
           </DrawerPaper>
         </Hidden>
         <Hidden xsDown>
@@ -73,7 +79,7 @@ export default function NavBar(props: Props) {
               onMouseLeave={() => setNavHover(false)}
               variant="permanent"
             >
-              <DrawerWeb navHover={navHover} isAdmin={isAdmin} />
+              <DrawerWeb navHover={navHover} isAdmin={isAdmin} user={user} />
             </DrawerPaper>
           </DrawerContainer>
         </Hidden>

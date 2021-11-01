@@ -7,15 +7,19 @@ import { LinkStyled } from "ui/components/Link/Link.style";
 import theme from "ui/theme/theme";
 import { UserPictureStyled } from "../NavBar.style";
 
-export const DrawerMobile = ({ isAdmin, navHover, ...props }) => {
+export const DrawerMobile = ({ isAdmin, navHover, user, ...props }) => {
   const [_navHover, setNavHover] = React.useState(false);
-  const [userName, setUserName] = React.useState("Joaquim da Silva");
+  const [userName, setUserName] = React.useState("N");
 
   const router = useRouter();
 
   useEffect(() => {
     setNavHover(navHover);
   }, [navHover]);
+
+  useEffect(() => {
+    setUserName(user.name);
+  }, [user]);
 
   return (
     <div
@@ -73,11 +77,10 @@ export const DrawerMobile = ({ isAdmin, navHover, ...props }) => {
       <List>
         {navBarRoutes.map((itemMenu, index) => (
           <ListItem
-            disabled={!isAdmin && itemMenu.name === "usuarios"}
             sx={{
               paddingTop: 2,
               mt: "-7px",
-              display: !isAdmin && itemMenu.name === "usuarios" ? "none" : "",
+              display: !isAdmin && itemMenu.name === "Usuários" ? "none" : "",
             }}
             button
             key={index}

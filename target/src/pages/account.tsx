@@ -3,6 +3,13 @@ import React, { useState, useEffect } from "react";
 import UserAccountComponent from "../ui/components/UserAccountComponent/UserAccountComponent";
 import { useSessionUserPage } from "data/services/hooks/PageHooks/SessionUserHook";
 import Alert from "../ui/components/AlertComponent/AlertComponent";
+import { IUser } from "types/User";
+
+type Passwords = {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+};
 
 function Home() {
   const [hasEdit, setHasEdit] = useState(false);
@@ -14,14 +21,14 @@ function Home() {
     message: "",
   });
 
-  const [data, setData] = useState({
+  const [data, setData] = useState<IUser>({
     id: "",
     name: "",
     email: "",
     picture: "",
   });
 
-  const [passwords, setPasswords] = useState({
+  const [passwords, setPasswords] = useState<Passwords>({
     oldPassword: "",
     newPassword: "",
     confirmNewPassword: "",
@@ -81,7 +88,7 @@ function Home() {
                 }, 3000);
                 return null;
               } else {
-                console.log(checkPasswords());
+                checkPasswords();
                 setHasEditPassword(false);
                 setStatus(await editUserPassword(data.id, passwords));
                 setPasswords({

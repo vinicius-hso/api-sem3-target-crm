@@ -40,5 +40,6 @@ export const useNavBarComponent = () => {
     setNavHover,
     isAdmin,
     handleDrawerToggle,
+    user,
   };
 };
