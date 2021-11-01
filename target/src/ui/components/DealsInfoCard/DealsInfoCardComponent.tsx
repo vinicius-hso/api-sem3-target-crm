@@ -1,19 +1,18 @@
 import {
-  Avatar,
-  Box,
   Card,
   CardContent,
+  Container,
   Grid,
   Typography,
 } from "@material-ui/core";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-import MoneyIcon from "@material-ui/icons/Money";
-import { red } from "@material-ui/core/colors";
-import { useDashboardPage } from "../../../data/services/hooks/PageHooks/DashboardHook";
-import { Container } from "@material-ui/core";
 
-function DealsInfoCard(props) {
-  const { dealsInfo } = useDashboardPage();
+interface DealsInfoCardProps {
+  meanvalue: string,
+  totalvalue: string,
+  totaldeals: string,
+}
+
+const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
 
   return (
     <Container sx={{ justifyContent: "center" }}>
@@ -38,7 +37,7 @@ function DealsInfoCard(props) {
               </Typography>
 
               <Typography color="textPrimary" variant="h5" gutterBottom>
-                {dealsInfo.meanValue}
+                {props.meanvalue}
               </Typography>
 
               <Typography color="textSecondary" variant="body1">
@@ -46,7 +45,7 @@ function DealsInfoCard(props) {
               </Typography>
 
               <Typography color="textPrimary" variant="h5" gutterBottom>
-                {dealsInfo.totalValue}
+                {props.totalvalue}
               </Typography>
 
               <Typography color="textSecondary" gutterBottom variant="body1">
@@ -54,7 +53,7 @@ function DealsInfoCard(props) {
               </Typography>
 
               <Typography color="textPrimary" variant="h5">
-                {dealsInfo.totalDeals}
+                {props.totaldeals}
               </Typography>
             </Grid>
           </Grid>

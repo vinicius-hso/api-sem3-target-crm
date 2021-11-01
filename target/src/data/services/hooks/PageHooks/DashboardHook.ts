@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DealsService from "data/services/DealsService";
 import CompanyService from "data/services/CompanyService";
 import { formatValue } from "../../../utils/formatValue";
+import { DealsInfoCardTypes } from '../../../../types/DealsInfoCard';
+import { ConversionRateInfoCardTypes } from '../../../../types/ConversionRateInfoCard';
 
 export const useDashboardPage = () => {
+  
   const [dealsByCompany, setDealsByCompany] = useState([]);
-  const [dealsInfo, setDealsInfo] = useState({
-    meanValue: "",
-    totalValue: "",
-    totalDeals: "",
-  });
-  const [conversionRateInfo, setConversionRateInfo] = useState({});
+  const [dealsInfo, setDealsInfo] = useState<DealsInfoCardTypes>({} as DealsInfoCardTypes);
+  const [conversionRateInfo, setConversionRateInfo] = useState<ConversionRateInfoCardTypes>({} as ConversionRateInfoCardTypes);
 
   const getDealsByCompany = async () => {
     const allDeals = await DealsService.getAllDeals();
@@ -52,12 +51,12 @@ export const useDashboardPage = () => {
 
   const getDealsInfo = async () => {
     const allDeals = await DealsService.getAllDeals();
-    let totalDeals = Object.keys(allDeals).length;
+    // console.log(allDeals);
+    let totalDeals = allDeals.length;
 
     let totalValue = 0;
     allDeals.map((d) => {
       totalValue += d.value;
-      console.log(d);
     });
 
     let meanValue = totalValue / totalDeals;
@@ -67,6 +66,7 @@ export const useDashboardPage = () => {
       totalValue: formatValue(totalValue.toFixed(2).toString()),
       totalDeals: totalDeals.toString(),
     });
+
   };
 
   const getConversionRateCardInfo = async () => {
@@ -94,14 +94,6 @@ export const useDashboardPage = () => {
       }
     });
 
-    // let data = {
-    //   conversionRate: (totalWon / allDeals.length) * 100,
-    //   totalWon,
-    //   totalLost,
-    //   totalInProgress,
-    //   totalArchived,
-    // }
-
     setConversionRateInfo({
       conversionRate: (totalWon / allDeals.length) * 100,
       totalWon,
@@ -109,6 +101,7 @@ export const useDashboardPage = () => {
       totalInProgress,
       totalArchived,
     });
+
   };
 
   return {
@@ -117,5 +110,6 @@ export const useDashboardPage = () => {
     conversionRateInfo,
     getDealsByCompany,
     getDealsInfo,
+    getConversionRateCardInfo
   };
 };

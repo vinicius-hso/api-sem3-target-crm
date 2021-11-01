@@ -1,12 +1,35 @@
-import React, { useState } from "react";
-import { Box, Button, ButtonGroup } from "@material-ui/core";
+import React from "react";
+import { Button, ButtonGroup } from "@material-ui/core";
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { DatePickerContainer } from "@styles/pagesStyle/dashboard.style";
 import DealsInfoCard from "../ui/components/DealsInfoCard/DealsInfoCardComponent";
 import ConversionRateCard from "../ui/components/ConversionRateCardComponent/ConversionRateCardComponent";
+import { useDashboardPage } from '../data/services/hooks/PageHooks/DashboardHook';
+import {useEffect} from 'react';
 
 function Dashboard() {
+
+  const { 
+    dealsInfo,
+    getDealsInfo,
+    conversionRateInfo,
+    getConversionRateCardInfo
+  } = useDashboardPage();
+
+  useEffect(() => {
+
+    if(!dealsInfo.meanValue) {
+      getDealsInfo();
+    }
+
+    if(!conversionRateInfo.conversionRate) {
+      getConversionRateCardInfo();
+    }
+
+  }, []);
+
+
   const series = [
     {
       name: "GANHAS",
@@ -57,8 +80,24 @@ function Dashboard() {
           focused
         />
       </DatePickerContainer>
-      <DealsInfoCard />
-      <ConversionRateCard />
+
+      {dealsInfo && 
+        <DealsInfoCard
+        meanvalue={dealsInfo?.meanValue}
+        totalvalue={dealsInfo?.totalValue}
+        totaldeals={dealsInfo?.totalDeals}
+      />
+      }
+
+      {conversionRateInfo &&
+        <ConversionRateCard
+          conversionrate={conversionRateInfo.conversionRate}
+          totalwon={conversionRateInfo.totalWon}
+          totallost={conversionRateInfo.totalLost}
+          totalinprogress={conversionRateInfo.totalInProgress}
+          totalarchived={conversionRateInfo.totalArchived}
+        />
+      }
     </>
   );
 }

@@ -51,9 +51,10 @@ export const useCompanyPage = () => {
   };
 
   const createCompany = async (data: CompanyTypes) => {
-    await CompanyService.createCompany(data);
+    const result = await CompanyService.createCompany(data);
 
-    useCreateCompanyModal();
+    // useCreateCompanyModal();
+    return result;
   };
 
   const useCreateCompanyModal = () => {
@@ -65,12 +66,13 @@ export const useCompanyPage = () => {
   };
 
   const editCompany = async (companyId: any, data: any) => {
-    const res = await CompanyService.editCompany(companyId, data);
-    return res;
+    const result = await CompanyService.editCompany(companyId, data);
+    return result;
   };
 
   const deleteCompany = async (companyId: any) => {
-    const response = await CompanyService.deleteCompany(companyId);
+    const result = await CompanyService.deleteCompany(companyId);
+    return result;
   };
 
   return {

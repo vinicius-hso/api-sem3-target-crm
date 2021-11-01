@@ -1,16 +1,20 @@
 import {
   Card,
   CardContent,
+  Container,
   Grid,
   Typography
 } from '@material-ui/core';
-import { useDashboardPage } from '../../../data/services/hooks/PageHooks/DashboardHook';
-import { Container } from '@material-ui/core';
 
-function ConversionRateCard(props) {
+interface ConversionRateCardProps {
+  conversionrate: number,
+  totalwon: number,
+  totallost: number,
+  totalinprogress: number,
+  totalarchived: number,
+}
 
-  const { conversionRateInfo } = useDashboardPage();
-  console.log(conversionRateInfo)
+const ConversionRateCard: React.FC<ConversionRateCardProps> = (props) => {
     
   return (
     <Container sx={{ justifyContent: 'center'}}>
@@ -39,7 +43,7 @@ function ConversionRateCard(props) {
               variant="h4"
               gutterBottom
             >
-              % {conversionRateInfo['conversionRate']}
+              % {props.conversionrate}
             </Typography>
 
             <Typography
@@ -47,7 +51,7 @@ function ConversionRateCard(props) {
               variant="body2"
               gutterBottom
             >
-                <i className="fa fa-thumbs-o-up"></i> GANHAS: {conversionRateInfo['totalWon']}
+                <i className="fa fa-thumbs-o-up"></i> GANHAS: {props.totalwon}
             </Typography>
       
             <Typography
@@ -55,7 +59,7 @@ function ConversionRateCard(props) {
               variant="body2"
               gutterBottom
             >
-                <i className="fa fa-thumbs-o-down"></i> PERDIDAS: {conversionRateInfo['totalLost']}
+                <i className="fa fa-thumbs-o-down"></i> PERDIDAS: {props.totallost}
             </Typography>
 
             <Typography
@@ -63,7 +67,7 @@ function ConversionRateCard(props) {
               gutterBottom
               variant="body2"
             >
-                <i className="fa fa-cogs"></i> EM ANDAMENTO: {conversionRateInfo['totalInProgress']}
+                <i className="fa fa-cogs"></i> EM ANDAMENTO: {props.totalinprogress}
             </Typography>
 
             <Typography
@@ -71,7 +75,7 @@ function ConversionRateCard(props) {
               gutterBottom
               variant="body2"
             >
-                <i className="fa fa-archive"></i> ARQUIVADAS: {conversionRateInfo['totalArchived']}
+                <i className="fa fa-archive"></i> ARQUIVADAS: {props.totalarchived}
             </Typography>
 
           </Grid>

@@ -22,3 +22,5 @@ export interface DealTypes {
   // status?: string;
   // activity?: any;
 }
+
+export type DealInfoType = Pick<DealTypes, "value">
