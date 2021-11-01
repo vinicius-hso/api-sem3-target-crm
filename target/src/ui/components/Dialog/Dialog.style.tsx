@@ -2,8 +2,8 @@ import { experimentalStyled as styled } from "@material-ui/core/styles";
 import { Dialog } from "@material-ui/core";
 
 export const DialogStyled = styled(Dialog)`
-  width: 80%;
-  max-width: 400px;
+  //width: 80%;
+  //max-width: 1000px;
 `;
 
 export const DialogIconContainer = styled("div")`

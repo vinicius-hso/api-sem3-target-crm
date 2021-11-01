@@ -1,15 +1,20 @@
 import React from "react";
-import { Alert, Button, Typography, CircularProgress } from "@material-ui/core";
+import { Button, Typography, CircularProgress } from "@material-ui/core";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import {
   FormContainer,
   RecoverContainer,
   ImageContainer,
 } from "@styles/pagesStyle/recover.styles";
-import { useLoginPage } from "data/services/hooks/PageHooks/LoginPageHook";
+import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
 import Title from "ui/components/Title/Title";
+import { useRouter } from "next/dist/client/router";
+import Dialog from "ui/components/Dialog/Dialog";
+
 
 function EmailRecover() {
+  const currentRouter = useRouter();
+
   const {
     email,
     setEmail,
@@ -17,6 +22,7 @@ function EmailRecover() {
     data,
     hasError,
     hasMessage,
+    setMessage,
     emailIsValid,
     recoverPass,
     emailVerification,
@@ -80,15 +86,17 @@ function EmailRecover() {
       </FormContainer>
 
       {hasMessage ? (
-        <Alert color="success">
-          <h1>Email enviado!</h1>
-          <p>
-            Enviamos um email com as instruções para a redefinição de sua senha.
-            Caso não encontre em sua caixa de entrada, por favor, verifique seu
-            Spam.
-          </p>
-          <hr />
-        </Alert>
+        <Dialog
+          title={"Sucesso"}
+          message={"Email enviado com sucesso! \n\n Enviamos um link para seu Email, que será válido por um prazo de 24 horas. \n Caso não encontre, cheque sua caixa de spam."}
+          type={"success"}
+          open={hasMessage}
+          setOpen={() => setMessage(!hasMessage)}
+          result={(res) => {
+            setMessage(false);
+            currentRouter.push("/login");
+          }}
+        />
       ) : (
         <br />
       )}

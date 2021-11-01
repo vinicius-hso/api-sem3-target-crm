@@ -98,6 +98,7 @@ export const useLoginPage = () => {
     setPassword,
     hasError,
     hasMessage,
+    setMessage,
     isLoading,
     data,
     emailIsValid,

@@ -6,7 +6,7 @@ import {
   RecoverContainer,
   ImageContainer,
 } from "@styles/pagesStyle/recover.styles";
-import { useRecoverPage } from "data/services/hooks/PageHooks/RecoverPageHook";
+import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
 import Title from "ui/components/Title/Title";
 import { useRouter } from "next/dist/client/router";
 import Dialog from "ui/components/Dialog/Dialog";
@@ -110,9 +110,10 @@ function PassRecover() {
       </FormContainer>
 
       {hasMessage ? (
+        <div style={{ margin: "0 auto", marginTop: "1000px" }}>
         <Dialog
           title={"Sucesso"}
-          message={"Senha ataulizada com sucesso"}
+          message={"Senha atualizada com sucesso"}
           type={"success"}
           open={hasMessage}
           setOpen={() => setMessage(!hasMessage)}
@@ -121,6 +122,7 @@ function PassRecover() {
             currentRouter.push("/login");
           }}
         />
+        </div>
       ) : (
         <br />
       )}
