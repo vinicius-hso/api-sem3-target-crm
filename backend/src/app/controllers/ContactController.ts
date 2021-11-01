@@ -1,5 +1,6 @@
 import Company from '@entities/Company';
 import Contact from '@entities/Contact';
+import transport from '@src/modules/mailer';
 import queryBuilder from '@utils/queryBuilder';
 import { Request, Response } from 'express';
 
@@ -49,6 +50,20 @@ class ContactController {
       const contact = await Contact.create({ name, email, phone, city, state, company, picture }).save();
 
       if (!contact) return res.status(400).json({ message: 'Cannot create contact' });
+
+      transport.sendMail({
+        to: email,
+        from: '"Contato" <api@contato.com>',
+        subject: 'Boas vindas!', // assunto do email
+        template: 'newContact',
+
+        context: { name },
+      },
+      (err) => {
+        if (err) console.log('Email not sent')
+
+        transport.close();
+      });
 
       return res.status(201).json({ id: contact.id });
     } catch (error) {

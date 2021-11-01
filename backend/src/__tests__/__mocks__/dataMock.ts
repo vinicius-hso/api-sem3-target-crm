@@ -35,5 +35,5 @@ export const mocks = async (): Promise<any> => {
     name: 'Pipeline',
   }).save();
 
-  return { userSeller, otherUserSeller, userAdmin };
+  return { userSeller, otherUserSeller, userAdmin, pipeline };
 };

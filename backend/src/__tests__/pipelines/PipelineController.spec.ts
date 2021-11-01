@@ -77,8 +77,8 @@ describe('Pipeline Controller', () => {
         .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
         .then((res) => {
           expect(res.status).toBe(200);
-          expect(res.body).toHaveProperty('id');
-          expect(res.body).toHaveProperty('name');
+          expect(res.body.id).toBe(pipeline.id);
+          expect(res.body.name).toBe(pipeline.name);
         });
     });
 
@@ -92,8 +92,8 @@ describe('Pipeline Controller', () => {
         .set('authorization', 'Bearer ' + AuthMock(env.userAdmin.email, env.userAdmin.id))
         .then((res) => {
           expect(res.status).toBe(200);
-          expect(res.body).toHaveProperty('id');
-          expect(res.body).toHaveProperty('name');
+          expect(res.body.id).toBe(pipeline.id);
+          expect(res.body.name).toBe(pipeline.name);
         });
     });
   });
@@ -109,7 +109,6 @@ describe('Pipeline Controller', () => {
         });
     });
 
- 
     it('should not be create a pipeline', async () => {
       const pipeline = null;
 
@@ -127,6 +126,7 @@ describe('Pipeline Controller', () => {
       const pipeline = {
         name: chance.name(),
       };
+
       await request(app)
         .post('/pipeline')
         .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
@@ -136,21 +136,25 @@ describe('Pipeline Controller', () => {
           expect(res.body).toHaveProperty('id');
         });
     });
+
+    it('should not be create a pipeline with duplicate credentials', async () => {
+      
+      await request(app)
+        .post('/pipeline')
+        .set('authorization', 'Bearer ' + AuthMock(env.userSeller.email, env.userSeller.id))
+        .send({ name: env.pipeline.name })
+        .then((res) => {
+          expect(res.status).toBe(400);
+          expect(res.body.message).toBe('Pipeline already exists');
+        });
+    });
   });
 
   describe('update pipeline', () => {
     it('should be get 401 - No Token provided', async () => {
-      const pipeline = await Pipeline.create({
-        name: chance.name()
-      }).save();
-
-      const pipelineUpdated = {
-        name: chance.name()
-      };
-
       await request(app)
-        .put(`/pipeline/${pipeline.id}`)
-        .send(pipelineUpdated)
+        .put(`/pipeline/${null}`)
+        .send()
         .then((res) => {
           expect(res.status).toBe(401);
           expect(res.body.message).toBe('No Token provided');
@@ -158,17 +162,9 @@ describe('Pipeline Controller', () => {
     });
 
     it('should be get 404 - Update failed, try again', async () => {
-      const pipeline = await Pipeline.create({
-        name: chance.name()
-      }).save();
-
-      const pipelineUpdated = {
-        name: chance.name()
-      };
-
       await request(app)
         .put(`/pipeline/${null}`)
-        .send(pipelineUpdated)
+        .send()
         .set('authorization', 'Bearer ' + AuthMock(env.otherUserSeller.email, env.otherUserSeller.id))
         .then((res) => {
           expect(res.status).toBe(404);
@@ -177,17 +173,9 @@ describe('Pipeline Controller', () => {
     });
 
     it('should be get 404 - Pipeline does not exist', async () => {
-      const pipeline = await Pipeline.create({
-        name: chance.name()
-      }).save();
-
-      const pipelineUpdated = {
-        name: chance.name()
-      };
-
       await request(app)
         .put(`/pipeline/${v4()}`)
-        .send(pipelineUpdated)
+        .send()
         .set('authorization', 'Bearer ' + AuthMock(env.otherUserSeller.email, env.otherUserSeller.id))
         .then((res) => {
           expect(res.status).toBe(404);
@@ -201,7 +189,7 @@ describe('Pipeline Controller', () => {
       }).save();
 
       const pipelineUpdated = {
-        name: chance.name()
+        name: chance.name(),
       };
 
       await request(app)
@@ -221,7 +209,7 @@ describe('Pipeline Controller', () => {
   describe('delete pipeline', () => {
     it('should be get 401 - No Token provided', async () => {
       await request(app)
-        .delete(`/pipeline/${env.userSeller.id}`)
+        .delete(`/pipeline/${env.pipeline.id}`)
         .then((res) => {
           expect(res.status).toBe(401);
           expect(res.body.message).toBe('No Token provided');
@@ -250,7 +238,7 @@ describe('Pipeline Controller', () => {
 
     it('should be get 200 - Pipeline deleted successfully', async () => {
       const pipeline = await Pipeline.create({
-        name: chance.name()
+        name: chance.name(),
       }).save();
 
       await request(app)

@@ -1,11 +1,11 @@
+import { ensureAuthenticated } from '@middlewares/ensureAuthenticated';
 import DealRoutes from '@routes/deal.routes';
 import Router from 'express';
 import AuthRoutes from './auth.routes';
 import CompanyRoutes from './company.routes';
+import ContactRoutes from './contact.routes';
 import PipelineRoutes from './pipeline.routes';
 import UserRoutes from './user.routes';
-import ContactRoutes from './contact.routes';
-import { ensureAuthenticated } from '@middlewares/ensureAuthenticated';
 
 const routes = Router();
 
