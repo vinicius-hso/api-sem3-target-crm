@@ -15,6 +15,16 @@ class DealsService {
     }
   }
 
+  async getTotslDeals() {
+    try {
+      const { data } = await api.get("/deal?with=pipeline,company,contact");
+
+      return data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async getDeals() {
     try {
       const { data } = await api.get(
@@ -29,7 +39,9 @@ class DealsService {
 
   async getDealsCompleted() {
     try {
-      const { data } = await api.get("/deal?status__in=WON,LOST,ARCHIVED");
+      const { data } = await api.get(
+        "/deal?status__in=WON,LOST,ARCHIVED&with=pipeline,company,contact"
+      );
       return data;
     } catch (error) {
       return error;

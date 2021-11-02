@@ -62,7 +62,7 @@ const StackedColumnChart: React.FC<BarChartsProps> = ({
         opacity: 1,
       },
     }),
-    [title, xaxis]
+    [title, xaxis, series]
   );
 
   return (

@@ -2,14 +2,53 @@ import React, { useState } from "react";
 import DealsService from "data/services/DealsService";
 import CompanyService from "data/services/CompanyService";
 import { formatValue } from "../../../utils/formatValue";
-import { DealsInfoCardTypes } from '../../../../types/DealsInfoCard';
-import { ConversionRateInfoCardTypes } from '../../../../types/ConversionRateInfoCard';
+import { DealsInfoCardTypes } from "../../../../types/DealsInfoCard";
+import { ConversionRateInfoCardTypes } from "../../../../types/ConversionRateInfoCard";
 
 export const useDashboardPage = () => {
-  
   const [dealsByCompany, setDealsByCompany] = useState([]);
-  const [dealsInfo, setDealsInfo] = useState<DealsInfoCardTypes>({} as DealsInfoCardTypes);
-  const [conversionRateInfo, setConversionRateInfo] = useState<ConversionRateInfoCardTypes>({} as ConversionRateInfoCardTypes);
+  const [deals, setDeals] = useState([]);
+  const [wonDeals, setWonDeals] = useState([]);
+  const [lostDeals, setLostDeals] = useState([]);
+  const [inProgressDeals, setInProgressDeals] = useState([]);
+  const [archivedDeals, setArchivedDeals] = useState([]);
+  const [dealsInfo, setDealsInfo] = useState<DealsInfoCardTypes>(
+    {} as DealsInfoCardTypes
+  );
+  const [conversionRateInfo, setConversionRateInfo] =
+    useState<ConversionRateInfoCardTypes>({} as ConversionRateInfoCardTypes);
+
+  const getData = async () => {
+    const won = [];
+    const lost = [];
+    const inProgress = [];
+    const archived = [];
+    const deals = await DealsService.getTotslDeals();
+
+    deals.forEach((deal) => {
+      switch (deal.status) {
+        case "WON":
+          won.push(deal);
+          break;
+        case "LOST":
+          lost.push(deal);
+          break;
+        case "INPROGRESS":
+          inProgress.push(deal);
+          break;
+        case "ARCHIVED":
+          archived.push(deal);
+          break;
+        default:
+          console.log(deal);
+      }
+    });
+    setWonDeals(won);
+    setLostDeals(lost);
+    setArchivedDeals(archived);
+    setInProgressDeals(inProgress);
+    setDeals(deals);
+  };
 
   const getDealsByCompany = async () => {
     const allDeals = await DealsService.getAllDeals();
@@ -66,7 +105,6 @@ export const useDashboardPage = () => {
       totalValue: formatValue(totalValue.toFixed(2).toString()),
       totalDeals: totalDeals.toString(),
     });
-
   };
 
   const getConversionRateCardInfo = async () => {
@@ -101,7 +139,6 @@ export const useDashboardPage = () => {
       totalInProgress,
       totalArchived,
     });
-
   };
 
   return {
@@ -110,6 +147,12 @@ export const useDashboardPage = () => {
     conversionRateInfo,
     getDealsByCompany,
     getDealsInfo,
-    getConversionRateCardInfo
+    getConversionRateCardInfo,
+    getData,
+    deals,
+    wonDeals,
+    lostDeals,
+    inProgressDeals,
+    archivedDeals,
   };
 };
