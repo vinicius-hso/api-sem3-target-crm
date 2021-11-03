@@ -1,9 +1,4 @@
-export const formatArray = (
-  array: any[],
-  format: string,
-  initialDate?: string,
-  finalDate?: string
-) => {
+export const formatArray = (array: any[], format: string) => {
   switch (format) {
     case "Empresa":
       return formatToCompany(array);

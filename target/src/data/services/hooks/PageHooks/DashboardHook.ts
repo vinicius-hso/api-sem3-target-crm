@@ -18,12 +18,17 @@ export const useDashboardPage = () => {
   const [conversionRateInfo, setConversionRateInfo] =
     useState<ConversionRateInfoCardTypes>({} as ConversionRateInfoCardTypes);
 
-  const getData = async () => {
+  const getData = async (startDate?: Date, endDate?: Date) => {
+    let query = "";
+    if (startDate && endDate) {
+      query = `&createdAt__gte=${startDate.toISOString()}`;
+    }
+
     const won = [];
     const lost = [];
     const inProgress = [];
     const archived = [];
-    const deals = await DealsService.getTotslDeals();
+    const deals = await DealsService.getTotslDeals(query);
 
     deals.forEach((deal) => {
       switch (deal.status) {
@@ -40,7 +45,6 @@ export const useDashboardPage = () => {
           archived.push(deal);
           break;
         default:
-          console.log(deal);
       }
     });
     setWonDeals(won);

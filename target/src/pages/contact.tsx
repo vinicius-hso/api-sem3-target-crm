@@ -18,6 +18,7 @@ import { Button } from "@material-ui/core";
 import ContactContext from "contexts/ContactContext";
 import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
 import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
+import ImportContactModal from "ui/components/Modal/Contact/ImportContactModal";
 
 function ContactPage() {
   const { filteredContact, removeFiltered } = useContactPage();
@@ -26,7 +27,7 @@ function ContactPage() {
   const [hasFiltered, setHasFiltered] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [time, setTime] = useState(null);
-  const [selectedId, setSelectedId] = useState<string>("")
+  const [selectedId, setSelectedId] = useState<string>("");
 
   const handleChangeSearchTerm = (event) => {
     let resetFilter = false;
@@ -53,22 +54,23 @@ function ContactPage() {
     setSearchTerm("");
   };
 
-  const { useCreateContactModal, useUpdateContactModal, contacts } = useContext(ContactContext)
+  const {
+    useImportContactModal,
+    useCreateContactModal,
+    useUpdateContactModal,
+    contacts,
+  } = useContext(ContactContext);
 
   const setId = () => {
-    setSelectedId("")
-  }
+    setSelectedId("");
+  };
 
   return (
     <ContactsPageContainer>
       <CreateContactModal />
-      {
-        selectedId ?
-          <UpdateContactModal setId={setId} id={selectedId} />
-          : null
-      }
+      <ImportContactModal companies={formatCompaniesToSelect} />
+      {selectedId ? <UpdateContactModal setId={setId} id={selectedId} /> : null}
       <DeleteContactModal id={selectedId} />
-
       <ContactsHeaderContainer>
         <TitleContainer>
           <Title title="CONTATOS"></Title>
@@ -95,9 +97,21 @@ function ContactPage() {
           hasFiltered={hasFiltered}
         />
         <div style={{ display: "flex", justifyContent: "end" }}>
-          <Button variant="contained" color="secondary">Importar</Button>
-          <Button variant="contained" color="success" style={{ color: "white", marginLeft: "10px" }}
-            onClick={() => useCreateContactModal()}>Adicionar</Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => useImportContactModal()}
+          >
+            Importar
+          </Button>
+          <Button
+            variant="contained"
+            color="success"
+            style={{ color: "white", marginLeft: "10px" }}
+            onClick={() => useCreateContactModal()}
+          >
+            Adicionar
+          </Button>
         </div>
       </ContactsHeaderContainer>
       <br />
@@ -111,8 +125,9 @@ function ContactPage() {
             phone={contact.phone}
             state={contact.state}
             picture={contact.picture}
-            onClick={() => { useUpdateContactModal(), setSelectedId(contact.id) }}
-
+            onClick={() => {
+              useUpdateContactModal(), setSelectedId(contact.id);
+            }}
           />
         ))}
       </CardsContainer>

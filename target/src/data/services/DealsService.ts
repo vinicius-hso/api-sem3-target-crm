@@ -15,9 +15,11 @@ class DealsService {
     }
   }
 
-  async getTotslDeals() {
+  async getTotslDeals(query?: string) {
     try {
-      const { data } = await api.get("/deal?with=pipeline,company,contact");
+      const { data } = await api.get(
+        `/deal?with=pipeline,company,contact${query ? query : ""}`
+      );
 
       return data;
     } catch (error) {

@@ -30,14 +30,21 @@ export const DatePickerContainer = styled("div")`
   padding: ${({ theme }) => theme.spacing(2)};
   overflow: hidden;
 
-  flex-direction: column;
   gap: ${({ theme }) => theme.spacing(2)};
+  flex-direction: column;
+
+  .buttonEditChart {
+    display: flex;
+    gap: ${({ theme }) => theme.spacing(2)};
+
+    ${({ theme }) => theme.breakpoints.down("md")} {
+      flex-direction: column;
+    }
+  }
 
   .inputDateGroup {
-    width: 80%;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    gap: ${({ theme }) => theme.spacing(2)};
 
     ${({ theme }) => theme.breakpoints.down("md")} {
       flex-direction: column;

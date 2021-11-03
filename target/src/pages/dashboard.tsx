@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import readXlsxFile from "read-excel-file";
-import { Button, ButtonGroup } from "@material-ui/core";
+import { ToggleButton, ToggleButtonGroup } from "@material-ui/core";
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import {
@@ -12,7 +11,6 @@ import {
 import DealsInfoCard from "../ui/components/DealsInfoCard/DealsInfoCardComponent";
 import ConversionRateCard from "../ui/components/ConversionRateCardComponent/ConversionRateCardComponent";
 import { useDashboardPage } from "../data/services/hooks/PageHooks/DashboardHook";
-import { Teste } from "data/services/importContactService";
 import Title from "ui/components/Title/Title";
 import { formatArray } from "data/utils/formatArray";
 
@@ -31,6 +29,16 @@ function Dashboard() {
     getData,
     deals,
   } = useDashboardPage();
+
+  const [filterType, setFilterType] = useState<{
+    chartType: string;
+    valueType: boolean;
+  }>({ chartType: "Empresa", valueType: false });
+
+  const [filterDate, setFilterDate] = useState<{
+    startDate: string;
+    endDate: string;
+  }>({ startDate: "", endDate: "" });
 
   const [chartData, setChartsData] = useState<BarChartsProps>({
     title: "",
@@ -56,21 +64,23 @@ function Dashboard() {
     const data = formatArray(deals, chartType);
     setChartsData({
       title: `${chartType} X ${valueType ? "Valor" : "Quantidade"}`,
-      xaxis: data.dataNames,
+      xaxis: data?.dataNames,
       series: [
         {
           name: "GANHAS",
-          data: valueType ? data.dataValues.wonValue : data.dataLength.won,
+          data: valueType ? data?.dataValues?.wonValue : data?.dataLength?.won,
         },
         {
           name: "EM ANDAMENTO",
           data: valueType
-            ? data.dataValues.inProgressValue
-            : data.dataLength.inProgress,
+            ? data?.dataValues?.inProgressValue
+            : data?.dataLength?.inProgress,
         },
         {
           name: "PERDIDAS",
-          data: valueType ? data.dataValues.lostValue : data.dataLength.lost,
+          data: valueType
+            ? data?.dataValues?.lostValue
+            : data?.dataLength?.lost,
         },
       ],
     });
@@ -80,69 +90,80 @@ function Dashboard() {
     getChartData("Empresa", true);
   }, [deals]);
 
-  /*   const teste = async (file) => {
-    const errors = [];
-    await readXlsxFile(file).then((rows) => {
-      rows.splice(0, 1);
-      rows.forEach(async (row) => {
-        const contact = {
-          name: row[0],
-          email: row[1],
-          phone: row[2],
-        };
-        const err = await Teste(contact);
-        if (err) {
-          errors.push(contact);
-        }
-      });
-    });
-    console.log(errors);
-  };
- */
+  useEffect(() => {
+    if (filterDate?.startDate) {
+      const startDate = filterDate?.startDate
+        ? new Date(filterDate?.startDate)
+        : new Date(Date.now());
+      const endDate = filterDate?.endDate
+        ? new Date(filterDate?.endDate)
+        : new Date(Date.now());
+
+      getData(startDate, endDate);
+    }
+  }, [filterDate?.startDate, filterDate?.endDate]);
+
   return (
     <DashboardPageContainer>
       <DashboardHeaderContainer>
-        <Title title="Dashboard"></Title>
+        <Title style={{ textAlign: "left" }} title="Dashboard"></Title>
 
         <DatePickerContainer>
-          Personalize o grafico
-          <ButtonGroup variant="contained" aria-label="outlined button group">
-            <Button>Empresa</Button>
-            <Button>Geral</Button>
-            <Button>Vendedor</Button>
-          </ButtonGroup>
-          <ButtonGroup variant="contained" aria-label="text button group">
-            <Button>Quantidade</Button>
-            <Button>Valor</Button>
-          </ButtonGroup>
+          <p> Personalize o grafico</p>
+          <div className="buttonEditChart">
+            <ToggleButtonGroup
+              value={filterType.chartType}
+              exclusive
+              onChange={(event, newValue) => {
+                setFilterType({ ...filterType, chartType: newValue });
+                getChartData(newValue, filterType.valueType);
+              }}
+            >
+              <ToggleButton value="Empresa">Empresas</ToggleButton>
+              <ToggleButton value="Vendedor">Vendedores</ToggleButton>
+            </ToggleButtonGroup>
+            <ToggleButtonGroup
+              color="primary"
+              value={filterType.valueType}
+              exclusive
+              onChange={(event, newValue) => {
+                setFilterType({ ...filterType, valueType: newValue });
+                getChartData(filterType.chartType, newValue);
+              }}
+            >
+              <ToggleButton value={false}>Quantidade</ToggleButton>
+              <ToggleButton value={true}>Valor</ToggleButton>
+            </ToggleButtonGroup>
+          </div>
           <div className="inputDateGroup">
             <TextFieldMask
               id="outlined-basic"
               variant="standard"
               size="small"
               type="date"
+              value={filterDate.startDate}
+              onChange={(event) => {
+                setFilterDate({ ...filterDate, startDate: event.target.value });
+              }}
               focused
               label="Data inicial"
             />
-            <TextFieldMask
+            {/*             <TextFieldMask
               id="outlined-basic"
               variant="standard"
               size="small"
               type="date"
               label="Data final"
+              value={filterDate.endDate}
+              onChange={(event) => {
+                setFilterDate({ ...filterDate, endDate: event.target.value });
+              }}
               focused
             />
+ */}{" "}
           </div>
         </DatePickerContainer>
       </DashboardHeaderContainer>
-      {/*       <input
-        type="file"
-        onChange={(event) => {
-          setFile(event.target.files[0]);
-          teste(event.target.files[0]);
-        }}
-      />
- */}
       <ChartsContainer>
         <DynamicBarCharts
           series={chartData.series}

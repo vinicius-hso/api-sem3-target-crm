@@ -20,6 +20,8 @@ export interface IContact {
 export interface IContactContext {
   useCreateContactModal: () => void;
   createContactModal: boolean;
+  useImportContactModal: () => void;
+  importContactModal: boolean;
   useUpdateContactModal: () => void;
   updateContactModal: boolean;
   useDeleteContactModal: () => void;

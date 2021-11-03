@@ -16,7 +16,6 @@ const Alert: React.FC<AlertProps> = ({ severity, message, title }) => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress === 0) {
-          console.log(oldProgress);
           clearInterval(timer);
           return;
         }

@@ -11,7 +11,7 @@ interface TitleProps {
 const Title: React.FC<TitleProps> = (props) => {
   return (
     <TitleContainer>
-      <TitleStyled>{props.title}</TitleStyled>
+      <TitleStyled style={props.style}>{props.title}</TitleStyled>
       <SubtitleStyled style={{ color: props.subtitleColor }}>
         {props.subtitle}
       </SubtitleStyled>
