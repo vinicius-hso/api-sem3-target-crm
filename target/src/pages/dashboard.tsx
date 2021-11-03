@@ -176,6 +176,7 @@ function Dashboard() {
           meanvalue={dealsInfo?.meanValue}
           totalvalue={dealsInfo?.totalValue}
           totaldeals={dealsInfo?.totalDeals}
+          meandays={dealsInfo?.meanDays}
         />
       )}
       {conversionRateInfo && (

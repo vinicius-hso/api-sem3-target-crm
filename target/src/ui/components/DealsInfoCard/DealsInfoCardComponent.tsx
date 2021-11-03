@@ -10,6 +10,7 @@ interface DealsInfoCardProps {
   meanvalue: string,
   totalvalue: string,
   totaldeals: string,
+  meandays: string
 }
 
 const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
@@ -54,6 +55,14 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
 
               <Typography color="textPrimary" variant="h5">
                 {props.totaldeals}
+              </Typography>
+
+              <Typography color="textSecondary" gutterBottom variant="body1">
+                TEMPO MÉDIO (dias)
+              </Typography>
+
+              <Typography color="textPrimary" variant="h5">
+                {props.meandays}
               </Typography>
             </Grid>
           </Grid>
