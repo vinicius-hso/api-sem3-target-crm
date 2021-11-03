@@ -4,6 +4,8 @@ import CompanyService from "data/services/CompanyService";
 import { formatValue } from "../../../utils/formatValue";
 import { DealsInfoCardTypes } from "../../../../types/DealsInfoCard";
 import { ConversionRateInfoCardTypes } from "../../../../types/ConversionRateInfoCard";
+import moment from "moment";
+
 
 export const useDashboardPage = () => {
   const [dealsByCompany, setDealsByCompany] = useState([]);
@@ -89,21 +91,39 @@ export const useDashboardPage = () => {
   };
 
   const getDealsInfo = async () => {
-    const allDeals = await DealsService.getAllDeals();
-    // console.log(allDeals);
-    let totalDeals = allDeals.length;
 
+    function diffDays(endDate: Date, startDate: Date) {
+      let diff = moment(startDate, "YYYY-MM-DDTHH:mm:ssZ").diff(moment(endDate, "YYYY-MM-DDTHH:mm:ssZ"));
+      let days = moment.duration(diff).asDays()
+      return days;
+    }
+
+    const allDeals = await DealsService.getAllDeals();
+    
+    let totalDeals = allDeals.length;
+    let totalDays = 0;
+    let totalWons = 0;
     let totalValue = 0;
+
     allDeals.map((d) => {
       totalValue += d.value;
+      if (d.status === "WON") {
+        totalWons += 1;
+        totalDays += diffDays(d.updatedAt, d.createdAt);
+      }
     });
 
+    let meanDays = totalDays/totalWons;
+    if (meanDays < 0) {
+      meanDays = meanDays * -1;
+    }
     let meanValue = totalValue / totalDeals;
 
     setDealsInfo({
       meanValue: formatValue(meanValue.toFixed(2).toString()),
       totalValue: formatValue(totalValue.toFixed(2).toString()),
       totalDeals: totalDeals.toString(),
+      meanDays: meanDays.toFixed(2).toString(),
     });
   };
 
