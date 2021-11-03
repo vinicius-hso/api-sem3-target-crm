@@ -45,6 +45,7 @@ export const DatePickerContainer = styled("div")`
   .inputDateGroup {
     display: flex;
     gap: ${({ theme }) => theme.spacing(2)};
+    align-items: center;
 
     ${({ theme }) => theme.breakpoints.down("md")} {
       flex-direction: column;

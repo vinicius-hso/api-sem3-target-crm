@@ -6,7 +6,6 @@ import { DealsInfoCardTypes } from "../../../../types/DealsInfoCard";
 import { ConversionRateInfoCardTypes } from "../../../../types/ConversionRateInfoCard";
 import moment from "moment";
 
-
 export const useDashboardPage = () => {
   const [dealsByCompany, setDealsByCompany] = useState([]);
   const [deals, setDeals] = useState([]);
@@ -19,10 +18,9 @@ export const useDashboardPage = () => {
   );
   const [conversionRateInfo, setConversionRateInfo] =
     useState<ConversionRateInfoCardTypes>({} as ConversionRateInfoCardTypes);
-
-  const getData = async (startDate?: Date, endDate?: Date) => {
+  const getData = async (startDate?: Date) => {
     let query = "";
-    if (startDate && endDate) {
+    if (startDate) {
       query = `&createdAt__gte=${startDate.toISOString()}`;
     }
 
@@ -95,15 +93,16 @@ export const useDashboardPage = () => {
   };
 
   const getDealsInfo = async () => {
-
     function diffDays(endDate: Date, startDate: Date) {
-      let diff = moment(startDate, "YYYY-MM-DDTHH:mm:ssZ").diff(moment(endDate, "YYYY-MM-DDTHH:mm:ssZ"));
-      let days = moment.duration(diff).asDays()
+      let diff = moment(startDate, "YYYY-MM-DDTHH:mm:ssZ").diff(
+        moment(endDate, "YYYY-MM-DDTHH:mm:ssZ")
+      );
+      let days = moment.duration(diff).asDays();
       return days;
     }
 
     const allDeals = await DealsService.getAllDeals();
-    
+
     let totalDeals = allDeals.length;
     let totalDays = 0;
     let totalWons = 0;
@@ -117,7 +116,7 @@ export const useDashboardPage = () => {
       }
     });
 
-    let meanDays = totalDays/totalWons;
+    let meanDays = totalDays / totalWons;
     if (meanDays < 0) {
       meanDays = meanDays * -1;
     }

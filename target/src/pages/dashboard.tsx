@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ToggleButton, ToggleButtonGroup } from "@material-ui/core";
+import { Button, ToggleButton, ToggleButtonGroup } from "@material-ui/core";
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
+import { DynamicPieCharts } from "data/services/servicesComponents/DynamicPieCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import {
   ChartsContainer,
@@ -22,6 +23,10 @@ interface BarChartsProps {
 
 function Dashboard() {
   const {
+    wonDeals,
+    lostDeals,
+    inProgressDeals,
+    archivedDeals,
     dealsInfo,
     getDealsInfo,
     conversionRateInfo,
@@ -32,8 +37,8 @@ function Dashboard() {
 
   const [filterType, setFilterType] = useState<{
     chartType: string;
-    valueType: boolean;
-  }>({ chartType: "Empresa", valueType: false });
+    valueType: string;
+  }>({ chartType: "Empresa", valueType: "quantidade" });
 
   const [filterDate, setFilterDate] = useState<{
     startDate: string;
@@ -60,48 +65,49 @@ function Dashboard() {
     getData();
   }, []);
 
-  const getChartData = (chartType: string, valueType: boolean) => {
+  const getChartData = (chartType: string, valueType: string) => {
     const data = formatArray(deals, chartType);
     setChartsData({
-      title: `${chartType} X ${valueType ? "Valor" : "Quantidade"}`,
+      title: `${chartType} X ${valueType}`,
       xaxis: data?.dataNames,
       series: [
         {
           name: "GANHAS",
-          data: valueType ? data?.dataValues?.wonValue : data?.dataLength?.won,
+          data:
+            valueType === "valor"
+              ? data?.dataValues?.wonValue
+              : data?.dataLength?.won,
         },
         {
           name: "EM ANDAMENTO",
-          data: valueType
-            ? data?.dataValues?.inProgressValue
-            : data?.dataLength?.inProgress,
+          data:
+            valueType === "valor"
+              ? data?.dataValues?.inProgressValue
+              : data?.dataLength?.inProgress,
         },
         {
           name: "PERDIDAS",
-          data: valueType
-            ? data?.dataValues?.lostValue
-            : data?.dataLength?.lost,
+          data:
+            valueType === "valor"
+              ? data?.dataValues?.lostValue
+              : data?.dataLength?.lost,
         },
       ],
     });
   };
 
   useEffect(() => {
-    getChartData("Empresa", true);
+    getChartData("Empresa", "quantidade");
   }, [deals]);
 
-  useEffect(() => {
+  const setFilter = () => {
     if (filterDate?.startDate) {
       const startDate = filterDate?.startDate
         ? new Date(filterDate?.startDate)
-        : new Date(Date.now());
-      const endDate = filterDate?.endDate
-        ? new Date(filterDate?.endDate)
-        : new Date(Date.now());
-
-      getData(startDate, endDate);
+        : new Date("1900-11-11");
+      getData(startDate);
     }
-  }, [filterDate?.startDate, filterDate?.endDate]);
+  };
 
   return (
     <DashboardPageContainer>
@@ -112,6 +118,7 @@ function Dashboard() {
           <p> Personalize o grafico</p>
           <div className="buttonEditChart">
             <ToggleButtonGroup
+              color="primary"
               value={filterType.chartType}
               exclusive
               onChange={(event, newValue) => {
@@ -131,8 +138,8 @@ function Dashboard() {
                 getChartData(filterType.chartType, newValue);
               }}
             >
-              <ToggleButton value={false}>Quantidade</ToggleButton>
-              <ToggleButton value={true}>Valor</ToggleButton>
+              <ToggleButton value={"quantidade"}>Quantidade</ToggleButton>
+              <ToggleButton value={"valor"}>Valor</ToggleButton>
             </ToggleButtonGroup>
           </div>
           <div className="inputDateGroup">
@@ -146,21 +153,17 @@ function Dashboard() {
                 setFilterDate({ ...filterDate, startDate: event.target.value });
               }}
               focused
-              label="Data inicial"
+              label="A partir de:"
             />
-            {/*             <TextFieldMask
-              id="outlined-basic"
-              variant="standard"
+            <Button
+              onClick={setFilter}
+              variant="contained"
+              color="primary"
               size="small"
-              type="date"
-              label="Data final"
-              value={filterDate.endDate}
-              onChange={(event) => {
-                setFilterDate({ ...filterDate, endDate: event.target.value });
-              }}
-              focused
-            />
- */}{" "}
+              sx={{ height: "40px" }}
+            >
+              Filtrar data
+            </Button>
           </div>
         </DatePickerContainer>
       </DashboardHeaderContainer>
@@ -171,6 +174,14 @@ function Dashboard() {
           xaxis={chartData.xaxis}
         />
       </ChartsContainer>
+      <DynamicPieCharts
+        series={[
+          wonDeals.length,
+          lostDeals.length,
+          inProgressDeals.length,
+          archivedDeals.length,
+        ]}
+      />
       {dealsInfo && (
         <DealsInfoCard
           meanvalue={dealsInfo?.meanValue}
