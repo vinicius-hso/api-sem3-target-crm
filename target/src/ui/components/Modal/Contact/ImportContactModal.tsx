@@ -32,8 +32,6 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
 
   const [importedContacts, setImportedContacts] = useState<any[]>([]);
 
-  console.log(companies);
-
   const ReadDocument = async (file) => {
     let contacts = [];
     if (file) {
@@ -51,7 +49,6 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
         });
       });
       setImportedContacts(contacts);
-      console.log(contacts);
     }
   };
 

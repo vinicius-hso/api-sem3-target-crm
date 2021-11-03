@@ -12,7 +12,7 @@ export const useContactPage = () => {
   const [formatContactThisCompanyToSelect, setFormatThisCompany] = useState([]);
 
   useEffect(() => {
-    if(!contacts.length) {
+    if (!contacts.length) {
       getData();
     }
   }, []);
@@ -28,7 +28,7 @@ export const useContactPage = () => {
   const formatListThisCompanyToSelect = (companyId): any => {
     const formatedContacts = [];
     contacts.forEach((contact) => {
-      if (companyId === contact.company.id) {
+      if (companyId === contact.company?.id) {
         formatedContacts.push(contact);
       }
     });

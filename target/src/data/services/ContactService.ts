@@ -7,7 +7,7 @@ import { serviceApi as api } from "./ServiceApi";
 class ContactService {
   async getContacts() {
     try {
-      const { data } = await api.get("/contact");
+      const { data } = await api.get("/contact?with=company");
 
       return data;
     } catch (error) {
@@ -84,9 +84,9 @@ class ContactService {
     };
 
     try {
-      const { data } = await api.put(`/contact/${id}`, body);
+      const { data } = await api.put(`/contact/${id}?with=company`, body);
 
-      return data.message;
+      return data;
     } catch (error) {
       return error.message;
     }
