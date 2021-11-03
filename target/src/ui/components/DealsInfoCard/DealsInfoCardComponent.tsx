@@ -16,12 +16,12 @@ interface DealsInfoCardProps {
 const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
 
   return (
-    <Container sx={{ justifyContent: "center" }}>
+    <Container sx={{ justifyContent: "center",  m: 3 }}>
       <Card
         sx={{
-          height: "100%",
+          height: "auto",
           backgroundColor: "",
-          maxWidth: 300,
+          minWidth: 300,
           boxShadow: "0 0 10px 3px rgba(0, 0, 0, .1)",
         }}
         {...props}
@@ -33,7 +33,7 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
                 NEGOCIAÇÕES
               </Typography>
 
-              <Typography color="textSecondary" variant="body1">
+              <Typography color="textSecondary" variant="body2">
                 VALOR MÉDIO
               </Typography>
 
@@ -41,7 +41,7 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
                 {props.meanvalue}
               </Typography>
 
-              <Typography color="textSecondary" variant="body1">
+              <Typography color="textSecondary" variant="body2">
                 VALOR TOTAL
               </Typography>
 
@@ -49,7 +49,7 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
                 {props.totalvalue}
               </Typography>
 
-              <Typography color="textSecondary" gutterBottom variant="body1">
+              <Typography color="textSecondary" gutterBottom variant="body2">
                 TOTAL DE NEGOCIAÇÕES
               </Typography>
 
@@ -57,7 +57,7 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
                 {props.totaldeals}
               </Typography>
 
-              <Typography color="textSecondary" gutterBottom variant="body1">
+              <Typography color="textSecondary" gutterBottom variant="body2">
                 TEMPO MÉDIO (dias)
               </Typography>
 
