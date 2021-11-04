@@ -26,27 +26,27 @@ const formatToCompany = (array: any[]) => {
           switch (deal.status) {
             case "WON":
               won += 1;
-              wonValue += deal?.value;
+              wonValue += deal?.value / 100;
               break;
             case "LOST":
               lost += 1;
-              lostValue += deal?.value;
+              lostValue += deal?.value / 100;
 
               break;
             case "INPROGRESS":
               inProgress += 1;
-              inProgressValue += deal?.value;
+              inProgressValue += deal?.value / 100;
 
               break;
           }
         }
       });
-      dataValues.wonValue.push(wonValue);
-      dataValues.lostValue.push(lostValue);
-      dataValues.inProgressValue.push(inProgressValue);
-      dataLength.won.push(won);
-      dataLength.lost.push(lost);
-      dataLength.inProgress.push(inProgress);
+      dataValues?.wonValue.push(parseFloat(wonValue?.toFixed(2)));
+      dataValues?.lostValue.push(parseFloat(lostValue?.toFixed(0)));
+      dataValues?.inProgressValue.push(parseFloat(inProgressValue?.toFixed(0)));
+      dataLength?.won.push(won);
+      dataLength?.lost.push(lost);
+      dataLength?.inProgress.push(inProgress);
     } else {
     }
   });
@@ -70,32 +70,33 @@ const formatToSealer = (array: any[]) => {
       dataNames.push(element?.activity[0]?.createdBy?.name);
       array.map((deal) => {
         if (
-          deal?.activity[0]?.createdBy?.name === element?.activity[0]?.createdBy?.name
+          deal.activity[0].createdBy?.name ===
+          element?.activity[0]?.createdBy?.name
         ) {
           switch (deal?.status) {
             case "WON":
               won += 1;
-              wonValue += deal?.value;
+              wonValue += deal?.value / 100;
               break;
             case "LOST":
               lost += 1;
-              lostValue += deal?.value;
+              lostValue += deal?.value / 100;
 
               break;
             case "INPROGRESS":
               inProgress += 1;
-              inProgressValue += deal?.value;
+              inProgressValue += deal?.value / 100;
 
               break;
           }
         }
       });
-      dataValues.wonValue.push(wonValue);
-      dataValues.lostValue.push(lostValue);
-      dataValues.inProgressValue.push(inProgressValue);
-      dataLength.won.push(won);
-      dataLength.lost.push(lost);
-      dataLength.inProgress.push(inProgress);
+      dataValues?.wonValue.push(parseFloat(wonValue?.toFixed(2)));
+      dataValues?.lostValue.push(parseFloat(lostValue?.toFixed(0)));
+      dataValues?.inProgressValue.push(parseFloat(inProgressValue?.toFixed(0)));
+      dataLength?.won.push(won);
+      dataLength?.lost.push(lost);
+      dataLength?.inProgress.push(inProgress);
     } else {
     }
   });
