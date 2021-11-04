@@ -17,6 +17,7 @@ import ContactService from "data/services/ContactService";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 import CompanyService from "data/services/CompanyService";
+import { formatPhone } from "data/utils/formatPhone";
 
 const CreateContactModal = () => {
   const { createContactModal, useCreateContactModal, getContacts } =
@@ -31,7 +32,7 @@ const CreateContactModal = () => {
     state: "null",
     city: "",
     email: "",
-    phone: "12000000000",
+    phone: "",
     tag: "null",
   });
 
@@ -58,7 +59,7 @@ const CreateContactModal = () => {
           tag: data?.tag,
         });
 
-        await getContacts()
+        await getContacts();
 
         useCreateContactModal();
       }
@@ -72,14 +73,14 @@ const CreateContactModal = () => {
   }, []);
 
   const getCompanies = async () => {
-    const companies = await CompanyService.getCompanies()
+    const companies = await CompanyService.getCompanies();
 
-    setCompanies(companies)
-  }
+    setCompanies(companies);
+  };
 
   useEffect(() => {
-    getCompanies()
-  }, [])
+    getCompanies();
+  }, []);
 
   const body = (
     <ModalContainer>
@@ -112,15 +113,14 @@ const CreateContactModal = () => {
         variant="standard"
         fullWidth
       >
-        <MenuItem value={"null"} disabled>Selecione a Empresa</MenuItem>
-        {
-          companies?.map((company) => (
-            <MenuItem value={company.id} key={company.id}>
-              {company.name}
-            </MenuItem>
-          ))
-        }
-
+        <MenuItem value={"null"} disabled>
+          Selecione a Empresa
+        </MenuItem>
+        {companies?.map((company) => (
+          <MenuItem value={company.id} key={company.id}>
+            {company.name}
+          </MenuItem>
+        ))}
       </Select>
 
       <TextFieldMask
@@ -135,7 +135,7 @@ const CreateContactModal = () => {
       <TwoColumnsContainer>
         <TextFieldMask
           onChange={(event) => setData({ ...data, phone: event.target.value })}
-          value={data.phone}
+          value={formatPhone(data.phone)}
           label="Telefone"
           variant="standard"
           size="small"
@@ -149,7 +149,9 @@ const CreateContactModal = () => {
           variant="standard"
           fullWidth
         >
-          <MenuItem value={"null"} disabled>Selecione a Tag</MenuItem>
+          <MenuItem value={"null"} disabled>
+            Selecione a Tag
+          </MenuItem>
           <MenuItem value={"COLD"}>Fria</MenuItem>
           <MenuItem value={"WARM"}>Morna</MenuItem>
           <MenuItem value={"HOT"}>Quente</MenuItem>
@@ -173,13 +175,15 @@ const CreateContactModal = () => {
           variant="standard"
           fullWidth
         >
-          <MenuItem value={"null"} disabled>Selecione o estado...</MenuItem>
+          <MenuItem value={"null"} disabled>
+            Selecione o estado...
+          </MenuItem>
           {states.length > 0
             ? states.map((state) => (
-              <MenuItem key={state.id} value={state.sigla}>
-                {state.sigla}
-              </MenuItem>
-            ))
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
             : null}
         </Select>
       </TwoColumnsContainer>
