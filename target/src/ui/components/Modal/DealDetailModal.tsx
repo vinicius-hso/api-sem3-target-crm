@@ -67,6 +67,7 @@ const DetailModal: React.FC = () => {
   };
 
   const handleSubmitEdit = (data) => {
+    data.value = data.value.replace(/\D+/g, "");
     editDeal(dealDetail.id, data);
     setHasEdit(false);
   };

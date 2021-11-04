@@ -6,7 +6,6 @@ import { DroppableStyles, ColumnContainer } from "./DealCard.style";
 import Title from "ui/components/Title/Title";
 import { Button, ButtonGroup, Typography } from "@material-ui/core";
 import PipelineContext from "contexts/PipelineContext";
-import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 import { formatValue } from "../../../../data/utils/formatValue";
 
 const DealCardList = (props) => {
@@ -49,7 +48,7 @@ const DealCardList = (props) => {
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
               onClick={() => {
                 setSelectedPipeline(props.pipeId);
-                useCreateDealModal();
+                useCreateDealModal(props.pipeId);
                 setViewButtonGroup(!viewButtonGroup);
               }}
             >

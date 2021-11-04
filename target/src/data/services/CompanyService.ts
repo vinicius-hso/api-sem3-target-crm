@@ -3,8 +3,13 @@ import { toast } from "react-toastify";
 import { CompanyTypes } from "types/Company";
 import { serviceApi as api } from "./ServiceApi";
 
+interface IResponse{
+  status: string;
+  message: string;
+  titulo: string;
+}
+
 class CompanyService {
-  private headers: object;
   async getCompanies(): Promise<CompanyTypes[]> {
     try {
       const { data } = await api.get("/company", {
@@ -33,15 +38,15 @@ class CompanyService {
     }
   }
 
-  async createCompany(data: CompanyTypes) {
+  async createCompany(data: CompanyTypes): Promise<string> {
     try {
-      const response = await api.post("/cofWmpany", data, {
+      const response = await api.post("/company", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
         },
       });
       toast.success("Empresa Criada com sucesso!");
-      return response;
+      return response.data.id;
     } catch (error) {
       toast.error(
         "Ops! algo deu errado, verifique sua conexão e tente novamente."
@@ -50,14 +55,13 @@ class CompanyService {
     }
   }
 
-  async editCompany(companyId, company) {
+  async editCompany(companyId: string, company): Promise<IResponse> {
     try {
       await api.put(`/company/${companyId}`, company, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
         },
       });
-      toast.success("Empresa editada com sucesso!");
       return {
         status: "success",
         message: "Empresa editada com sucesso!",
@@ -73,15 +77,19 @@ class CompanyService {
     }
   }
 
-  async deleteCompany(companyId) {
+  async deleteCompany(companyId: string): Promise<string> {
     try {
       const { data } = await api.delete(`/company/${companyId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
         },
       });
-      return data;
+      toast.success("Empresa deletada com sucesso!");
+      return "success";
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }

@@ -9,7 +9,7 @@ import {
 import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
@@ -17,8 +17,14 @@ import DeleteCompanyModal from "ui/components/Modal/Company/DeleteCompanyModal";
 import { CompanyTypes } from "types/Company";
 
 function CompanyPage() {
-  const { companies, filteredCompany, removeFiltered, getData } =
-    useCompanyPage();
+  const {
+    companies,
+    filteredCompany,
+    removeFiltered,
+    getData,
+    hasError,
+    isLoading,
+  } = useCompanyPage();
 
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
@@ -116,20 +122,30 @@ function CompanyPage() {
       </NewCompanyButtonContainer>
 
       <CardsContainer>
-        {companies.map((company) => (
-          <CompanyCard
-            key={company.id}
-            name={company.name}
-            city={company.city}
-            state={company.state}
-            email={company.site}
-            picture={company.picture}
-            onClick={() => {
-              setSelectedCompany(company);
-              setOpenDetailCompanyModal(true);
-            }}
-          />
-        ))}
+        {isLoading ? (
+          <div style={{ textAlign: "center" }}>
+            <CircularProgress />
+          </div>
+        ) : !isLoading && hasError ? (
+          <div>{hasError}</div>
+        ) : (
+          <div>
+            {companies.map((company) => (
+              <CompanyCard
+                key={company.id}
+                name={company.name}
+                city={company.city}
+                state={company.state}
+                email={company.site}
+                picture={company.picture}
+                onClick={() => {
+                  setSelectedCompany(company);
+                  setOpenDetailCompanyModal(true);
+                }}
+              />
+            ))}
+          </div>
+        )}
       </CardsContainer>
     </CompanyPageContainer>
   );

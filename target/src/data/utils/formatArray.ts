@@ -12,7 +12,7 @@ const formatToCompany = (array: any[]) => {
   const dataValues = { wonValue: [], lostValue: [], inProgressValue: [] };
   const dataLength = { won: [], lost: [], inProgress: [] };
   array.map((element) => {
-    const verify = dataNames.find((c) => c === element.company.name);
+    const verify = dataNames.find((c) => c === element?.company?.name);
     let won = 0;
     let lost = 0;
     let inProgress = 0;
@@ -20,22 +20,22 @@ const formatToCompany = (array: any[]) => {
     let lostValue = 0;
     let inProgressValue = 0;
     if (!verify) {
-      dataNames.push(element.company.name);
+      dataNames.push(element?.company?.name);
       array.map((deal) => {
-        if (deal.company.name === element.company.name) {
+        if (deal?.company?.name === element?.company?.name) {
           switch (deal.status) {
             case "WON":
               won += 1;
-              wonValue += deal.value;
+              wonValue += deal?.value;
               break;
             case "LOST":
               lost += 1;
-              lostValue += deal.value;
+              lostValue += deal?.value;
 
               break;
             case "INPROGRESS":
               inProgress += 1;
-              inProgressValue += deal.value;
+              inProgressValue += deal?.value;
 
               break;
           }
@@ -58,7 +58,7 @@ const formatToSealer = (array: any[]) => {
   const dataValues = { wonValue: [], lostValue: [], inProgressValue: [] };
   const dataLength = { won: [], lost: [], inProgress: [] };
   array.map((element) => {
-    const verify = dataNames.find((c) => c === element.company.name);
+    const verify = dataNames.find((c) => c === element?.company?.name);
     let won = 0;
     let lost = 0;
     let inProgress = 0;
@@ -67,24 +67,24 @@ const formatToSealer = (array: any[]) => {
     let inProgressValue = 0;
 
     if (!verify) {
-      dataNames.push(element.activity[0].createdBy.name);
+      dataNames.push(element?.activity[0]?.createdBy?.name);
       array.map((deal) => {
         if (
-          deal.activity[0].createdBy.name === element.activity[0].createdBy.name
+          deal?.activity[0]?.createdBy?.name === element?.activity[0]?.createdBy?.name
         ) {
-          switch (deal.status) {
+          switch (deal?.status) {
             case "WON":
               won += 1;
-              wonValue += deal.value;
+              wonValue += deal?.value;
               break;
             case "LOST":
               lost += 1;
-              lostValue += deal.value;
+              lostValue += deal?.value;
 
               break;
             case "INPROGRESS":
               inProgress += 1;
-              inProgressValue += deal.value;
+              inProgressValue += deal?.value;
 
               break;
           }

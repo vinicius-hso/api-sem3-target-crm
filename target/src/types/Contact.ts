@@ -28,4 +28,6 @@ export interface IContactContext {
   deleteContactModal: boolean;
   contacts: IContact[];
   getContacts: () => Promise<void>;
+  isLoading: boolean;
+  hasError: string;
 }

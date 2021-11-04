@@ -10,6 +10,8 @@ export const useCompanyPage = () => {
   const [createCompanyModalState, setCreateCompanyModalState] =
     useState<boolean>(false);
   const [companyDetail, setCompanyDetail] = useState<CompanyTypes>({});
+  const [hasError, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!companies.length) {
@@ -26,10 +28,19 @@ export const useCompanyPage = () => {
   };
 
   const getData = async () => {
-    const response = await CompanyService.getCompanies();
-    setCompanies(response);
-    setFilteredCompanies(response);
-    formatListToSelect(response);
+    setLoading(true);
+    try {
+      const response = await CompanyService.getCompanies();
+      setCompanies(response);
+      setFilteredCompanies(response);
+      formatListToSelect(response);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setError(
+        "Não foi possivel buscar empresas, verifique sua conexão e tente novamente"
+      );
+    }
   };
 
   const filteredCompany = async (terms: string, typeValue: string) => {
@@ -91,5 +102,7 @@ export const useCompanyPage = () => {
     companyDetail,
     deleteCompany,
     getData,
+    hasError,
+    isLoading,
   };
 };

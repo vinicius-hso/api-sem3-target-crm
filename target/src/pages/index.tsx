@@ -23,9 +23,14 @@ import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { DynamicPiline } from "data/services/servicesComponents/DynamicPipelines";
 
 function DealPipeline() {
-  const { hasError, isLoading } = usePipelineComponent();
-  const { dealTotalParams, filterDeals, removefilterDeals } =
-    useContext(PipelineContext);
+  const {
+    hasError,
+    isLoading,
+    dealTotalParams,
+    filterDeals,
+    removefilterDeals,
+  } = useContext(PipelineContext);
+
   const [valueType, setValueType] = React.useState("name");
   const [searchTerm, setSearchTerm] = React.useState("");
   const [selectListValues, setSelectListValues] = React.useState([]);
@@ -80,6 +85,7 @@ function DealPipeline() {
       <CreateModal />
       <CreateDealModal />
       <DetailModal />
+
       <DealsHeaderContainer>
         <TitleHeaderContainer>
           <Title
@@ -93,14 +99,14 @@ function DealPipeline() {
                 }}
               >
                 <Typography>
-                  {formatValue(dealTotalParams.budgetSum)}
+                  {formatValue(dealTotalParams?.budgetSum)}
                 </Typography>
                 <i
                   className="fa fa-arrow-right"
                   style={{ position: "relative", top: "2px" }}
                 ></i>
                 <Typography>
-                  {dealTotalParams.totalDeals} negociações
+                  {dealTotalParams?.totalDeals} negociações
                 </Typography>
               </div>
             }
@@ -108,15 +114,15 @@ function DealPipeline() {
           <DealsTotalTagsContainer>
             <div>
               <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
-              <span> {dealTotalParams.hotDeals}</span>
+              <span> {dealTotalParams?.hotDeals}</span>
             </div>
             <div>
               <i className="fa fa-bolt" style={{ color: "#effa5c" }}></i>
-              <span> {dealTotalParams.warmDeals}</span>
+              <span> {dealTotalParams?.warmDeals}</span>
             </div>
             <div>
               <i className="fa fa-snowflake-o" style={{ color: "#3eccf0" }}></i>
-              <span> {dealTotalParams.coldDeals}</span>
+              <span> {dealTotalParams?.coldDeals}</span>
             </div>
           </DealsTotalTagsContainer>
         </TitleHeaderContainer>
@@ -152,7 +158,9 @@ function DealPipeline() {
         ) : !isLoading && hasError ? (
           <div>{hasError}</div>
         ) : (
-          <DynamicPiline />
+          <>
+            <DynamicPiline />
+          </>
         )}
       </PipelinesContainer>
     </DealsPageContainer>

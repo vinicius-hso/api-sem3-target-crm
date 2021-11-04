@@ -124,8 +124,8 @@ export const useDashboardPage = () => {
     let meanValue = totalValue / totalDeals;
 
     setDealsInfo({
-      meanValue: formatValue(meanValue.toFixed(2).toString()),
-      totalValue: formatValue(totalValue.toFixed(2).toString()),
+      meanValue: formatValue(meanValue),
+      totalValue: formatValue(totalValue),
       totalDeals: totalDeals.toString(),
       meanDays: meanDays.toFixed(2).toString(),
     });

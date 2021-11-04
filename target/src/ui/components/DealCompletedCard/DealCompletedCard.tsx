@@ -60,9 +60,7 @@ const DealCompletedCard: React.FC<DealCardProps> = (props) => {
         <DealTitleStyled>{props.title}</DealTitleStyled>
         <DealTypeStyled>{props.contactName}</DealTypeStyled>
         <DealFooterContainer>
-          <DealBudgetStyled>
-            {formatValue(props.budget?.toString() || "0")}
-          </DealBudgetStyled>
+          <DealBudgetStyled>{formatValue(props.budget || 0)}</DealBudgetStyled>
           <DealStartDateStyled>
             <Icon className="fa fa-calendar" fontSize="inherit" />
             {moment(props.startDate).format(" DD/MM/YYYY HH:MM")}

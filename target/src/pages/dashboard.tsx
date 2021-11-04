@@ -176,10 +176,10 @@ function Dashboard() {
       </ChartsContainer>
       <DynamicPieCharts
         series={[
-          wonDeals.length,
-          lostDeals.length,
-          inProgressDeals.length,
-          archivedDeals.length,
+          wonDeals.length || 0,
+          lostDeals.length || 0,
+          inProgressDeals.length || 0,
+          archivedDeals.length || 0,
         ]}
       />
       <br />

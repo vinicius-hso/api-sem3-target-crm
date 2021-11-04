@@ -1,6 +1,7 @@
 import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { formatCurrency } from "data/utils/formatValue";
 import React, { useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import {
@@ -29,7 +30,7 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
   const [selectedContact, setSelectedContact] = useState(props.contact);
   const [selectedCompany, setSelectedCompany] = useState(props.company);
   const [isInitialValue, setInitialValue] = useState(true);
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState(formatCurrency(props.value));
   const [name, setName] = useState(props.name);
   const [error, setError] = useState(false);
 
@@ -183,7 +184,7 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             value={value}
-            onChange={(event) => setValue(event.target.value)}
+            onChange={(event) => setValue(formatCurrency(event.target.value))}
           />
         </InputContainer>
         <InputContainer>

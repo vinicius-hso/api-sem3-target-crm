@@ -40,15 +40,15 @@ const CreateDealModal = () => {
     value: "",
     tag: "WARM",
   });
+
   useEffect(() => {
-    if (selectedPipeline.length) {
+    if (selectedPipeline) {
       setData({ ...data, pipeline: selectedPipeline });
     }
   }, [selectedPipeline]);
 
   async function handleSubmit() {
-    data.value = formatValueToSave(data.value);
-    data.value = Number(data.value);
+    data.value = data.value.replace(/\D+/g, "");
     createDeal(data);
   }
 
