@@ -35,7 +35,7 @@ class CompanyService {
 
   async createCompany(data: CompanyTypes) {
     try {
-      const response = await api.post("/cofWmpany", data, {
+      const response = await api.post("/company", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
         },
