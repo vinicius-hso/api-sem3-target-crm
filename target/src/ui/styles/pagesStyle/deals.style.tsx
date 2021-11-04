@@ -29,7 +29,7 @@ export const TitleHeaderContainer = styled("div")`
 export const DealsTotalTagsContainer = styled("div")`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: 120px;
+  width: 160px;
   margin: 0 auto;
   gap: 8px;
   color: ${({ theme }) => theme.palette.text.primary};

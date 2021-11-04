@@ -47,6 +47,7 @@ const mocks = async (): Promise<void> => {
     }
 
     const contactFind = await Contact.find();
+    const userFind = await User.find();
     const pipelineFind = await Pipeline.find();
     if (
       !(await Deal.findOne({ name: 'Gynamedic' })) &&
@@ -65,7 +66,7 @@ const mocks = async (): Promise<void> => {
               name: 'teste',
               description: 'testando',
               createdAt: new Date(),
-              createdBy: { id: contactFind[index].id, name: contactFind[index].name },
+              createdBy: { id: userFind[index].id, name: userFind[index].name },
               tag: 'COLD',
             },
           ],
@@ -84,7 +85,7 @@ const mocks = async (): Promise<void> => {
               name: 'teste',
               description: 'testando',
               createdAt: new Date(),
-              createdBy: { id: contactFind[index].id, name: contactFind[index].name },
+              createdBy: { id: userFind[index].id, name: userFind[index].name },
               tag: 'COLD',
             },
           ],
@@ -103,7 +104,7 @@ const mocks = async (): Promise<void> => {
               name: 'teste',
               description: 'testando',
               createdAt: new Date(),
-              createdBy: { id: contactFind[index].id, name: contactFind[index].name },
+              createdBy: { id: userFind[index].id, name: userFind[index].name },
               tag: 'COLD',
             },
           ],
@@ -122,7 +123,7 @@ const mocks = async (): Promise<void> => {
               name: 'teste',
               description: 'testando',
               createdAt: new Date(),
-              createdBy: { id: contactFind[index].id, name: contactFind[index].name },
+              createdBy: { id: userFind[index].id, name: userFind[index].name },
               tag: 'COLD',
             },
           ],
