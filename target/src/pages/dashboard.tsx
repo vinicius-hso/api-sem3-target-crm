@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, ToggleButton, ToggleButtonGroup, Box } from '@material-ui/core';
+import {
+  Button,
+  ToggleButton,
+  ToggleButtonGroup,
+  Box,
+} from "@material-ui/core";
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
 import { DynamicPieCharts } from "data/services/servicesComponents/DynamicPieCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
@@ -52,11 +57,11 @@ function Dashboard() {
   });
 
   useEffect(() => {
-    if (!dealsInfo.meanValue) {
+    if (!dealsInfo?.meanValue) {
       getDealsInfo();
     }
 
-    if (!conversionRateInfo.conversionRate) {
+    if (!conversionRateInfo?.conversionRate) {
       getConversionRateCardInfo();
     }
   }, []);
@@ -122,8 +127,10 @@ function Dashboard() {
               value={filterType.chartType}
               exclusive
               onChange={(event, newValue) => {
-                setFilterType({ ...filterType, chartType: newValue });
-                getChartData(newValue, filterType.valueType);
+                if (newValue) {
+                  setFilterType({ ...filterType, chartType: newValue });
+                  getChartData(newValue, filterType.valueType);
+                }
               }}
             >
               <ToggleButton value="Empresa">Empresas</ToggleButton>
@@ -131,11 +138,13 @@ function Dashboard() {
             </ToggleButtonGroup>
             <ToggleButtonGroup
               color="primary"
-              value={filterType.valueType}
+              value={filterType?.valueType}
               exclusive
               onChange={(event, newValue) => {
-                setFilterType({ ...filterType, valueType: newValue });
-                getChartData(filterType.chartType, newValue);
+                if (newValue) {
+                  setFilterType({ ...filterType, valueType: newValue });
+                  getChartData(filterType?.chartType, newValue);
+                }
               }}
             >
               <ToggleButton value={"quantidade"}>Quantidade</ToggleButton>
@@ -148,7 +157,7 @@ function Dashboard() {
               variant="standard"
               size="small"
               type="date"
-              value={filterDate.startDate}
+              value={filterDate?.startDate}
               onChange={(event) => {
                 setFilterDate({ ...filterDate, startDate: event.target.value });
               }}
@@ -169,50 +178,49 @@ function Dashboard() {
       </DashboardHeaderContainer>
       <ChartsContainer>
         <DynamicBarCharts
-          series={chartData.series}
-          title={chartData.title}
-          xaxis={chartData.xaxis}
+          series={chartData?.series}
+          title={chartData?.title}
+          xaxis={chartData?.xaxis}
         />
       </ChartsContainer>
       <DynamicPieCharts
         series={[
-          wonDeals.length,
-          lostDeals.length,
-          inProgressDeals.length,
-          archivedDeals.length,
+          wonDeals.length || 0,
+          lostDeals.length || 0,
+          inProgressDeals.length || 0,
+          archivedDeals.length || 0,
         ]}
       />
       <br />
-      
-        <Box sx={{
-          display: 'flex',
-          justifyContent: 'center',
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
           // flexWrap: 'wrap'
           // p: 1,
-          // m: -2,    
-        }}>
-        
-          {dealsInfo && (
-            <DealsInfoCard
-              meanvalue={dealsInfo?.meanValue}
-              totalvalue={dealsInfo?.totalValue}
-              totaldeals={dealsInfo?.totalDeals}
-              meandays={dealsInfo?.meanDays}
-            />
-          )}
+          // m: -2,
+        }}
+      >
+        {dealsInfo && (
+          <DealsInfoCard
+            meanvalue={dealsInfo?.meanValue}
+            totalvalue={dealsInfo?.totalValue}
+            totaldeals={dealsInfo?.totalDeals}
+            meandays={dealsInfo?.meanDays}
+          />
+        )}
 
-          {conversionRateInfo && (
-            <ConversionRateCard
-              conversionrate={conversionRateInfo.conversionRate}
-              totalwon={conversionRateInfo.totalWon}
-              totallost={conversionRateInfo.totalLost}
-              totalinprogress={conversionRateInfo.totalInProgress}
-              totalarchived={conversionRateInfo.totalArchived}
-            />
-          )}
-        
+        {conversionRateInfo && (
+          <ConversionRateCard
+            conversionrate={conversionRateInfo?.conversionRate}
+            totalwon={conversionRateInfo?.totalWon}
+            totallost={conversionRateInfo?.totalLost}
+            totalinprogress={conversionRateInfo?.totalInProgress}
+            totalarchived={conversionRateInfo?.totalArchived}
+          />
+        )}
       </Box>
-      
     </DashboardPageContainer>
   );
 }
