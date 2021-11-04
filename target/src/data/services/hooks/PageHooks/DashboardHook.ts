@@ -18,6 +18,7 @@ export const useDashboardPage = () => {
   );
   const [conversionRateInfo, setConversionRateInfo] =
     useState<ConversionRateInfoCardTypes>({} as ConversionRateInfoCardTypes);
+
   const getData = async (startDate?: Date) => {
     let query = "";
     if (startDate) {

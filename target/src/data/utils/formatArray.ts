@@ -58,7 +58,9 @@ const formatToSealer = (array: any[]) => {
   const dataValues = { wonValue: [], lostValue: [], inProgressValue: [] };
   const dataLength = { won: [], lost: [], inProgress: [] };
   array.map((element) => {
-    const verify = dataNames.find((c) => c === element?.company?.name);
+    const verify = dataNames.find(
+      (c) => c === element?.activity[0]?.createdBy?.name
+    );
     let won = 0;
     let lost = 0;
     let inProgress = 0;
