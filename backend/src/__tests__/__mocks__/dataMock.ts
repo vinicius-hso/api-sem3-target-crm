@@ -35,5 +35,17 @@ export const mocks = async (): Promise<any> => {
     name: 'Pipeline',
   }).save();
 
-  return { userSeller, otherUserSeller, userAdmin, pipeline };
+  // Contacts
+  const contact = await Contact.create({
+    id: '000',
+    name: 'Adriano Silveira',
+    email: 'adriano_silveira@gmail.com',
+    phone: '12987979532',
+    city: 'Rio de Janeiro',
+    state: 'RJ',
+    picture: 'https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_960_720.jpg',
+  }).save();
+
+
+  return { userSeller, otherUserSeller, userAdmin, pipeline, contact };
 };

@@ -21,7 +21,7 @@ class ContactController {
 
       return res.status(200).json(contacts);
     } catch (error) {
-      return res.status(400).json({ error: 'Find contact failed, try again' });
+      return res.status(404).json({ error: 'Find contact failed, try again' });
     }
   }
 
@@ -35,7 +35,7 @@ class ContactController {
 
       return res.status(200).json(contact);
     } catch (error) {
-      return res.status(400).json({ error: 'Find contact failed, try again' });
+      return res.status(404).json({ error: 'Find contact failed, try again' });
     }
   }
 
@@ -68,7 +68,7 @@ class ContactController {
       return res.status(201).json({ id: contact.id });
     } catch (error) {
       console.error(error);
-      return res.status(400).json({ error: 'Create contact failed, try again' });
+      return res.status(404).json({ error: 'Create contact failed, try again' });
     }
   }
 
@@ -77,11 +77,11 @@ class ContactController {
       const id = req.params.id;
       const { name, email, phone, city, state, company, picture }: ContactInterface = req.body;
 
-      if (!id) return res.status(400).json({ message: 'Please send contact id' });
+      if (!id) return res.status(404).json({ message: 'Please send contact id' });
 
       const contact = await Contact.findOne(id);
 
-      if (!contact) return res.status(400).json({ message: 'Cannot find contact' });
+      if (!contact) return res.status(404).json({ message: 'Cannot find contact' });
 
       const valuesToUpdate: ContactInterface = {
         name: name || contact.name,
@@ -97,7 +97,7 @@ class ContactController {
 
       return res.status(200).json();
     } catch (error) {
-      return res.status(400).json({ error: 'Update failed, try again' });
+      return res.status(404).json({ error: 'Update failed, try again' });
     }
   }
 
@@ -105,17 +105,17 @@ class ContactController {
     try {
       const id = req.params.id;
 
-      if (!id) return res.status(400).json({ message: 'Please send Contact id' });
+      if (!id) return res.status(404).json({ message: 'Please send Contact id' });
 
       const contact = await Contact.findOne(id);
 
-      if (!contact) return res.status(400).json({ message: 'Contact does not exist' });
+      if (!contact) return res.status(404).json({ message: 'Contact does not exist' });
 
       await Contact.softRemove(contact);
 
       return res.status(200).json();
     } catch (error) {
-      return res.status(400).json({ error: 'Cannot delete Contact, try again' });
+      return res.status(404).json({ error: 'Cannot delete Contact, try again' });
     }
   }
 }
