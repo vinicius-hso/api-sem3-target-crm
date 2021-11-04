@@ -200,4 +200,103 @@ const deals = [
   },
 ];
 
-export { companies, contacts, users, pipelines, deals };
+const deals2 = [
+  {
+    name: 'nMonitor',
+    deadline: new Date(),
+    priority: 'high',
+    value: 1597.10,
+  },
+  {
+    name: 'nCommand',
+    deadline: new Date(),
+    priority: 'high',
+    value: 2584.55,
+  },
+  {
+    name: 'nReport',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 2584.45,
+  },
+  {
+    name: 'nSensor',
+    deadline: new Date(),
+    priority: 'low',
+    value: 4181.14,
+  },
+  {
+    name: 'nEcho',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 6765.77,
+  },
+];
+
+const deals3 = [
+  {
+    name: 'nEcho',
+    deadline: new Date(),
+    priority: 'high',
+    value: 1597.10,
+  },
+  {
+    name: 'nSensor',
+    deadline: new Date(),
+    priority: 'high',
+    value: 2584.55,
+  },
+  {
+    name: 'nReport',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 2584.45,
+  },
+  {
+    name: 'nCommand',
+    deadline: new Date(),
+    priority: 'low',
+    value: 4181.14,
+  },
+  {
+    name: 'nMonitor',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 6765.77,
+  },
+];
+
+const deals4 = [
+  {
+    name: 'nEcho',
+    deadline: new Date(),
+    priority: 'low',
+    value: 1597.10,
+  },
+  {
+    name: 'nSensor',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 2584.55,
+  },
+  {
+    name: 'nReport',
+    deadline: new Date(),
+    priority: 'high',
+    value: 2584.45,
+  },
+  {
+    name: 'nCommand',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 4181.14,
+  },
+  {
+    name: 'nMonitor',
+    deadline: new Date(),
+    priority: 'low',
+    value: 6765.77,
+  },
+];
+
+export { companies, contacts, users, pipelines, deals, deals2, deals3, deals4 };

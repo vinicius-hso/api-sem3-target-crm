@@ -45,6 +45,7 @@ export const useDashboardPage = () => {
           archived.push(deal);
           break;
         default:
+          break;
       }
     });
     setWonDeals(won);
@@ -151,6 +152,8 @@ export const useDashboardPage = () => {
           break;
         case "ARCHIVED":
           totalArchived += 1;
+          break;
+        default:
           break;
       }
     });
