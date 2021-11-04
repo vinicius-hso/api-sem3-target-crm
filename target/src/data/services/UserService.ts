@@ -1,9 +1,13 @@
 import React from "react";
 import { IUser } from "types/User";
 import { serviceApi as api } from "./ServiceApi";
-import{toast}from "react-toastify"
+import { toast } from "react-toastify";
+interface IResponse {
+  status: string;
+  message: string;
+}
 class UserService {
-  async getUsers() {
+  async getUsers():Promise<IUser[]> {
     try {
       const { data } = await api.get("/user");
 
@@ -29,7 +33,7 @@ class UserService {
     }
   }
 
-  async createUser(data: IUser) {
+  async createUser(data: IUser): Promise<IUser> {
     try {
       const response = await api.post("/user", data);
 
@@ -43,13 +47,12 @@ class UserService {
     }
   }
 
-  async editUser(userId, user) {
+  async editUser(userId: string, user: IUser): Promise<IResponse> {
     try {
       await api.put(`/user/${userId}`, user);
-     
+
       return { status: "success", message: "Usuário editado com sucesso!" };
     } catch (error) {
-      
       return {
         status: "error",
         message:
@@ -58,13 +61,15 @@ class UserService {
     }
   }
 
-  async editUserPassword(userId, data) {
+  async editUserPassword(
+    userId: string,
+    data: { oldPassword: string; newPassword: string }
+  ): Promise<IResponse> {
     try {
       await api.put(`/user/update-password/${userId}`, data);
-  
+
       return { status: "success", message: "Senha editada com sucesso!" };
     } catch (error) {
-     
       return {
         status: "error",
         message:
@@ -73,7 +78,7 @@ class UserService {
     }
   }
 
-  async deleteUser(userId) {
+  async deleteUser(userId: string): Promise<IUser> {
     try {
       const { data } = await api.delete(`/user/${userId}`);
       toast.success("Usuário Excluído com sucesso!");
