@@ -4,7 +4,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import DealCard from "../DealCard/DealCard";
 import { DroppableStyles, ColumnContainer } from "./DealCard.style";
 import Title from "ui/components/Title/Title";
-import { Button, ButtonGroup, Typography } from "@material-ui/core";
+import { Button, ButtonGroup, Typography, Tooltip } from "@material-ui/core";
 import PipelineContext from "contexts/PipelineContext";
 import { formatValue } from "../../../../data/utils/formatValue";
 
@@ -29,7 +29,9 @@ const DealCardList = (props) => {
             setViewButtonGroup(!viewButtonGroup);
           }}
         >
-          <i className="fa fa-chevron-down"></i>
+          <Tooltip title="Ações" placement="top-start">
+            <i className="fa fa-chevron-down"></i>
+          </Tooltip>
         </Button>
         {viewButtonGroup ? (
           <ButtonGroup
@@ -93,12 +95,16 @@ const DealCardList = (props) => {
           title={props.title}
           subtitle={
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Typography>{formatValue(props.totalColumnValue)}</Typography>
+              <Tooltip title="Valor total das negociações do Pipeline" placement="top-start">
+                 <Typography>{formatValue(props.totalColumnValue)}</Typography>
+              </Tooltip>
               <i
                 className="fa fa-arrow-right"
                 style={{ position: "relative", top: "1px" }}
               ></i>
-              <Typography>{props.elements.length} negociações</Typography>
+              <Tooltip title="Total de negociações do Pipeline" placement="top-start">
+                <Typography>{props.elements.length} negociações</Typography>
+              </Tooltip>
             </div>
           }
         ></Title>

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
-import { CircularProgress, Typography } from "@material-ui/core";
+// import Tooltip from '@mui/material/Tooltip';
+import { CircularProgress, Typography, Tooltip } from "@material-ui/core";
 import {
   DealsHeaderContainer,
   DealsPageContainer,
@@ -98,30 +99,41 @@ function DealPipeline() {
                   gap: "10px",
                 }}
               >
-                <Typography>
+                <Tooltip title="Valor total" placement="top-start">
+                 <Typography>
                   {formatValue(dealTotalParams?.budgetSum)}
                 </Typography>
+                </Tooltip>
                 <i
                   className="fa fa-arrow-right"
                   style={{ position: "relative", top: "2px" }}
                 ></i>
-                <Typography>
-                  {dealTotalParams?.totalDeals} negociações
-                </Typography>
+                <Tooltip title="Total de negociações" placement="top-start">
+                  <Typography>
+                    {dealTotalParams?.totalDeals} negociações
+                  </Typography>
+                </Tooltip>
+                
               </div>
             }
           ></Title>
           <DealsTotalTagsContainer>
             <div>
-              <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
+              <Tooltip title="Negociações quentes" placement="top-start">
+                 <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
+              </Tooltip>
               <span> {dealTotalParams?.hotDeals}</span>
             </div>
             <div>
-              <i className="fa fa-bolt" style={{ color: "#effa5c" }}></i>
+              <Tooltip title="Negociações mornas" placement="top-start">
+                <i className="fa fa-bolt" style={{ color: "#effa5c" }}></i>
+              </Tooltip>
               <span> {dealTotalParams?.warmDeals}</span>
             </div>
             <div>
-              <i className="fa fa-snowflake-o" style={{ color: "#3eccf0" }}></i>
+              <Tooltip title="Negociações frias" placement="top-start">
+                <i className="fa fa-snowflake-o" style={{ color: "#3eccf0" }}></i>
+              </Tooltip>
               <span> {dealTotalParams?.coldDeals}</span>
             </div>
           </DealsTotalTagsContainer>

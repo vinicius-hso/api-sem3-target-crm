@@ -1,4 +1,4 @@
-import { Icon } from "@material-ui/core";
+import { Icon, Tooltip } from "@material-ui/core";
 import { formatValue } from "data/utils/formatValue";
 import { getNameInitials } from "data/utils/nameConfig";
 import moment from "moment";
@@ -57,21 +57,30 @@ const DealCard: React.FC<DealCardProps> = (props) => {
       </div>
       <DealDescriptionContainer>
         <DealTitleStyled>{props?.title}</DealTitleStyled>
-        <DealTypeStyled>{props?.contactName}</DealTypeStyled>
+        <Tooltip title="Contato" placement="top-start">
+          <DealTypeStyled>{props?.contactName}</DealTypeStyled>         
+        </Tooltip>
         <DealFooterContainer>
-          <DealBudgetStyled>{formatValue(props?.budget || 0)}</DealBudgetStyled>
-          <DealStartDateStyled>
-            <Icon className="fa fa-calendar" fontSize="inherit" />
-            {moment(props?.startDate).format(" DD/MM/YYYY HH:MM")}
-          </DealStartDateStyled>
+          <Tooltip title="Valor" placement="top-start">
+            <DealBudgetStyled>{formatValue(props?.budget || 0)}</DealBudgetStyled>     
+          </Tooltip>
+          <Tooltip title="Data de início" placement="top-start">
+            <DealStartDateStyled>
+              <Icon className="fa fa-calendar" fontSize="inherit" />
+              {moment(props?.startDate).format(" DD/MM/YYYY HH:MM")}
+            </DealStartDateStyled>
+          </Tooltip>
+          
         </DealFooterContainer>
       </DealDescriptionContainer>
-      <Icon
-        className={`fa fa-${iconTag.icon}`}
-        fontSize="inherit"
-        style={{ color: iconTag.color }}
-        sx={{ mr: 0.5, position: "relative", bottom: 0 }}
-      />
+      <Tooltip title="Tag" placement="top-start">
+        <Icon
+          className={`fa fa-${iconTag.icon}`}
+          fontSize="inherit"
+          style={{ color: iconTag.color }}
+          sx={{ mr: 0.5, position: "relative", bottom: 0 }}
+        />        
+      </Tooltip>
     </DealCardContainer>
   );
 };
