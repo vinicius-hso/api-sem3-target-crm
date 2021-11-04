@@ -1,5 +1,5 @@
 // mocks
-import { companies, contacts, users, pipelines, deals } from './dataMock';
+import { companies, contacts, users, pipelines, deals, deals2, deals3, deals4 } from './dataMock';
 import Company from '@entities/Company';
 import Contact from '@entities/Contact';
 import Pipeline from '@entities/Pipeline';
@@ -60,6 +60,63 @@ const mocks = async (): Promise<void> => {
           pipeline: pipelineFind[index],
           company: companiesFind[index],
           contact: contactFind[index],
+          activity: [
+            {
+              name: 'teste',
+              description: 'testando',
+              createdAt: new Date(),
+              createdBy: { id: contactFind[index].id, name: contactFind[index].name },
+              tag: 'COLD',
+            },
+          ],
+        }).save();
+      });
+
+      deals2.map(async (deal, index) => {
+        await Deal.create({
+          ...deal,
+          pipeline: pipelineFind[index],
+          company: companiesFind[index],
+          contact: contactFind[index],
+          // status: 'WON',
+          activity: [
+            {
+              name: 'teste',
+              description: 'testando',
+              createdAt: new Date(),
+              createdBy: { id: contactFind[index].id, name: contactFind[index].name },
+              tag: 'COLD',
+            },
+          ],
+        }).save();
+      });
+
+      deals3.map(async (deal, index) => {
+        await Deal.create({
+          ...deal,
+          pipeline: pipelineFind[index],
+          company: companiesFind[index],
+          contact: contactFind[index],
+          // status: 'LOST',
+          activity: [
+            {
+              name: 'teste',
+              description: 'testando',
+              createdAt: new Date(),
+              createdBy: { id: contactFind[index].id, name: contactFind[index].name },
+              tag: 'COLD',
+            },
+          ],
+        }).save();
+      });
+
+      deals4.map(async (deal, index) => {
+        await Deal.create({
+          ...deal,
+          pipeline: pipelineFind[index],
+          company: companiesFind[index],
+          contact: contactFind[index],
+          // status: 'ARCHIVED',
           activity: [
             {
               name: 'teste',

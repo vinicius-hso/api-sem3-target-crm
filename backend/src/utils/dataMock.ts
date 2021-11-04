@@ -172,32 +172,131 @@ const deals = [
     name: 'Medicine Den',
     deadline: new Date(),
     priority: 'high',
-    value: 1597.10,
+    value: 159710,
   },
   {
     name: 'Physician.ly',
     deadline: new Date(),
     priority: 'high',
-    value: 2584.55,
+    value: 258455,
   },
   {
     name: 'Bimedical',
     deadline: new Date(),
     priority: 'medium',
-    value: 2584.45,
+    value: 258445,
   },
   {
     name: 'Medpharm',
     deadline: new Date(),
     priority: 'low',
-    value: 4181.14,
+    value: 418114,
   },
   {
     name: 'Gynamedic',
     deadline: new Date(),
     priority: 'medium',
-    value: 6765.77,
+    value: 676577,
   },
 ];
 
-export { companies, contacts, users, pipelines, deals };
+const deals2 = [
+  {
+    name: 'nMonitor',
+    deadline: new Date(),
+    priority: 'high',
+    value: 159710,
+  },
+  {
+    name: 'nCommand',
+    deadline: new Date(),
+    priority: 'high',
+    value: 258455,
+  },
+  {
+    name: 'nReport',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 258445,
+  },
+  {
+    name: 'nSensor',
+    deadline: new Date(),
+    priority: 'low',
+    value: 418114,
+  },
+  {
+    name: 'nEcho',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 676577,
+  },
+];
+
+const deals3 = [
+  {
+    name: 'nEcho',
+    deadline: new Date(),
+    priority: 'high',
+    value: 159710,
+  },
+  {
+    name: 'nSensor',
+    deadline: new Date(),
+    priority: 'high',
+    value: 258455,
+  },
+  {
+    name: 'nReport',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 258445,
+  },
+  {
+    name: 'nCommand',
+    deadline: new Date(),
+    priority: 'low',
+    value: 418114,
+  },
+  {
+    name: 'nMonitor',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 676577,
+  },
+];
+
+const deals4 = [
+  {
+    name: 'nEcho',
+    deadline: new Date(),
+    priority: 'low',
+    value: 159710,
+  },
+  {
+    name: 'nSensor',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 258455,
+  },
+  {
+    name: 'nReport',
+    deadline: new Date(),
+    priority: 'high',
+    value: 258445,
+  },
+  {
+    name: 'nCommand',
+    deadline: new Date(),
+    priority: 'medium',
+    value: 418114,
+  },
+  {
+    name: 'nMonitor',
+    deadline: new Date(),
+    priority: 'low',
+    value: 676577,
+  },
+];
+
+export { companies, contacts, users, pipelines, deals, deals2, deals3, deals4 };
