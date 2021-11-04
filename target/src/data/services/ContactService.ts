@@ -17,7 +17,7 @@ class ContactService {
 
   async getContact(id: string): Promise<IContact> {
     try {
-      const response = await api.get(`/contact/${id}`);
+      const response = await api.get(`/contact/${id}?with=company`);
 
       return response.data;
     } catch (error) {

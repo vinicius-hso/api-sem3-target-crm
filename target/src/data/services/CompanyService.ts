@@ -4,7 +4,6 @@ import { CompanyTypes } from "types/Company";
 import { serviceApi as api } from "./ServiceApi";
 
 class CompanyService {
-  private headers: object;
   async getCompanies(): Promise<CompanyTypes[]> {
     try {
       const { data } = await api.get("/company", {

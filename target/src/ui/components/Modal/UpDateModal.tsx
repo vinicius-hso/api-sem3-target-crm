@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
@@ -15,6 +15,8 @@ const UpDateModal = () => {
     updatePipeline,
     setName,
     pipeline,
+    hasError,
+    isLoading,
   } = useContext(PipelineContext);
 
   const body = (
@@ -28,25 +30,33 @@ const UpDateModal = () => {
       </CloseButtonStyled>
 
       <Title title="Editar pipeline" />
+      {isLoading ? (
+        <div style={{ textAlign: "center" }}>
+          <CircularProgress />
+        </div>
+      ) : !isLoading && hasError ? (
+        <div>{hasError}</div>
+      ) : (
+        <TextFieldMask
+          id="outlined-basic"
+          label="Nome do pipeline"
+          variant="standard"
+          size="small"
+          fullWidth
+          focused={pipeline ? true : false}
+          value={pipeline?.name}
+          onChange={(event) => setName(event.target.value)}
+        />
+      )}
 
-      <TextFieldMask
-        id="outlined-basic"
-        label="Nome do pipeline"
-        variant="standard"
-        size="small"
-        fullWidth
-        focused={pipeline ? true : false}
-        defaultValue={pipeline?.name}
-        onChange={(event) => setName(event.target.value)}
-      />
       <Button
         onClick={() => updatePipeline()}
         variant="contained"
         color="primary"
         startIcon={<i className="fa fa-pensil"></i>}
-        sx={{ mt: 4 }}
+        sx={{ margin: "32px auto 0 auto", minWidth: "100px" }}
       >
-        Enviar
+        Salvar
       </Button>
     </ModalContainer>
   );

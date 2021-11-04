@@ -49,6 +49,8 @@ export default interface ModalTypes {
   onDragEnd: (any) => void;
   removefilterDeals: (boolean) => void;
   filterDeals: (value: string, type: string, resetFilter: boolean) => void;
+  isLoading: boolean;
+  hasError: string;
 }
 
 export interface pipeline {

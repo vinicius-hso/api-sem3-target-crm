@@ -17,6 +17,7 @@ import { usePipelineComponent } from "data/services/hooks/componentHooks/Pipelin
 import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import { StatusTypes } from "types/Status";
 import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHook";
+import { formatValue } from "data/utils/formatValue";
 
 interface AchivedDealModalProps {
   deal: DealTypes;
@@ -65,7 +66,7 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
       >
         <Typography variant="body2">{deal.company?.name}</Typography>
         <Typography variant="body2">{deal.contact?.name}</Typography>
-        <Typography variant="body2">{deal?.value}</Typography>
+        <Typography variant="body2">{formatValue(deal?.value)}</Typography>
         {!hasRestore ? (
           <div>
             <Button

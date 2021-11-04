@@ -9,6 +9,9 @@ export const ContactProvider: React.FC = ({ children }) => {
   const [importContactModal, setImportContactModal] = useState<boolean>(false);
   const [updateContactModal, setUpdateContactModal] = useState<boolean>(false);
   const [deleteContactModal, setDeleteContactModal] = useState<boolean>(false);
+  const [hasError, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
   const [contacts, setContacts] = useState<IContact[]>();
 
   const useCreateContactModal = () => {
@@ -28,8 +31,17 @@ export const ContactProvider: React.FC = ({ children }) => {
   };
 
   const getContacts = async (): Promise<void> => {
-    const data = await ContactService.getContacts();
-    setContacts(data);
+    setLoading(true);
+    try {
+      const data = await ContactService.getContacts();
+      setContacts(data);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setError(
+        "Não foi possivel buscar empresas, verifique sua conexão e tente novamente"
+      );
+    }
   };
 
   useEffect(() => {
@@ -49,6 +61,8 @@ export const ContactProvider: React.FC = ({ children }) => {
         deleteContactModal,
         contacts,
         getContacts,
+        isLoading,
+        hasError,
       }}
     >
       {children}

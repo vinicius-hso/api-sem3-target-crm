@@ -5,7 +5,11 @@ import { serviceApi as api } from "./ServiceApi";
 class PipelineService {
   async getPiplines(): Promise<pipeline[]> {
     try {
-      const { data } = await api.get("/pipeline");
+      const { data } = await api.get("/pipeline", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
+        },
+      });
 
       return data;
     } catch (error) {

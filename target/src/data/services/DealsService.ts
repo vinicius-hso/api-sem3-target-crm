@@ -7,7 +7,7 @@ import { serviceApi as api } from "./ServiceApi";
 class DealsService {
   async getAllDeals() {
     try {
-      const { data } = await api.get("/deal");
+      const { data } = await api.get("/deal?with=pipeline,company,contact");
 
       return data;
     } catch (error) {

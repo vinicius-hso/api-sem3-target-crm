@@ -14,7 +14,7 @@ import ContactCard from "ui/components/ContactCard/ContactCard";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import CreateContactModal from "ui/components/Modal/Contact/CreateContactModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import ContactContext from "contexts/ContactContext";
 import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
 import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
@@ -59,6 +59,8 @@ function ContactPage() {
     useCreateContactModal,
     useUpdateContactModal,
     contacts,
+    isLoading,
+    hasError,
   } = useContext(ContactContext);
 
   const setId = () => {
@@ -116,20 +118,30 @@ function ContactPage() {
       </ContactsHeaderContainer>
       <br />
       <CardsContainer>
-        {contacts?.map((contact) => (
-          <ContactCard
-            key={contact.id}
-            name={contact.name}
-            city={contact.city}
-            company={contact.company?.name}
-            phone={contact.phone}
-            state={contact.state}
-            picture={contact.picture}
-            onClick={() => {
-              useUpdateContactModal(), setSelectedId(contact.id);
-            }}
-          />
-        ))}
+        {isLoading ? (
+          <div style={{ textAlign: "center" }}>
+            <CircularProgress />
+          </div>
+        ) : !isLoading && hasError ? (
+          <div>{hasError}</div>
+        ) : (
+          <div>
+            {contacts?.map((contact) => (
+              <ContactCard
+                key={contact.id}
+                name={contact.name}
+                city={contact.city}
+                company={contact.company?.name}
+                phone={contact.phone}
+                state={contact.state}
+                picture={contact.picture}
+                onClick={() => {
+                  useUpdateContactModal(), setSelectedId(contact.id);
+                }}
+              />
+            ))}
+          </div>
+        )}
       </CardsContainer>
     </ContactsPageContainer>
   );

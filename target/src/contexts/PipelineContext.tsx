@@ -4,8 +4,6 @@ import { useRouter } from "next/dist/client/router";
 import React, { useState, createContext, useEffect } from "react";
 import { DealTypes } from "types/Deal";
 import ModalTypes, { pipeline } from "types/Modal";
-import CompanyService from "data/services/CompanyService";
-import { CompanyTypes } from "types/Company";
 
 const PipelineContext = createContext<ModalTypes>({} as ModalTypes);
 
@@ -26,17 +24,19 @@ export const ModalProvider: React.FC = ({ children }) => {
   // const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
 
   //* ID
-  const [updateId, setUpdateIdState] = useState<string>();
-  const [deleteId, setDeleteIdState] = useState<string>();
+  const [updateId, setUpdateIdState] = useState<string>("");
+  const [deleteId, setDeleteIdState] = useState<string>("");
 
   //* DEAL
   const [dealDetail, setDealDetail] = useState({});
-  const [name, setNameState] = useState<string>();
+  const [name, setNameState] = useState<string>("");
   const [removeElementsFiltered, setRemoveElementsFiltered] = useState([]);
   const [deals, setDeals] = useState<DealTypes[]>([]);
-  const [pipelines, setPipelines] = useState<pipeline[]>();
-  const [pipeline, setPipeline] = useState<pipeline>();
+  const [pipelines, setPipelines] = useState<pipeline[]>([]);
+  const [pipeline, setPipeline] = useState<pipeline>({} as pipeline);
   const [selectedPipeline, setSelectedPipeline] = useState("");
+  const [hasError, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   const [dealTotalParams, setDealTotalParams] = useState({
     budgetSum: 0,
@@ -143,13 +143,14 @@ export const ModalProvider: React.FC = ({ children }) => {
     setCreateModalState(!createModalState);
   };
 
-  const useCreateDealModal = () => {
+  const useCreateDealModal = (pipelineId?: string) => {
+    setSelectedPipeline(pipelineId);
     setCreateDealModalState(!createDealModalState);
   };
 
-  const useUpdateModal = (id: string) => {
+  const useUpdateModal = async (id: string) => {
     setUpdateIdState(id);
-    if (id) getPipeline(id);
+    if (id) await getPipeline(id);
     setUpdateModalState(!updateModalState);
   };
 
@@ -170,19 +171,16 @@ export const ModalProvider: React.FC = ({ children }) => {
   const deletePipeline = async () => {
     await PipelineService.deletePipeline(deleteId);
     useDeleteModal("");
-    getPipelines();
   };
 
   const updatePipeline = async () => {
     await PipelineService.updatePipeline(updateId, name);
     useUpdateModal("");
-    getPipelines();
   };
 
   const createPipeline = async () => {
     await PipelineService.createPipeline(name);
     useCreateModal();
-    getPipelines();
   };
 
   const createDeal = async (data: DealTypes) => {
@@ -191,30 +189,49 @@ export const ModalProvider: React.FC = ({ children }) => {
   };
 
   const getPipelines = async () => {
-    const pipelinesData: pipeline[] = await PipelineService.getPiplines();
-    const dealsData: pipeline[] = await DealsService.getDeals();
-    setDeals(dealsData);
-    const pipes = pipelinesData.map((element) => ({
-      ...element,
-      deals: [],
-    }));
-    setPipelines(
-      pipes.sort(function (a, b) {
-        return a.createdAt < b.createdAt
-          ? -1
-          : a.createdAt > b.createdAt
-          ? 1
-          : 0;
-      })
-    );
-    setElements(generateDealsList(pipelinesData, dealsData));
-    setRemoveElementsFiltered(generateDealsList(pipelinesData, dealsData));
+    setLoading(true);
+    try {
+      const pipelinesData: pipeline[] = await PipelineService.getPiplines();
+      const dealsData: pipeline[] = await DealsService.getDeals();
+
+      if (pipelinesData.length) setDeals(dealsData);
+      const pipes = pipelinesData.map((element) => ({
+        ...element,
+        deals: [],
+      }));
+      setPipelines(
+        pipes.sort(function (a, b) {
+          return a.createdAt < b.createdAt
+            ? -1
+            : a.createdAt > b.createdAt
+            ? 1
+            : 0;
+        })
+      );
+      setElements(generateDealsList(pipelinesData, dealsData));
+      setRemoveElementsFiltered(generateDealsList(pipelinesData, dealsData));
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setError(
+        "Não foi possivel buscar os dados, verifique sua conexão e tente novamente"
+      );
+    }
   };
 
   const getPipeline = async (id: string) => {
-    const data: pipeline = await PipelineService.getPipline(id);
+    setLoading(true);
+    try {
+      const data: pipeline = await PipelineService.getPipline(id);
 
-    setPipeline(data);
+      setPipeline(data);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setError(
+        "Não foi possivel buscar os dados, verifique sua conexão e tente novamente"
+      );
+    }
   };
 
   //FUNÇÃO QUE REMOVE DEAL DO PIPELINE (APENAS KAMBAN)
@@ -324,8 +341,8 @@ export const ModalProvider: React.FC = ({ children }) => {
   useEffect(() => {
     if (route.route === "/") {
       localStorage.removeItem("dealsListFilter");
-      getPipelines();
     }
+    getPipelines();
   }, []);
 
   return (
@@ -366,6 +383,8 @@ export const ModalProvider: React.FC = ({ children }) => {
         // companyDetail,
         // editCompany,
         // useUpdateCompanyModal
+        isLoading,
+        hasError,
       }}
     >
       {children}

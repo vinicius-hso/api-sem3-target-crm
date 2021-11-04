@@ -65,10 +65,12 @@ export const useContactPage = () => {
   };
 
   const getData = async () => {
-    const response = await ContactService.getContacts();
-    setContacts(response);
-    setRemoveFilteredContacts(response);
-    formatListToSelect(response);
+    try {
+      const response = await ContactService.getContacts();
+      setContacts(response);
+      setRemoveFilteredContacts(response);
+      formatListToSelect(response);
+    } catch (err) {}
   };
   return {
     contacts,

@@ -29,7 +29,7 @@ export interface DealCardProps {
 const DealCard: React.FC<DealCardProps> = (props) => {
   const iconTag = useMemo(() => {
     switch (props.tag) {
-      case "FIRE":
+      case "HOT":
         return { icon: "fire", color: "#e63706" };
       case "COLD":
         return { icon: "snowflake-o", color: "#3eccf0" };
@@ -59,9 +59,7 @@ const DealCard: React.FC<DealCardProps> = (props) => {
         <DealTitleStyled>{props?.title}</DealTitleStyled>
         <DealTypeStyled>{props?.contactName}</DealTypeStyled>
         <DealFooterContainer>
-          <DealBudgetStyled>
-            {formatValue(props?.budget?.toString() || "0")}
-          </DealBudgetStyled>
+          <DealBudgetStyled>{formatValue(props?.budget || 0)}</DealBudgetStyled>
           <DealStartDateStyled>
             <Icon className="fa fa-calendar" fontSize="inherit" />
             {moment(props?.startDate).format(" DD/MM/YYYY HH:MM")}
