@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, ToggleButton, ToggleButtonGroup } from "@material-ui/core";
+import { Button, ToggleButton, ToggleButtonGroup, Box } from '@material-ui/core';
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
 import { DynamicPieCharts } from "data/services/servicesComponents/DynamicPieCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
@@ -182,23 +182,37 @@ function Dashboard() {
           archivedDeals.length,
         ]}
       />
-      {dealsInfo && (
-        <DealsInfoCard
-          meanvalue={dealsInfo?.meanValue}
-          totalvalue={dealsInfo?.totalValue}
-          totaldeals={dealsInfo?.totalDeals}
-          meandays={dealsInfo?.meanDays}
-        />
-      )}
-      {conversionRateInfo && (
-        <ConversionRateCard
-          conversionrate={conversionRateInfo.conversionRate}
-          totalwon={conversionRateInfo.totalWon}
-          totallost={conversionRateInfo.totalLost}
-          totalinprogress={conversionRateInfo.totalInProgress}
-          totalarchived={conversionRateInfo.totalArchived}
-        />
-      )}
+      <br />
+      
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          // flexWrap: 'wrap'
+          // p: 1,
+          // m: -2,    
+        }}>
+        
+          {dealsInfo && (
+            <DealsInfoCard
+              meanvalue={dealsInfo?.meanValue}
+              totalvalue={dealsInfo?.totalValue}
+              totaldeals={dealsInfo?.totalDeals}
+              meandays={dealsInfo?.meanDays}
+            />
+          )}
+
+          {conversionRateInfo && (
+            <ConversionRateCard
+              conversionrate={conversionRateInfo.conversionRate}
+              totalwon={conversionRateInfo.totalWon}
+              totallost={conversionRateInfo.totalLost}
+              totalinprogress={conversionRateInfo.totalInProgress}
+              totalarchived={conversionRateInfo.totalArchived}
+            />
+          )}
+        
+      </Box>
+      
     </DashboardPageContainer>
   );
 }

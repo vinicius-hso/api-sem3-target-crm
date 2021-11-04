@@ -3,6 +3,7 @@ import { IContact } from "types/Contact";
 import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
+import { toast } from "react-toastify";
 
 class ContactService {
   async getContacts() {
@@ -11,6 +12,9 @@ class ContactService {
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -21,6 +25,9 @@ class ContactService {
 
       return response.data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -29,8 +36,12 @@ class ContactService {
     try {
       const response = await api.delete(`/contact/${id}`);
 
-      return response.data.message;
+      toast.success("Contato excluído com sucesso!");
+      return response.data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -57,8 +68,12 @@ class ContactService {
     try {
       const { data } = await api.post("/contact", body);
 
+      toast.success("Contato criado com sucesso!");
       return data.id;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -86,8 +101,13 @@ class ContactService {
     try {
       const { data } = await api.put(`/contact/${id}?with=company`, body);
 
-      return data;
+      toast.success("Contato atualziado com sucesso!");
+      return data.name;
     } catch (error) {
+      console.log(error);
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error.message;
     }
   }

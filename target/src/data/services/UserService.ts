@@ -1,14 +1,21 @@
 import React from "react";
 import { IUser } from "types/User";
 import { serviceApi as api } from "./ServiceApi";
-
+import { toast } from "react-toastify";
+interface IResponse {
+  status: string;
+  message: string;
+}
 class UserService {
-  async getUsers() {
+  async getUsers():Promise<IUser[]> {
     try {
       const { data } = await api.get("/user");
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -19,21 +26,28 @@ class UserService {
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
 
-  async createUser(data: IUser) {
+  async createUser(data: IUser): Promise<IUser> {
     try {
       const response = await api.post("/user", data);
 
+      toast.success("Usuário criado com sucesso!");
       return response.data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
 
-  async editUser(userId, user) {
+  async editUser(userId: string, user: IUser): Promise<IResponse> {
     try {
       await api.put(`/user/${userId}`, user);
 
@@ -47,7 +61,10 @@ class UserService {
     }
   }
 
-  async editUserPassword(userId, data) {
+  async editUserPassword(
+    userId: string,
+    data: { oldPassword: string; newPassword: string }
+  ): Promise<IResponse> {
     try {
       await api.put(`/user/update-password/${userId}`, data);
 
@@ -61,12 +78,15 @@ class UserService {
     }
   }
 
-  async deleteUser(userId) {
+  async deleteUser(userId: string): Promise<IUser> {
     try {
       const { data } = await api.delete(`/user/${userId}`);
-
+      toast.success("Usuário Excluído com sucesso!");
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }

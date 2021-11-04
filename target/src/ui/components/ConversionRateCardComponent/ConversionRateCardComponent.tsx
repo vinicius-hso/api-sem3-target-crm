@@ -17,9 +17,9 @@ interface ConversionRateCardProps {
 const ConversionRateCard: React.FC<ConversionRateCardProps> = (props) => {
     
   return (
-    <Container sx={{ justifyContent: 'center'}}>
+    <Container sx={{ justifyContent: 'center',  m: 3 }}>
         <Card
-      sx={{ height: '100%', backgroundColor: '', maxWidth: 300, boxShadow: '0 0 10px 3px rgba(0, 0, 0, .1)' }}
+      sx={{ height: 'auto', backgroundColor: '', minWidth: 300, boxShadow: '0 0 10px 3px rgba(0, 0, 0, .1)' }}
       {...props}
     >
       <CardContent>
@@ -53,7 +53,7 @@ const ConversionRateCard: React.FC<ConversionRateCardProps> = (props) => {
             >
                 <i className="fa fa-thumbs-o-up"></i> GANHAS: {props.totalwon}
             </Typography>
-      
+            
             <Typography
               color="textSecondary"
               variant="body2"
@@ -61,7 +61,7 @@ const ConversionRateCard: React.FC<ConversionRateCardProps> = (props) => {
             >
                 <i className="fa fa-thumbs-o-down"></i> PERDIDAS: {props.totallost}
             </Typography>
-
+            
             <Typography
               color="textSecondary"
               gutterBottom
@@ -69,7 +69,7 @@ const ConversionRateCard: React.FC<ConversionRateCardProps> = (props) => {
             >
                 <i className="fa fa-cogs"></i> EM ANDAMENTO: {props.totalinprogress}
             </Typography>
-
+            
             <Typography
               color="textSecondary"
               gutterBottom
