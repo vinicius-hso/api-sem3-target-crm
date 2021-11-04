@@ -99,10 +99,10 @@ export const ModalProvider: React.FC = ({ children }) => {
         currentPipe.totalColumnValue += Number(d.value);
         budgetSum += Number(d.value);
         totalDeals += 1;
-        if (d.activity[d.activity.length - 1].tag == "HOT") hotDeals += 1;
-        else if (d.activity[d.activity.length - 1].tag == "COLD")
+        if (d.activity[d.activity?.length - 1].tag == "HOT") hotDeals += 1;
+        else if (d.activity[d.activity?.length - 1].tag == "COLD")
           coldDeals += 1;
-        else if (d.activity[d.activity.length - 1].tag === "WARM")
+        else if (d.activity[d.activity?.length - 1].tag === "WARM")
           warmDeals += 1;
       }
     });
@@ -194,7 +194,7 @@ export const ModalProvider: React.FC = ({ children }) => {
       const pipelinesData: pipeline[] = await PipelineService.getPiplines();
       const dealsData: pipeline[] = await DealsService.getDeals();
 
-      if (pipelinesData.length) setDeals(dealsData);
+      if (pipelinesData?.length) setDeals(dealsData);
       const pipes = pipelinesData.map((element) => ({
         ...element,
         deals: [],
@@ -322,7 +322,7 @@ export const ModalProvider: React.FC = ({ children }) => {
               }
               break;
             case "tag":
-              if (deal.activity[deal.activity.length - 1].tag.includes(value)) {
+              if (deal.activity[deal.activity?.length - 1].tag.includes(value)) {
                 deals.push(deal);
               }
               break;
