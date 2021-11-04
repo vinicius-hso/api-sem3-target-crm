@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import { Button, CircularProgress } from "@material-ui/core";
+import { Button, CircularProgress, Tooltip } from "@material-ui/core";
 import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
@@ -21,13 +21,15 @@ const UpDateModal = () => {
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          useUpdateModal("");
-        }}
-      >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+      <Tooltip title="Fechar" placement="top-start">
+        <CloseButtonStyled
+          onClick={() => {
+            useUpdateModal("");
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
 
       <Title title="Editar pipeline" />
       {isLoading ? (
@@ -48,16 +50,17 @@ const UpDateModal = () => {
           onChange={(event) => setName(event.target.value)}
         />
       )}
-
-      <Button
-        onClick={() => updatePipeline()}
-        variant="contained"
-        color="primary"
-        startIcon={<i className="fa fa-pensil"></i>}
-        sx={{ margin: "32px auto 0 auto", minWidth: "100px" }}
-      >
-        Salvar
-      </Button>
+      <Tooltip title="Salvar alteração" placement="top-start">
+        <Button
+          onClick={() => updatePipeline()}
+          variant="contained"
+          color="primary"
+          startIcon={<i className="fa fa-pensil"></i>}
+          sx={{ margin: "32px auto 0 auto", minWidth: "100px" }}
+        >
+          Salvar
+        </Button>
+      </Tooltip>
     </ModalContainer>
   );
   return (

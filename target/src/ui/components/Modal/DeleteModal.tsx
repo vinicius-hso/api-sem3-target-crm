@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Button } from "@material-ui/core";
+import { Button, Tooltip } from "@material-ui/core";
 
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
@@ -14,13 +14,15 @@ const DeleteModal: React.FC = () => {
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          useDeleteModal("");
-        }}
-      >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+      <Tooltip title="Fechar" placement="top-start">
+        <CloseButtonStyled
+          onClick={() => {
+            useDeleteModal("");
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
 
       <Title
         title="Deletar Pipeline"
@@ -34,14 +36,15 @@ const DeleteModal: React.FC = () => {
           </>
         }
       />
-
-      <Button
-        onClick={() => deletePipeline()}
-        variant="contained"
-        color="error"
-      >
-        Deletar
-      </Button>
+      <Tooltip title="Deletar pipeline" placement="top-start">
+        <Button
+          onClick={() => deletePipeline()}
+          variant="contained"
+          color="error"
+        >
+          Deletar
+        </Button>
+      </Tooltip>
     </ModalContainer>
   );
 

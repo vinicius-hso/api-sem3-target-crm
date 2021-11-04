@@ -58,11 +58,13 @@ const DealCard: React.FC<DealCardProps> = (props) => {
       <DealDescriptionContainer>
         <DealTitleStyled>{props?.title}</DealTitleStyled>
         <Tooltip title="Contato" placement="top-start">
-          <DealTypeStyled>{props?.contactName}</DealTypeStyled>         
+          <DealTypeStyled>{props?.contactName}</DealTypeStyled>
         </Tooltip>
         <DealFooterContainer>
           <Tooltip title="Valor" placement="top-start">
-            <DealBudgetStyled>{formatValue(props?.budget || 0)}</DealBudgetStyled>     
+            <DealBudgetStyled>
+              {formatValue(props?.budget || 0)}
+            </DealBudgetStyled>
           </Tooltip>
           <Tooltip title="Data de início" placement="top-start">
             <DealStartDateStyled>
@@ -70,17 +72,38 @@ const DealCard: React.FC<DealCardProps> = (props) => {
               {moment(props?.startDate).format(" DD/MM/YYYY HH:MM")}
             </DealStartDateStyled>
           </Tooltip>
-          
         </DealFooterContainer>
       </DealDescriptionContainer>
-      <Tooltip title="Tag" placement="top-start">
-        <Icon
-          className={`fa fa-${iconTag.icon}`}
-          fontSize="inherit"
-          style={{ color: iconTag.color }}
-          sx={{ mr: 0.5, position: "relative", bottom: 0 }}
-        />        
-      </Tooltip>
+      {iconTag.icon == "fire" && (
+        <Tooltip title="Quente" placement="top-start">
+          <Icon
+            className={`fa fa-${iconTag.icon}`}
+            fontSize="inherit"
+            style={{ color: iconTag.color }}
+            sx={{ mr: 0.5, position: "relative", bottom: 0 }}
+          />
+        </Tooltip>
+      )}
+      {iconTag.icon == "snowflake-o" && (
+        <Tooltip title="Fria" placement="top-start">
+          <Icon
+            className={`fa fa-${iconTag.icon}`}
+            fontSize="inherit"
+            style={{ color: iconTag.color }}
+            sx={{ mr: 0.5, position: "relative", bottom: 0 }}
+          />
+        </Tooltip>
+      )}
+      {iconTag.icon == "bolt" && (
+        <Tooltip title="Morna" placement="top-start">
+          <Icon
+            className={`fa fa-${iconTag.icon}`}
+            fontSize="inherit"
+            style={{ color: iconTag.color }}
+            sx={{ mr: 0.5, position: "relative", bottom: 0 }}
+          />
+        </Tooltip>
+      )}
     </DealCardContainer>
   );
 };

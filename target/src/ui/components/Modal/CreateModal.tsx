@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Button } from "@material-ui/core";
+import { Button, Tooltip } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
@@ -15,13 +15,15 @@ const CreateModal = () => {
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          useCreateModal();
-        }}
-      >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+      <Tooltip title="Fechar" placement="top-start">
+        <CloseButtonStyled
+          onClick={() => {
+            useCreateModal();
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
 
       <Title title="Novo pipeline" />
 
@@ -33,15 +35,17 @@ const CreateModal = () => {
         size="small"
         fullWidth
       />
-      <Button
-        onClick={() => createPipeline()}
-        variant="contained"
-        color="primary"
-        startIcon={<AddCircleIcon />}
-        sx={{ mt: 4 }}
-      >
-        Adicionar
-      </Button>
+      <Tooltip title="Adicionar pipeline" placement="top-start">
+        <Button
+          onClick={() => createPipeline()}
+          variant="contained"
+          color="primary"
+          startIcon={<AddCircleIcon />}
+          sx={{ mt: 4 }}
+        >
+          Adicionar
+        </Button>
+      </Tooltip>
     </ModalContainer>
   );
   return (
