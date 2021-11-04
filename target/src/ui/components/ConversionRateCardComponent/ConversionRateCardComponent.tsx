@@ -30,53 +30,94 @@ const ConversionRateCard: React.FC<ConversionRateCardProps> = (props) => {
         >
           <Grid item>
 
-            <Typography
+            <div style={{ display: 'flex', flexDirection: "column", alignItems: "center"}}>
+              <Typography
               color="primary"
               gutterBottom
               variant="h5"
-            >
-                TAXA DE CONVERSÃO 
-            </Typography>
+              >
+                  TAXA DE CONVERSÃO 
+              </Typography>
 
-            <Typography
-              color="textPrimary"
-              variant="h4"
-              gutterBottom
-            >
-              % {props.conversionrate}
-            </Typography>
+              <Typography
+                color="textPrimary"
+                variant="h4"
+                gutterBottom
+              >
+                % {props.conversionrate}
+              </Typography>
+            </div>
 
-            <Typography
-              color="textSecondary"
-              variant="body2"
-              gutterBottom
-            >
-                <i className="fa fa-thumbs-o-up"></i> GANHAS: {props.totalwon}
-            </Typography>
+            <div style={{ display: 'flex', justifyContent: "space-around"}}>
+             <div style={{ display: 'flex', flexDirection: "column", alignItems: "center"}}>
+                <Typography
+                  color="textSecondary"
+                  variant="body2"
+                  gutterBottom
+                >
+                      <i className="fa fa-thumbs-o-up"></i> GANHAS
+                </Typography>
+                <Typography
+                  color="textPrimary"
+                  variant="h5"
+                  gutterBottom
+                >
+                  {props.totalwon}
+                </Typography>
+             </div>
             
-            <Typography
+            <div style={{ display: 'flex', flexDirection: "column", alignItems: "center"}}>
+              <Typography
               color="textSecondary"
               variant="body2"
               gutterBottom
-            >
-                <i className="fa fa-thumbs-o-down"></i> PERDIDAS: {props.totallost}
-            </Typography>
+              >
+                  <i className="fa fa-thumbs-o-down"></i> PERDIDAS
+              </Typography>
+              <Typography
+                color="textPrimary"
+                variant="h5"
+                gutterBottom
+              >
+                {props.totallost}
+              </Typography>
+            </div>
+          </div>
             
-            <Typography
-              color="textSecondary"
-              gutterBottom
-              variant="body2"
-            >
-                <i className="fa fa-cogs"></i> EM ANDAMENTO: {props.totalinprogress}
-            </Typography>
-            
-            <Typography
-              color="textSecondary"
-              gutterBottom
-              variant="body2"
-            >
-                <i className="fa fa-archive"></i> ARQUIVADAS: {props.totalarchived}
-            </Typography>
+            <div style={{ display: 'flex', justifyContent: "space-around"}}>
+              <div style={{ display: 'flex', flexDirection: "column", alignItems: "center"}}>
+                <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  variant="body2"
+                  >
+                      <i className="fa fa-cogs"></i> EM ANDAMENTO
+                </Typography>
+                <Typography
+                  color="textPrimary"
+                  variant="h5"
+                  gutterBottom
+                >
+                  {props.totalinprogress}
+                </Typography>
+              </div>
+              <div style={{ display: 'flex', flexDirection: "column", alignItems: "center"}}>
+                 <Typography
+                  color="textSecondary"
+                  gutterBottom
+                  variant="body2"
+                >
+                  <i className="fa fa-archive"></i> ARQUIVADAS
+                </Typography>
+                <Typography
+                  color="textPrimary"
+                  variant="h5"
+                  gutterBottom
+                >
+                  {props.totalarchived}
+                </Typography>
+              </div>
+            </div>
 
           </Grid>
         </Grid>

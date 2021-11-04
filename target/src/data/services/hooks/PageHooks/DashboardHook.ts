@@ -160,7 +160,7 @@ export const useDashboardPage = () => {
     });
 
     setConversionRateInfo({
-      conversionRate: (totalWon / allDeals.length) * 100,
+      conversionRate: Number(((totalWon / allDeals.length) * 100).toFixed(2)),
       totalWon,
       totalLost,
       totalInProgress,
