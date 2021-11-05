@@ -16,6 +16,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
 } from "@material-ui/core";
 import readXlsxFile from "read-excel-file";
 import Select from "ui/components/Input/Select/Select";
@@ -85,14 +86,22 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
         }}
       />
 
-      <CloseButtonStyled
-        onClick={() => {
-          setImportedContacts([]);
-          useImportContactModal();
-        }}
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+        <CloseButtonStyled
+          onClick={() => {
+            setImportedContacts([]);
+            useImportContactModal();
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
+
       <Title title="Importar contatos" />
       <FileInput onChange={(file) => ReadDocument(file)} />
 
@@ -169,14 +178,21 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
               </TableBody>
             </Table>
           </TableContainer>
-          <Button
-            variant="contained"
-            sx={{ width: "200px", margin: "32px auto 0" }}
-            color="primary"
-            onClick={() => handleSubmit(importedContacts)}
+          <Tooltip
+            title="Confirmar importação"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
           >
-            Confirmar
-          </Button>
+            <Button
+              variant="contained"
+              sx={{ width: "200px", margin: "32px auto 0" }}
+              color="primary"
+              onClick={() => handleSubmit(importedContacts)}
+            >
+              Confirmar
+            </Button>
+          </Tooltip>
         </>
       ) : (
         <div />

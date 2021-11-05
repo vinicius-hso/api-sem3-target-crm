@@ -7,7 +7,7 @@ import {
 import { CloseButtonStyled } from "../ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../../Input/TextFieldMask/TextFieldMask";
 import Title from "../../Title/Title";
-import { Button, Select, MenuItem } from "@material-ui/core";
+import { Button, Select, MenuItem, Tooltip } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "../ModalStyles/Modal.style";
@@ -83,13 +83,20 @@ const CreateContactModal = () => {
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          useCreateContactModal();
-        }}
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+        <CloseButtonStyled
+          onClick={() => {
+            useCreateContactModal();
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
 
       <Title title="Adicionar contato" />
 
@@ -186,16 +193,22 @@ const CreateContactModal = () => {
             : null}
         </Select>
       </TwoColumnsContainer>
-
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => createContact()}
-        startIcon={<AddCircleIcon />}
-        sx={{ mt: 4 }}
+      <Tooltip
+        title="Adicionar contato"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        Adicionar
-      </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => createContact()}
+          startIcon={<AddCircleIcon />}
+          sx={{ mt: 4 }}
+        >
+          Adicionar
+        </Button>
+      </Tooltip>
     </ModalContainer>
   );
   return (

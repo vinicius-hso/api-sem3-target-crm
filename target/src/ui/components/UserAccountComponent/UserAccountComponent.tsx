@@ -179,7 +179,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
         )}
 
         <UserAccountCardContainer>
-          {showSuccessAlert ? (
+          {/* {showSuccessAlert ? (
             <Alert
               title="Sucesso"
               severity="success"
@@ -192,7 +192,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               severity="error"
               message="Ops! Algo deu errado :("
             />
-          ) : null}
+          ) : null} */}
           {!props.hasEdit ? (
             <Tooltip
               title="Editar"

@@ -7,7 +7,7 @@ import { IUser } from "types/User";
 import UserDetailCard from "../UserDetailCard/UserDetailCard";
 import { useUserPage } from "../../../data/services/hooks/PageHooks/UserHook";
 import { Button, Tooltip } from "@material-ui/core";
-import Alert from "../AlertComponent/AlertComponent";
+// import Alert from "../AlertComponent/AlertComponent";
 
 interface UserDetailModalProps {
   open: boolean;
