@@ -1,4 +1,4 @@
-import { Container, Toolbar, Typography } from "@material-ui/core";
+import { Container, Toolbar, Typography, Tooltip } from "@material-ui/core";
 import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
 import moment from "moment";
 import React, { useMemo } from "react";
@@ -31,21 +31,51 @@ const Activity: React.FC<ActivityProps> = (props) => {
         {props.title}
       </Typography>
       <ActivityTimeContainer>
-        <Typography variant="caption" sx={{ mr: 2 }}>
-          <i className="fa fa-calendar" style={{ marginRight: "2px" }}></i>
-          {moment(props.createdAt).format(" DD/MM/YYYY")}
-        </Typography>
-        <Typography variant="caption" sx={{ mr: 2 }}>
-          <i className="fa fa-clock-o" style={{ marginRight: "2px" }}></i>
-          {moment(props.createdAt).format("HH:mm")}
-        </Typography>
-        <Typography variant="caption">
-          <i
-            className={`fa fa-${iconTag.icon}`}
-            style={{ marginRight: "2px", color: `${iconTag.color}` }}
-          ></i>
-          {iconTag.name}
-        </Typography>
+        <Tooltip title="Data" placement="top-start">
+          <Typography variant="caption" sx={{ mr: 2 }}>
+            <i className="fa fa-calendar" style={{ marginRight: "2px" }}></i>
+            {moment(props.createdAt).format(" DD/MM/YYYY")}
+          </Typography>
+        </Tooltip>
+        <Tooltip title="Horário" placement="top-start">
+          <Typography variant="caption" sx={{ mr: 2 }}>
+            <i className="fa fa-clock-o" style={{ marginRight: "2px" }}></i>
+            {moment(props.createdAt).format("HH:mm")}
+          </Typography>
+        </Tooltip>
+        {iconTag.icon == "fire" && (
+          <Tooltip title="Quente" placement="top-start">
+            <Typography variant="caption">
+              <i
+                className={`fa fa-${iconTag.icon}`}
+                style={{ marginRight: "2px", color: `${iconTag.color}` }}
+              ></i>
+              {iconTag.name}
+            </Typography>
+          </Tooltip>
+        )}
+        {iconTag.icon == "snowflake-o" && (
+          <Tooltip title="Fria" placement="top-start">
+            <Typography variant="caption">
+              <i
+                className={`fa fa-${iconTag.icon}`}
+                style={{ marginRight: "2px", color: `${iconTag.color}` }}
+              ></i>
+              {iconTag.name}
+            </Typography>
+          </Tooltip>
+        )}
+        {iconTag.icon == "bolt" && (
+          <Tooltip title="Morna" placement="top-start">
+            <Typography variant="caption">
+              <i
+                className={`fa fa-${iconTag.icon}`}
+                style={{ marginRight: "2px", color: `${iconTag.color}` }}
+              ></i>
+              {iconTag.name}
+            </Typography>
+          </Tooltip>
+        )}
       </ActivityTimeContainer>
       <hr style={{ width: "100%" }} />
 

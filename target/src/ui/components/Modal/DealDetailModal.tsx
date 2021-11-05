@@ -6,6 +6,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Tooltip,
 } from "@material-ui/core";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import PipelineContext from "contexts/PipelineContext";
@@ -76,84 +77,93 @@ const DetailModal: React.FC = () => {
     <ModalContainer>
       {dealDetail.id ? (
         <>
-          <CloseButtonStyled
-            onClick={() => {
-              useDealDetailModal("");
-              window.location.reload();
-            }}
-          >
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </CloseButtonStyled>
-
+          <Tooltip title="Fechar" placement="top-start">
+            <CloseButtonStyled
+              onClick={() => {
+                useDealDetailModal("");
+                window.location.reload();
+              }}
+            >
+              <i className="fa fa-times" aria-hidden="true"></i>
+            </CloseButtonStyled>
+          </Tooltip>
           <Title title={`Detalhes da negociação ${dealDetail?.name}`} />
           <div style={{ display: "flex", gap: "5px" }}>
-            <Button
-              onClick={() => {
-                setHasStatusChange(!hasStatusChange);
-              }}
-              variant="contained"
-              sx={{
-                width: "160px",
-                mb: 2,
-              }}
-              size="small"
-              color="primary"
-              type="submit"
-            >
-              {!hasStatusChange ? "Finalizar" : "Cancelar"}
-            </Button>
-            <Button
-              onClick={() => {
-                updateStatus(dealDetail.id, { status: "ARCHIVED" });
-                setHasStatusChange(false);
-              }}
-              variant="contained"
-              size="small"
-              sx={{
-                width: "160px",
-                mb: 2,
-              }}
-              color="secondary"
-              type="submit"
-            >
-              Arquivar
-            </Button>
+            <Tooltip title="Finalizar negociação" placement="top-start">
+              <Button
+                onClick={() => {
+                  setHasStatusChange(!hasStatusChange);
+                }}
+                variant="contained"
+                sx={{
+                  width: "160px",
+                  mb: 2,
+                }}
+                size="small"
+                color="primary"
+                type="submit"
+              >
+                {!hasStatusChange ? "Finalizar" : "Cancelar"}
+              </Button>
+            </Tooltip>
+            <Tooltip title="Arquivar negociação" placement="top-start">
+              <Button
+                onClick={() => {
+                  updateStatus(dealDetail.id, { status: "ARCHIVED" });
+                  setHasStatusChange(false);
+                }}
+                variant="contained"
+                size="small"
+                sx={{
+                  width: "160px",
+                  mb: 2,
+                }}
+                color="secondary"
+                type="submit"
+              >
+                Arquivar
+              </Button>
+            </Tooltip>
           </div>
           <div
             style={{ display: hasStatusChange ? "flex" : "none", gap: "5px" }}
           >
-            <Button
-              onClick={() => {
-                updateStatus(dealDetail.id, { status: "WON" });
-                setHasStatusChange(false);
-              }}
-              variant="contained"
-              sx={{
-                width: "160px",
-                mb: 2,
-              }}
-              size="small"
-              color="success"
-              type="submit"
-            >
-              Ganhou
-            </Button>
-            <Button
-              onClick={() => {
-                updateStatus(dealDetail.id, { status: "LOST" });
-                setHasStatusChange(false);
-              }}
-              variant="contained"
-              sx={{
-                width: "160px",
-                mb: 2,
-              }}
-              size="small"
-              color="error"
-              type="submit"
-            >
-              Perdeu
-            </Button>
+            <Tooltip title="Finalizar como ganha" placement="top-start">
+              <Button
+                onClick={() => {
+                  updateStatus(dealDetail.id, { status: "WON" });
+                  setHasStatusChange(false);
+                }}
+                variant="contained"
+                sx={{
+                  width: "160px",
+                  mb: 2,
+                }}
+                size="small"
+                color="success"
+                type="submit"
+              >
+                Ganhou
+              </Button>
+            </Tooltip>
+            <Tooltip title="Finalizar como perdida" placement="top-start">
+              <Button
+                onClick={() => {
+                  updateStatus(dealDetail.id, { status: "LOST" });
+                  setHasStatusChange(false);
+                }}
+                variant="contained"
+                sx={{
+                  width: "160px",
+                  mb: 2,
+                }}
+                size="small"
+                color="error"
+                type="submit"
+              >
+                Perdeu
+              </Button>
+            </Tooltip>
           </div>
 
           <DealDetailCard
@@ -187,17 +197,21 @@ const DetailModal: React.FC = () => {
                 disabled
               />
               <LinkStyled>
-                <IconButton type="submit" aria-label="search">
-                  <CopyToClipboard text={dealDetail.contact?.email}>
-                    <i className={`fa fa-clone`}></i>
-                  </CopyToClipboard>
-                </IconButton>
+                <Tooltip title="Copiar email" placement="top-start">
+                  <IconButton type="submit" aria-label="search">
+                    <CopyToClipboard text={dealDetail.contact?.email}>
+                      <i className={`fa fa-clone`}></i>
+                    </CopyToClipboard>
+                  </IconButton>
+                </Tooltip>
               </LinkStyled>
 
               <LinkStyled href={`mailto:${dealDetail.contact?.email}`}>
-                <IconButton type="submit" aria-label="search">
-                  <i className={`fa fa-envelope-o`}></i>
-                </IconButton>
+                <Tooltip title="Enviar email" placement="top-start">
+                  <IconButton type="submit" aria-label="search">
+                    <i className={`fa fa-envelope-o`}></i>
+                  </IconButton>
+                </Tooltip>
               </LinkStyled>
             </div>
             <div style={{ display: "flex" }}>
@@ -210,41 +224,49 @@ const DetailModal: React.FC = () => {
                 disabled
               />{" "}
               <LinkStyled>
-                <IconButton type="submit">
-                  <CopyToClipboard text={dealDetail.contact?.phone}>
-                    <i className={`fa fa-clone`}></i>
-                  </CopyToClipboard>
-                </IconButton>
+                <Tooltip title="Copiar número" placement="top-start">
+                  <IconButton type="submit">
+                    <CopyToClipboard text={dealDetail.contact?.phone}>
+                      <i className={`fa fa-clone`}></i>
+                    </CopyToClipboard>
+                  </IconButton>
+                </Tooltip>
               </LinkStyled>
               <LinkPhoneStyled href={`tel:${dealDetail.contact?.phone}`}>
-                <IconButton type="submit" aria-label="search">
-                  <i className={`fa fa-phone`}></i>
-                </IconButton>
+                <Tooltip title="Ligar" placement="top-start">
+                  <IconButton type="submit" aria-label="search">
+                    <i className={`fa fa-phone`}></i>
+                  </IconButton>
+                </Tooltip>
               </LinkPhoneStyled>
               <LinkStyled
                 target="__blank"
                 rel="no-referrer"
                 href={`https://api.whatsapp.com/send?phone=55${dealDetail.contact?.phone}`}
               >
-                <IconButton type="submit" aria-label="search">
-                  <i className={`fa fa-whatsapp`}></i>
-                </IconButton>
+                <Tooltip title="Ir para WhatsApp Web" placement="top-start">
+                  <IconButton type="submit" aria-label="search">
+                    <i className={`fa fa-whatsapp`}></i>
+                  </IconButton>
+                </Tooltip>
               </LinkStyled>
             </div>
           </ActionsDealDetailCardContainer>
           <br />
           <Title title="Histórico de atividades" />
           <div style={{ position: "relative" }}>
-            <NewActivityButton
-              variant="contained"
-              size="small"
-              color="primary"
-              type="submit"
-              onClick={handleClick}
-            >
-              <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
-              <NewActivityButtonLabel> Nova atividade</NewActivityButtonLabel>
-            </NewActivityButton>
+            <Tooltip title="Adicionar nova atividade" placement="top-start">
+              <NewActivityButton
+                variant="contained"
+                size="small"
+                color="primary"
+                type="submit"
+                onClick={handleClick}
+              >
+                <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
+                <NewActivityButtonLabel> Nova atividade</NewActivityButtonLabel>
+              </NewActivityButton>
+            </Tooltip>
           </div>
           {hasNewActivity ? (
             <NewActivityContainer>
@@ -287,33 +309,37 @@ const DetailModal: React.FC = () => {
                 rows={3}
               />
               <ButtonsContainer>
-                <Button
-                  onClick={handleSubmit}
-                  variant="contained"
-                  size="small"
-                  sx={{
-                    width: "160px",
-                    mt: 1,
-                  }}
-                  color="primary"
-                  type="submit"
-                >
-                  Salvar
-                </Button>
+                <Tooltip title="Salvar atividade" placement="top-start">
+                  <Button
+                    onClick={handleSubmit}
+                    variant="contained"
+                    size="small"
+                    sx={{
+                      width: "160px",
+                      mt: 1,
+                    }}
+                    color="primary"
+                    type="submit"
+                  >
+                    Salvar
+                  </Button>
+                </Tooltip>
 
-                <Button
-                  onClick={handleClick}
-                  variant="contained"
-                  size="small"
-                  color="error"
-                  type="submit"
-                  sx={{
-                    width: "160px",
-                    mt: 1,
-                  }}
-                >
-                  Cancelar
-                </Button>
+                <Tooltip title="Cancelar atividade" placement="top-start">
+                  <Button
+                    onClick={handleClick}
+                    variant="contained"
+                    size="small"
+                    color="error"
+                    type="submit"
+                    sx={{
+                      width: "160px",
+                      mt: 1,
+                    }}
+                  >
+                    Cancelar
+                  </Button>
+                </Tooltip>
               </ButtonsContainer>
             </NewActivityContainer>
           ) : (

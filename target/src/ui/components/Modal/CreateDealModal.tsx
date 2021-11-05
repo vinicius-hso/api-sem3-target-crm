@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, MenuItem } from "@material-ui/core";
+import { Button, MenuItem, Tooltip } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
@@ -54,13 +54,16 @@ const CreateDealModal = () => {
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          useCreateDealModal();
-        }}
-      >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+      <Tooltip title="Fechar" placement="top-start">
+        <CloseButtonStyled
+          onClick={() => {
+            useCreateDealModal();
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
+
       <Title title="Adicionar negociação" />
       <TextFieldMask
         onChange={(event) => setData({ ...data, name: event.target.value })}
@@ -187,17 +190,19 @@ const CreateDealModal = () => {
  */}{" "}
         </div>
       </TwoColumnsContainer>
-      <Button
-        onClick={() => {
-          handleSubmit();
-        }}
-        variant="contained"
-        color="primary"
-        sx={{ mt: 4 }}
-        startIcon={<AddCircleIcon />}
-      >
-        Adicionar
-      </Button>
+      <Tooltip title="Adicionar negociação" placement="top-start">
+        <Button
+          onClick={() => {
+            handleSubmit();
+          }}
+          variant="contained"
+          color="primary"
+          sx={{ mt: 4 }}
+          startIcon={<AddCircleIcon />}
+        >
+          Adicionar
+        </Button>
+      </Tooltip>
     </ModalContainer>
   );
   return (

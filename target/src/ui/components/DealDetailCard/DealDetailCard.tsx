@@ -1,4 +1,10 @@
-import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
+import {
+  FormControl,
+  MenuItem,
+  Select,
+  Typography,
+  Tooltip,
+} from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { formatCurrency } from "data/utils/formatValue";
@@ -70,30 +76,52 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
       </Typography>
 
       <DealDetailCardContainer>
-        <EditButton
-          style={{ right: props.hasEdit ? "80px" : 0 }}
-          onClick={props.onClick}
-        >
-          {!props.hasEdit ? "Editar" : "Cancelar"}
-          <i
-            style={{ marginLeft: "2px" }}
-            className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
-            aria-hidden="true"
-          ></i>
-        </EditButton>
-        <EditButton
-          style={{
-            display: props.hasEdit ? "inline" : "none",
-          }}
-          onClick={handleSubmit}
-        >
-          {"Salvar"}
-          <i
-            style={{ marginLeft: "2px" }}
-            className="fa fa-check"
-            aria-hidden="true"
-          ></i>
-        </EditButton>
+        {!props.hasEdit ? (
+          <Tooltip title="Editar" placement="top-start">
+            <EditButton
+              style={{ right: props.hasEdit ? "80px" : 0 }}
+              onClick={props.onClick}
+            >
+              {!props.hasEdit ? "Editar" : "Cancelar"}
+              <i
+                style={{ marginLeft: "2px" }}
+                className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+                aria-hidden="true"
+              ></i>
+            </EditButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title="Cancelar" placement="top-start">
+            <EditButton
+              style={{ right: props.hasEdit ? "80px" : 0 }}
+              onClick={props.onClick}
+            >
+              {!props.hasEdit ? "Editar" : "Cancelar"}
+              <i
+                style={{ marginLeft: "2px" }}
+                className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+                aria-hidden="true"
+              ></i>
+            </EditButton>
+          </Tooltip>
+        )}
+
+        <Tooltip title="Salvar" placement="top-start">
+          <EditButton
+            style={{
+              display: props.hasEdit ? "inline" : "none",
+            }}
+            onClick={handleSubmit}
+          >
+            {"Salvar"}
+            <i
+              style={{ marginLeft: "2px" }}
+              className="fa fa-check"
+              aria-hidden="true"
+            ></i>
+          </EditButton>
+        </Tooltip>
+
         <InputContainer>
           <FormControl fullWidth>
             <TextFieldMask
