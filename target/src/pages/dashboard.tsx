@@ -19,11 +19,18 @@ import ConversionRateCard from "../ui/components/ConversionRateCardComponent/Con
 import { useDashboardPage } from "../data/services/hooks/PageHooks/DashboardHook";
 import Title from "ui/components/Title/Title";
 import { formatArray } from "data/utils/formatArray";
+import { DynamicLineCharts } from "../data/services/servicesComponents/DynamicLineCharts";
+import moment from "moment";
 
 interface BarChartsProps {
   title: string;
   xaxis: string[];
   series: { name: string; data: number[] }[];
+}
+
+interface LineChartsProps {
+  series: any[];
+  xaxis: any[];
 }
 
 function Dashboard() {
@@ -40,6 +47,38 @@ function Dashboard() {
     deals,
   } = useDashboardPage();
 
+  //* Mock para visualização {
+  const x = [
+    "November 5, 2021",
+    "November 6, 2021",
+    "November 7, 2021",
+    "November 8, 2021",
+    "November 9, 2021",
+    "November 11, 2021",
+    "November 12, 2021",
+    "November 13, 2021",
+    "November 14, 2021",
+    "November 15, 2021",
+    "November 16, 2021",
+    "November 17, 2021",
+  ];
+
+  const s = [
+    {
+      name: "Ganha",
+      data: [
+        2432, 4654, 5912, 4342, 5982, 7354, 3370, 6609, 9904, 1323, 5434, 8767,
+      ],
+    },
+    {
+      name: "Perdida",
+      data: [
+        3301, 6660, 9990, 1323, 5434, 8767, 3432, 6654, 9912, 4342, 5982, 7354,
+      ],
+    },
+  ];
+  //* Fim do Mock }
+
   const [filterType, setFilterType] = useState<{
     chartType: string;
     valueType: string;
@@ -53,7 +92,12 @@ function Dashboard() {
   const [chartData, setChartsData] = useState<BarChartsProps>({
     title: "",
     xaxis: [""],
-    series: [{ name: "", data: [0] }],
+    series: [],
+  });
+
+  const [lineChartData, setLineChartsData] = useState<LineChartsProps>({
+    xaxis: [],
+    series: [],
   });
 
   useEffect(() => {
@@ -101,8 +145,34 @@ function Dashboard() {
     });
   };
 
+  const getLineCharData = () => {
+    const dat = deals;
+    let wons = { name: "Ganha", data: [] };
+    let lost = { name: "Perdida", data: [] };
+    let xaxisValues = [];
+    dat.map((d) => {
+      switch (d.status) {
+        case "WON":
+          wons.data.push(d.value / 100);
+          xaxisValues.push(moment(d.updatedAt).format("LL"));
+          // xaxisValues.push(d.updatedAt);
+          break;
+        case "LOST":
+          lost.data.push(d.value / 100);
+          xaxisValues.push(moment(d.updatedAt).format("LL"));
+          // xaxisValues.push(d.updatedAt);
+          break;
+      }
+    });
+    setLineChartsData({
+      xaxis: xaxisValues,
+      series: [wons, lost],
+    });
+  };
+
   useEffect(() => {
     getChartData("Empresa", "quantidade");
+    getLineCharData();
   }, [deals]);
 
   const setFilter = () => {
@@ -221,6 +291,14 @@ function Dashboard() {
           />
         )}
       </Box>
+
+      <ChartsContainer>
+        {/* <DynamicLineCharts series={s} xaxis={x} /> */}
+        <DynamicLineCharts
+          series={lineChartData.series}
+          xaxis={lineChartData.xaxis}
+        />
+      </ChartsContainer>
     </DashboardPageContainer>
   );
 }
