@@ -113,42 +113,59 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
           </Tooltip>
           <Title title={`Detalhes da negociação ${dealDetail?.name}`} />
           <div style={{ display: "flex", gap: "5px" }}>
-            <Tooltip
-              title="Finalizar negociação"
-              placement="top-start"
-              enterDelay={500}
-              leaveDelay={100}
-            >
-              <Button
-                onClick={() => {
-                  setHasStatusChange(!hasStatusChange);
-                }}
-                variant="contained"
-                sx={{
-                  width: "160px",
-                  mb: 2,
-                }}
-                size="small"
-                color="primary"
-                type="submit"
+            {!hasStatusChange ? (
+              <Tooltip
+                title="Finalizar negociação"
+                placement="top-start"
+                enterDelay={500}
+                leaveDelay={100}
               >
-                {!hasStatusChange ? "Finalizar" : "Cancelar"}
-              </Button>
-            </Tooltip>
-<<<<<<< HEAD
+                <Button
+                  onClick={() => {
+                    setHasStatusChange(!hasStatusChange);
+                  }}
+                  variant="contained"
+                  sx={{
+                    width: "160px",
+                    mb: 2,
+                  }}
+                  size="small"
+                  color="primary"
+                  type="submit"
+                >
+                  {!hasStatusChange ? "Finalizar" : "Cancelar"}
+                </Button>
+              </Tooltip>
+            ) : (
+              <Tooltip
+                title="Cancelar"
+                placement="top-start"
+                enterDelay={500}
+                leaveDelay={100}
+              >
+                <Button
+                  onClick={() => {
+                    setHasStatusChange(!hasStatusChange);
+                  }}
+                  variant="contained"
+                  sx={{
+                    width: "160px",
+                    mb: 2,
+                  }}
+                  size="small"
+                  color="primary"
+                  type="submit"
+                >
+                  {!hasStatusChange ? "Finalizar" : "Cancelar"}
+                </Button>
+              </Tooltip>
+            )}
             <Tooltip
-              title="Arquivar negociação"
+              title="Finalizar como ganha"
               placement="top-start"
               enterDelay={500}
               leaveDelay={100}
             >
-=======
-          </div>
-          <div
-            style={{ display: hasStatusChange ? "flex" : "none", gap: "5px" }}
-          >
-            <Tooltip title="Finalizar como ganha" placement="top-start">
->>>>>>> 22790d6b36499160bfe9ba7c3c147e7f34a3aad5
               <Button
                 onClick={() => {
                   updateStatus(dealDetail.id, { status: "WON" });
@@ -166,20 +183,16 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                 <Icon className="fa fa-thumbs-up" sx={{ color: "#fff" }} />
               </Button>
             </Tooltip>
-<<<<<<< HEAD
           </div>
           <div
             style={{ display: hasStatusChange ? "flex" : "none", gap: "5px" }}
           >
             <Tooltip
-              title="Finalizar como ganha"
+              title="Finalizar como perdida"
               placement="top-start"
               enterDelay={500}
               leaveDelay={100}
             >
-=======
-            <Tooltip title="Finalizar como perdida" placement="top-start">
->>>>>>> 22790d6b36499160bfe9ba7c3c147e7f34a3aad5
               <Button
                 onClick={() => {
                   updateStatus(dealDetail.id, { status: "LOST" });
@@ -197,16 +210,12 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                 <Icon className="fa fa-thumbs-down" />
               </Button>
             </Tooltip>
-<<<<<<< HEAD
             <Tooltip
-              title="Finalizar como perdida"
+              title="Arquivar negociação"
               placement="top-start"
               enterDelay={500}
               leaveDelay={100}
             >
-=======
-            <Tooltip title="Arquivar negociação" placement="top-start">
->>>>>>> 22790d6b36499160bfe9ba7c3c147e7f34a3aad5
               <Button
                 onClick={() => {
                   updateStatus(dealDetail.id, { status: "ARCHIVED" });
