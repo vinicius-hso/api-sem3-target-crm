@@ -1,4 +1,5 @@
 import ContactService from "data/services/ContactService";
+import { serviceApi } from "data/services/ServiceApi";
 import React, { useState, createContext, useEffect } from "react";
 import { IContact, IContactContext } from "types/Contact";
 
@@ -30,6 +31,18 @@ export const ContactProvider: React.FC = ({ children }) => {
     setDeleteContactModal(!deleteContactModal);
   };
 
+  const sendImportedContacts = async (contacts: IContact[]): Promise<any> => {
+    let errors = [];
+    for await (let contact of contacts) {
+      try {
+        await serviceApi.post("/contact", contact);
+      } catch (err) {
+        errors.push(contact);
+      }
+    }
+    return errors;
+  };
+
   const getContacts = async (): Promise<void> => {
     setLoading(true);
     try {
@@ -59,6 +72,7 @@ export const ContactProvider: React.FC = ({ children }) => {
         updateContactModal,
         useDeleteContactModal,
         deleteContactModal,
+        sendImportedContacts,
         contacts,
         getContacts,
         isLoading,

@@ -4,6 +4,7 @@ import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 class ContactService {
   async getContacts() {
@@ -67,14 +68,13 @@ class ContactService {
 
     try {
       const { data } = await api.post("/contact", body);
-
       toast.success("Contato criado com sucesso!");
       return data.id;
     } catch (error) {
       toast.error(
         "Ops! algo deu errado, verifique sua conexão e tente novamente."
       );
-      return error;
+      return;
     }
   }
 

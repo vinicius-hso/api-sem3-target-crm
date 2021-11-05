@@ -15,10 +15,10 @@ import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import CreateContactModal from "ui/components/Modal/Contact/CreateContactModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { Button, CircularProgress } from "@material-ui/core";
-import ContactContext from "contexts/ContactContext";
 import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
 import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
 import ImportContactModal from "ui/components/Modal/Contact/ImportContactModal";
+import ContactContext from "contexts/ContactContext";
 
 function ContactPage() {
   const { filteredContact, removeFiltered } = useContactPage();
