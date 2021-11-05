@@ -37,7 +37,7 @@ export const mocks = async (): Promise<any> => {
 
   // Contacts
   const contact = await Contact.create({
-    id: '000',
+    id: 'c0d140ad-3268-4587-b484-10f910334fe9',
     name: 'Adriano Silveira',
     email: 'adriano_silveira@gmail.com',
     phone: '12987979532',
