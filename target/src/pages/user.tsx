@@ -9,7 +9,7 @@ import {
 import UserCard from "ui/components/UserCard/UserCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
-import { Button } from "@material-ui/core";
+import { Button, Tooltip } from "@material-ui/core";
 import CreateUserModal from "ui/components/Modal/CreateUserModal";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import UserDetailModal from "ui/components/Modal/UserDetailModal";
@@ -91,16 +91,23 @@ function UserPage() {
         />
       </UserHeaderContainer>
       <NewUserButtonContainer>
-        <Button
-          variant="contained"
-          sx={{ width: "auto", height: "30px" }}
-          color="primary"
-          onClick={() => setOpenCreateUserModal(true)}
-          type="submit"
+        <Tooltip
+          title="Adicionar usuário"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
         >
-          <i className="fa fa-plus" style={{ marginRight: "2px" }}></i> Novo
-          usuário
-        </Button>
+          <Button
+            variant="contained"
+            sx={{ width: "auto", height: "30px" }}
+            color="primary"
+            onClick={() => setOpenCreateUserModal(true)}
+            type="submit"
+          >
+            <i className="fa fa-plus" style={{ marginRight: "2px" }}></i> Novo
+            usuário
+          </Button>
+        </Tooltip>
       </NewUserButtonContainer>
 
       <CardsContainer>

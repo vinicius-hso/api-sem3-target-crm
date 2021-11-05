@@ -31,20 +31,35 @@ const Activity: React.FC<ActivityProps> = (props) => {
         {props.title}
       </Typography>
       <ActivityTimeContainer>
-        <Tooltip title="Data" placement="top-start">
+        <Tooltip
+          title="Data"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
           <Typography variant="caption" sx={{ mr: 2 }}>
             <i className="fa fa-calendar" style={{ marginRight: "2px" }}></i>
             {moment(props.createdAt).format(" DD/MM/YYYY")}
           </Typography>
         </Tooltip>
-        <Tooltip title="Horário" placement="top-start">
+        <Tooltip
+          title="Horário"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
           <Typography variant="caption" sx={{ mr: 2 }}>
             <i className="fa fa-clock-o" style={{ marginRight: "2px" }}></i>
             {moment(props.createdAt).format("HH:mm")}
           </Typography>
         </Tooltip>
         {iconTag.icon == "fire" && (
-          <Tooltip title="Quente" placement="top-start">
+          <Tooltip
+            title="Quente"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
             <Typography variant="caption">
               <i
                 className={`fa fa-${iconTag.icon}`}
@@ -55,7 +70,12 @@ const Activity: React.FC<ActivityProps> = (props) => {
           </Tooltip>
         )}
         {iconTag.icon == "snowflake-o" && (
-          <Tooltip title="Fria" placement="top-start">
+          <Tooltip
+            title="Fria"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
             <Typography variant="caption">
               <i
                 className={`fa fa-${iconTag.icon}`}
@@ -66,7 +86,12 @@ const Activity: React.FC<ActivityProps> = (props) => {
           </Tooltip>
         )}
         {iconTag.icon == "bolt" && (
-          <Tooltip title="Morna" placement="top-start">
+          <Tooltip
+            title="Morna"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
             <Typography variant="caption">
               <i
                 className={`fa fa-${iconTag.icon}`}

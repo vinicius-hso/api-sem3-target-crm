@@ -9,7 +9,7 @@ import {
 import CompanyCard from "ui/components/CompanyCard/CompanyCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
-import { Button, CircularProgress } from "@material-ui/core";
+import { Button, CircularProgress, Tooltip } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
@@ -109,16 +109,23 @@ function CompanyPage() {
         />
       </CompanyHeaderContainer>
       <NewCompanyButtonContainer>
-        <Button
-          variant="contained"
-          sx={{ width: "auto", height: "30px" }}
-          color="primary"
-          onClick={() => setOpenCreateCompanyModal(true)}
-          type="submit"
+        <Tooltip
+          title="Adicionar empresa"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
         >
-          <i className="fa fa-plus" style={{ marginRight: "2px" }}></i> Nova
-          empresa
-        </Button>
+          <Button
+            variant="contained"
+            sx={{ width: "auto", height: "30px" }}
+            color="primary"
+            onClick={() => setOpenCreateCompanyModal(true)}
+            type="submit"
+          >
+            <i className="fa fa-plus" style={{ marginRight: "2px" }}></i> Nova
+            empresa
+          </Button>
+        </Tooltip>
       </NewCompanyButtonContainer>
 
       <CardsContainer>

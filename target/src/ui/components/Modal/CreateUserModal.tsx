@@ -13,6 +13,7 @@ import {
   FormControl,
   InputLabel,
   Select,
+  Tooltip,
 } from "@material-ui/core";
 import { IUser } from "types/User";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -39,19 +40,27 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
 
   async function handleSubmit() {
     setSubmit(true);
-    (data.name && data.email? createUser(data).then(() => window.location.reload()): null)
-
+    data.name && data.email
+      ? createUser(data).then(() => window.location.reload())
+      : null;
   }
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          setOpen(false);
-        }}
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+        <CloseButtonStyled
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
 
       <Title title="Novo usuário" />
       <TwoColumnsContainer>
@@ -64,7 +73,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
           fullWidth
           required
           error={submit && !data.name}
-          helperText={!data.name && submit ? 'Nome é obrigatório' : ' '}
+          helperText={!data.name && submit ? "Nome é obrigatório" : " "}
         />
 
         <TextFieldMask
@@ -76,7 +85,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
           fullWidth
           required
           error={submit && !data.email}
-          helperText={!data.email && submit ? 'Email é obrigatório' : ' '}
+          helperText={!data.email && submit ? "Email é obrigatório" : " "}
         />
 
         <FormControl fullWidth>
@@ -90,7 +99,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
             size="medium"
             fullWidth
             defaultValue={""}
-
           >
             <MenuItem value={"ADMIN"}>Administrador</MenuItem>
             <MenuItem value={"SELLER"}>Vendedor</MenuItem>
@@ -108,16 +116,22 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
           fullWidth
         />
       </TwoColumnsContainer>
-
-      <Button
-        onClick={() => handleSubmit()}
-        variant="contained"
-        color="primary"
-        startIcon={<AddCircleIcon />}
-        sx={{ mt: 4 }}
+      <Tooltip
+        title="Adicionar usuário"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        Adicionar
-      </Button>
+        <Button
+          onClick={() => handleSubmit()}
+          variant="contained"
+          color="primary"
+          startIcon={<AddCircleIcon />}
+          sx={{ mt: 4 }}
+        >
+          Adicionar
+        </Button>
+      </Tooltip>
     </ModalContainer>
   );
   return (

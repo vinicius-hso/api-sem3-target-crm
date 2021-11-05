@@ -14,7 +14,7 @@ import ContactCard from "ui/components/ContactCard/ContactCard";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import CreateContactModal from "ui/components/Modal/Contact/CreateContactModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { Button, CircularProgress } from "@material-ui/core";
+import { Button, CircularProgress, Tooltip } from "@material-ui/core";
 import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
 import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
 import ImportContactModal from "ui/components/Modal/Contact/ImportContactModal";
@@ -99,21 +99,36 @@ function ContactPage() {
           hasFiltered={hasFiltered}
         />
         <div style={{ display: "flex", justifyContent: "end" }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => useImportContactModal()}
+          <Tooltip
+            title="Importar contatos"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
           >
-            Importar
-          </Button>
-          <Button
-            variant="contained"
-            color="success"
-            style={{ color: "white", marginLeft: "10px" }}
-            onClick={() => useCreateContactModal()}
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => useImportContactModal()}
+            >
+              Importar
+            </Button>
+          </Tooltip>
+
+          <Tooltip
+            title="Adicionar contato"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
           >
-            Adicionar
-          </Button>
+            <Button
+              variant="contained"
+              color="success"
+              style={{ color: "white", marginLeft: "10px" }}
+              onClick={() => useCreateContactModal()}
+            >
+              Adicionar
+            </Button>
+          </Tooltip>
         </div>
       </ContactsHeaderContainer>
       <br />

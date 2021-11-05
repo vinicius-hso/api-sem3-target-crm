@@ -1,4 +1,4 @@
-import { Icon } from "@material-ui/core";
+import { Icon, Tooltip } from "@material-ui/core";
 import { formatValue } from "data/utils/formatValue";
 import { getNameInitials } from "data/utils/nameConfig";
 import moment from "moment";
@@ -67,12 +67,51 @@ const DealCompletedCard: React.FC<DealCardProps> = (props) => {
           </DealStartDateStyled>
         </DealFooterContainer>
       </DealDescriptionContainer>
-      <Icon
-        className={`fa fa-${iconTag.icon}`}
-        fontSize="inherit"
-        style={{ color: iconTag.color }}
-        sx={{ mr: 0.5, position: "relative", bottom: 0 }}
-      />
+      {iconTag.icon === "thumbs-o-up" && (
+        <Tooltip
+          title="Ganha"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
+          <Icon
+            className={`fa fa-${iconTag.icon}`}
+            fontSize="inherit"
+            style={{ color: iconTag.color }}
+            sx={{ mr: 0.5, position: "relative", bottom: 0 }}
+          />
+        </Tooltip>
+      )}
+      {iconTag.icon === "thumbs-o-down" && (
+        <Tooltip
+          title="Perdida"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
+          <Icon
+            className={`fa fa-${iconTag.icon}`}
+            fontSize="inherit"
+            style={{ color: iconTag.color }}
+            sx={{ mr: 0.5, position: "relative", bottom: 0 }}
+          />
+        </Tooltip>
+      )}
+      {iconTag.icon === "archive" && (
+        <Tooltip
+          title="Arquivada"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
+          <Icon
+            className={`fa fa-${iconTag.icon}`}
+            fontSize="inherit"
+            style={{ color: iconTag.color }}
+            sx={{ mr: 0.5, position: "relative", bottom: 0 }}
+          />
+        </Tooltip>
+      )}
     </DealCardContainer>
   );
 };

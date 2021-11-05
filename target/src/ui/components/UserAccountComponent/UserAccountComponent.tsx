@@ -1,4 +1,4 @@
-import { Typography, Avatar, Button } from "@material-ui/core";
+import { Typography, Avatar, Button, Tooltip } from "@material-ui/core";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import React, { useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
@@ -58,16 +58,23 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
 
         <ContainerStyled>
           <div style={{ position: "relative" }}>
-            <NewActivityButton
-              variant="contained"
-              size="small"
-              color="primary"
-              type="submit"
-              onClick={props.onClickPassword}
+            <Tooltip
+              title="Alterar senha"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
             >
-              <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
-              <NewActivityButtonLabel> Alterar senha</NewActivityButtonLabel>
-            </NewActivityButton>
+              <NewActivityButton
+                variant="contained"
+                size="small"
+                color="primary"
+                type="submit"
+                onClick={props.onClickPassword}
+              >
+                <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
+                <NewActivityButtonLabel> Alterar senha</NewActivityButtonLabel>
+              </NewActivityButton>
+            </Tooltip>
           </div>
         </ContainerStyled>
 
@@ -127,34 +134,48 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
 
               <ButtonsContainer>
                 <div style={{ margin: "24px" }}>
-                  <Button
-                    onClick={() => props.saveEditPassword(password)}
-                    variant="contained"
-                    size="small"
-                    sx={{
-                      width: "160px",
-                      mt: 1,
-                    }}
-                    color="primary"
-                    type="submit"
+                  <Tooltip
+                    title="Salvar alteração"
+                    placement="top-start"
+                    enterDelay={500}
+                    leaveDelay={100}
                   >
-                    Salvar
-                  </Button>
+                    <Button
+                      onClick={() => props.saveEditPassword(password)}
+                      variant="contained"
+                      size="small"
+                      sx={{
+                        width: "160px",
+                        mt: 1,
+                      }}
+                      color="primary"
+                      type="submit"
+                    >
+                      Salvar
+                    </Button>
+                  </Tooltip>
                 </div>
                 <div style={{ margin: "24px" }}>
-                  <Button
-                    onClick={props.onClickPassword}
-                    variant="contained"
-                    size="small"
-                    color="error"
-                    type="submit"
-                    sx={{
-                      width: "160px",
-                      mt: 1,
-                    }}
+                  <Tooltip
+                    title="Cancelar alteração"
+                    placement="top-start"
+                    enterDelay={500}
+                    leaveDelay={100}
                   >
-                    Cancelar
-                  </Button>
+                    <Button
+                      onClick={props.onClickPassword}
+                      variant="contained"
+                      size="small"
+                      color="error"
+                      type="submit"
+                      sx={{
+                        width: "160px",
+                        mt: 1,
+                      }}
+                    >
+                      Cancelar
+                    </Button>
+                  </Tooltip>
                 </div>
               </ButtonsContainer>
             </UserAccountCardContainer>
@@ -176,35 +197,70 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               message="Ops! Algo deu errado :("
             />
           ) : null}
+          {!props.hasEdit ? (
+            <Tooltip
+              title="Editar"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
+            >
+              <EditButton
+                style={{ right: props.hasEdit ? "80px" : 0 }}
+                onClick={props.onClick}
+              >
+                {!props.hasEdit ? "Editar" : "Cancelar"}
+                <i
+                  style={{ marginLeft: "2px" }}
+                  className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+                  aria-hidden="true"
+                ></i>
+              </EditButton>
+            </Tooltip>
+          ) : (
+            <Tooltip
+              title="Cancelar"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
+            >
+              <EditButton
+                style={{ right: props.hasEdit ? "80px" : 0 }}
+                onClick={props.onClick}
+              >
+                {!props.hasEdit ? "Editar" : "Cancelar"}
+                <i
+                  style={{ marginLeft: "2px" }}
+                  className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+                  aria-hidden="true"
+                ></i>
+              </EditButton>
+            </Tooltip>
+          )}
 
-          <EditButton
-            style={{ right: props.hasEdit ? "80px" : 0 }}
-            onClick={props.onClick}
+          <Tooltip
+            title="Salvar alterações"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
           >
-            {!props.hasEdit ? "Editar" : "Cancelar"}
-            <i
-              style={{ marginLeft: "2px" }}
-              className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
-              aria-hidden="true"
-            ></i>
-          </EditButton>
-          <EditButton
-            style={{
-              display: !props.hasEdit && "none",
-            }}
-            onClick={() => {
-              user.name.length > 0 &&
-                user.email.length > 0 &&
-                props.saveEdit(user);
-            }}
-          >
-            {"Salvar"}
-            <i
-              style={{ marginLeft: "2px" }}
-              className="fa fa-check"
-              aria-hidden="true"
-            ></i>
-          </EditButton>
+            <EditButton
+              style={{
+                display: !props.hasEdit && "none",
+              }}
+              onClick={() => {
+                user.name.length > 0 &&
+                  user.email.length > 0 &&
+                  props.saveEdit(user);
+              }}
+            >
+              {"Salvar"}
+              <i
+                style={{ marginLeft: "2px" }}
+                className="fa fa-check"
+                aria-hidden="true"
+              ></i>
+            </EditButton>
+          </Tooltip>
 
           {user && (
             <Avatar

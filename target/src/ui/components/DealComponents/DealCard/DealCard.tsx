@@ -57,16 +57,31 @@ const DealCard: React.FC<DealCardProps> = (props) => {
       </div>
       <DealDescriptionContainer>
         <DealTitleStyled>{props?.title}</DealTitleStyled>
-        <Tooltip title="Contato" placement="top-start">
+        <Tooltip
+          title="Contato"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
           <DealTypeStyled>{props?.contactName}</DealTypeStyled>
         </Tooltip>
         <DealFooterContainer>
-          <Tooltip title="Valor" placement="top-start">
+          <Tooltip
+            title="Valor"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
             <DealBudgetStyled>
               {formatValue(props?.budget || 0)}
             </DealBudgetStyled>
           </Tooltip>
-          <Tooltip title="Data de início" placement="top-start">
+          <Tooltip
+            title="Data de início"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
             <DealStartDateStyled>
               <Icon className="fa fa-calendar" fontSize="inherit" />
               {moment(props?.startDate).format(" DD/MM/YYYY HH:MM")}
@@ -75,7 +90,12 @@ const DealCard: React.FC<DealCardProps> = (props) => {
         </DealFooterContainer>
       </DealDescriptionContainer>
       {iconTag.icon == "fire" && (
-        <Tooltip title="Quente" placement="top-start">
+        <Tooltip
+          title="Quente"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
           <Icon
             className={`fa fa-${iconTag.icon}`}
             fontSize="inherit"
@@ -85,7 +105,12 @@ const DealCard: React.FC<DealCardProps> = (props) => {
         </Tooltip>
       )}
       {iconTag.icon == "snowflake-o" && (
-        <Tooltip title="Fria" placement="top-start">
+        <Tooltip
+          title="Fria"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
           <Icon
             className={`fa fa-${iconTag.icon}`}
             fontSize="inherit"
@@ -95,7 +120,12 @@ const DealCard: React.FC<DealCardProps> = (props) => {
         </Tooltip>
       )}
       {iconTag.icon == "bolt" && (
-        <Tooltip title="Morna" placement="top-start">
+        <Tooltip
+          title="Morna"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
           <Icon
             className={`fa fa-${iconTag.icon}`}
             fontSize="inherit"

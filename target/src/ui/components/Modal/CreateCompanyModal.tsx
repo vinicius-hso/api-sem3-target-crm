@@ -8,7 +8,7 @@ import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
 // import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { Button, useForkRef } from "@material-ui/core";
+import { Button, useForkRef, Tooltip } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
@@ -84,13 +84,20 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          setOpen(false);
-        }}
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+        <CloseButtonStyled
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
 
       <Title title="Nova empresa" />
       <TwoColumnsContainer>
@@ -174,16 +181,22 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
           fullWidth
         />
       </TwoColumnsContainer>
-
-      <Button
-        onClick={() => handleSubmit()}
-        variant="contained"
-        color="primary"
-        startIcon={<AddCircleIcon />}
-        sx={{ mt: 4 }}
+      <Tooltip
+        title="Adicionar empresa"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        Adicionar
-      </Button>
+        <Button
+          onClick={() => handleSubmit()}
+          variant="contained"
+          color="primary"
+          startIcon={<AddCircleIcon />}
+          sx={{ mt: 4 }}
+        >
+          Adicionar
+        </Button>
+      </Tooltip>
     </ModalContainer>
   );
   return (

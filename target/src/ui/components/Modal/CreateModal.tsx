@@ -15,7 +15,12 @@ const CreateModal = () => {
 
   const body = (
     <ModalContainer>
-      <Tooltip title="Fechar" placement="top-start">
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
+      >
         <CloseButtonStyled
           onClick={() => {
             useCreateModal();
@@ -35,7 +40,12 @@ const CreateModal = () => {
         size="small"
         fullWidth
       />
-      <Tooltip title="Adicionar pipeline" placement="top-start">
+      <Tooltip
+        title="Adicionar pipeline"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
+      >
         <Button
           onClick={() => createPipeline()}
           variant="contained"

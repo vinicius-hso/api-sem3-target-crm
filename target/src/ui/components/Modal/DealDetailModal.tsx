@@ -77,7 +77,12 @@ const DetailModal: React.FC = () => {
     <ModalContainer>
       {dealDetail.id ? (
         <>
-          <Tooltip title="Fechar" placement="top-start">
+          <Tooltip
+            title="Fechar"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
             <CloseButtonStyled
               onClick={() => {
                 useDealDetailModal("");
@@ -89,7 +94,12 @@ const DetailModal: React.FC = () => {
           </Tooltip>
           <Title title={`Detalhes da negociação ${dealDetail?.name}`} />
           <div style={{ display: "flex", gap: "5px" }}>
-            <Tooltip title="Finalizar negociação" placement="top-start">
+            <Tooltip
+              title="Finalizar negociação"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
+            >
               <Button
                 onClick={() => {
                   setHasStatusChange(!hasStatusChange);
@@ -106,7 +116,12 @@ const DetailModal: React.FC = () => {
                 {!hasStatusChange ? "Finalizar" : "Cancelar"}
               </Button>
             </Tooltip>
-            <Tooltip title="Arquivar negociação" placement="top-start">
+            <Tooltip
+              title="Arquivar negociação"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
+            >
               <Button
                 onClick={() => {
                   updateStatus(dealDetail.id, { status: "ARCHIVED" });
@@ -128,7 +143,12 @@ const DetailModal: React.FC = () => {
           <div
             style={{ display: hasStatusChange ? "flex" : "none", gap: "5px" }}
           >
-            <Tooltip title="Finalizar como ganha" placement="top-start">
+            <Tooltip
+              title="Finalizar como ganha"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
+            >
               <Button
                 onClick={() => {
                   updateStatus(dealDetail.id, { status: "WON" });
@@ -146,7 +166,12 @@ const DetailModal: React.FC = () => {
                 Ganhou
               </Button>
             </Tooltip>
-            <Tooltip title="Finalizar como perdida" placement="top-start">
+            <Tooltip
+              title="Finalizar como perdida"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
+            >
               <Button
                 onClick={() => {
                   updateStatus(dealDetail.id, { status: "LOST" });
@@ -197,7 +222,12 @@ const DetailModal: React.FC = () => {
                 disabled
               />
               <LinkStyled>
-                <Tooltip title="Copiar email" placement="top-start">
+                <Tooltip
+                  title="Copiar email"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
                   <IconButton type="submit" aria-label="search">
                     <CopyToClipboard text={dealDetail.contact?.email}>
                       <i className={`fa fa-clone`}></i>
@@ -207,7 +237,12 @@ const DetailModal: React.FC = () => {
               </LinkStyled>
 
               <LinkStyled href={`mailto:${dealDetail.contact?.email}`}>
-                <Tooltip title="Enviar email" placement="top-start">
+                <Tooltip
+                  title="Enviar email"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
                   <IconButton type="submit" aria-label="search">
                     <i className={`fa fa-envelope-o`}></i>
                   </IconButton>
@@ -224,7 +259,12 @@ const DetailModal: React.FC = () => {
                 disabled
               />{" "}
               <LinkStyled>
-                <Tooltip title="Copiar número" placement="top-start">
+                <Tooltip
+                  title="Copiar número"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
                   <IconButton type="submit">
                     <CopyToClipboard text={dealDetail.contact?.phone}>
                       <i className={`fa fa-clone`}></i>
@@ -233,7 +273,12 @@ const DetailModal: React.FC = () => {
                 </Tooltip>
               </LinkStyled>
               <LinkPhoneStyled href={`tel:${dealDetail.contact?.phone}`}>
-                <Tooltip title="Ligar" placement="top-start">
+                <Tooltip
+                  title="Ligar"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
                   <IconButton type="submit" aria-label="search">
                     <i className={`fa fa-phone`}></i>
                   </IconButton>
@@ -244,7 +289,12 @@ const DetailModal: React.FC = () => {
                 rel="no-referrer"
                 href={`https://api.whatsapp.com/send?phone=55${dealDetail.contact?.phone}`}
               >
-                <Tooltip title="Ir para WhatsApp Web" placement="top-start">
+                <Tooltip
+                  title="Ir para WhatsApp Web"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
                   <IconButton type="submit" aria-label="search">
                     <i className={`fa fa-whatsapp`}></i>
                   </IconButton>
@@ -255,7 +305,12 @@ const DetailModal: React.FC = () => {
           <br />
           <Title title="Histórico de atividades" />
           <div style={{ position: "relative" }}>
-            <Tooltip title="Adicionar nova atividade" placement="top-start">
+            <Tooltip
+              title="Adicionar nova atividade"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
+            >
               <NewActivityButton
                 variant="contained"
                 size="small"
@@ -309,7 +364,12 @@ const DetailModal: React.FC = () => {
                 rows={3}
               />
               <ButtonsContainer>
-                <Tooltip title="Salvar atividade" placement="top-start">
+                <Tooltip
+                  title="Salvar atividade"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
                   <Button
                     onClick={handleSubmit}
                     variant="contained"
@@ -325,7 +385,12 @@ const DetailModal: React.FC = () => {
                   </Button>
                 </Tooltip>
 
-                <Tooltip title="Cancelar atividade" placement="top-start">
+                <Tooltip
+                  title="Cancelar atividade"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
                   <Button
                     onClick={handleClick}
                     variant="contained"

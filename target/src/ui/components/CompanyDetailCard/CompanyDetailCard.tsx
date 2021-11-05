@@ -1,4 +1,10 @@
-import { FormControl, MenuItem, Select, Typography } from "@material-ui/core";
+import {
+  FormControl,
+  MenuItem,
+  Select,
+  Typography,
+  Tooltip,
+} from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import React, { useContext, useState } from "react";
@@ -53,30 +59,66 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
       </Typography>
 
       <CompanyDetailCardContainer>
-        <EditButton
-          style={{ right: props.hasEdit ? "80px" : 0 }}
-          onClick={props.onClick}
+        {!props.hasEdit ? (
+          <Tooltip
+            title="Editar"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
+            <EditButton
+              style={{ right: props.hasEdit ? "80px" : 0 }}
+              onClick={props.onClick}
+            >
+              {!props.hasEdit ? "Editar" : "Cancelar"}
+              <i
+                style={{ marginLeft: "2px" }}
+                className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+                aria-hidden="true"
+              ></i>
+            </EditButton>
+          </Tooltip>
+        ) : (
+          <Tooltip
+            title="Cancelar"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
+            <EditButton
+              style={{ right: props.hasEdit ? "80px" : 0 }}
+              onClick={props.onClick}
+            >
+              {!props.hasEdit ? "Editar" : "Cancelar"}
+              <i
+                style={{ marginLeft: "2px" }}
+                className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+                aria-hidden="true"
+              ></i>
+            </EditButton>
+          </Tooltip>
+        )}
+
+        <Tooltip
+          title="Salvar alterações"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
         >
-          {!props.hasEdit ? "Editar" : "Cancelar"}
-          <i
-            style={{ marginLeft: "2px" }}
-            className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
-            aria-hidden="true"
-          ></i>
-        </EditButton>
-        <EditButton
-          style={{
-            display: props.hasEdit ? "inline" : "none",
-          }}
-          onClick={() => props.saveEdit(data)}
-        >
-          {"Salvar"}
-          <i
-            style={{ marginLeft: "2px" }}
-            className="fa fa-check"
-            aria-hidden="true"
-          ></i>
-        </EditButton>
+          <EditButton
+            style={{
+              display: props.hasEdit ? "inline" : "none",
+            }}
+            onClick={() => props.saveEdit(data)}
+          >
+            {"Salvar"}
+            <i
+              style={{ marginLeft: "2px" }}
+              className="fa fa-check"
+              aria-hidden="true"
+            ></i>
+          </EditButton>
+        </Tooltip>
 
         <InputContainer>
           <TextFieldMask

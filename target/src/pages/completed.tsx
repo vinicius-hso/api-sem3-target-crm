@@ -10,7 +10,11 @@ import {
   CompletedHeaderContainer,
   CompletedPageContainer,
 } from "@styles/pagesStyle/completed.style";
-import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
+import {
+  BottomNavigation,
+  BottomNavigationAction,
+  Tooltip,
+} from "@material-ui/core";
 import { useCompletedPage } from "data/services/hooks/PageHooks/CompletedHook";
 import DealCompletedCard from "ui/components/DealCompletedCard/DealCompletedCard";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
@@ -139,21 +143,44 @@ function CompletedPage() {
       </CompletedHeaderContainer>
       <CompletedButtonsContainer>
         <BottomNavigation value={selectedStatus} onChange={handleChange}>
-          <BottomNavigationAction
-            label="Ganhou"
-            value="WON"
-            icon={<i className="fa fa-thumbs-o-up"></i>}
-          />
-          <BottomNavigationAction
-            label="Perdeu"
-            value="LOST"
-            icon={<i className="fa fa-thumbs-o-down"></i>}
-          />
-          <BottomNavigationAction
-            label="Arquivadas"
-            value="ARCHIVED"
-            icon={<i className="fa fa-archive"></i>}
-          />
+          <Tooltip
+            title="Visualizar ganhas"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
+            <BottomNavigationAction
+              label="Ganhou"
+              value="WON"
+              icon={<i className="fa fa-thumbs-o-up"></i>}
+            />
+          </Tooltip>
+
+          <Tooltip
+            title="Visualizar perdidas"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
+            <BottomNavigationAction
+              label="Perdeu"
+              value="LOST"
+              icon={<i className="fa fa-thumbs-o-down"></i>}
+            />
+          </Tooltip>
+
+          <Tooltip
+            title="Visualizar arquivadas"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
+            <BottomNavigationAction
+              label="Arquivadas"
+              value="ARCHIVED"
+              icon={<i className="fa fa-archive"></i>}
+            />
+          </Tooltip>
         </BottomNavigation>
       </CompletedButtonsContainer>
       <CardsContainer>

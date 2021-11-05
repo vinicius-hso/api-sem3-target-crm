@@ -5,6 +5,7 @@ import {
   Typography,
   InputLabel,
   useTheme,
+  Tooltip,
 } from "@material-ui/core";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
@@ -38,7 +39,6 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
     picture: props.picture,
   });
 
-
   return (
     <div>
       <Typography
@@ -56,30 +56,65 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
       </Typography>
 
       <UserDetailCardContainer>
-        <EditButton
-          style={{ right: props.hasEdit ? "80px" : 0 }}
-          onClick={props.onClick}
+        {!props.hasEdit ? (
+          <Tooltip
+            title="Editar"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
+            <EditButton
+              style={{ right: props.hasEdit ? "80px" : 0 }}
+              onClick={props.onClick}
+            >
+              {!props.hasEdit ? "Editar" : "Cancelar"}
+              <i
+                style={{ marginLeft: "2px" }}
+                className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+                aria-hidden="true"
+              ></i>
+            </EditButton>
+          </Tooltip>
+        ) : (
+          <Tooltip
+            title="Cancelar"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
+            <EditButton
+              style={{ right: props.hasEdit ? "80px" : 0 }}
+              onClick={props.onClick}
+            >
+              {!props.hasEdit ? "Editar" : "Cancelar"}
+              <i
+                style={{ marginLeft: "2px" }}
+                className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
+                aria-hidden="true"
+              ></i>
+            </EditButton>
+          </Tooltip>
+        )}
+        <Tooltip
+          title="Salvar alterações"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
         >
-          {!props.hasEdit ? "Editar" : "Cancelar"}
-          <i
-            style={{ marginLeft: "2px" }}
-            className={`fa fa-${!props.hasEdit ? "pencil" : "times"}`}
-            aria-hidden="true"
-          ></i>
-        </EditButton>
-        <EditButton
-          style={{
-            display: props.hasEdit ? "inline" : "none",
-          }}
-          onClick={() => props.saveEdit(data)}
-        >
-          {"Salvar"}
-          <i
-            style={{ marginLeft: "2px" }}
-            className="fa fa-check"
-            aria-hidden="true"
-          ></i>
-        </EditButton>
+          <EditButton
+            style={{
+              display: props.hasEdit ? "inline" : "none",
+            }}
+            onClick={() => props.saveEdit(data)}
+          >
+            {"Salvar"}
+            <i
+              style={{ marginLeft: "2px" }}
+              className="fa fa-check"
+              aria-hidden="true"
+            ></i>
+          </EditButton>
+        </Tooltip>
 
         <InputContainer>
           <TextFieldMask
@@ -103,8 +138,10 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             size="medium"
             defaultValue={props.email}
             value={data.email}
-            onChange={(event) => setData({ ...data, email: event.target.value })}
-            />
+            onChange={(event) =>
+              setData({ ...data, email: event.target.value })
+            }
+          />
         </InputContainer>
 
         <InputContainer>
@@ -116,8 +153,10 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             size="medium"
             defaultValue={props.picture}
             value={data.picture}
-            onChange={(event) => setData({ ...data, picture: event.target.value })}
-            />
+            onChange={(event) =>
+              setData({ ...data, picture: event.target.value })
+            }
+          />
         </InputContainer>
 
         <FormControl fullWidth>

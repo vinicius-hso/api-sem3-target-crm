@@ -54,7 +54,12 @@ const CreateDealModal = () => {
 
   const body = (
     <ModalContainer>
-      <Tooltip title="Fechar" placement="top-start">
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
+      >
         <CloseButtonStyled
           onClick={() => {
             useCreateDealModal();
@@ -190,7 +195,12 @@ const CreateDealModal = () => {
  */}{" "}
         </div>
       </TwoColumnsContainer>
-      <Tooltip title="Adicionar negociação" placement="top-start">
+      <Tooltip
+        title="Adicionar negociação"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
+      >
         <Button
           onClick={() => {
             handleSubmit();

@@ -14,7 +14,12 @@ const DeleteModal: React.FC = () => {
 
   const body = (
     <ModalContainer>
-      <Tooltip title="Fechar" placement="top-start">
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
+      >
         <CloseButtonStyled
           onClick={() => {
             useDeleteModal("");
@@ -36,7 +41,12 @@ const DeleteModal: React.FC = () => {
           </>
         }
       />
-      <Tooltip title="Deletar pipeline" placement="top-start">
+      <Tooltip
+        title="Deletar pipeline"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
+      >
         <Button
           onClick={() => deletePipeline()}
           variant="contained"

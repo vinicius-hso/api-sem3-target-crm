@@ -77,7 +77,12 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
 
       <DealDetailCardContainer>
         {!props.hasEdit ? (
-          <Tooltip title="Editar" placement="top-start">
+          <Tooltip
+            title="Editar"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
             <EditButton
               style={{ right: props.hasEdit ? "80px" : 0 }}
               onClick={props.onClick}
@@ -91,7 +96,12 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
             </EditButton>
           </Tooltip>
         ) : (
-          <Tooltip title="Cancelar" placement="top-start">
+          <Tooltip
+            title="Cancelar"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
             <EditButton
               style={{ right: props.hasEdit ? "80px" : 0 }}
               onClick={props.onClick}
@@ -106,7 +116,12 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
           </Tooltip>
         )}
 
-        <Tooltip title="Salvar" placement="top-start">
+        <Tooltip
+          title="Salvar alterações"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
           <EditButton
             style={{
               display: props.hasEdit ? "inline" : "none",

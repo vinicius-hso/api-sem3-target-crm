@@ -7,7 +7,7 @@ import {
 import { CloseButtonStyled } from "../ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../../Input/TextFieldMask/TextFieldMask";
 import Title from "../../Title/Title";
-import { Button, Select, MenuItem } from "@material-ui/core";
+import { Button, Select, MenuItem, Tooltip } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -109,14 +109,21 @@ const UpdateContactModal = ({ id, setId }) => {
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          useUpdateContactModal();
-          mySetId();
-        }}
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+        <CloseButtonStyled
+          onClick={() => {
+            useUpdateContactModal();
+            mySetId();
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
 
       <Title title="Editar contato" />
 
@@ -215,27 +222,41 @@ const UpdateContactModal = ({ id, setId }) => {
       </TwoColumnsContainer>
 
       <TwoColumnsContainer>
-        <Button
-          variant="contained"
-          color="error"
-          onClick={() => {
-            useDeleteContactModal(), useUpdateContactModal();
-          }}
-          startIcon={<DeleteIcon />}
-          sx={{ mt: 4 }}
+        <Tooltip
+          title="Deletar contato"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
         >
-          Deletar
-        </Button>
-        <Button
-          variant="contained"
-          color="success"
-          style={{ color: "white" }}
-          onClick={() => updateContact()}
-          startIcon={<AddCircleIcon />}
-          sx={{ mt: 4 }}
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => {
+              useDeleteContactModal(), useUpdateContactModal();
+            }}
+            startIcon={<DeleteIcon />}
+            sx={{ mt: 4 }}
+          >
+            Deletar
+          </Button>
+        </Tooltip>
+        <Tooltip
+          title="Salvar alterações"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
         >
-          Salvar
-        </Button>
+          <Button
+            variant="contained"
+            color="success"
+            style={{ color: "white" }}
+            onClick={() => updateContact()}
+            startIcon={<AddCircleIcon />}
+            sx={{ mt: 4 }}
+          >
+            Salvar
+          </Button>
+        </Tooltip>
       </TwoColumnsContainer>
     </ModalContainer>
   );

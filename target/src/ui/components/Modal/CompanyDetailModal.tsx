@@ -6,7 +6,7 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import { CompanyTypes } from "types/Company";
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHook";
-import { Button } from "@material-ui/core";
+import { Button, Tooltip } from "@material-ui/core";
 import Alert from "../AlertComponent/AlertComponent";
 import { StatusTypes } from "types/Status";
 import CompanyContext from "contexts/CompanyContext";
@@ -22,7 +22,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   company,
   setOpen,
 }) => {
-  const {useDeleteCompanyModal}=useContext(CompanyContext);
+  const { useDeleteCompanyModal } = useContext(CompanyContext);
   const { editCompany, deleteCompany } = useCompanyPage();
   const [hasEdit, setHasEdit] = useState(false);
   const [status, setStatus] = useState<StatusTypes>({});
@@ -60,32 +60,46 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
             />
           ) : null}
 
-          <CloseButtonStyled
-            onClick={() => {
-              setOpen(false);
-            }}
+          <Tooltip
+            title="Fechar"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
           >
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </CloseButtonStyled>
+            <CloseButtonStyled
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <i className="fa fa-times" aria-hidden="true"></i>
+            </CloseButtonStyled>
+          </Tooltip>
 
           <Title title={`Detalhes da empresa ${company?.name}`} />
           <div style={{ display: "flex", justifyContent: "right" }}>
-            <Button
-              onClick={() => {
-                setOpen(false);
-                useDeleteCompanyModal();
-              }}
-              variant="contained"
-              size="small"
-              sx={{
-                width: "160px",
-                mb: 2,
-              }}
-              color="error"
-              type="submit"
+            <Tooltip
+              title="Deletar empresa"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
             >
-              Deletar
-            </Button>
+              <Button
+                onClick={() => {
+                  setOpen(false);
+                  useDeleteCompanyModal();
+                }}
+                variant="contained"
+                size="small"
+                sx={{
+                  width: "160px",
+                  mb: 2,
+                }}
+                color="error"
+                type="submit"
+              >
+                Deletar
+              </Button>
+            </Tooltip>
           </div>
 
           <CompanyDetailCard

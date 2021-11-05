@@ -21,7 +21,12 @@ const UpDateModal = () => {
 
   const body = (
     <ModalContainer>
-      <Tooltip title="Fechar" placement="top-start">
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
+      >
         <CloseButtonStyled
           onClick={() => {
             useUpdateModal("");
@@ -50,7 +55,12 @@ const UpDateModal = () => {
           onChange={(event) => setName(event.target.value)}
         />
       )}
-      <Tooltip title="Salvar alteração" placement="top-start">
+      <Tooltip
+        title="Salvar alteração"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
+      >
         <Button
           onClick={() => updatePipeline()}
           variant="contained"
