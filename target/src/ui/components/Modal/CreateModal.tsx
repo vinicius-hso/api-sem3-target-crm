@@ -9,7 +9,11 @@ import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
-const CreateModal = () => {
+interface CreateModalProps {
+  getData: () => void;
+}
+
+const CreateModal = ({ getData }: CreateModalProps) => {
   const { createModalState, useCreateModal, createPipeline, setName } =
     useContext(PipelineContext);
 
@@ -47,7 +51,12 @@ const CreateModal = () => {
         leaveDelay={100}
       >
         <Button
-          onClick={() => createPipeline()}
+          onClick={() => {
+            createPipeline();
+            setTimeout(() => {
+              getData();
+            }, 1000);
+          }}
           variant="contained"
           color="primary"
           startIcon={<AddCircleIcon />}

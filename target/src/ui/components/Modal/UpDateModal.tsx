@@ -8,7 +8,11 @@ import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
-const UpDateModal = () => {
+interface UpdateModalProps {
+  getData: () => void;
+}
+
+const UpDateModal = ({ getData }: UpdateModalProps) => {
   const {
     updateModalState,
     useUpdateModal,
@@ -51,7 +55,7 @@ const UpDateModal = () => {
           size="small"
           fullWidth
           focused={pipeline ? true : false}
-          value={pipeline?.name}
+          defaultValue={pipeline?.name}
           onChange={(event) => setName(event.target.value)}
         />
       )}
@@ -62,7 +66,12 @@ const UpDateModal = () => {
         leaveDelay={100}
       >
         <Button
-          onClick={() => updatePipeline()}
+          onClick={() => {
+            updatePipeline();
+            setTimeout(() => {
+              getData();
+            }, 1000);
+          }}
           variant="contained"
           color="primary"
           startIcon={<i className="fa fa-pensil"></i>}

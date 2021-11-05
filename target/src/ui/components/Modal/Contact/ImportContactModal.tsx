@@ -21,6 +21,8 @@ import readXlsxFile from "read-excel-file";
 import Select from "ui/components/Input/Select/Select";
 import axios from "axios";
 import { serviceApi } from "data/services/ServiceApi";
+import { IContact } from "types/Contact";
+import Dialog from "ui/components/Dialog/Dialog";
 
 interface ImportContactModalProps {
   companies: any[];
@@ -36,6 +38,7 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
   } = useContext(ContactContext);
 
   const [importedContacts, setImportedContacts] = useState<any[]>([]);
+  const [hasError, setHasError] = useState<boolean>(false);
 
   const ReadDocument = async (file) => {
     let contacts = [];
@@ -44,11 +47,11 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
         rows.splice(0, 1);
         rows.forEach(async (row) => {
           const contact = {
-            name: row[0] || "Vazio",
-            email: row[1] || "Vazio",
-            phone: row[2] || "Vazio",
-            picture: row[3] || "Vazio",
-            company: "Vazio",
+            name: row[0] || "",
+            email: row[1] || "",
+            phone: row[2] || "",
+            picture: row[3] || "",
+            company: "",
           };
           contacts.push(contact);
         });
@@ -57,15 +60,34 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
     }
   };
 
-  const handleSubmit = async (contacts) => {
+  const handleSubmit = async (contacts: IContact[]) => {
     const res = await sendImportedContacts(contacts);
-    console.log(res);
+    if (res.length) {
+      setImportedContacts(res);
+      setHasError(true);
+    }
   };
 
   const body = (
     <ModalContainer>
+      <Dialog
+        title={`(${importedContacts.length}) erros de importação`}
+        message={`Os seguintes contatos não puderam ser criados: 
+        ${importedContacts.forEach((contact) => contact.name + ", ")} 
+        deseja tentar novamente?`}
+        type={"question"}
+        open={hasError}
+        setOpen={() => setHasError(false)}
+        result={(res) => {
+          res ? handleSubmit(importedContacts) : setHasError(false);
+          setImportedContacts([]);
+          useImportContactModal();
+        }}
+      />
+
       <CloseButtonStyled
         onClick={() => {
+          setImportedContacts([]);
           useImportContactModal();
         }}
       >
@@ -81,10 +103,10 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
               <TableHead>
                 <TableRow>
                   <TableCell>Nome</TableCell>
-                  <TableCell align="right">Email</TableCell>
-                  <TableCell align="right">Telefone</TableCell>
-                  <TableCell align="right">Link de imagem</TableCell>
-                  <TableCell align="right">Empresa</TableCell>
+                  <TableCell align="left">Empresa</TableCell>
+                  <TableCell align="left">Email</TableCell>
+                  <TableCell align="left">Telefone</TableCell>
+                  <TableCell align="left">Link de imagem</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -93,22 +115,6 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
-                      {contact.name}
-                    </TableCell>
-                    <TableCell align="right">{contact.email}</TableCell>
-                    <TableCell align="right">{contact.phone}</TableCell>
-                    <TableCell
-                      sx={{
-                        maxWidth: "80px",
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                      align="right"
-                    >
-                      {contact.picture}
-                    </TableCell>
                     <TableCell align="right">
                       <Select
                         onChange={(event) => {
@@ -118,9 +124,7 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
                         variant="standard"
                         size="medium"
                         value={
-                          contact.company === "Vazio"
-                            ? "default"
-                            : contact.company
+                          contact.company === "" ? "default" : contact.company
                         }
                         fullWidth
                       >
@@ -133,6 +137,32 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
                           </MenuItem>
                         ))}
                       </Select>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {contact.name}
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      sx={{
+                        maxWidth: "160px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {contact.email}
+                    </TableCell>
+                    <TableCell align="right">{contact.phone}</TableCell>
+                    <TableCell
+                      sx={{
+                        maxWidth: "80px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                      align="right"
+                    >
+                      {contact.picture}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -157,6 +187,10 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
     <>
       <ModalStyled
         open={importContactModal}
+        onClose={() => {
+          setImportedContacts([]);
+          useImportContactModal();
+        }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

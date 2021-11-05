@@ -2,7 +2,6 @@ import { Typography, Avatar, Button, Tooltip } from "@material-ui/core";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import React, { useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import Alert from "../AlertComponent/AlertComponent";
 import {
   NewActivityButton,
   NewActivityButtonLabel,
@@ -46,9 +45,6 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
   setUserPassword,
   ...props
 }) => {
-  const [showErrorAlert] = useState(false);
-  const [showSuccessAlert] = useState(false);
-
   return (
     <div>
       <ContainerStyled>

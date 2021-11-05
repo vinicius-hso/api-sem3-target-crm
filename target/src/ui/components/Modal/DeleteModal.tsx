@@ -8,7 +8,11 @@ import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
-const DeleteModal: React.FC = () => {
+interface DeleteModalProps {
+  getData: () => void;
+}
+
+const DeleteModal: React.FC<DeleteModalProps> = ({ getData }) => {
   const { deleteModalState, useDeleteModal, deletePipeline } =
     useContext(PipelineContext);
 
@@ -48,7 +52,12 @@ const DeleteModal: React.FC = () => {
         leaveDelay={100}
       >
         <Button
-          onClick={() => deletePipeline()}
+          onClick={() => {
+            deletePipeline();
+            setTimeout(() => {
+              getData();
+            }, 1000);
+          }}
           variant="contained"
           color="error"
         >

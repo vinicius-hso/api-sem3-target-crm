@@ -102,24 +102,20 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
             </Tooltip>
           </div>
 
-          <CompanyDetailCard
-            onClick={() => setHasEdit(!hasEdit)}
-            hasEdit={hasEdit}
-            id={company.id}
-            name={company?.name}
-            city={company?.city}
-            state={company?.state}
-            country={company?.country}
-            site={company?.site}
-            picture={company?.picture}
-            saveEdit={(data: CompanyTypes) => {
-              handleSubmitEdit(data);
-            }}
-          />
-        </>
-      ) : (
-        <div>Não foi possivel carregar dados, atualize a pagina</div>
-      )}
+      <CompanyDetailCard
+        onClick={() => setHasEdit(!hasEdit)}
+        hasEdit={hasEdit}
+        id={company.id}
+        name={company?.name}
+        city={company?.city}
+        state={company?.state}
+        country={company?.country}
+        site={company?.site}
+        picture={company?.picture}
+        saveEdit={(data: CompanyTypes) => {
+          handleSubmitEdit(data);
+        }}
+      />
     </ModalContainer>
   );
   return (

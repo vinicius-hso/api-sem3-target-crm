@@ -20,7 +20,11 @@ import {
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
-const CreateDealModal = () => {
+interface DetailModalProps {
+  getData: () => void;
+}
+
+const CreateDealModal = ({ getData }: DetailModalProps) => {
   const {
     createDealModalState,
     useCreateDealModal,
@@ -48,8 +52,14 @@ const CreateDealModal = () => {
   }, [selectedPipeline]);
 
   async function handleSubmit() {
-    data.value = data.value.replace(/\D+/g, "");
-    createDeal(data);
+    try {
+      data.value = data.value.replace(/\D+/g, "");
+      createDeal(data);
+      getData();
+      useCreateDealModal();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   const body = (

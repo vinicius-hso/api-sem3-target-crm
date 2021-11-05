@@ -29,6 +29,7 @@ function DealPipeline() {
     dealTotalParams,
     filterDeals,
     removefilterDeals,
+    getPipelines,
   } = useContext(PipelineContext);
 
   const [valueType, setValueType] = React.useState("name");
@@ -80,11 +81,11 @@ function DealPipeline() {
 
   return (
     <DealsPageContainer>
-      <DeleteModal />
-      <UpDateModal />
-      <CreateModal />
-      <CreateDealModal />
-      <DetailModal />
+      <DeleteModal getData={getPipelines} />
+      <UpDateModal getData={getPipelines} />
+      <CreateModal getData={getPipelines} />
+      <CreateDealModal getData={getPipelines} />
+      <DetailModal getData={getPipelines} />
 
       <DealsHeaderContainer>
         <TitleHeaderContainer>

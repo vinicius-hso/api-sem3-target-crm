@@ -7,16 +7,15 @@ import {
 } from "@material-ui/core";
 
 interface DealsInfoCardProps {
-  meanvalue: string,
-  totalvalue: string,
-  totaldeals: string,
-  meandays: string
+  meanvalue: string;
+  totalvalue: string;
+  totaldeals: string;
+  meandays: string;
 }
 
 const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
-
   return (
-    <Container sx={{ justifyContent: "center",  m: 3 }}>
+    <Container sx={{ justifyContent: "center", m: 3 }}>
       <Card
         sx={{
           height: "auto",
@@ -62,7 +61,7 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
               </Typography>
 
               <Typography color="textPrimary" variant="h5">
-                {props.meandays}
+                {typeof props.meandays === "number" ? props.meandays : 0}
               </Typography>
             </Grid>
           </Grid>
@@ -70,6 +69,6 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
       </Card>
     </Container>
   );
-}
+};
 
 export default DealsInfoCard;
