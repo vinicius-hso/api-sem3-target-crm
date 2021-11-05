@@ -7,7 +7,6 @@ import { CompanyTypes } from "types/Company";
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHook";
 import { Button } from "@material-ui/core";
-import Alert from "../AlertComponent/AlertComponent";
 import { StatusTypes } from "types/Status";
 import CompanyContext from "contexts/CompanyContext";
 
@@ -22,7 +21,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   company,
   setOpen,
 }) => {
-  const {useDeleteCompanyModal}=useContext(CompanyContext);
+  const { useDeleteCompanyModal } = useContext(CompanyContext);
   const { editCompany, deleteCompany } = useCompanyPage();
   const [hasEdit, setHasEdit] = useState(false);
   const [status, setStatus] = useState<StatusTypes>({});
@@ -50,62 +49,48 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
 
   const body = (
     <ModalContainer>
-      {company.id ? (
-        <>
-          {status.type ? (
-            <Alert
-              title={status.title}
-              severity={status.type}
-              message={status.message}
-            />
-          ) : null}
+      <CloseButtonStyled
+        onClick={() => {
+          setOpen(false);
+        }}
+      >
+        <i className="fa fa-times" aria-hidden="true"></i>
+      </CloseButtonStyled>
 
-          <CloseButtonStyled
-            onClick={() => {
-              setOpen(false);
-            }}
-          >
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </CloseButtonStyled>
+      <Title title={`Detalhes da empresa ${company?.name}`} />
+      <div style={{ display: "flex", justifyContent: "right" }}>
+        <Button
+          onClick={() => {
+            setOpen(false);
+            useDeleteCompanyModal();
+          }}
+          variant="contained"
+          size="small"
+          sx={{
+            width: "160px",
+            mb: 2,
+          }}
+          color="error"
+          type="submit"
+        >
+          Deletar
+        </Button>
+      </div>
 
-          <Title title={`Detalhes da empresa ${company?.name}`} />
-          <div style={{ display: "flex", justifyContent: "right" }}>
-            <Button
-              onClick={() => {
-                setOpen(false);
-                useDeleteCompanyModal();
-              }}
-              variant="contained"
-              size="small"
-              sx={{
-                width: "160px",
-                mb: 2,
-              }}
-              color="error"
-              type="submit"
-            >
-              Deletar
-            </Button>
-          </div>
-
-          <CompanyDetailCard
-            onClick={() => setHasEdit(!hasEdit)}
-            hasEdit={hasEdit}
-            id={company.id}
-            name={company?.name}
-            city={company?.city}
-            state={company?.state}
-            country={company?.country}
-            site={company?.site}
-            picture={company?.picture}
-            saveEdit={(data: CompanyTypes) => {
-              handleSubmitEdit(data);
-            }}
-          />
-        </>
-      ) : (
-        <div>Não foi possivel carregar dados, atualize a pagina</div>
-      )}
+      <CompanyDetailCard
+        onClick={() => setHasEdit(!hasEdit)}
+        hasEdit={hasEdit}
+        id={company.id}
+        name={company?.name}
+        city={company?.city}
+        state={company?.state}
+        country={company?.country}
+        site={company?.site}
+        picture={company?.picture}
+        saveEdit={(data: CompanyTypes) => {
+          handleSubmitEdit(data);
+        }}
+      />
     </ModalContainer>
   );
   return (

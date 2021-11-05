@@ -6,9 +6,7 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import { IUser } from "types/User";
 import UserDetailCard from "../UserDetailCard/UserDetailCard";
 import { useUserPage } from "../../../data/services/hooks/PageHooks/UserHook";
-import { Button } from '@material-ui/core';
-import Alert from "../AlertComponent/AlertComponent";
-
+import { Button } from "@material-ui/core";
 
 interface UserDetailModalProps {
   open: boolean;
@@ -48,10 +46,10 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
   };
 
   const handleDeleteUser = () => {
-    const id = user.id
+    const id = user.id;
     deleteUser(id).then(() => {
       setOpen(false);
-      window.location.reload()
+      window.location.reload();
     });
   };
 
@@ -59,60 +57,46 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
   //   console.log("Aoobah!");
   // }
 
-
   const body = (
     <ModalContainer>
-      {user.id ? (
-      <>
-      {status.status ? (
-            <Alert severity={status.status} message={status.message} />
-          ) : null}
-
-        <CloseButtonStyled
-          onClick={() => {
-            setOpen(false);
-            window.location.reload()
-          }}
-        >
-          <i className="fa fa-times" aria-hidden="true"></i>
-        </CloseButtonStyled>
-
-        <Title title={`Detalhes do usuário ${user?.name}`} />
-        <div style={{ display: "flex", justifyContent: "right" }}>
-
+      <CloseButtonStyled
+        onClick={() => {
+          setOpen(false);
+          window.location.reload();
+        }}
+      >
+        <i className="fa fa-times" aria-hidden="true"></i>
+      </CloseButtonStyled>
+      <Title title={`Detalhes do usuário ${user?.name}`} />
+      <div style={{ display: "flex", justifyContent: "right" }}>
         <Button
-              onClick={() => {
-                handleDeleteUser();
-              }}
-              variant="contained"
-              size="small"
-              sx={{
-                width: "160px",
-                mb: 2,
-              }}
-              color="error"
-              type="submit"
-            >
-              Deletar
-            </Button>
-          </div>
-
-        <UserDetailCard
-          onClick={() => setHasEdit(!hasEdit)}
-          hasEdit={hasEdit}
-          id={user.id}
-          name={user?.name}
-          email={user?.email}
-          role={user?.role}
-          picture={user?.picture}
-          saveEdit={(data: IUser) => {
-            handleSubmitEdit(data);
+          onClick={() => {
+            handleDeleteUser();
           }}
-        />
-      </>
-       ) : (
-         <div>Não foi possivel carregar os dados, atualize a página</div>
-       )}
+          variant="contained"
+          size="small"
+          sx={{
+            width: "160px",
+            mb: 2,
+          }}
+          color="error"
+          type="submit"
+        >
+          Deletar
+        </Button>
+      </div>
+      <UserDetailCard
+        onClick={() => setHasEdit(!hasEdit)}
+        hasEdit={hasEdit}
+        id={user.id}
+        name={user?.name}
+        email={user?.email}
+        role={user?.role}
+        picture={user?.picture}
+        saveEdit={(data: IUser) => {
+          handleSubmitEdit(data);
+        }}
+      />
     </ModalContainer>
   );
   return (

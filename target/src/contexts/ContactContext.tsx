@@ -1,6 +1,7 @@
 import ContactService from "data/services/ContactService";
 import { serviceApi } from "data/services/ServiceApi";
 import React, { useState, createContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import { IContact, IContactContext } from "types/Contact";
 
 const ContactContext = createContext<IContactContext>({} as IContactContext);
@@ -39,6 +40,15 @@ export const ContactProvider: React.FC = ({ children }) => {
       } catch (err) {
         errors.push(contact);
       }
+    }
+    if (errors.length < contacts.length) {
+      toast.success(
+        `${contacts.length - errors.length} contatos criados com sucesso!`
+      );
+    } else if (errors.length === contacts.length) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
     }
     return errors;
   };

@@ -129,7 +129,7 @@ function CompanyPage() {
         ) : !isLoading && hasError ? (
           <div>{hasError}</div>
         ) : (
-          <div>
+          <>
             {companies.map((company) => (
               <CompanyCard
                 key={company.id}
@@ -144,7 +144,7 @@ function CompanyPage() {
                 }}
               />
             ))}
-          </div>
+          </>
         )}
       </CardsContainer>
     </CompanyPageContainer>

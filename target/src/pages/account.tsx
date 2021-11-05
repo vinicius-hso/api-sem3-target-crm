@@ -2,7 +2,6 @@ import { Container } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import UserAccountComponent from "../ui/components/UserAccountComponent/UserAccountComponent";
 import { useSessionUserPage } from "data/services/hooks/PageHooks/SessionUserHook";
-import Alert from "../ui/components/AlertComponent/AlertComponent";
 import { IUser } from "types/User";
 
 type Passwords = {
@@ -47,13 +46,6 @@ function Home() {
 
   return (
     <div>
-      {status.status && (
-        <Alert
-          title="Passwords"
-          severity={status.status}
-          message={status.message}
-        />
-      )}
       <Container>
         {data && (
           <UserAccountComponent

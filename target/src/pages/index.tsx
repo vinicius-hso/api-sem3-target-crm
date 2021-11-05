@@ -30,6 +30,7 @@ function DealPipeline() {
     dealTotalParams,
     filterDeals,
     removefilterDeals,
+    getPipelines,
   } = useContext(PipelineContext);
 
   const [valueType, setValueType] = React.useState("name");
@@ -81,11 +82,11 @@ function DealPipeline() {
 
   return (
     <DealsPageContainer>
-      <DeleteModal />
-      <UpDateModal />
-      <CreateModal />
-      <CreateDealModal />
-      <DetailModal />
+      <DeleteModal getData={getPipelines} />
+      <UpDateModal getData={getPipelines} />
+      <CreateModal getData={getPipelines} />
+      <CreateDealModal getData={getPipelines} />
+      <DetailModal getData={getPipelines} />
 
       <DealsHeaderContainer>
         <TitleHeaderContainer>
@@ -100,9 +101,9 @@ function DealPipeline() {
                 }}
               >
                 <Tooltip title="Valor total" placement="top-start">
-                 <Typography>
-                  {formatValue(dealTotalParams?.budgetSum)}
-                </Typography>
+                  <Typography>
+                    {formatValue(dealTotalParams?.budgetSum)}
+                  </Typography>
                 </Tooltip>
                 <i
                   className="fa fa-arrow-right"
@@ -113,14 +114,13 @@ function DealPipeline() {
                     {dealTotalParams?.totalDeals} negociações
                   </Typography>
                 </Tooltip>
-                
               </div>
             }
           ></Title>
           <DealsTotalTagsContainer>
             <div>
               <Tooltip title="Negociações quentes" placement="top-start">
-                 <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
+                <i className="fa fa-fire" style={{ color: "#e63706" }}></i>
               </Tooltip>
               <span> {dealTotalParams?.hotDeals}</span>
             </div>
@@ -132,7 +132,10 @@ function DealPipeline() {
             </div>
             <div>
               <Tooltip title="Negociações frias" placement="top-start">
-                <i className="fa fa-snowflake-o" style={{ color: "#3eccf0" }}></i>
+                <i
+                  className="fa fa-snowflake-o"
+                  style={{ color: "#3eccf0" }}
+                ></i>
               </Tooltip>
               <span> {dealTotalParams?.coldDeals}</span>
             </div>

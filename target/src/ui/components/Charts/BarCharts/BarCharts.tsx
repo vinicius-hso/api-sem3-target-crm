@@ -55,8 +55,8 @@ const StackedColumnChart: React.FC<BarChartsProps> = ({
         categories: xaxis,
       },
       legend: {
-        position: "right",
-        offsetY: 40,
+        position: "top",
+        offsetY: 0,
       },
       fill: {
         opacity: 1,

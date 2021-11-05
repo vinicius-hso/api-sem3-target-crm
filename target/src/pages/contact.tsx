@@ -125,7 +125,7 @@ function ContactPage() {
         ) : !isLoading && hasError ? (
           <div>{hasError}</div>
         ) : (
-          <div>
+          <>
             {contacts?.map((contact) => (
               <ContactCard
                 key={contact.id}
@@ -140,7 +140,7 @@ function ContactPage() {
                 }}
               />
             ))}
-          </div>
+          </>
         )}
       </CardsContainer>
     </ContactsPageContainer>

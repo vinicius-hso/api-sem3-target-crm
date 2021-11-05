@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import {
   Button,
   FormControl,
+  Icon,
   IconButton,
   InputLabel,
   MenuItem,
@@ -32,7 +33,10 @@ import AuthContext from "contexts/AuthContext";
 import { ButtonsContainer } from "./ModalStyles/ButtonsContainer";
 import { LinkStyled } from "../Link/Link.style";
 
-const DetailModal: React.FC = () => {
+interface DetailModalProps {
+  getData: () => void;
+}
+const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
   const { dealDetailModalState, useDealDetailModal, dealDetail } =
     useContext(PipelineContext);
   const { createActivity, editDeal, updateStatus } = useDealPage();
@@ -64,6 +68,7 @@ const DetailModal: React.FC = () => {
       createActivity(dealDetail.id, data);
       dealDetail.activity.unshift(data);
       handleClick();
+      getData();
     }
   };
 
@@ -71,6 +76,21 @@ const DetailModal: React.FC = () => {
     data.value = data.value.replace(/\D+/g, "");
     editDeal(dealDetail.id, data);
     setHasEdit(false);
+    getData();
+  };
+
+  const onClose = () => {
+    setData({
+      name: "",
+      description: "",
+      tag: "WARM",
+      createdAt: new Date(Date.now()),
+      createdBy: user,
+    });
+    setHasEdit(false);
+    setHasStatusChange(false);
+    setHasNewActivity(false);
+    useDealDetailModal("");
   };
 
   const body = (
@@ -80,8 +100,7 @@ const DetailModal: React.FC = () => {
           <Tooltip title="Fechar" placement="top-start">
             <CloseButtonStyled
               onClick={() => {
-                useDealDetailModal("");
-                window.location.reload();
+                onClose();
               }}
             >
               <i className="fa fa-times" aria-hidden="true"></i>
@@ -106,24 +125,6 @@ const DetailModal: React.FC = () => {
                 {!hasStatusChange ? "Finalizar" : "Cancelar"}
               </Button>
             </Tooltip>
-            <Tooltip title="Arquivar negociação" placement="top-start">
-              <Button
-                onClick={() => {
-                  updateStatus(dealDetail.id, { status: "ARCHIVED" });
-                  setHasStatusChange(false);
-                }}
-                variant="contained"
-                size="small"
-                sx={{
-                  width: "160px",
-                  mb: 2,
-                }}
-                color="secondary"
-                type="submit"
-              >
-                Arquivar
-              </Button>
-            </Tooltip>
           </div>
           <div
             style={{ display: hasStatusChange ? "flex" : "none", gap: "5px" }}
@@ -132,36 +133,54 @@ const DetailModal: React.FC = () => {
               <Button
                 onClick={() => {
                   updateStatus(dealDetail.id, { status: "WON" });
+                  getData();
                   setHasStatusChange(false);
                 }}
                 variant="contained"
                 sx={{
-                  width: "160px",
                   mb: 2,
                 }}
                 size="small"
                 color="success"
                 type="submit"
               >
-                Ganhou
+                <Icon className="fa fa-thumbs-up" sx={{ color: "#fff" }} />
               </Button>
             </Tooltip>
             <Tooltip title="Finalizar como perdida" placement="top-start">
               <Button
                 onClick={() => {
                   updateStatus(dealDetail.id, { status: "LOST" });
+                  getData();
                   setHasStatusChange(false);
                 }}
                 variant="contained"
                 sx={{
-                  width: "160px",
                   mb: 2,
                 }}
                 size="small"
                 color="error"
                 type="submit"
               >
-                Perdeu
+                <Icon className="fa fa-thumbs-down" />
+              </Button>
+            </Tooltip>
+            <Tooltip title="Arquivar negociação" placement="top-start">
+              <Button
+                onClick={() => {
+                  updateStatus(dealDetail.id, { status: "ARCHIVED" });
+                  getData();
+                  setHasStatusChange(false);
+                }}
+                variant="contained"
+                size="small"
+                sx={{
+                  mb: 2,
+                }}
+                color="secondary"
+                type="submit"
+              >
+                <Icon className="fa fa-archive" />
               </Button>
             </Tooltip>
           </div>
@@ -369,7 +388,7 @@ const DetailModal: React.FC = () => {
     <>
       <ModalStyled
         open={dealDetailModalState}
-        onClose={() => useDealDetailModal("")}
+        onClose={() => onClose()}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

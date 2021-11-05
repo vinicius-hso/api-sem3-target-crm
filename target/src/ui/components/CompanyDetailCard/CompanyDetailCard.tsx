@@ -4,7 +4,6 @@ import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import PipelineContext from "contexts/PipelineContext";
-import Alert from "../AlertComponent/AlertComponent";
 import {
   CompanyDetailCardContainer,
   EditButton,

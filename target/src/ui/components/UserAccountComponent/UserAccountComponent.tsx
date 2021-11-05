@@ -2,7 +2,6 @@ import { Typography, Avatar, Button } from "@material-ui/core";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import React, { useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import Alert from "../AlertComponent/AlertComponent";
 import {
   NewActivityButton,
   NewActivityButtonLabel,
@@ -46,9 +45,6 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
   setUserPassword,
   ...props
 }) => {
-  const [showErrorAlert] = useState(false);
-  const [showSuccessAlert] = useState(false);
-
   return (
     <div>
       <ContainerStyled>
@@ -162,21 +158,6 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
         )}
 
         <UserAccountCardContainer>
-          {showSuccessAlert ? (
-            <Alert
-              title="Sucesso"
-              severity="success"
-              message="Empresa editada com sucesso!"
-            />
-          ) : null}
-          {showErrorAlert ? (
-            <Alert
-              title="Erro"
-              severity="error"
-              message="Ops! Algo deu errado :("
-            />
-          ) : null}
-
           <EditButton
             style={{ right: props.hasEdit ? "80px" : 0 }}
             onClick={props.onClick}

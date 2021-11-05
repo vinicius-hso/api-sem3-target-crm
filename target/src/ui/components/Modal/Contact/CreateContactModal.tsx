@@ -14,7 +14,6 @@ import { ModalStyled } from "../ModalStyles/Modal.style";
 import ContactContext from "contexts/ContactContext";
 import { IContact } from "types/Contact";
 import ContactService from "data/services/ContactService";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 import CompanyService from "data/services/CompanyService";
 import { formatPhone } from "data/utils/formatPhone";
