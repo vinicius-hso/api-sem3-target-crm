@@ -8,6 +8,6 @@ routes.post('/authenticate', AuthController.authenticate);
 routes.post('/forgot-password', AuthController.forgotPassword);
 routes.put('/reset-password', AuthController.resetPassword);
 
-routes.get('faw1efawe3f14aw8es3v6awer51xx3/check', ensureAuthenticated);
+routes.get('/faw1efawe3f14aw8es3v6awer51xx3/check', ensureAuthenticated);
 
 export default routes;
