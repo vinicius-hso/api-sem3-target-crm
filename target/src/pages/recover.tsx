@@ -6,10 +6,11 @@ import {
   RecoverContainer,
   ImageContainer,
 } from "@styles/pagesStyle/recover.styles";
-import { useRecoverPage } from "data/services/hooks/PageHooks/recoverPageHook";
 import Title from "ui/components/Title/Title";
 import { useRouter } from "next/dist/client/router";
 import Dialog from "ui/components/Dialog/Dialog";
+import { useRecoverPage } from "data/services/hooks/PageHooks/RecoverPageHook";
+import Head from "next/head";
 
 function PassRecover() {
   const currentRouter = useRouter();
@@ -32,6 +33,10 @@ function PassRecover() {
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
+      <Head>
+        <title>Recuperar senha | Target</title>
+      </Head>
+
       <ImageContainer>
         <img
           src="logo.png"
@@ -111,17 +116,17 @@ function PassRecover() {
 
       {hasMessage ? (
         <div style={{ margin: "0 auto", marginTop: "1000px" }}>
-        <Dialog
-          title={"Sucesso"}
-          message={"Senha atualizada com sucesso"}
-          type={"success"}
-          open={hasMessage}
-          setOpen={() => setMessage(!hasMessage)}
-          result={(res) => {
-            setMessage(false);
-            currentRouter.push("/login");
-          }}
-        />
+          <Dialog
+            title={"Sucesso"}
+            message={"Senha atualizada com sucesso"}
+            type={"success"}
+            open={hasMessage}
+            setOpen={() => setMessage(!hasMessage)}
+            result={(res) => {
+              setMessage(false);
+              currentRouter.push("/login");
+            }}
+          />
         </div>
       ) : (
         <br />

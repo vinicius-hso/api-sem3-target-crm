@@ -14,6 +14,7 @@ import CreateUserModal from "ui/components/Modal/CreateUserModal";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import UserDetailModal from "ui/components/Modal/UserDetailModal";
 import { mockRoles } from "data/utils/mock";
+import Head from "next/head";
 
 function UserPage() {
   const { users, filteredUser, removeFiltered } = useUserPage();
@@ -65,6 +66,10 @@ function UserPage() {
       />
 
       <UserHeaderContainer>
+        <Head>
+          <title>Usuários | Target</title>
+        </Head>
+
         <TitleContainer>
           <Title title="Gerenciamento de Usuários"></Title>
         </TitleContainer>

@@ -19,6 +19,7 @@ import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
 import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
 import ImportContactModal from "ui/components/Modal/Contact/ImportContactModal";
 import ContactContext from "contexts/ContactContext";
+import Head from "next/head";
 
 function ContactPage() {
   const { filteredContact, removeFiltered } = useContactPage();
@@ -69,6 +70,9 @@ function ContactPage() {
 
   return (
     <ContactsPageContainer>
+      <Head>
+        <title>Contatos | Target</title>
+      </Head>
       <CreateContactModal />
       <ImportContactModal companies={formatCompaniesToSelect} />
       {selectedId ? <UpdateContactModal setId={setId} id={selectedId} /> : null}

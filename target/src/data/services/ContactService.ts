@@ -47,29 +47,21 @@ class ContactService {
     }
   }
 
-  async createContact({
-    name,
-    email,
-    phone,
-    city,
-    state,
-    company_id,
-    tag,
-  }: IContact): Promise<string> {
-    const body: IContact = {
+  async createContact({ name, email, phone, city, state, company, tag }) {
+    const body = {
       name,
       email,
       phone,
       city,
       state,
-      company_id,
+      company,
       tag,
     };
 
     try {
       const { data } = await api.post("/contact", body);
       toast.success("Contato criado com sucesso!");
-      return data.id;
+      return data;
     } catch (error) {
       toast.error(
         "Ops! algo deu errado, verifique sua conexão e tente novamente."
@@ -78,23 +70,14 @@ class ContactService {
     }
   }
 
-  async updateContact({
-    id,
-    name,
-    email,
-    phone,
-    city,
-    state,
-    company_id,
-    tag,
-  }: IContact): Promise<string> {
-    const body: IContact = {
+  async updateContact({ id, name, email, phone, city, state, company, tag }) {
+    const body = {
       name,
       email,
       phone,
       city,
       state,
-      company_id,
+      company,
       tag,
     };
 

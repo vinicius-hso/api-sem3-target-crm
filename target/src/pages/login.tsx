@@ -10,8 +10,9 @@ import CustomLink from "ui/components/Link/Link";
 
 import Welcome from "ui/components/Welcome/welcome";
 import TextFieldMaskLogin from "ui/components/Input/TextFieldLogin/TextFieldMaskLogin";
-import { useLoginPage } from "data/services/hooks/PageHooks/LoginPageHook";
 import { ImageContainer } from "ui/components/Welcome/welcome.style";
+import Head from "next/head";
+import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
 
 function HomePage() {
   const {
@@ -32,6 +33,9 @@ function HomePage() {
   return (
     <LoginContainer>
       <Welcome />
+      <Head>
+        <title>Login | Target</title>
+      </Head>
 
       <LoginRightContainer>
         <div style={{ margin: "0 auto", marginTop: "36px" }}>

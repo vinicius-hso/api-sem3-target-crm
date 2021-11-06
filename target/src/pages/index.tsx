@@ -21,6 +21,7 @@ import { mockTags } from "data/utils/mock";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { DynamicPiline } from "data/services/servicesComponents/DynamicPipelines";
+import Head from "next/head";
 
 function DealPipeline() {
   const {
@@ -81,6 +82,10 @@ function DealPipeline() {
 
   return (
     <DealsPageContainer>
+      <Head>
+        <title>Negociações | Target</title>
+      </Head>
+
       <DeleteModal getData={getPipelines} />
       <UpDateModal getData={getPipelines} />
       <CreateModal getData={getPipelines} />

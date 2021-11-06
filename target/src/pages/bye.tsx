@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useEffect } from "react";
 import Title from "ui/components/Title/Title";
 import { ImageContainer } from "ui/components/Welcome/welcome.style";
@@ -16,8 +17,13 @@ const Bye = () => {
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
-      <Title title={"Agradeçomos a visita!"}
-      subtitle={"Obrigado por usar nossa plataforma."}></Title>
+      <Title
+        title={"Agradeçomos a visita!"}
+        subtitle={"Obrigado por usar nossa plataforma."}
+      ></Title>
+      <Head>
+        <title>Até breve | Target</title>
+      </Head>
 
       <ImageContainer>
         <img

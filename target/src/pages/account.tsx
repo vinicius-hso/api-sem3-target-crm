@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import UserAccountComponent from "../ui/components/UserAccountComponent/UserAccountComponent";
 import { useSessionUserPage } from "data/services/hooks/PageHooks/SessionUserHook";
 import { IUser } from "types/User";
+import Head from "next/head";
 
 type Passwords = {
   oldPassword: string;
@@ -46,6 +47,9 @@ function Home() {
 
   return (
     <div>
+      <Head>
+        <title>Minha conta | Target</title>
+      </Head>
       <Container>
         {data && (
           <UserAccountComponent

@@ -15,6 +15,7 @@ import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
 import DeleteCompanyModal from "ui/components/Modal/Company/DeleteCompanyModal";
 import { CompanyTypes } from "types/Company";
+import Head from "next/head";
 
 function CompanyPage() {
   const {
@@ -74,6 +75,9 @@ function CompanyPage() {
 
   return (
     <CompanyPageContainer>
+      <Head>
+        <title>Empresas | Target</title>
+      </Head>
       <DeleteCompanyModal id={selectedCompany.id} />
       <CreateCompanyModal
         open={openCreateCompanyModal}
@@ -127,7 +131,6 @@ function CompanyPage() {
           </Button>
         </Tooltip>
       </NewCompanyButtonContainer>
-
       <CardsContainer>
         {isLoading ? (
           <div style={{ textAlign: "center" }}>

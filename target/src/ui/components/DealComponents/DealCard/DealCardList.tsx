@@ -30,7 +30,10 @@ const DealCardList = (props) => {
           }}
         >
           <Tooltip title="Ações" placement="top-start">
-            <i className="fa fa-chevron-down"></i>
+            <i
+              style={{ fontSize: "24px" }}
+              className="fa fa-chevron-circle-down"
+            ></i>
           </Tooltip>
         </Button>
         {viewButtonGroup ? (
@@ -91,18 +94,25 @@ const DealCardList = (props) => {
         ) : (
           ""
         )}
+        <br />
         <Title
           title={props.title}
           subtitle={
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Tooltip title="Valor total das negociações do Pipeline" placement="top-start">
-                 <Typography>{formatValue(props.totalColumnValue)}</Typography>
+              <Tooltip
+                title="Valor total das negociações do Pipeline"
+                placement="top-start"
+              >
+                <Typography>{formatValue(props.totalColumnValue)}</Typography>
               </Tooltip>
               <i
                 className="fa fa-arrow-right"
                 style={{ position: "relative", top: "1px" }}
               ></i>
-              <Tooltip title="Total de negociações do Pipeline" placement="top-start">
+              <Tooltip
+                title="Total de negociações do Pipeline"
+                placement="top-start"
+              >
                 <Typography>{props.elements.length} negociações</Typography>
               </Tooltip>
             </div>

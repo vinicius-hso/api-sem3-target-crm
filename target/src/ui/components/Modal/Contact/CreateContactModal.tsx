@@ -54,7 +54,7 @@ const CreateContactModal = () => {
           phone: data?.phone,
           city: data?.city,
           state: data?.state,
-          company_id: data?.company_id,
+          company: data?.company_id,
           tag: data?.tag,
         });
 
