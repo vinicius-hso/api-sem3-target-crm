@@ -17,8 +17,7 @@ export const useNavBarComponent = () => {
 
   const tokenValidation = async () => {
     try {
-      await serviceApi.get("/pipeline");
-      console.log("a");
+      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check");
     } catch (err) {
       if (err.response.status === 401) {
         route.push("/login");
@@ -31,7 +30,9 @@ export const useNavBarComponent = () => {
     if (!storagedToken) {
       route.push("/login");
     } else {
-      tokenValidation();
+      if (serviceApi.defaults.headers.common["Authorization"]) {
+        tokenValidation();
+      }
     }
 
     if (user?.role === "ADMIN") {
