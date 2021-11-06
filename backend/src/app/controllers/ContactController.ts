@@ -43,6 +43,8 @@ class ContactController {
     try {
       const { name, email, phone, city, state, company, picture }: ContactInterface = req.body;
 
+      if (!name || !email || !company) return res.status(400).json({message: 'Invalid values for contacts'});
+
       const findContact = await Contact.findOne({ email });
 
       if (findContact) return res.status(400).json({ message: 'Contact already exists' });

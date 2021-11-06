@@ -21,7 +21,6 @@ export const mocks = async (): Promise<any> => {
 
   // Company
   const company = await Company.create({
-    id: "c0d140ad-3268-4587-b484-10f910334fe8",
     name: 'Geniv',
     country: 'Brasil',
     state: 'MG',
@@ -37,7 +36,6 @@ export const mocks = async (): Promise<any> => {
 
   // Contacts
   const contact = await Contact.create({
-    //id: 'c0d140ad-3268-4587-b484-10f910334fe9',
     name: 'Adriano Silveira',
     email: 'adriano_silveira@gmail.com',
     phone: '12987979532',
@@ -47,5 +45,5 @@ export const mocks = async (): Promise<any> => {
   }).save();
 
 
-  return { userSeller, otherUserSeller, userAdmin, pipeline, contact };
+  return { userSeller, otherUserSeller, userAdmin, pipeline, contact, company };
 };
