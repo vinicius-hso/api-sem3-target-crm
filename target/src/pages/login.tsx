@@ -42,7 +42,7 @@ function HomePage() {
           <hr />
           <ImageContainer>
             <img
-              src="logo.png"
+              src="logo-a.png"
               alt="logo"
               height="75px"
               width="auto"

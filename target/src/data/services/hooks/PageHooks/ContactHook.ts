@@ -13,7 +13,9 @@ export const useContactPage = () => {
 
   useEffect(() => {
     if (!contacts.length) {
-      getData();
+      setTimeout(() => {
+        getData();
+      }, 500);
     }
   }, []);
 
