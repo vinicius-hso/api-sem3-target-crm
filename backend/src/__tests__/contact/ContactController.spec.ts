@@ -111,7 +111,7 @@ describe('Contact Controller', () => {
              });
     });
 
-    it('should be get companyById with Admin', async () => {
+    it('should be get contactById with Admin', async () => {
         const contact = await Contact.create({
           name: chance.name(),
           email: chance.email(),
@@ -122,9 +122,10 @@ describe('Contact Controller', () => {
         }).save();
   
         await request(app)
-          .get(`/company/${contact.id}`)
+          .get(`/contact/${contact.id}`)
           .set('authorization', 'Bearer ' + AuthMock(env.userAdmin.email, env.userAdmin.id))
           .then((res) => {
+            //console.log(res.body);
             expect(res.status).toBe(200);
             expect(res.body).toHaveProperty('id');
             expect(res.body).toHaveProperty('name');
@@ -133,9 +134,6 @@ describe('Contact Controller', () => {
             expect(res.body).toHaveProperty('city');
             expect(res.body).toHaveProperty('state');
             expect(res.body).toHaveProperty('picture');
-            expect(res.body).toHaveProperty('createdAt');
-            expect(res.body).toHaveProperty('updatedAt');
-            expect(res.body).toHaveProperty('deletedAt');
           });
       });
     });
@@ -269,7 +267,7 @@ describe('Contact Controller', () => {
               .set('authorization', 'Bearer ' + AuthMock(env.otherUserSeller.email, env.otherUserSeller.id))
               .then((res) => {
                 expect(res.status).toBe(404);
-                expect(res.body.message).toBe('Contact does not exist');
+                expect(res.body.message).toBe('Cannot find contact');
               });
           });
       
@@ -338,7 +336,7 @@ describe('Contact Controller', () => {
               .set('authorization', 'Bearer ' + AuthMock(env.otherUserSeller.email, env.otherUserSeller.id))
               .then((res) => {
                 expect(res.status).toBe(404);
-                expect(res.body.message).toBe('Cannot find contact');
+                expect(res.body.message).toBe('Contact does not exist');
               });
           });
       
