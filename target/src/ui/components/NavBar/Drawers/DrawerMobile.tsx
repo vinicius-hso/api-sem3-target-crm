@@ -18,7 +18,7 @@ export const DrawerMobile = ({ isAdmin, navHover, user, ...props }) => {
   }, [navHover]);
 
   useEffect(() => {
-    setUserName(user.name);
+    setUserName(user?.name);
   }, [user]);
 
   return (

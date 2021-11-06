@@ -14,7 +14,7 @@ export const DrawerWeb = ({ isAdmin, navHover, user, ...props }) => {
   const router = useRouter();
 
   useEffect(() => {
-    setUserName(user.name);
+    setUserName(user?.name);
   }, [user]);
 
   useEffect(() => {
