@@ -7,7 +7,7 @@ import {
 import { CloseButtonStyled } from "../ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../../Input/TextFieldMask/TextFieldMask";
 import Title from "../../Title/Title";
-import { Button, Select, MenuItem, Tooltip } from "@material-ui/core";
+import { Button, Select, MenuItem, Tooltip, InputLabel, FormControl } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "../ModalStyles/Modal.style";
@@ -32,7 +32,6 @@ const CreateContactModal = () => {
     city: "",
     email: "",
     phone: "",
-    tag: "null",
   });
 
   const getState = async (): Promise<void> => {
@@ -55,7 +54,6 @@ const CreateContactModal = () => {
           city: data?.city,
           state: data?.state,
           company: data?.company_id,
-          tag: data?.tag,
         });
 
         await getContacts();
@@ -109,26 +107,7 @@ const CreateContactModal = () => {
         fullWidth
         required
       />
-
-      <Select
-        onChange={(event) =>
-          setData({ ...data, company_id: event.target.value })
-        }
-        value={data.company_id}
-        label="Empresa"
-        variant="standard"
-        fullWidth
-      >
-        <MenuItem value={"null"} disabled>
-          Selecione a Empresa
-        </MenuItem>
-        {companies?.map((company) => (
-          <MenuItem value={company.id} key={company.id}>
-            {company.name}
-          </MenuItem>
-        ))}
-      </Select>
-
+      
       <TextFieldMask
         onChange={(event) => setData({ ...data, email: event.target.value })}
         value={data.email}
@@ -148,20 +127,32 @@ const CreateContactModal = () => {
           fullWidth
         />
 
-        <Select
-          onChange={(event) => setData({ ...data, tag: event.target.value })}
-          value={data.tag}
-          label="Tag"
-          variant="standard"
-          fullWidth
-        >
-          <MenuItem value={"null"} disabled>
-            Selecione a Tag
-          </MenuItem>
-          <MenuItem value={"COLD"}>Fria</MenuItem>
-          <MenuItem value={"WARM"}>Morna</MenuItem>
-          <MenuItem value={"HOT"}>Quente</MenuItem>
-        </Select>
+        <FormControl fullWidth>
+          <InputLabel
+            variant="standard"
+            htmlFor="uncontrolled-native"
+          >
+            Empresa
+          </InputLabel>
+          <Select
+            onChange={(event) =>
+              setData({ ...data, company_id: event.target.value })
+            }
+            value={data.company_id}
+            label="Empresa"
+            variant="standard"
+            fullWidth
+          >
+            <MenuItem value={"null"} disabled>
+              Selecione a Empresa
+            </MenuItem>
+            {companies?.map((company) => (
+              <MenuItem value={company.id} key={company.id}>
+                {company.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </TwoColumnsContainer>
 
       <TwoColumnsContainer>
@@ -173,25 +164,33 @@ const CreateContactModal = () => {
           size="small"
           fullWidth
         />
-
-        <Select
-          onChange={(event) => setData({ ...data, state: event.target.value })}
-          value={data.state}
-          label="Estado"
-          variant="standard"
-          fullWidth
-        >
-          <MenuItem value={"null"} disabled>
-            Selecione o estado...
-          </MenuItem>
-          {states.length > 0
-            ? states.map((state) => (
-                <MenuItem key={state.id} value={state.sigla}>
-                  {state.sigla}
-                </MenuItem>
-              ))
-            : null}
-        </Select>
+        
+        <FormControl fullWidth>
+          <InputLabel
+            variant="standard"
+            htmlFor="uncontrolled-native"
+          >
+            Estado
+          </InputLabel>
+          <Select
+            onChange={(event) => setData({ ...data, state: event.target.value })}
+            value={data.state}
+            label="Estado"
+            variant="standard"
+            fullWidth
+          >
+            <MenuItem value={"null"} disabled>
+              Selecione o estado...
+            </MenuItem>
+            {states.length > 0
+              ? states.map((state) => (
+                  <MenuItem key={state.id} value={state.sigla}>
+                    {state.sigla}
+                  </MenuItem>
+                ))
+              : null}
+          </Select>
+        </FormControl>
       </TwoColumnsContainer>
       <Tooltip
         title="Adicionar contato"
