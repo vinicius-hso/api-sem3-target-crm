@@ -15,20 +15,36 @@ export const useNavBarComponent = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const tokenValidation = async () => {
+    try {
+      await serviceApi.get("/pipeline");
+      console.log("a");
+    } catch (err) {
+      if (err.response.status === 401) {
+        route.push("/login");
+      }
+    }
+  };
+
   useEffect(() => {
     const storagedToken = localStorage.getItem("@taget:token");
     if (!storagedToken) {
       route.push("/login");
+    } else {
+      tokenValidation();
     }
+
     if (user?.role === "ADMIN") {
       setIsAdmin(true);
     }
   }, [user]);
 
   useEffect(() => {
-    if (!serviceApi.defaults.headers.common.Authorization) {
+    if (!serviceApi.defaults.headers.common["Authorization"]) {
       const storedToken = localStorage.getItem("@taget:token");
-      serviceApi.defaults.headers.common.Authorization = `Bearer ${storedToken}`;
+      serviceApi.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${storedToken}`;
     }
   }, []);
 

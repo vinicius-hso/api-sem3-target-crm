@@ -14,7 +14,9 @@ export const AuthProvider: React.FC = ({ children }) => {
       const user = localStorage.getItem("user");
 
       if (storagedToken) {
-        serviceApi.defaults.headers.common.Authenticate = `Bearer ${storagedToken}`;
+        serviceApi.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${storagedToken}`;
         setToken(storagedToken);
       }
       if (user) {
@@ -26,7 +28,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const signIn = (myToken: string, myUser: Object): void => {
     setToken(myToken);
-    serviceApi.defaults.headers.common.Authenticate = `Bearer ${myToken}`;
+    serviceApi.defaults.headers.common["Authorization"] = `Bearer ${myToken}`;
     localStorage.setItem("user", JSON.stringify(myUser));
     localStorage.setItem("@taget:token", myToken);
   };

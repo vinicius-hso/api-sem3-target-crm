@@ -22,6 +22,7 @@ import { DealTypes } from "types/Deal";
 import AchivedDealModal from "ui/components/Modal/Completed/ArchivedModal";
 import Title from "ui/components/Title/Title";
 import { StatusTypes } from "types/Status";
+import Head from "next/head";
 
 function CompletedPage() {
   const { deals, filterDeals, removefilterDeals, getData } = useCompletedPage();
@@ -99,6 +100,10 @@ function CompletedPage() {
   }, [status]);
   return (
     <CompletedPageContainer>
+      <Head>
+        <title>Finalizadas | Target</title>
+      </Head>
+
       <AchivedDealModal
         open={openAchivedModal}
         setOpen={setOpenAchivedModal}

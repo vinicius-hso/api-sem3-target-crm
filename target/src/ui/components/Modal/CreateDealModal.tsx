@@ -56,6 +56,14 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
       data.value = data.value.replace(/\D+/g, "");
       createDeal(data);
       getData();
+      setData({
+        name: "",
+        company: "default",
+        contact: "default",
+        pipeline: "",
+        value: "",
+        tag: "WARM",
+      });
       useCreateDealModal();
     } catch (e) {
       console.error(e);

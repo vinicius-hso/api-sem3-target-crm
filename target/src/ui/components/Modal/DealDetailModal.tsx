@@ -43,6 +43,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
   const [hasEdit, setHasEdit] = useState(false);
   const [hasStatusChange, setHasStatusChange] = useState(false);
   const [hasNewActivity, setHasNewActivity] = useState(false);
+  const [dialogView, setDialogView] = useState(false);
   const { user } = useContext(AuthContext);
   const [data, setData] = useState({
     name: "",
@@ -112,54 +113,8 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
             </CloseButtonStyled>
           </Tooltip>
           <Title title={`Detalhes da negociação ${dealDetail?.name}`} />
+
           <div style={{ display: "flex", gap: "5px" }}>
-            {!hasStatusChange ? (
-              <Tooltip
-                title="Finalizar negociação"
-                placement="top-start"
-                enterDelay={500}
-                leaveDelay={100}
-              >
-                <Button
-                  onClick={() => {
-                    setHasStatusChange(!hasStatusChange);
-                  }}
-                  variant="contained"
-                  sx={{
-                    width: "160px",
-                    mb: 2,
-                  }}
-                  size="small"
-                  color="primary"
-                  type="submit"
-                >
-                  {!hasStatusChange ? "Finalizar" : "Cancelar"}
-                </Button>
-              </Tooltip>
-            ) : (
-              <Tooltip
-                title="Cancelar"
-                placement="top-start"
-                enterDelay={500}
-                leaveDelay={100}
-              >
-                <Button
-                  onClick={() => {
-                    setHasStatusChange(!hasStatusChange);
-                  }}
-                  variant="contained"
-                  sx={{
-                    width: "160px",
-                    mb: 2,
-                  }}
-                  size="small"
-                  color="primary"
-                  type="submit"
-                >
-                  {!hasStatusChange ? "Finalizar" : "Cancelar"}
-                </Button>
-              </Tooltip>
-            )}
             <Tooltip
               title="Finalizar como ganha"
               placement="top-start"
@@ -183,10 +138,6 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                 <Icon className="fa fa-thumbs-up" sx={{ color: "#fff" }} />
               </Button>
             </Tooltip>
-          </div>
-          <div
-            style={{ display: hasStatusChange ? "flex" : "none", gap: "5px" }}
-          >
             <Tooltip
               title="Finalizar como perdida"
               placement="top-start"

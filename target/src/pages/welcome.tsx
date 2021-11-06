@@ -2,11 +2,16 @@ import React from "react";
 import Title from "ui/components/Title/Title";
 import { ImageContainer } from "ui/components/Welcome/welcome.style";
 import { Button } from "@material-ui/core";
+import Head from "next/head";
+import Link from "next/link";
 
 const Welcome = () => {
   return (
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
-      
+      <Head>
+        <title>Seja bem vindo | Target</title>
+      </Head>
+
       <Title
         title={"Seja bem-vindo(a)!"}
         subtitle={<p>Suas vendas organizadas em um único lugar!</p>}
@@ -24,14 +29,15 @@ const Welcome = () => {
         />
 
         <div style={{ margin: "auto 0", marginTop: "50px" }}>
-          <Button
-            href="/"
-            variant="contained"
-            sx={{ width: "200px", mt: 1 }}
-            color="primary"
-          >
-            Acesse o Dashboard
-          </Button>
+          <Link href="/">
+            <Button
+              variant="contained"
+              sx={{ width: "200px", mt: 1 }}
+              color="primary"
+            >
+              Acesse o Dashboard
+            </Button>
+          </Link>
         </div>
       </ImageContainer>
     </div>

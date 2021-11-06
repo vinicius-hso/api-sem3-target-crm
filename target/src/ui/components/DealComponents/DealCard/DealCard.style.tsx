@@ -68,6 +68,7 @@ export const ColumnHeader = styled("div")`
 `;
 
 export const DroppableStyles = styled("div")`
+  margin-top: 20px;
   padding: 10px;
   border-radius: 6px;
   background: ${({ theme }) => theme.palette.grey[100]};

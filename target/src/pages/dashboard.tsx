@@ -21,6 +21,7 @@ import Title from "ui/components/Title/Title";
 import { formatArray } from "data/utils/formatArray";
 import { DynamicLineCharts } from "../data/services/servicesComponents/DynamicLineCharts";
 import moment from "moment";
+import Head from "next/head";
 
 interface BarChartsProps {
   title: string;
@@ -186,6 +187,9 @@ function Dashboard() {
 
   return (
     <DashboardPageContainer>
+      <Head>
+        <title>Dashboard | Target</title>
+      </Head>
       <DashboardHeaderContainer>
         <Title style={{ textAlign: "left" }} title="Dashboard"></Title>
 

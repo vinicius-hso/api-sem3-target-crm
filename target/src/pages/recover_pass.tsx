@@ -10,7 +10,7 @@ import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
 import Title from "ui/components/Title/Title";
 import { useRouter } from "next/dist/client/router";
 import Dialog from "ui/components/Dialog/Dialog";
-
+import Head from "next/head";
 
 function EmailRecover() {
   const currentRouter = useRouter();
@@ -30,6 +30,10 @@ function EmailRecover() {
 
   return (
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
+      <Head>
+        <title>Recuperação de senha | Target</title>
+      </Head>
+
       <ImageContainer>
         <img
           src="logo.png"
@@ -88,7 +92,9 @@ function EmailRecover() {
       {hasMessage ? (
         <Dialog
           title={"Sucesso"}
-          message={"Email enviado com sucesso! \n\n Enviamos um link para seu Email, que será válido por um prazo de 24 horas. \n Caso não encontre, cheque sua caixa de spam."}
+          message={
+            "Email enviado com sucesso! \n\n Enviamos um link para seu Email, que será válido por um prazo de 24 horas. \n Caso não encontre, cheque sua caixa de spam."
+          }
           type={"success"}
           open={hasMessage}
           setOpen={() => setMessage(!hasMessage)}
