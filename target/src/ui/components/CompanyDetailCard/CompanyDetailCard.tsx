@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import PipelineContext from "contexts/PipelineContext";
 import {
@@ -44,12 +44,6 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
     picture: props.picture,
   });
   
-  const [states, setStates] = useState<any[]>([]);
-
-  useEffect(() => {
-    setStates(mockEstados)
-  }, []);
-
   return (
     <div>
       <Typography
@@ -180,13 +174,12 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             <MenuItem value={"null"} disabled>
               Selecione o Estado
             </MenuItem>
-            {states.length > 0
-              ? states.map((state) => (
-                  <MenuItem key={state.id} value={state.sigla}>
-                    {state.sigla}
-                  </MenuItem>
-                ))
-              : null}
+            { mockEstados.map((state) => (
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
+            }
           </Select>
         </FormControl>
 
