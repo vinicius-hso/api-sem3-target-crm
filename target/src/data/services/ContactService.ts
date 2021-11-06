@@ -66,7 +66,7 @@ class ContactService {
     }
   }
 
-  async updateContact({ id, name, email, phone, city, state, company, tag }) {
+  async updateContact({ id, name, email, phone, city, state, company }) {
     const body = {
       name,
       email,
