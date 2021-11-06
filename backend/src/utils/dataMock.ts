@@ -45,7 +45,7 @@ const contacts = [
   {
     name: 'Nicole Albuquerque',
     email: 'nicole_albuquerque@gmail.com',
-    phone: '+5512987789556',
+    phone: '12987789556',
     city: 'Rio de Janeiro',
     state: 'RJ',
     picture: 'https://cdn.pixabay.com/photo/2017/09/01/21/53/blue-2705642_1280.jpg'
@@ -53,7 +53,7 @@ const contacts = [
   {
     name: 'Olívia da Silva',
     email: 'olivia_dasilva@gmail.com',
-    phone: '+5512986989556',
+    phone: '12986989556',
     city: 'Jaraguá do Sul',
     state: 'SC',
     picture: 'https://cdn.pixabay.com/photo/2015/09/02/13/24/girl-919048_1280.jpg'
@@ -61,7 +61,7 @@ const contacts = [
   {
     name: 'Maísa Oliveira',
     email: 'maisa_oliveira@gmail.com',
-    phone: '+5512986989543',
+    phone: '12986989543',
     city: 'Salvador',
     state: 'BA',
     picture: 'https://cdn.pixabay.com/photo/2016/06/06/17/05/woman-1439909_1280.jpg'
@@ -69,7 +69,7 @@ const contacts = [
   {
     name: 'Emanuel Kant',
     email: 'kant_emanuel@gmail.com',
-    phone: '+5512987889543',
+    phone: '12987889543',
     city: 'Montes Claros',
     state: 'MG',
     picture: 'https://cdn.pixabay.com/photo/2015/01/27/09/58/man-613601_1280.jpg'
@@ -77,7 +77,7 @@ const contacts = [
   {
     name: 'Adriano Silveira',
     email: 'adriano_silveira@gmail.com',
-    phone: '+5512987979532',
+    phone: '12987979532',
     city: 'Rio de Janeiro',
     state: 'RJ',
     picture: 'https://cdn.pixabay.com/photo/2017/06/26/02/47/man-2442565_1280.jpg'
