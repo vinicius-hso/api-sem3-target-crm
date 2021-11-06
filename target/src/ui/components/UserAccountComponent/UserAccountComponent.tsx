@@ -143,6 +143,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                       sx={{
                         width: "160px",
                         mt: 1,
+                        color: "white",
                       }}
                       color="success"
                       type="submit"

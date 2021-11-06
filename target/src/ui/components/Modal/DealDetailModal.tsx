@@ -421,8 +421,9 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                     sx={{
                       width: "160px",
                       mt: 1,
+                      color: "white",
                     }}
-                    color="primary"
+                    color="success"
                     type="submit"
                   >
                     Salvar
