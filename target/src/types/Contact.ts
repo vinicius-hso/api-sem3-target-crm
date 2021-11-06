@@ -6,7 +6,6 @@ export interface IContact {
   city: string;
   state: string;
   company_id?: string;
-  tag?: string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;

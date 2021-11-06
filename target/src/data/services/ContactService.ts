@@ -1,10 +1,7 @@
 import React from "react";
 import { IContact } from "types/Contact";
-import { DealTypes } from "types/Deal";
-import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 class ContactService {
   async getContacts() {
@@ -47,7 +44,7 @@ class ContactService {
     }
   }
 
-  async createContact({ name, email, phone, city, state, company, tag }) {
+  async createContact({ name, email, phone, city, state, company }) {
     const body = {
       name,
       email,
@@ -55,7 +52,6 @@ class ContactService {
       city,
       state,
       company,
-      tag,
     };
 
     try {
@@ -78,7 +74,6 @@ class ContactService {
       city,
       state,
       company,
-      tag,
     };
 
     try {
