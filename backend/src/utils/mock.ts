@@ -49,27 +49,28 @@ const mocks = async (): Promise<void> => {
     const contactFind = await Contact.find();
     const userFind = await User.find();
     const pipelineFind = await Pipeline.find();
-    if (
-      !(await Deal.findOne({ name: 'Gynamedic' })) &&
-      contactFind.length >= 5 &&
-      pipelineFind.length >= 5 &&
-      companiesFind.length >= 5
-    ) {
+    if (!(await Deal.findOne({ name: 'Gynamedic' })) && contactFind.length >= 5 && pipelineFind.length >= 5 && companiesFind.length >= 5) {
       deals.map(async (deal, index) => {
         await Deal.create({
           ...deal,
           pipeline: pipelineFind[index],
           company: companiesFind[index],
           contact: contactFind[index],
+          // status: 'ARCHIVED',
           activity: [
             {
               name: 'teste',
               description: 'testando',
-              createdAt: new Date(),
-              createdBy: { id: userFind[index+1].id, name: userFind[index+1].name },
+              // createdAt: new Date(),
+              createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+              createdBy: { id: userFind[index + 5].id, name: userFind[index + 5].name },
               tag: 'COLD',
             },
           ],
+          value: Math.random() * (132100 - 23580) + 23580,
+          status: 'ARCHIVED',
+          // createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+          // updatedAt: Date.parse(`2021-11-0${c}T17:38:44.873Z`),
         }).save();
       });
 
@@ -79,16 +80,21 @@ const mocks = async (): Promise<void> => {
           pipeline: pipelineFind[index],
           company: companiesFind[index],
           contact: contactFind[index],
-          // status: 'WON',
+          // status: 'ARCHIVED',
           activity: [
             {
               name: 'teste',
               description: 'testando',
-              createdAt: new Date(),
-              createdBy: { id: userFind[index+1].id, name: userFind[index+1].name },
+              // createdAt: new Date(),
+              createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+              createdBy: { id: userFind[index + 5].id, name: userFind[index + 5].name },
               tag: 'COLD',
             },
           ],
+          value: Math.random() * (132100 - 23580) + 23580,
+          status: 'INPROGRESS',
+          // createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+          // updatedAt: Date.parse(`2021-11-0${c}T17:38:44.873Z`),
         }).save();
       });
 
@@ -98,16 +104,42 @@ const mocks = async (): Promise<void> => {
           pipeline: pipelineFind[index],
           company: companiesFind[index],
           contact: contactFind[index],
-          // status: 'LOST',
+          // status: 'ARCHIVED',
           activity: [
             {
               name: 'teste',
               description: 'testando',
-              createdAt: new Date(),
-              createdBy: { id: userFind[index+4].id, name: userFind[index+4].name },
-              tag: 'COLD',
+              // createdAt: new Date(),
+              createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+              createdBy: { id: userFind[index + 5].id, name: userFind[index + 5].name },
+              tag: 'HOT',
             },
           ],
+          value: Math.random() * (132100 - 23580) + 23580,
+          status: 'LOST',
+          // createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+          // updatedAt: Date.parse(`2021-11-0${c}T17:38:44.873Z`),
+        }).save();
+        await Deal.create({
+          ...deal,
+          pipeline: pipelineFind[index],
+          company: companiesFind[index],
+          contact: contactFind[index],
+          // status: 'ARCHIVED',
+          activity: [
+            {
+              name: 'teste',
+              description: 'testando',
+              // createdAt: new Date(),
+              createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+              createdBy: { id: userFind[index + 5].id, name: userFind[index + 5].name },
+              tag: 'HOT',
+            },
+          ],
+          value: Math.random() * (132100 - 23580) + 23580,
+          status: 'LOST',
+          // createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+          // updatedAt: Date.parse(`2021-11-0${c}T17:38:44.873Z`),
         }).save();
       });
 
@@ -122,11 +154,38 @@ const mocks = async (): Promise<void> => {
             {
               name: 'teste',
               description: 'testando',
-              createdAt: new Date(),
-              createdBy: { id: userFind[index+5].id, name: userFind[index+5].name },
+              // createdAt: new Date(),
+              createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+              createdBy: { id: userFind[index + 5].id, name: userFind[index + 5].name },
               tag: 'COLD',
             },
           ],
+          value: Math.random() * (132100 - 23580) + 23580,
+          status: 'WON',
+          // createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+          // updatedAt: Date.parse(`2021-11-0${c}T17:38:44.873Z`),
+        }).save();
+
+        await Deal.create({
+          ...deal,
+          pipeline: pipelineFind[index],
+          company: companiesFind[index],
+          contact: contactFind[index],
+          // status: 'ARCHIVED',
+          activity: [
+            {
+              name: 'teste',
+              description: 'testando',
+              // createdAt: new Date(),
+              createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+              createdBy: { id: userFind[index + 5].id, name: userFind[index + 5].name },
+              tag: 'COLD',
+            },
+          ],
+          value: Math.random() * (132100 - 23580) + 23580,
+          status: 'WON',
+          // createdAt: Date.parse(`2021-11-01T17:38:44.873Z`),
+          // updatedAt: Date.parse(`2021-11-0${c}T17:38:44.873Z`),
         }).save();
       });
 

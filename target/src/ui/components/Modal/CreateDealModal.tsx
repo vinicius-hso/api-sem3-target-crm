@@ -35,6 +35,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
   const { formatListThisCompanyToSelect } = useContactPage();
 
   const [contacts, setContacts] = useState([]);
+  const [submited, isSubmited] = useState(false);
 
   const [data, setData] = useState<DealTypes>({
     name: "",
@@ -49,24 +50,28 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
     if (selectedPipeline) {
       setData({ ...data, pipeline: selectedPipeline });
     }
+    isSubmited(false);
   }, [selectedPipeline]);
 
   async function handleSubmit() {
-    try {
-      data.value = data.value.replace(/\D+/g, "");
-      createDeal(data);
-      getData();
-      setData({
-        name: "",
-        company: "default",
-        contact: "default",
-        pipeline: "",
-        value: "",
-        tag: "WARM",
-      });
-      useCreateDealModal();
-    } catch (e) {
-      console.error(e);
+    isSubmited(true);
+    if (data.name) {
+      try {
+        data.value = data.value.replace(/\D+/g, "");
+        createDeal(data);
+        getData();
+        setData({
+          name: "",
+          company: "default",
+          contact: "default",
+          pipeline: "",
+          value: "",
+          tag: "WARM",
+        });
+        useCreateDealModal();
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 
@@ -95,6 +100,8 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
         variant="standard"
         size="small"
         fullWidth
+        error={submited && !data.name}
+        helperText={submited && !data.name ? "Campo obrigatório" : ""}
       />
       <Select
         onChange={(event) => {

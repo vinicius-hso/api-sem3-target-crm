@@ -22,6 +22,7 @@ const LineCharts: React.FC<LineChartsProps> = ({ series, xaxis }) => {
           autoSelected: "zoom",
         },
       },
+
       colors: ["#03f518", "#e63706"],
       dataLabels: {
         enabled: true,
@@ -52,7 +53,7 @@ const LineCharts: React.FC<LineChartsProps> = ({ series, xaxis }) => {
         },
       },
     }),
-    []
+    [xaxis, series]
   );
 
   return (

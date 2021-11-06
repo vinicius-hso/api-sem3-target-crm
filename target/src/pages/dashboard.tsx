@@ -49,6 +49,65 @@ function Dashboard() {
   } = useDashboardPage();
 
   //* Mock para visualização {
+
+  const mock = [
+    {
+      value: 131542,
+      status: "WON",
+      updatedAt: "2021-11-01T17:38:44.873Z",
+    },
+    {
+      value: 231343,
+      status: "WON",
+      updatedAt: "2021-11-02T17:38:44.873Z",
+    },
+    {
+      value: 312761,
+      status: "WON",
+      updatedAt: "2021-11-03T17:38:44.873Z",
+    },
+    {
+      value: 459832,
+      status: "WON",
+      updatedAt: "2021-11-04T17:38:44.873Z",
+    },
+    {
+      value: 112122,
+      status: "WON",
+      updatedAt: "2021-11-05T17:38:44.873Z",
+    },
+    {
+      value: 231342,
+      status: "WON",
+      updatedAt: "2021-11-05T17:38:44.873Z",
+    },
+    {
+      value: 546432,
+      status: "LOST",
+      updatedAt: "2021-11-01T17:38:44.873Z",
+    },
+    {
+      value: 345354,
+      status: "LOST",
+      updatedAt: "2021-11-02T17:38:44.873Z",
+    },
+    {
+      value: 226512,
+      status: "LOST",
+      updatedAt: "2021-11-03T17:38:44.873Z",
+    },
+    {
+      value: 453113,
+      status: "LOST",
+      updatedAt: "2021-11-04T17:38:44.873Z",
+    },
+    {
+      value: 212772,
+      status: "LOST",
+      updatedAt: "2021-11-05T17:38:44.873Z",
+    },
+  ];
+
   const x = [
     "November 5, 2021",
     "November 6, 2021",
@@ -151,17 +210,17 @@ function Dashboard() {
     let wons = { name: "Ganha", data: [] };
     let lost = { name: "Perdida", data: [] };
     let xaxisValues = [];
-    dat.map((d) => {
+    mock.map((d) => {
       switch (d.status) {
         case "WON":
-          wons.data.push(d.value / 100);
-          xaxisValues.push(moment(d.updatedAt).format("LL"));
-          // xaxisValues.push(d.updatedAt);
+          wons.data.push((d.value / 100).toFixed(2));
+          // xaxisValues.push(moment(d.updatedAt).format("LL"));
+          xaxisValues.push(d.updatedAt);
           break;
         case "LOST":
-          lost.data.push(d.value / 100);
-          xaxisValues.push(moment(d.updatedAt).format("LL"));
-          // xaxisValues.push(d.updatedAt);
+          lost.data.push((d.value / 100).toFixed(2));
+          // xaxisValues.push(moment(d.updatedAt).format("LL"));
+          xaxisValues.push(d.updatedAt);
           break;
       }
     });
