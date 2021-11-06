@@ -38,7 +38,7 @@ export const useUserPage = () => {
     if (!users.length) {
       getData();
     }
-  }, [])
+  }, []);
 
   const formatListToSelect = (users: any[]): any => {
     setFormat(
@@ -110,5 +110,6 @@ export const useUserPage = () => {
     editUser,
     userDetail,
     deleteUser,
+    getData,
   };
 };

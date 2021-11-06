@@ -7,59 +7,56 @@ import { IUser } from "types/User";
 import UserDetailCard from "../UserDetailCard/UserDetailCard";
 import { useUserPage } from "../../../data/services/hooks/PageHooks/UserHook";
 import { Button, Tooltip } from "@material-ui/core";
+import Dialog from "../Dialog/Dialog";
 // import Alert from "../AlertComponent/AlertComponent";
 
 interface UserDetailModalProps {
   open: boolean;
   user: any;
   setOpen: any;
+  getData: () => void;
 }
 
 const UserDetailModal: React.FC<UserDetailModalProps> = ({
   open,
   user,
   setOpen,
+  getData,
 }) => {
-  const {
-    editUser,
-    deleteUser,
-    // useUpdateCompanyModal,
-  } = useUserPage();
+  const { editUser, deleteUser } = useUserPage();
 
   const [hasEdit, setHasEdit] = useState(false);
-
-  const [status, setStatus] = useState<{ status: string; message: string }>({
-    status: "",
-    message: "",
-  });
-
+  const [dialogView, setDialogView] = useState(false);
   /**
    * TODO - useEditCompanyModal, companyDetailCard
    */
 
   const handleSubmitEdit = async (data: IUser) => {
-    const res = await editUser(user.id, data);
-    setStatus(res);
-    setTimeout(() => {
-      setStatus({ status: "", message: "" });
-    }, 3000);
-    //setHasEdit(false);
+    await editUser(user.id, data);
   };
 
-  const handleDeleteUser = () => {
-    const id = user.id;
-    deleteUser(id).then(() => {
-      setOpen(false);
-      window.location.reload();
-    });
+  const onClose = () => {
+    setHasEdit(false);
+    setOpen(false);
   };
-
-  // function handleSubmit() {
-  //   console.log("Aoobah!");
-  // }
 
   const body = (
     <ModalContainer>
+      <Dialog
+        title={"Atualizar status"}
+        message={`Tem certeza que deseja deletar ${user.name}?`}
+        type={"question"}
+        open={dialogView}
+        setOpen={() => setDialogView(false)}
+        result={async (res) => {
+          if (res) {
+            await deleteUser(user.id);
+            getData();
+            onClose();
+          }
+        }}
+      />
+
       {user.id ? (
         <>
           <Tooltip
@@ -70,8 +67,7 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
           >
             <CloseButtonStyled
               onClick={() => {
-                setOpen(false);
-                window.location.reload();
+                onClose();
               }}
             >
               <i className="fa fa-times" aria-hidden="true"></i>
@@ -88,7 +84,7 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
             >
               <Button
                 onClick={() => {
-                  handleDeleteUser();
+                  setDialogView(true);
                 }}
                 variant="contained"
                 size="small"
@@ -127,7 +123,7 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
       <ModalStyled
         open={open}
         onClose={() => {
-          setOpen(false);
+          onClose();
         }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

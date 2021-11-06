@@ -32,6 +32,7 @@ import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import AuthContext from "contexts/AuthContext";
 import { ButtonsContainer } from "./ModalStyles/ButtonsContainer";
 import { LinkStyled } from "../Link/Link.style";
+import Dialog from "../Dialog/Dialog";
 
 interface DetailModalProps {
   getData: () => void;
@@ -41,10 +42,13 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
     useContext(PipelineContext);
   const { createActivity, editDeal, updateStatus } = useDealPage();
   const [hasEdit, setHasEdit] = useState(false);
-  const [hasStatusChange, setHasStatusChange] = useState(false);
   const [hasNewActivity, setHasNewActivity] = useState(false);
   const [dialogView, setDialogView] = useState(false);
   const { user } = useContext(AuthContext);
+  const [changeStatusTo, setChangeStatusTo] = useState({
+    label: "",
+    value: "",
+  });
   const [data, setData] = useState({
     name: "",
     description: "",
@@ -89,13 +93,26 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
       createdBy: user,
     });
     setHasEdit(false);
-    setHasStatusChange(false);
     setHasNewActivity(false);
     useDealDetailModal("");
   };
 
   const body = (
     <ModalContainer>
+      <Dialog
+        title={"Atualizar status"}
+        message={`Tem certeza que deseja finalizar esta negociação como ${changeStatusTo.label}?`}
+        type={"question"}
+        open={dialogView}
+        setOpen={() => setDialogView(false)}
+        result={async (res) => {
+          if (res) {
+            await updateStatus(dealDetail.id, { status: changeStatusTo.value });
+            getData();
+            onClose();
+          }
+        }}
+      />
       {dealDetail.id ? (
         <>
           <Tooltip
@@ -123,9 +140,8 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
             >
               <Button
                 onClick={() => {
-                  updateStatus(dealDetail.id, { status: "WON" });
-                  getData();
-                  setHasStatusChange(false);
+                  setChangeStatusTo({ value: "WON", label: "ganha" });
+                  setDialogView(true);
                 }}
                 variant="contained"
                 sx={{
@@ -146,9 +162,8 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
             >
               <Button
                 onClick={() => {
-                  updateStatus(dealDetail.id, { status: "LOST" });
-                  getData();
-                  setHasStatusChange(false);
+                  setChangeStatusTo({ value: "LOST", label: "perdida" });
+                  setDialogView(true);
                 }}
                 variant="contained"
                 sx={{
@@ -169,9 +184,8 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
             >
               <Button
                 onClick={() => {
-                  updateStatus(dealDetail.id, { status: "ARCHIVED" });
-                  getData();
-                  setHasStatusChange(false);
+                  setChangeStatusTo({ value: "ARCHIVED", label: "arquivada" });
+                  setDialogView(true);
                 }}
                 variant="contained"
                 size="small"
