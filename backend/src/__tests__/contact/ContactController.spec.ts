@@ -151,12 +151,12 @@ describe('Contact Controller', () => {
     
         it('should not be create a contact', async () => {
           const contact = {
-            name: chance.name(),
             email: chance.email(),
             phone: chance.phone(),
             city: chance.city(),
             state: chance.state(),
             picture: chance.avatar(),
+            company: env.company,
           };
     
           await request(app)
@@ -165,13 +165,15 @@ describe('Contact Controller', () => {
             .send(contact)
             .then((res) => {
               expect(res.status).toBe(400);
-              expect(res.body.message).toBe('Invalid contact name');
+              expect(res.body.message).toBe('Invalid values for contacts');
             });
         });
 
         it('should be create a contact', async () => {
             const contact = {
               name: chance.name(),
+              email: chance.email(),
+              company: env.company,
             };
             await request(app)
               .post('/contact')
@@ -193,6 +195,7 @@ describe('Contact Controller', () => {
               city: chance.city(),
               state: chance.state(),
               picture: chance.avatar(),
+              company: env.company,
             }).save();
       
             const contactUpdated = {
@@ -202,6 +205,7 @@ describe('Contact Controller', () => {
               city: chance.city(),
               state: chance.state(),
               picture: chance.avatar(),
+              company: env.company,
             };
       
             await request(app)
@@ -221,6 +225,7 @@ describe('Contact Controller', () => {
               city: chance.city(),
               state: chance.state(),
               picture: chance.avatar(),
+              company: env.company,
             }).save();
       
             const contactUpdated = {
@@ -230,6 +235,7 @@ describe('Contact Controller', () => {
               city: chance.city(),
               state: chance.state(),
               picture: chance.avatar(),
+              company: env.company,
             };
       
             await request(app)
@@ -250,6 +256,7 @@ describe('Contact Controller', () => {
               city: chance.city(),
               state: chance.state(),
               picture: chance.avatar(),
+              company: env.company,
             }).save();
       
             const contactUpdated = {
@@ -259,6 +266,7 @@ describe('Contact Controller', () => {
               city: chance.city(),
               state: chance.state(),
               picture: chance.avatar(),
+              company: env.company,
             };
       
             await request(app)
@@ -279,6 +287,7 @@ describe('Contact Controller', () => {
               city: chance.city(),
               state: chance.state(),
               picture: chance.avatar(),
+              company: env.company,
             }).save();
       
             const contactUpdated = {
@@ -288,6 +297,7 @@ describe('Contact Controller', () => {
               city: chance.city(),
               state: chance.state(),
               picture: chance.avatar(),
+              company: env.company,
             };
       
             await request(app)
@@ -296,7 +306,6 @@ describe('Contact Controller', () => {
               .set('authorization', 'Bearer ' + AuthMock(env.otherUserSeller.email, env.otherUserSeller.id))
               .then((res) => {
                 expect(res.status).toBe(200);
-                expect(res.body.message).toBe('Contact updated successfully');
               });
       
             const contactFind = await Contact.findOne(contact.id);
@@ -355,7 +364,6 @@ describe('Contact Controller', () => {
               .set('authorization', 'Bearer ' + AuthMock(env.otherUserSeller.email, env.otherUserSeller.id))
               .then((res) => {
                 expect(res.status).toBe(200);
-                expect(res.body.message).toBe('Contact deleted successfully');
               });
       
             const userFind = await Contact.findOne(contact.id);

@@ -15,9 +15,9 @@ import { ModalStyled } from "../ModalStyles/Modal.style";
 import ContactContext from "contexts/ContactContext";
 import { IContact } from "types/Contact";
 import ContactService from "data/services/ContactService";
-import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 import CompanyService from "data/services/CompanyService";
 import { formatPhone } from "data/utils/formatPhone";
+import { mockEstados } from "data/utils/mock";
 
 const UpdateContactModal = ({ id, setId }) => {
   const {
@@ -26,7 +26,6 @@ const UpdateContactModal = ({ id, setId }) => {
     useDeleteContactModal,
     getContacts,
   } = useContext(ContactContext);
-  const [states, setStates] = useState<IState[]>([]);
   const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
   const [time, setTime] = useState(null);
@@ -59,16 +58,6 @@ const UpdateContactModal = ({ id, setId }) => {
     getSelectedContact();
   }, []);
 
-  const getState = async (): Promise<void> => {
-    try {
-      const response: any = await getBrazilianStates();
-
-      setStates(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const updateContact = async () => {
     try {
       if (data.name && data.email && data.company_id) {
@@ -91,9 +80,6 @@ const UpdateContactModal = ({ id, setId }) => {
     }
   };
 
-  useEffect(() => {
-    getState();
-  }, []);
 
   const getCompanies = async () => {
     const companies = await CompanyService.getCompanies();
@@ -210,15 +196,14 @@ const UpdateContactModal = ({ id, setId }) => {
             fullWidth
           >
             <MenuItem value={"null"} disabled>
-              Selecione o estado...
+              Selecione o Estado
             </MenuItem>
-            {states.length > 0
-              ? states.map((state) => (
-                  <MenuItem key={state.id} value={state.sigla}>
-                    {state.sigla}
-                  </MenuItem>
-                ))
-              : null}
+            {mockEstados.map((state) => (
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
+            }
           </Select>
         </FormControl>
       </TwoColumnsContainer>

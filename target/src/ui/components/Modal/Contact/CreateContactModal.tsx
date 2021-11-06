@@ -14,14 +14,13 @@ import { ModalStyled } from "../ModalStyles/Modal.style";
 import ContactContext from "contexts/ContactContext";
 import { IContact } from "types/Contact";
 import ContactService from "data/services/ContactService";
-import { getBrazilianStates, IState } from "data/services/BrazilianStatesApi";
 import CompanyService from "data/services/CompanyService";
 import { formatPhone } from "data/utils/formatPhone";
+import { mockEstados } from "data/utils/mock";
 
 const CreateContactModal = () => {
   const { createContactModal, useCreateContactModal, getContacts } =
     useContext(ContactContext);
-  const [states, setStates] = useState<IState[]>([]);
   const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
   const [time, setTime] = useState(null);
@@ -33,17 +32,7 @@ const CreateContactModal = () => {
     email: "",
     phone: "",
   });
-
-  const getState = async (): Promise<void> => {
-    try {
-      const response: any = await getBrazilianStates();
-
-      setStates(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  
   const createContact = async () => {
     try {
       if (data.name && data.email && data.company_id) {
@@ -65,15 +54,12 @@ const CreateContactModal = () => {
     }
   };
 
-  useEffect(() => {
-    getState();
-  }, []);
 
-  const getCompanies = async () => {
+  async function getCompanies() {
     const companies = await CompanyService.getCompanies();
 
     setCompanies(companies);
-  };
+  }
 
   useEffect(() => {
     getCompanies();
@@ -180,15 +166,14 @@ const CreateContactModal = () => {
             fullWidth
           >
             <MenuItem value={"null"} disabled>
-              Selecione o estado...
+              Selecione o Estado
             </MenuItem>
-            {states.length > 0
-              ? states.map((state) => (
-                  <MenuItem key={state.id} value={state.sigla}>
-                    {state.sigla}
-                  </MenuItem>
-                ))
-              : null}
+            {mockEstados.map((state) => (
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
+            }
           </Select>
         </FormControl>
       </TwoColumnsContainer>

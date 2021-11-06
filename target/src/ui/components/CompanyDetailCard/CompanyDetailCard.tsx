@@ -4,6 +4,7 @@ import {
   Select,
   Typography,
   Tooltip,
+  InputLabel,
 } from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
@@ -16,6 +17,8 @@ import {
   InputContainer,
 } from "./CompanyDetailCard.style";
 import { CompanyTypes } from "types/Company";
+import theme from "ui/theme/theme";
+import { mockEstados } from "data/utils/mock";
 
 //@deprecated
 interface CompanyDetailCardProps {
@@ -40,7 +43,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
     site: props.site,
     picture: props.picture,
   });
-
+  
   return (
     <div>
       <Typography
@@ -135,7 +138,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
           />
         </InputContainer>
 
-        <InputContainer>
+        <InputContainer style = {{marginBottom:"22px"}}>
           <TextFieldMask
             disabled={!props.hasEdit}
             label={"Cidade"}
@@ -143,23 +146,42 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={data.city}
-            onChange={(event) => setData({ ...data, city: event.target.value })}
+            onChange={(event) => setData({ ...data, city: event.target.value })}            
           />
         </InputContainer>
 
-        <InputContainer>
-          <TextFieldMask
+        <FormControl fullWidth style = {{marginBottom:"22px"}}>
+          <InputLabel
+          sx={{
+            color: props.hasEdit
+              ? theme.palette.text.secondary
+              : theme.palette.text.disabled,
+          }}
+            variant="standard"
+            htmlFor="uncontrolled-native"
+          >
+            Estado
+          </InputLabel>
+
+          <Select
             disabled={!props.hasEdit}
-            label={"Estado"}
+            onChange={(event) => setData({ ...data, state: event.target.value })}
+            value={data.state}
+            label="Estado"
+            variant="standard"
             fullWidth
-            variant={"standard"}
-            size="medium"
-            defaultValue={data.state}
-            onChange={(event) =>
-              setData({ ...data, state: event.target.value })
+          >
+            <MenuItem value={"null"} disabled>
+              Selecione o Estado
+            </MenuItem>
+            { mockEstados.map((state) => (
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
             }
-          />
-        </InputContainer>
+          </Select>
+        </FormControl>
 
         <InputContainer>
           <TextFieldMask
