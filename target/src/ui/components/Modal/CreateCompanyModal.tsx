@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   ModalContainer,
   TwoColumnsContainer,
@@ -8,7 +8,7 @@ import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
 // import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { Button, useForkRef, Tooltip } from "@material-ui/core";
+import { Button, useForkRef, Tooltip, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
@@ -16,6 +16,7 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 import PipelineContext from "contexts/PipelineContext";
 import { getCepService } from "data/utils/getCepService";
 import { formatCep } from "data/utils/formatCep";
+import { mockEstados } from "data/utils/mock";
 
 interface CreateCompanyModalProps {
   open: boolean;
@@ -158,14 +159,32 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
           fullWidth
         />
 
-        <TextFieldMask
-          onChange={(event) => setData({ ...data, state: event.target.value })}
-          value={data.state}
-          label="Estado"
-          variant="standard"
-          size="small"
-          fullWidth
-        />
+        <FormControl fullWidth>
+          <InputLabel
+            variant="standard"
+            htmlFor="uncontrolled-native"
+          >
+            Estado
+          </InputLabel>
+
+          <Select
+            onChange={(event) => setData({ ...data, state: event.target.value })}
+            value={data.state}
+            label="Estado"
+            variant="standard"
+            fullWidth
+          >
+            <MenuItem value={"null"} disabled>
+              Selecione o Estado
+            </MenuItem>
+            { mockEstados.map((state) => (
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
+            }
+          </Select>
+        </FormControl>
 
         <TextFieldMask
           onChange={(event) =>

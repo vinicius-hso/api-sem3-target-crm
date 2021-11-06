@@ -26,7 +26,6 @@ const UpdateContactModal = ({ id, setId }) => {
     useDeleteContactModal,
     getContacts,
   } = useContext(ContactContext);
-  const [states, setStates] = useState<any[]>([]);
   const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
   const [time, setTime] = useState(null);
@@ -81,9 +80,6 @@ const UpdateContactModal = ({ id, setId }) => {
     }
   };
 
-  useEffect(() => {
-    setStates(mockEstados)
-  }, []);
 
   const getCompanies = async () => {
     const companies = await CompanyService.getCompanies();
@@ -200,15 +196,14 @@ const UpdateContactModal = ({ id, setId }) => {
             fullWidth
           >
             <MenuItem value={"null"} disabled>
-              Selecione o estado...
+              Selecione o Estado
             </MenuItem>
-            {states.length > 0
-              ? states.map((state) => (
-                  <MenuItem key={state.id} value={state.sigla}>
-                    {state.sigla}
-                  </MenuItem>
-                ))
-              : null}
+            {mockEstados.map((state) => (
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
+            }
           </Select>
         </FormControl>
       </TwoColumnsContainer>

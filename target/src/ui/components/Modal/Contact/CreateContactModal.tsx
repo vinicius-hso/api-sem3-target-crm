@@ -21,7 +21,6 @@ import { mockEstados } from "data/utils/mock";
 const CreateContactModal = () => {
   const { createContactModal, useCreateContactModal, getContacts } =
     useContext(ContactContext);
-  const [states, setStates] = useState<any[]>([]);
   const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
   const [time, setTime] = useState(null);
@@ -55,9 +54,6 @@ const CreateContactModal = () => {
     }
   };
 
-  useEffect(() => {
-    setStates(mockEstados)
-  }, []);
 
   async function getCompanies() {
     const companies = await CompanyService.getCompanies();
@@ -172,13 +168,12 @@ const CreateContactModal = () => {
             <MenuItem value={"null"} disabled>
               Selecione o Estado
             </MenuItem>
-            {states.length > 0
-              ? states.map((state) => (
-                  <MenuItem key={state.id} value={state.sigla}>
-                    {state.sigla}
-                  </MenuItem>
-                ))
-              : null}
+            {mockEstados.map((state) => (
+                <MenuItem key={state.id} value={state.sigla}>
+                  {state.sigla}
+                </MenuItem>
+              ))
+            }
           </Select>
         </FormControl>
       </TwoColumnsContainer>
