@@ -138,7 +138,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
           />
         </InputContainer>
 
-        <InputContainer>
+        <InputContainer style = {{marginBottom:"22px"}}>
           <TextFieldMask
             disabled={!props.hasEdit}
             label={"Cidade"}
@@ -146,11 +146,11 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={data.city}
-            onChange={(event) => setData({ ...data, city: event.target.value })}
+            onChange={(event) => setData({ ...data, city: event.target.value })}            
           />
         </InputContainer>
 
-        <FormControl fullWidth>
+        <FormControl fullWidth style = {{marginBottom:"22px"}}>
           <InputLabel
           sx={{
             color: props.hasEdit

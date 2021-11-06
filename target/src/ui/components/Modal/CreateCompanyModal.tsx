@@ -120,6 +120,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
       <Title title="Nova empresa" />
       <TwoColumnsContainer>
         <TextFieldMask
+          style = {{marginBottom:"-14px"}}
           onChange={(event) => setData({ ...data, name: event.target.value })}
           value={data.name}
           label="Nome da empresa"
@@ -130,7 +131,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
           helperText={!data.name && submit ? "Informe o nome da empresa" : " "}
         />
 
-        <TextFieldMask
+        <TextFieldMask 
           onChange={(event) => handleChangeCep(event)}
           value={data.cep}
           label="CEP"
