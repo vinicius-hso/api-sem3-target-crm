@@ -1,4 +1,15 @@
 services:
+  app:
+    image: teste
+    build: .
+    command: npm run dev
+    depends_on:
+      - postgres
+    ports:
+      - '3333:3333'
+    volumes:
+      - .:/usr/app
+
   postgres:
     restart: always
     image: postgres:latest
@@ -7,7 +18,6 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
-      # copy the sql script to create db
       - ./init:/docker-entrypoint-initdb.d
     ports:
       - '5432:5432'
