@@ -36,6 +36,10 @@ export const useDealPage = () => {
     const response = await DealsService.updateStatus(dealId, newStatus);
   };
 
+  const deletedDeal = async (dealId: string) => {
+    await DealsService.deletedDeal(dealId);
+  };
+
   const updateStatusAndRestore = async (dealId, pipelineId) => {
     const status = "INPROGRESS";
     const response = await DealsService.updateStatusAndRestore(
@@ -53,5 +57,6 @@ export const useDealPage = () => {
     editDeal,
     updateStatus,
     updateStatusAndRestore,
+    deletedDeal,
   };
 };

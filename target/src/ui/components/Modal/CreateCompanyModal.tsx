@@ -20,10 +20,12 @@ import { formatCep } from "data/utils/formatCep";
 interface CreateCompanyModalProps {
   open: boolean;
   setOpen: any;
+  getData: () => void;
 }
 const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
   open,
   setOpen,
+  getData,
 }) => {
   const { createCompanyModalState, useCreateCompanyModal, createCompany } =
     useCompanyPage();
@@ -49,7 +51,8 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
     isSubmit(true);
     data.name
       ? createCompany(data).then(() => {
-          setOpen(false);
+          getData();
+          onClose();
         })
       : null;
   }
@@ -82,6 +85,20 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
     }
   };
 
+  const onClose = () => {
+    setData({
+      name: "",
+      country: "",
+      state: "",
+      city: "",
+      site: "",
+      picture: "",
+      cep: "",
+      address: "",
+    });
+    setOpen(false);
+  };
+
   const body = (
     <ModalContainer>
       <Tooltip
@@ -92,7 +109,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
       >
         <CloseButtonStyled
           onClick={() => {
-            setOpen(false);
+            onClose();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -204,7 +221,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
       <ModalStyled
         open={open}
         onClose={() => {
-          setOpen(false);
+          onClose();
         }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

@@ -17,7 +17,7 @@ import { mockRoles } from "data/utils/mock";
 import Head from "next/head";
 
 function UserPage() {
-  const { users, filteredUser, removeFiltered } = useUserPage();
+  const { users, filteredUser, removeFiltered, getData } = useUserPage();
 
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
@@ -58,11 +58,13 @@ function UserPage() {
       <CreateUserModal
         open={openCreateUserModal}
         setOpen={setOpenCreateUserModal}
+        getData={getData}
       />
       <UserDetailModal
         open={openDetailUserModal}
         setOpen={setOpenDetailUserModal}
         user={selectedUser}
+        getData={getData}
       />
 
       <UserHeaderContainer>

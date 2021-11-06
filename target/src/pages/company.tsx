@@ -59,14 +59,6 @@ function CompanyPage() {
     clearTimeout(time);
   };
 
-  useEffect(() => {
-    if (openCreateCompanyModal) {
-      setTimeout(() => {
-        getData();
-      }, 5000);
-    }
-  }, [openCreateCompanyModal]);
-
   const removeFilters = () => {
     removeFiltered(false);
     setHasFiltered(false);
@@ -78,15 +70,16 @@ function CompanyPage() {
       <Head>
         <title>Empresas | Target</title>
       </Head>
-      <DeleteCompanyModal id={selectedCompany.id} />
       <CreateCompanyModal
         open={openCreateCompanyModal}
         setOpen={setOpenCreateCompanyModal}
+        getData={getData}
       />
       <CompanyDetailModal
         open={openDetailCompanyModal}
         setOpen={setOpenDetailCompanyModal}
         company={selectedCompany}
+        getData={getData}
       />
       <CompanyHeaderContainer>
         <TitleContainer>

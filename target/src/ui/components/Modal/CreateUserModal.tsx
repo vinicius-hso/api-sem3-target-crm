@@ -22,15 +22,19 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 interface CreateUserModalProps {
   open: boolean;
   setOpen: any;
+  getData: () => void;
 }
-const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
+const CreateUserModal: React.FC<CreateUserModalProps> = ({
+  open,
+  setOpen,
+  getData,
+}) => {
   const { createUserModalState, useCreateUserModal, createUser } =
     useUserPage();
 
   // const { createCompanyModalState, useCreateCompanyModal, createCompany } =
   //   useContext(PipelineContext);
   const [submit, setSubmit] = useState(false);
-  const [time, setTime] = useState(null);
   const [data, setData] = useState<IUser>({
     name: "",
     email: "",
@@ -40,10 +44,21 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
 
   async function handleSubmit() {
     setSubmit(true);
-    data.name && data.email
-      ? createUser(data).then(() => window.location.reload())
-      : null;
+    await createUser(data);
+    getData();
+    setSubmit(false);
+    onClose();
   }
+
+  const onClose = () => {
+    setData({
+      name: "",
+      email: "",
+      role: "",
+      picture: "",
+    });
+    setOpen(false);
+  };
 
   const body = (
     <ModalContainer>
@@ -55,7 +70,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
       >
         <CloseButtonStyled
           onClick={() => {
-            setOpen(false);
+            onClose();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -139,7 +154,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, setOpen }) => {
       <ModalStyled
         open={open}
         onClose={() => {
-          setOpen(false);
+          onClose();
         }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

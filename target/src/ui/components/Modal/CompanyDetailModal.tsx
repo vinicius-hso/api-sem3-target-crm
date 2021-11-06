@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Title from "../Title/Title";
 import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
@@ -7,48 +7,51 @@ import { CompanyTypes } from "types/Company";
 import CompanyDetailCard from "../CompanyDetailCard/CompanyDetailCard";
 import { useCompanyPage } from "../../../data/services/hooks/PageHooks/CompanyHook";
 import { Button, Tooltip } from "@material-ui/core";
-import { StatusTypes } from "types/Status";
-import CompanyContext from "contexts/CompanyContext";
+import Dialog from "../Dialog/Dialog";
 
 interface CompanyDetailModalProps {
   open: boolean;
   company: any;
   setOpen: any;
+  getData: () => void;
 }
 
 const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   open,
   company,
   setOpen,
+  getData,
 }) => {
-  const { useDeleteCompanyModal } = useContext(CompanyContext);
   const { editCompany, deleteCompany } = useCompanyPage();
   const [hasEdit, setHasEdit] = useState(false);
-  const [status, setStatus] = useState<StatusTypes>({});
-
-  /**
-   * TODO - useEditCompanyModal, companyDetailCard
-   */
+  const [dialogView, setDialogView] = useState(false);
 
   const handleSubmitEdit = async (data: CompanyTypes) => {
-    const res = await editCompany(company.id, data);
-    setStatus(res);
-    setHasEdit(false);
-    setTimeout(() => {
-      setStatus({});
-    }, 3000);
+    await editCompany(company.id, data);
   };
 
-  const handleDeleteCompany = () => {
-    const id = company.id;
-    deleteCompany(id).then(() => {
-      setOpen(false);
-      window.location.reload();
-    });
+  const onClose = () => {
+    setHasEdit(false);
+    setOpen(false);
   };
 
   const body = (
     <ModalContainer>
+      <Dialog
+        title={"Deletar empresa"}
+        message={`Tem certeza que deseja deletar ${company?.name}?`}
+        type={"question"}
+        open={dialogView}
+        setOpen={() => setDialogView(false)}
+        result={async (res) => {
+          if (res) {
+            await deleteCompany(company.id);
+            getData();
+            onClose();
+          }
+        }}
+      />
+
       <Tooltip
         title="Fechar"
         placement="top-start"
@@ -57,7 +60,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
       >
         <CloseButtonStyled
           onClick={() => {
-            setOpen(false);
+            onClose();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -74,8 +77,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
         >
           <Button
             onClick={() => {
-              setOpen(false);
-              useDeleteCompanyModal();
+              setDialogView(true);
             }}
             variant="contained"
             size="small"
@@ -108,18 +110,16 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     </ModalContainer>
   );
   return (
-    <>
-      <ModalStyled
-        open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
-      </ModalStyled>
-    </>
+    <ModalStyled
+      open={open}
+      onClose={() => {
+        onClose();
+      }}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
+    >
+      {body}
+    </ModalStyled>
   );
 };
 export default CompanyDetailModal;

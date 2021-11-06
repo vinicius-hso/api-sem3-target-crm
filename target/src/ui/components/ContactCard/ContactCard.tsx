@@ -1,4 +1,4 @@
-import { Container, Toolbar } from "@material-ui/core";
+import { formatPhone } from "data/utils/formatPhone";
 import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
 import React from "react";
 import {
@@ -29,7 +29,9 @@ const CompanyCard: React.FC<ContactCardProps> = (props) => {
       </ContactPictureStyled>
       <ContactNameStyled>{getNameUpperCase(props.name)}</ContactNameStyled>
       <ContactCompanyStyled>{props.company}</ContactCompanyStyled>
-      <ContactPhoneStyled>{props.phone || "Não Possui"}</ContactPhoneStyled>
+      <ContactPhoneStyled>
+        {formatPhone(props.phone) || "Não Possui"}
+      </ContactPhoneStyled>
       <ContactCityStyled>
         {props.city} {props.state ? "-" : ""} {props.state}
       </ContactCityStyled>

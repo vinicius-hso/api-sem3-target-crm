@@ -52,21 +52,23 @@ const Dialog: React.FC<DialogProps> = ({
               type="submit"
               onClick={() => {
                 result(false);
+                setOpen();
               }}
               autoFocus
             >
-              Cancelar
+              Não
             </Button>
             <Button
               variant="contained"
               color="success"
               onClick={() => {
                 result(true);
+                setOpen();
               }}
               type="submit"
               sx={{ color: "#fff" }}
             >
-              Confirmar
+              Sim
             </Button>
           </>
         ) : (
@@ -76,6 +78,7 @@ const Dialog: React.FC<DialogProps> = ({
             type="submit"
             onClick={() => {
               result(false);
+              setOpen();
             }}
           >
             Ok

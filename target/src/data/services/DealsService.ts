@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { pipe } from "rxjs";
 import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
@@ -99,6 +100,17 @@ class DealsService {
           "Ops! algo deu errado, verifique sua conexão e tente novamente.",
         title: "Erro",
       };
+    }
+  }
+
+  async deletedDeal(dealId) {
+    try {
+      await api.delete(`deal/${dealId}`);
+      toast.success("Contato excluído com sucesso!");
+    } catch (err) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
     }
   }
 
