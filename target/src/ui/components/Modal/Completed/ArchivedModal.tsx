@@ -7,6 +7,7 @@ import {
   MenuItem,
   Select,
   Typography,
+  Tooltip,
 } from "@material-ui/core";
 import { ModalContainer } from "./../ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./../ModalStyles/Modal.style";
@@ -41,15 +42,22 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
 
   const body = (
     <ModalContainer>
-      <CloseButtonStyled
-        onClick={() => {
-          setOpen(false);
-          setHasRestore(false);
-          setSelectedPipeline("default");
-        }}
+      <Tooltip
+        title="Fechar"
+        placement="top-start"
+        enterDelay={500}
+        leaveDelay={100}
       >
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </CloseButtonStyled>
+        <CloseButtonStyled
+          onClick={() => {
+            setOpen(false);
+            setHasRestore(false);
+            setSelectedPipeline("default");
+          }}
+        >
+          <i className="fa fa-times" aria-hidden="true"></i>
+        </CloseButtonStyled>
+      </Tooltip>
 
       <Title title={`Ações para ${deal.name}`} />
       <div
@@ -69,22 +77,37 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
         <Typography variant="body2">{formatValue(deal?.value)}</Typography>
         {!hasRestore ? (
           <div>
-            <Button
-              sx={{ minWidth: 0, width: 4, mr: "2px" }}
-              variant="contained"
-              color="secondary"
-              onClick={() => setHasRestore(true)}
+            <Tooltip
+              title="Restaurar negociação"
+              placement="top-start"
+              enterDelay={500}
+              leaveDelay={100}
             >
-              <i className="fa fa-refresh" aria-hidden="true"></i>
-            </Button>
-            {isAdmin ? (
               <Button
-                sx={{ minWidth: 0, width: 4 }}
+                sx={{ minWidth: 0, width: 4, mr: "2px" }}
                 variant="contained"
-                color="error"
+                color="secondary"
+                onClick={() => setHasRestore(true)}
               >
-                <i className="fa fa-trash" aria-hidden="true"></i>
+                <i className="fa fa-refresh" aria-hidden="true"></i>
               </Button>
+            </Tooltip>
+
+            {isAdmin ? (
+              <Tooltip
+                title="Deletar negociação"
+                placement="top-start"
+                enterDelay={500}
+                leaveDelay={100}
+              >
+                <Button
+                  sx={{ minWidth: 0, width: 4 }}
+                  variant="contained"
+                  color="error"
+                >
+                  <i className="fa fa-trash" aria-hidden="true"></i>
+                </Button>
+              </Tooltip>
             ) : null}
           </div>
         ) : null}
