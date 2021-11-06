@@ -4,10 +4,11 @@ import {
   Select,
   Typography,
   Tooltip,
+  InputLabel,
 } from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import PipelineContext from "contexts/PipelineContext";
 import {
@@ -16,6 +17,8 @@ import {
   InputContainer,
 } from "./CompanyDetailCard.style";
 import { CompanyTypes } from "types/Company";
+import theme from "ui/theme/theme";
+import { mockEstados } from "data/utils/mock";
 
 //@deprecated
 interface CompanyDetailCardProps {
@@ -40,6 +43,12 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
     site: props.site,
     picture: props.picture,
   });
+  
+  const [states, setStates] = useState<any[]>([]);
+
+  useEffect(() => {
+    setStates(mockEstados)
+  }, []);
 
   return (
     <div>
@@ -147,19 +156,39 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
           />
         </InputContainer>
 
-        <InputContainer>
-          <TextFieldMask
+        <FormControl fullWidth>
+          <InputLabel
+          sx={{
+            color: props.hasEdit
+              ? theme.palette.text.secondary
+              : theme.palette.text.disabled,
+          }}
+            variant="standard"
+            htmlFor="uncontrolled-native"
+          >
+            Estado
+          </InputLabel>
+
+          <Select
             disabled={!props.hasEdit}
-            label={"Estado"}
+            onChange={(event) => setData({ ...data, state: event.target.value })}
+            value={data.state}
+            label="Estado"
+            variant="standard"
             fullWidth
-            variant={"standard"}
-            size="medium"
-            defaultValue={data.state}
-            onChange={(event) =>
-              setData({ ...data, state: event.target.value })
-            }
-          />
-        </InputContainer>
+          >
+            <MenuItem value={"null"} disabled>
+              Selecione o Estado
+            </MenuItem>
+            {states.length > 0
+              ? states.map((state) => (
+                  <MenuItem key={state.id} value={state.sigla}>
+                    {state.sigla}
+                  </MenuItem>
+                ))
+              : null}
+          </Select>
+        </FormControl>
 
         <InputContainer>
           <TextFieldMask
