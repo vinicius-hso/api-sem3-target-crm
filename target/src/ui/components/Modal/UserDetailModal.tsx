@@ -62,9 +62,6 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
     <ModalContainer>
       {user.id ? (
         <>
-          {status.status ? (
-            <Alert severity={status.status} message={status.message} />
-          ) : null}
           <Tooltip
             title="Fechar"
             placement="top-start"

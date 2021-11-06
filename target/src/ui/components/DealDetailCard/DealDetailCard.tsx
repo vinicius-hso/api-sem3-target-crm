@@ -84,7 +84,9 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
             leaveDelay={100}
           >
             <EditButton
-              style={{ right: props.hasEdit ? "80px" : 0 }}
+              style={{
+                right: props.hasEdit ? "80px" : 0,
+              }}
               onClick={props.onClick}
             >
               {!props.hasEdit ? "Editar" : "Cancelar"}
@@ -105,6 +107,7 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
             <EditButton
               style={{ right: props.hasEdit ? "80px" : 0 }}
               onClick={props.onClick}
+              color={props.hasEdit ? "error" : "primary"}
             >
               {!props.hasEdit ? "Editar" : "Cancelar"}
               <i
@@ -127,6 +130,7 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
               display: props.hasEdit ? "inline" : "none",
             }}
             onClick={handleSubmit}
+            color={props.hasEdit ? "success" : "primary"}
           >
             {"Salvar"}
             <i

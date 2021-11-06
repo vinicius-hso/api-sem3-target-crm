@@ -144,7 +144,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                         width: "160px",
                         mt: 1,
                       }}
-                      color="primary"
+                      color="success"
                       type="submit"
                     >
                       Salvar
@@ -222,6 +222,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               <EditButton
                 style={{ right: props.hasEdit ? "80px" : 0 }}
                 onClick={props.onClick}
+                color={props.hasEdit ? "error" : "primary"}
               >
                 {!props.hasEdit ? "Editar" : "Cancelar"}
                 <i
@@ -248,6 +249,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                   user.email.length > 0 &&
                   props.saveEdit(user);
               }}
+              color={props.hasEdit ? "success" : "primary"}
             >
               {"Salvar"}
               <i

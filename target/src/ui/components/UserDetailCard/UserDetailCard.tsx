@@ -85,6 +85,7 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             <EditButton
               style={{ right: props.hasEdit ? "80px" : 0 }}
               onClick={props.onClick}
+              color={props.hasEdit ? "error" : "primary"}
             >
               {!props.hasEdit ? "Editar" : "Cancelar"}
               <i
@@ -106,6 +107,7 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
               display: props.hasEdit ? "inline" : "none",
             }}
             onClick={() => props.saveEdit(data)}
+            color={props.hasEdit ? "success" : "primary"}
           >
             {"Salvar"}
             <i
