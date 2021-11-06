@@ -186,8 +186,8 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
           >
             <Button
               variant="contained"
-              sx={{ width: "200px", margin: "32px auto 0" }}
-              color="primary"
+              sx={{ width: "200px", margin: "32px auto 0", color: "white" }}
+              color="success"
               onClick={() => handleSubmit(importedContacts)}
             >
               Confirmar
