@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../Title/Title";
 import {
   Button,
@@ -19,6 +19,7 @@ import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import { StatusTypes } from "types/Status";
 import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHook";
 import { formatValue } from "data/utils/formatValue";
+import Dialog from "ui/components/Dialog/Dialog";
 
 interface AchivedDealModalProps {
   deal: DealTypes;
@@ -35,13 +36,40 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
 }) => {
   const [hasRestore, setHasRestore] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [dialogView, setDialogView] = useState(false);
   const [selectedPipeline, setSelectedPipeline] = useState("default");
-  const { pipelines } = usePipelineComponent();
-  const { updateStatusAndRestore } = useDealPage();
+  const { pipelines, getData } = usePipelineComponent();
+  const { updateStatusAndRestore, deletedDeal } = useDealPage();
   const { isAdmin } = useNavBarComponent();
+
+  useEffect(() => {
+    if (!pipelines.length) {
+      getData();
+    }
+  }, []);
+
+  const onClose = () => {
+    setHasRestore(false);
+    setSelectedPipeline("default");
+    setOpen(false);
+  };
 
   const body = (
     <ModalContainer>
+      <Dialog
+        title={"Deletar negociação"}
+        message={`Tem certeza que deseja deletar ${deal.name}?`}
+        type={"question"}
+        open={dialogView}
+        setOpen={() => setDialogView(false)}
+        result={async (res) => {
+          if (res) {
+            await deletedDeal(deal.id);
+            getData();
+            onClose();
+          }
+        }}
+      />
       <Tooltip
         title="Fechar"
         placement="top-start"
@@ -50,9 +78,7 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
       >
         <CloseButtonStyled
           onClick={() => {
-            setOpen(false);
-            setHasRestore(false);
-            setSelectedPipeline("default");
+            onClose();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -104,6 +130,9 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
                   sx={{ minWidth: 0, width: 4 }}
                   variant="contained"
                   color="error"
+                  onClick={() => {
+                    setDialogView(true);
+                  }}
                 >
                   <i className="fa fa-trash" aria-hidden="true"></i>
                 </Button>
@@ -158,11 +187,7 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
                   setStatus(
                     await updateStatusAndRestore(deal.id, selectedPipeline)
                   );
-                  setHasRestore(false);
-                  setSelectedPipeline("default");
-                  setOpen(false);
-                } else {
-                  setHasError(true);
+                  onClose();
                 }
               }}
               variant="contained"
@@ -195,9 +220,7 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
       <ModalStyled
         open={open}
         onClose={() => {
-          setOpen(false);
-          setHasRestore(false);
-          setSelectedPipeline("default");
+          onClose();
         }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

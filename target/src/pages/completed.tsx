@@ -138,7 +138,11 @@ function CompletedPage() {
         />
       </CompletedHeaderContainer>
       <CompletedButtonsContainer>
-        <BottomNavigation value={selectedStatus} onChange={handleChange}>
+        <BottomNavigation
+          value={selectedStatus}
+          onChange={handleChange}
+          showLabels
+        >
           <Tooltip
             title="Visualizar ganhas"
             placement="top-start"
@@ -148,7 +152,13 @@ function CompletedPage() {
             <BottomNavigationAction
               label="Ganhou"
               value="WON"
-              icon={<i className="fa fa-thumbs-o-up"></i>}
+              sx={{ color: selectedStatus === "WON" && "#E2711D" }}
+              icon={
+                <i
+                  style={{ color: selectedStatus === "WON" && "#E2711D" }}
+                  className="fa fa-thumbs-up"
+                ></i>
+              }
             />
           </Tooltip>
 
@@ -161,7 +171,13 @@ function CompletedPage() {
             <BottomNavigationAction
               label="Perdeu"
               value="LOST"
-              icon={<i className="fa fa-thumbs-o-down"></i>}
+              sx={{ color: selectedStatus === "LOST" && "#E2711D" }}
+              icon={
+                <i
+                  style={{ color: selectedStatus === "LOST" && "#E2711D" }}
+                  className="fa fa-thumbs-down"
+                ></i>
+              }
             />
           </Tooltip>
 
@@ -174,7 +190,13 @@ function CompletedPage() {
             <BottomNavigationAction
               label="Arquivadas"
               value="ARCHIVED"
-              icon={<i className="fa fa-archive"></i>}
+              sx={{ color: selectedStatus === "ARCHIVED" && "#E2711D" }}
+              icon={
+                <i
+                  style={{ color: selectedStatus === "ARCHIVED" && "#E2711D" }}
+                  className="fa fa-archive"
+                ></i>
+              }
             />
           </Tooltip>
         </BottomNavigation>
