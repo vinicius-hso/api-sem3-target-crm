@@ -94,19 +94,27 @@ Para páginas da web que exigem que o usuário envie informações, os dados ins
 
 ## 📊 Dashboard
 
-### Empresa x Quantidade
+### Empresa/Vendedor x Valor/Quantidade
+
+Visualização do total de negociações ganhas, perdidas e em andamento em relação a cada empresa ou vendedor.
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/bar-chart.gif)
 
 ### Geral
 
+Visualização geral das negociações de acordo com o status.
+
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/geral.gif)
 
 ### Cards
 
+Visualização de indicativos em cards e taxa de conversão dde vendas
+
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/cards.gif)
 
 ### Negociações Por Período
+
+Visualização das negociações ganhas e perdidas por data.
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/line-chart.gif)
 
