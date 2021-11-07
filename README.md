@@ -92,13 +92,23 @@ Para páginas da web que exigem que o usuário envie informações, os dados ins
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/wcag-gifs/prevencao-erros.gif)
 
-## 📊 Dashboards 
+## 📊 Dashboard
 
-* __Empresa x Quantidade__
+### Empresa x Quantidade
 
-* __Geral__
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/bar-chart.gif)
 
-* __Negociações Por Período__
+### Geral
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/geral.gif)
+
+### Cards
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/cards.gif)
+
+### Negociações Por Período
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/line-chart.gif)
 
 ## 📬 Envio Automatizado de Emails
 
