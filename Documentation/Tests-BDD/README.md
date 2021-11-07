@@ -3,7 +3,6 @@
 ## User Stories  -> Importação de Contatos e Envio de Emails
 
 
-
 __IMPORTAR CONTATOS__ ✅ 
 
 Eu, como usuário da aplicação __Target__,
@@ -82,15 +81,15 @@ Dado que acesso a página Dashboard
 Desço até o gráfico "Geral"
 Um gráfico em pizza é exibido
 
-__a)__Dado que crio uma negociação "em andamento" na página de Negociações, o valor do label "Andamento" aumenta em uma unidade
+__a)__ Dado que crio uma negociação "em andamento" na página de Negociações, o valor do label "Andamento" aumenta em uma unidade
 
-__b)__Dado que declaro uma negociação "em andamento" como "ganha" na página de Negociações, o valor do label "Andamento" diminui em uma unidade enquanto o valor do label "Ganhou" aumenta em uma unidade no gráfico
+__b)__ Dado que declaro uma negociação "em andamento" como "ganha" na página de Negociações, o valor do label "Andamento" diminui em uma unidade enquanto o valor do label "Ganhou" aumenta em uma unidade no gráfico
 
-__c)__Dado que declaro uma negociação "em andamento" como "perdida" na página de Negociações, o valor do label "Andamento" diminui em uma unidade enquanto o valor do label "Perdeu" aumenta em uma unidade no gráfico
+__c)__ Dado que declaro uma negociação "em andamento" como "perdida" na página de Negociações, o valor do label "Andamento" diminui em uma unidade enquanto o valor do label "Perdeu" aumenta em uma unidade no gráfico
 
-__d)__Dado que declaro uma negociação "em andamento" como "arquivada" na página de Negociações, o valor do label "Andamento" diminui em uma unidade enquanto o valor do label "Arquivada" aumenta em uma unidade no gráfico
+__d)__ Dado que declaro uma negociação "em andamento" como "arquivada" na página de Negociações, o valor do label "Andamento" diminui em uma unidade enquanto o valor do label "Arquivada" aumenta em uma unidade no gráfico
 
-__e)__Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
+__e)__ Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
 Faço o download de uma imagem em formato PNG, imagem em formato PNG ou planilha em formato csv, respectivamente, contendo os dados apresentados nos gráficos
 
 __GRÁFICO NEGOCIAÇÕES x EMPRESA__ ✅ 
@@ -104,17 +103,17 @@ Dado que acesso a página Dashboard
 Desço até o gráfico personalizável e seleciono a opção "Empresas" (default)
 Um gráfico em barras é exibido, no eixo x estão presentes cada uma das empresas cadastradas (que possuem negociações associadas), enquanto no eixo y poderá ser apresentado tanto a quantidade de negociações (default) quanto o valor da soma em reais das negociações daquela empresa
 
-__a)__Dado que crio uma negociação "em andamento" de uma empresa específica na página de Negociações, o valor do label "EM ANDAMENTO" aumenta em uma unidade para essa mesma empresa no gráfico
+__a)__ Dado que crio uma negociação "em andamento" de uma empresa específica na página de Negociações, o valor do label "EM ANDAMENTO" aumenta em uma unidade para essa mesma empresa no gráfico
 
-__b)__Dado que declaro uma negociação "em andamento" como "ganha"  de uma empresa específica na página de Negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "GANHA" aumenta em uma unidade para essa mesma empresa no gráfico
+__b)__ Dado que declaro uma negociação "em andamento" como "ganha"  de uma empresa específica na página de Negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "GANHA" aumenta em uma unidade para essa mesma empresa no gráfico
 
-__c)__Dado que declaro uma negociação "em andamento" como "perdida" de uma empresa específica na página de Negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "PERDIDA" aumenta em uma unidade para essa mesma empresa no gráfico
+__c)__ Dado que declaro uma negociação "em andamento" como "perdida" de uma empresa específica na página de Negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "PERDIDA" aumenta em uma unidade para essa mesma empresa no gráfico
 
-__d)__Dado que declaro uma negociação "em andamento" como "arquivada"  de uma empresa específica na página de Negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade no gráfico
+__d)__ Dado que declaro uma negociação "em andamento" como "arquivada"  de uma empresa específica na página de Negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade no gráfico
 
 __e)__ Dado que clico no botão "VALOR", os mesmos comportamentos apresentados nos itens de "a)" a "d)" devem ser verificados para a soma dos valores apresentados por uma empresa específica, em reais
 
-__f)__Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
+__f)__ Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
 Faço o download de uma imagem em formato PNG, imagem em formato PNG ou planilha em formato csv, respectivamente, contendo os dados apresentados nos gráficos
 
 __GRÁFICO NEGOCIAÇÕES x VENDEDORES__ ✅ 
@@ -127,17 +126,17 @@ Dado que acesso a página Dashboard
 Desço até o gráfico personalizável e seleciono a opção "Vendedores" 
 Um gráfico em barras é exibido, no eixo x estão presentes cada um dos vendedores cadastrados (que possuem negociações associadas), enquanto no eixo y poderá ser apresentado tanto a quantidade de negociações (default) quanto o valor da soma em reais das negociações daquele vendedor.
 
-__a)__Dado que crio uma nova negociação "em andamento" logado com o perfil de um vendedor específico  na página de negociações, o valor do label "EM ANDAMENTO" aumenta em uma unidade, no gráfico, para esse vendedor
+__a)__ Dado que crio uma nova negociação "em andamento" logado com o perfil de um vendedor específico  na página de negociações, o valor do label "EM ANDAMENTO" aumenta em uma unidade, no gráfico, para esse vendedor
 
-__b)__Dado que altero a negociação "em andamento" criada no item "a)" para "ganha" na página de negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "GANHA" aumenta em uma unidade, no gráfico, para o vendedor específico
+__b)__ Dado que altero a negociação "em andamento" criada no item "a)" para "ganha" na página de negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "GANHA" aumenta em uma unidade, no gráfico, para o vendedor específico
 
-__c)__Dado que altero a negociação "em andamento" criada no item "a)" para "perdida" na página de negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "PERDIDA" aumenta em uma unidade, no gráfico, para o vendedor específico
+__c)__ Dado que altero a negociação "em andamento" criada no item "a)" para "perdida" na página de negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "PERDIDA" aumenta em uma unidade, no gráfico, para o vendedor específico
 
-__d)__Dado que altero a negociação "em andamento" criada no item "a)" para "arquivada" na página de negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, no gráfico, para o vendedor específico
+__d)__ Dado que altero a negociação "em andamento" criada no item "a)" para "arquivada" na página de negociações, o valor do label "EM ANDAMENTO" diminui em uma unidade, no gráfico, para o vendedor específico
 
 __e)__ Dado que clico no botão "VALOR", os mesmos comportamentos apresentados nos itens de "a)" a "d)" devem ser verificados para a soma dos valores apresentados por um vendedor específico, em reais
 
-__f)__Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
+__f)__ Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
 Faço o download de uma imagem em formato PNG, imagem em formato PNG ou planilha em formato csv, respectivamente, contendo os dados apresentados nos gráficos
 
 
@@ -152,7 +151,7 @@ Dado que acesso a página Dashboard
 No topo da página visualizo os cards, referente ao card do lado esquerdo
 É exibido um card com as informações do valor médio, total e quantidade de negociações
 
-__a)__Dado que crio uma negociação com valor X na página de negociações, esse valor X é acrescido no valor total de negociações , a quantidade de negociações aumenta em uma unidade e o valor médio da negociação é alterado proporcionalmente
+__a)__ Dado que crio uma negociação com valor X na página de negociações, esse valor X é acrescido no valor total de negociações , a quantidade de negociações aumenta em uma unidade e o valor médio da negociação é alterado proporcionalmente
 
 
 __CARD TAXA DE CONVERSÃO__ ✅ 
@@ -165,9 +164,9 @@ Dado que acesso a página Dashboard
 No topo da página visualizo os cards, referente ao card do lado direito
 É exibido um card com as informações de taxa de conversão, quantidade de negociações ganhas, perdidas, em andamento e arquivadas
 
-__a)__Dado que crio uma negociação na página de negociações, o valor de negociações "EM ADAMENTO" no card aumenta em uma unidade, e a taxa de conversão diminui proporcionalmente
+__a)__ Dado que crio uma negociação na página de negociações, o valor de negociações "EM ADAMENTO" no card aumenta em uma unidade, e a taxa de conversão diminui proporcionalmente
 
-__b)__Dado que altero a negociação "em andamento" criada no item "a)" para "ganho" na página de negociações, o valor apresentado no card "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "GANHAS" aumenta em uma unidade, e a taxa de conversão aumenta proporcionalmente
+__b)__ Dado que altero a negociação "em andamento" criada no item "a)" para "ganho" na página de negociações, o valor apresentado no card "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "GANHAS" aumenta em uma unidade, e a taxa de conversão aumenta proporcionalmente
 
 
 
