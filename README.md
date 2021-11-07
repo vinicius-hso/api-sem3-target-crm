@@ -29,7 +29,7 @@ __Obs.:__ Alinhamos com o cliente que a User Story Responsividade será entregue
 A imagem abaixo mostra os itens do [__Product Backlog__]() em ordem de prioridade referentes a Sprint 3:
 
 <p align="center">
-  <img src=  /></p>
+  <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/sprint3-backlog.png" /></p>
 
 ### - Burndown Chart
 
