@@ -94,11 +94,11 @@ Para páginas da web que exigem que o usuário envie informações, os dados ins
 
 ## 📊 Dashboards 
 
-### * Empresa x Quantidade
+* __Empresa x Quantidade__
 
-### * Geral
+* __Geral__
 
-### * Negociações Por Período
+* __Negociações Por Período__
 
 ## 📬 Envio Automatizado de Emails
 
