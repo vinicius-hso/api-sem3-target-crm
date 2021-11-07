@@ -119,6 +119,8 @@ Para páginas da web que exigem que o usuário envie informações, os dados ins
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/line-chart.gif)
 
-## 📬 Envio Automatizado de Emails
+## 👥 Importação de Contatos + 📬 Envio Automatizado de Emails
 
-## 👥 Importação de Contatos 
+🔸 Importação de contatos através de upload de um arquivo .xlms e envio automático de email de "Boas Vindas".
+
+![]()
