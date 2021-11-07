@@ -59,14 +59,14 @@ Dado que acesso a página Dashboard
 Desço até o gráfico "Negociações por Períodos"
 Um gráfico de linha é exibido
 
-__a)__Dado que declaro uma negociação como ganha na página de Negociações, o valor em reais dela aparece no gráfico no dia presente como ganha
+__a)__ Dado que declaro uma negociação como ganha na página de Negociações, o valor em reais dela aparece no gráfico no dia presente como ganha
 
-__b)__Dado que declaro uma negociação como perdida na página de Negociações, o valor em reais dela aparece no gráfico no dia presente como perdida
+__b)__ Dado que declaro uma negociação como perdida na página de Negociações, o valor em reais dela aparece no gráfico no dia presente como perdida
 
-__c)__Dado que incluo zoom na tela em um determinado período
+__c)__ Dado que incluo zoom na tela em um determinado período
 O período de interesse é apresentado no gráfico
 
-__d)__Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
+__d)__ Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
 Faço o download de uma imagem em formato PNG, imagem em formato PNG ou planilha em formato csv, respectivamente, contendo os dados apresentados nos gráficos
 
 
