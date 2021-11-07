@@ -26,7 +26,7 @@ __Obs.:__ Alinhamos com o cliente que a User Story Responsividade será entregue
 
 ### - Sprint Backlog
 
-A imagem abaixo mostra os itens do [__Product Backlog__]() em ordem de prioridade referentes a Sprint 3:
+A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Documentation/product-backlog-target.pdf) em ordem de prioridade referentes a Sprint 3:
 
 <p align="center">
   <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/sprint3-backlog.png" /></p>
@@ -43,6 +43,8 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 Acesse os documentos clicando nos links abaixo:
 
 * [__Casos de Testes Funcionais__](https://github.com/vinicius-hso/api-sem3-target-crm/tree/Sprint-3/Documentation/Tests-BDD)
+
+* [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Documentation/product-backlog-target.pdf)
 
 ## 📃 Web Content Accessibility Guidelines Aplicado no Projeto
 
