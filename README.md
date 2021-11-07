@@ -44,11 +44,11 @@ Acesse os documentos clicando nos links abaixo:
 
 * 
 
-## 📃 Web Content Accessibility Guidelines aplicado no projeto
+## 📃 Web Content Accessibility Guidelines Aplicado no Projeto
 
 O Web Content Accessbility Guidilines é parte de uma série de diretrizes de acessibilidade para a web publicadas pela World Wide Web Consortium, a principal organização de padrões internacionais para a web. A seguir encontram-se alguns pontos do WCAG empregados no desenvolvimento da aplicação:
 
-#### **Uso de Cor - Nível A**
+### **Uso de Cor - Nível A**
 
 **Princípio 1 - Perceptível | Diretriz 1.4 - Distinguível**.  
 
@@ -57,7 +57,7 @@ A cor não é usada como o único  meio visual de transmitir informações, indi
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/wcag-gifs/uso-de-cores.gif) 
 
 
-#### Título da Página - Nível A
+### Título da Página - Nível A
 
 **Princípio 2 - Operável | Diretriz 2.4 - Navegável**.  
 
@@ -66,7 +66,7 @@ As páginas da Web têm títulos que descrevem o tópico ou propósito.
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/wcag-gifs/titulo-pag.gif)
 
 
-#### Títulos e Rótulos - Nível AA
+### Títulos e Rótulos - Nível AA
 
 **Princípio 2 - Operável | Diretriz 2.4 - Navegável**.  
 
@@ -75,7 +75,7 @@ Títulos e rótulos descrevem o tópico ou propósito.
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/wcag-gifs/titulos-rotulos.gif)
 
 
-#### Etiquetas ou Instruções - Nível A
+### Etiquetas ou Instruções - Nível A
 
 **Princípio 3 - Compreensível | Diretriz 3.3 - Assistência de Entrada**.  
 
@@ -84,7 +84,7 @@ Rótulos ou instruções são fornecidos quando o conteúdo requer entrada do us
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/wcag-gifs/etiquetas-instrucoes.gif)
 
 
-#### Preveção de Erros - Nível AAA
+### Preveção de Erros - Nível AAA
 
 **Princípio 3 - Compreensível | Diretriz 3.3 - Assistência de Entrada**.  
 
