@@ -3,8 +3,7 @@
 ## User Stories  -> Importação de Contatos e Envio de Emails
 
 __IMPORTAR CONTATOS__ ✅ 
-</h1>
-</h1>
+
 Eu, como usuário da aplicação __Target__,
 Gostaria de importar contatos 
 Para a aplicação de uma base de dados em XLS
@@ -45,7 +44,7 @@ Os contatos são criados e apresentados na lista, porém o email personalizável
 __c)__ Dado que envio o arquivo com as informações incorretas e incompletas (nome e email)
 Os contatos com informações incompletas (nome e/ou email) não são criados e o email personalizável não é enviado
 
-## User Storie  -> Dashboard 
+## User Story  -> Dashboard 
 
 __GRÁFICO NEGOCIAÇÕES x PERÍODO__ ✅ 
 
@@ -66,8 +65,6 @@ O período de interesse é apresentado no gráfico
 
 __d)__ Dado que clico em "Download SVG", "Download PNG" ou "Download CSV"
 Faço o download de uma imagem em formato PNG, imagem em formato PNG ou planilha em formato csv, respectivamente, contendo os dados apresentados nos gráficos
-
-
 
 __GRÁFICO TOTAL NEGOCIAÇÕES__ ✅ 
 
@@ -95,7 +92,6 @@ __GRÁFICO NEGOCIAÇÕES x EMPRESA__ ✅
 Eu, como usuário da aplicação __Target__,
 Quero visualizar em um gráfico as minhas negociações ganhas, perdidas e em andamento por empresas
 Para avaliar e comparar a relevância de cada empresa para meu negócio
-
 
 Dado que acesso a página Dashboard
 Desço até o gráfico personalizável e seleciono a opção "Empresas" (default)
