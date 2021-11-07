@@ -41,6 +41,7 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 ## 📂 Documentação do Projeto
 
 Acesse os documentos clicando nos links abaixo:
+
 * 
 
 ## 📃 Web Content Accessibility Guidelines Aplicado no Projeto
@@ -93,11 +94,11 @@ Para páginas da web que exigem que o usuário envie informações, os dados ins
 
 ## 📊 Dashboards 
 
-### Empresa x Quantidade
+### - Empresa x Quantidade
 
-### Geral
+### - Geral
 
-### Negociações Por Período
+### - Negociações Por Período
 
 ## 📬 Envio Automatizado de Emails
 
