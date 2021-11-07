@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import { Button, Tooltip } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -16,6 +16,13 @@ interface CreateModalProps {
 const CreateModal = ({ getData }: CreateModalProps) => {
   const { createModalState, useCreateModal, createPipeline, setName } =
     useContext(PipelineContext);
+
+  const [submited, isSubmited] = useState(false);
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    isSubmited(false);
+  }, []);
 
   const body = (
     <ModalContainer>
@@ -37,12 +44,18 @@ const CreateModal = ({ getData }: CreateModalProps) => {
       <Title title="Novo pipeline" />
 
       <TextFieldMask
-        onChange={(event) => setName(event.target.value)}
+        onChange={(event) => {
+          setValue(event.target.value);
+          setName(event.target.value);
+        }}
         id="outlined-basic"
         label="Nome do pipeline"
         variant="standard"
         size="small"
         fullWidth
+        required
+        error={submited && !value.length}
+        helperText={submited && !value.length ? "Campo obrigatório" : ""}
       />
       <Tooltip
         title="Adicionar pipeline"
@@ -52,10 +65,13 @@ const CreateModal = ({ getData }: CreateModalProps) => {
       >
         <Button
           onClick={() => {
-            createPipeline();
-            setTimeout(() => {
-              getData();
-            }, 1000);
+            isSubmited(true);
+            if (value.length) {
+              createPipeline();
+              setTimeout(() => {
+                getData();
+              }, 1000);
+            }
           }}
           variant="contained"
           color="primary"
@@ -71,7 +87,11 @@ const CreateModal = ({ getData }: CreateModalProps) => {
     <>
       <ModalStyled
         open={createModalState}
-        onClose={() => useCreateModal()}
+        onClose={() => {
+          setValue("");
+          isSubmited(false);
+          useCreateModal();
+        }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

@@ -44,10 +44,12 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
 
   async function handleSubmit() {
     setSubmit(true);
-    await createUser(data);
-    getData();
-    setSubmit(false);
-    onClose();
+    if (data.name && data.email && data.role) {
+      await createUser(data);
+      getData();
+      setSubmit(false);
+      onClose();
+    }
   }
 
   const onClose = () => {
@@ -88,7 +90,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
           fullWidth
           required
           error={submit && !data.name}
-          helperText={!data.name && submit ? "Nome é obrigatório" : " "}
+          helperText={!data.name && submit ? "Campo obrigatório" : " "}
         />
 
         <TextFieldMask
@@ -100,7 +102,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
           fullWidth
           required
           error={submit && !data.email}
-          helperText={!data.email && submit ? "Email é obrigatório" : " "}
+          helperText={!data.email && submit ? "Campo é obrigatório" : " "}
         />
 
         <FormControl fullWidth>

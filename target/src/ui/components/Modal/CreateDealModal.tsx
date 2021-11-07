@@ -100,6 +100,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
         variant="standard"
         size="small"
         fullWidth
+        required
         error={submited && !data.name}
         helperText={submited && !data.name ? "Campo obrigatório" : ""}
       />

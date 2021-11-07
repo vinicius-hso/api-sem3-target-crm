@@ -7,7 +7,14 @@ import {
 import { CloseButtonStyled } from "../ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../../Input/TextFieldMask/TextFieldMask";
 import Title from "../../Title/Title";
-import { Button, Select, MenuItem, Tooltip, InputLabel, FormControl } from "@material-ui/core";
+import {
+  Button,
+  Select,
+  MenuItem,
+  Tooltip,
+  InputLabel,
+  FormControl,
+} from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "../ModalStyles/Modal.style";
@@ -23,6 +30,7 @@ const CreateContactModal = () => {
     useContext(ContactContext);
   const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
+  const [submited, isSubmited] = useState(false);
   const [time, setTime] = useState(null);
   const [data, setData] = useState<IContact>({
     name: "",
@@ -32,8 +40,9 @@ const CreateContactModal = () => {
     email: "",
     phone: "",
   });
-  
+
   const createContact = async () => {
+    isSubmited(true);
     try {
       if (data.name && data.email && data.company_id) {
         await ContactService.createContact({
@@ -54,7 +63,6 @@ const CreateContactModal = () => {
     }
   };
 
-
   async function getCompanies() {
     const companies = await CompanyService.getCompanies();
 
@@ -63,6 +71,15 @@ const CreateContactModal = () => {
 
   useEffect(() => {
     getCompanies();
+    isSubmited(false);
+    setData({
+      name: "",
+      company_id: "null",
+      state: "null",
+      city: "",
+      email: "",
+      phone: "",
+    });
   }, []);
 
   const body = (
@@ -92,8 +109,10 @@ const CreateContactModal = () => {
         size="small"
         fullWidth
         required
+        error={submited && !data.name}
+        helperText={submited && !data.name ? "Campo obrigatório" : ""}
       />
-      
+
       <TextFieldMask
         onChange={(event) => setData({ ...data, email: event.target.value })}
         value={data.email}
@@ -101,6 +120,9 @@ const CreateContactModal = () => {
         variant="standard"
         size="small"
         fullWidth
+        required
+        error={submited && !data.email}
+        helperText={submited && !data.email ? "Campo obrigatório" : ""}
       />
 
       <TwoColumnsContainer>
@@ -114,10 +136,7 @@ const CreateContactModal = () => {
         />
 
         <FormControl fullWidth>
-          <InputLabel
-            variant="standard"
-            htmlFor="uncontrolled-native"
-          >
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
             Empresa
           </InputLabel>
           <Select
@@ -150,16 +169,15 @@ const CreateContactModal = () => {
           size="small"
           fullWidth
         />
-        
+
         <FormControl fullWidth>
-          <InputLabel
-            variant="standard"
-            htmlFor="uncontrolled-native"
-          >
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
             Estado
           </InputLabel>
           <Select
-            onChange={(event) => setData({ ...data, state: event.target.value })}
+            onChange={(event) =>
+              setData({ ...data, state: event.target.value })
+            }
             value={data.state}
             label="Estado"
             variant="standard"
@@ -169,11 +187,10 @@ const CreateContactModal = () => {
               Selecione o Estado
             </MenuItem>
             {mockEstados.map((state) => (
-                <MenuItem key={state.id} value={state.sigla}>
-                  {state.sigla}
-                </MenuItem>
-              ))
-            }
+              <MenuItem key={state.id} value={state.sigla}>
+                {state.sigla}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </TwoColumnsContainer>

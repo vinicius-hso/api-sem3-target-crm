@@ -7,7 +7,14 @@ import {
 import { CloseButtonStyled } from "../ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../../Input/TextFieldMask/TextFieldMask";
 import Title from "../../Title/Title";
-import { Button, Select, MenuItem, Tooltip, InputLabel, FormControl } from "@material-ui/core";
+import {
+  Button,
+  Select,
+  MenuItem,
+  Tooltip,
+  InputLabel,
+  FormControl,
+} from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -28,6 +35,7 @@ const UpdateContactModal = ({ id, setId }) => {
   } = useContext(ContactContext);
   const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
+  const [submited, isSubmited] = useState(false);
   const [time, setTime] = useState(null);
 
   const [data, setData] = useState<IContact>({
@@ -80,7 +88,6 @@ const UpdateContactModal = ({ id, setId }) => {
     }
   };
 
-
   const getCompanies = async () => {
     const companies = await CompanyService.getCompanies();
 
@@ -119,8 +126,9 @@ const UpdateContactModal = ({ id, setId }) => {
         size="small"
         fullWidth
         required
+        error={submited && !data.name}
+        helperText={submited && !data.name ? "Campo obrigatório" : ""}
       />
-      
 
       <TextFieldMask
         onChange={(event) => setData({ ...data, email: event.target.value })}
@@ -129,6 +137,9 @@ const UpdateContactModal = ({ id, setId }) => {
         variant="standard"
         size="small"
         fullWidth
+        required
+        error={submited && !data.email}
+        helperText={submited && !data.email ? "Campo obrigatório" : ""}
       />
 
       <TwoColumnsContainer>
@@ -142,10 +153,7 @@ const UpdateContactModal = ({ id, setId }) => {
         />
 
         <FormControl fullWidth>
-          <InputLabel
-            variant="standard"
-            htmlFor="uncontrolled-native"
-          >
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
             Empresa
           </InputLabel>
           <Select
@@ -167,7 +175,6 @@ const UpdateContactModal = ({ id, setId }) => {
             ))}
           </Select>
         </FormControl>
-        
       </TwoColumnsContainer>
 
       <TwoColumnsContainer>
@@ -181,15 +188,14 @@ const UpdateContactModal = ({ id, setId }) => {
         />
 
         <FormControl fullWidth>
-          <InputLabel
-            variant="standard"
-            htmlFor="uncontrolled-native"
-          >
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
             Estado
           </InputLabel>
 
           <Select
-            onChange={(event) => setData({ ...data, state: event.target.value })}
+            onChange={(event) =>
+              setData({ ...data, state: event.target.value })
+            }
             value={data.state}
             label="Estado"
             variant="standard"
@@ -199,11 +205,10 @@ const UpdateContactModal = ({ id, setId }) => {
               Selecione o Estado
             </MenuItem>
             {mockEstados.map((state) => (
-                <MenuItem key={state.id} value={state.sigla}>
-                  {state.sigla}
-                </MenuItem>
-              ))
-            }
+              <MenuItem key={state.id} value={state.sigla}>
+                {state.sigla}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </TwoColumnsContainer>
@@ -237,7 +242,10 @@ const UpdateContactModal = ({ id, setId }) => {
             variant="contained"
             color="success"
             style={{ color: "white" }}
-            onClick={() => updateContact()}
+            onClick={() => {
+              isSubmited(true);
+              updateContact();
+            }}
             startIcon={<AddCircleIcon />}
             sx={{ mt: 4 }}
           >
