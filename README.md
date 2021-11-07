@@ -43,7 +43,6 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 Acesse os documentos clicando nos links abaixo:
 
 * [__Casos de Testes Funcionais__](https://github.com/vinicius-hso/api-sem3-target-crm/tree/Sprint-3/Documentation/Tests-BDD)
-
 * [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Documentation/product-backlog-target.pdf)
 
 ## 📃 Web Content Accessibility Guidelines Aplicado no Projeto
