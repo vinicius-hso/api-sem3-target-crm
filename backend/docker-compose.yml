@@ -1,14 +1,14 @@
 services:
-  app:
-    image: teste
-    build: .
-    command: npm run dev
-    depends_on:
-      - postgres
-    ports:
-      - '3333:3333'
-    volumes:
-      - .:/usr/app
+  # app:
+  #   image: teste
+  #   build: .
+  #   command: npm run dev
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - '3333:3333'
+  #   volumes:
+  #     - .:/usr/app
 
   postgres:
     restart: always

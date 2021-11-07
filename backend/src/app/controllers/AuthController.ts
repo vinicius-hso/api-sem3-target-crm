@@ -47,7 +47,7 @@ class AuthController {
 
       const user = await User.findOne({ email });
 
-      if (!user) return res.status(404).json({ message: 'User not found' });
+      if (!user) return res.status(404).json({ message: 'Invalid values for forgot password' });
 
       const token = crypto.randomBytes(20).toString('hex'); // token que será enviado via email.
 
@@ -59,20 +59,23 @@ class AuthController {
         passwordResetExpires: now,
       });
 
-      transport.sendMail({
-        to: email,
-        from: '"Contato" <api@contato.com>',
-        subject: 'Reset password', // assunto do email
-        // html: { path: './src/resources/mail/forgotPassword.html' },
-        template: 'forgotPassword',
-        context: { token, email: user.email },
-      },
-      (err) => {
-        if (err) return res.status(400).json({ message: 'Cannot send forgot password email' });
+      transport.sendMail(
+        {
+          to: email,
+          from: '"Contato" <api@contato.com>',
+          subject: 'Reset password', // assunto do email
+          // html: { path: './src/resources/mail/forgotPassword.html' },
+          template: 'forgotPassword',
+          context: { token, email: user.email },
+        },
+        (err) => {
+          if (err) return res.status(400).json({ message: 'Cannot send forgot password email' });
 
-        transport.close();
-        return res.json();
-      });
+          transport.close();
+
+          return res.json();
+        }
+      );
     } catch (error) {
       return res.status(400).json({ error: 'Forgot password failed, try again' });
     }
@@ -86,7 +89,7 @@ class AuthController {
 
       const user = await User.findOne({ email });
 
-      if (!user) return res.status(404).json({ message: 'User not found' });
+      if (!user) return res.status(404).json({ message: 'Invalid values for User reset password' });
 
       if (token !== user.passwordResetToken) return res.status(400).json({ message: 'Token is invalid' });
 
@@ -97,7 +100,7 @@ class AuthController {
 
       await User.update(user.id, { passwordHash, passwordResetToken: undefined });
 
-      return res.json({ message: 'Ok' });
+      return res.json();
     } catch (error) {
       return res.status(400).json({ error: 'Cannot reset password, try again' });
     }

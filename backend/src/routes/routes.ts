@@ -19,10 +19,6 @@ routes.use('/user', UserRoutes); // middlewares estão no UserRoutes;
 routes.use('/pipeline', ensureAuthenticated, PipelineRoutes);
 routes.use('/company', ensureAuthenticated, CompanyRoutes);
 routes.use('/contact', ensureAuthenticated, ContactRoutes);
-
-// rotas sem auth para devs;
-routes.use('/deal', DealRoutes);
-//routes.use('/pipeline', PipelineRoutes);
-//routes.use('/contact', ContactRoutes);
+routes.use('/deal', ensureAuthenticated, DealRoutes);
 
 export default routes;
