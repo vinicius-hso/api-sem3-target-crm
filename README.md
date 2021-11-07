@@ -41,7 +41,6 @@ O gráfico abaixo mostra o desempenho da equipe na realização das tarefas refe
 ## 📂 Documentação do Projeto
 
 Acesse os documentos clicando nos links abaixo:
-
 * 
 
 ## 📃 Web Content Accessibility Guidelines Aplicado no Projeto
@@ -91,3 +90,15 @@ Rótulos ou instruções são fornecidos quando o conteúdo requer entrada do us
 Para páginas da web que exigem que o usuário envie informações, os dados inseridos pelo usuário são verificados quanto a erros de entrada e o usuário tem a oportunidade de corrigi-los.
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/wcag-gifs/prevencao-erros.gif)
+
+## 📊 Dashboards 
+
+### Empresa x Quantidade
+
+### Geral
+
+### Negociações Por Período
+
+## 📬 Envio Automatizado de Emails
+
+## 👥 Importação de Contatos 
