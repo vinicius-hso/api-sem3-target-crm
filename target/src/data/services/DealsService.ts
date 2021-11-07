@@ -12,6 +12,9 @@ class DealsService {
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -24,6 +27,9 @@ class DealsService {
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -36,6 +42,9 @@ class DealsService {
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -47,6 +56,9 @@ class DealsService {
       );
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -57,6 +69,9 @@ class DealsService {
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -67,6 +82,9 @@ class DealsService {
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -77,6 +95,9 @@ class DealsService {
 
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
@@ -121,6 +142,9 @@ class DealsService {
       });
       return data;
     } catch (error) {
+      toast.error(
+        "Ops! algo deu errado, verifique sua conexão e tente novamente."
+      );
       return error;
     }
   }
