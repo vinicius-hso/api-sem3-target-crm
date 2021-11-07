@@ -11,7 +11,7 @@ type Passwords = {
   confirmNewPassword: string;
 };
 
-function Home() {
+function Account() {
   const [hasEdit, setHasEdit] = useState(false);
   const [hasEditPassword, setHasEditPassword] = useState(false);
   const { user, editUser, editUserPassword } = useSessionUserPage();
@@ -106,4 +106,4 @@ function Home() {
     </div>
   );
 }
-export default Home;
+export default Account;

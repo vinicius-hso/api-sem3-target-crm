@@ -5,4 +5,5 @@ export default interface AuthContextData {
   signIn: (myToken: string, user: Object) => void;
   signOut: () => void;
   setToken: (myToken: string) => void;
+  loged: boolean;
 }

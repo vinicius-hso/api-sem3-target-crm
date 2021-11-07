@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 import { CircularProgress, Typography, Tooltip } from "@material-ui/core";
 import {
   DealsHeaderContainer,

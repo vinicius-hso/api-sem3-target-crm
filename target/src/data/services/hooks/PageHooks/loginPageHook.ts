@@ -55,7 +55,7 @@ export const useLoginPage = () => {
             email,
             password,
           })
-          .then((res) => {
+          .then((res: any) => {
             signIn(res.data.token, res.data);
             router.push("/welcome");
           });

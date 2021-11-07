@@ -5,10 +5,10 @@ import AuthContext from "contexts/AuthContext";
 
 export const useNavBarComponent = () => {
   const { user } = useContext(AuthContext);
-
   const [mobileOpen, setMobileOpen] = useState(false);
   const [navHover, setNavHover] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [tokenValidated, setTokenValidated] = useState(false);
   const route = useRouter();
 
   const handleDrawerToggle = () => {
@@ -18,6 +18,7 @@ export const useNavBarComponent = () => {
   const tokenValidation = async () => {
     try {
       await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check");
+      setTokenValidated(true);
     } catch (err) {
       if (err.response.status === 401) {
         route.push("/login");
@@ -26,17 +27,19 @@ export const useNavBarComponent = () => {
   };
 
   useEffect(() => {
-    const storagedToken = localStorage.getItem("@taget:token");
-    if (!storagedToken) {
-      route.push("/login");
-    } else {
-      if (serviceApi.defaults.headers.common["Authorization"]) {
-        tokenValidation();
+    if (!tokenValidated) {
+      const storagedToken = localStorage.getItem("@taget:token");
+      if (!storagedToken) {
+        route.push("/login");
+      } else {
+        if (serviceApi.defaults.headers.common["Authorization"]) {
+          tokenValidation();
+        }
       }
-    }
 
-    if (user?.role === "ADMIN") {
-      setIsAdmin(true);
+      if (user?.role === "ADMIN") {
+        setIsAdmin(true);
+      }
     }
   }, [user]);
 
@@ -58,5 +61,6 @@ export const useNavBarComponent = () => {
     isAdmin,
     handleDrawerToggle,
     user,
+    tokenValidated,
   };
 };

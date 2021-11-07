@@ -1,11 +1,17 @@
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 import { Link } from "@material-ui/core";
+import StaticLink from "./LinkNext";
 
-export const LinkStyled = styled(Link)`
-  text-decoration: none;
+export const LinkStyled = styled(StaticLink)`
   display: flex;
-  align-items: center;
+  text-decoration: none;
   position: relative;
+  .linkMUI {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
 `;
 
 export const RecoveryPassLink = styled("a")`

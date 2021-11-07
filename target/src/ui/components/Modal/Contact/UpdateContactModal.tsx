@@ -95,7 +95,7 @@ const UpdateContactModal = ({ id, setId }) => {
   };
 
   useEffect(() => {
-    getCompanies();
+    if (!companies.length) getCompanies();
   }, []);
 
   const body = (

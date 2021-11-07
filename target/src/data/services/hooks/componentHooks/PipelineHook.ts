@@ -10,6 +10,7 @@ export const usePipelineComponent = () => {
     [isLoading, setLoading] = useState(false);
 
   async function getData() {
+    if (pipelines.length) return;
     setLoading(false);
     try {
       const { data } = await serviceApi.get("pipeline");

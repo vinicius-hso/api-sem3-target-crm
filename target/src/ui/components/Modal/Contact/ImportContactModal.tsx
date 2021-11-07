@@ -27,16 +27,14 @@ import Dialog from "ui/components/Dialog/Dialog";
 
 interface ImportContactModalProps {
   companies: any[];
+  getData: () => void;
 }
 const ImportContactModal: React.FC<ImportContactModalProps> = ({
   companies,
+  getData,
 }) => {
-  const {
-    importContactModal,
-    useImportContactModal,
-    sendImportedContacts,
-    getContacts,
-  } = useContext(ContactContext);
+  const { importContactModal, useImportContactModal, sendImportedContacts } =
+    useContext(ContactContext);
 
   const [importedContacts, setImportedContacts] = useState<any[]>([]);
   const [hasError, setHasError] = useState<boolean>(false);
@@ -66,6 +64,10 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
     if (res.length) {
       setImportedContacts(res);
       setHasError(true);
+      getData();
+    } else {
+      getData();
+      useImportContactModal();
     }
   };
 

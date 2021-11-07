@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Title from "ui/components/Title/Title";
 import { ImageContainer } from "ui/components/Welcome/welcome.style";
 import { Button } from "@material-ui/core";
 import Head from "next/head";
 import Link from "next/link";
+import AuthContext from "contexts/AuthContext";
 
 const Welcome = () => {
+  const { loged } = useContext(AuthContext);
+
   return (
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
       <Head>
@@ -29,7 +32,12 @@ const Welcome = () => {
         />
 
         <div style={{ margin: "auto 0", marginTop: "50px" }}>
-          <Link href="/">
+          <Link
+            href={{
+              pathname: "/",
+              query: { loged },
+            }}
+          >
             <Button
               variant="contained"
               sx={{ width: "200px", mt: 1 }}

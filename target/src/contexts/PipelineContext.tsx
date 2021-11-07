@@ -322,7 +322,9 @@ export const ModalProvider: React.FC = ({ children }) => {
               }
               break;
             case "tag":
-              if (deal.activity[deal.activity?.length - 1].tag.includes(value)) {
+              if (
+                deal.activity[deal.activity?.length - 1].tag.includes(value)
+              ) {
                 deals.push(deal);
               }
               break;
@@ -342,7 +344,7 @@ export const ModalProvider: React.FC = ({ children }) => {
     if (route.route === "/") {
       localStorage.removeItem("dealsListFilter");
     }
-    getPipelines();
+    if (!pipelines?.length) getPipelines();
   }, []);
 
   return (

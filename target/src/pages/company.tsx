@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 import {
   CardsContainer,
   CompanyHeaderContainer,
@@ -13,7 +13,6 @@ import { Button, CircularProgress, Tooltip } from "@material-ui/core";
 import CreateCompanyModal from "ui/components/Modal/CreateCompanyModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
-import DeleteCompanyModal from "ui/components/Modal/Company/DeleteCompanyModal";
 import { CompanyTypes } from "types/Company";
 import Head from "next/head";
 

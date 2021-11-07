@@ -68,7 +68,7 @@ export const ContactProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    getContacts();
+    if (!contacts?.length) getContacts();
   }, []);
 
   return (

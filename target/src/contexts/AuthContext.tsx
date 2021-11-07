@@ -7,6 +7,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
+  const [loged, setLoged] = useState(false);
 
   useEffect(() => {
     const getStoragedData = () => {
@@ -28,6 +29,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const signIn = (myToken: string, myUser: Object): void => {
     setToken(myToken);
+    setLoged(true);
     serviceApi.defaults.headers.common["Authorization"] = `Bearer ${myToken}`;
     localStorage.setItem("user", JSON.stringify(myUser));
     localStorage.setItem("@taget:token", myToken);
@@ -48,6 +50,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         signOut,
         setToken,
         user,
+        loged,
       }}
     >
       {children}

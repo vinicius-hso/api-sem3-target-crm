@@ -65,12 +65,11 @@ const CreateContactModal = () => {
 
   async function getCompanies() {
     const companies = await CompanyService.getCompanies();
-
     setCompanies(companies);
   }
 
   useEffect(() => {
-    getCompanies();
+    if (!companies.length) getCompanies();
     isSubmited(false);
     setData({
       name: "",

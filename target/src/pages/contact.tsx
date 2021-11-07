@@ -62,6 +62,7 @@ function ContactPage() {
     contacts,
     isLoading,
     hasError,
+    getContacts,
   } = useContext(ContactContext);
 
   const setId = () => {
@@ -74,7 +75,10 @@ function ContactPage() {
         <title>Contatos | Target</title>
       </Head>
       <CreateContactModal />
-      <ImportContactModal companies={formatCompaniesToSelect} />
+      <ImportContactModal
+        getData={getContacts}
+        companies={formatCompaniesToSelect}
+      />
       {selectedId ? <UpdateContactModal setId={setId} id={selectedId} /> : null}
       <DeleteContactModal id={selectedId} />
       <ContactsHeaderContainer>

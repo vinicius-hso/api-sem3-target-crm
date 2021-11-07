@@ -20,6 +20,7 @@ import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHoo
 interface Props {
   window?: () => Window;
   CurrentPage?: JSX.Element;
+  style?: any;
 }
 
 export default function NavBar(props: Props) {
@@ -38,7 +39,7 @@ export default function NavBar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Root style={{ maxHeight: "1000px" }}>
+    <Root style={props.style}>
       <CssBaseline />
       <AppBarStyled position="fixed">
         <ToolbarHeaderStyled>
