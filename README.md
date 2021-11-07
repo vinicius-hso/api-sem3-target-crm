@@ -36,7 +36,7 @@ A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vini
 O gráfico abaixo mostra o desempenho da equipe na realização das tarefas referentes a Sprint 3:
 
 <p align="center">
-  <img src=  /></p>
+  <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/BURNDOWN_S3.png"  /></p>
    
 ## 📂 Documentação do Projeto
 
