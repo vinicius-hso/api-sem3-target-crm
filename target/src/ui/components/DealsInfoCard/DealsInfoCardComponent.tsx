@@ -61,7 +61,7 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
               </Typography>
 
               <Typography color="textPrimary" variant="h5">
-                {typeof props.meandays === "number" ? props.meandays : 0}
+                {typeof props.meandays === "string" ? props.meandays : "0"}
               </Typography>
             </Grid>
           </Grid>
