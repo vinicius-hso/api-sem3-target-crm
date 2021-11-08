@@ -168,6 +168,7 @@ __a)__ Dado que crio uma negociação na página de negociações, o valor de ne
 
 __b)__ Dado que altero a negociação "em andamento" criada no item "a)" para "ganho" na página de negociações, o valor apresentado no card "EM ANDAMENTO" diminui em uma unidade, enquanto o valor do label "GANHAS" aumenta em uma unidade, e a taxa de conversão aumenta proporcionalmente
 
-
+<p align="center">
+  <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/dashboard_bdd-4.gif"  /></p>
 
 
