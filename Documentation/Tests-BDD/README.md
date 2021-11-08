@@ -44,6 +44,12 @@ Os contatos são criados e apresentados na lista, porém o email personalizável
 __c)__ Dado que envio o arquivo com as informações incorretas e incompletas (nome e email)
 Os contatos com informações incompletas (nome e/ou email) não são criados e o email personalizável não é enviado
 
+<p align="center">
+  <img src="https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/import-contacts-email.gif"  /></p>
+
+
+
+
 ## User Story  -> Dashboard 
 
 __GRÁFICO NEGOCIAÇÕES x PERÍODO__ ✅ 
