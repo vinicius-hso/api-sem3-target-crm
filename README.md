@@ -123,4 +123,4 @@ Para páginas da web que exigem que o usuário envie informações, os dados ins
 
 🔸 Importação de contatos através de upload de um arquivo .xlsx e envio automático de email de "Boas Vindas".
 
-![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/upload-email.gif)
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-3/Images/feats-gifs/import-contacts-email.gif)
