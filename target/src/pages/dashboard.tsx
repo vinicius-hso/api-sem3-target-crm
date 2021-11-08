@@ -22,6 +22,7 @@ import { formatArray } from "data/utils/formatArray";
 import { DynamicLineCharts } from "../data/services/servicesComponents/DynamicLineCharts";
 import moment from "moment";
 import Head from "next/head";
+import { DynamicTestLineCharts } from "data/services/servicesComponents/DynamicTestLineCharts";
 
 interface BarChartsProps {
   title: string;
@@ -32,6 +33,10 @@ interface BarChartsProps {
 interface LineChartsProps {
   series: any[];
   xaxis: any[];
+}
+
+interface TestLineChartsProps {
+  series: any[];
 }
 
 function Dashboard() {
@@ -160,6 +165,11 @@ function Dashboard() {
     series: [],
   });
 
+  const [testLineChartData, setTestLineChartsData] =
+    useState<TestLineChartsProps>({
+      series: [],
+    });
+
   useEffect(() => {
     if (!dealsInfo?.meanValue) {
       getDealsInfo();
@@ -216,6 +226,7 @@ function Dashboard() {
           wons.data.push((d.value / 100).toFixed(2));
           // xaxisValues.push(moment(d.updatedAt).format("LL"));
           xaxisValues.push(d.updatedAt);
+          console.log(moment(d.updatedAt).format("ll"));
           break;
         case "LOST":
           lost.data.push((d.value / 100).toFixed(2));
@@ -230,9 +241,43 @@ function Dashboard() {
     });
   };
 
+  const getTestLineChartData = () => {
+    const dat = deals;
+    dat.sort((a, b) => b.updatedAt - a.updatedAt);
+    let wons = { name: "Ganhas", data: [] };
+    let lost = { name: "Perdidas", data: [] };
+    let x = "";
+    let y = "";
+    let t = "";
+    dat.map((d) => {
+      switch (d.status) {
+        case "WON":
+          t = moment(d.updatedAt).format("L");
+          x = t.toString() + " GMT";
+          // x = d.updatedAt;
+          y = (d.value / 100).toFixed(2);
+          wons.data.push({ x, y });
+          break;
+        case "LOST":
+          t = moment(d.updatedAt).format("L");
+          x = t.toString() + " GMT";
+          // x = d.updatedAt;
+          y = (d.value / 100).toFixed(2);
+          lost.data.push({ x, y });
+          break;
+      }
+    });
+    wons.data.sort((a, b) => new Date(b.x).getTime() - new Date(a.x).getTime());
+    lost.data.sort((a, b) => new Date(b.x).getTime() - new Date(a.x).getTime());
+    setTestLineChartsData({
+      series: [wons, lost],
+    });
+  };
+
   useEffect(() => {
     getChartData("Empresa", "quantidade");
     getLineCharData();
+    getTestLineChartData();
   }, [deals]);
 
   const setFilter = () => {
@@ -361,6 +406,8 @@ function Dashboard() {
           series={lineChartData.series}
           xaxis={lineChartData.xaxis}
         />
+        {/* //* Gráfico concertado */}
+        {/* <DynamicTestLineCharts series={testLineChartData.series} /> */}
       </ChartsContainer>
     </DashboardPageContainer>
   );

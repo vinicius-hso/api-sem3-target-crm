@@ -53,7 +53,7 @@ const LineCharts: React.FC<LineChartsProps> = ({ series, xaxis }) => {
         },
       },
     }),
-    [xaxis, series]
+    [xaxis]
   );
 
   return (

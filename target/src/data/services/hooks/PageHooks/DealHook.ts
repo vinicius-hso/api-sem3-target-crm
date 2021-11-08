@@ -11,11 +11,13 @@ export const useDealPage = () => {
   }, []);
 
   const formatListToSelect = (deals: any[]): any => {
-    setFormat(
-      deals.map((deals) => {
-        return { value: deals.id, label: deals.name };
-      })
-    );
+    if (deals.length) {
+      setFormat(
+        deals.map((deals) => {
+          return { value: deals.id, label: deals.name };
+        })
+      );
+    }
   };
 
   const getData = async () => {

@@ -31,29 +31,31 @@ export const useDashboardPage = () => {
     const archived = [];
     const deals = await DealsService.getTotslDeals(query);
 
-    deals.forEach((deal) => {
-      switch (deal.status) {
-        case "WON":
-          won.push(deal);
-          break;
-        case "LOST":
-          lost.push(deal);
-          break;
-        case "INPROGRESS":
-          inProgress.push(deal);
-          break;
-        case "ARCHIVED":
-          archived.push(deal);
-          break;
-        default:
-          break;
-      }
-    });
-    setWonDeals(won);
-    setLostDeals(lost);
-    setArchivedDeals(archived);
-    setInProgressDeals(inProgress);
-    setDeals(deals);
+    if (deals.length) {
+      deals.forEach((deal) => {
+        switch (deal.status) {
+          case "WON":
+            won.push(deal);
+            break;
+          case "LOST":
+            lost.push(deal);
+            break;
+          case "INPROGRESS":
+            inProgress.push(deal);
+            break;
+          case "ARCHIVED":
+            archived.push(deal);
+            break;
+          default:
+            break;
+        }
+      });
+      setWonDeals(won);
+      setLostDeals(lost);
+      setArchivedDeals(archived);
+      setInProgressDeals(inProgress);
+      setDeals(deals);
+    }
   };
 
   const getDealsByCompany = async () => {
@@ -110,26 +112,28 @@ export const useDashboardPage = () => {
     let totalWons = 0;
     let totalValue = 0;
 
-    allDeals.map((d) => {
-      totalValue += d.value;
-      if (d.status === "WON") {
-        totalWons += 1;
-        totalDays += diffDays(d.updatedAt, d.createdAt);
+    if (allDeals.length) {
+      allDeals.map((d) => {
+        totalValue += d.value;
+        if (d.status === "WON") {
+          totalWons += 1;
+          totalDays += diffDays(d.updatedAt, d.createdAt);
+        }
+      });
+
+      let meanDays = totalDays / totalWons;
+      if (meanDays < 0) {
+        meanDays = meanDays * -1;
       }
-    });
+      let meanValue = totalValue / totalDeals;
 
-    let meanDays = totalDays / totalWons;
-    if (meanDays < 0) {
-      meanDays = meanDays * -1;
+      setDealsInfo({
+        meanValue: formatValue(meanValue),
+        totalValue: formatValue(totalValue),
+        totalDeals: totalDeals.toString(),
+        meanDays: meanDays.toFixed(2).toString(),
+      });
     }
-    let meanValue = totalValue / totalDeals;
-
-    setDealsInfo({
-      meanValue: formatValue(meanValue),
-      totalValue: formatValue(totalValue),
-      totalDeals: totalDeals.toString(),
-      meanDays: meanDays.toFixed(2).toString(),
-    });
   };
 
   const getConversionRateCardInfo = async () => {
@@ -140,32 +144,34 @@ export const useDashboardPage = () => {
     let totalInProgress = 0;
     let totalArchived = 0;
 
-    allDeals.map((d) => {
-      switch (d.status) {
-        case "WON":
-          totalWon += 1;
-          break;
-        case "LOST":
-          totalLost += 1;
-          break;
-        case "INPROGRESS":
-          totalInProgress += 1;
-          break;
-        case "ARCHIVED":
-          totalArchived += 1;
-          break;
-        default:
-          break;
-      }
-    });
+    if (allDeals.length) {
+      allDeals.map((d) => {
+        switch (d.status) {
+          case "WON":
+            totalWon += 1;
+            break;
+          case "LOST":
+            totalLost += 1;
+            break;
+          case "INPROGRESS":
+            totalInProgress += 1;
+            break;
+          case "ARCHIVED":
+            totalArchived += 1;
+            break;
+          default:
+            break;
+        }
+      });
 
-    setConversionRateInfo({
-      conversionRate: Number(((totalWon / allDeals.length) * 100).toFixed(2)),
-      totalWon,
-      totalLost,
-      totalInProgress,
-      totalArchived,
-    });
+      setConversionRateInfo({
+        conversionRate: Number(((totalWon / allDeals.length) * 100).toFixed(2)),
+        totalWon,
+        totalLost,
+        totalInProgress,
+        totalArchived,
+      });
+    }
   };
 
   return {
