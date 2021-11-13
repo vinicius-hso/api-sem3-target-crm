@@ -19,6 +19,12 @@ const PieCharts: React.FC<BarChartsProps> = ({ series }) => {
           enabled: true,
         },
       },
+      colors: [
+        "rgb(0, 227, 150)",
+        "rgb(255, 69, 96)",
+        "rgb(0, 143, 251)",
+        "rgb(254, 176, 25)",
+      ],
       labels: ["Ganhou", "Perdeu", "Andamento", "Arquivada"],
       responsive: [
         {

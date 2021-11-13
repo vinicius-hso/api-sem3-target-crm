@@ -26,6 +26,7 @@ const StackedColumnChart: React.FC<BarChartsProps> = ({
           enabled: true,
         },
       },
+      colors: ["rgb(0, 227, 150)", "rgb(0, 143, 251)", "rgb(255, 69, 96)"],
       responsive: [
         {
           breakpoint: 1000,

@@ -14,11 +14,27 @@ const TestLineCharts: React.FC<TestLineChartsProps> = ({ series }) => {
         height: 380,
         width: "100%",
         type: "area",
+        zoom: {
+          type: "x",
+          enabled: true,
+          autoScaleYaxis: true,
+        },
+        toolbar: {
+          autoSelected: "zoom",
+        },
         // animations: {
         //   initialAnimation: {
         //     enabled: false,
         //   },
         // },
+      },
+      title: {
+        text: "Negociações por período",
+        align: "left",
+      },
+      colors: ["rgb(0, 227, 150)", "rgb(255, 69, 96)"],
+      dataLabels: {
+        enabled: true,
       },
       xaxis: {
         type: "datetime",
