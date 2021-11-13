@@ -8,8 +8,9 @@ import { serviceApi as api } from "./ServiceApi";
 class DealsService {
   async getAllDeals() {
     try {
-      const { data } = await api.get("/deal?with=pipeline,company,contact");
-
+      const token = localStorage.getItem("@taget:token");
+      const { data } = await api.get("/deal?with=pipeline,company,contact", { headers: { "Authorization": `Bearer ${token}` } }
+      );
       return data;
     } catch (error) {
       toast.error(
@@ -21,8 +22,9 @@ class DealsService {
 
   async getTotslDeals(query?: string) {
     try {
+      const token = localStorage.getItem("@taget:token");
       const { data } = await api.get(
-        `/deal?with=pipeline,company,contact${query ? query : ""}`
+        `/deal?with=pipeline,company,contact${query ? query : ""}`, { headers: { "Authorization": `Bearer ${token}` } }
       );
 
       return data;
@@ -36,8 +38,9 @@ class DealsService {
 
   async getDeals() {
     try {
+      const token = localStorage.getItem("@taget:token");
       const { data } = await api.get(
-        "/deal?status=INPROGRESS&with=pipeline,company,contact"
+        "/deal?status=INPROGRESS&with=pipeline,company,contact", { headers: { "Authorization": `Bearer ${token}` } }
       );
 
       return data;
@@ -51,8 +54,9 @@ class DealsService {
 
   async getDealsCompleted() {
     try {
+      const token = localStorage.getItem("@taget:token");
       const { data } = await api.get(
-        "/deal?status__in=WON,LOST,ARCHIVED&with=pipeline,company,contact"
+        "/deal?status__in=WON,LOST,ARCHIVED&with=pipeline,company,contact", { headers: { "Authorization": `Bearer ${token}` } }
       );
       return data;
     } catch (error) {
