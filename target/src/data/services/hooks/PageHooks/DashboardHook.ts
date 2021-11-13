@@ -31,7 +31,7 @@ export const useDashboardPage = () => {
     const archived = [];
     const deals = await DealsService.getTotslDeals(query);
 
-    if (deals.length) {
+    if (deals?.length) {
       deals.forEach((deal) => {
         switch (deal.status) {
           case "WON":
@@ -107,12 +107,12 @@ export const useDashboardPage = () => {
 
     const allDeals = await DealsService.getAllDeals();
 
-    let totalDeals = allDeals.length;
+    let totalDeals = allDeals?.length;
     let totalDays = 0;
     let totalWons = 0;
     let totalValue = 0;
 
-    if (allDeals.length) {
+    if (allDeals?.length) {
       allDeals.map((d) => {
         totalValue += d.value;
         if (d.status === "WON") {
@@ -144,7 +144,7 @@ export const useDashboardPage = () => {
     let totalInProgress = 0;
     let totalArchived = 0;
 
-    if (allDeals.length) {
+    if (allDeals?.length) {
       allDeals.map((d) => {
         switch (d.status) {
           case "WON":
@@ -165,7 +165,7 @@ export const useDashboardPage = () => {
       });
 
       setConversionRateInfo({
-        conversionRate: Number(((totalWon / allDeals.length) * 100).toFixed(2)),
+        conversionRate: Number(((totalWon / allDeals?.length) * 100).toFixed(2)),
         totalWon,
         totalLost,
         totalInProgress,
