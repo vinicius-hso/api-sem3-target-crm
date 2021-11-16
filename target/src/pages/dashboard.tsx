@@ -262,24 +262,6 @@ function Dashboard() {
       lost.data.push({ x, y });
     });
 
-    // dat.map((d) => {
-    //   switch (d.status) {
-    //     case "WON":
-    //       t = moment(d.updatedAt).format("L");
-    //       x = t.toString() + " GMT";
-    //       // x = d.updatedAt;
-    //       y = (d.value / 100).toFixed(2);
-    //       wons.data.push({ x, y });
-    //       break;
-    //     case "LOST":
-    //       t = moment(d.updatedAt).format("L");
-    //       x = t.toString() + " GMT";
-    //       // x = d.updatedAt;
-    //       y = (d.value / 100).toFixed(2);
-    //       lost.data.push({ x, y });
-    //       break;
-    //   }
-    // });
     wons.data.sort((a, b) => new Date(b.x).getTime() - new Date(a.x).getTime());
     lost.data.sort((a, b) => new Date(b.x).getTime() - new Date(a.x).getTime());
 
