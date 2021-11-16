@@ -20,7 +20,7 @@ const DealsInfoCard: React.FC<DealsInfoCardProps> = (props) => {
         sx={{
           height: "auto",
           backgroundColor: "",
-          minWidth: 300,
+          maxWidth: 300,
           boxShadow: "0 0 10px 3px rgba(0, 0, 0, .1)",
         }}
         {...props}

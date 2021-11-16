@@ -350,13 +350,15 @@ function Dashboard() {
           </div>
         </DatePickerContainer>
       </DashboardHeaderContainer>
-      <ChartsContainer>
-        <DynamicBarCharts
-          series={chartData?.series}
-          title={chartData?.title}
-          xaxis={chartData?.xaxis}
-        />
-      </ChartsContainer>
+      <div style={{ maxWidth: "720px" }}>
+        <ChartsContainer>
+          <DynamicBarCharts
+            series={chartData?.series}
+            title={chartData?.title}
+            xaxis={chartData?.xaxis}
+          />
+        </ChartsContainer>
+      </div>
       <DynamicPieCharts
         series={[
           wonDeals.length || 0,
@@ -371,6 +373,7 @@ function Dashboard() {
         sx={{
           display: "flex",
           justifyContent: "center",
+          flexDirection: { xs: "column", md: "row" },
           // flexWrap: 'wrap'
           // p: 1,
           // m: -2,
@@ -396,15 +399,17 @@ function Dashboard() {
         )}
       </Box>
 
-      <ChartsContainer>
-        {/* <DynamicLineCharts series={s} xaxis={x} /> */}
-        {/* <DynamicLineCharts
+      <div style={{ maxWidth: "720px" }}>
+        <ChartsContainer>
+          {/* <DynamicLineCharts series={s} xaxis={x} /> */}
+          {/* <DynamicLineCharts
           series={lineChartData.series}
           xaxis={lineChartData.xaxis}
         /> */}
-        {/* //* Gráfico concertado */}
-        <DynamicTestLineCharts series={testLineChartData.series} />
-      </ChartsContainer>
+          {/* //* Gráfico concertado */}
+          <DynamicTestLineCharts series={testLineChartData.series} />
+        </ChartsContainer>
+      </div>
     </DashboardPageContainer>
   );
 }
