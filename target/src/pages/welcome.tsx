@@ -43,7 +43,7 @@ const Welcome = () => {
               sx={{ width: "200px", mt: 1 }}
               color="primary"
             >
-              Acesse o Dashboard
+              Acessar a aplicação
             </Button>
           </Link>
         </div>
