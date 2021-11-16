@@ -87,6 +87,8 @@ export const PaperDealDetailModalStyled = styled(Paper)`
 
 export const NewActivityButton = styled(Button)`
   position: absolute;
+  display: flex;
+  align-items: center;
   right: 0;
   top: -20px;
 

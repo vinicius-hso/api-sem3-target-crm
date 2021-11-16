@@ -67,7 +67,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                 type="submit"
                 onClick={props.onClickPassword}
               >
-                <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
+                <i style={{ marginRight: "2px" }} className="fa fa-unlock"></i>
                 <NewActivityButtonLabel> Alterar senha</NewActivityButtonLabel>
               </NewActivityButton>
             </Tooltip>

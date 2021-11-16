@@ -20,6 +20,7 @@ import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
 import ImportContactModal from "ui/components/Modal/Contact/ImportContactModal";
 import ContactContext from "contexts/ContactContext";
 import Head from "next/head";
+import { ButtonsContainer } from "@styles/pagesStyle/_app.syile";
 
 function ContactPage() {
   const { filteredContact, removeFiltered } = useContactPage();
@@ -106,7 +107,7 @@ function ContactPage() {
           onClick={removeFilters}
           hasFiltered={hasFiltered}
         />
-        <div style={{ display: "flex", justifyContent: "end" }}>
+        <ButtonsContainer>
           <Tooltip
             title="Importar contatos"
             placement="top-start"
@@ -137,7 +138,7 @@ function ContactPage() {
               Adicionar
             </Button>
           </Tooltip>
-        </div>
+        </ButtonsContainer>
       </ContactsHeaderContainer>
       <br />
       <CardsContainer>

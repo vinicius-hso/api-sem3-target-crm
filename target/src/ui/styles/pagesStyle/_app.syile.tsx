@@ -18,9 +18,19 @@ export const AppContainer = styled("div")`
     border-radius: 30px;
   }
 `;
+
 export const NavContainer = styled("div")`
   display: grid;
   grid-template-columns: 100px 1fr;
   min-height: calc(100vh - 100px);
   z-index: 1;
+`;
+
+export const ButtonsContainer = styled("div")`
+  display: flex;
+  justify-content: end;
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    margin-top: ${({ theme }) => theme.spacing(4)};
+  }
 `;

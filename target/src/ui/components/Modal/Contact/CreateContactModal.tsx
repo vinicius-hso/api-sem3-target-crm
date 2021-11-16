@@ -55,8 +55,7 @@ const CreateContactModal = () => {
         });
 
         await getContacts();
-
-        useCreateContactModal();
+        onClose();
       }
     } catch (error) {
       console.log(error.message);
@@ -81,6 +80,18 @@ const CreateContactModal = () => {
     });
   }, []);
 
+  const onClose = () => {
+    setData({
+      name: "",
+      company_id: "null",
+      state: "null",
+      city: "",
+      email: "",
+      phone: "",
+    });
+    useCreateContactModal();
+  };
+
   const body = (
     <ModalContainer>
       <Tooltip
@@ -91,7 +102,7 @@ const CreateContactModal = () => {
       >
         <CloseButtonStyled
           onClick={() => {
-            useCreateContactModal();
+            onClose();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -215,6 +226,7 @@ const CreateContactModal = () => {
     <>
       <ModalStyled
         open={createContactModal}
+        onClose={onClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

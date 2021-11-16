@@ -28,6 +28,8 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
 
   const handleSubmitEdit = async (data: CompanyTypes) => {
     await editCompany(company.id, data);
+    getData();
+    onClose();
   };
 
   const onClose = () => {

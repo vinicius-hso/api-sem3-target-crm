@@ -40,8 +40,8 @@ const UpdateContactModal = ({ id, setId }) => {
 
   const [data, setData] = useState<IContact>({
     name: "",
-    company_id: "null",
-    state: "null",
+    company_id: "default",
+    state: "default",
     city: "",
     email: "",
     phone: "",
@@ -120,7 +120,7 @@ const UpdateContactModal = ({ id, setId }) => {
 
       <TextFieldMask
         onChange={(event) => setData({ ...data, name: event.target.value })}
-        value={data.name}
+        value={data.name || ""}
         label="Nome do contato"
         variant="standard"
         size="small"
@@ -132,7 +132,7 @@ const UpdateContactModal = ({ id, setId }) => {
 
       <TextFieldMask
         onChange={(event) => setData({ ...data, email: event.target.value })}
-        value={data.email}
+        value={data.email || ""}
         label="Email"
         variant="standard"
         size="small"
@@ -145,7 +145,7 @@ const UpdateContactModal = ({ id, setId }) => {
       <TwoColumnsContainer>
         <TextFieldMask
           onChange={(event) => setData({ ...data, phone: event.target.value })}
-          value={formatPhone(data.phone)}
+          value={formatPhone(data.phone) || ""}
           label="Telefone"
           variant="standard"
           size="small"
@@ -160,12 +160,12 @@ const UpdateContactModal = ({ id, setId }) => {
             onChange={(event) =>
               setData({ ...data, company_id: event.target.value })
             }
-            value={data.company_id}
+            value={data.company_id || "default"}
             label="Empresa"
             variant="standard"
             fullWidth
           >
-            <MenuItem value={"null"} disabled>
+            <MenuItem value={"default"} disabled>
               Selecione a Empresa
             </MenuItem>
             {companies?.map((company) => (
@@ -196,12 +196,12 @@ const UpdateContactModal = ({ id, setId }) => {
             onChange={(event) =>
               setData({ ...data, state: event.target.value })
             }
-            value={data.state}
+            value={data.state || "default"}
             label="Estado"
             variant="standard"
             fullWidth
           >
-            <MenuItem value={"null"} disabled>
+            <MenuItem value={"default"} disabled>
               Selecione o Estado
             </MenuItem>
             {mockEstados.map((state) => (
