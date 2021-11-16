@@ -21,7 +21,7 @@ import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
 interface DetailModalProps {
-  getData: () => void;
+  getData: () => Promise<void>;
 }
 
 const CreateDealModal = ({ getData }: DetailModalProps) => {
@@ -59,7 +59,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
       try {
         data.value = data.value.replace(/\D+/g, "");
         createDeal(data);
-        getData();
+        await getData();
         setData({
           name: "",
           company: "default",

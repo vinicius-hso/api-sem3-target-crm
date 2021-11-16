@@ -18,8 +18,8 @@ export const UserCardContainer = styled("div")`
   margin: 0 auto;
   border-radius: 8px;
   box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
-
   width: 100%;
+
   ${({ theme }) => theme.breakpoints.up("md")} {
     display: grid;
     grid-template-columns: 60px repeat(3, 1fr);
@@ -33,12 +33,16 @@ export const UserNameStyled = styled("div")`
   font-size: ${({ theme }) => theme.typography.body2.fontSize};
   font-weight: bold;
   grid-area: name;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const UserRoleStyled = styled("div")`
   color: ${({ theme }) => theme.palette.text.secondary};
   font-size: ${({ theme }) => theme.typography.body2.fontSize};
   grid-area: role;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const UserPictureStyled = styled(Avatar)`
@@ -47,10 +51,14 @@ export const UserPictureStyled = styled(Avatar)`
   height: initial;
   aspect-ratio: 1;
   font-size: 16px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const UserEmailStyled = styled("div")`
   color: ${({ theme }) => theme.palette.text.secondary};
   font-size: ${({ theme }) => theme.typography.body2.fontSize};
   grid-area: email;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;

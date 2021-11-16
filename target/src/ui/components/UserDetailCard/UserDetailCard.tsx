@@ -125,7 +125,6 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.name}
             value={data.name}
             onChange={(event) => setData({ ...data, name: event.target.value })}
           />
@@ -138,7 +137,6 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.email}
             value={data.email}
             onChange={(event) =>
               setData({ ...data, email: event.target.value })
@@ -153,7 +151,6 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
             fullWidth
             variant={"standard"}
             size="medium"
-            defaultValue={props.picture}
             value={data.picture}
             onChange={(event) =>
               setData({ ...data, picture: event.target.value })
@@ -175,7 +172,6 @@ const DealDetailCard: React.FC<UserDetailCardProps> = (props) => {
           </InputLabel>
           <Select
             disabled={!props.hasEdit}
-            defaultValue={props.role}
             value={data.role}
             onChange={(event) => setData({ ...data, role: event.target.value })}
             label={"Role"}

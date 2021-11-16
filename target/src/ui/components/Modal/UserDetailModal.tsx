@@ -33,6 +33,8 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
 
   const handleSubmitEdit = async (data: IUser) => {
     await editUser(user.id, data);
+    onClose();
+    getData();
   };
 
   const onClose = () => {

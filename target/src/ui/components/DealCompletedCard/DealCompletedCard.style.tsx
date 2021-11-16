@@ -28,6 +28,9 @@ export const DealPictureStyled = styled(Avatar)`
 export const DealDescriptionContainer = styled("div")`
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+
   gap: ${({ theme }) => theme.spacing(0.5)};
 
   ${({ theme }) => theme.breakpoints.up("md")} {
@@ -43,17 +46,24 @@ export const DealTitleStyled = styled("div")`
   color: ${({ theme }) => theme.palette.text.primary};
   font-size: ${({ theme }) => theme.typography.body2.fontSize};
   font-weight: 600;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const DealBudgetStyled = styled("div")`
   font-size: 12px;
   color: ${({ theme }) => theme.palette.text.secondary};
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const DealFooterContainer = styled("div")`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+
   ${({ theme }) => theme.breakpoints.up("md")} {
     width: 40%;
   }
@@ -61,12 +71,16 @@ export const DealFooterContainer = styled("div")`
 
 export const DealTypeStyled = styled("div")`
   font-size: ${({ theme }) => theme.typography.body2.fontSize};
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const DealStartDateStyled = styled("div")`
   text-align: center;
   color: ${({ theme }) => theme.palette.text.secondary};
   font-size: 12px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ColumnContainer = styled("div")`
@@ -78,23 +92,31 @@ export const ColumnContainer = styled("div")`
   border-radius: 6px;
   box-shadow: 6px 8px rgba(175, 170, 170, 0.08);
   padding: ${({ theme }) => theme.spacing(1)};
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ColumnHeader = styled("div")`
   text-transform: uppercase;
   margin-bottom: 20px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const DroppableStyles = styled("div")`
   padding: 10px;
   border-radius: 6px;
   background: ${({ theme }) => theme.palette.grey[100]};
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const TitleColumnContainer = styled("div")`
   padding: 10px;
   border-radius: 6px;
   background: #d4d4d4;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ListGrid = styled("div")`
@@ -102,6 +124,8 @@ export const ListGrid = styled("div")`
   max-width: calc(100vw - 120px);
   gap: ${({ theme }) => theme.spacing(4)};
   overflow: auto;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 
   ${({ theme }) => theme.breakpoints.down("md")} {
     max-width: calc(100%);
