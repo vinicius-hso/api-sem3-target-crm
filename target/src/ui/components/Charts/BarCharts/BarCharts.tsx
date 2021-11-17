@@ -18,7 +18,7 @@ const StackedColumnChart: React.FC<BarChartsProps> = ({
       chart: {
         type: "bar",
         height: 350,
-        width: "100%",
+        width: 720,
         toolbar: {
           show: true,
         },
@@ -29,15 +29,23 @@ const StackedColumnChart: React.FC<BarChartsProps> = ({
       colors: ["rgb(0, 227, 150)", "rgb(0, 143, 251)", "rgb(255, 69, 96)"],
       responsive: [
         {
-          breakpoint: 1000,
+          breakpoint: 700,
           options: {
             plotOptions: {
               bar: {
-                horizontal: false,
+                horizontal: true,
+                columnWidth: "50%",
+                barHeight: "75%",
               },
             },
-            legend: {
-              position: "bottom",
+            dataLabels: {
+              enabled: true,
+              offsetX: 12,
+              offsetY: 1,
+              style: {
+                fontSize: "9px",
+                colors: ["#000"],
+              },
             },
           },
         },

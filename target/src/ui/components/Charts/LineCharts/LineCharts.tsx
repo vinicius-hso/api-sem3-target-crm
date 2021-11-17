@@ -24,6 +24,29 @@ const LineCharts: React.FC<LineChartsProps> = ({ series, xaxis }) => {
       },
 
       colors: ["#03f518", "#e63706"],
+      responsive: [
+        {
+          breakpoint: 700,
+          options: {
+            plotOptions: {
+              bar: {
+                horizontal: true,
+                columnWidth: "50%",
+                barHeight: "75%",
+              },
+            },
+            dataLabels: {
+              enabled: true,
+              offsetX: 12,
+              offsetY: 1,
+              style: {
+                fontSize: "9px",
+                colors: ["#000"],
+              },
+            },
+          },
+        },
+      ],
       dataLabels: {
         enabled: true,
       },

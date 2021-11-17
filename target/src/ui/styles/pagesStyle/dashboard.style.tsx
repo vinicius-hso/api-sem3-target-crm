@@ -57,6 +57,7 @@ export const ChartsContainer = styled("div")`
   padding: ${({ theme }) => theme.spacing(2) + " " + theme.spacing(8)};
   width: 100%;
   min-width: 720px;
-  ${({ theme }) => theme.breakpoints.down("md")} {
+  ${({ theme }) => theme.breakpoints.down("sm")} {
+    min-width: 400px;
   }
 `;
