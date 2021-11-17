@@ -11,11 +11,11 @@ import { formatValue } from "../../../../data/utils/formatValue";
 const DealCardList = (props) => {
   const [viewButtonGroup, setViewButtonGroup] = useState(false);
   const {
-    useDeleteModal,
-    useUpdateModal,
-    useCreateModal,
-    useCreateDealModal,
-    useDealDetailModal,
+    UseDeleteModal,
+    UseUpdateModal,
+    UseCreateModal,
+    UseCreateDealModal,
+    UseDealDetailModal,
     setSelectedPipeline,
   } = useContext(PipelineContext);
   return (
@@ -53,7 +53,7 @@ const DealCardList = (props) => {
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
               onClick={() => {
                 setSelectedPipeline(props.pipeId);
-                useCreateDealModal(props.pipeId);
+                UseCreateDealModal(props.pipeId);
                 setViewButtonGroup(!viewButtonGroup);
               }}
             >
@@ -62,7 +62,7 @@ const DealCardList = (props) => {
             </Button>
             <Button
               onClick={() => {
-                useCreateModal();
+                UseCreateModal();
                 setViewButtonGroup(!viewButtonGroup);
               }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
@@ -72,7 +72,7 @@ const DealCardList = (props) => {
             </Button>
             <Button
               onClick={() => {
-                useUpdateModal(props.pipeId);
+                UseUpdateModal(props.pipeId);
                 setViewButtonGroup(!viewButtonGroup);
               }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
@@ -82,7 +82,7 @@ const DealCardList = (props) => {
             </Button>
             <Button
               onClick={() => {
-                useDeleteModal(props.pipeId);
+                UseDeleteModal(props.pipeId);
                 setViewButtonGroup(!viewButtonGroup);
               }}
               sx={{ display: "flex", justifyContent: "start", gap: "10px" }}
@@ -145,7 +145,7 @@ const DealCardList = (props) => {
                             budget={deal.value}
                             startDate={deal.createdAt}
                             tag={deal.activity[deal.activity.length - 1].tag}
-                            onClick={() => useDealDetailModal(deal)}
+                            onClick={() => UseDealDetailModal(deal)}
                           />
                         </div>
                       )}
@@ -157,7 +157,7 @@ const DealCardList = (props) => {
                     sx={{ width: "100%", height: "30px" }}
                     color="primary"
                     onClick={() => {
-                      useCreateDealModal(props.pipeId);
+                      UseCreateDealModal(props.pipeId);
                     }}
                     type="submit"
                   >

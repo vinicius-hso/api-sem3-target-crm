@@ -1,9 +1,5 @@
-import { Container, Toolbar } from "@material-ui/core";
 import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
-import React, { useContext } from "react";
-// import PipelineContext from 'contexts/PipelineContext';
-// import CreateCompanyModal from '../Modal/CreateCompanyModal';
-import CompanyDetailModal from "../Modal/CompanyDetailModal";
+import React from "react";
 import {
   CompanyPictureStyled,
   CompanyCardContainer,
@@ -12,7 +8,6 @@ import {
   CompanyEmailStyled,
 } from "./CompanyCard.style";
 
-//@deprecated
 interface CompanyCardProps {
   picture?: string;
   name: string;
@@ -23,8 +18,6 @@ interface CompanyCardProps {
 }
 
 const CompanyCard: React.FC<CompanyCardProps> = (props) => {
-  // const { useCompanyDetailModal, companyDetail } = useContext(PipelineContext);
-
   return (
     <>
       <CompanyCardContainer onClick={props.onClick}>

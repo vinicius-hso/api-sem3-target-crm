@@ -16,13 +16,6 @@ export const ModalProvider: React.FC = ({ children }) => {
   const [dealDetailModalState, setDealDetailModalState] =
     useState<boolean>(false);
 
-  //* COMPANY
-  // const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
-  // const [companyDetailModalState, setCompanyDetailModalState] = useState<boolean>(false);
-  // const [companyDetail, setCompanyDetail] = useState({});
-  // const [company, setCompany] = useState<CompanyTypes>();
-  // const [createCompanyModalState, setCreateCompanyModalState] = useState<boolean>(false);
-
   //* ID
   const [updateId, setUpdateIdState] = useState<string>("");
   const [deleteId, setDeleteIdState] = useState<string>("");
@@ -46,42 +39,6 @@ export const ModalProvider: React.FC = ({ children }) => {
     coldDeals: 0,
   });
   const route = useRouter();
-
-  //* COMPANY
-  // create company
-  // const createCompany = async (data: CompanyTypes) => {
-  //   await CompanyService.createCompany(data);
-  //   useCreateCompanyModal();
-  // };
-
-  // const useCreateCompanyModal = () => {
-  //   setCreateCompanyModalState(!createCompanyModalState);
-  // };
-
-  // // company details
-  // const useCompanyDetailModal = (company: any) => {
-  //   // console.log('Oi!')
-  //   // console.log(company.id)
-  //   setCompanyDetail(company)
-  //   setCompanyDetailModalState(!companyDetailModalState)
-  // }
-
-  // // edit company
-  // const editCompany = async (companyId: any, data: any) => {
-  //   const response = await CompanyService.editCompany(companyId, data);
-  // };
-
-  // const useUpdateCompanyModal = (id: string) => {
-  //   setUpdateIdState(id);
-  //   if (id) getCompany(id);
-  //   setUpdateModalState(!updateModalState);
-  // };
-
-  // const getCompany = async (id: string) => {
-  //   const data: CompanyTypes = await CompanyService.getCompanyById(id);
-
-  //   setCompany(data);
-  // };
 
   //FILTRA OS PIPELINES
   const getItems = (pipeId, deals, pipelines) => {
@@ -139,27 +96,27 @@ export const ModalProvider: React.FC = ({ children }) => {
 
   const [dealsList, setElements] = useState([]);
 
-  const useCreateModal = () => {
+  const UseCreateModal = () => {
     setCreateModalState(!createModalState);
   };
 
-  const useCreateDealModal = (pipelineId?: string) => {
+  const UseCreateDealModal = (pipelineId?: string) => {
     setSelectedPipeline(pipelineId);
     setCreateDealModalState(!createDealModalState);
   };
 
-  const useUpdateModal = async (id: string) => {
+  const UseUpdateModal = async (id: string) => {
     setUpdateIdState(id);
     if (id) await getPipeline(id);
     setUpdateModalState(!updateModalState);
   };
 
-  const useDeleteModal = (id: string) => {
+  const UseDeleteModal = (id: string) => {
     setDeleteIdState(id);
     setDeleteModalState(!deleteModalState);
   };
 
-  const useDealDetailModal = (deal: any) => {
+  const UseDealDetailModal = (deal: any) => {
     setDealDetail(deal);
     setDealDetailModalState(!dealDetailModalState);
   };
@@ -170,22 +127,25 @@ export const ModalProvider: React.FC = ({ children }) => {
 
   const deletePipeline = async () => {
     await PipelineService.deletePipeline(deleteId);
-    useDeleteModal("");
+    setDeleteIdState("id");
+    setDeleteModalState(!deleteModalState);
   };
 
   const updatePipeline = async () => {
     await PipelineService.updatePipeline(updateId, name);
-    useUpdateModal("");
+    setUpdateIdState("");
+    setUpdateModalState(!updateModalState);
   };
 
   const createPipeline = async () => {
     await PipelineService.createPipeline(name);
-    useCreateModal();
+    setCreateModalState(!createModalState);
   };
 
   const createDeal = async (data: DealTypes) => {
     await PipelineService.createDeal(data);
-    useCreateDealModal();
+    setSelectedPipeline("");
+    setCreateDealModalState(!createDealModalState);
   };
 
   const getPipelines = async () => {
@@ -351,15 +311,15 @@ export const ModalProvider: React.FC = ({ children }) => {
     <PipelineContext.Provider
       value={{
         createModalState,
-        useCreateModal,
+        UseCreateModal,
         updateModalState,
-        useCreateDealModal,
+        UseCreateDealModal,
         createDealModalState,
-        useUpdateModal,
+        UseUpdateModal,
         deleteModalState,
-        useDeleteModal,
+        UseDeleteModal,
         dealDetailModalState,
-        useDealDetailModal,
+        UseDealDetailModal,
         deletePipeline,
         updatePipeline,
         createPipeline,
@@ -375,16 +335,7 @@ export const ModalProvider: React.FC = ({ children }) => {
         removefilterDeals,
         selectedPipeline,
         setSelectedPipeline,
-        // createCompany,
-        // useCreateCompanyModal,
-        // createCompanyModalState,
-        // useCompanyDetailModal,
-        // companyDetailModalState,
         dealDetail,
-
-        // companyDetail,
-        // editCompany,
-        // useUpdateCompanyModal
         isLoading,
         hasError,
       }}

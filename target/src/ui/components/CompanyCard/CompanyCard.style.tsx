@@ -1,7 +1,6 @@
-import { Avatar, Rating } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
-//@deprecated
 export const CompanyCardContainer = styled("div")`
   display: grid;
   width: 100%;

@@ -21,7 +21,6 @@ function HomePage() {
     password,
     setPassword,
     isLoading,
-    data,
     hasError,
     emailIsValid,
     passwordIsValid,

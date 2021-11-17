@@ -19,7 +19,6 @@ import {
 import { IUser } from "types/User";
 import theme from "ui/theme/theme";
 
-//@deprecated
 interface UserDetailCardProps {
   id: string;
   name: string;

@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { serviceApi } from "data/services/ServiceApi";
+import { useEffect, useState } from "react";
 import ContactService from "data/services/ContactService";
-import contact from "pages/contact";
-// import CompanyService from "data/services/CompanyService";
-
 export const useContactPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [contacts, setContacts] = useState([]);

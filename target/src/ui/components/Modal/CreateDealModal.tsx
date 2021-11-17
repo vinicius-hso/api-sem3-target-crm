@@ -12,11 +12,7 @@ import {
 } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
-import {
-  formatCurrency,
-  formatValue,
-  formatValueToSave,
-} from "data/utils/formatValue";
+import { formatCurrency } from "data/utils/formatValue";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
@@ -27,7 +23,7 @@ interface DetailModalProps {
 const CreateDealModal = ({ getData }: DetailModalProps) => {
   const {
     createDealModalState,
-    useCreateDealModal,
+    UseCreateDealModal,
     createDeal,
     selectedPipeline,
   } = useContext(PipelineContext);
@@ -68,7 +64,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
           value: "",
           tag: "WARM",
         });
-        useCreateDealModal();
+        UseCreateDealModal();
       } catch (e) {
         console.error(e);
       }
@@ -85,7 +81,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
       >
         <CloseButtonStyled
           onClick={() => {
-            useCreateDealModal();
+            UseCreateDealModal();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -135,53 +131,8 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
           </MenuItem>
         ))}
       </Select>
-      {/* <TextFieldMask
-        onChange={(event) => setData({ ...data, email: event.target.value })}
-        id="outlined-basic"
-        label="Email"
-        variant="standard"
-        size="small"
-        fullWidth
-        style={{ margin: 0 }}
-      /> */}
       <TwoColumnsContainer>
         <div>
-          {/* <TextFieldMask
-            onChange={(event) =>
-              setData({ ...data, phone: event.target.value })
-            }
-            id="outlined-basic"
-            label="Telefone"
-            variant="standard"
-            size="small"
-            fullWidth
-            placeholder="(12) 99999-9999"
-          /> */}
-          {/*           <Select
-            onChange={(event) =>
-              setData({ ...data, pipeline: event.target.value })
-            }
-            label="Pipeline"
-            value={data.pipeline}
-            variant="standard"
-            fullWidth
-          >
-            <MenuItem value={""}>Envio de proposta</MenuItem>
-            <MenuItem value={"eb7d54d4-db90-45ca-900f-e734c2be2d54"}>
-              Cluster8
-            </MenuItem>
-          </Select>
- */}{" "}
-          {/* <TextFieldMask
-            id="date"
-            label="Início"
-            type="date"
-            defaultValue=""
-            variant="standard"
-            className="start-date"
-            InputLabelProps={{
-              shrink: true,
-            }} */}
           <Select
             onChange={(event) => setData({ ...data, tag: event.target.value })}
             label="Tag"
@@ -207,18 +158,6 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
             fullWidth
             placeholder="999,00"
           />
-          {/*           <TextFieldMask
-            id="date"
-            label="Término"
-            type="date"
-            variant="standard"
-            defaultValue=""
-            className="finish-date"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
- */}{" "}
         </div>
       </TwoColumnsContainer>
       <Tooltip
@@ -245,7 +184,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
     <>
       <ModalStyled
         open={createDealModalState}
-        onClose={() => useCreateDealModal()}
+        onClose={() => UseCreateDealModal()}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

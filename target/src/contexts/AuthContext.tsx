@@ -9,7 +9,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [loged, setLoged] = useState(false);
-  const [cookie, setCookie] = useCookies(["@target:user"]);
+  const [, setCookie] = useCookies(["@target:user"]);
 
   useEffect(() => {
     const getStoragedData = () => {
@@ -34,7 +34,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     setLoged(true);
     setCookie("@target:user", myToken, {
       path: "/",
-      maxAge: 3600, // Expires after 1hr
+      maxAge: 3600,
       sameSite: true,
     });
     serviceApi.defaults.headers.common["Authorization"] = `Bearer ${myToken}`;

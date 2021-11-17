@@ -1,5 +1,4 @@
 import { experimentalStyled as styled } from "@material-ui/core/styles";
-import { Link } from "@material-ui/core";
 import StaticLink from "./LinkNext";
 
 export const LinkStyled = styled(StaticLink)`

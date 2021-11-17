@@ -15,7 +15,7 @@ interface UpdateModalProps {
 const UpDateModal = ({ getData }: UpdateModalProps) => {
   const {
     updateModalState,
-    useUpdateModal,
+    UseUpdateModal,
     updatePipeline,
     setName,
     pipeline,
@@ -33,7 +33,7 @@ const UpDateModal = ({ getData }: UpdateModalProps) => {
       >
         <CloseButtonStyled
           onClick={() => {
-            useUpdateModal("");
+            UseUpdateModal("");
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -86,7 +86,7 @@ const UpDateModal = ({ getData }: UpdateModalProps) => {
     <>
       <ModalStyled
         open={updateModalState}
-        onClose={() => useUpdateModal("")}
+        onClose={() => UseUpdateModal("")}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

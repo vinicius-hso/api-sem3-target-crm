@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 import { RecoveryPassLink } from "./Link.style";
 
 export interface LinkComponentProps {
-  href: string;
+  href?: string;
   text?: string;
   query?: {};
   textColor?: string;

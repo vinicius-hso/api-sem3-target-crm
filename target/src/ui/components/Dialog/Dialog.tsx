@@ -9,7 +9,7 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import HelpOutlineOutlined from "@material-ui/icons/HelpOutlineOutlined";
 import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
 import React from "react";
-import { DialogIconContainer, DialogStyled, IconStyled } from "./Dialog.style";
+import { DialogIconContainer, DialogStyled } from "./Dialog.style";
 
 interface DialogProps {
   title: string;

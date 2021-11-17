@@ -1,4 +1,3 @@
-import { Select } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 export const InputContainer = styled("div")`

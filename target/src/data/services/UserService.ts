@@ -1,4 +1,3 @@
-import React from "react";
 import { IUser } from "types/User";
 import { serviceApi as api } from "./ServiceApi";
 import { toast } from "react-toastify";
@@ -7,7 +6,7 @@ interface IResponse {
   message: string;
 }
 class UserService {
-  async getUsers():Promise<IUser[]> {
+  async getUsers(): Promise<IUser[]> {
     try {
       const { data } = await api.get("/user");
 

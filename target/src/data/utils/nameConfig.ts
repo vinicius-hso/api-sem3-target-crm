@@ -1,5 +1,3 @@
-import React from "react";
-
 //RETORNA A INICIAL DO PRIMEIRO E DO ULTIMO NOME
 export const getNameInitials = (fullName: string = "sem nome") => {
   if (!fullName) {

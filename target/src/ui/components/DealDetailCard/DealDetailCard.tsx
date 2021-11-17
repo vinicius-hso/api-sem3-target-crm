@@ -16,7 +16,6 @@ import {
   InputContainer,
 } from "./DealDetailCard.style";
 
-//@deprecated
 interface DealDetailCardProps {
   company: any;
   contact: any;

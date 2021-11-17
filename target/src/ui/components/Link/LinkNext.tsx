@@ -1,9 +1,9 @@
 import React from "react";
 import LinkStatic from "next/link";
-import { Link, Typography } from "@material-ui/core";
+import { Link } from "@material-ui/core";
 
 export interface LinkComponentProps {
-  href: string;
+  href?: string;
   text?: string;
   query?: {};
   textColor?: string;

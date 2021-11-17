@@ -1,11 +1,4 @@
-import {
-  AppBar,
-  Avatar,
-  Drawer,
-  IconButton,
-  ListItem,
-  Toolbar,
-} from "@material-ui/core";
+import { AppBar, Avatar, Drawer, IconButton } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 const drawerWidth = 240;

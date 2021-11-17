@@ -1,6 +1,5 @@
+import React from "react";
 import { Typography, Avatar, Button, Tooltip } from "@material-ui/core";
-import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
-import React, { useState } from "react";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import {
   NewActivityButton,
@@ -15,8 +14,6 @@ import {
 } from "./UserAccountComponent.style";
 import { IUser } from "types/User";
 import Title from "../Title/Title";
-
-//@deprecated
 
 type Passwords = {
   oldPassword: string;

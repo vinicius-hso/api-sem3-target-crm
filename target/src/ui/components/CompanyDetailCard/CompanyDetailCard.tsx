@@ -20,7 +20,6 @@ import { CompanyTypes } from "types/Company";
 import theme from "ui/theme/theme";
 import { mockEstados } from "data/utils/mock";
 
-//@deprecated
 interface CompanyDetailCardProps {
   id: string;
   name: string;
@@ -43,7 +42,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
     site: props.site,
     picture: props.picture,
   });
-  
+
   return (
     <div>
       <Typography
@@ -138,7 +137,7 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
           />
         </InputContainer>
 
-        <InputContainer style = {{marginBottom:"22px"}}>
+        <InputContainer style={{ marginBottom: "22px" }}>
           <TextFieldMask
             disabled={!props.hasEdit}
             label={"Cidade"}
@@ -146,17 +145,17 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             variant={"standard"}
             size="medium"
             defaultValue={data.city}
-            onChange={(event) => setData({ ...data, city: event.target.value })}            
+            onChange={(event) => setData({ ...data, city: event.target.value })}
           />
         </InputContainer>
 
-        <FormControl fullWidth style = {{marginBottom:"22px"}}>
+        <FormControl fullWidth style={{ marginBottom: "22px" }}>
           <InputLabel
-          sx={{
-            color: props.hasEdit
-              ? theme.palette.text.secondary
-              : theme.palette.text.disabled,
-          }}
+            sx={{
+              color: props.hasEdit
+                ? theme.palette.text.secondary
+                : theme.palette.text.disabled,
+            }}
             variant="standard"
             htmlFor="uncontrolled-native"
           >
@@ -165,7 +164,9 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
 
           <Select
             disabled={!props.hasEdit}
-            onChange={(event) => setData({ ...data, state: event.target.value })}
+            onChange={(event) =>
+              setData({ ...data, state: event.target.value })
+            }
             value={data.state}
             label="Estado"
             variant="standard"
@@ -174,12 +175,11 @@ const DealDetailCard: React.FC<CompanyDetailCardProps> = (props) => {
             <MenuItem value={"null"} disabled>
               Selecione o Estado
             </MenuItem>
-            { mockEstados.map((state) => (
-                <MenuItem key={state.id} value={state.sigla}>
-                  {state.sigla}
-                </MenuItem>
-              ))
-            }
+            {mockEstados.map((state) => (
+              <MenuItem key={state.id} value={state.sigla}>
+                {state.sigla}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 

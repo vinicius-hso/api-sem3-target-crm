@@ -1,9 +1,8 @@
-import React from "react";
 import { toast } from "react-toastify";
 import { CompanyTypes } from "types/Company";
 import { serviceApi as api } from "./ServiceApi";
 
-interface IResponse{
+interface IResponse {
   status: string;
   message: string;
   titulo: string;
@@ -12,11 +11,7 @@ interface IResponse{
 class CompanyService {
   async getCompanies(): Promise<CompanyTypes[]> {
     try {
-      const { data } = await api.get("/company", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
-        },
-      });
+      const { data } = await api.get("/company");
 
       return data;
     } catch (error) {
@@ -26,11 +21,7 @@ class CompanyService {
 
   async getCompanyById(id: string): Promise<CompanyTypes> {
     try {
-      const { data } = await api.get(`/company/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
-        },
-      });
+      const { data } = await api.get(`/company/${id}`);
 
       return data;
     } catch (error) {
@@ -40,11 +31,7 @@ class CompanyService {
 
   async createCompany(data: CompanyTypes): Promise<string> {
     try {
-      const response = await api.post("/company", data, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
-        },
-      });
+      const response = await api.post("/company", data);
       toast.success("Empresa Criada com sucesso!");
       return response.data.id;
     } catch (error) {
@@ -57,11 +44,7 @@ class CompanyService {
 
   async editCompany(companyId: string, company): Promise<IResponse> {
     try {
-      await api.put(`/company/${companyId}`, company, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
-        },
-      });
+      await api.put(`/company/${companyId}`);
       return {
         status: "success",
         message: "Empresa editada com sucesso!",
@@ -79,11 +62,7 @@ class CompanyService {
 
   async deleteCompany(companyId: string): Promise<string> {
     try {
-      const { data } = await api.delete(`/company/${companyId}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
-        },
-      });
+      await api.delete(`/company/${companyId}`);
       toast.success("Empresa deletada com sucesso!");
       return "success";
     } catch (error) {

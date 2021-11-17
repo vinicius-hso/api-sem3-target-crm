@@ -4,7 +4,6 @@ import { ApexOptions } from "apexcharts";
 
 interface TestLineChartsProps {
   series: any[];
-  //   xaxis: any[];
 }
 
 const TestLineCharts: React.FC<TestLineChartsProps> = ({ series }) => {
@@ -22,11 +21,6 @@ const TestLineCharts: React.FC<TestLineChartsProps> = ({ series }) => {
         toolbar: {
           autoSelected: "zoom",
         },
-        // animations: {
-        //   initialAnimation: {
-        //     enabled: false,
-        //   },
-        // },
       },
       title: {
         text: "Negociações por período",
@@ -54,7 +48,6 @@ const TestLineCharts: React.FC<TestLineChartsProps> = ({ series }) => {
               },
             },
             title: {
-              // text: undefined,
               align: "left",
               margin: 10,
               offsetX: 0,

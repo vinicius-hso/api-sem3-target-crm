@@ -1,15 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import UserService from "data/services/UserService";
 import { IUser } from "types/User";
-import AuthContext from "contexts/AuthContext";
 import { useRouter } from "next/dist/client/router";
-import { useNavBarComponent } from "../componentHooks/NavBarHook";
-
-// import CompanyService from "data/services/CompanyService";
 
 export const useUserPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
-  const { isAdmin } = useNavBarComponent();
+  const isAdmin = true;
   const route = useRouter();
   const [users, setUsers] = useState([]);
   const [timer, setTimer] = useState(null);
@@ -75,7 +71,7 @@ export const useUserPage = () => {
 
   const createUser = async (data: IUser) => {
     await UserService.createUser(data);
-    useCreateUserModal();
+    setCreateUserModalState(!createUserModalState);
   };
 
   const useCreateUserModal = () => {
@@ -92,7 +88,7 @@ export const useUserPage = () => {
   };
 
   const deleteUser = async (userId: any) => {
-    const response = await UserService.deleteUser(userId);
+    await UserService.deleteUser(userId);
   };
 
   return {

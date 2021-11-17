@@ -19,7 +19,6 @@ function EmailRecover() {
     email,
     setEmail,
     isLoading,
-    data,
     hasError,
     hasMessage,
     setMessage,

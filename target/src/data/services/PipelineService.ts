@@ -1,4 +1,3 @@
-import React from "react";
 import { DealTypes } from "types/Deal";
 import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
@@ -7,11 +6,7 @@ import { toast } from "react-toastify";
 class PipelineService {
   async getPiplines(): Promise<pipeline[]> {
     try {
-      const { data } = await api.get("/pipeline", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@taget:token")}`,
-        },
-      });
+      const { data } = await api.get("/pipeline");
 
       return data;
     } catch (error) {
@@ -40,7 +35,7 @@ class PipelineService {
 
     try {
       const response = await api.post("/pipeline/", body);
-      
+
       toast.success("Pipeline criado com sucesso!");
       return response.data;
     } catch (error) {

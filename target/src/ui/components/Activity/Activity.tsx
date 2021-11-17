@@ -1,11 +1,8 @@
-import { Container, Toolbar, Typography, Tooltip } from "@material-ui/core";
-import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
+import { Typography, Tooltip } from "@material-ui/core";
 import moment from "moment";
 import React, { useMemo } from "react";
-import Title from "../Title/Title";
 import { ActivityContainer, ActivityTimeContainer } from "./Activity.style";
 
-//@deprecated
 interface ActivityProps {
   title: string;
   tag: string;

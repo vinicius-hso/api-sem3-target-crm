@@ -13,7 +13,7 @@ interface DeleteModalProps {
 }
 
 const DeleteModal: React.FC<DeleteModalProps> = ({ getData }) => {
-  const { deleteModalState, useDeleteModal, deletePipeline } =
+  const { deleteModalState, UseDeleteModal, deletePipeline } =
     useContext(PipelineContext);
 
   const body = (
@@ -26,7 +26,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ getData }) => {
       >
         <CloseButtonStyled
           onClick={() => {
-            useDeleteModal("");
+            UseDeleteModal("");
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -71,7 +71,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ getData }) => {
     <>
       <ModalStyled
         open={deleteModalState}
-        onClose={useDeleteModal}
+        onClose={UseDeleteModal}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

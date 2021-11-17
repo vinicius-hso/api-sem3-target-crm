@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DealsService from "data/services/DealsService";
 import CompanyService from "data/services/CompanyService";
 import { formatValue } from "../../../utils/formatValue";
@@ -165,7 +165,9 @@ export const useDashboardPage = () => {
       });
 
       setConversionRateInfo({
-        conversionRate: Number(((totalWon / allDeals?.length) * 100).toFixed(2)),
+        conversionRate: Number(
+          ((totalWon / allDeals?.length) * 100).toFixed(2)
+        ),
         totalWon,
         totalLost,
         totalInProgress,

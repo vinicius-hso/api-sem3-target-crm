@@ -32,8 +32,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
   const { createUserModalState, useCreateUserModal, createUser } =
     useUserPage();
 
-  // const { createCompanyModalState, useCreateCompanyModal, createCompany } =
-  //   useContext(PipelineContext);
   const [submit, setSubmit] = useState(false);
   const [data, setData] = useState<IUser>({
     name: "",

@@ -1,6 +1,5 @@
-import { Container, Toolbar } from "@material-ui/core";
-import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
 import React from "react";
+import { getNameInitials, getNameUpperCase } from "data/utils/nameConfig";
 import {
   UserPictureStyled,
   UserCardContainer,
@@ -9,7 +8,6 @@ import {
   UserRoleStyled,
 } from "./UserCard.style";
 
-//@deprecated
 interface UserCardProps {
   picture?: string;
   name?: string;
@@ -25,9 +23,9 @@ const UserCard: React.FC<UserCardProps> = (props) => {
         {getNameInitials(props.name)}
       </UserPictureStyled>
       <UserNameStyled>{getNameUpperCase(props.name)}</UserNameStyled>
-      <UserRoleStyled>{
-      props.role === "ADMIN" ? "Administrador" : "Vendedor"
-      }</UserRoleStyled>
+      <UserRoleStyled>
+        {props.role === "ADMIN" ? "Administrador" : "Vendedor"}
+      </UserRoleStyled>
       <UserEmailStyled>{props.email}</UserEmailStyled>
     </UserCardContainer>
   );

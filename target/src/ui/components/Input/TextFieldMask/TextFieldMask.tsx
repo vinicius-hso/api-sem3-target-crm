@@ -4,7 +4,6 @@ import {
   Icon,
   InputAdornment,
   StandardTextFieldProps,
-  useTheme,
 } from "@material-ui/core";
 import { InputContainer } from "./TextFieldMask.style";
 
@@ -20,7 +19,6 @@ const TextFieldMask: React.FC<TextFieldMaskProps> = ({
   onChange,
   ...props
 }) => {
-  const theme = useTheme();
   return (
     <InputContainer>
       <TextField

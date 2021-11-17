@@ -90,7 +90,7 @@ export const DrawerWeb = ({ isAdmin, navHover, user, ...props }) => {
               display: !isAdmin && itemMenu.name === "Usuários" ? "none" : "",
             }}
           >
-            <LinkStyled className="navBar" href={itemMenu.link}>
+            <LinkStyled href={itemMenu.link}>
               <ListItemIcon
                 sx={{
                   fontSize: "30px",

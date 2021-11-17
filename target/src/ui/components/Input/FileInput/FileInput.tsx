@@ -6,7 +6,7 @@ import TextFieldMask from "../TextFieldMask/TextFieldMask";
 interface FileInputProps {
   onChange: (value: File) => void;
 }
-const FileInput: React.FC<FileInputProps> = ({ onChange, ...props }) => {
+const FileInput: React.FC<FileInputProps> = ({ onChange }) => {
   const [fileName, setFileName] = useState("");
 
   return (

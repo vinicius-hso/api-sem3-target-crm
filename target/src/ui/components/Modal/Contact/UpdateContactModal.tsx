@@ -36,8 +36,6 @@ const UpdateContactModal = ({ id, setId }) => {
   const [companies, setCompanies] = useState<CompanyTypes[]>([]);
 
   const [submited, isSubmited] = useState(false);
-  const [time, setTime] = useState(null);
-
   const [data, setData] = useState<IContact>({
     name: "",
     company_id: "default",

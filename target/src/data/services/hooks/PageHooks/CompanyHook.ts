@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CompanyService from "data/services/CompanyService";
 import { CompanyTypes } from "types/Company";
 
@@ -65,8 +65,6 @@ export const useCompanyPage = () => {
 
   const createCompany = async (data: CompanyTypes) => {
     const result = await CompanyService.createCompany(data);
-
-    // useCreateCompanyModal();
     return result;
   };
 

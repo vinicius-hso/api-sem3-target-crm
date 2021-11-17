@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import DealsService from "data/services/DealsService";
 
 export const useCompletedPage = () => {

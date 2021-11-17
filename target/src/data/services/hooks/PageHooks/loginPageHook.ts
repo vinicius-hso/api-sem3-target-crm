@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { emailValidator } from "../../../utils/emailValidator";
 import { serviceApi } from "data/services/ServiceApi";
 import AuthContext from "contexts/AuthContext";
@@ -12,8 +12,7 @@ export const useLoginPage = () => {
     [hasMessage, setMessage] = useState(false),
     [isLoading, setLoading] = useState(false),
     [emailIsValid, setEmailIsValid] = useState(true),
-    [passwordIsValid, setPasswordIsValid] = useState(true),
-    [data, setData] = useState("");
+    [passwordIsValid, setPasswordIsValid] = useState(true);
 
   const { signIn } = useContext(AuthContext);
 
@@ -100,7 +99,6 @@ export const useLoginPage = () => {
     hasMessage,
     setMessage,
     isLoading,
-    data,
     emailIsValid,
     passwordIsValid,
     login,

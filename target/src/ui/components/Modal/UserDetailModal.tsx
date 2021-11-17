@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Title from "../Title/Title";
 import { ModalContainer } from "./ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./ModalStyles/Modal.style";
@@ -8,7 +8,6 @@ import UserDetailCard from "../UserDetailCard/UserDetailCard";
 import { useUserPage } from "../../../data/services/hooks/PageHooks/UserHook";
 import { Button, Tooltip } from "@material-ui/core";
 import Dialog from "../Dialog/Dialog";
-// import Alert from "../AlertComponent/AlertComponent";
 
 interface UserDetailModalProps {
   open: boolean;
@@ -27,9 +26,6 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
 
   const [hasEdit, setHasEdit] = useState(false);
   const [dialogView, setDialogView] = useState(false);
-  /**
-   * TODO - useEditCompanyModal, companyDetailCard
-   */
 
   const handleSubmitEdit = async (data: IUser) => {
     await editUser(user.id, data);

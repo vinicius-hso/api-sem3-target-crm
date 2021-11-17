@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-
 import { Button, Tooltip } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PipelineContext from "contexts/PipelineContext";
@@ -14,7 +13,7 @@ interface CreateModalProps {
 }
 
 const CreateModal = ({ getData }: CreateModalProps) => {
-  const { createModalState, useCreateModal, createPipeline, setName } =
+  const { createModalState, UseCreateModal, createPipeline, setName } =
     useContext(PipelineContext);
 
   const [submited, isSubmited] = useState(false);
@@ -34,7 +33,7 @@ const CreateModal = ({ getData }: CreateModalProps) => {
       >
         <CloseButtonStyled
           onClick={() => {
-            useCreateModal();
+            UseCreateModal();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -90,7 +89,7 @@ const CreateModal = ({ getData }: CreateModalProps) => {
         onClose={() => {
           setValue("");
           isSubmited(false);
-          useCreateModal();
+          UseCreateModal();
         }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

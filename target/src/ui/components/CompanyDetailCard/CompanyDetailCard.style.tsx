@@ -1,7 +1,6 @@
-import { Avatar, Button, Paper, Rating } from "@material-ui/core";
+import { Button, Paper } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
-//@deprecated
 export const CompanyDetailCardContainer = styled("div")`
   max-width: 90vw;
   display: grid;

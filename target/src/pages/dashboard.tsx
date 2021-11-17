@@ -19,7 +19,6 @@ import ConversionRateCard from "../ui/components/ConversionRateCardComponent/Con
 import { useDashboardPage } from "../data/services/hooks/PageHooks/DashboardHook";
 import Title from "ui/components/Title/Title";
 import { formatArray } from "data/utils/formatArray";
-import { DynamicLineCharts } from "../data/services/servicesComponents/DynamicLineCharts";
 import moment from "moment";
 import Head from "next/head";
 import { DynamicTestLineCharts } from "data/services/servicesComponents/DynamicTestLineCharts";
@@ -227,13 +226,11 @@ function Dashboard() {
       switch (d.status) {
         case "WON":
           wons.data.push((d.value / 100).toFixed(2));
-          // xaxisValues.push(moment(d.updatedAt).format("LL"));
           xaxisValues.push(d.updatedAt);
           console.log(moment(d.updatedAt).format("ll"));
           break;
         case "LOST":
           lost.data.push((d.value / 100).toFixed(2));
-          // xaxisValues.push(moment(d.updatedAt).format("LL"));
           xaxisValues.push(d.updatedAt);
           break;
       }
@@ -377,9 +374,6 @@ function Dashboard() {
           display: "flex",
           justifyContent: "center",
           flexDirection: { xs: "column", md: "row" },
-          // flexWrap: 'wrap'
-          // p: 1,
-          // m: -2,
         }}
       >
         {dealsInfo && (
@@ -404,12 +398,6 @@ function Dashboard() {
 
       <div style={{ maxWidth: "720px" }}>
         <ChartsContainer>
-          {/* <DynamicLineCharts series={s} xaxis={x} /> */}
-          {/* <DynamicLineCharts
-          series={lineChartData.series}
-          xaxis={lineChartData.xaxis}
-        /> */}
-          {/* //* Gráfico concertado */}
           <DynamicTestLineCharts series={testLineChartData.series} />
         </ChartsContainer>
       </div>

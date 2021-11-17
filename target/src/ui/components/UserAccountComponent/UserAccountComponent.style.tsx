@@ -1,7 +1,6 @@
 import { Avatar, Button, Container } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
-//@deprecated
 export const UserAccountCardContainer = styled("div")`
   max-width: 90vw;
   display: flex;

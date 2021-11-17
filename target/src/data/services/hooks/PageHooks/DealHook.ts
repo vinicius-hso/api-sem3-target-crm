@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DealsService from "data/services/DealsService";
 
 export const useDealPage = () => {

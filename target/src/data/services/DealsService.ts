@@ -1,16 +1,10 @@
-import React from "react";
 import { toast } from "react-toastify";
-import { pipe } from "rxjs";
-import { DealTypes } from "types/Deal";
-import { pipeline } from "types/Modal";
 import { serviceApi as api } from "./ServiceApi";
 
 class DealsService {
   async getAllDeals() {
     try {
-      const token = localStorage.getItem("@taget:token");
-      const { data } = await api.get("/deal?with=pipeline,company,contact", { headers: { "Authorization": `Bearer ${token}` } }
-      );
+      const { data } = await api.get("/deal?with=pipeline,company,contact");
       return data;
     } catch (error) {
       toast.error(
@@ -22,9 +16,8 @@ class DealsService {
 
   async getTotslDeals(query?: string) {
     try {
-      const token = localStorage.getItem("@taget:token");
       const { data } = await api.get(
-        `/deal?with=pipeline,company,contact${query ? query : ""}`, { headers: { "Authorization": `Bearer ${token}` } }
+        `/deal?with=pipeline,company,contact${query ? query : ""}`
       );
 
       return data;
@@ -38,9 +31,8 @@ class DealsService {
 
   async getDeals() {
     try {
-      const token = localStorage.getItem("@taget:token");
       const { data } = await api.get(
-        "/deal?status=INPROGRESS&with=pipeline,company,contact", { headers: { "Authorization": `Bearer ${token}` } }
+        "/deal?status=INPROGRESS&with=pipeline,company,contact"
       );
 
       return data;
@@ -54,9 +46,8 @@ class DealsService {
 
   async getDealsCompleted() {
     try {
-      const token = localStorage.getItem("@taget:token");
       const { data } = await api.get(
-        "/deal?status__in=WON,LOST,ARCHIVED&with=pipeline,company,contact", { headers: { "Authorization": `Bearer ${token}` } }
+        "/deal?status__in=WON,LOST,ARCHIVED&with=pipeline,company,contact"
       );
       return data;
     } catch (error) {

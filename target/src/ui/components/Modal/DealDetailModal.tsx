@@ -38,7 +38,7 @@ interface DetailModalProps {
   getData: () => void;
 }
 const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
-  const { dealDetailModalState, useDealDetailModal, dealDetail } =
+  const { dealDetailModalState, UseDealDetailModal, dealDetail } =
     useContext(PipelineContext);
   const { createActivity, editDeal, updateStatus } = useDealPage();
   const [hasEdit, setHasEdit] = useState(false);
@@ -94,7 +94,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
     });
     setHasEdit(false);
     setHasNewActivity(false);
-    useDealDetailModal("");
+    UseDealDetailModal("");
   };
 
   const body = (
@@ -293,7 +293,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                   </IconButton>
                 </Tooltip>
               </LinkPhoneStyled>
-              <LinkStyled
+              <a
                 target="__blank"
                 rel="no-referrer"
                 href={`https://api.whatsapp.com/send?phone=55${dealDetail.contact?.phone}`}
@@ -308,7 +308,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                     <i className={`fa fa-whatsapp`}></i>
                   </IconButton>
                 </Tooltip>
-              </LinkStyled>
+              </a>
             </div>
           </ActionsDealDetailCardContainer>
           <br />

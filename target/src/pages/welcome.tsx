@@ -22,8 +22,8 @@ const Welcome = () => {
 
       <ImageContainer>
         <img
-          src="Welcome1.png"
-          alt="welcome1"
+          src="welcome.png"
+          alt="Seja bem vindo!"
           height="300 px"
           width="auto"
           text-align="center"

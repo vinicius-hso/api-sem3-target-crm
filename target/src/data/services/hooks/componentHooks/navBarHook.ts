@@ -1,5 +1,5 @@
+import { useContext, useEffect, useState } from "react";
 import { serviceApi } from "data/services/ServiceApi";
-import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import AuthContext from "contexts/AuthContext";
 
@@ -8,7 +8,6 @@ export const useNavBarComponent = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [navHover, setNavHover] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [tokenValidated, setTokenValidated] = useState(false);
   const route = useRouter();
 
   const handleDrawerToggle = () => {
@@ -39,6 +38,5 @@ export const useNavBarComponent = () => {
     isAdmin,
     handleDrawerToggle,
     user,
-    tokenValidated,
   };
 };

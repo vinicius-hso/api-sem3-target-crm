@@ -1,5 +1,3 @@
-import React from "react";
-
 export async function getCepService(cep: string) {
   const formatCep = cep.replace(/[^0-9]/g, "");
   let address = {};

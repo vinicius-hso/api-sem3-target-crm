@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {
   ModalContainer,
   TwoColumnsContainer,
@@ -6,14 +6,18 @@ import {
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import Title from "../Title/Title";
-// import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { Button, useForkRef, Tooltip, FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import {
+  Button,
+  Tooltip,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
-// import PipelineContext from 'contexts/PipelineContext';
-import PipelineContext from "contexts/PipelineContext";
 import { getCepService } from "data/utils/getCepService";
 import { formatCep } from "data/utils/formatCep";
 import { mockEstados } from "data/utils/mock";
@@ -28,11 +32,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
   setOpen,
   getData,
 }) => {
-  const { createCompanyModalState, useCreateCompanyModal, createCompany } =
-    useCompanyPage();
-
-  // const { createCompanyModalState, useCreateCompanyModal, createCompany } =
-  //   useContext(PipelineContext);
+  const { createCompany } = useCompanyPage();
 
   const [time, setTime] = useState(null);
   const [data, setData] = useState<CompanyTypes>({
@@ -120,7 +120,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
       <Title title="Nova empresa" />
       <TwoColumnsContainer>
         <TextFieldMask
-          style = {{marginBottom:"-14px"}}
+          style={{ marginBottom: "-14px" }}
           onChange={(event) => setData({ ...data, name: event.target.value })}
           value={data.name}
           label="Nome da empresa"
@@ -131,7 +131,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
           helperText={!data.name && submit ? "Informe o nome da empresa" : " "}
         />
 
-        <TextFieldMask 
+        <TextFieldMask
           onChange={(event) => handleChangeCep(event)}
           value={data.cep}
           label="CEP"
@@ -161,15 +161,14 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
         />
 
         <FormControl fullWidth>
-          <InputLabel
-            variant="standard"
-            htmlFor="uncontrolled-native"
-          >
+          <InputLabel variant="standard" htmlFor="uncontrolled-native">
             Estado
           </InputLabel>
 
           <Select
-            onChange={(event) => setData({ ...data, state: event.target.value })}
+            onChange={(event) =>
+              setData({ ...data, state: event.target.value })
+            }
             value={data.state}
             label="Estado"
             variant="standard"
@@ -178,12 +177,11 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
             <MenuItem value={"null"} disabled>
               Selecione o Estado
             </MenuItem>
-            { mockEstados.map((state) => (
-                <MenuItem key={state.id} value={state.sigla}>
-                  {state.sigla}
-                </MenuItem>
-              ))
-            }
+            {mockEstados.map((state) => (
+              <MenuItem key={state.id} value={state.sigla}>
+                {state.sigla}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 
