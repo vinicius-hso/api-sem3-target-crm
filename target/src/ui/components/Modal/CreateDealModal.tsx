@@ -21,7 +21,7 @@ import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 
 interface DetailModalProps {
-  getData: () => Promise<void>;
+  getData: () => any;
 }
 
 const CreateDealModal = ({ getData }: DetailModalProps) => {

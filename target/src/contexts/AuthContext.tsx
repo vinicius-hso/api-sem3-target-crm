@@ -1,5 +1,6 @@
 import { serviceApi } from "data/services/ServiceApi";
 import React, { useState, createContext, useEffect } from "react";
+import { useCookies } from "react-cookie";
 import AuthContextData from "../types/Auth";
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -8,6 +9,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [loged, setLoged] = useState(false);
+  const [cookie, setCookie] = useCookies(["@target:user"]);
 
   useEffect(() => {
     const getStoragedData = () => {
@@ -30,6 +32,11 @@ export const AuthProvider: React.FC = ({ children }) => {
   const signIn = (myToken: string, myUser: Object): void => {
     setToken(myToken);
     setLoged(true);
+    setCookie("@target:user", myToken, {
+      path: "/",
+      maxAge: 3600, // Expires after 1hr
+      sameSite: true,
+    });
     serviceApi.defaults.headers.common["Authorization"] = `Bearer ${myToken}`;
     localStorage.setItem("user", JSON.stringify(myUser));
     localStorage.setItem("@taget:token", myToken);

@@ -4,6 +4,9 @@ import UserAccountComponent from "../ui/components/UserAccountComponent/UserAcco
 import { useSessionUserPage } from "data/services/hooks/PageHooks/SessionUserHook";
 import { IUser } from "types/User";
 import Head from "next/head";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "data/services/cookie";
+import { serviceApi } from "data/services/ServiceApi";
 
 type Passwords = {
   oldPassword: string;
@@ -107,3 +110,43 @@ function Account() {
   );
 }
 export default Account;
+
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  resolvedUrl,
+}): Promise<any> => {
+  const data = parseCookies(req);
+  let token: string = "";
+
+  Object.keys(data).find((key, i) => {
+    if (key === "@target:user") {
+      token = Object.values(data)[i];
+    }
+  });
+  if (!token?.length && resolvedUrl !== "/login") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  } else {
+    try {
+      serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check");
+    } catch (e) {
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    }
+  }
+
+  return {
+    props: {
+      session: "",
+    },
+  };
+};

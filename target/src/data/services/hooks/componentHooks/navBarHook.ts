@@ -15,31 +15,9 @@ export const useNavBarComponent = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const tokenValidation = async () => {
-    try {
-      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check");
-      setTokenValidated(true);
-    } catch (err) {
-      if (err.response.status === 401) {
-        route.push("/login");
-      }
-    }
-  };
-
   useEffect(() => {
-    if (!tokenValidated) {
-      const storagedToken = localStorage.getItem("@taget:token");
-      if (!storagedToken) {
-        route.push("/login");
-      } else {
-        if (serviceApi.defaults.headers.common["Authorization"]) {
-          tokenValidation();
-        }
-      }
-
-      if (user?.role === "ADMIN") {
-        setIsAdmin(true);
-      }
+    if (user?.role === "ADMIN") {
+      setIsAdmin(true);
     }
   }, [user]);
 

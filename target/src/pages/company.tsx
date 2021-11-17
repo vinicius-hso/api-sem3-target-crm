@@ -15,6 +15,9 @@ import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import CompanyDetailModal from "ui/components/Modal/CompanyDetailModal";
 import { CompanyTypes } from "types/Company";
 import Head from "next/head";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "data/services/cookie";
+import { serviceApi } from "data/services/ServiceApi";
 
 function CompanyPage() {
   const {
@@ -154,3 +157,43 @@ function CompanyPage() {
 }
 
 export default CompanyPage;
+
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  resolvedUrl,
+}): Promise<any> => {
+  const data = parseCookies(req);
+  let token: string = "";
+
+  Object.keys(data).find((key, i) => {
+    if (key === "@target:user") {
+      token = Object.values(data)[i];
+    }
+  });
+  if (!token?.length && resolvedUrl !== "/login") {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  } else {
+    try {
+      serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check");
+    } catch (e) {
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    }
+  }
+
+  return {
+    props: {
+      session: "",
+    },
+  };
+};
