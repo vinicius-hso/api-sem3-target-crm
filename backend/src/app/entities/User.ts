@@ -5,22 +5,22 @@ class Users extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column('text')
   name: string;
 
-  @Column()
+  @Column('text')
   email: string;
 
   @Column({ type: 'enum', enum: ['ADMIN', 'SELLER'], default: 'SELLER' })
   role: string;
 
-  @Column()
+  @Column('text')
   passwordHash: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   picture: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   passwordResetToken: string;
 
   @Column({ nullable: true, type: 'timestamp' })

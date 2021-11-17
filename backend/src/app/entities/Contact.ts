@@ -16,26 +16,26 @@ class Contacts extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne((type) => Company)
+  @ManyToOne(() => Company)
   @JoinColumn()
   company: Company;
 
-  @Column()
+  @Column('text')
   name: string;
 
-  @Column()
+  @Column('text')
   email: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   phone: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   city: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   state: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   picture: string;
 
   @CreateDateColumn()

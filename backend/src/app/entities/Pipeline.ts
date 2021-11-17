@@ -5,7 +5,7 @@ class Pipelines extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column('text')
   name: string;
 
   @CreateDateColumn()

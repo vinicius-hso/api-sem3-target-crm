@@ -20,28 +20,28 @@ class Deals extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne((type) => Pipeline)
+  @ManyToOne(() => Pipeline)
   @JoinColumn()
   pipeline: Pipeline;
 
-  @ManyToOne((type) => Company)
+  @ManyToOne(() => Company)
   @JoinColumn()
   company: Company;
 
-  @ManyToOne((type) => Contact)
+  @ManyToOne(() => Contact)
   @JoinColumn()
   contact: Contact;
 
-  @Column()
+  @Column('text')
   name: string;
 
   @Column({ nullable: true, type: 'timestamp' })
   deadline: Date;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   priority: string;
 
-  @Column({ nullable: true, type: 'float'})
+  @Column({ nullable: true, type: 'float' })
   value: number;
 
   @Column({ type: 'enum', enum: ['INPROGRESS', 'LOST', 'WON', 'ARCHIVED'], default: 'INPROGRESS' })

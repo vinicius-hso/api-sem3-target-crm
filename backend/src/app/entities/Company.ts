@@ -5,22 +5,22 @@ class Companies extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column('text')
   name: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   country: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   state: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   city: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   site: string;
 
-  @Column({ nullable: true })
+  @Column('text', { nullable: true })
   picture: string;
 
   @CreateDateColumn()
