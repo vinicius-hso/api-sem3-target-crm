@@ -29,6 +29,13 @@ interface ImportContactModalProps {
   companies: any[];
   getData: () => void;
 }
+
+interface ImportResult {
+  errors: any[];
+  alreadyExistMessageCount: number;
+  invalidValuesMessageCount: number;
+}
+
 const ImportContactModal: React.FC<ImportContactModalProps> = ({
   companies,
   getData,
@@ -38,6 +45,27 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
 
   const [importedContacts, setImportedContacts] = useState<any[]>([]);
   const [hasError, setHasError] = useState<boolean>(false);
+  const [errorsLength, setErrorsLength] = useState<number>(0);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  function formatMessage(importResult: ImportResult) {
+    let m1 = "";
+    let m2 = "";
+    let m3 = "";
+    if (importResult.errors.length) {
+      m1 = `Os contatos não puderam ser importados pois:\n`;
+    }
+    if (importResult.alreadyExistMessageCount > 0) {
+      m2 = `${importResult.alreadyExistMessageCount} contatos já existem em nosso banco de dados.\n`;
+    }
+    if (importResult.invalidValuesMessageCount > 0) {
+      m3 = `${importResult.invalidValuesMessageCount} contatos possuem dados inválidos.\n`;
+    }
+    console.log(m1);
+    console.log(m2);
+    console.log(m3);
+    setErrorMessage(m1 + m2 + m3 + "\nDeseja tentar novamente?");
+  }
 
   const ReadDocument = async (file) => {
     let contacts = [];
@@ -61,8 +89,21 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
 
   const handleSubmit = async (contacts: IContact[]) => {
     const res = await sendImportedContacts(contacts);
-    if (res.length) {
-      setImportedContacts(res);
+    setErrorsLength(res.errors.length);
+    formatMessage({
+      errors: res.errors,
+      alreadyExistMessageCount: res.alreadyExistMessageCount,
+      invalidValuesMessageCount: res.invalidValuesMessageCount,
+    });
+    // setImportResult({
+    //   errors: res.errors,
+    //   alreadyExistMessageCount: res.alreadyExistMessageCount,
+    //   invalidValuesMessageCount: res.invalidValuesMessageCount,
+    // });
+    // formatMessage(importResult);
+    // console.log("From Submit ->", res);
+    if (res.errors.length) {
+      setImportedContacts(res.errors);
       setHasError(true);
       getData();
     } else {
@@ -74,12 +115,17 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
   const body = (
     <ModalContainer>
       <Dialog
-        title={`(${importedContacts.length}) erros de importação`}
-        message={`Os seguintes contatos não puderam ser criados: 
-        ${importedContacts.forEach((contact) => contact.name + ", ")} 
-        deseja tentar novamente?`}
+        title={`(${errorsLength}) erros de importação`}
+        // message={`Os seguintes contatos não puderam ser criados:
+        // ${importResult.errors.forEach((contact) => contact.name + ", ")}
+        // pois ${
+        //   importResult.alreadyExistMessageCount
+        // } contatos do arquivo já existem em nosso banco de dados e ${
+        //   importResult.invalidValuesMessageCount
+        // } possuem dados inválidos!\n Deseja tentar novamente?`}
+        message={errorMessage}
         type={"question"}
-        open={hasError}
+        open={errorMessage && hasError}
         setOpen={() => setHasError(false)}
         result={(res) => {
           res ? handleSubmit(importedContacts) : setHasError(false);

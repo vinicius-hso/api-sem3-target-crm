@@ -34,10 +34,26 @@ export const ContactProvider: React.FC = ({ children }) => {
 
   const sendImportedContacts = async (contacts: IContact[]): Promise<any> => {
     let errors = [];
+    let alreadyExistMessageCount = 0;
+    let invalidValuesMessageCount = 0;
     for await (let contact of contacts) {
       try {
         await serviceApi.post("/contact", contact);
       } catch (err) {
+        console.error(err.response.data.message);
+        switch (String(err.response.data.message)) {
+          case "Invalid values for contacts":
+            invalidValuesMessageCount += 1;
+            break;
+          case "Contact already exists":
+            alreadyExistMessageCount += 1;
+            break;
+          default:
+            break;
+        }
+        // err.response.data === "Invalid values for contacts"
+        //   ? (invalidValuesMessageCount += 1)
+        //   : (alreadyExistMessageCount += 1);
         errors.push(contact);
       }
     }
@@ -50,7 +66,12 @@ export const ContactProvider: React.FC = ({ children }) => {
         "Ops! algo deu errado, verifique sua conexão e tente novamente."
       );
     }
-    return errors;
+
+    return {
+      errors,
+      alreadyExistMessageCount,
+      invalidValuesMessageCount,
+    };
   };
 
   const getContacts = async (): Promise<void> => {
