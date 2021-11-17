@@ -18,9 +18,9 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 | ID     | Prioridade | User Story                       | Esforço                              | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ | ------------------------------------ |
-| US_03  | Importante | Eu como usuário, gostaria de acessar a aplicação pela web em diferentes dispositivos. | 00.00 | 1. Aplicação responsiva em diferentes dispositivos. | 
-| US_12  | Desejável  | Eu como usuário, gostaria de acessar a aplicação via web  | 00.00 | 1. Publicação da aplicação no Heroku. |
-| US_13  | Desejável  | Eu como usuário, gostaria de utilizar a aplicação sem inconvenientes erros.  | 00.00 | 1. Correção de erros no código e no funcionamento da aplicação. |
+| US_03  | Importante | Eu como usuário, gostaria de acessar a aplicação pela web em diferentes dispositivos. | 21.71 | 1. Aplicação responsiva em diferentes dispositivos. | 
+| US_12  | Desejável  | Eu como usuário, gostaria de acessar a aplicação via web.  | 24.86 | 1. Publicação da aplicação no Heroku. |
+| US_13  | Desejável  | Eu como usuário, gostaria de utilizar a aplicação sem inconvenientes erros.  | 34.71 | 1. Correção de erros no código e no funcionamento da aplicação. |
 
 ### - Sprint Backlog
 
