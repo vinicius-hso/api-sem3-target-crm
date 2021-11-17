@@ -34,7 +34,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     setLoged(true);
     setCookie("@target:user", myToken, {
       path: "/",
-      maxAge: 3600,
+      maxAge: 60 * 60 * 24, //expira em 24horas
       sameSite: true,
     });
     serviceApi.defaults.headers.common["Authorization"] = `Bearer ${myToken}`;

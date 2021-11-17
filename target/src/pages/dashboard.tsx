@@ -350,7 +350,7 @@ function Dashboard() {
           </div>
         </DatePickerContainer>
       </DashboardHeaderContainer>
-      <div style={{ maxWidth: "720px" }}>
+      <div style={{ width: "100%" }}>
         <ChartsContainer>
           <DynamicBarCharts
             series={chartData?.series}
@@ -396,7 +396,7 @@ function Dashboard() {
         )}
       </Box>
 
-      <div style={{ maxWidth: "720px" }}>
+      <div style={{ width: "100%" }}>
         <ChartsContainer>
           <DynamicTestLineCharts series={testLineChartData.series} />
         </ChartsContainer>
