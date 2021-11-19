@@ -80,31 +80,37 @@ function Account({ user }: AccountProps) {
             onClickPassword={() => setHasEditPassword(!hasEditPassword)}
             hasEditPassword={hasEditPassword}
             saveEditPassword={async (passwords) => {
-              if (passwords.newPassword !== passwords.confirmNewPassword) {
-                setHasEditPassword(false);
-                setStatus(await editUserPassword("", ""));
-                setTimeout(() => {
-                  setStatus({
-                    status: "",
-                    message: "",
+              if (
+                passwords.oldPassword &&
+                passwords.newPassword &&
+                passwords.confirmNewPassword
+              ) {
+                if (passwords.newPassword !== passwords.confirmNewPassword) {
+                  setHasEditPassword(false);
+                  setStatus(await editUserPassword("", ""));
+                  setTimeout(() => {
+                    setStatus({
+                      status: "",
+                      message: "",
+                    });
+                  }, 3000);
+                  return null;
+                } else {
+                  checkPasswords();
+                  setHasEditPassword(false);
+                  setStatus(await editUserPassword(data.id, passwords));
+                  setPasswords({
+                    oldPassword: "",
+                    newPassword: "",
+                    confirmNewPassword: "",
                   });
-                }, 3000);
-                return null;
-              } else {
-                checkPasswords();
-                setHasEditPassword(false);
-                setStatus(await editUserPassword(data.id, passwords));
-                setPasswords({
-                  oldPassword: "",
-                  newPassword: "",
-                  confirmNewPassword: "",
-                });
-                setTimeout(() => {
-                  setStatus({
-                    status: "",
-                    message: "",
-                  });
-                }, 3000);
+                  setTimeout(() => {
+                    setStatus({
+                      status: "",
+                      message: "",
+                    });
+                  }, 3000);
+                }
               }
             }}
           />
