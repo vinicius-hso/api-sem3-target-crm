@@ -19,7 +19,6 @@ import ConversionRateCard from "../ui/components/ConversionRateCardComponent/Con
 import { useDashboardPage } from "../data/services/hooks/PageHooks/DashboardHook";
 import Title from "ui/components/Title/Title";
 import { formatArray } from "data/utils/formatArray";
-import moment from "moment";
 import Head from "next/head";
 import { DynamicTestLineCharts } from "data/services/servicesComponents/DynamicTestLineCharts";
 import { GetServerSideProps } from "next";
@@ -30,15 +29,6 @@ interface BarChartsProps {
   title: string;
   xaxis: string[];
   series: { name: string; data: number[] }[];
-}
-
-interface LineChartsProps {
-  series: any[];
-  xaxis: any[];
-}
-
-interface TestLineChartsProps {
-  series: any[];
 }
 
 function Dashboard() {
@@ -53,6 +43,8 @@ function Dashboard() {
     getConversionRateCardInfo,
     getData,
     deals,
+    getTestLineChartData,
+    testLineChartData,
   } = useDashboardPage();
 
   //* Mock para visualização {
@@ -162,16 +154,6 @@ function Dashboard() {
     series: [],
   });
 
-  const [lineChartData, setLineChartsData] = useState<LineChartsProps>({
-    xaxis: [],
-    series: [],
-  });
-
-  const [testLineChartData, setTestLineChartsData] =
-    useState<TestLineChartsProps>({
-      series: [],
-    });
-
   useEffect(() => {
     if (!dealsInfo?.meanValue) {
       getDealsInfo();
@@ -179,6 +161,10 @@ function Dashboard() {
 
     if (!conversionRateInfo?.conversionRate) {
       getConversionRateCardInfo();
+    }
+
+    if (!testLineChartData?.series[0]) {
+      getTestLineChartData();
     }
   }, []);
 
@@ -217,62 +203,8 @@ function Dashboard() {
     });
   };
 
-  const getLineCharData = () => {
-    const dat = deals;
-    let wons = { name: "Ganha", data: [] };
-    let lost = { name: "Perdida", data: [] };
-    let xaxisValues = [];
-    mock.map((d) => {
-      switch (d.status) {
-        case "WON":
-          wons.data.push((d.value / 100).toFixed(2));
-          xaxisValues.push(d.updatedAt);
-          console.log(moment(d.updatedAt).format("ll"));
-          break;
-        case "LOST":
-          lost.data.push((d.value / 100).toFixed(2));
-          xaxisValues.push(d.updatedAt);
-          break;
-      }
-    });
-    setLineChartsData({
-      xaxis: xaxisValues,
-      series: [wons, lost],
-    });
-  };
-
-  const getTestLineChartData = () => {
-    let wons = { name: "Ganhas", data: [] };
-    let lost = { name: "Perdidas", data: [] };
-    let x = "";
-    let y = "";
-    let t = "";
-
-    wonDeals.map((d) => {
-      t = moment(d.updatedAt).format("L");
-      x = t.toString() + " GMT";
-      y = (d.value / 100).toFixed(2);
-      wons.data.push({ x, y });
-    });
-
-    lostDeals.map((d) => {
-      t = moment(d.updatedAt).format("L");
-      x = t.toString() + " GMT";
-      y = (d.value / 100).toFixed(2);
-      lost.data.push({ x, y });
-    });
-
-    wons.data.sort((a, b) => new Date(b.x).getTime() - new Date(a.x).getTime());
-    lost.data.sort((a, b) => new Date(b.x).getTime() - new Date(a.x).getTime());
-
-    setTestLineChartsData({
-      series: [wons, lost],
-    });
-  };
-
   useEffect(() => {
     getChartData("Empresa", "quantidade");
-    getLineCharData();
     getTestLineChartData();
   }, [deals]);
 
@@ -398,7 +330,9 @@ function Dashboard() {
 
       <div style={{ width: "100%" }}>
         <ChartsContainer>
-          <DynamicTestLineCharts series={testLineChartData.series} />
+          {testLineChartData.series[0] && (
+            <DynamicTestLineCharts series={testLineChartData?.series} />
+          )}
         </ChartsContainer>
       </div>
     </DashboardPageContainer>
