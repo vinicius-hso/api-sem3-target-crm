@@ -29,21 +29,38 @@ export const useDashboardPage = () => {
       series: [],
     });
 
-  const getTestLineChartData = () => {
+  const getTestLineChartData = async () => {
+    let wD = [];
+    let lD = [];
     let wons = { name: "Ganhas", data: [] };
     let lost = { name: "Perdidas", data: [] };
     let x = "";
     let y = "";
     let t = "";
 
-    wonDeals.map((d) => {
+    const allDeals = await DealsService.getAllDeals();
+    console.log(allDeals);
+    allDeals.map((d) => {
+      switch (d.status) {
+        case "WON":
+          wD.push(d);
+          break;
+        case "LOST":
+          lD.push(d);
+          break;
+        default:
+          break;
+      }
+    });
+
+    wD.map((d) => {
       t = moment(d.updatedAt).format("L");
       x = t.toString() + " GMT";
       y = (d.value / 100).toFixed(2);
       wons.data.push({ x, y });
     });
 
-    lostDeals.map((d) => {
+    lD.map((d) => {
       t = moment(d.updatedAt).format("L");
       x = t.toString() + " GMT";
       y = (d.value / 100).toFixed(2);
