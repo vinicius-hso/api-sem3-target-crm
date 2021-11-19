@@ -102,7 +102,10 @@ function HomePage() {
               variant="contained"
               sx={{ width: "150px", mt: 3 }}
               color="primary"
-              onClick={() => login(email, password)}
+              onClick={(event) => {
+                event.preventDefault();
+                login(email, password);
+              }}
               type="submit"
             >
               {isLoading ? (

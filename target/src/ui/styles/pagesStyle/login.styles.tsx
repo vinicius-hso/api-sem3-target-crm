@@ -1,6 +1,6 @@
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
-export const FormContainer = styled("div")`
+export const FormContainer = styled("form")`
   display: flex;
   flex-direction: column;
   align-items: center;
