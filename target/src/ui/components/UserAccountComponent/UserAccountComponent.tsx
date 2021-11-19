@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, Avatar, Button, Tooltip } from "@material-ui/core";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
 import {
@@ -42,6 +42,8 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
   setUserPassword,
   ...props
 }) => {
+  const [submit, isSubmit] = useState(false);
+
   return (
     <div>
       <ContainerStyled>
@@ -62,7 +64,10 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                 size="small"
                 color="primary"
                 type="submit"
-                onClick={props.onClickPassword}
+                onClick={() => {
+                  props.onClickPassword();
+                  isSubmit(false);
+                }}
               >
                 <i style={{ marginRight: "2px" }} className="fa fa-unlock"></i>
                 <NewActivityButtonLabel> Alterar senha</NewActivityButtonLabel>
@@ -84,6 +89,12 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                   variant={"standard"}
                   size="medium"
                   value={password.oldPassword}
+                  error={submit && !password.oldPassword.length}
+                  helperText={
+                    !password.oldPassword.length && submit
+                      ? "Esse campo é obrigattório"
+                      : " "
+                  }
                   onChange={(event) =>
                     setUserPassword({
                       ...password,
@@ -100,6 +111,12 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                   variant={"standard"}
                   size="medium"
                   value={password.newPassword}
+                  error={submit && !password.newPassword.length}
+                  helperText={
+                    !password.newPassword.length && submit
+                      ? "Esse campo é obrigattório"
+                      : " "
+                  }
                   onChange={(event) =>
                     setUserPassword({
                       ...password,
@@ -116,6 +133,12 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                   variant={"standard"}
                   size="medium"
                   value={password.confirmNewPassword}
+                  error={submit && !password.confirmNewPassword.length}
+                  helperText={
+                    !password.confirmNewPassword.length && submit
+                      ? "Esse campo é obrigattório"
+                      : " "
+                  }
                   onChange={(event) =>
                     setUserPassword({
                       ...password,
@@ -134,7 +157,10 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                     leaveDelay={100}
                   >
                     <Button
-                      onClick={() => props.saveEditPassword(password)}
+                      onClick={() => {
+                        isSubmit(true);
+                        props.saveEditPassword(password);
+                      }}
                       variant="contained"
                       size="small"
                       sx={{
