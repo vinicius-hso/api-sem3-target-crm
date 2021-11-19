@@ -39,18 +39,20 @@ export const useDashboardPage = () => {
     let t = "";
 
     const allDeals = await DealsService.getAllDeals();
-    allDeals.map((d) => {
-      switch (d.status) {
-        case "WON":
-          wD.push(d);
-          break;
-        case "LOST":
-          lD.push(d);
-          break;
-        default:
-          break;
-      }
-    });
+    if (allDeals?.length) {
+      allDeals.map((d) => {
+        switch (d.status) {
+          case "WON":
+            wD.push(d);
+            break;
+          case "LOST":
+            lD.push(d);
+            break;
+          default:
+            break;
+        }
+      });
+    }
 
     wD.map((d) => {
       t = moment(d.updatedAt).format("L");
