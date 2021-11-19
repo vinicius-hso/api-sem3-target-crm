@@ -39,7 +39,6 @@ export const useDashboardPage = () => {
     let t = "";
 
     const allDeals = await DealsService.getAllDeals();
-    console.log(allDeals);
     allDeals.map((d) => {
       switch (d.status) {
         case "WON":
