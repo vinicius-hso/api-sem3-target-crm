@@ -6,6 +6,10 @@ import { DealsInfoCardTypes } from "../../../../types/DealsInfoCard";
 import { ConversionRateInfoCardTypes } from "../../../../types/ConversionRateInfoCard";
 import moment from "moment";
 
+interface TestLineChartsProps {
+  series: any[];
+}
+
 export const useDashboardPage = () => {
   const [dealsByCompany, setDealsByCompany] = useState([]);
   const [deals, setDeals] = useState([]);
@@ -18,6 +22,41 @@ export const useDashboardPage = () => {
   );
   const [conversionRateInfo, setConversionRateInfo] =
     useState<ConversionRateInfoCardTypes>({} as ConversionRateInfoCardTypes);
+
+  //* Testando
+  const [testLineChartData, setTestLineChartsData] =
+    useState<TestLineChartsProps>({
+      series: [],
+    });
+
+  const getTestLineChartData = () => {
+    let wons = { name: "Ganhas", data: [] };
+    let lost = { name: "Perdidas", data: [] };
+    let x = "";
+    let y = "";
+    let t = "";
+
+    wonDeals.map((d) => {
+      t = moment(d.updatedAt).format("L");
+      x = t.toString() + " GMT";
+      y = (d.value / 100).toFixed(2);
+      wons.data.push({ x, y });
+    });
+
+    lostDeals.map((d) => {
+      t = moment(d.updatedAt).format("L");
+      x = t.toString() + " GMT";
+      y = (d.value / 100).toFixed(2);
+      lost.data.push({ x, y });
+    });
+
+    wons.data.sort((a, b) => new Date(b.x).getTime() - new Date(a.x).getTime());
+    lost.data.sort((a, b) => new Date(b.x).getTime() - new Date(a.x).getTime());
+
+    setTestLineChartsData({
+      series: [wons, lost],
+    });
+  };
 
   const getData = async (startDate?: Date) => {
     let query = "";
@@ -189,5 +228,7 @@ export const useDashboardPage = () => {
     lostDeals,
     inProgressDeals,
     archivedDeals,
+    getTestLineChartData,
+    testLineChartData,
   };
 };
