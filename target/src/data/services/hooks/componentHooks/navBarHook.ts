@@ -20,14 +20,7 @@ export const useNavBarComponent = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (!serviceApi.defaults.headers.common["Authorization"]) {
-      const storedToken = localStorage.getItem("@taget:token");
-      serviceApi.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${storedToken}`;
-    }
-  }, []);
+  useEffect(() => {}, []);
 
   return {
     setMobileOpen,

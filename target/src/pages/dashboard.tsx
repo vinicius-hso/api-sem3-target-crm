@@ -24,6 +24,7 @@ import { DynamicTestLineCharts } from "data/services/servicesComponents/DynamicT
 import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
+import { DealTypes } from "types/Deal";
 
 interface BarChartsProps {
   title: string;
@@ -31,7 +32,11 @@ interface BarChartsProps {
   series: { name: string; data: number[] }[];
 }
 
-function Dashboard() {
+interface DashboardProps {
+  allDeals: DealTypes[];
+}
+
+function Dashboard({ allDeals }: DashboardProps) {
   const {
     wonDeals,
     lostDeals,
@@ -43,6 +48,7 @@ function Dashboard() {
     getConversionRateCardInfo,
     getData,
     deals,
+    setAllDeals,
     getTestLineChartData,
     testLineChartData,
   } = useDashboardPage();
@@ -155,21 +161,22 @@ function Dashboard() {
   });
 
   useEffect(() => {
-    if (!dealsInfo?.meanValue) {
-      getDealsInfo();
-    }
-
-    if (!conversionRateInfo?.conversionRate) {
-      getConversionRateCardInfo();
-    }
-
-    if (!testLineChartData?.series[0]) {
-      getTestLineChartData();
+    if (allDeals) {
+      setAllDeals(allDeals);
     }
   }, []);
 
   useEffect(() => {
-    getData();
+    getDealsInfo();
+    getConversionRateCardInfo();
+    getTestLineChartData();
+    getTestLineChartData();
+  }, [allDeals]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      getData();
+    }, 500);
   }, []);
 
   const getChartData = (chartType: string, valueType: string) => {
@@ -205,7 +212,6 @@ function Dashboard() {
 
   useEffect(() => {
     getChartData("Empresa", "quantidade");
-    getTestLineChartData();
   }, [deals]);
 
   const setFilter = () => {
@@ -346,10 +352,14 @@ export const getServerSideProps: GetServerSideProps = async ({
 }): Promise<any> => {
   const data = parseCookies(req);
   let token: string = "";
+  let allDeals: any = [];
 
   Object.keys(data).find((key, i) => {
-    if (key === "@target:user") {
+    if (key === "@target:token") {
       token = Object.values(data)[i];
+    }
+    if (key === "@target:user") {
+      allDeals = Object.values(data)[i];
     }
   });
   if (!token?.length && resolvedUrl !== "/login") {
@@ -362,7 +372,13 @@ export const getServerSideProps: GetServerSideProps = async ({
   } else {
     try {
       serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check");
+      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const { data } = await serviceApi.get(
+        "/deal?with=pipeline,company,contact"
+      );
+      allDeals = data;
     } catch (e) {
       return {
         redirect: {
@@ -372,10 +388,10 @@ export const getServerSideProps: GetServerSideProps = async ({
       };
     }
   }
-
   return {
     props: {
-      session: "",
+      allDeals,
+      token,
     },
   };
 };

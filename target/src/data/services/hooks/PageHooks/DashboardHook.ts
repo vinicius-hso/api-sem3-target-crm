@@ -13,6 +13,7 @@ interface TestLineChartsProps {
 export const useDashboardPage = () => {
   const [dealsByCompany, setDealsByCompany] = useState([]);
   const [deals, setDeals] = useState([]);
+  const [allDeals, setAllDeals] = useState([]);
   const [wonDeals, setWonDeals] = useState([]);
   const [lostDeals, setLostDeals] = useState([]);
   const [inProgressDeals, setInProgressDeals] = useState([]);
@@ -38,7 +39,6 @@ export const useDashboardPage = () => {
     let y = "";
     let t = "";
 
-    const allDeals = await DealsService.getAllDeals();
     if (allDeals?.length) {
       allDeals.map((d) => {
         switch (d.status) {
@@ -116,7 +116,6 @@ export const useDashboardPage = () => {
   };
 
   const getDealsByCompany = async () => {
-    const allDeals = await DealsService.getAllDeals();
     const allCompanies = await CompanyService.getCompanies();
     let companies = [];
 
@@ -162,8 +161,6 @@ export const useDashboardPage = () => {
       return days;
     }
 
-    const allDeals = await DealsService.getAllDeals();
-
     let totalDeals = allDeals?.length;
     let totalDays = 0;
     let totalWons = 0;
@@ -194,8 +191,6 @@ export const useDashboardPage = () => {
   };
 
   const getConversionRateCardInfo = async () => {
-    const allDeals = await DealsService.getAllDeals();
-
     let totalWon = 0;
     let totalLost = 0;
     let totalInProgress = 0;
@@ -248,5 +243,6 @@ export const useDashboardPage = () => {
     archivedDeals,
     getTestLineChartData,
     testLineChartData,
+    setAllDeals,
   };
 };

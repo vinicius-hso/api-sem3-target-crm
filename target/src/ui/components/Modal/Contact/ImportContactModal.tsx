@@ -61,9 +61,6 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
     if (importResult.invalidValuesMessageCount > 0) {
       m3 = `${importResult.invalidValuesMessageCount} contatos possuem dados inválidos.\n`;
     }
-    console.log(m1);
-    console.log(m2);
-    console.log(m3);
     setErrorMessage(m1 + m2 + m3 + "\nDeseja tentar novamente?");
   }
 

@@ -30,12 +30,6 @@ export const useUserPage = () => {
     );
   }, [isAdmin]);
 
-  useEffect(() => {
-    if (!users.length) {
-      getData();
-    }
-  }, []);
-
   const formatListToSelect = (users: any[]): any => {
     setFormat(
       users.map((user) => {
@@ -93,6 +87,7 @@ export const useUserPage = () => {
 
   return {
     users,
+    setUsers,
     formatUsersToSelect,
     filteredUser,
     removeFiltered,

@@ -9,7 +9,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [loged, setLoged] = useState(false);
-  const [, setCookie] = useCookies(["@target:user"]);
+  const [, setCookie] = useCookies(["@target:user", "@target:token"]);
 
   useEffect(() => {
     const getStoragedData = () => {
@@ -17,9 +17,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       const user = localStorage.getItem("user");
 
       if (storagedToken) {
-        serviceApi.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${storagedToken}`;
         setToken(storagedToken);
       }
       if (user) {
@@ -32,12 +29,16 @@ export const AuthProvider: React.FC = ({ children }) => {
   const signIn = (myToken: string, myUser: Object): void => {
     setToken(myToken);
     setLoged(true);
-    setCookie("@target:user", myToken, {
+    setCookie("@target:user", myUser, {
       path: "/",
       maxAge: 60 * 60 * 24, //expira em 24horas
       sameSite: true,
     });
-    serviceApi.defaults.headers.common["Authorization"] = `Bearer ${myToken}`;
+    setCookie("@target:token", myToken, {
+      path: "/",
+      maxAge: 60 * 60 * 24, //expira em 24horas
+      sameSite: true,
+    });
     localStorage.setItem("user", JSON.stringify(myUser));
     localStorage.setItem("@taget:token", myToken);
   };

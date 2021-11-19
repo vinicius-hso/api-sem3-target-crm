@@ -14,10 +14,14 @@ type Passwords = {
   confirmNewPassword: string;
 };
 
-function Account() {
+interface AccountProps {
+  user: IUser;
+}
+
+function Account({ user }: AccountProps) {
   const [hasEdit, setHasEdit] = useState(false);
   const [hasEditPassword, setHasEditPassword] = useState(false);
-  const { user, editUser, editUserPassword } = useSessionUserPage();
+  const { editUser, editUserPassword } = useSessionUserPage();
 
   const [status, setStatus] = useState<{ status: string; message: string }>({
     status: "",
@@ -117,10 +121,14 @@ export const getServerSideProps: GetServerSideProps = async ({
 }): Promise<any> => {
   const data = parseCookies(req);
   let token: string = "";
+  let user: any = {};
 
   Object.keys(data).find((key, i) => {
-    if (key === "@target:user") {
+    if (key === "@target:token") {
       token = Object.values(data)[i];
+    }
+    if (key === "@target:user") {
+      user = Object.values(data)[i];
     }
   });
   if (!token?.length && resolvedUrl !== "/login") {
@@ -133,7 +141,9 @@ export const getServerSideProps: GetServerSideProps = async ({
   } else {
     try {
       serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check");
+      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
     } catch (e) {
       return {
         redirect: {
@@ -144,9 +154,13 @@ export const getServerSideProps: GetServerSideProps = async ({
     }
   }
 
+  if (user) {
+    user = JSON.parse(user);
+  }
   return {
     props: {
-      session: "",
+      user,
+      token,
     },
   };
 };

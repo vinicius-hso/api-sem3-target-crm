@@ -17,7 +17,7 @@ export const useCompanyPage = () => {
     if (!companies.length) {
       setTimeout(() => {
         getData();
-      }, 500);
+      }, 1000);
     }
   }, []);
 
@@ -88,6 +88,7 @@ export const useCompanyPage = () => {
 
   return {
     companies,
+    setCompanies,
     formatCompaniesToSelect,
     filteredCompany,
     removeFiltered,

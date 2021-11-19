@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   CardsContainer,
   UserHeaderContainer,
@@ -18,9 +18,15 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
+import { IUser } from "types/User";
 
-function UserPage() {
-  const { users, filteredUser, removeFiltered, getData } = useUserPage();
+interface UserPageProps {
+  usersSSR: IUser[];
+}
+
+function UserPage({ usersSSR }: UserPageProps) {
+  const { users, setUsers, filteredUser, removeFiltered, getData } =
+    useUserPage();
 
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
@@ -31,6 +37,14 @@ function UserPage() {
   const [selectedUser, setSelectedUser] = React.useState({});
 
   const [time, setTime] = React.useState(null);
+
+  useEffect(() => {
+    if (!users?.length && !usersSSR?.length) {
+      getData();
+    } else if (usersSSR?.length) {
+      setUsers(usersSSR);
+    }
+  }, []);
 
   const handleChangeSearchTerm = (event) => {
     if (hasFiltered) {
@@ -147,9 +161,10 @@ export const getServerSideProps: GetServerSideProps = async ({
 }): Promise<any> => {
   const data = parseCookies(req);
   let token: string = "";
+  let usersSSR: IUser[] = [];
 
   Object.keys(data).find((key, i) => {
-    if (key === "@target:user") {
+    if (key === "@target:token") {
       token = Object.values(data)[i];
     }
   });
@@ -163,7 +178,11 @@ export const getServerSideProps: GetServerSideProps = async ({
   } else {
     try {
       serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check");
+      await serviceApi.get("/auth/faw1efawe3f14aw8es3v6awer51xx3/check", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const { data } = await serviceApi.get<IUser[]>("/user");
+      usersSSR = data;
     } catch (e) {
       return {
         redirect: {
@@ -173,10 +192,10 @@ export const getServerSideProps: GetServerSideProps = async ({
       };
     }
   }
-
   return {
     props: {
-      session: "",
+      token,
+      usersSSR,
     },
   };
 };

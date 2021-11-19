@@ -67,7 +67,11 @@ const CreateContactModal = () => {
   }
 
   useEffect(() => {
-    if (!companies.length) getCompanies();
+    if (!companies.length) {
+      setTimeout(() => {
+        getCompanies();
+      }, 500);
+    }
     isSubmited(false);
     setData({
       name: "",
