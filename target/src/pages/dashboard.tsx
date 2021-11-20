@@ -246,6 +246,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
             >
               <ToggleButton value="Empresa">Empresas</ToggleButton>
               <ToggleButton value="Vendedor">Vendedores</ToggleButton>
+              <ToggleButton value="Pipeline">Pipelines</ToggleButton>
             </ToggleButtonGroup>
             <ToggleButtonGroup
               color="primary"
