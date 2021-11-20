@@ -7,10 +7,7 @@ export const useDealPage = () => {
   const [formatDealToSelect, setFormat] = useState([]);
 
   useEffect(() => {
-    if (!deals.length)
-      setTimeout(() => {
-        getData();
-      }, 500);
+    if (!deals.length) getData();
   }, []);
 
   const formatListToSelect = (deals: any[]): any => {

@@ -9,9 +9,7 @@ export const useContactPage = () => {
 
   useEffect(() => {
     if (!contacts.length) {
-      setTimeout(() => {
-        getData();
-      }, 500);
+      getData();
     }
   }, []);
 

@@ -4,19 +4,19 @@ import { CompanyTypes } from "./Company";
 export default interface ModalTypes {
   createModalState: boolean;
   UseCreateModal: () => void;
-  createPipeline: () => void;
+  createPipeline: () => Promise<void>;
 
   updateModalState: boolean;
   UseUpdateModal: (id: string) => void;
-  updatePipeline: () => void;
+  updatePipeline: () => Promise<void>;
 
   deleteModalState: boolean;
   UseDeleteModal: (id: string) => void;
-  deletePipeline: () => void;
+  deletePipeline: () => Promise<void>;
 
   createDealModalState: boolean;
   UseCreateDealModal: (pipelineId?: string) => void;
-  createDeal: (data: DealTypes) => void;
+  createDeal: (data: DealTypes) => Promise<void>;
 
   dealDetailModalState: boolean;
   UseDealDetailModal: (deal: any) => void;

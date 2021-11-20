@@ -9,7 +9,7 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
 interface DeleteModalProps {
-  getData: () => void;
+  getData: () => any;
 }
 
 const DeleteModal: React.FC<DeleteModalProps> = ({ getData }) => {
@@ -52,11 +52,9 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ getData }) => {
         leaveDelay={100}
       >
         <Button
-          onClick={() => {
-            deletePipeline();
-            setTimeout(() => {
-              getData();
-            }, 1000);
+          onClick={async () => {
+            await deletePipeline();
+            await getData();
           }}
           variant="contained"
           color="error"

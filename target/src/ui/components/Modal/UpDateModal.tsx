@@ -9,7 +9,7 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
 interface UpdateModalProps {
-  getData: () => void;
+  getData: () => any;
 }
 
 const UpDateModal = ({ getData }: UpdateModalProps) => {
@@ -66,11 +66,9 @@ const UpDateModal = ({ getData }: UpdateModalProps) => {
         leaveDelay={100}
       >
         <Button
-          onClick={() => {
-            updatePipeline();
-            setTimeout(() => {
-              getData();
-            }, 1000);
+          onClick={async () => {
+            await updatePipeline();
+            await getData();
           }}
           variant="contained"
           color="primary"

@@ -7,6 +7,7 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
+import { toast } from "react-toastify";
 
 type Passwords = {
   oldPassword: string;
@@ -16,17 +17,14 @@ type Passwords = {
 
 interface AccountProps {
   user: IUser;
+  token: string;
 }
 
-function Account({ user }: AccountProps) {
+function Account({ user, token }: AccountProps) {
+  serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   const [hasEdit, setHasEdit] = useState(false);
   const [hasEditPassword, setHasEditPassword] = useState(false);
   const { editUser, editUserPassword } = useSessionUserPage();
-
-  const [status, setStatus] = useState<{ status: string; message: string }>({
-    status: "",
-    message: "",
-  });
 
   const [data, setData] = useState<IUser>({
     id: "",
@@ -66,51 +64,43 @@ function Account({ user }: AccountProps) {
             hasEdit={hasEdit}
             saveEdit={async (data) => {
               setHasEdit(false);
-              setStatus(await editUser(data.id, data));
-
-              setTimeout(() => {
-                setStatus({
-                  status: "",
-                  message: "",
-                });
-              }, 3000);
+              editUser(data.id, data);
             }}
             password={passwords}
             setUserPassword={(passwords) => setPasswords(passwords)}
-            onClickPassword={() => setHasEditPassword(!hasEditPassword)}
+            onClickPassword={() => {
+              setHasEditPassword(!hasEditPassword);
+              setPasswords({
+                oldPassword: "",
+                newPassword: "",
+                confirmNewPassword: "",
+              });
+            }}
             hasEditPassword={hasEditPassword}
             saveEditPassword={async (passwords) => {
               if (
-                passwords.oldPassword &&
-                passwords.newPassword &&
-                passwords.confirmNewPassword
+                passwords?.oldPassword?.length >= 6 &&
+                passwords.newPassword.length >= 6 &&
+                passwords.confirmNewPassword.length >= 6
               ) {
                 if (passwords.newPassword !== passwords.confirmNewPassword) {
                   setHasEditPassword(false);
-                  setStatus(await editUserPassword("", ""));
-                  setTimeout(() => {
-                    setStatus({
-                      status: "",
-                      message: "",
-                    });
-                  }, 3000);
+                  await editUserPassword("", "");
                   return null;
                 } else {
                   checkPasswords();
                   setHasEditPassword(false);
-                  setStatus(await editUserPassword(data.id, passwords));
+                  await editUserPassword(data.id, passwords);
                   setPasswords({
                     oldPassword: "",
                     newPassword: "",
                     confirmNewPassword: "",
                   });
-                  setTimeout(() => {
-                    setStatus({
-                      status: "",
-                      message: "",
-                    });
-                  }, 3000);
                 }
+              } else {
+                toast.warning(
+                  "Preencha os campos corretamente, e tente novamente! "
+                );
               }
             }}
           />

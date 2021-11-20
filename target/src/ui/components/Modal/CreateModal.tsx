@@ -9,7 +9,7 @@ import { ModalStyled } from "./ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 
 interface CreateModalProps {
-  getData: () => void;
+  getData: () => any;
 }
 
 const CreateModal = ({ getData }: CreateModalProps) => {
@@ -63,13 +63,11 @@ const CreateModal = ({ getData }: CreateModalProps) => {
         leaveDelay={100}
       >
         <Button
-          onClick={() => {
+          onClick={async () => {
             isSubmited(true);
             if (value.length) {
-              createPipeline();
-              setTimeout(() => {
-                getData();
-              }, 1000);
+              await createPipeline();
+              await getData();
             }
           }}
           variant="contained"

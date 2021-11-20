@@ -177,9 +177,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
   }, [allDeals]);
 
   useEffect(() => {
-    setTimeout(() => {
-      getData();
-    }, 500);
+    getData();
   }, []);
 
   const getChartData = (chartType: string, valueType: string) => {

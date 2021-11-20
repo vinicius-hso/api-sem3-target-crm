@@ -15,9 +15,7 @@ export const useCompanyPage = () => {
 
   useEffect(() => {
     if (!companies.length) {
-      setTimeout(() => {
-        getData();
-      }, 1000);
+      getData();
     }
   }, []);
 

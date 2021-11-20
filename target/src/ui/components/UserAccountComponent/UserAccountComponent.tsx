@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Avatar, Button, Tooltip } from "@material-ui/core";
 import TextFieldMask from "../Input/TextFieldMask/TextFieldMask";
-import {
-  NewActivityButton,
-  NewActivityButtonLabel,
-} from "../DealDetailCard/DealDetailCard.style";
+import { NewActivityButton } from "../DealDetailCard/DealDetailCard.style";
 import { ButtonsContainer } from "../Modal/ModalStyles/ButtonsContainer";
 import {
   UserAccountCardContainer,
@@ -14,6 +11,8 @@ import {
 } from "./UserAccountComponent.style";
 import { IUser } from "types/User";
 import Title from "../Title/Title";
+import { emailValidator } from "data/utils/emailValidator";
+import { toast } from "react-toastify";
 
 type Passwords = {
   oldPassword: string;
@@ -43,6 +42,11 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
   ...props
 }) => {
   const [submit, isSubmit] = useState(false);
+  const [prevUser, setPrevUser] = useState<IUser>({});
+
+  useEffect(() => {
+    if (user && !prevUser?.name) setPrevUser(user);
+  }, [user]);
 
   return (
     <div>
@@ -51,30 +55,26 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
           <Title title="Meus dados" />
         </div>
 
-        <ContainerStyled>
-          <div style={{ position: "relative" }}>
-            <Tooltip
-              title="Alterar senha"
-              placement="top-start"
-              enterDelay={500}
-              leaveDelay={100}
-            >
-              <NewActivityButton
-                variant="contained"
-                size="small"
-                color="primary"
-                type="submit"
-                onClick={() => {
-                  props.onClickPassword();
-                  isSubmit(false);
-                }}
-              >
-                <i style={{ marginRight: "2px" }} className="fa fa-unlock"></i>
-                <NewActivityButtonLabel> Alterar senha</NewActivityButtonLabel>
-              </NewActivityButton>
-            </Tooltip>
-          </div>
-        </ContainerStyled>
+        <Tooltip
+          title="Alterar senha"
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
+        >
+          <NewActivityButton
+            variant="contained"
+            size="small"
+            color="primary"
+            type="submit"
+            onClick={() => {
+              props.onClickPassword();
+              isSubmit(false);
+            }}
+          >
+            <i style={{ marginRight: "2px" }} className="fa fa-unlock"></i>
+            Alterar senha
+          </NewActivityButton>
+        </Tooltip>
 
         {props.hasEditPassword && (
           <ContainerStyled>
@@ -88,11 +88,12 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                   fullWidth
                   variant={"standard"}
                   size="medium"
+                  type="password"
                   value={password.oldPassword}
                   error={submit && !password.oldPassword.length}
                   helperText={
                     !password.oldPassword.length && submit
-                      ? "Esse campo é obrigattório"
+                      ? "Esse campo é obrigatório"
                       : " "
                   }
                   onChange={(event) =>
@@ -109,12 +110,13 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                   label={"Nova Senha"}
                   fullWidth
                   variant={"standard"}
+                  type="password"
                   size="medium"
                   value={password.newPassword}
-                  error={submit && !password.newPassword.length}
+                  error={submit && password?.newPassword?.length < 6}
                   helperText={
-                    !password.newPassword.length && submit
-                      ? "Esse campo é obrigattório"
+                    password?.newPassword?.length < 6 && submit
+                      ? "Preenchimento invalido"
                       : " "
                   }
                   onChange={(event) =>
@@ -131,12 +133,13 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                   label={"Confirmar Nova Senha"}
                   fullWidth
                   variant={"standard"}
+                  type="password"
                   size="medium"
                   value={password.confirmNewPassword}
                   error={submit && !password.confirmNewPassword.length}
                   helperText={
                     !password.confirmNewPassword.length && submit
-                      ? "Esse campo é obrigattório"
+                      ? "Preenchimento invalido"
                       : " "
                   }
                   onChange={(event) =>
@@ -226,7 +229,10 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
             >
               <EditButton
                 style={{ right: props.hasEdit ? "80px" : 0 }}
-                onClick={props.onClick}
+                onClick={() => {
+                  setUser(prevUser);
+                  props.onClick();
+                }}
               >
                 {!props.hasEdit ? "Editar" : "Cancelar"}
                 <i
@@ -245,7 +251,10 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
             >
               <EditButton
                 style={{ right: props.hasEdit ? "80px" : 0 }}
-                onClick={props.onClick}
+                onClick={() => {
+                  setUser(prevUser);
+                  props.onClick();
+                }}
                 color={props.hasEdit ? "error" : "primary"}
               >
                 {!props.hasEdit ? "Editar" : "Cancelar"}
@@ -269,9 +278,11 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                 display: !props.hasEdit && "none",
               }}
               onClick={() => {
-                user.name.length > 0 &&
-                  user.email.length > 0 &&
-                  props.saveEdit(user);
+                user?.name?.length && emailValidator(user?.email)
+                  ? props.saveEdit(user)
+                  : toast.warning(
+                      "Preencha os campos corretamente, e tente novamente"
+                    );
               }}
               color={props.hasEdit ? "success" : "primary"}
             >
@@ -286,8 +297,8 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
 
           {user && (
             <Avatar
-              alt={user.name}
-              src={user.picture}
+              alt={user?.name?.toUpperCase()}
+              src={user?.picture}
               sx={{ width: 126, height: 126, margin: 5 }}
             />
           )}
@@ -299,28 +310,28 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               fullWidth
               variant={"standard"}
               size="medium"
-              value={user.name || "usuario"}
+              value={user?.name || ""}
               onChange={(event) =>
                 setUser({ ...user, name: event.target.value })
               }
-              error={!user.name}
-              helperText={!user.name ? "Informe o nome!" : " "}
+              error={!user?.name}
+              helperText={!user?.name && "Informe o nome!"}
             />
           </InputContainer>
 
           <InputContainer>
             <TextFieldMask
-              disabled={!props.hasEdit}
+              disabled={!props?.hasEdit}
               label={"Email"}
               fullWidth
               variant={"standard"}
               size="medium"
-              value={user.email || "usuario@usuario.com"}
+              value={user?.email || ""}
               onChange={(event) =>
                 setUser({ ...user, email: event.target.value })
               }
-              error={!user.email}
-              helperText={!user.email ? "Informe o email!" : " "}
+              error={!emailValidator(user?.email)}
+              helperText={!emailValidator(user?.email) && "E-mail invalido!"}
             />
           </InputContainer>
 
@@ -331,7 +342,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               fullWidth
               variant={"standard"}
               size="medium"
-              value={user.picture || "usuario"}
+              value={user?.picture || ""}
               onChange={(event) =>
                 setUser({ ...user, picture: event.target.value })
               }

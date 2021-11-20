@@ -26,6 +26,7 @@ const FileInput: React.FC<FileInputProps> = ({ onChange }) => {
           id="contained-button-file"
           style={{ display: "none" }}
           type="file"
+          accept=".xlsx"
           onChange={(event) => {
             onChange(event.target?.files[0]);
             setFileName(event.target?.files[0]?.name || "");
