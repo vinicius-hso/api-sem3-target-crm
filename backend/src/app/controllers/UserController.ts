@@ -33,13 +33,13 @@ class UserController {
       const id = req.params.id;
 
       const user = await User.findOne(id, queryBuilder(req.query));
-      
+
       if (!user) return res.status(404).json({ message: 'User not exist' });
 
       user.passwordHash = undefined;
 
       return res.status(200).json(user);
-    } catch (error) {      
+    } catch (error) {
       return res.status(400).json({ error: 'Find user failed, try again' });
     }
   }
@@ -57,19 +57,21 @@ class UserController {
 
       const password = generatePassword();
 
-      transport.sendMail({
-        to: email,
-        from: '"Contato" <api@contato.com>',
-        subject: 'new user', // assunto do email
-        template: 'newUser',
+      transport.sendMail(
+        {
+          to: email,
+          from: '"Contato" <api@contato.com>',
+          subject: 'new user', // assunto do email
+          template: 'newUser',
 
-        context: { password },
-      },
-      (err) => {
-        if (err) console.log('Email not sent')
+          context: { password, email },
+        },
+        (err) => {
+          if (err) console.log('Email not sent');
 
-        transport.close();
-      });
+          transport.close();
+        }
+      );
 
       const passwordHash = await bcrypt.hash(password, 10);
 
@@ -144,14 +146,14 @@ class UserController {
 
       return res.status(200).json();
     } catch (error) {
-      return res.status(400).json({ error: 'Remove failed, try again' });     
+      return res.status(400).json({ error: 'Remove failed, try again' });
     }
   }
 
   public async passwordUpdate(req: Request, res: Response): Promise<Response> {
     try {
       const { oldPassword, newPassword } = req.body;
-      const id = req.params.id
+      const id = req.params.id;
 
       if (!oldPassword || !newPassword) return res.status(400).json({ message: 'Invalid values for update password' });
 
