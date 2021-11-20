@@ -10,7 +10,7 @@ import UserRoutes from './user.routes';
 const routes = Router();
 
 routes.get('/', (req, res) => {
-  res.json({ API: 'Terceiro Semetre' });
+  res.json({ API: 'Terceiro Semestre' });
 });
 
 // prefix
