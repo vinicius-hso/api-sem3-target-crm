@@ -40,6 +40,15 @@ interface DashboardProps {
 function Dashboard({ allDeals, token }: DashboardProps) {
   serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
+  useEffect(() => {
+    if (allDeals) {
+      // setAllDeals(allDeals);
+      getDealsInfo(allDeals);
+      getConversionRateCardInfo(allDeals);
+      getTestLineChartData(allDeals);
+    }
+  }, []);
+
   const {
     wonDeals,
     lostDeals,
@@ -51,7 +60,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
     getConversionRateCardInfo,
     getData,
     deals,
-    setAllDeals,
+    // setAllDeals,
     getTestLineChartData,
     testLineChartData,
   } = useDashboardPage();
@@ -162,19 +171,6 @@ function Dashboard({ allDeals, token }: DashboardProps) {
     xaxis: [""],
     series: [],
   });
-
-  useEffect(() => {
-    if (allDeals) {
-      setAllDeals(allDeals);
-    }
-  }, []);
-
-  useEffect(() => {
-    getDealsInfo();
-    getConversionRateCardInfo();
-    getTestLineChartData();
-    getTestLineChartData();
-  }, [allDeals]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -360,9 +356,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   Object.keys(data).find((key, i) => {
     if (key === "@target:token") {
       token = Object.values(data)[i];
-    }
-    if (key === "@target:user") {
-      allDeals = Object.values(data)[i];
     }
   });
   if (!token?.length && resolvedUrl !== "/login") {
