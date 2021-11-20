@@ -5,7 +5,6 @@
   "repository": "git@github.com:vinicius-hso/api-sem3.git",
   "license": "MIT",
   "scripts": {
-    "heroku-prebuild": "npm install",
     "start": "node dist/src/server.js",
     "dev": "ts-node-dev --files -r tsconfig-paths/register --inspect=0.0.0.0:7007 --transpile-only --exit-child src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js -f ./ormconfig.ts",
