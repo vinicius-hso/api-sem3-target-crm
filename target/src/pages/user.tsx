@@ -22,9 +22,12 @@ import { IUser } from "types/User";
 
 interface UserPageProps {
   usersSSR: IUser[];
+  token: string;
 }
 
-function UserPage({ usersSSR }: UserPageProps) {
+function UserPage({ usersSSR, token }: UserPageProps) {
+  serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   const { users, setUsers, filteredUser, removeFiltered, getData } =
     useUserPage();
 

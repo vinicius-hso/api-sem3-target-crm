@@ -27,7 +27,13 @@ import { parseCookies } from "data/services/cookie";
 import { GetServerSideProps } from "next";
 import { serviceApi } from "data/services/ServiceApi";
 
-function CompletedPage() {
+interface CompletedPageProps {
+  token: string;
+}
+
+function CompletedPage({ token }: CompletedPageProps) {
+  serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   const { deals, filterDeals, removefilterDeals, getData } = useCompletedPage();
   const [valueType, setValueType] = useState("name");
   const [hasFiltered, setHasFiltered] = useState(false);

@@ -32,6 +32,7 @@ interface MainPageProps {
 }
 
 function MainPage({ token, user }: MainPageProps) {
+  serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   const {
     hasError,
     isLoading,

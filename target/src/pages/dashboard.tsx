@@ -34,9 +34,12 @@ interface BarChartsProps {
 
 interface DashboardProps {
   allDeals: DealTypes[];
+  token: string;
 }
 
-function Dashboard({ allDeals }: DashboardProps) {
+function Dashboard({ allDeals, token }: DashboardProps) {
+  serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   const {
     wonDeals,
     lostDeals,

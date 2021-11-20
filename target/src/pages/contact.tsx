@@ -25,7 +25,13 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
 
-function ContactPage() {
+interface ContactPageProps {
+  token: string;
+}
+
+function ContactPage({ token }: ContactPageProps) {
+  serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   const { filteredContact, removeFiltered } = useContactPage();
   const { formatCompaniesToSelect } = useCompanyPage();
   const [valueType, setValueType] = useState("name");

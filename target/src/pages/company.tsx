@@ -19,7 +19,13 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
 
-function CompanyPage() {
+interface CompanyPageProps {
+  token: string;
+}
+
+function CompanyPage({ token }: CompanyPageProps) {
+  serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   const {
     companies,
     filteredCompany,
