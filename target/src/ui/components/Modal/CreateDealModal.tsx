@@ -1,5 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, MenuItem, Tooltip } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Tooltip,
+  Typography,
+} from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
@@ -15,6 +22,7 @@ import { CloseButtonStyled } from "./ModalStyles/CloseButtonModal.style";
 import { formatCurrency } from "data/utils/formatValue";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
+import { toast } from "react-toastify";
 
 interface DetailModalProps {
   getData: () => any;
@@ -35,11 +43,11 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
 
   const [data, setData] = useState<DealTypes>({
     name: "",
-    company: "default",
-    contact: "default",
+    company: "",
+    contact: "",
     pipeline: "",
     value: "",
-    tag: "WARM",
+    tag: "",
   });
 
   useEffect(() => {
@@ -51,25 +59,40 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
 
   async function handleSubmit() {
     isSubmited(true);
-    if (data.name) {
+    if (data.name && data.company && data.contact && data.tag && data.value) {
       try {
         data.value = data.value.replace(/\D+/g, "");
         createDeal(data);
         await getData();
         setData({
           name: "",
-          company: "default",
-          contact: "default",
+          company: "",
+          contact: "",
           pipeline: "",
           value: "",
-          tag: "WARM",
+          tag: "",
         });
         UseCreateDealModal();
       } catch (e) {
         console.error(e);
       }
     }
+    toast.warning(
+      "Preenchimento invalido, Verique os campos e tente novamente"
+    );
   }
+
+  const onClose = () => {
+    setData({
+      name: "",
+      company: "",
+      contact: "",
+      pipeline: "",
+      value: "",
+      tag: "",
+    });
+    UseCreateDealModal();
+  };
 
   const body = (
     <ModalContainer>
@@ -81,7 +104,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
       >
         <CloseButtonStyled
           onClick={() => {
-            UseCreateDealModal();
+            onClose();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
@@ -98,55 +121,107 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
         fullWidth
         required
         error={submited && !data.name}
-        helperText={submited && !data.name ? "Campo obrigatório" : ""}
+        helperText={submited && !data.name ? "Nome é obrigatório" : ""}
       />
-      <Select
-        onChange={(event) => {
-          setData({ ...data, company: event.target.value });
-          setContacts(formatListThisCompanyToSelect(event.target.value));
-        }}
-        value={data.company}
-        label="Empresa"
-        variant="standard"
-        fullWidth
-      >
-        <MenuItem value="default">Selecione uma empresa</MenuItem>
-        {formatCompaniesToSelect.map((company) => (
-          <MenuItem key={company.value} value={company.value}>
-            {company.label}
-          </MenuItem>
-        ))}
-      </Select>
-      <Select
-        onChange={(event) => setData({ ...data, contact: event.target.value })}
-        label="Contato"
-        value={data.contact}
-        variant="standard"
-        fullWidth
-      >
-        <MenuItem value={"default"}>Selecione um contato</MenuItem>
-        {contacts.map((contact) => (
-          <MenuItem key={contact.id} value={contact.id}>
-            {contact.name}
-          </MenuItem>
-        ))}
-      </Select>
+
+      <FormControl>
+        <InputLabel
+          variant="standard"
+          error={submited && !data?.company}
+          required
+          sx={{ mt: -1 }}
+        >
+          <span>Empresa</span>
+        </InputLabel>
+        <Select
+          onChange={(event) => {
+            setData({ ...data, company: event.target.value });
+            setContacts(formatListThisCompanyToSelect(event.target.value));
+          }}
+          value={data.company}
+          label="Empresa"
+          variant="standard"
+          fullWidth
+          error={submited && !data?.company}
+        >
+          {formatCompaniesToSelect.map((company) => (
+            <MenuItem key={company.value} value={company.value}>
+              {company.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      {!data?.company && submited && (
+        <Typography variant="caption" color="error">
+          Empresa é obrigatória
+        </Typography>
+      )}
+
+      <FormControl>
+        <InputLabel
+          variant="standard"
+          error={submited && !data.contact}
+          required
+          sx={{ mt: -1 }}
+        >
+          Contato
+        </InputLabel>
+        <Select
+          onChange={(event) =>
+            setData({ ...data, contact: event.target.value })
+          }
+          label="Contato"
+          value={data.contact}
+          variant="standard"
+          fullWidth
+          error={submited && !data.contact}
+        >
+          {contacts.map((contact) => (
+            <MenuItem key={contact.id} value={contact.id}>
+              {contact.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      {submited && !data.contact && (
+        <Typography variant="caption" color="error">
+          Contato é obrigatório
+        </Typography>
+      )}
+
       <TwoColumnsContainer>
-        <div>
+        <FormControl sx={{ mt: submited && !data.tag && "-5px" }}>
+          <InputLabel
+            sx={{ mt: -1 }}
+            variant="standard"
+            error={submited && !data.tag}
+            required
+          >
+            Tag inicial
+          </InputLabel>
           <Select
             onChange={(event) => setData({ ...data, tag: event.target.value })}
             label="Tag"
             fullWidth
+            required
             value={data.tag}
             variant="standard"
+            error={submited && !data.tag}
           >
             <MenuItem value={"COLD"}>Fria</MenuItem>
             <MenuItem value={"WARM"}>Morna</MenuItem>
             <MenuItem value={"HOT"}>Quente</MenuItem>
           </Select>
-        </div>
+          {submited && !data.tag && (
+            <Typography variant="caption" color="error">
+              Tag é obrigatória
+            </Typography>
+          )}
+        </FormControl>
+
         <div>
           <TextFieldMask
+            sx={{ mt: "-5px" }}
             onChange={(event) =>
               setData({ ...data, value: formatCurrency(event.target.value) })
             }
@@ -157,6 +232,9 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
             variant="standard"
             fullWidth
             placeholder="999,00"
+            required
+            error={submited && !data.name}
+            helperText={submited && !data.name ? "Nome é obrigatório" : ""}
           />
         </div>
       </TwoColumnsContainer>
@@ -184,7 +262,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
     <>
       <ModalStyled
         open={createDealModalState}
-        onClose={() => UseCreateDealModal()}
+        onClose={() => onClose()}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

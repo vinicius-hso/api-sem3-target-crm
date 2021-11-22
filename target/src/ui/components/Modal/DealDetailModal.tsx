@@ -26,6 +26,7 @@ import {
   NewActivityButton,
   NewActivityButtonLabel,
   NewActivityContainer,
+  WhatsAppLink,
 } from "../DealDetailCard/DealDetailCard.style";
 import Activity from "../Activity/Activity";
 import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
@@ -33,6 +34,7 @@ import AuthContext from "contexts/AuthContext";
 import { ButtonsContainer } from "./ModalStyles/ButtonsContainer";
 import { LinkStyled } from "../Link/Link.style";
 import Dialog from "../Dialog/Dialog";
+import { toast } from "react-toastify";
 
 interface DetailModalProps {
   getData: () => void;
@@ -45,6 +47,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
   const [hasNewActivity, setHasNewActivity] = useState(false);
   const [dialogView, setDialogView] = useState(false);
   const { user } = useContext(AuthContext);
+  const [submited, setSubmited] = useState(false);
   const [changeStatusTo, setChangeStatusTo] = useState({
     label: "",
     value: "",
@@ -74,11 +77,17 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
       dealDetail.activity.unshift(data);
       handleClick();
       getData();
+      setSubmited(false);
+    } else {
+      setSubmited(true);
+      toast.warning(
+        "Preenchimento invalido, Verique os campos e tente novamente"
+      );
     }
   };
 
   const handleSubmitEdit = (data) => {
-    data.value = data.value.replace(/\D+/g, "");
+    data.value = Number(data.value.replace(/\D+/g, ""));
     editDeal(dealDetail.id, data);
     setHasEdit(false);
     getData();
@@ -293,13 +302,13 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                   </IconButton>
                 </Tooltip>
               </LinkPhoneStyled>
-              <a
+              <WhatsAppLink
                 target="__blank"
                 rel="no-referrer"
                 href={`https://api.whatsapp.com/send?phone=55${dealDetail.contact?.phone}`}
               >
                 <Tooltip
-                  title="Ir para WhatsApp Web"
+                  title="Ir para WhatsApp"
                   placement="top-start"
                   enterDelay={500}
                   leaveDelay={100}
@@ -308,44 +317,30 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                     <i className={`fa fa-whatsapp`}></i>
                   </IconButton>
                 </Tooltip>
-              </a>
+              </WhatsAppLink>
             </div>
           </ActionsDealDetailCardContainer>
-          <br />
-          <Title title="Histórico de atividades" />
-          <div style={{ position: "relative" }}>
-            <Tooltip
-              title="Adicionar nova atividade"
-              placement="top-start"
-              enterDelay={500}
-              leaveDelay={100}
-            >
-              <NewActivityButton
-                variant="contained"
-                size="small"
-                color="primary"
-                type="submit"
-                onClick={handleClick}
-              >
-                <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
-                <NewActivityButtonLabel> Nova atividade</NewActivityButtonLabel>
-              </NewActivityButton>
-            </Tooltip>
-          </div>
-          {hasNewActivity ? (
+
+          {hasNewActivity && (
             <NewActivityContainer>
-              <TwoColumnsContainer>
+              <TwoColumnsContainer sx={{ rowGap: 2 }}>
                 <TextFieldMask
                   label={"Titulo"}
+                  sx={{ mt: submited && !data.name ? 3 : 1 }}
                   variant={"standard"}
                   size="medium"
+                  required
                   value={data.name}
                   onChange={(event) =>
                     setData({ ...data, name: event.target.value })
                   }
+                  error={submited && !data.name}
+                  helperText={submited && !data.name && "Titulo é obrigatório"}
                 />
                 <FormControl fullWidth>
-                  <InputLabel>Tag</InputLabel>
+                  <InputLabel variant="standard" required>
+                    Tag
+                  </InputLabel>
                   <Select
                     label="Tag"
                     fullWidth
@@ -363,14 +358,17 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
               </TwoColumnsContainer>
               <TextFieldMask
                 multiline
-                label={"Descreva aqui..."}
+                label={"Descrição"}
                 variant={"standard"}
                 size="medium"
+                required
                 value={data.description}
                 onChange={(event) =>
                   setData({ ...data, description: event.target.value })
                 }
                 rows={3}
+                error={submited && !data.name}
+                helperText={submited && !data.name && "Descrição é obrigatória"}
               />
               <ButtonsContainer>
                 <Tooltip
@@ -417,8 +415,32 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                 </Tooltip>
               </ButtonsContainer>
             </NewActivityContainer>
-          ) : (
-            <div />
+          )}
+          <br />
+          <Title title="Histórico de atividades" />
+          {!hasNewActivity && (
+            <div style={{ position: "relative" }}>
+              <Tooltip
+                title="Adicionar nova atividade"
+                placement="top-start"
+                enterDelay={500}
+                leaveDelay={100}
+              >
+                <NewActivityButton
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  type="submit"
+                  onClick={handleClick}
+                >
+                  <i style={{ marginRight: "2px" }} className="fa fa-plus"></i>
+                  <NewActivityButtonLabel>
+                    {" "}
+                    Nova atividade
+                  </NewActivityButtonLabel>
+                </NewActivityButton>
+              </Tooltip>
+            </div>
           )}
           {dealDetail.activity
             .sort((a, b) =>

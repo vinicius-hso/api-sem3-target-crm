@@ -16,6 +16,7 @@ export const ModalContainer = styled("div")`
   overflow-x: hidden;
   min-width: 50vw;
   max-height: 80vh;
+  row-gap: ${({ theme }) => theme.spacing(1)};
   ${({ theme }) => theme.breakpoints.up("md")} {
     max-width: 70%;
   }
@@ -30,7 +31,7 @@ export const TwoColumnsContainer = styled("div")`
 
   ${({ theme }) => theme.breakpoints.down("md")} {
     grid-template-columns: 1fr;
-    gap: 0;
+    row-gap: ${({ theme }) => theme.spacing(1)};
   }
 `;
 

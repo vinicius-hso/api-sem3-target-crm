@@ -131,7 +131,7 @@ export const ModalProvider: React.FC = ({ children }) => {
     setDeleteModalState(!deleteModalState);
   };
 
-  const updatePipeline = async () => {
+  const updatePipeline = async (name: string) => {
     await PipelineService.updatePipeline(updateId, name);
     setUpdateIdState("");
     setUpdateModalState(!updateModalState);

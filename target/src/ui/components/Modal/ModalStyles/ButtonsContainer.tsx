@@ -6,8 +6,12 @@ export const ButtonsContainer = styled("div")`
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
-
   gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    align-items: center;
+  }
+
   ${({ theme }) => theme.breakpoints.up("md")} {
     flex-wrap: wrap-reverse;
     flex-direction: row;

@@ -46,7 +46,7 @@ export const NewActivityContainer = styled("div")`
   justify-content: center;
   background-color: ${({ theme }) => theme.palette.grey[50]};
   padding: ${({ theme }) => theme.spacing(2)};
-  gap: ${({ theme }) => theme.spacing(0.2) + " " + theme.spacing(2)};
+  gap: ${({ theme }) => theme.spacing(1) + " " + theme.spacing(2)};
   border-radius: 8px;
   box-shadow: 4px 4px rgba(0, 0, 0, 0.05);
   position: relative;
@@ -65,6 +65,12 @@ export const EditButton = styled(Button)`
 export const InputContainer = styled("div")`
   overflow: hidden;
   width: 100%;
+
+  &.deal-value-responsible {
+    ${({ theme }) => theme.breakpoints.down("md")} {
+      margin-top: ${({ theme }) => theme.spacing(2)};
+    }
+  }
 `;
 
 export const PaperDealDetailModalStyled = styled(Paper)`
@@ -106,8 +112,11 @@ export const LinkPhoneStyled = styled(Link)`
   display: flex;
   align-items: center;
   position: relative;
+`;
 
-  ${({ theme }) => theme.breakpoints.up("md")} {
-    display: none;
-  }
+export const WhatsAppLink = styled("a")`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  position: relative;
 `;

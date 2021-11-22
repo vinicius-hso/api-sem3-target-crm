@@ -18,8 +18,15 @@ const DealCardList = (props) => {
     UseDealDetailModal,
     setSelectedPipeline,
   } = useContext(PipelineContext);
+
   return (
-    <ColumnContainer>
+    <ColumnContainer
+      onClick={() => {
+        if (viewButtonGroup) {
+          setViewButtonGroup(false);
+        }
+      }}
+    >
       <div style={{ position: "relative" }}>
         <Button
           color="primary"

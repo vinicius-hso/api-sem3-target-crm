@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import PipelineContext from "contexts/PipelineContext";
 import Title from "../Title/Title";
@@ -17,11 +17,18 @@ const UpDateModal = ({ getData }: UpdateModalProps) => {
     updateModalState,
     UseUpdateModal,
     updatePipeline,
-    setName,
     pipeline,
     hasError,
     isLoading,
   } = useContext(PipelineContext);
+  const [name, setName] = useState(pipeline?.name);
+  const [submited, setSubmited] = useState(false);
+
+  useEffect(() => {
+    if (pipeline?.name) {
+      setName(pipeline?.name);
+    }
+  }, [pipeline]);
 
   const body = (
     <ModalContainer>
@@ -53,10 +60,13 @@ const UpDateModal = ({ getData }: UpdateModalProps) => {
           label="Nome do pipeline"
           variant="standard"
           size="small"
+          required
           fullWidth
           focused={pipeline ? true : false}
-          defaultValue={pipeline?.name}
+          value={name}
           onChange={(event) => setName(event.target.value)}
+          error={submited && !name}
+          helperText={submited && !name && "Nome é obrigatório"}
         />
       )}
       <Tooltip
@@ -67,8 +77,12 @@ const UpDateModal = ({ getData }: UpdateModalProps) => {
       >
         <Button
           onClick={async () => {
-            await updatePipeline();
-            await getData();
+            setSubmited(true);
+            if (name?.length) {
+              await updatePipeline(name);
+              await getData();
+              setSubmited(false);
+            }
           }}
           variant="contained"
           color="primary"

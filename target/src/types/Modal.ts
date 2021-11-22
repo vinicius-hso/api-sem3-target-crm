@@ -8,7 +8,7 @@ export default interface ModalTypes {
 
   updateModalState: boolean;
   UseUpdateModal: (id: string) => void;
-  updatePipeline: () => Promise<void>;
+  updatePipeline: (name: string) => Promise<void>;
 
   deleteModalState: boolean;
   UseDeleteModal: (id: string) => void;
