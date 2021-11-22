@@ -2,27 +2,29 @@
   "compilerOptions": {
     "target": "es2017",
     "baseUrl": ".",
-    "outDir": "./dist",
+    "outDir": "dist",
     "module": "commonjs",
     "types": ["node", "jest"],
-    "noEmit": true,
+    "noEmit": false,
     "strict": false,
     "skipLibCheck": true,
     "removeComments": true,
+    "declaration": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@controllers/*": ["./src/app/controllers/*"],
-      "@middlewares/*": ["./src/app/middlewares/*"],
-      "@entities/*": ["./src/app/entities/*"],
-      "@config/*": ["./src/config/*"],
-      "@routes/*": ["./src/routes/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@src/*": ["./src/*"]
+      "*": ["node_modules/*"],
+      "@controllers/*": ["src/app/controllers/*"],
+      "@middlewares/*": ["src/app/middlewares/*"],
+      "@entities/*": ["src/app/entities/*"],
+      "@config/*": ["src/config/*"],
+      "@routes/*": ["src/routes/*"],
+      "@utils/*": ["src/utils/*"],
+      "@src/*": ["src/*"]
     }
   },
-  "include": ["src", "__tests__"]
+  "include": ["src"]
 }

@@ -48,6 +48,10 @@ function Dashboard({ allDeals, token }: DashboardProps) {
     }
   }, []);
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   const {
     wonDeals,
     lostDeals,

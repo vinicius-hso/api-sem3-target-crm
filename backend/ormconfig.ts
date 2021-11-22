@@ -10,12 +10,12 @@ const config: ConnectionOptions = {
   database: process.env.DB_NAME,
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  entities: ['./src/app/entities/*.ts'],
-  migrations: ['./src/database/migrations/*.ts'],
+  entities: [`${__dirname}/src/app/entities/*.{js,ts}`],
+  migrations: [`${__dirname}/src/database/migrations/*.{js,ts}`],
   cli: {
-    migrationsDir: './src/database/migrations',
-    entitiesDir: './src/app/entities',
+    migrationsDir: `${__dirname}/src/database/migrations`,
+    entitiesDir: `${__dirname}/src/app/entities`,
   },
 };
 
-export = config;
+export default config;

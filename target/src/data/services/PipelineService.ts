@@ -80,7 +80,7 @@ class PipelineService {
     try {
       const response = await api.post("/deal/", data);
 
-      toast.success("Deal criado com sucesso!");
+      toast.success("Negociação criada com sucesso!");
       return response.data;
     } catch (error) {
       toast.error(

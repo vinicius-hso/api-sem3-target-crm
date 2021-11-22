@@ -44,7 +44,7 @@ class CompanyService {
 
   async editCompany(companyId: string, company): Promise<IResponse> {
     try {
-      await api.put(`/company/${companyId}`);
+      await api.put(`/company/${companyId}`, company);
       return {
         status: "success",
         message: "Empresa editada com sucesso!",
