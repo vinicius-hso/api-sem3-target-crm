@@ -14,6 +14,7 @@ import {
   Tooltip,
   InputLabel,
   FormControl,
+  Typography,
 } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -25,24 +26,24 @@ import ContactService from "data/services/ContactService";
 import CompanyService from "data/services/CompanyService";
 import { formatPhone } from "data/utils/formatPhone";
 import { mockEstados } from "data/utils/mock";
+import { toast } from "react-toastify";
+import Dialog from "ui/components/Dialog/Dialog";
+import { emailValidator } from "data/utils/emailValidator";
 
-const UpdateContactModal = ({ id, setId }) => {
-  const {
-    updateContactModal,
-    useUpdateContactModal,
-    useDeleteContactModal,
-    getContacts,
-  } = useContext(ContactContext);
+const UpdateContactModal = ({ id, setId, isAdmin, getData }) => {
+  const { updateContactModal, useUpdateContactModal, getContacts } =
+    useContext(ContactContext);
   const [companies, setCompanies] = useState<CompanyTypes[]>([]);
-
+  const [dialogView, setDialogView] = useState(false);
   const [submited, isSubmited] = useState(false);
   const [data, setData] = useState<IContact>({
     name: "",
-    company_id: "default",
-    state: "default",
+    company_id: "",
+    state: "",
     city: "",
     email: "",
     phone: "",
+    picture: "",
   });
 
   const mySetId = () => {
@@ -65,8 +66,8 @@ const UpdateContactModal = ({ id, setId }) => {
   }, []);
 
   const updateContact = async () => {
-    try {
-      if (data.name && data.email && data.company_id) {
+    if (data.name && emailValidator(data.email) && data.company_id) {
+      try {
         await ContactService.updateContact({
           id,
           name: data?.name,
@@ -75,14 +76,21 @@ const UpdateContactModal = ({ id, setId }) => {
           city: data?.city,
           state: data?.state,
           company: data?.company_id,
+          picture: data?.picture,
         });
 
         await getContacts();
+        isSubmited(false);
         mySetId();
         useUpdateContactModal();
+      } catch (error) {
+        console.log(error.message);
       }
-    } catch (error) {
-      console.log(error.message);
+    } else {
+      isSubmited(true);
+      toast.warning(
+        "Preenchimento invalido, Verique os campos e tente novamente"
+      );
     }
   };
 
@@ -98,6 +106,22 @@ const UpdateContactModal = ({ id, setId }) => {
 
   const body = (
     <ModalContainer>
+      <Dialog
+        title={"Deletar empresa"}
+        message={`Tem certeza que deseja deletar ${data?.name}?`}
+        type={"question"}
+        open={dialogView}
+        setOpen={() => setDialogView(false)}
+        result={async (res) => {
+          if (res) {
+            await ContactService.deleteContact(id);
+            getData();
+            useUpdateContactModal();
+            mySetId();
+          }
+        }}
+      />
+
       <Tooltip
         title="Fechar"
         placement="top-start"
@@ -136,8 +160,10 @@ const UpdateContactModal = ({ id, setId }) => {
         size="small"
         fullWidth
         required
-        error={submited && !data.email}
-        helperText={submited && !data.email ? "Campo obrigatório" : ""}
+        error={submited && !emailValidator(data.email)}
+        helperText={
+          submited && !emailValidator(data.email) && "E-mail invalido"
+        }
       />
 
       <TwoColumnsContainer>
@@ -151,27 +177,35 @@ const UpdateContactModal = ({ id, setId }) => {
         />
 
         <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+          <InputLabel
+            variant="standard"
+            htmlFor="uncontrolled-native"
+            sx={{ mb: -2 }}
+            error={submited && !data?.company_id}
+          >
             Empresa
           </InputLabel>
           <Select
             onChange={(event) =>
               setData({ ...data, company_id: event.target.value })
             }
-            value={data.company_id || "default"}
+            value={data.company_id || ""}
             label="Empresa"
             variant="standard"
             fullWidth
+            error={submited && !data?.company_id}
           >
-            <MenuItem value={"default"} disabled>
-              Selecione a Empresa
-            </MenuItem>
             {companies?.map((company) => (
               <MenuItem value={company.id} key={company.id}>
                 {company.name}
               </MenuItem>
             ))}
           </Select>
+          {submited && !data?.company_id && (
+            <Typography variant="caption" color="error">
+              Empresa é obrigatória
+            </Typography>
+          )}
         </FormControl>
       </TwoColumnsContainer>
 
@@ -211,25 +245,57 @@ const UpdateContactModal = ({ id, setId }) => {
         </FormControl>
       </TwoColumnsContainer>
 
-      <TwoColumnsContainer>
-        <Tooltip
-          title="Deletar contato"
-          placement="top-start"
-          enterDelay={500}
-          leaveDelay={100}
-        >
-          <Button
-            variant="contained"
-            color="error"
-            onClick={() => {
-              useDeleteContactModal(), useUpdateContactModal();
-            }}
-            startIcon={<DeleteIcon />}
-            sx={{ mt: 4 }}
+      <TextFieldMask
+        onChange={(event) => setData({ ...data, picture: event.target.value })}
+        value={data.picture}
+        label="Link de imagem"
+        variant="standard"
+        size="small"
+        fullWidth
+      />
+
+      {isAdmin ? (
+        <TwoColumnsContainer>
+          <Tooltip
+            title="Deletar contato"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
           >
-            Deletar
-          </Button>
-        </Tooltip>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => {
+                setDialogView(true);
+              }}
+              startIcon={<DeleteIcon />}
+              sx={{ mt: 4 }}
+            >
+              Deletar
+            </Button>
+          </Tooltip>
+
+          <Tooltip
+            title="Salvar alterações"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
+          >
+            <Button
+              variant="contained"
+              color="success"
+              style={{ color: "white" }}
+              onClick={() => {
+                updateContact();
+              }}
+              startIcon={<AddCircleIcon />}
+              sx={{ mt: 4 }}
+            >
+              Salvar
+            </Button>
+          </Tooltip>
+        </TwoColumnsContainer>
+      ) : (
         <Tooltip
           title="Salvar alterações"
           placement="top-start"
@@ -241,7 +307,6 @@ const UpdateContactModal = ({ id, setId }) => {
             color="success"
             style={{ color: "white" }}
             onClick={() => {
-              isSubmited(true);
               updateContact();
             }}
             startIcon={<AddCircleIcon />}
@@ -250,7 +315,7 @@ const UpdateContactModal = ({ id, setId }) => {
             Salvar
           </Button>
         </Tooltip>
-      </TwoColumnsContainer>
+      )}
     </ModalContainer>
   );
   return (

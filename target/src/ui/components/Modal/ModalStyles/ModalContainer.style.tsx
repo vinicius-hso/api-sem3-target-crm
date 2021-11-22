@@ -16,6 +16,7 @@ export const ModalContainer = styled("div")`
   overflow-x: hidden;
   min-width: 50vw;
   max-height: 80vh;
+  max-width: 90vw;
   row-gap: ${({ theme }) => theme.spacing(1)};
   ${({ theme }) => theme.breakpoints.up("md")} {
     max-width: 70%;

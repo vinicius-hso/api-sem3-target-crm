@@ -13,7 +13,7 @@ import { DialogIconContainer, DialogStyled } from "./Dialog.style";
 
 interface DialogProps {
   title: string;
-  message: string;
+  message: string | JSX.Element;
   type: "question" | "success" | "info";
   open: boolean;
   setOpen: () => void;

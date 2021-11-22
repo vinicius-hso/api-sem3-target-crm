@@ -8,6 +8,8 @@ import ContactContext from "contexts/ContactContext";
 import FileInput from "ui/components/Input/FileInput/FileInput";
 import {
   Button,
+  FormControl,
+  InputLabel,
   MenuItem,
   Paper,
   Table,
@@ -17,25 +19,21 @@ import {
   TableHead,
   TableRow,
   Tooltip,
+  Typography,
 } from "@material-ui/core";
 import readXlsxFile from "read-excel-file";
 import Select from "ui/components/Input/Select/Select";
-import axios from "axios";
-import { serviceApi } from "data/services/ServiceApi";
 import { IContact } from "types/Contact";
 import Dialog from "ui/components/Dialog/Dialog";
+import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
+import { toast } from "react-toastify";
+import { emailValidator } from "data/utils/emailValidator";
+import { formatPhone } from "data/utils/formatPhone";
 
 interface ImportContactModalProps {
   companies: any[];
   getData: () => void;
 }
-
-interface ImportResult {
-  errors: any[];
-  alreadyExistMessageCount: number;
-  invalidValuesMessageCount: number;
-}
-
 const ImportContactModal: React.FC<ImportContactModalProps> = ({
   companies,
   getData,
@@ -45,24 +43,7 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
 
   const [importedContacts, setImportedContacts] = useState<any[]>([]);
   const [hasError, setHasError] = useState<boolean>(false);
-  const [errorsLength, setErrorsLength] = useState<number>(0);
-  const [errorMessage, setErrorMessage] = useState<string>("");
-
-  function formatMessage(importResult: ImportResult) {
-    let m1 = "";
-    let m2 = "";
-    let m3 = "";
-    if (importResult.errors.length) {
-      m1 = `Os contatos não puderam ser importados pois:\n`;
-    }
-    if (importResult.alreadyExistMessageCount > 0) {
-      m2 = `${importResult.alreadyExistMessageCount} contatos já existem em nosso banco de dados.\n`;
-    }
-    if (importResult.invalidValuesMessageCount > 0) {
-      m3 = `${importResult.invalidValuesMessageCount} contatos possuem dados inválidos.\n`;
-    }
-    setErrorMessage(m1 + m2 + m3 + "\nDeseja tentar novamente?");
-  }
+  const [submited, setSubmited] = useState(false);
 
   const ReadDocument = async (file) => {
     let contacts = [];
@@ -85,49 +66,81 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
   };
 
   const handleSubmit = async (contacts: IContact[]) => {
-    const res = await sendImportedContacts(contacts);
-    setErrorsLength(res.errors.length);
-    formatMessage({
-      errors: res.errors,
-      alreadyExistMessageCount: res.alreadyExistMessageCount,
-      invalidValuesMessageCount: res.invalidValuesMessageCount,
-    });
-    // setImportResult({
-    //   errors: res.errors,
-    //   alreadyExistMessageCount: res.alreadyExistMessageCount,
-    //   invalidValuesMessageCount: res.invalidValuesMessageCount,
-    // });
-    // formatMessage(importResult);
-    // console.log("From Submit ->", res);
-    if (res.errors.length) {
-      setImportedContacts(res.errors);
-      setHasError(true);
-      getData();
+    setSubmited(true);
+    if (formIsValid()) {
+      const res: any = await sendImportedContacts(contacts);
+      if (res?.length) {
+        console.log("a");
+
+        setImportedContacts(res);
+        setHasError(true);
+        getData();
+      } else {
+        console.log("b");
+
+        setSubmited(false);
+        onClose();
+        getData();
+        useImportContactModal();
+      }
     } else {
-      getData();
-      useImportContactModal();
+      toast.warning(
+        "Preenchimento invalido, Verique os campos e tente novamente"
+      );
     }
+  };
+
+  const formIsValid = () => {
+    const isValid = !importedContacts.some((contact) => {
+      return (
+        !emailValidator(contact.email) || !contact.name || !contact.company
+      );
+    });
+    return isValid;
+  };
+
+  const getContactErrorList = () => {
+    let contactsNamesList = "";
+    importedContacts.forEach((contact, i) => {
+      if (i === importedContacts.length - 1) {
+        contactsNamesList += ` ${contact.name}`;
+      } else if (i === importedContacts.length - 2) {
+        contactsNamesList += ` ${contact.name} e`;
+      } else {
+        contactsNamesList += ` ${contact.name},`;
+      }
+    });
+    return contactsNamesList;
+  };
+
+  const onClose = () => {
+    setSubmited(false);
+    setImportedContacts([]);
+    useImportContactModal();
   };
 
   const body = (
     <ModalContainer>
       <Dialog
-        title={`(${errorsLength}) erros de importação`}
-        // message={`Os seguintes contatos não puderam ser criados:
-        // ${importResult.errors.forEach((contact) => contact.name + ", ")}
-        // pois ${
-        //   importResult.alreadyExistMessageCount
-        // } contatos do arquivo já existem em nosso banco de dados e ${
-        //   importResult.invalidValuesMessageCount
-        // } possuem dados inválidos!\n Deseja tentar novamente?`}
-        message={errorMessage}
+        title={`(${importedContacts.length}) erros de importação`}
+        message={
+          <>
+            <span style={{ display: "block" }}>
+              Os seguintes contatos não puderam ser criados:{" "}
+            </span>
+            <span style={{ display: "block" }}>{getContactErrorList()}</span>
+            <span style={{ display: "block" }}>
+              verifique se os contatos ja existem e sua conexão.
+            </span>
+            <span style={{ display: "block" }}>deseja tentar novamente?</span>
+          </>
+        }
         type={"question"}
-        open={errorMessage && hasError}
+        open={hasError}
         setOpen={() => setHasError(false)}
         result={(res) => {
           res ? handleSubmit(importedContacts) : setHasError(false);
-          setImportedContacts([]);
-          useImportContactModal();
+          onClose();
         }}
       />
 
@@ -139,25 +152,66 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
       >
         <CloseButtonStyled
           onClick={() => {
-            setImportedContacts([]);
-            useImportContactModal();
+            onClose();
           }}
         >
           <i className="fa fa-times" aria-hidden="true"></i>
         </CloseButtonStyled>
       </Tooltip>
 
-      <Title title="Importar contatos" />
+      <Title
+        title="Importar contatos"
+        subtitle={
+          <ul style={{ whiteSpace: "pre-wrap" }}>
+            <li>
+              <Typography variant="caption">
+                O arquivo de importação deve ser do tipo .XLSX
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="caption">
+                As colunas aceitas são: Nome, E-mail Telefone e Link de imagem
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="caption">
+                As colunas Nome e E-mail são OBRIGATÓRIAS
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="caption">
+                As colunas devem estar exatamente nessa ordem
+              </Typography>
+              <Typography variant="caption" sx={{ display: "block" }}>
+                <strong>NOME, E-MAIL, TELEFONE, LINK DE IMAGEM</strong>
+              </Typography>
+            </li>
+            <li>
+              <Typography variant="caption">
+                clique no{" "}
+                <a
+                  href="https://fatecspgov-my.sharepoint.com/:x:/g/personal/willian_silva109_fatec_sp_gov_br/ESkJeg7Q-IxGhrHp6uyhUhUB2fE-5_9H8GPfsvS56Z7Cdg?e=1G6orS"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  aqui
+                </a>{" "}
+                para ver um exemplo de arquivo
+              </Typography>
+            </li>
+          </ul>
+        }
+      />
       <FileInput onChange={(file) => ReadDocument(file)} />
 
       {importedContacts.length ? (
         <>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }}>
+            <Table sx={{ width: "100%" }}>
               <TableHead>
                 <TableRow>
-                  <TableCell>Nome</TableCell>
                   <TableCell align="left">Empresa</TableCell>
+                  <TableCell>Nome</TableCell>
                   <TableCell align="left">Email</TableCell>
                   <TableCell align="left">Telefone</TableCell>
                   <TableCell align="left">Link de imagem</TableCell>
@@ -169,52 +223,105 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell align="right">
-                      <Select
-                        onChange={(event) => {
-                          contact.company = event.target.value;
-                          setImportedContacts([...importedContacts]);
-                        }}
-                        variant="standard"
-                        size="medium"
-                        value={
-                          contact.company === "" ? "default" : contact.company
-                        }
+                    <TableCell
+                      align="left"
+                      sx={{
+                        minWidth: "160px",
+                      }}
+                    >
+                      <FormControl
                         fullWidth
+                        sx={{ mb: submited && !contact.company && -4 }}
                       >
-                        <MenuItem value={"default"}>
-                          Selecione uma empresa
-                        </MenuItem>
-                        {companies.map((company) => (
-                          <MenuItem value={company.value} key={company.value}>
-                            {company.label}
-                          </MenuItem>
-                        ))}
-                      </Select>
+                        <InputLabel
+                          variant="standard"
+                          htmlFor="uncontrolled-native"
+                          required
+                          error={submited && !contact?.company}
+                        >
+                          Empresa
+                        </InputLabel>
+
+                        <Select
+                          onChange={(event) => {
+                            contact.company = event.target.value;
+                            setImportedContacts([...importedContacts]);
+                          }}
+                          variant="standard"
+                          size="medium"
+                          value={contact.company || ""}
+                          fullWidth
+                          error={submited && !contact.company}
+                        >
+                          {companies.map((company) => (
+                            <MenuItem value={company.value} key={company.value}>
+                              {company.label}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                        {submited && !contact.company && (
+                          <Typography variant="caption" color="error">
+                            Empresa é obrigatória
+                          </Typography>
+                        )}
+                      </FormControl>
                     </TableCell>
                     <TableCell component="th" scope="row">
-                      {contact.name}
+                      <TextFieldMask
+                        onChange={(event) => {
+                          contact.name = event.target.value;
+                          setImportedContacts([...importedContacts]);
+                        }}
+                        value={contact.name}
+                        label="Nome"
+                        variant="standard"
+                        size="small"
+                        fullWidth
+                        required
+                        error={submited && !contact.name}
+                        helperText={
+                          submited && !contact.name && "Nome é obrigatório"
+                        }
+                      />
                     </TableCell>
                     <TableCell
-                      align="right"
+                      align="left"
                       sx={{
-                        maxWidth: "160px",
                         whiteSpace: "nowrap",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                       }}
                     >
-                      {contact.email}
+                      <TextFieldMask
+                        onChange={(event) => {
+                          contact.email = event.target.value;
+                          setImportedContacts([...importedContacts]);
+                        }}
+                        value={contact.email}
+                        label="Email"
+                        variant="standard"
+                        size="small"
+                        fullWidth
+                        required
+                        error={submited && !emailValidator(contact.email)}
+                        helperText={
+                          submited &&
+                          !emailValidator(contact.email) &&
+                          "E-mail invalido"
+                        }
+                      />
                     </TableCell>
-                    <TableCell align="right">{contact.phone}</TableCell>
+                    <TableCell align="left" sx={{ minWidth: "170px" }}>
+                      {formatPhone(contact.phone)}
+                    </TableCell>
                     <TableCell
                       sx={{
-                        maxWidth: "80px",
+                        maxWidth: "150px",
                         whiteSpace: "nowrap",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                       }}
-                      align="right"
+                      align="left"
                     >
                       {contact.picture}
                     </TableCell>
@@ -249,8 +356,7 @@ const ImportContactModal: React.FC<ImportContactModalProps> = ({
       <ModalStyled
         open={importContactModal}
         onClose={() => {
-          setImportedContacts([]);
-          useImportContactModal();
+          onClose();
         }}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

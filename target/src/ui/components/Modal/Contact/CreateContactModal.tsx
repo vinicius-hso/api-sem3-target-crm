@@ -14,6 +14,7 @@ import {
   Tooltip,
   InputLabel,
   FormControl,
+  Typography,
 } from "@material-ui/core";
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -24,6 +25,8 @@ import ContactService from "data/services/ContactService";
 import CompanyService from "data/services/CompanyService";
 import { formatPhone } from "data/utils/formatPhone";
 import { mockEstados } from "data/utils/mock";
+import { toast } from "react-toastify";
+import { emailValidator } from "data/utils/emailValidator";
 
 const CreateContactModal = () => {
   const { createContactModal, useCreateContactModal, getContacts } =
@@ -33,31 +36,34 @@ const CreateContactModal = () => {
   const [submited, isSubmited] = useState(false);
   const [data, setData] = useState<IContact>({
     name: "",
-    company_id: "null",
-    state: "null",
+    company_id: "",
+    state: "",
     city: "",
     email: "",
     phone: "",
+    picture: "",
   });
 
   const createContact = async () => {
     isSubmited(true);
-    try {
-      if (data.name && data.email && data.company_id) {
-        await ContactService.createContact({
-          name: data?.name,
-          email: data?.email,
-          phone: data?.phone,
-          city: data?.city,
-          state: data?.state,
-          company: data?.company_id,
-        });
+    if (data.name && emailValidator(data.email) && data.company_id) {
+      await ContactService.createContact({
+        name: data?.name,
+        email: data?.email,
+        phone: data?.phone,
+        city: data?.city,
+        state: data?.state,
+        company: data?.company_id,
+        picture: data?.picture,
+      });
 
-        await getContacts();
-        onClose();
-      }
-    } catch (error) {
-      console.log(error.message);
+      await getContacts();
+      isSubmited(false);
+      onClose();
+    } else {
+      toast.warning(
+        "Preenchimento invalido, Verique os campos e tente novamente"
+      );
     }
   };
 
@@ -73,22 +79,24 @@ const CreateContactModal = () => {
     isSubmited(false);
     setData({
       name: "",
-      company_id: "null",
-      state: "null",
+      company_id: "",
+      state: "",
       city: "",
       email: "",
       phone: "",
+      picture: "",
     });
   }, []);
 
   const onClose = () => {
     setData({
       name: "",
-      company_id: "null",
-      state: "null",
+      company_id: "",
+      state: "",
       city: "",
       email: "",
       phone: "",
+      picture: "",
     });
     useCreateContactModal();
   };
@@ -132,8 +140,10 @@ const CreateContactModal = () => {
         size="small"
         fullWidth
         required
-        error={submited && !data.email}
-        helperText={submited && !data.email ? "Campo obrigatório" : ""}
+        error={submited && !emailValidator(data.email)}
+        helperText={
+          submited && !emailValidator(data.email) && "E-mail invalido"
+        }
       />
 
       <TwoColumnsContainer>
@@ -146,28 +156,39 @@ const CreateContactModal = () => {
           fullWidth
         />
 
-        <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+        <FormControl
+          fullWidth
+          required
+          sx={{ mb: submited && !data?.state && -2 }}
+        >
+          <InputLabel
+            variant="standard"
+            htmlFor="uncontrolled-native"
+            error={submited && !data?.company_id}
+          >
             Empresa
           </InputLabel>
           <Select
             onChange={(event) =>
               setData({ ...data, company_id: event.target.value })
             }
-            value={data.company_id}
+            value={data?.company_id || ""}
             label="Empresa"
             variant="standard"
             fullWidth
+            error={submited && !data?.company_id}
           >
-            <MenuItem value={"null"} disabled>
-              Selecione a Empresa
-            </MenuItem>
             {companies?.map((company) => (
               <MenuItem value={company.id} key={company.id}>
                 {company.name}
               </MenuItem>
             ))}
           </Select>
+          {submited && !data?.company_id && (
+            <Typography variant="caption" color="error">
+              Empresa é obrigatória
+            </Typography>
+          )}
         </FormControl>
       </TwoColumnsContainer>
 
@@ -194,9 +215,6 @@ const CreateContactModal = () => {
             variant="standard"
             fullWidth
           >
-            <MenuItem value={"null"} disabled>
-              Selecione o Estado
-            </MenuItem>
             {mockEstados.map((state) => (
               <MenuItem key={state.id} value={state.sigla}>
                 {state.sigla}
@@ -205,6 +223,16 @@ const CreateContactModal = () => {
           </Select>
         </FormControl>
       </TwoColumnsContainer>
+
+      <TextFieldMask
+        onChange={(event) => setData({ ...data, picture: event.target.value })}
+        value={data.picture}
+        label="Link de imagem"
+        variant="standard"
+        size="small"
+        fullWidth
+      />
+
       <Tooltip
         title="Adicionar contato"
         placement="top-start"

@@ -24,12 +24,14 @@ import { ButtonsContainer } from "@styles/pagesStyle/_app.syile";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
+import { IUser } from "types/User";
 
 interface ContactPageProps {
   token: string;
+  user: IUser;
 }
 
-function ContactPage({ token }: ContactPageProps) {
+function ContactPage({ token, user }: ContactPageProps) {
   serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   const { filteredContact, removeFiltered } = useContactPage();
@@ -89,7 +91,14 @@ function ContactPage({ token }: ContactPageProps) {
         getData={getContacts}
         companies={formatCompaniesToSelect}
       />
-      {selectedId ? <UpdateContactModal setId={setId} id={selectedId} /> : null}
+      {selectedId ? (
+        <UpdateContactModal
+          setId={setId}
+          id={selectedId}
+          getData={getContacts}
+          isAdmin={user.role === "ADMIN"}
+        />
+      ) : null}
       <DeleteContactModal id={selectedId} />
       <ContactsHeaderContainer>
         <TitleContainer>

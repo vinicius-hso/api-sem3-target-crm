@@ -40,7 +40,7 @@ class ContactService {
     }
   }
 
-  async createContact({ name, email, phone, city, state, company }) {
+  async createContact({ name, email, phone, city, state, company, picture }) {
     const body = {
       name,
       email,
@@ -48,6 +48,7 @@ class ContactService {
       city,
       state,
       company,
+      picture,
     };
 
     try {
@@ -62,7 +63,16 @@ class ContactService {
     }
   }
 
-  async updateContact({ id, name, email, phone, city, state, company }) {
+  async updateContact({
+    id,
+    name,
+    email,
+    phone,
+    city,
+    state,
+    company,
+    picture,
+  }) {
     const body = {
       name,
       email,
@@ -70,6 +80,7 @@ class ContactService {
       city,
       state,
       company,
+      picture,
     };
 
     try {
