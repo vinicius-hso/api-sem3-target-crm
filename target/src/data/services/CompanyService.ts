@@ -32,7 +32,7 @@ class CompanyService {
   async createCompany(data: CompanyTypes): Promise<string> {
     try {
       const response = await api.post("/company", data);
-      toast.success("Empresa Criada com sucesso!");
+      toast.success("Empresa criada com sucesso!");
       return response.data.id;
     } catch (error) {
       toast.error(
@@ -47,7 +47,7 @@ class CompanyService {
       await api.put(`/company/${companyId}`, company);
       return {
         status: "success",
-        message: "Empresa editada com sucesso!",
+        message: "Empresa alterada com sucesso!",
         titulo: "Sucesso",
       };
     } catch (error) {

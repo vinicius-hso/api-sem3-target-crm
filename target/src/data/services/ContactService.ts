@@ -30,7 +30,7 @@ class ContactService {
   async deleteContact(id: string): Promise<string> {
     try {
       const response = await api.delete(`/contact/${id}`);
-      toast.success("Contato excluído com sucesso!");
+      toast.success("Contato deletado com sucesso!");
       return response.data;
     } catch (error) {
       toast.error(
@@ -85,7 +85,7 @@ class ContactService {
 
     try {
       const { data } = await api.put(`/contact/${id}?with=company`, body);
-      toast.success("Contato atualziado com sucesso!");
+      toast.success("Contato atualizado com sucesso!");
       return data.name;
     } catch (error) {
       toast.error(

@@ -61,7 +61,7 @@ class DealsService {
   async editDeal(dealId, deal) {
     try {
       const { data } = await api.put(`/deal/${dealId}`, deal);
-
+      toast.success(`Negociação alterada com sucesso!`);
       return data;
     } catch (error) {
       toast.error(
@@ -74,7 +74,7 @@ class DealsService {
   async createActivity(dealId, activity) {
     try {
       const { data } = await api.post(`deal/${dealId}/activity`, activity);
-
+      toast.success(`Atividade criada com sucesso!`);
       return data;
     } catch (error) {
       toast.error(
@@ -87,6 +87,19 @@ class DealsService {
   async updateStatus(dealId, newStatus) {
     try {
       const { data } = await api.put(`deal/${dealId}`, newStatus);
+      let status = "";
+      switch (newStatus.status) {
+        case "WON":
+          status = "Ganha";
+          break;
+        case "LOST":
+          status = "Perdida";
+          break;
+        default:
+          status = "Arquivada";
+          break;
+      }
+      toast.success(`Negociação finalizada como "${status}" com sucesso!`);
 
       return data;
     } catch (error) {
@@ -104,6 +117,7 @@ class DealsService {
   ) {
     try {
       await api.put(`deal/${dealId}`, { pipeline, status });
+      toast.success("Negociação restaurada com sucesso!");
       return {
         type: "success",
         message: "Empresa editada com sucesso!",
@@ -122,7 +136,7 @@ class DealsService {
   async deletedDeal(dealId) {
     try {
       await api.delete(`deal/${dealId}`);
-      toast.success("Contato excluído com sucesso!");
+      toast.success("Contato deletado com sucesso!");
     } catch (err) {
       toast.error(
         "Ops! algo deu errado, verifique sua conexão e tente novamente."

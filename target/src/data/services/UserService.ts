@@ -49,7 +49,7 @@ class UserService {
   async editUser(userId: string, user: IUser): Promise<any> {
     try {
       await api.put(`/user/${userId}`, user);
-      toast.success("Usuário atualizada com sucesso.");
+      toast.success("Usuário atualizado com sucesso.");
 
       return { status: "ok" };
     } catch (error) {
@@ -79,7 +79,7 @@ class UserService {
   async deleteUser(userId: string): Promise<IUser> {
     try {
       const { data } = await api.delete(`/user/${userId}`);
-      toast.success("Usuário Excluído com sucesso!");
+      toast.success("Usuário deletado com sucesso!");
       return data;
     } catch (error) {
       toast.error(
