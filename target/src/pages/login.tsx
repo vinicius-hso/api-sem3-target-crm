@@ -13,6 +13,8 @@ import TextFieldMaskLogin from "ui/components/Input/TextFieldLogin/TextFieldMask
 import { ImageContainer } from "ui/components/Welcome/welcome.style";
 import Head from "next/head";
 import { useLoginPage } from "data/services/hooks/PageHooks/loginPageHook";
+import { GetServerSideProps } from "next";
+import { parseCookies } from "../data/services/cookie/index";
 
 function HomePage() {
   const {
@@ -126,3 +128,35 @@ function HomePage() {
   );
 }
 export default HomePage;
+
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  resolvedUrl,
+}): Promise<any> => {
+  const data = parseCookies(req);
+  let token: string = "";
+  let user: any = {};
+
+  Object.keys(data).find((key, i) => {
+    if (key === "@target:token") {
+      token = Object.values(data)[i];
+    }
+    if (key === "@target:user") {
+      user = Object.values(data)[i];
+    }
+  });
+  if (token?.length && user?.length && resolvedUrl !== "/") {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      user,
+      token,
+    },
+  };
+};

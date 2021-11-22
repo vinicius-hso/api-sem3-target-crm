@@ -2,9 +2,21 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import Title from "ui/components/Title/Title";
 import { ImageContainer } from "ui/components/Welcome/welcome.style";
+import { useCookies } from "react-cookie";
 
 const Bye = () => {
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "@target:token",
+    "@target:user",
+  ]);
+
+  function handleRemoveCookie() {
+    removeCookie("@target:token");
+    removeCookie("@target:user");
+  }
+
   const logout = () => {
+    handleRemoveCookie();
     setTimeout(() => {
       localStorage.removeItem("@taget:token");
       localStorage.removeItem("user");
