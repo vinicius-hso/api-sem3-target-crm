@@ -76,10 +76,11 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
       } catch (e) {
         console.error(e);
       }
+    } else {
+      toast.warning(
+        "Preenchimento invalido, Verique os campos e tente novamente"
+      );
     }
-    toast.warning(
-      "Preenchimento invalido, Verique os campos e tente novamente"
-    );
   }
 
   const onClose = () => {
