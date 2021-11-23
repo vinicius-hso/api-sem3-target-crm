@@ -30,7 +30,7 @@ const Bye = () => {
   return (
     <div style={{ margin: "auto 0", marginTop: "100px" }}>
       <Title
-        title={"Agradeçomos sua visita!"}
+        title={"Agradecemos sua visita!"}
         subtitle={"Obrigado por usar nossa plataforma."}
       ></Title>
       <Head>
@@ -40,7 +40,7 @@ const Bye = () => {
       <ImageContainer>
         <img
           src="welcome.png"
-          alt="Agradeçomos sua visita"
+          alt="Agradecemos sua visita"
           height="300px"
           width="auto"
           text-align="center"
