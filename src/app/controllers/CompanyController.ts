@@ -1,4 +1,6 @@
 import Company from '@entities/Company';
+import Contact from '@entities/Contact';
+import Deal from '@entities/Deal';
 import queryBuilder from '@utils/queryBuilder';
 import { Request, Response } from 'express';
 
@@ -90,6 +92,14 @@ class CompanyController {
       if (!company) return res.status(404).json({ message: 'Cannot find company' });
 
       await Company.softRemove(company);
+
+      const deals = await Deal.find({ where: { company: company.id } });
+
+      await Deal.softRemove(deals);
+
+      const contacts = await Contact.find({ where: { company: company.id } });
+
+      await Contact.softRemove(contacts);
 
       return res.status(200).json({ message: 'Company deleted successfully' });
     } catch (error) {
