@@ -228,7 +228,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
         <Title style={{ textAlign: "left" }} title="Dashboard"></Title>
 
         <DatePickerContainer>
-          <p> Personalize o grafico</p>
+          <p> Personalize seu gráfico</p>
           <div className="buttonEditChart">
             <ToggleButtonGroup
               color="primary"
