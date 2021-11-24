@@ -20,6 +20,7 @@ import DealCompletedCard from "ui/components/DealCompletedCard/DealCompletedCard
 import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { DealTypes } from "types/Deal";
 import AchivedDealModal from "ui/components/Modal/Completed/ArchivedModal";
+import CompletedDealModal from "ui/components/Modal/Completed/CompletedModal";
 import Title from "ui/components/Title/Title";
 import { StatusTypes } from "types/Status";
 import Head from "next/head";
@@ -44,7 +45,14 @@ function CompletedPage({ token }: CompletedPageProps) {
   const { formatCompaniesToSelect } = useCompanyPage();
   const { formatContactToSelect } = useContactPage();
   const [openAchivedModal, setOpenAchivedModal] = useState(false);
+
+  //* WORKING
+  const [openCompletedModal, setOpenCompletedModal] = useState(false);
+
+  //* ------ |
+
   const [selectedDeal, setSelectedDeal] = useState<DealTypes>({});
+  const [finishedBy, setFinishedBy] = useState("");
   const [status, setStatus] = useState<StatusTypes>({});
 
   useEffect(() => {
@@ -94,8 +102,13 @@ function CompletedPage({ token }: CompletedPageProps) {
     setSelectedStatus(newValue);
   };
   const handleClick = (deal) => {
+    setFinishedBy(deal.activity[deal.activity.length - 1].createdBy.name);
     setSelectedDeal(deal);
-    setOpenAchivedModal(true);
+    if (deal.status === "ARCHIVED") {
+      setOpenAchivedModal(true);
+    } else {
+      setOpenCompletedModal(true);
+    }
   };
 
   useEffect(() => {
@@ -119,6 +132,16 @@ function CompletedPage({ token }: CompletedPageProps) {
         deal={selectedDeal}
         setStatus={setStatus}
       />
+
+      {deals && (
+        <CompletedDealModal
+          open={openCompletedModal}
+          setOpen={setOpenCompletedModal}
+          deal={selectedDeal}
+          setStatus={setStatus}
+          finishedBy={finishedBy}
+        />
+      )}
       <CompletedHeaderContainer>
         <TitleContainer>
           <Title title="NEGOCIAÇÕES FINALIZADAS"></Title>
@@ -227,7 +250,8 @@ function CompletedPage({ token }: CompletedPageProps) {
                 cursor: deal.status === "ARCHIVED" ? "pointer" : "",
               }}
               onClick={() => {
-                deal.status === "ARCHIVED" ? handleClick(deal) : null;
+                // deal.status === "ARCHIVED" ? handleClick(deal) : null;
+                handleClick(deal);
               }}
             />
           ))}
