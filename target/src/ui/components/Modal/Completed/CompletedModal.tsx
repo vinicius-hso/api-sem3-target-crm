@@ -9,7 +9,11 @@ import { DealTypes } from "types/Deal";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 // import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import { StatusTypes } from "types/Status";
+<<<<<<< HEAD
 // import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHook";
+=======
+import { useNavBarComponent } from "data/services/hooks/componentHooks/NavHook";
+>>>>>>> bb0f73b7f98c3ff4157fb7986b47529060441200
 import { formatValue } from "data/utils/formatValue";
 import Activity from "../../Activity/Activity";
 import { width } from "@material-ui/system";

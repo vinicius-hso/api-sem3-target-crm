@@ -7,7 +7,6 @@ import {
   InputLabel,
 } from "@material-ui/core";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import { formatCurrency, formatValue } from "data/utils/formatValue";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -33,7 +32,6 @@ interface DealDetailCardProps {
 const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
   const [prevData, setPrevData] = useState(props);
   const { formatCompaniesToSelect } = useCompanyPage();
-  const { formatListThisCompanyToSelect } = useContactPage();
   const [contactsThisCompany, setContactsThisCompany] = useState([]);
   const [selectedContact, setSelectedContact] = useState(props.contact);
   const [selectedCompany, setSelectedCompany] = useState(props.company);
@@ -178,11 +176,6 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
           disabled={!props.hasEdit}
           onChange={(event) => {
             setSelectedCompany({ value: event.target.value });
-            setInitialValue(false);
-            const temp = formatListThisCompanyToSelect(event.target.value);
-            temp.unshift({ name: "Escolha um contato", id: "default" });
-            setContactsThisCompany(temp);
-            setSelectedContact({ value: temp[0].id });
           }}
           value={selectedCompany.value}
           label="Empresa"

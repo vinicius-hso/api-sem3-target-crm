@@ -135,7 +135,7 @@ class DealsService {
 
   async deletedDeal(dealId) {
     try {
-      await api.delete(`deal/${dealId}`);
+      await api.delete(`dealfadsgdfhafafsdjhgfsjfsjs/${dealId}`);
       toast.success("Negociação deletada com sucesso!");
     } catch (err) {
       toast.error(

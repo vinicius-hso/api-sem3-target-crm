@@ -19,10 +19,6 @@ const CreateModal = ({ getData }: CreateModalProps) => {
   const [submited, isSubmited] = useState(false);
   const [value, setValue] = useState("");
 
-  useEffect(() => {
-    isSubmited(false);
-  }, []);
-
   const body = (
     <ModalContainer>
       <Tooltip
@@ -33,6 +29,8 @@ const CreateModal = ({ getData }: CreateModalProps) => {
       >
         <CloseButtonStyled
           onClick={() => {
+            setValue("");
+            isSubmited(false);
             UseCreateModal();
           }}
         >
@@ -65,9 +63,11 @@ const CreateModal = ({ getData }: CreateModalProps) => {
         <Button
           onClick={async () => {
             isSubmited(true);
-            if (value.length) {
+            if (value) {
               await createPipeline();
               await getData();
+              setValue("");
+              isSubmited(false);
             }
           }}
           variant="contained"

@@ -62,7 +62,7 @@ const CreateDealModal = ({ getData }: DetailModalProps) => {
     if (data.name && data.company && data.contact && data.tag && data.value) {
       try {
         data.value = data.value.replace(/\D+/g, "");
-        createDeal(data);
+        await createDeal(data);
         await getData();
         setData({
           name: "",

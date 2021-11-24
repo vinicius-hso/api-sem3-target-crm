@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {
   ModalContainer,
   TwoColumnsContainer,
@@ -14,10 +14,12 @@ import {
   InputLabel,
   Select,
   Tooltip,
+  Typography,
 } from "@material-ui/core";
 import { IUser } from "types/User";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
+import { toast } from "react-toastify";
 
 interface CreateUserModalProps {
   open: boolean;
@@ -29,8 +31,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
   setOpen,
   getData,
 }) => {
-  const { createUserModalState, useCreateUserModal, createUser } =
-    useUserPage();
+  const { createUser } = useUserPage();
 
   const [submit, setSubmit] = useState(false);
   const [data, setData] = useState<IUser>({
@@ -47,6 +48,10 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
       getData();
       setSubmit(false);
       onClose();
+    } else {
+      toast.warning(
+        "Preenchimento invalido, verifique os campos e tente novamente."
+      );
     }
   }
 
@@ -103,8 +108,13 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
           helperText={!data.email && submit ? "Campo é obrigatório" : " "}
         />
 
-        <FormControl fullWidth>
-          <InputLabel variant="standard" htmlFor="uncontrolled-native">
+        <FormControl fullWidth sx={{ mb: submit && !data.role && -2 }}>
+          <InputLabel
+            variant="standard"
+            htmlFor="uncontrolled-native"
+            error={submit && !data.role}
+            required
+          >
             Perfil
           </InputLabel>
           <Select
@@ -113,11 +123,14 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
             variant="standard"
             size="medium"
             fullWidth
-            defaultValue={""}
+            error={submit && !data.role}
           >
             <MenuItem value={"ADMIN"}>Administrador</MenuItem>
             <MenuItem value={"SELLER"}>Vendedor</MenuItem>
           </Select>
+          <Typography variant="caption" color="error">
+            Perfil é obrigatório
+          </Typography>
         </FormControl>
 
         <TextFieldMask

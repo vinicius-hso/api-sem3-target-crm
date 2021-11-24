@@ -41,7 +41,15 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     <ModalContainer>
       <Dialog
         title={"Deletar empresa"}
-        message={`Tem certeza que deseja deletar ${company?.name}?`}
+        message={
+          <>
+            <span style={{ display: "block" }}>
+              Ao deletar uma empresa, os dados de contatos e negociações
+              vinculados a está empresa também serão apagados
+            </span>
+            <span>Tem certeza que deseja deletar {company?.name}?</span>
+          </>
+        }
         type={"question"}
         open={dialogView}
         setOpen={() => setDialogView(false)}
