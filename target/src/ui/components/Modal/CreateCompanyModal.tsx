@@ -18,9 +18,8 @@ import {
 import { CompanyTypes } from "types/Company";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { ModalStyled } from "./ModalStyles/Modal.style";
-import { getCepService } from "data/utils/getCepService";
-import { formatCep } from "data/utils/formatCep";
 import { mockEstados } from "data/utils/mock";
+import { toast } from "react-toastify";
 
 interface CreateCompanyModalProps {
   open: boolean;
@@ -34,7 +33,6 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
 }) => {
   const { createCompany } = useCompanyPage();
 
-  const [time, setTime] = useState(null);
   const [data, setData] = useState<CompanyTypes>({
     name: "",
     country: "",
@@ -50,41 +48,16 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
 
   async function handleSubmit() {
     isSubmit(true);
-    data.name
-      ? createCompany(data).then(() => {
-          getData();
-          onClose();
-        })
-      : null;
-  }
-
-  const handleChangeCep = (event) => {
-    setData({ ...data, cep: formatCep(event.target.value) });
-    if (event.target.value.length === 9) {
-      if (time) {
-        clearTimeout(time);
-        setTime(null);
-      }
-      setTime(
-        setTimeout(async () => {
-          const address: any = await getCepService(event.target.value);
-          if (address.cep) {
-            setData({
-              ...data,
-              cep: event.target.value,
-              city: address.localidade,
-              state: address.uf,
-              address: address.logradouro,
-              country: "Brasil",
-            });
-          } else {
-            console.log("invalidCep");
-          }
-        }, 1000)
+    if (data?.name) {
+      await createCompany(data);
+      getData();
+      onClose();
+    } else {
+      toast.warning(
+        "Preenchimento invalido, verifique os campos e tente novamente."
       );
-      clearTimeout(time);
     }
-  };
+  }
 
   const onClose = () => {
     setData({
@@ -97,6 +70,7 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
       cep: "",
       address: "",
     });
+    isSubmit(false);
     setOpen(false);
   };
 
@@ -129,26 +103,6 @@ const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
           fullWidth
           error={submit && !data.name}
           helperText={!data.name && submit ? "Informe o nome da empresa" : " "}
-        />
-
-        <TextFieldMask
-          onChange={(event) => handleChangeCep(event)}
-          value={data.cep}
-          label="CEP"
-          variant="standard"
-          size="small"
-          fullWidth
-        />
-
-        <TextFieldMask
-          onChange={(event) =>
-            setData({ ...data, address: event.target.value })
-          }
-          value={data.address}
-          label="Endereço"
-          variant="standard"
-          size="small"
-          fullWidth
         />
 
         <TextFieldMask

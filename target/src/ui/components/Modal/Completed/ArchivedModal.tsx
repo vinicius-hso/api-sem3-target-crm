@@ -17,15 +17,17 @@ import { ButtonsContainer } from "../ModalStyles/ButtonsContainer";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
 import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import { StatusTypes } from "types/Status";
-import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHook";
+import { useNavBarComponent } from "data/services/hooks/componentHooks/NavHook";
 import { formatValue } from "data/utils/formatValue";
 import Dialog from "ui/components/Dialog/Dialog";
+import DealsService from "data/services/DealsService";
 
 interface AchivedDealModalProps {
   deal: DealTypes;
   setOpen: (value: boolean) => void;
   open: boolean;
   setStatus: (value: StatusTypes) => void;
+  getDealsData: () => void;
 }
 
 const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
@@ -33,13 +35,14 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
   setOpen,
   open,
   setStatus,
+  getDealsData,
 }) => {
   const [hasRestore, setHasRestore] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [dialogView, setDialogView] = useState(false);
   const [selectedPipeline, setSelectedPipeline] = useState("default");
   const { pipelines, getData } = usePipelineComponent();
-  const { updateStatusAndRestore, deletedDeal } = useDealPage();
+  const { updateStatusAndRestore } = useDealPage();
   const { isAdmin } = useNavBarComponent();
 
   useEffect(() => {
@@ -47,6 +50,12 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
       getData();
     }
   }, []);
+
+  const handleDelete = async () => {
+    await DealsService.deletedDeal(deal.id);
+    getDealsData();
+    onClose();
+  };
 
   const onClose = () => {
     setHasRestore(false);
@@ -64,9 +73,7 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
         setOpen={() => setDialogView(false)}
         result={async (res) => {
           if (res) {
-            await deletedDeal(deal.id);
-            getData();
-            onClose();
+            handleDelete();
           }
         }}
       />

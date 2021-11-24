@@ -21,7 +21,7 @@ const formatToCompany = (array: any[]) => {
     let wonValue = 0;
     let lostValue = 0;
     let inProgressValue = 0;
-    if (!verify) {
+    if (!verify && element?.company?.name) {
       dataNames.push(element?.company?.name);
       array.map((deal) => {
         if (deal?.company?.name === element?.company?.name) {
@@ -119,7 +119,7 @@ const formatToPipeline = (array: any[]) => {
     let wonValue = 0;
     let lostValue = 0;
     let inProgressValue = 0;
-    if (!verify) {
+    if (!verify && element?.pipeline?.name) {
       dataNames.push(element?.pipeline?.name);
       array.map((deal) => {
         if (deal?.pipeline?.name === element?.pipeline?.name) {
@@ -147,7 +147,6 @@ const formatToPipeline = (array: any[]) => {
       dataLength?.won.push(won);
       dataLength?.lost.push(lost);
       dataLength?.inProgress.push(inProgress);
-    } else {
     }
   });
   return { dataNames, dataValues, dataLength };
