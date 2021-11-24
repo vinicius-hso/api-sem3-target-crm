@@ -2,6 +2,7 @@ import { Avatar, Card } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 export const DealCardContainer = styled(Card)`
+  cursor: pointer;
   display: grid;
   grid-template-columns: 28px 1fr 15px;
   width: 100%;
