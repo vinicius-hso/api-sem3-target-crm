@@ -4,13 +4,15 @@ import { Typography, Tooltip } from "@material-ui/core";
 import { ModalContainer } from "./../ModalStyles/ModalContainer.style";
 import { ModalStyled } from "./../ModalStyles/Modal.style";
 import { CloseButtonStyled } from "./../ModalStyles/CloseButtonModal.style";
+import { InfoContainer } from "./../ModalStyles/CompletedModal.style";
 import { DealTypes } from "types/Deal";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
-import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
+// import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import { StatusTypes } from "types/Status";
-import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHook";
+// import { useNavBarComponent } from "data/services/hooks/componentHooks/NavBarHook";
 import { formatValue } from "data/utils/formatValue";
 import Activity from "../../Activity/Activity";
+import { width } from "@material-ui/system";
 
 interface CompletedDealModalProps {
   deal: DealTypes;
@@ -56,7 +58,8 @@ const CompletedDealModal: React.FC<CompletedDealModalProps> = ({
       </Tooltip>
 
       <Title title={`Detalhes de ${deal.name}`} />
-      <div
+      <InfoContainer>
+        {/* <div
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -64,18 +67,21 @@ const CompletedDealModal: React.FC<CompletedDealModalProps> = ({
           height: "auto",
           flexDirection: "column",
           flexWrap: "wrap",
+          padding: "10px",
         }}
-      >
+      > */}
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-evenly",
             alignItems: "center",
-            gap: "20px",
+            // gap: "20px",
 
             height: "auto",
             padding: "10px",
             borderRadius: "4px",
+
+            width: "100%",
           }}
         >
           <div
@@ -114,12 +120,15 @@ const CompletedDealModal: React.FC<CompletedDealModalProps> = ({
         <div
           style={{
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "space-evenly",
             alignItems: "center",
             gap: "20px",
+            padding: "10px",
 
             height: "auto",
             borderRadius: "4px",
+
+            width: "100%",
           }}
         >
           <div
@@ -155,9 +164,15 @@ const CompletedDealModal: React.FC<CompletedDealModalProps> = ({
             <Typography variant="body2">{finishedBy}</Typography>
           </div>
         </div>
-      </div>
+        {/* </div> */}
+      </InfoContainer>
 
-      <div>
+      <div
+        style={{
+          margin: "16px",
+          padding: "8px",
+        }}
+      >
         <Title title={`Histórico de atividades`} />
         {deal.activity
           ? deal.activity
