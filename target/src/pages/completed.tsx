@@ -102,7 +102,7 @@ function CompletedPage({ token }: CompletedPageProps) {
     setSelectedStatus(newValue);
   };
   const handleClick = (deal) => {
-    setFinishedBy(deal.activity[deal.activity.length - 1].createdBy.name);
+    setFinishedBy(deal.activity[0].createdBy.name);
     setSelectedDeal(deal);
     if (deal.status === "ARCHIVED") {
       setOpenAchivedModal(true);

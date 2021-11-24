@@ -63,12 +63,13 @@ const CompletedDealModal: React.FC<CompletedDealModalProps> = ({
           alignItems: "center",
           height: "auto",
           flexDirection: "column",
+          flexWrap: "wrap",
         }}
       >
         <div
           style={{
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             alignItems: "center",
             gap: "20px",
 
