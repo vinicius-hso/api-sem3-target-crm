@@ -25,6 +25,7 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
 import { DealTypes } from "types/Deal";
+import { BoxStyled } from "../ui/styles/pagesStyle/dashboard.style";
 
 interface BarChartsProps {
   title: string;
@@ -304,13 +305,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
       />
       <br />
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: { xs: "column", md: "row" },
-        }}
-      >
+      <BoxStyled>
         {dealsInfo && (
           <DealsInfoCard
             meanvalue={dealsInfo?.meanValue}
@@ -329,7 +324,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
             totalarchived={conversionRateInfo?.totalArchived}
           />
         )}
-      </Box>
+      </BoxStyled>
 
       <div style={{ width: "100%" }}>
         <ChartsContainer>

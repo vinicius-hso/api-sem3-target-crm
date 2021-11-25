@@ -1,3 +1,4 @@
+import { Box } from "@material-ui/core";
 import { experimentalStyled as styled } from "@material-ui/core/styles";
 
 export const DashboardPageContainer = styled("div")`
@@ -59,5 +60,16 @@ export const ChartsContainer = styled("div")`
   min-width: 720px;
   ${({ theme }) => theme.breakpoints.down("sm")} {
     min-width: 400px;
+  }
+`;
+
+export const BoxStyled = styled(Box)`
+  display: flex;
+  justify-content: center;
+  gap: 5;
+  margin: ${({ theme }) => theme.spacing(3)};
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    flex-direction: column;
   }
 `;
