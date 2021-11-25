@@ -58,6 +58,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         signOut,
         setToken,
         user,
+        setUser,
         loged,
       }}
     >
