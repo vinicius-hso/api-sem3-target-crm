@@ -67,7 +67,7 @@ const DealCompletedCard: React.FC<DealCardProps> = (props) => {
           </DealStartDateStyled>
         </DealFooterContainer>
       </DealDescriptionContainer>
-      {iconTag.icon === "thumbs-o-up" && (
+      {iconTag.icon === "thumbs-up" && (
         <Tooltip
           title="Ganha"
           placement="top-start"
@@ -82,7 +82,7 @@ const DealCompletedCard: React.FC<DealCardProps> = (props) => {
           />
         </Tooltip>
       )}
-      {iconTag.icon === "thumbs-o-down" && (
+      {iconTag.icon === "thumbs-down" && (
         <Tooltip
           title="Perdida"
           placement="top-start"
