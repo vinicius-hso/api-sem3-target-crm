@@ -43,7 +43,7 @@ export const IconButtonStyled = styled(IconButton)`
 
 export const HasFilter = styled("div")`
   position: absolute;
-  top: 60px;
+  top: ${({ theme }) => theme.spacing(7)};
   left: 0;
   padding: 10px;
   border-radius: 24px;

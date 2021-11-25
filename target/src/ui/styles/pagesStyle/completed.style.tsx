@@ -19,6 +19,7 @@ export const CompletedHeaderContainer = styled("div")`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  margin-bottom: ${({ theme }) => theme.spacing(2)};
   ${({ theme }) => theme.breakpoints.up("md")} {
     grid-template-columns: repeat(2, 1fr);
   }

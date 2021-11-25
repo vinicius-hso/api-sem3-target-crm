@@ -111,10 +111,6 @@ function CompletedPage({ token }: CompletedPageProps) {
     }
   };
 
-  const get = () => {
-    getData();
-  };
-
   useEffect(() => {
     if (status.type) {
       const i = deals.indexOf(selectedDeal);
@@ -135,7 +131,7 @@ function CompletedPage({ token }: CompletedPageProps) {
         setOpen={setOpenAchivedModal}
         deal={selectedDeal}
         setStatus={setStatus}
-        getDealsData={get}
+        getDealsData={getData}
       />
 
       {deals && (

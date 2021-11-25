@@ -100,7 +100,9 @@ function ContactPage({ token, user }: ContactPageProps) {
         />
       ) : null}
       <DeleteContactModal id={selectedId} />
-      <ContactsHeaderContainer>
+      <ContactsHeaderContainer
+        style={{ marginBottom: hasFiltered ? "55px" : "16px" }}
+      >
         <TitleContainer>
           <Title title="CONTATOS"></Title>
         </TitleContainer>
@@ -158,7 +160,6 @@ function ContactPage({ token, user }: ContactPageProps) {
           </Tooltip>
         </ButtonsContainer>
       </ContactsHeaderContainer>
-      <br />
       <CardsContainer>
         {isLoading ? (
           <div style={{ textAlign: "center" }}>

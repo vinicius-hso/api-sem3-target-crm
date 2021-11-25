@@ -1,4 +1,10 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@material-ui/core";
 import React, { useEffect } from "react";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { DividerStyled, HasFilter, PaperStyled } from "./SearchButton.style";
@@ -80,7 +86,9 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
       {props.hasFiltered ? (
         <HasFilter onClick={props.onClick}>
           <i className="fa fa-times" aria-hidden="true"></i>
-          Remover filtro
+          <Typography variant="caption" sx={{ fontWeight: "bold" }}>
+            Remover filtro
+          </Typography>
         </HasFilter>
       ) : (
         <div />

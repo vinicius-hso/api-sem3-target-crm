@@ -18,6 +18,10 @@ export const DealsHeaderContainer = styled("div")`
   ${({ theme }) => theme.breakpoints.up("md")} {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  ${({ theme }) => theme.breakpoints.down("md")} {
+    margin-bottom: ${({ theme }) => theme.spacing(3)};
+  }
 `;
 
 export const TitleHeaderContainer = styled("div")`

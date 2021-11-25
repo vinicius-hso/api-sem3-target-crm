@@ -7,7 +7,6 @@ export const useCompletedPage = () => {
   const [removeFilteredDeals, setFilteredDeals] = useState([]);
 
   const getData = async () => {
-    if (deals?.length) return;
     const response = await DealsService.getDealsCompleted();
     setDeals(response);
     setFilteredDeals(response);

@@ -47,13 +47,20 @@ const DealCard: React.FC<DealCardProps> = (props) => {
           borderRadius: "5px",
         }}
       >
-        <DealPictureStyled
-          sx={{ ml: 0.5, mt: 0.5 }}
-          src={props?.companyPicture}
-          alt={props?.companyName}
+        <Tooltip
+          title={props?.companyName}
+          placement="top-start"
+          enterDelay={500}
+          leaveDelay={100}
         >
-          {getNameInitials(props?.companyName)}
-        </DealPictureStyled>
+          <DealPictureStyled
+            sx={{ ml: 0.5, mt: 0.5 }}
+            src={props?.companyPicture}
+            alt={props?.companyName}
+          >
+            {getNameInitials(props?.companyName)}
+          </DealPictureStyled>
+        </Tooltip>
       </div>
       <DealDescriptionContainer>
         <DealTitleStyled>{props?.title}</DealTitleStyled>
