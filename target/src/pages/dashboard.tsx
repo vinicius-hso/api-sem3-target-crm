@@ -162,7 +162,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
   const [filterType, setFilterType] = useState<{
     chartType: string;
     valueType: string;
-  }>({ chartType: "Empresa", valueType: "quantidade" });
+  }>({ chartType: "Empresa", valueType: "Quantidade" });
 
   const [filterDate, setFilterDate] = useState<{
     startDate: string;
@@ -184,21 +184,21 @@ function Dashboard({ allDeals, token }: DashboardProps) {
         {
           name: "GANHAS",
           data:
-            valueType === "valor"
+            valueType === "Valor"
               ? data?.dataValues?.wonValue
               : data?.dataLength?.won,
         },
         {
           name: "EM ANDAMENTO",
           data:
-            valueType === "valor"
+            valueType === "Valor"
               ? data?.dataValues?.inProgressValue
               : data?.dataLength?.inProgress,
         },
         {
           name: "PERDIDAS",
           data:
-            valueType === "valor"
+            valueType === "Valor"
               ? data?.dataValues?.lostValue
               : data?.dataLength?.lost,
         },
@@ -207,7 +207,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
   };
 
   useEffect(() => {
-    getChartData("Empresa", "quantidade");
+    getChartData("Empresa", "Quantidade");
   }, [deals]);
 
   const setFilter = () => {
@@ -256,8 +256,8 @@ function Dashboard({ allDeals, token }: DashboardProps) {
                 }
               }}
             >
-              <ToggleButton value={"quantidade"}>Quantidade</ToggleButton>
-              <ToggleButton value={"valor"}>Valor</ToggleButton>
+              <ToggleButton value={"Quantidade"}>Quantidade</ToggleButton>
+              <ToggleButton value={"Valor"}>Valor</ToggleButton>
             </ToggleButtonGroup>
           </div>
           <div className="inputDateGroup">

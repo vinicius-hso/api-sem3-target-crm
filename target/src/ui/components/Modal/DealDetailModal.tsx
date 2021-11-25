@@ -239,7 +239,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                 value={dealDetail.contact?.email}
                 disabled
               />
-              <LinkStyled>
+              <LinkPhoneStyled>
                 <Tooltip
                   title="Copiar email"
                   placement="top-start"
@@ -252,9 +252,9 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                     </CopyToClipboard>
                   </IconButton>
                 </Tooltip>
-              </LinkStyled>
+              </LinkPhoneStyled>
 
-              <LinkStyled href={`mailto:${dealDetail.contact?.email}`}>
+              <LinkPhoneStyled href={`mailto:${dealDetail.contact?.email}`}>
                 <Tooltip
                   title="Enviar email"
                   placement="top-start"
@@ -265,7 +265,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                     <i className={`fa fa-envelope-o`}></i>
                   </IconButton>
                 </Tooltip>
-              </LinkStyled>
+              </LinkPhoneStyled>
             </div>
             <div style={{ display: "flex" }}>
               <TextFieldMask
@@ -276,7 +276,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                 sx={{ width: "45px" }}
                 disabled
               />{" "}
-              <LinkStyled>
+              <LinkPhoneStyled>
                 <Tooltip
                   title="Copiar número"
                   placement="top-start"
@@ -289,7 +289,7 @@ const DetailModal: React.FC<DetailModalProps> = ({ getData }) => {
                     </CopyToClipboard>
                   </IconButton>
                 </Tooltip>
-              </LinkStyled>
+              </LinkPhoneStyled>
               <LinkPhoneStyled href={`tel:${dealDetail.contact?.phone}`}>
                 <Tooltip
                   title="Ligar"

@@ -273,7 +273,7 @@ const DealDetailCard: React.FC<DealDetailCardProps> = (props) => {
           fullWidth
           variant={"standard"}
           size="medium"
-          value={props.status}
+          value={"Em andamento"}
         />
       </InputContainer>
     </DealDetailCardContainer>
