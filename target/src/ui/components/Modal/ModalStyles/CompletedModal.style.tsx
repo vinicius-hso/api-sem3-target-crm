@@ -16,13 +16,7 @@ export const InfoContainer = styled("div")`
   flex-direction: line;
   margin: 10px;
 
-  ${({ theme }) => theme.breakpoints.down("sm")} {
-    /* display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    height: auto;
-    flex-direction: row;
-    */
+  ${({ theme }) => theme.breakpoints.down("md")} {
     flex-wrap: wrap;
   }
 `;

@@ -7,7 +7,6 @@ import { CloseButtonStyled } from "./../ModalStyles/CloseButtonModal.style";
 import { InfoContainer } from "./../ModalStyles/CompletedModal.style";
 import { DealTypes } from "types/Deal";
 import { usePipelineComponent } from "data/services/hooks/componentHooks/PipelineHook";
-// import { useDealPage } from "data/services/hooks/PageHooks/DealHook";
 import { StatusTypes } from "types/Status";
 import { useNavBarComponent } from "data/services/hooks/componentHooks/NavHook";
 import { formatValue } from "data/utils/formatValue";
@@ -59,28 +58,14 @@ const CompletedDealModal: React.FC<CompletedDealModalProps> = ({
 
       <Title title={`Detalhes de ${deal.name}`} />
       <InfoContainer>
-        {/* <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          height: "auto",
-          flexDirection: "column",
-          flexWrap: "wrap",
-          padding: "10px",
-        }}
-      > */}
         <div
           style={{
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
-            // gap: "20px",
-
             height: "auto",
             padding: "10px",
             borderRadius: "4px",
-
             width: "100%",
           }}
         >
@@ -164,7 +149,6 @@ const CompletedDealModal: React.FC<CompletedDealModalProps> = ({
             <Typography variant="body2">{finishedBy}</Typography>
           </div>
         </div>
-        {/* </div> */}
       </InfoContainer>
 
       <div
