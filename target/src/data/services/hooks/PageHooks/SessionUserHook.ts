@@ -10,7 +10,9 @@ export const useSessionUserPage = () => {
   const editUser = async (userId: any, data: any) => {
     const res = await UserService.editUser(userId, data);
     if (res?.status) {
-      setCookie("@target:user", data, {
+      console.log(data);
+
+      setCookie("@target:user", JSON.stringify(data), {
         path: "/",
         maxAge: 60 * 60 * 24, //expira em 24horas
         sameSite: true,

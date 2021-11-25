@@ -31,9 +31,9 @@ const DealCompletedCard: React.FC<DealCardProps> = (props) => {
   const iconTag = useMemo(() => {
     switch (props.status) {
       case "WON":
-        return { icon: "thumbs-o-up", color: "#03f518" };
+        return { icon: "thumbs-up", color: "#03f518" };
       case "LOST":
-        return { icon: "thumbs-o-down", color: "#e63706" };
+        return { icon: "thumbs-down", color: "#e63706" };
       case "ARCHIVED":
         return { icon: "archive", color: "#01306e" };
       default:

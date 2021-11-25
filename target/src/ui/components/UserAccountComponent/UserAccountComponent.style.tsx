@@ -37,7 +37,11 @@ export const ContainerStyled = styled(Container)`
   margin-top: 50px;
   padding-bottom: 20px;
 
-  h2 {
-    text-align: left;
+  div {
+    &:first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 `;

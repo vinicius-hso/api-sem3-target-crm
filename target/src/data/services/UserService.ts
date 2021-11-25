@@ -50,7 +50,6 @@ class UserService {
     try {
       await api.put(`/user/${userId}`, user);
       toast.success("Usuário atualizado com sucesso.");
-
       return { status: "ok" };
     } catch (error) {
       toast.error(

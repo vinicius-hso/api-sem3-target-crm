@@ -53,28 +53,28 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
       <ContainerStyled>
         <div>
           <Title title="Meus dados" />
-        </div>
 
-        <Tooltip
-          title="Alterar senha"
-          placement="top-start"
-          enterDelay={500}
-          leaveDelay={100}
-        >
-          <NewActivityButton
-            variant="contained"
-            size="small"
-            color="primary"
-            type="submit"
-            onClick={() => {
-              props.onClickPassword();
-              isSubmit(false);
-            }}
+          <Tooltip
+            title="Alterar senha"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
           >
-            <i style={{ marginRight: "2px" }} className="fa fa-unlock"></i>
-            Alterar senha
-          </NewActivityButton>
-        </Tooltip>
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              type="submit"
+              onClick={() => {
+                props.onClickPassword();
+                isSubmit(false);
+              }}
+            >
+              <i style={{ marginRight: "2px" }} className="fa fa-unlock"></i>
+              Alterar senha
+            </Button>
+          </Tooltip>
+        </div>
 
         {props.hasEditPassword && (
           <ContainerStyled>
@@ -152,54 +152,50 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               </InputContainer>
 
               <ButtonsContainer>
-                <div style={{ margin: "24px" }}>
-                  <Tooltip
-                    title="Salvar alteração"
-                    placement="top-start"
-                    enterDelay={500}
-                    leaveDelay={100}
+                <Tooltip
+                  title="Salvar alteração"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
+                  <Button
+                    onClick={() => {
+                      isSubmit(true);
+                      props.saveEditPassword(password);
+                    }}
+                    variant="contained"
+                    size="small"
+                    sx={{
+                      width: "160px",
+                      mt: 1,
+                      color: "white",
+                    }}
+                    color="success"
+                    type="submit"
                   >
-                    <Button
-                      onClick={() => {
-                        isSubmit(true);
-                        props.saveEditPassword(password);
-                      }}
-                      variant="contained"
-                      size="small"
-                      sx={{
-                        width: "160px",
-                        mt: 1,
-                        color: "white",
-                      }}
-                      color="success"
-                      type="submit"
-                    >
-                      Salvar
-                    </Button>
-                  </Tooltip>
-                </div>
-                <div style={{ margin: "24px" }}>
-                  <Tooltip
-                    title="Cancelar alteração"
-                    placement="top-start"
-                    enterDelay={500}
-                    leaveDelay={100}
+                    Salvar
+                  </Button>
+                </Tooltip>
+                <Tooltip
+                  title="Cancelar alteração"
+                  placement="top-start"
+                  enterDelay={500}
+                  leaveDelay={100}
+                >
+                  <Button
+                    onClick={props.onClickPassword}
+                    variant="contained"
+                    size="small"
+                    color="error"
+                    type="submit"
+                    sx={{
+                      width: "160px",
+                      mt: 1,
+                    }}
                   >
-                    <Button
-                      onClick={props.onClickPassword}
-                      variant="contained"
-                      size="small"
-                      color="error"
-                      type="submit"
-                      sx={{
-                        width: "160px",
-                        mt: 1,
-                      }}
-                    >
-                      Cancelar
-                    </Button>
-                  </Tooltip>
-                </div>
+                    Cancelar
+                  </Button>
+                </Tooltip>
               </ButtonsContainer>
             </UserAccountCardContainer>
           </ContainerStyled>
@@ -278,11 +274,17 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
                 display: !props.hasEdit && "none",
               }}
               onClick={() => {
-                user?.name?.length && emailValidator(user?.email)
-                  ? props.saveEdit(user)
-                  : toast.warning(
-                      "Preencha os campos corretamente, e tente novamente"
-                    );
+                if (
+                  user?.name?.length &&
+                  emailValidator(user?.email) &&
+                  user?.picture?.length < 3000
+                ) {
+                  props.saveEdit(user);
+                } else {
+                  toast.warning(
+                    "Preencha os campos corretamente, e tente novamente"
+                  );
+                }
               }}
               color={props.hasEdit ? "success" : "primary"}
             >
@@ -345,6 +347,11 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
               value={user?.picture || ""}
               onChange={(event) =>
                 setUser({ ...user, picture: event.target.value })
+              }
+              error={user?.picture?.length > 3000}
+              helperText={
+                user?.picture?.length > 3000 &&
+                "Link de imagem muito grande, limite de 3000 caracteres!"
               }
             />
           </InputContainer>
