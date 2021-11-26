@@ -14,6 +14,7 @@ interface CompanyDetailModalProps {
   company: any;
   setOpen: any;
   getData: () => void;
+  isAdmin: boolean;
 }
 
 const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
@@ -21,6 +22,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
   company,
   setOpen,
   getData,
+  isAdmin,
 }) => {
   const { editCompany, deleteCompany } = useCompanyPage();
   const [hasEdit, setHasEdit] = useState(false);
@@ -78,30 +80,32 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
       </Tooltip>
 
       <Title title={`Detalhes da empresa ${company?.name}`} />
-      <div style={{ display: "flex", justifyContent: "right" }}>
-        <Tooltip
-          title="Deletar empresa"
-          placement="top-start"
-          enterDelay={500}
-          leaveDelay={100}
-        >
-          <Button
-            onClick={() => {
-              setDialogView(true);
-            }}
-            variant="contained"
-            size="small"
-            sx={{
-              width: "160px",
-              mb: 2,
-            }}
-            color="error"
-            type="submit"
+      {isAdmin && (
+        <div style={{ display: "flex", justifyContent: "right" }}>
+          <Tooltip
+            title="Deletar empresa"
+            placement="top-start"
+            enterDelay={500}
+            leaveDelay={100}
           >
-            Deletar
-          </Button>
-        </Tooltip>
-      </div>
+            <Button
+              onClick={() => {
+                setDialogView(true);
+              }}
+              variant="contained"
+              size="small"
+              sx={{
+                width: "160px",
+                mb: 2,
+              }}
+              color="error"
+              type="submit"
+            >
+              Deletar
+            </Button>
+          </Tooltip>
+        </div>
+      )}
 
       <CompanyDetailCard
         onClick={() => setHasEdit(!hasEdit)}

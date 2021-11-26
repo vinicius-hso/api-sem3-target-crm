@@ -18,12 +18,14 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
+import { IUser } from "types/User";
 
 interface CompanyPageProps {
   token: string;
+  user: IUser;
 }
 
-function CompanyPage({ token }: CompanyPageProps) {
+function CompanyPage({ token, user }: CompanyPageProps) {
   serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   const {
@@ -88,6 +90,7 @@ function CompanyPage({ token }: CompanyPageProps) {
         setOpen={setOpenDetailCompanyModal}
         company={selectedCompany}
         getData={getData}
+        isAdmin={user.role === "ADMIN"}
       />
       <CompanyHeaderContainer>
         <TitleContainer>
