@@ -34,7 +34,6 @@ interface ContactPageProps {
 function ContactPage({ token, user }: ContactPageProps) {
   serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-  const { filteredContact, removeFiltered } = useContactPage();
   const { formatCompaniesToSelect } = useCompanyPage();
   const [valueType, setValueType] = useState("name");
   const [hasFiltered, setHasFiltered] = useState(false);
@@ -71,10 +70,12 @@ function ContactPage({ token, user }: ContactPageProps) {
     useImportContactModal,
     useCreateContactModal,
     useUpdateContactModal,
-    contacts,
     isLoading,
     hasError,
     getContacts,
+    filteredContact,
+    removeFiltered,
+    contacts,
   } = useContext(ContactContext);
 
   const setId = () => {
