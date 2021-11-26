@@ -1,14 +1,13 @@
 import { useMemo } from "react";
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import { DealTypes } from "types/Deal";
 
 interface BarChartsProps {
-  series: number[];
+  deals: DealTypes[];
 }
 
-const PieCharts: React.FC<BarChartsProps> = ({ series }) => {
-  console.log(series);
-
+const PieCharts: React.FC<BarChartsProps> = ({ deals }) => {
   const options: ApexOptions = useMemo(
     () => ({
       chart: {
@@ -52,9 +51,30 @@ const PieCharts: React.FC<BarChartsProps> = ({ series }) => {
     []
   );
 
+  const seriesPie = useMemo(() => {
+    if (deals?.length) {
+      const series = [0, 0, 0, 0];
+      deals.forEach((deal) => {
+        switch (deal.status) {
+          case "WON":
+            return series[0]++;
+          case "LOST":
+            return series[1]++;
+          case "INPROGRESS":
+            return series[2]++;
+          case "ARCHIVED":
+            return series[3]++;
+        }
+      });
+      return series;
+    } else {
+      return [0, 0, 0, 0];
+    }
+  }, [deals]);
+
   return (
     <>
-      <Chart options={options} series={series} type="pie" height={600} />
+      <Chart options={options} series={seriesPie} type="pie" height={600} />
     </>
   );
 };

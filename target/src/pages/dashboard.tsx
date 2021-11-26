@@ -198,14 +198,7 @@ function Dashboard({ allDeals, token }: DashboardProps) {
           />
         </ChartsContainer>
       </div>
-      <DynamicPieCharts
-        series={[
-          wonDeals.length || 0,
-          lostDeals.length || 0,
-          inProgressDeals.length || 0,
-          archivedDeals.length || 0,
-        ]}
-      />
+      <DynamicPieCharts deals={allDeals} />
       <br />
 
       <BoxStyled>
