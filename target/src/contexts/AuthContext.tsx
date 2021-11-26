@@ -1,4 +1,3 @@
-import { serviceApi } from "data/services/ServiceApi";
 import React, { useState, createContext, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import AuthContextData from "../types/Auth";

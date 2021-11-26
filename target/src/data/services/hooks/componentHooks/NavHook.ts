@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { serviceApi } from "data/services/ServiceApi";
 import { useRouter } from "next/dist/client/router";
 import AuthContext from "contexts/AuthContext";
 

@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  ToggleButton,
-  ToggleButtonGroup,
-  Box,
-} from "@material-ui/core";
+import { Button, ToggleButton, ToggleButtonGroup } from "@material-ui/core";
 import { DynamicBarCharts } from "data/services/servicesComponents/DynamicBarCharts";
 import { DynamicPieCharts } from "data/services/servicesComponents/DynamicPieCharts";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
@@ -64,101 +59,9 @@ function Dashboard({ allDeals, token }: DashboardProps) {
     getConversionRateCardInfo,
     getData,
     deals,
-    // setAllDeals,
     getTestLineChartData,
     testLineChartData,
   } = useDashboardPage();
-
-  //* Mock para visualização {
-
-  const mock = [
-    {
-      value: 131542,
-      status: "WON",
-      updatedAt: "2021-11-01T17:38:44.873Z",
-    },
-    {
-      value: 231343,
-      status: "WON",
-      updatedAt: "2021-11-02T17:38:44.873Z",
-    },
-    {
-      value: 312761,
-      status: "WON",
-      updatedAt: "2021-11-03T17:38:44.873Z",
-    },
-    {
-      value: 459832,
-      status: "WON",
-      updatedAt: "2021-11-04T17:38:44.873Z",
-    },
-    {
-      value: 112122,
-      status: "WON",
-      updatedAt: "2021-11-05T17:38:44.873Z",
-    },
-    {
-      value: 231342,
-      status: "WON",
-      updatedAt: "2021-11-05T17:38:44.873Z",
-    },
-    {
-      value: 546432,
-      status: "LOST",
-      updatedAt: "2021-11-01T17:38:44.873Z",
-    },
-    {
-      value: 345354,
-      status: "LOST",
-      updatedAt: "2021-11-02T17:38:44.873Z",
-    },
-    {
-      value: 226512,
-      status: "LOST",
-      updatedAt: "2021-11-03T17:38:44.873Z",
-    },
-    {
-      value: 453113,
-      status: "LOST",
-      updatedAt: "2021-11-04T17:38:44.873Z",
-    },
-    {
-      value: 212772,
-      status: "LOST",
-      updatedAt: "2021-11-05T17:38:44.873Z",
-    },
-  ];
-
-  const x = [
-    "November 5, 2021",
-    "November 6, 2021",
-    "November 7, 2021",
-    "November 8, 2021",
-    "November 9, 2021",
-    "November 11, 2021",
-    "November 12, 2021",
-    "November 13, 2021",
-    "November 14, 2021",
-    "November 15, 2021",
-    "November 16, 2021",
-    "November 17, 2021",
-  ];
-
-  const s = [
-    {
-      name: "Ganha",
-      data: [
-        2432, 4654, 5912, 4342, 5982, 7354, 3370, 6609, 9904, 1323, 5434, 8767,
-      ],
-    },
-    {
-      name: "Perdida",
-      data: [
-        3301, 6660, 9990, 1323, 5434, 8767, 3432, 6654, 9912, 4342, 5982, 7354,
-      ],
-    },
-  ];
-  //* Fim do Mock }
 
   const [filterType, setFilterType] = useState<{
     chartType: string;

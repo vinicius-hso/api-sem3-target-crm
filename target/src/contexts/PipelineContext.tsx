@@ -304,7 +304,6 @@ export const ModalProvider: React.FC = ({ children }) => {
     if (route.route === "/") {
       localStorage.removeItem("dealsListFilter");
     }
-    if (!pipelines?.length) getPipelines();
   }, []);
 
   return (

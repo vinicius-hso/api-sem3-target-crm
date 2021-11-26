@@ -28,6 +28,7 @@ interface AchivedDealModalProps {
   open: boolean;
   setStatus: (value: StatusTypes) => void;
   getDealsData: () => void;
+  isAdmin: boolean;
 }
 
 const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
@@ -36,6 +37,7 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
   open,
   setStatus,
   getDealsData,
+  isAdmin,
 }) => {
   const [hasRestore, setHasRestore] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -43,7 +45,6 @@ const AchivedDealModal: React.FC<AchivedDealModalProps> = ({
   const [selectedPipeline, setSelectedPipeline] = useState("default");
   const { pipelines, getData } = usePipelineComponent();
   const { updateStatusAndRestore } = useDealPage();
-  const { isAdmin } = useNavBarComponent();
 
   useEffect(() => {
     if (!pipelines.length) {

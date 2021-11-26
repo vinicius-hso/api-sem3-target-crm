@@ -51,7 +51,7 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
   return (
     <div>
       <ContainerStyled>
-        <div>
+        <div className="containerTitle">
           <Title title="Meus dados" />
 
           <Tooltip
@@ -202,20 +202,6 @@ const UserAccountComponent: React.FC<UserAccountCardProps> = ({
         )}
 
         <UserAccountCardContainer>
-          {/* {showSuccessAlert ? (
-            <Alert
-              title="Sucesso"
-              severity="success"
-              message="Empresa editada com sucesso!"
-            />
-          ) : null}
-          {showErrorAlert ? (
-            <Alert
-              title="Erro"
-              severity="error"
-              message="Ops! Algo deu errado :("
-            />
-          ) : null} */}
           {!props.hasEdit ? (
             <Tooltip
               title="Editar"

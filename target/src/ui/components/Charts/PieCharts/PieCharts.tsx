@@ -7,6 +7,8 @@ interface BarChartsProps {
 }
 
 const PieCharts: React.FC<BarChartsProps> = ({ series }) => {
+  console.log(series);
+
   const options: ApexOptions = useMemo(
     () => ({
       chart: {

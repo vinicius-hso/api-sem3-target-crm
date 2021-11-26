@@ -27,12 +27,14 @@ import Head from "next/head";
 import { parseCookies } from "data/services/cookie";
 import { GetServerSideProps } from "next";
 import { serviceApi } from "data/services/ServiceApi";
+import { IUser } from "types/User";
 
 interface CompletedPageProps {
   token: string;
+  user: IUser;
 }
 
-function CompletedPage({ token }: CompletedPageProps) {
+function CompletedPage({ token, user }: CompletedPageProps) {
   serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   const { deals, filterDeals, removefilterDeals, getData } = useCompletedPage();
@@ -132,6 +134,7 @@ function CompletedPage({ token }: CompletedPageProps) {
         deal={selectedDeal}
         setStatus={setStatus}
         getDealsData={getData}
+        isAdmin={user.role === "ADMIN"}
       />
 
       {deals && (
@@ -251,7 +254,6 @@ function CompletedPage({ token }: CompletedPageProps) {
                 cursor: deal.status === "ARCHIVED" ? "pointer" : "",
               }}
               onClick={() => {
-                // deal.status === "ARCHIVED" ? handleClick(deal) : null;
                 handleClick(deal);
               }}
             />

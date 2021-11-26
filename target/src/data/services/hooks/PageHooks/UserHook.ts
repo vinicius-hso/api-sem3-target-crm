@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserService from "data/services/UserService";
 import { IUser } from "types/User";
 import { useRouter } from "next/dist/client/router";

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CircularProgress, Typography, Tooltip } from "@material-ui/core";
 import {
   DealsHeaderContainer,
@@ -41,6 +41,10 @@ function MainPage({ token, user }: MainPageProps) {
     removefilterDeals,
     getPipelines,
   } = useContext(PipelineContext);
+
+  useEffect(() => {
+    getPipelines();
+  }, []);
 
   const [valueType, setValueType] = React.useState("name");
   const [searchTerm, setSearchTerm] = React.useState("");

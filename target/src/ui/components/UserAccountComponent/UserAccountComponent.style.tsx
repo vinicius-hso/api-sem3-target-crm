@@ -38,7 +38,7 @@ export const ContainerStyled = styled(Container)`
   padding-bottom: 20px;
 
   div {
-    &:first-child {
+    &.containerTitle {
       display: flex;
       justify-content: space-between;
       align-items: center;

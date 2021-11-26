@@ -25,6 +25,7 @@ function MyApp({ Component, pageProps }) {
           {currentRoute.route === "/login" ||
           currentRoute.route === "/recover_pass" ||
           currentRoute.route === "/welcome" ||
+          currentRoute.route === "/404" ||
           currentRoute.route === "/recover" ? (
             <>
               <Component {...pageProps}></Component>
