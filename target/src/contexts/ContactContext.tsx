@@ -79,23 +79,26 @@ export const ContactProvider: React.FC = ({ children }) => {
     if (resetFilter) list = persistedContactsLists;
     let filtered = [];
     setContacts([]);
-    if (typeValue === "name") {
-      filtered = list.filter((contact) =>
-        contact.name.toLowerCase().includes(terms.toLocaleLowerCase())
-      );
-    } else if (typeValue === "city") {
-      filtered = list.filter((contact) =>
-        contact?.city.toLowerCase().includes(terms.toLocaleLowerCase())
-      );
-    } else if (typeValue === "state") {
-      filtered = list.filter((contact) =>
-        contact?.state.toLowerCase().includes(terms.toLocaleLowerCase())
-      );
-    } else {
-      filtered = list.filter((contact) =>
-        contact?.company.id.toLowerCase().includes(terms.toLocaleLowerCase())
-      );
-    }
+
+    const applyFilter = {
+      name: () => {
+        filtered = list.filter((contact) =>
+          contact.name.toLowerCase().includes(terms.toLocaleLowerCase())
+        );
+      },
+      city: () => {
+        filtered = list.filter((contact) =>
+          contact?.city.toLowerCase().includes(terms.toLocaleLowerCase())
+        );
+      },
+      state: () => {
+        filtered = list.filter((contact) =>
+          contact?.state.toLowerCase().includes(terms.toLocaleLowerCase())
+        );
+      },
+    };
+
+    applyFilter[typeValue];
 
     setContacts(filtered);
   };
