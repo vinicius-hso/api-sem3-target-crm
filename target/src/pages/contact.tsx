@@ -41,6 +41,18 @@ function ContactPage({ token, user }: ContactPageProps) {
   const [time, setTime] = useState(null);
   const [selectedId, setSelectedId] = useState<string>("");
 
+  const {
+    useImportContactModal,
+    useCreateContactModal,
+    useUpdateContactModal,
+    isLoading,
+    hasError,
+    getContacts,
+    filteredContact,
+    removeFiltered,
+    contacts,
+  } = useContext(ContactContext);
+
   const handleChangeSearchTerm = (event) => {
     let resetFilter = false;
     if (hasFiltered) {
@@ -66,17 +78,6 @@ function ContactPage({ token, user }: ContactPageProps) {
     setSearchTerm("");
   };
 
-  const {
-    useImportContactModal,
-    useCreateContactModal,
-    useUpdateContactModal,
-    isLoading,
-    hasError,
-    getContacts,
-    filteredContact,
-    removeFiltered,
-    contacts,
-  } = useContext(ContactContext);
 
   const setId = () => {
     setSelectedId("");
@@ -115,6 +116,7 @@ function ContactPage({ token, user }: ContactPageProps) {
           searchTypes={[
             { value: "name", name: "Nome" },
             { value: "city", name: "Cidade" },
+            { value: "state", name: "Estado" },
             { value: "company", name: "Empresa" },
           ]}
           ChangeType={(event) => {
