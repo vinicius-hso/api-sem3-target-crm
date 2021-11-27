@@ -104,6 +104,7 @@ function CompanyPage({ token, user }: CompanyPageProps) {
           searchTypes={[
             { value: "name", name: "Nome" },
             { value: "city", name: "Cidade" },
+            { value: "state", name: "Estado" },
           ]}
           ChangeType={(event) => {
             setValueType(event.target.value);
