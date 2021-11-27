@@ -13,7 +13,10 @@ import {
 import {
   BottomNavigation,
   BottomNavigationAction,
+  Button,
+  CircularProgress,
   Tooltip,
+  Typography,
 } from "@material-ui/core";
 import { useCompletedPage } from "data/services/hooks/PageHooks/CompletedHook";
 import DealCompletedCard from "ui/components/DealCompletedCard/DealCompletedCard";
@@ -37,13 +40,21 @@ interface CompletedPageProps {
 function CompletedPage({ token, user }: CompletedPageProps) {
   serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-  const { deals, filterDeals, removefilterDeals, getData } = useCompletedPage();
+  const {
+    deals,
+    filterDeals,
+    removefilterDeals,
+    getData,
+    isLoading,
+    hasError,
+  } = useCompletedPage();
   const [valueType, setValueType] = useState("name");
   const [hasFiltered, setHasFiltered] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [time, setTime] = React.useState(null);
   const [selectedStatus, setSelectedStatus] = useState("WON");
   const [selectListValues, setSelectListValues] = useState([]);
+  const [dealsList, setDealsList] = useState([]);
   const { formatCompaniesToSelect } = useCompanyPage();
   const { formatContactToSelect } = useContactPage();
   const [openAchivedModal, setOpenAchivedModal] = useState(false);
@@ -93,6 +104,12 @@ function CompletedPage({ token, user }: CompletedPageProps) {
     );
     clearTimeout(time);
   };
+
+  useEffect(() => {
+    if (deals) {
+      setDealsList(deals.filter((deal) => deal.status === selectedStatus));
+    }
+  }, [deals, selectedStatus]);
 
   const removeFilters = () => {
     removefilterDeals();
@@ -238,26 +255,46 @@ function CompletedPage({ token, user }: CompletedPageProps) {
         </BottomNavigation>
       </CompletedButtonsContainer>
       <CardsContainer>
-        {deals
-          .filter((deal) => deal.status === selectedStatus)
-          .map((deal) => (
-            <DealCompletedCard
-              key={deal.id}
-              title={deal.name}
-              companyName={deal.company?.name}
-              contactName={deal.contact?.name}
-              companyPicture={deal.company?.picture}
-              budget={deal.value}
-              startDate={deal.createdAt}
-              status={deal.status}
-              style={{
-                cursor: deal.status === "ARCHIVED" ? "pointer" : "",
-              }}
-              onClick={() => {
-                handleClick(deal);
-              }}
-            />
-          ))}
+        {isLoading ? (
+          <div style={{ textAlign: "center" }}>
+            <CircularProgress />
+          </div>
+        ) : !isLoading && hasError ? (
+          <div>{hasError}</div>
+        ) : (
+          <>
+            {!dealsList?.length && !isLoading && !hasError && (
+              <Typography sx={{ textAlign: "center" }}>
+                Nenhuma negociação{" "}
+                {selectedStatus === "WON"
+                  ? "GANHA"
+                  : selectedStatus === "LOST"
+                  ? "PERDIDA"
+                  : "ARQUIVADA"}{" "}
+                foi encontrada
+              </Typography>
+            )}
+
+            {dealsList.map((deal) => (
+              <DealCompletedCard
+                key={deal.id}
+                title={deal.name}
+                companyName={deal.company?.name}
+                contactName={deal.contact?.name}
+                companyPicture={deal.company?.picture}
+                budget={deal.value}
+                startDate={deal.createdAt}
+                status={deal.status}
+                style={{
+                  cursor: deal.status === "ARCHIVED" ? "pointer" : "",
+                }}
+                onClick={() => {
+                  handleClick(deal);
+                }}
+              />
+            ))}
+          </>
+        )}
       </CardsContainer>
     </CompletedPageContainer>
   );

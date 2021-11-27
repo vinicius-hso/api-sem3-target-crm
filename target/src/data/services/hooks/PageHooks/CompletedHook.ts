@@ -5,11 +5,23 @@ export const useCompletedPage = () => {
   //DECLARAÇÃO DAS VARIAVEIS
   const [deals, setDeals] = useState([]);
   const [removeFilteredDeals, setFilteredDeals] = useState([]);
+  const [hasError, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   const getData = async () => {
-    const response = await DealsService.getDealsCompleted();
-    setDeals(response);
-    setFilteredDeals(response);
+    setError("");
+    setLoading(true);
+    try {
+      const response = await DealsService.getDealsCompleted();
+      setDeals(response);
+      setFilteredDeals(response);
+      setLoading(false);
+    } catch (err) {
+      setError(
+        "Não foi possivel buscar as nogociações, verifique sua conexão e tente novamente"
+      );
+      setLoading(false);
+    }
   };
 
   const filterDeals = (
@@ -55,5 +67,7 @@ export const useCompletedPage = () => {
     getData,
     filterDeals,
     removefilterDeals,
+    hasError,
+    isLoading,
   };
 };

@@ -63,6 +63,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
       picture: "",
     });
     setOpen(false);
+    setSubmit(false);
   };
 
   const body = (
@@ -128,9 +129,11 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({
             <MenuItem value={"ADMIN"}>Administrador</MenuItem>
             <MenuItem value={"SELLER"}>Vendedor</MenuItem>
           </Select>
-          <Typography variant="caption" color="error">
-            Perfil é obrigatório
-          </Typography>
+          {submit && !data.role && (
+            <Typography variant="caption" color="error">
+              Perfil é obrigatório
+            </Typography>
+          )}
         </FormControl>
 
         <TextFieldMask

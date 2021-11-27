@@ -1,5 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { CircularProgress, Typography, Tooltip } from "@material-ui/core";
+import {
+  CircularProgress,
+  Typography,
+  Tooltip,
+  Button,
+} from "@material-ui/core";
 import {
   DealsHeaderContainer,
   DealsPageContainer,
@@ -40,6 +45,8 @@ function MainPage({ token, user }: MainPageProps) {
     filterDeals,
     removefilterDeals,
     getPipelines,
+    pipelines,
+    UseCreateModal,
   } = useContext(PipelineContext);
 
   useEffect(() => {
@@ -216,6 +223,20 @@ function MainPage({ token, user }: MainPageProps) {
           <div>{hasError}</div>
         ) : (
           <>
+            {!pipelines.length && !isLoading && !hasError && (
+              <div style={{ textAlign: "center" }}>
+                <Typography>Nenhum pipeline foi encontrado</Typography>
+                <Typography>Deseja adicionar um novo pipeline?</Typography>
+                <Button
+                  sx={{ my: 2, color: "white" }}
+                  variant="contained"
+                  color="success"
+                  onClick={() => UseCreateModal()}
+                >
+                  Adicionar nova pipeline
+                </Button>
+              </div>
+            )}
             <DynamicPiline />
           </>
         )}

@@ -11,6 +11,7 @@ import Title from "ui/components/Title/Title";
 import { useRouter } from "next/dist/client/router";
 import Dialog from "ui/components/Dialog/Dialog";
 import Head from "next/head";
+import { GetStaticProps } from "next";
 
 function EmailRecover() {
   const currentRouter = useRouter();
@@ -116,3 +117,10 @@ function EmailRecover() {
   );
 }
 export default EmailRecover;
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+    revalidate: 60 * 60 * 24 * 7, // 7 dias
+  };
+};

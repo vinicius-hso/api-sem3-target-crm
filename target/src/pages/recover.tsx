@@ -11,6 +11,7 @@ import { useRouter } from "next/dist/client/router";
 import Dialog from "ui/components/Dialog/Dialog";
 import { useRecoverPage } from "data/services/hooks/PageHooks/RecoverPageHook";
 import Head from "next/head";
+import { GetStaticProps } from "next";
 
 function PassRecover() {
   const currentRouter = useRouter();
@@ -142,3 +143,10 @@ function PassRecover() {
   );
 }
 export default PassRecover;
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+    revalidate: 60 * 60 * 24 * 7, // 7 dias
+  };
+};

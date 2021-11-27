@@ -6,6 +6,7 @@ import Head from "next/head";
 import Link from "next/link";
 import AuthContext from "contexts/AuthContext";
 import { IUser } from "types/User";
+import { GetStaticProps } from "next";
 
 interface WelcomeProps {
   user: IUser;
@@ -26,7 +27,7 @@ const NotFoundError = ({ user }: WelcomeProps) => {
 
       <Title
         title={"Ops, onde estamos?"}
-        subtitle={<p>Parece que esse lugar não é visitados a séculos!</p>}
+        subtitle={<p>Parece que esse lugar não é visitado a séculos!</p>}
       ></Title>
 
       <ImageContainer>
@@ -53,7 +54,7 @@ const NotFoundError = ({ user }: WelcomeProps) => {
               sx={{ width: "200px", mt: 1 }}
               color="primary"
             >
-              Ir para pagina inicial
+              Ir para página inicial
             </Button>
           </Link>
         </div>
@@ -62,3 +63,10 @@ const NotFoundError = ({ user }: WelcomeProps) => {
   );
 };
 export default NotFoundError;
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+    revalidate: 60 * 60 * 24 * 7, // 7 dias
+  };
+};

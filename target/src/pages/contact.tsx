@@ -11,10 +11,14 @@ import {
   ContactsPageContainer,
 } from "@styles/pagesStyle/contacts.style";
 import ContactCard from "ui/components/ContactCard/ContactCard";
-import { useContactPage } from "data/services/hooks/PageHooks/ContactHook";
 import CreateContactModal from "ui/components/Modal/Contact/CreateContactModal";
 import { useCompanyPage } from "data/services/hooks/PageHooks/CompanyHook";
-import { Button, CircularProgress, Tooltip } from "@material-ui/core";
+import {
+  Button,
+  CircularProgress,
+  Tooltip,
+  Typography,
+} from "@material-ui/core";
 import UpdateContactModal from "ui/components/Modal/Contact/UpdateContactModal";
 import DeleteContactModal from "ui/components/Modal/Contact/DeleteContactModal";
 import ImportContactModal from "ui/components/Modal/Contact/ImportContactModal";
@@ -25,6 +29,7 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
 import { IUser } from "types/User";
+import { textAlign } from "@material-ui/system";
 
 interface ContactPageProps {
   token: string;
@@ -77,7 +82,6 @@ function ContactPage({ token, user }: ContactPageProps) {
     setHasFiltered(false);
     setSearchTerm("");
   };
-
 
   const setId = () => {
     setSelectedId("");
@@ -172,6 +176,20 @@ function ContactPage({ token, user }: ContactPageProps) {
           <div>{hasError}</div>
         ) : (
           <>
+            {!isLoading && !hasError && !contacts?.length && (
+              <div style={{ textAlign: "center" }}>
+                <Typography>Nenhum contato foi encontrado</Typography>
+                <Typography>Deseja adicionar um novo contato?</Typography>
+                <Button
+                  sx={{ my: 2, color: "white" }}
+                  variant="contained"
+                  color="success"
+                  onClick={() => useCreateContactModal()}
+                >
+                  Adicionar novo contato
+                </Button>
+              </div>
+            )}
             {contacts?.map((contact) => (
               <ContactCard
                 key={contact.id}

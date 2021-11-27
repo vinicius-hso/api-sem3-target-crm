@@ -38,7 +38,7 @@ export const useCompanyPage = () => {
     } catch (err) {
       setLoading(false);
       setError(
-        "Não foi possivel buscar empresas, verifique sua conexão e tente novamente"
+        "Não foi possivel buscar as empresas, verifique sua conexão e tente novamente"
       );
     }
   };
