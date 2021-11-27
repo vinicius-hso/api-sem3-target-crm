@@ -87,6 +87,10 @@ export const ContactProvider: React.FC = ({ children }) => {
       filtered = list.filter((contact) =>
         contact?.city.toLowerCase().includes(terms.toLocaleLowerCase())
       );
+    } else if (typeValue === "state") {
+      filtered = list.filter((contact) =>
+        contact?.state.toLowerCase().includes(terms.toLocaleLowerCase())
+      );
     } else {
       filtered = list.filter((contact) =>
         contact?.company.id.toLowerCase().includes(terms.toLocaleLowerCase())
