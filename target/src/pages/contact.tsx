@@ -176,7 +176,7 @@ function ContactPage({ token, user }: ContactPageProps) {
           <div>{hasError}</div>
         ) : (
           <>
-            {!isLoading && !hasError && !contacts?.length && (
+            {!isLoading && !hasError && !contacts?.length && !hasFiltered && (
               <div style={{ textAlign: "center" }}>
                 <Typography>Nenhum contato foi encontrado</Typography>
                 <Typography>Deseja adicionar um novo contato?</Typography>
@@ -190,6 +190,15 @@ function ContactPage({ token, user }: ContactPageProps) {
                 </Button>
               </div>
             )}
+
+            {!isLoading && !hasError && !contacts?.length && hasFiltered && (
+              <div style={{ textAlign: "center" }}>
+                <Typography>
+                  Nenhum contato atende os parametros do filtro
+                </Typography>
+              </div>
+            )}
+
             {contacts?.map((contact) => (
               <ContactCard
                 key={contact.id}

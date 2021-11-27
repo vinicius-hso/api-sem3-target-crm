@@ -263,7 +263,7 @@ function CompletedPage({ token, user }: CompletedPageProps) {
           <div>{hasError}</div>
         ) : (
           <>
-            {!dealsList?.length && !isLoading && !hasError && (
+            {!dealsList?.length && !isLoading && !hasError && !hasFiltered && (
               <Typography sx={{ textAlign: "center" }}>
                 Nenhuma negociação{" "}
                 {selectedStatus === "WON"
@@ -273,6 +273,14 @@ function CompletedPage({ token, user }: CompletedPageProps) {
                   : "ARQUIVADA"}{" "}
                 foi encontrada
               </Typography>
+            )}
+
+            {!isLoading && !hasError && !dealsList?.length && hasFiltered && (
+              <div style={{ textAlign: "center" }}>
+                <Typography>
+                  Nenhuma negociação atende os parametros do filtro
+                </Typography>
+              </div>
             )}
 
             {dealsList.map((deal) => (

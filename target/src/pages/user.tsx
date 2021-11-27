@@ -9,7 +9,12 @@ import {
 import UserCard from "ui/components/UserCard/UserCard";
 import SearchButtom from "ui/components/SearchButton/SearchButton";
 import Title from "ui/components/Title/Title";
-import { Button, Tooltip } from "@material-ui/core";
+import {
+  Button,
+  CircularProgress,
+  Tooltip,
+  Typography,
+} from "@material-ui/core";
 import CreateUserModal from "ui/components/Modal/CreateUserModal";
 import { useUserPage } from "data/services/hooks/PageHooks/UserHook";
 import UserDetailModal from "ui/components/Modal/UserDetailModal";
@@ -28,8 +33,15 @@ interface UserPageProps {
 function UserPage({ usersSSR, token }: UserPageProps) {
   serviceApi.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-  const { users, setUsers, filteredUser, removeFiltered, getData } =
-    useUserPage();
+  const {
+    users,
+    setUsers,
+    filteredUser,
+    removeFiltered,
+    getData,
+    hasError,
+    isLoading,
+  } = useUserPage();
 
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
@@ -138,19 +150,37 @@ function UserPage({ usersSSR, token }: UserPageProps) {
       </NewUserButtonContainer>
 
       <CardsContainer>
-        {users.map((user) => (
-          <UserCard
-            key={user.id}
-            name={user.name}
-            email={user.email}
-            role={user.role}
-            picture={user.picture}
-            onClick={() => {
-              setSelectedUser(user);
-              setOpenDetailUserModal(true);
-            }}
-          />
-        ))}
+        {isLoading ? (
+          <div style={{ textAlign: "center" }}>
+            <CircularProgress />
+          </div>
+        ) : !isLoading && hasError ? (
+          <div>{hasError}</div>
+        ) : (
+          <>
+            {!isLoading && !hasError && !users?.length && hasFiltered && (
+              <div style={{ textAlign: "center" }}>
+                <Typography>
+                  Nenhum usuário atende os parametros do filtro
+                </Typography>
+              </div>
+            )}
+
+            {users.map((user) => (
+              <UserCard
+                key={user.id}
+                name={user.name}
+                email={user.email}
+                role={user.role}
+                picture={user.picture}
+                onClick={() => {
+                  setSelectedUser(user);
+                  setOpenDetailUserModal(true);
+                }}
+              />
+            ))}
+          </>
+        )}
       </CardsContainer>
     </UserPageContainer>
   );

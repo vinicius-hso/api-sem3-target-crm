@@ -150,7 +150,7 @@ function CompanyPage({ token, user }: CompanyPageProps) {
           <div>{hasError}</div>
         ) : (
           <>
-            {!isLoading && !hasError && !companies?.length && (
+            {!isLoading && !hasError && !companies?.length && !hasFiltered && (
               <div style={{ textAlign: "center" }}>
                 <Typography>Nenhuma empresa foi encontrada</Typography>
                 <Typography>Deseja adicionar uma nova empresa?</Typography>
@@ -162,6 +162,14 @@ function CompanyPage({ token, user }: CompanyPageProps) {
                 >
                   Adicionar nova empresa
                 </Button>
+              </div>
+            )}
+
+            {!isLoading && !hasError && !companies?.length && hasFiltered && (
+              <div style={{ textAlign: "center" }}>
+                <Typography>
+                  Nenhuma empresa atende os parametros do filtro
+                </Typography>
               </div>
             )}
 

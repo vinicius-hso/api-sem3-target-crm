@@ -46,6 +46,7 @@ function MainPage({ token, user }: MainPageProps) {
     removefilterDeals,
     getPipelines,
     pipelines,
+    dealsList,
     UseCreateModal,
   } = useContext(PipelineContext);
 
@@ -237,6 +238,15 @@ function MainPage({ token, user }: MainPageProps) {
                 </Button>
               </div>
             )}
+
+            {!isLoading && !hasError && !dealsList?.length && hasFiltered && (
+              <div style={{ textAlign: "center" }}>
+                <Typography>
+                  Nenhuma negociação atende os parametros do filtro
+                </Typography>
+              </div>
+            )}
+
             <DynamicPiline />
           </>
         )}

@@ -11,6 +11,8 @@ export const useUserPage = () => {
   const [formatUsersToSelect, setFormat] = useState([]);
   const [createUserModalState, setCreateUserModalState] =
     useState<boolean>(false);
+  const [hasError, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   const [userDetail, setUserDetail] = useState<IUser>({});
 
@@ -23,10 +25,20 @@ export const useUserPage = () => {
   };
 
   const getData = async () => {
-    const response = await UserService.getUsers();
-    setUsers(response);
-    setFilteredUsers(response);
-    formatListToSelect(response);
+    setError("");
+    setLoading(true);
+    try {
+      const response = await UserService.getUsers();
+      setUsers(response);
+      setFilteredUsers(response);
+      formatListToSelect(response);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      setError(
+        "Não foi possivel buscar os usuários, verifique sua conexão e tente novamente"
+      );
+    }
   };
 
   const filteredUser = async (terms: string, typeValue: string) => {
@@ -86,5 +98,7 @@ export const useUserPage = () => {
     userDetail,
     deleteUser,
     getData,
+    hasError,
+    isLoading,
   };
 };
