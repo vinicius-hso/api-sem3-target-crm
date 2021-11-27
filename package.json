@@ -12,8 +12,10 @@
     "dev": "ts-node-dev --files -r tsconfig-paths/register --inspect=0.0.0.0:7007 --transpile-only --exit-child src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js -f ./ormconfig.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
-    "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s . -o ./dist",
-    "heroku-prebuild": "npm i -g typescript"
+    "build": "npm run clean && tsc --project tsconfig.json && tscpaths -p tsconfig.json -s . -o ./dist && npm run copy-files",
+    "heroku-prebuild": "npm i -g typescript",
+    "clean": "rm -rf ./dist",
+    "copy-files": "copyfiles -u 1 src/resources/**/*.html ./dist/src/"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -47,6 +49,7 @@
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "babel-plugin-module-resolver": "^4.1.0",
+    "copyfiles": "^2.4.1",
     "eslint": "^7.32.0",
     "jest-module-name-mapper": "^0.1.5",
     "ts-jest": "^27.0.5",
