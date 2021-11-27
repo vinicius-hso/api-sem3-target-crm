@@ -69,8 +69,11 @@ class AuthController {
           context: { token, email: user.email },
         },
         (err) => {
-          if (err) return res.status(400).json({ message: 'Cannot send forgot password email' });
+          if (err) {
+            console.log(err);
 
+            return res.status(400).json({ message: 'Cannot send forgot password email' });
+          }
           transport.close();
 
           return res.json();
