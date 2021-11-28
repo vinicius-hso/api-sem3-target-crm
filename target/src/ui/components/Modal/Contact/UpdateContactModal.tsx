@@ -107,7 +107,7 @@ const UpdateContactModal = ({ id, setId, isAdmin, getData }) => {
   const body = (
     <ModalContainer>
       <Dialog
-        title={"Deletar empresa"}
+        title={"Deletar contato"}
         message={`Tem certeza que deseja deletar ${data?.name}?`}
         type={"question"}
         open={dialogView}
