@@ -2,7 +2,13 @@
   Aprendizado por Projeto Integrador
 </h2>
 
-Projeto sendo desenvolvido pelos alunos da equipe Cluster 8 - Turmas A e B do 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
+## 🚀 Release da Aplicação Web TARGET
+
+Acesse a aplicação Target através do seguinte link:
+
+* https://targetcrm.vercel.app/
+
+Projeto desenvolvido pelos alunos da equipe Cluster 8 - Turmas A e B do 3º semestre do curso de Análise e Desenvolvimento de Sistemas, FATEC - Faculdade de Tecnologia de São José dos Campos.
 
 ## 📌 Desafio
 Desenvolver uma Aplicação Web de **Customer Relationship Management** (Gestão de Relacionamento com o Cliente) para organização dos processos comerciais, oferecendo suporte adequado às áreas de vendas e negócios para a empresa parceira.
@@ -59,6 +65,15 @@ Acesse o link para visualizar:
 
 > * [Código](https://github.com/vinicius-hso/api-sem3-target-crm/tree/development)
  
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 📃 Código - Ambiente de Produção 
+
+Acesse os links para visualizar:
+
+> * [__Código - Backend__](https://github.com/vinicius-hso/api-sem3-target-crm/tree/backend-prod)
+> * [__Código - Frontend__](https://github.com/Willian-Rodrigues/target-crm/)
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🎲 Modelagem do Banco de Dados
