@@ -75,7 +75,25 @@ Uma negociação pode ser finalizada de três formas, como "Arquivada", "Perdida
 
 ### 🖥️ 📱 Responsividade
 
-![]()
+**🔶 Criando um novo usuário**
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%231-create-user-MOBILE.gif)
+
+
+**🔶 Novo usuário acessando a plataforma**
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%232-create-company-MOBILE.gif)
+
+
+**🔶 Importando contatos e adicionando uma negociação**
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%233-import-contact-create-deal-MOBILE.gif)
+
+
+**🔶 Finalizando uma negociação**
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%234-dashboard-MOBILE.gif)
+
 
 ### 🧑‍🚀 🚀 Deploy
 
