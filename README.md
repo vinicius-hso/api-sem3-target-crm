@@ -42,3 +42,25 @@ Acesse os documentos clicando nos links abaixo:
 
 * [__Casos de Testes Funcionais__](link)
 * [__Product Backlog__](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Documentation/product-backlog-target.pdf)
+
+## Atividades da Sprint
+
+Nessa última sprint a equipe focou seus esforços para a correção de bugs, a implementação final da responsividade e o deploy da aplicação.
+
+### 🛠️ 🐞 Correção de bugs
+
+![]()
+
+### 🖥️ 📱 Resonsividade
+
+![]()
+
+### 🧑‍🚀 🚀 Deploy
+
+**Front-end**
+
+* https://targetcrm.vercel.app/
+
+**Back-end**
+
+* https://api-target.herokuapp.com/
