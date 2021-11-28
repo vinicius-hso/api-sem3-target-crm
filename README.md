@@ -45,7 +45,7 @@ A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/vini
 O gráfico abaixo mostra o desempenho da equipe na realização das tarefas referentes a Sprint 4:
 
 <p align="center">
-  <img src="link"  /></p>
+  <img src="link"  />https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/Burndown_Sprint4.png</p>
    
 ## 📂 Documentação do Projeto
 
