@@ -49,7 +49,29 @@ Nessa última sprint a equipe focou seus esforços para a correção de bugs, a 
 
 ### 🛠️ 🐞 Correção de bugs
 
-![]()
+**Criando um novo usuário**
+
+O administrador da aplicação é o único que possui permissão para remover ou adicionar novos usuários na plataforma. 
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%231-create-user.gif)
+
+**Novo usuário acessando sua conta**
+
+Ao ser adicionado à plataforma o usuário recebe um email com sua senha para realizar seu primeiro acesso e começar a utilizar a aplicação, como por exemplo, adicionar uma empresa à plataforma.
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%232-create-company.gif)
+
+**Importando contatos e adicionando uma negociação**
+
+O usuário pode adicionar contatos à aplicação através da importação de uma planilha excel e atribuir a cada um uma empresa, pode criar uma nova negociação e atribuí-la a um contato.
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%233-import-contact-create-deal.gif)
+
+**Finalizando uma negociação**
+
+Uma negociação pode ser finalizada de três formas, como "Arquivada", "Perdida" ou "Ganha". As negociações arquivada podem ser restauradas ou excluídas permanentemente, as ganhas e perdidas são exibidas nos gráficos do dashboard da aplicação.
+
+![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%234-archive-won-dashboard.gif)
 
 ### 🖥️ 📱 Resonsividade
 
