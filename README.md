@@ -73,7 +73,7 @@ Uma negociação pode ser finalizada de três formas, como "Arquivada", "Perdida
 
 ![](https://github.com/vinicius-hso/api-sem3-target-crm/blob/Sprint-4/Images/gifs/%234-archive-won-dashboard.gif)
 
-### 🖥️ 📱 Resonsividade
+### 🖥️ 📱 Responsividade
 
 ![]()
 
