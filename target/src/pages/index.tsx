@@ -239,15 +239,15 @@ function MainPage({ token, user }: MainPageProps) {
               </div>
             )}
 
-            {!isLoading && !hasError && !dealsList?.length && hasFiltered && (
+            {!isLoading && !hasError && !dealsList?.length && hasFiltered ? (
               <div style={{ textAlign: "center" }}>
                 <Typography>
                   Nenhuma negociação atende os parametros do filtro
                 </Typography>
               </div>
+            ) : (
+              <DynamicPiline />
             )}
-
-            <DynamicPiline />
           </>
         )}
       </PipelinesContainer>
