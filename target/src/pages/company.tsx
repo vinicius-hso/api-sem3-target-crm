@@ -44,6 +44,7 @@ function CompanyPage({ token, user }: CompanyPageProps) {
 
   const [valueType, setValueType] = React.useState("name");
   const [hasFiltered, setHasFiltered] = React.useState(false);
+  const [selectListValues, setSelectListValues] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
 
   //MODAL CONTROL
@@ -80,6 +81,23 @@ function CompanyPage({ token, user }: CompanyPageProps) {
     setSearchTerm("");
   };
 
+  const handleChangeValueType = (event) => {
+    setSearchTerm("");
+    setValueType(event.target.value);
+    if (event.target.value === "state") {
+      const states = [];
+      companies.forEach((contact) => {
+        const state = states.some((state) => state.value === contact.state);
+        if (!state) {
+          states.push({ label: contact.state, value: contact.state });
+        }
+      });
+      setSelectListValues(states);
+    } else {
+      setSelectListValues([]);
+    }
+  };
+
   return (
     <CompanyPageContainer>
       <Head>
@@ -106,13 +124,14 @@ function CompanyPage({ token, user }: CompanyPageProps) {
           buttomIcon="fa-search"
           viewButtonGroup={true}
           typeValue={valueType}
+          selectListValues={selectListValues}
           searchTypes={[
             { value: "name", name: "Nome" },
             { value: "city", name: "Cidade" },
             { value: "state", name: "Estado" },
           ]}
           ChangeType={(event) => {
-            setValueType(event.target.value);
+            handleChangeValueType(event);
           }}
           onChange={(event) => {
             handleChangeSearchTerm(event);

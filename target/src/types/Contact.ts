@@ -26,11 +26,7 @@ export interface IContactContext {
   useDeleteContactModal: () => void;
   deleteContactModal: boolean;
   contacts: IContact[];
-  filteredContact: (
-    terms: string,
-    typeValue: string,
-    resetFilter: boolean
-  ) => void;
+  filteredContact: (terms: string, typeValue: string) => void;
   removeFiltered: () => void;
   getContacts: () => Promise<void>;
   sendImportedContacts: (contacts: IContact[]) => Promise<{

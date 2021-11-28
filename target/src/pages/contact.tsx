@@ -29,7 +29,6 @@ import { GetServerSideProps } from "next";
 import { parseCookies } from "data/services/cookie";
 import { serviceApi } from "data/services/ServiceApi";
 import { IUser } from "types/User";
-import { textAlign } from "@material-ui/system";
 
 interface ContactPageProps {
   token: string;
@@ -43,6 +42,7 @@ function ContactPage({ token, user }: ContactPageProps) {
   const [valueType, setValueType] = useState("name");
   const [hasFiltered, setHasFiltered] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectListValues, setSelectListValues] = React.useState([]);
   const [time, setTime] = useState(null);
   const [selectedId, setSelectedId] = useState<string>("");
 
@@ -58,19 +58,36 @@ function ContactPage({ token, user }: ContactPageProps) {
     contacts,
   } = useContext(ContactContext);
 
-  const handleChangeSearchTerm = (event) => {
-    let resetFilter = false;
-    if (hasFiltered) {
-      resetFilter = true;
+  const handleChangeValueType = (event) => {
+    setSearchTerm("");
+    setValueType(event.target.value);
+    if (event.target.value === "state") {
+      const states = [];
+      contacts.forEach((contact) => {
+        const state = states.some((state) => state.value === contact.state);
+        if (!state) {
+          states.push({ label: contact.state, value: contact.state });
+        }
+      });
+      setSelectListValues(states);
+    } else if (event.target.value === "company") {
+      setSelectListValues(formatCompaniesToSelect);
+    } else {
+      setSelectListValues([]);
     }
+  };
+
+  const handleChangeSearchTerm = (event) => {
     setSearchTerm(event.target.value);
+
     if (time) {
       clearTimeout(time);
       setTime(null);
     }
+
     setTime(
       setTimeout(() => {
-        filteredContact(event.target.value, valueType, resetFilter);
+        filteredContact(event.target.value, valueType);
         setHasFiltered(true);
       }, 1000)
     );
@@ -124,12 +141,12 @@ function ContactPage({ token, user }: ContactPageProps) {
             { value: "company", name: "Empresa" },
           ]}
           ChangeType={(event) => {
-            setValueType(event.target.value);
+            handleChangeValueType(event);
           }}
           onChange={(event) => {
             handleChangeSearchTerm(event);
           }}
-          selectListValues={formatCompaniesToSelect}
+          selectListValues={selectListValues}
           value={searchTerm}
           onClick={removeFilters}
           hasFiltered={hasFiltered}

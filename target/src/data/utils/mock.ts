@@ -133,6 +133,36 @@ export const mockEstados = [
   { id: 27, sigla: "TO" },
 ];
 
+export const mockstates = [
+  { value: 1, label: "AC" },
+  { value: 2, label: "AL" },
+  { value: 3, label: "AP" },
+  { value: 4, label: "AM" },
+  { value: 5, label: "BA" },
+  { value: 6, label: "CE" },
+  { value: 7, label: "DF" },
+  { value: 8, label: "ES" },
+  { value: 9, label: "GO" },
+  { value: 10, label: "MA" },
+  { value: 11, label: "MT" },
+  { value: 12, label: "MS" },
+  { value: 13, label: "MG" },
+  { value: 14, label: "PA" },
+  { value: 15, label: "PB" },
+  { value: 16, label: "PR" },
+  { value: 17, label: "PE" },
+  { value: 18, label: "PI" },
+  { value: 19, label: "RJ" },
+  { value: 20, label: "RN" },
+  { value: 21, label: "RS" },
+  { value: 22, label: "RO" },
+  { value: 23, label: "RR" },
+  { value: 24, label: "SC" },
+  { value: 25, label: "SP" },
+  { value: 26, label: "SE" },
+  { value: 27, label: "TO" },
+];
+
 const mock = [
   {
     value: 131542,

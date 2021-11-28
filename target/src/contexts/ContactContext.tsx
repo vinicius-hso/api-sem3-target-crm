@@ -14,7 +14,8 @@ export const ContactProvider: React.FC = ({ children }) => {
   const [hasError, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  const [persistedContactsLists, setPersistedContactsLists] = useState<IContact[]>();
+  const [persistedContactsLists, setPersistedContactsLists] =
+    useState<IContact[]>();
 
   const [contacts, setContacts] = useState<IContact[]>();
 
@@ -69,42 +70,37 @@ export const ContactProvider: React.FC = ({ children }) => {
     }
   };
 
-  const filteredContact = async (
-    terms: string,
-    typeValue: string,
-    resetFilter: boolean
-  ) => {
-    let list = contacts;
-    setPersistedContactsLists(contacts)
-    if (resetFilter) list = persistedContactsLists;
-    let filtered = [];
-    setContacts([]);
-
-    const applyFilter = {
-      name: () => {
-        filtered = list.filter((contact) =>
-          contact.name.toLowerCase().includes(terms.toLocaleLowerCase())
+  const filteredContact = async (terms: string, typeValue: string) => {
+    let filteredContacts = [];
+    switch (typeValue) {
+      case "name":
+        filteredContacts = contacts.filter((contact) =>
+          contact.name.toLowerCase().includes(terms.toLowerCase())
         );
-      },
-      city: () => {
-        filtered = list.filter((contact) =>
-          contact?.city.toLowerCase().includes(terms.toLocaleLowerCase())
+        break;
+      case "city":
+        filteredContacts = contacts.filter((contact) =>
+          contact.city.trim().toLowerCase().includes(terms.trim().toLowerCase())
         );
-      },
-      state: () => {
-        filtered = list.filter((contact) =>
-          contact?.state.toLowerCase().includes(terms.toLocaleLowerCase())
+        break;
+      case "state":
+        filteredContacts = contacts.filter((contact) =>
+          contact.state.includes(terms)
         );
-      },
-    };
-
-    applyFilter[typeValue];
-
-    setContacts(filtered);
+        break;
+      case "company":
+        filteredContacts = contacts.filter((contact) =>
+          contact.company.id.includes(terms)
+        );
+        break;
+      default:
+        break;
+    }
+    setContacts(filteredContacts);
   };
 
   const removeFiltered = () => {
-    setContacts(persistedContactsLists);
+    getContacts();
   };
 
   useEffect(() => {

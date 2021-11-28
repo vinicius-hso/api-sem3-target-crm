@@ -63,7 +63,7 @@ export const useCompanyPage = () => {
   };
 
   const removeFiltered = async (isNewSearched: boolean) => {
-    if (!isNewSearched) setCompanies(removeFilteredCompanies);
+    getData();
   };
 
   const createCompany = async (data: CompanyTypes) => {

@@ -5,7 +5,6 @@ import {
   Select,
   Typography,
 } from "@material-ui/core";
-import { mockEstados } from "data/utils/mock";
 import React, { useEffect } from "react";
 import TextFieldMask from "ui/components/Input/TextFieldMask/TextFieldMask";
 import { DividerStyled, HasFilter, PaperStyled } from "./SearchButton.style";
@@ -27,8 +26,6 @@ interface SearchButtomProps {
 const SearchButtom: React.FC<SearchButtomProps> = (props) => {
   useEffect(() => {}, [props.typeValue]);
 
-
-
   return (
     <PaperStyled
       style={{ paddingBottom: props.typeValue === "name" ? "30px" : 0 }}
@@ -39,8 +36,9 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
       ></i>
       {props.typeValue === "name" || props.typeValue === "city" ? (
         <TextFieldMask
-          label={`Filtre por ${props.typeValue === "name" ? "nome" : "cidade"
-            } `}
+          label={`Filtre por ${
+            props.typeValue === "name" ? "nome" : "cidade"
+          } `}
           fullWidth
           variant={"standard"}
           size="medium"
@@ -60,9 +58,9 @@ const SearchButtom: React.FC<SearchButtomProps> = (props) => {
             value={props.value}
             onChange={props.onChange}
           >
-            {mockEstados.map((state, index) => (
-              <MenuItem key={index} value={state.sigla}>
-                {state.sigla}
+            {props.selectListValues.map((type, index) => (
+              <MenuItem key={index} value={type.value}>
+                {type.label}
               </MenuItem>
             ))}
           </Select>
