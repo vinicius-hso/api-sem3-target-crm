@@ -35,5 +35,3 @@
   - acesse `localhost:3333`;
     - SE NECESSÁRIO, PARA REVERTER AS MIGRATIONS, rode `yarn typeorm migration:revert`;
     - SE NECESSÁRIO, PARA DROPAR O DB, rode `yarn typeorm schema:drop` e depois `yarn typeorm migration:run`;
-
-**liberando acesso para envio de email (EMAIL: GSWatcher): 'https://accounts.google.com/DisplayUnlockCaptcha'**
