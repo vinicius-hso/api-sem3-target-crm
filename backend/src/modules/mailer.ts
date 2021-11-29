@@ -6,6 +6,8 @@ import { host, user, pass } from '@config/mail.json';
 const transport = mailer.createTransport({
   service: 'gmail',
   host,
+  port: 465,
+  secure: true,
   auth: {
     user,
     pass,
